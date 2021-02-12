@@ -1,0 +1,29 @@
+[tool.black]
+line-length = 100
+target-version = ['py36']
+
+[tool.poetry]
+name = "crowdin-python"
+version = "0.0.1"
+description = "Crowdin API client Python"
+authors = ["Crowdin"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+requests = "^2.25.1"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.8.4"
+pre-commit = "^2.9.2"
+xenon = "^0.7.1"
+doc8 = "^0.8"
+yamllint = "^1.25"
+black = { version = "^20.8b1", allow-prereleases = true }
+pytest = "^6.1.2"
+pytest-cov = "^2.10.1"
+requests-mock = "^1.8.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
