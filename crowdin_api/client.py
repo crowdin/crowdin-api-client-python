@@ -18,6 +18,7 @@ class CrowdinClient:
 
     ORGANIZATION: Optional[str] = None
     TOKEN = None
+    USER_AGENT = "crowdin-api-client-python"
 
     def __init__(self):
         self._api_requestor = None
@@ -31,7 +32,9 @@ class CrowdinClient:
 
     def get_default_headers(self) -> dict:
         headers = copy.deepcopy(self.HEADERS or {})
-        headers.update({"Authorization": "Bearer {0}".format(self.TOKEN)})
+        headers.update(
+            {"Authorization": "Bearer {0}".format(self.TOKEN), "User-Agent": self.USER_AGENT}
+        )
 
         return headers
 

@@ -10,7 +10,7 @@ authors = ["Crowdin"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.6.1"
 requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]

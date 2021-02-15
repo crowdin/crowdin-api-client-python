@@ -49,12 +49,23 @@ class TestCrowdinClient:
             (
                 None,
                 None,
-                {"Authorization": "Bearer None"},
+                {
+                    "Authorization": "Bearer None",
+                    "User-Agent": "crowdin-api-client-python",
+                },
             ),
             (
-                {"Authorization": "Same data", "Some Header": "value"},
+                {
+                    "Authorization": "Same data",
+                    "Some Header": "value",
+                    "User-Agent": "crowdin-api-client-python-2",
+                },
                 "<token>",
-                {"Authorization": "Bearer <token>", "Some Header": "value"},
+                {
+                    "Authorization": "Bearer <token>",
+                    "Some Header": "value",
+                    "User-Agent": "crowdin-api-client-python",
+                },
             ),
         ),
     )
@@ -80,7 +91,7 @@ class TestCrowdinClient:
             default_headers=client.get_default_headers(),
         )
 
-    @mock.patch("crowdin_api.client.StorageResource", return_value="StorageResource", autospec = True)
+    @mock.patch("crowdin_api.client.StorageResource", return_value="StorageResource", autospec=True)
     @mock.patch("crowdin_api.client.CrowdinClient.get_api_requestor", return_value="api_requestor")
     def test_storages(self, _m_api_requestor, m_StorageResource):
         client = CrowdinClient()

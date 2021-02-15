@@ -1,8 +1,8 @@
+import json
 import logging
 import time
 from typing import Optional, Union
 from urllib.parse import urljoin
-import json
 
 import requests
 
@@ -17,6 +17,7 @@ from crowdin_api.exceptions import (
     PermissionDenied,
     AuthenticationFailed,
 )
+from crowdin_api.parser import loads, dumps
 
 logger = logging.getLogger("crowdin")
 
@@ -70,7 +71,7 @@ class APIRequester:
             urljoin(self.base_url, path),
             params=params,
             headers=headers,
-            data=post_data,
+            data=dumps(post_data),
             timeout=self._timeout,
         )
 
@@ -79,7 +80,7 @@ class APIRequester:
         headers = result.headers
 
         try:
-            content = json.loads(content)
+            content = loads(content)
         except json.decoder.JSONDecodeError:
             raise ParsingError(detail=content, http_status=status_code, headers=headers)
 

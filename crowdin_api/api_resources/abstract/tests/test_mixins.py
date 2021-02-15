@@ -1,5 +1,7 @@
 from unittest import mock
 
+import pytest
+
 from crowdin_api.api_resources.abstract.mixins import (
     RetrieveResourceMixin,
     CreateResourceMixin,
@@ -24,17 +26,59 @@ def test_retrieve_resource_mixin(m_request, base_absolut_url):
     m_request.assert_called_once_with(method="get", path=resource.prepare_path(object_id=object_id))
 
 
+@pytest.mark.parametrize(
+    "in_params,kwargs,out_params",
+    (
+        ({"key": "value"}, {}, {"key": "value", "limit": 20, "offset": 0}),
+        (
+            {"key": "value", "limit": 100, "offset": 0},
+            {},
+            {"key": "value", "limit": 20, "offset": 0},
+        ),
+        (
+            {"key": "value", "limit": 100, "offset": 0},
+            {"limit": 10, "offset": 20},
+            {"key": "value", "limit": 10, "offset": 20},
+        ),
+        (
+            {"key": "value", "limit": 100, "offset": 0},
+            {"page": 2},
+            {"key": "value", "limit": 20, "offset": 20},
+        ),
+    ),
+)
 @mock.patch("crowdin_api.requester.APIRequester.request")
-def test_list_resource_mixin(m_request, base_absolut_url):
+def test_list_resource_mixin(m_request, in_params, kwargs, out_params, base_absolut_url):
     m_request.return_value = "retrieve"
-    params = {"key": "value"}
 
     class TestResource(BaseResource, ListResourceMixin):
         base_path = "test"
 
     resource = TestResource(requester=APIRequester(base_url=base_absolut_url))
-    assert resource.list(params=params) == m_request.return_value
-    m_request.assert_called_once_with(method="get", path=resource.prepare_path(), params=params)
+    assert resource.list(params=in_params, **kwargs) == m_request.return_value
+
+    m_request.assert_called_once_with(method="get", path=resource.prepare_path(), params=out_params)
+
+
+@pytest.mark.parametrize(
+    "kwargs",
+    (
+        {"page": 1, "limit": 20, "offset": 0},
+        {"page": -1},
+        {"limit": -1, "offset": 0},
+        {"limit": 20, "offset": -1},
+    ),
+)
+@mock.patch("crowdin_api.requester.APIRequester.request")
+def test_list_resource_mixin_invalid_params(m_request, kwargs, base_absolut_url):
+    m_request.return_value = "retrieve"
+
+    class TestResource(BaseResource, ListResourceMixin):
+        base_path = "test"
+
+    resource = TestResource(requester=APIRequester(base_url=base_absolut_url))
+    with pytest.raises(ValueError):
+        resource.list(**kwargs)
 
 
 @mock.patch("crowdin_api.requester.APIRequester.request")

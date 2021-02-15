@@ -7,14 +7,35 @@ class RetrieveResourceMixin:
 
 
 class ListResourceMixin:
-    # page_size: int = 20
+    page_size: int = 20
 
-    def list(self, params: Optional[dict] = None, page: Optional[int] = None):
-        # if page is not None:
-        #     if page < 1:
-        #         raise ValueError("The page number must be greater than or equal to 1.")
-        #
-        #     # todo: generate params
+    def list(
+        self,
+        params: Optional[dict] = None,
+        page: Optional[int] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        params = params or {}
+
+        if page is not None and (offset is not None or limit is not None):
+            raise ValueError("You must set page or offset and limit.")
+
+        if page:
+            if page < 1:
+                raise ValueError("The page number must be greater than or equal to 1.")
+
+            params["offset"] = max((page - 1) * self.page_size, 0)
+            params["limit"] = self.page_size
+        else:
+            params["offset"] = offset or 0
+            if params["offset"] < 0:
+                raise ValueError("The offset must be greater than or equal to 0.")
+
+            params["limit"] = limit or self.page_size
+
+            if params["limit"] < 1:
+                raise ValueError("The limit must be greater than or equal to 1.")
 
         return self.requester.request(method="get", path=self.prepare_path(), params=params)
 
