@@ -1,0 +1,20 @@
+---
+repos:
+- repo: https://github.com/pre-commit/mirrors-isort
+  rev: v5.6.4
+  hooks:
+    - id: isort
+- repo: https://github.com/ambv/black
+  rev: stable
+  hooks:
+    - id: black
+      language_version: python3.9
+- repo: https://gitlab.com/pycqa/flake8
+  rev: 3.8.4
+  hooks:
+    - id: flake8
+- repo: https://github.com/yunojuno/pre-commit-xenon
+  rev: cc59b0431a5d072786b59430e9b342b2881064f6
+  hooks:
+    - id: xenon
+      args: ["-e=*tests/*,venv/*,tasks.py", "--max-average=A", "--max-modules=A", "--max-absolute=C"]
