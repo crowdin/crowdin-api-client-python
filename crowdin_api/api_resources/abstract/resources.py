@@ -5,7 +5,7 @@ from crowdin_api.requester import APIRequester
 
 
 class BaseResource(metaclass=ABCMeta):
-    def __init__(self, requester: APIRequester, page_size=20):
+    def __init__(self, requester: APIRequester, page_size=25):
         self.requester = requester
         self.page_size = page_size
 

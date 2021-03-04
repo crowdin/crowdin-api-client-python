@@ -19,6 +19,7 @@ class CrowdinClient:
     ORGANIZATION: Optional[str] = None
     TOKEN = None
     USER_AGENT = "crowdin-api-client-python"
+    PAGE_SIZE = 25
 
     def __init__(self):
         self._api_requestor = None
@@ -55,26 +56,36 @@ class CrowdinClient:
 
     @property
     def languages(self) -> api_resources.LanguagesResource:
-        return api_resources.LanguagesResource(requester=self.get_api_requestor())
+        return api_resources.LanguagesResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
 
     @property
     def projects(self) -> api_resources.ProjectsResource:
-        return api_resources.ProjectsResource(requester=self.get_api_requestor())
+        return api_resources.ProjectsResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
 
     @property
     def source_files(self) -> api_resources.SourceFilesResource:
-        return api_resources.SourceFilesResource(requester=self.get_api_requestor())
+        return api_resources.SourceFilesResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
 
     @property
     def storages(self) -> api_resources.StorageResource:
-        return api_resources.StorageResource(requester=self.get_api_requestor())
+        return api_resources.StorageResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
 
     @property
     def translation_status(self) -> api_resources.TranslationStatusResource:
         return api_resources.TranslationStatusResource(
-            requester=self.get_api_requestor()
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def translations(self) -> api_resources.TranslationsResource:
-        return api_resources.TranslationsResource(requester=self.get_api_requestor())
+        return api_resources.TranslationsResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
