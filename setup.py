@@ -1,9 +1,14 @@
 # !/usr/bin/env python
+import os
+import re
 import sys
 from codecs import open
 
-from setuptools import setup
+from setuptools import find_packages, setup
 from setuptools.command.test import test
+
+ROOT = os.path.dirname(__file__)
+VERSION_RE = re.compile(r"""__version__ = ['"]([0-9.]+)['"]""")
 
 
 class PyTest(test):
@@ -30,14 +35,21 @@ with open("LICENSE") as f:
 with open("README.md", "r", "utf-8") as f:
     README = f.read()
 
+
+def get_version():
+    init = open(os.path.join(ROOT, "crowdin_api", "__init__.py")).read()
+    return VERSION_RE.search(init).group(1)
+
+
 setup(
-    name="Crowdin api client python",
-    version="0.0.0",
+    name="crowdin-api-client",
+    version=get_version(),
     description="Crowdin api client python",
     long_description=README,
     author="Сrowdin",
-    # packages=["crowdin-python"],
-    package_data={"": ["LICENSE"]},
+    author_email="support@crowdin.com",
+    url="https://github.com/crowdin/crowdin-api-client-python",
+    packages=find_packages(exclude=["*tests*", "*fixtures.py"]),
     package_dir={"crowdin_api": "crowdin_api"},
     python_requires=">=3.6.*",
     install_requires=[
@@ -52,6 +64,10 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
     ],
+    project_urls={
+        "Documentation": "https://support.crowdin.com/api/v2/",
+        "Source Code": "https://github.com/crowdin/crowdin-api-client-python",
+    },
     cmdclass={"test": PyTest},
     tests_require=[
         "doc8==0.8.1",
