@@ -104,7 +104,9 @@ class TestCrowdinClient:
 
         assert client.storages == "StorageResource"
 
-        m_StorageResource.assert_called_once_with(requester="api_requestor")
+        m_StorageResource.assert_called_once_with(
+            requester="api_requestor", page_size=25
+        )
 
     @mock.patch(
         "crowdin_api.api_resources.LanguagesResource",
@@ -120,7 +122,9 @@ class TestCrowdinClient:
 
         assert client.languages == "LanguagesResource"
 
-        m_LanguagesResource.assert_called_once_with(requester="api_requestor")
+        m_LanguagesResource.assert_called_once_with(
+            requester="api_requestor", page_size=25
+        )
 
     @mock.patch(
         "crowdin_api.api_resources.ProjectsResource",
@@ -136,4 +140,6 @@ class TestCrowdinClient:
 
         assert client.projects == "ProjectsResource"
 
-        m_ProjectsResource.assert_called_once_with(requester="api_requestor")
+        m_ProjectsResource.assert_called_once_with(
+            requester="api_requestor", page_size=25
+        )

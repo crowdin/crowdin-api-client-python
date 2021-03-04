@@ -30,9 +30,9 @@ class TestBaseResource:
     @pytest.mark.parametrize(
         "in_params,out_params",
         (
-            ({}, {"limit": 20, "offset": 0}),
-            ({"page": 1}, {"limit": 20, "offset": 0}),
-            ({"page": 2}, {"limit": 20, "offset": 20}),
+            ({}, {"limit": 25, "offset": 0}),
+            ({"page": 1}, {"limit": 25, "offset": 0}),
+            ({"page": 2}, {"limit": 25, "offset": 25}),
             ({"limit": 100, "offset": 0}, {"limit": 100, "offset": 0}),
         ),
     )
@@ -47,10 +47,10 @@ class TestBaseResource:
     @pytest.mark.parametrize(
         "kwargs",
         (
-            {"page": 1, "limit": 20, "offset": 0},
+            {"page": 1, "limit": 25, "offset": 0},
             {"page": -1},
             {"limit": -1, "offset": 0},
-            {"limit": 20, "offset": -1},
+            {"limit": 25, "offset": -1},
         ),
     )
     def test_get_page_params_invalid_params(self, kwargs, base_absolut_url):

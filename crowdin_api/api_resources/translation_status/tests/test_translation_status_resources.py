@@ -98,7 +98,7 @@ class TestTranslationStatusResource:
                     "category": None,
                     "validation": None,
                     "offset": 0,
-                    "limit": 20,
+                    "limit": 25,
                 },
             ),
             (
@@ -112,7 +112,7 @@ class TestTranslationStatusResource:
                     "category": "icu,empty",
                     "validation": "icu_check,tags_check",
                     "offset": 0,
-                    "limit": 20,
+                    "limit": 25,
                 },
             ),
         ),
