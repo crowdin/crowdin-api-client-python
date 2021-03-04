@@ -44,7 +44,7 @@ def get_version():
 setup(
     name="crowdin-api-client",
     version=get_version(),
-    description="Crowdin api client python",
+    description="Python client library for Crowdin API v2",
     long_description=README,
     author="Сrowdin",
     author_email="support@crowdin.com",
