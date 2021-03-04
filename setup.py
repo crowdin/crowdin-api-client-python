@@ -29,10 +29,7 @@ class PyTest(test):
         sys.exit(errno)
 
 
-with open("LICENSE") as f:
-    LICENSE = f.read()
-
-with open("README.md", "r", "utf-8") as f:
+with open("README.md", encoding="utf-8") as f:
     README = f.read()
 
 
@@ -46,16 +43,17 @@ setup(
     version=get_version(),
     description="Python client library for Crowdin API v2",
     long_description=README,
+    long_description_content_type="text/markdown",
     author="Сrowdin",
     author_email="support@crowdin.com",
     url="https://github.com/crowdin/crowdin-api-client-python",
     packages=find_packages(exclude=["*tests*", "*fixtures.py"]),
     package_dir={"crowdin_api": "crowdin_api"},
     python_requires=">=3.6.*",
+    license="MIT",
     install_requires=[
         "requests>=2.25.1",
     ],
-    license=LICENSE,
     classifiers=[
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
