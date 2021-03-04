@@ -14,6 +14,8 @@ For more about Crowdin API v2 see the documentation:
 
 ## Status
 
+[![PyPI](https://img.shields.io/pypi/v/crowdin-api-client?cacheSeconds=3600)](https://pypi.org/project/crowdin-api-client/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/crowdin-api-client?cacheSeconds=3600)](https://pypi.org/project/crowdin-api-client/)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/crowdin/crowdin-api-client-python/Python%20package)
 [![codecov](https://codecov.io/gh/crowdin/crowdin-api-client-python/branch/main/graph/badge.svg?token=sOUWIcNjWO)](https://codecov.io/gh/crowdin/crowdin-api-client-python)
 [![GitHub issues](https://img.shields.io/github/issues/crowdin/crowdin-api-client-python?cacheSeconds=3600)](https://github.com/crowdin/crowdin-api-client-python/issues)
@@ -58,18 +60,18 @@ projects = client.projects.list_projects(page=2) # offset=25, limit=25
 
 ## Seeking Assistance
 
-If you find any problems or would like to suggest a feature, please read the [How can I contribute](/CONTRIBUTING.md#how-can-i-contribute) section in our contributing guidelines.
+If you find any problems or would like to suggest a feature, please read the [How can I contribute](https://github.com/crowdin/crowdin-api-client-python/CONTRIBUTING.md#how-can-i-contribute) section in our contributing guidelines.
 
 Need help working with Crowdin Python client or have any questions? [Contact](https://crowdin.com/contacts) Customer Success Service.
 
 ## Contributing
 
-If you want to contribute please read the [Contributing](/CONTRIBUTING.md) guidelines.
+If you want to contribute please read the [Contributing](https://github.com/crowdin/crowdin-api-client-python/CONTRIBUTING.md) guidelines.
 
 ## License
 <pre>
 The Crowdin Python client is licensed under the MIT License.
-See the LICENSE.md file distributed with this work for additional
+See the LICENSE file distributed with this work for additional
 information regarding copyright ownership.
 
 Except as contained in the LICENSE file, the name(s) of the above copyright
