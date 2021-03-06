@@ -60,13 +60,13 @@ projects = client.projects.list_projects(page=2) # offset=25, limit=25
 
 ## Seeking Assistance
 
-If you find any problems or would like to suggest a feature, please read the [How can I contribute](https://github.com/crowdin/crowdin-api-client-python/CONTRIBUTING.md#how-can-i-contribute) section in our contributing guidelines.
+If you find any problems or would like to suggest a feature, please read the [How can I contribute](https://github.com/crowdin/crowdin-api-client-python/blob/main/CONTRIBUTING.md#how-can-i-contribute) section in our contributing guidelines.
 
 Need help working with Crowdin Python client or have any questions? [Contact](https://crowdin.com/contacts) Customer Success Service.
 
 ## Contributing
 
-If you want to contribute please read the [Contributing](https://github.com/crowdin/crowdin-api-client-python/CONTRIBUTING.md) guidelines.
+If you want to contribute please read the [Contributing](https://github.com/crowdin/crowdin-api-client-python/blob/main/CONTRIBUTING.md) guidelines.
 
 ## License
 <pre>
