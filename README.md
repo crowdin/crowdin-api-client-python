@@ -15,6 +15,7 @@ For more about Crowdin API v2 see the documentation:
 ## Status
 
 [![PyPI](https://img.shields.io/pypi/v/crowdin-api-client?cacheSeconds=3600)](https://pypi.org/project/crowdin-api-client/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/crowdin-api-client?cacheSeconds=3600)](https://pypi.org/project/crowdin-api-client/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/crowdin-api-client?cacheSeconds=3600)](https://pypi.org/project/crowdin-api-client/)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/crowdin/crowdin-api-client-python/Python%20package)
 [![codecov](https://codecov.io/gh/crowdin/crowdin-api-client-python/branch/main/graph/badge.svg?token=sOUWIcNjWO)](https://codecov.io/gh/crowdin/crowdin-api-client-python)
