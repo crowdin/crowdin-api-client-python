@@ -19,7 +19,11 @@ class StorageResource(BaseResource):
     Link to documentation: https://support.crowdin.com/api/v2/#tag/Storage
     """
 
-    base_path = "storages"
+    def get_storages_path(self, storageId: Optional[int] = None):
+        if storageId:
+            return f"storages/{storageId}"
+
+        return "storages"
 
     def list_storages(
         self,
@@ -34,7 +38,7 @@ class StorageResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=self.prepare_path(),
+            path=self.get_storages_path(),
             params=self.get_page_params(page=page, offset=offset, limit=limit),
         )
 
@@ -45,7 +49,7 @@ class StorageResource(BaseResource):
         """
 
         return self.requester.request(
-            method="post", path=self.prepare_path(), file=file
+            method="post", path=self.get_storages_path(), file=file
         )
 
     def get_storage(self, storageId: int):
@@ -54,7 +58,9 @@ class StorageResource(BaseResource):
         Link to documentation: https://support.crowdin.com/api/v2/#operation/api.storages.get
         """
 
-        return self.requester.request(method="get", path=self.prepare_path(storageId))
+        return self.requester.request(
+            method="get", path=self.get_storages_path(storageId=storageId)
+        )
 
     def delete_storage(self, storageId: int):
         """Delete Storage.
@@ -63,5 +69,5 @@ class StorageResource(BaseResource):
         """
 
         return self.requester.request(
-            method="delete", path=self.prepare_path(storageId)
+            method="delete", path=self.get_storages_path(storageId=storageId)
         )

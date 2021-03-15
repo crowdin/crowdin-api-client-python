@@ -32,14 +32,12 @@ class SourceFilesResource(BaseResource):
     https://support.crowdin.com/api/v2/#tag/Source-Files
     """
 
-    base_path = "projects"
-
     # Branches
     def get_branch_path(self, projectId: int, branchId: Optional[int] = None):
         if branchId is not None:
-            return f"{self.prepare_path(projectId) }/branches/{branchId}"
+            return f"projects/{projectId}/branches/{branchId}"
 
-        return f"{self.prepare_path(projectId) }/branches"
+        return f"projects/{projectId}/branches"
 
     def list_project_branches(
         self,
@@ -134,9 +132,9 @@ class SourceFilesResource(BaseResource):
     # Directories
     def get_directory_path(self, projectId: int, directoryId: Optional[int] = None):
         if directoryId is not None:
-            return f"{self.prepare_path(projectId) }/directories/{directoryId}"
+            return f"projects/{projectId}/directories/{directoryId}"
 
-        return f"{self.prepare_path(projectId) }/directories"
+        return f"projects/{projectId}/directories"
 
     def list_directories(
         self,
@@ -237,9 +235,9 @@ class SourceFilesResource(BaseResource):
     # Files
     def get_file_path(self, projectId: int, fileId: Optional[int] = None):
         if fileId is not None:
-            return f"{self.prepare_path(projectId) }/files/{fileId}"
+            return f"projects/{projectId}/files/{fileId}"
 
-        return f"{self.prepare_path(projectId) }/files"
+        return f"projects/{projectId}/files"
 
     def list_files(
         self,
@@ -384,12 +382,13 @@ class SourceFilesResource(BaseResource):
     def get_file_revisions_path(
         self, projectId: int, fileId: int, revisionId: Optional[int] = None
     ):
-        if revisionId is not None:
-            return (
-                f"{self.prepare_path(projectId)}/files/{fileId}/revisions/{revisionId}"
-            )
 
-        return f"{self.prepare_path(projectId)}/files/{fileId}/revisions"
+        file_path = self.get_file_path(projectId=projectId, fileId=fileId)
+
+        if revisionId is not None:
+            return f"{file_path}/revisions/{revisionId}"
+
+        return f"{file_path}/revisions"
 
     def list_file_revisions(
         self,

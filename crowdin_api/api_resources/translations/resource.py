@@ -27,7 +27,11 @@ class TranslationsResource(BaseResource):
     https://support.crowdin.com/api/v2/#tag/Translations
     """
 
-    base_path = "projects"
+    def get_builds_path(self, projectId: int, buildId: Optional[str] = None):
+        if buildId:
+            return f"projects/{projectId}/translations/builds/{buildId}"
+
+        return f"projects/{projectId}/translations/builds"
 
     def pre_translation_status(self, projectId: int, preTranslationId: str):
         """
@@ -39,7 +43,7 @@ class TranslationsResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=f"{self.prepare_path(projectId) }/pre-translations/{preTranslationId}",
+            path=f"projects/{projectId}/pre-translations/{preTranslationId}",
         )
 
     def apply_pre_translation(
@@ -63,7 +67,7 @@ class TranslationsResource(BaseResource):
 
         return self.requester.request(
             method="post",
-            path=f"{self.prepare_path(projectId) }/pre-translations",
+            path=f"projects/{projectId}/pre-translations",
             post_data={
                 "languageIds": languageIds,
                 "fileIds": fileIds,
@@ -101,7 +105,7 @@ class TranslationsResource(BaseResource):
         return self.requester.request(
             method="post",
             headers=headers,
-            path=f"{self.prepare_path(object_id=projectId)}/translations/builds/files/{fileId}",
+            path=f"{self.get_builds_path(projectId=projectId)}/files/{fileId}",
             post_data={
                 "targetLanguageId": targetLanguageId,
                 "skipUntranslatedStrings": skipUntranslatedStrings,
@@ -130,7 +134,7 @@ class TranslationsResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=f"{self.prepare_path(object_id=projectId)}/translations/builds",
+            path=self.get_builds_path(projectId=projectId),
             params=params,
         )
 
@@ -146,7 +150,7 @@ class TranslationsResource(BaseResource):
 
         return self.requester.request(
             method="post",
-            path=f"{self.prepare_path(object_id=projectId)}/translations/builds/",
+            path=self.get_builds_path(projectId=projectId),
             post_data=request_data,
         )
 
@@ -169,7 +173,7 @@ class TranslationsResource(BaseResource):
 
         return self.requester.request(
             method="post",
-            path=f"{self.prepare_path(object_id=projectId)}/translations/{languageId}",
+            path=f"projects/{projectId}/translations/{languageId}",
             post_data={
                 "storageId": storageId,
                 "fileId": fileId,
@@ -193,7 +197,7 @@ class TranslationsResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=f"{self.prepare_path(object_id=projectId)}/translations/builds/{buildId}/download",
+            path=f"{self.get_builds_path(projectId=projectId, buildId=buildId)}/download",
         )
 
     def check_project_build_status(
@@ -210,7 +214,7 @@ class TranslationsResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=f"{self.prepare_path(object_id=projectId)}/translations/builds/{buildId}",
+            path=self.get_builds_path(projectId=projectId, buildId=buildId),
         )
 
     def cancel_build(
@@ -227,7 +231,7 @@ class TranslationsResource(BaseResource):
 
         return self.requester.request(
             method="delete",
-            path=f"{self.prepare_path(object_id=projectId)}/translations/builds/{buildId}",
+            path=self.get_builds_path(projectId=projectId, buildId=buildId),
         )
 
     def export_project_translation(
@@ -252,7 +256,7 @@ class TranslationsResource(BaseResource):
 
         return self.requester.request(
             method="delete",
-            path=f"{self.prepare_path(object_id=projectId)}/translations/exports",
+            path=f"projects/{projectId}/translations/exports",
             post_data={
                 "targetLanguageId": targetLanguageId,
                 "format": format,

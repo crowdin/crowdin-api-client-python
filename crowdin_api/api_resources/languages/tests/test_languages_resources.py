@@ -36,14 +36,14 @@ class TestLanguagesResource:
                     "name": "Some",
                     "code": "some",
                     "localeCode": "some-sm",
-                    "textDirection": LanguageTextDirection.left_to_right,
+                    "textDirection": LanguageTextDirection.LEFT_TO_RIGHT,
                     "pluralCategoryNames": ["one"],
                 },
                 {
                     "name": "Some",
                     "code": "some",
                     "localeCode": "some-sm",
-                    "textDirection": LanguageTextDirection.left_to_right,
+                    "textDirection": LanguageTextDirection.LEFT_TO_RIGHT,
                     "pluralCategoryNames": ["one"],
                     "twoLettersCode": None,
                     "dialectOf": None,
@@ -54,7 +54,7 @@ class TestLanguagesResource:
                     "name": "Some",
                     "code": "some",
                     "localeCode": "some-sm",
-                    "textDirection": LanguageTextDirection.left_to_right,
+                    "textDirection": LanguageTextDirection.LEFT_TO_RIGHT,
                     "pluralCategoryNames": ["one"],
                     "twoLettersCode": "sm",
                     "dialectOf": "uk",
@@ -63,7 +63,7 @@ class TestLanguagesResource:
                     "name": "Some",
                     "code": "some",
                     "localeCode": "some-sm",
-                    "textDirection": LanguageTextDirection.left_to_right,
+                    "textDirection": LanguageTextDirection.LEFT_TO_RIGHT,
                     "pluralCategoryNames": ["one"],
                     "twoLettersCode": "sm",
                     "dialectOf": "uk",
@@ -107,7 +107,7 @@ class TestLanguagesResource:
             {
                 "value": "test",
                 "op": PatchOperation.REPLACE,
-                "path": LanguagesPatchPath.name,
+                "path": LanguagesPatchPath.NAME,
             }
         ]
 

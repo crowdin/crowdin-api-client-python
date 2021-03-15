@@ -17,7 +17,11 @@ class LanguagesResource(BaseResource):
     Link to documentation: https://support.crowdin.com/api/v2/#tag/Languages
     """
 
-    base_path = "languages"
+    def get_languages_path(self, languageId: Optional[str] = None):
+        if languageId:
+            return f"languages/{languageId}"
+
+        return "languages"
 
     def list_supported_languages(
         self,
@@ -33,7 +37,7 @@ class LanguagesResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=self.prepare_path(),
+            path=self.get_languages_path(),
             params=self.get_page_params(page=page, offset=offset, limit=limit),
         )
 
@@ -55,7 +59,7 @@ class LanguagesResource(BaseResource):
 
         return self.requester.request(
             method="post",
-            path=self.prepare_path(),
+            path=self.get_languages_path(),
             post_data={
                 "name": name,
                 "code": code,
@@ -74,7 +78,9 @@ class LanguagesResource(BaseResource):
         Link to documentation: https://support.crowdin.com/api/v2/#operation/api.languages.get
         """
 
-        return self.requester.request(method="get", path=self.prepare_path(languageId))
+        return self.requester.request(
+            method="get", path=self.get_languages_path(languageId=languageId)
+        )
 
     def delete_custom_language(self, languageId):
         """
@@ -84,7 +90,7 @@ class LanguagesResource(BaseResource):
         """
 
         return self.requester.request(
-            method="delete", path=self.prepare_path(languageId)
+            method="delete", path=self.get_languages_path(languageId=languageId)
         )
 
     def edit_custom_language(self, languageId, data: List[LanguagesPatchRequest]):
@@ -96,6 +102,6 @@ class LanguagesResource(BaseResource):
 
         return self.requester.request(
             method="patch",
-            path=self.prepare_path(languageId),
+            path=self.get_languages_path(languageId=languageId),
             post_data=data,
         )

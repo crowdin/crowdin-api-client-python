@@ -79,7 +79,7 @@ class TestTranslationStatusResource:
         params["languageIds"] = "sr,rs"
 
         assert (
-            resource.get_project_progress(projectId=1, languageIds="sr,rs", page=1)
+            resource.get_project_progress(projectId=1, languageIds=["sr", "rs"], page=1)
             == "response"
         )
         m_request.assert_called_once_with(
@@ -103,7 +103,7 @@ class TestTranslationStatusResource:
             ),
             (
                 {
-                    "languageIds": "some,string",
+                    "languageIds": ["some", "string"],
                     "category": [Category.ICU, Category.EMPTY],
                     "validation": [Validation.ICU_CHECK, Validation.TAGS_CHECK],
                 },

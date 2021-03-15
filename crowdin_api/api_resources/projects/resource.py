@@ -21,7 +21,11 @@ class ProjectsResource(BaseResource):
 
     """
 
-    base_path = "projects"
+    def get_projects_path(self, projectId: Optional[int] = None):
+        if projectId is not None:
+            return f"projects/{projectId}"
+
+        return "projects"
 
     def list_projects(
         self,
@@ -41,7 +45,7 @@ class ProjectsResource(BaseResource):
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self.requester.request(
-            method="get", path=self.prepare_path(), params=params
+            method="get", path=self.get_projects_path(), params=params
         )
 
     def add_project(
@@ -69,7 +73,7 @@ class ProjectsResource(BaseResource):
 
         return self.requester.request(
             method="post",
-            path=self.prepare_path(),
+            path=self.get_projects_path(),
             post_data={
                 "name": name,
                 "sourceLanguageId": sourceLanguageId,
@@ -95,7 +99,9 @@ class ProjectsResource(BaseResource):
         Link to documentation: https://support.crowdin.com/api/v2/#operation/api.projects.get
         """
 
-        return self.requester.request(method="get", path=self.prepare_path(projectId))
+        return self.requester.request(
+            method="get", path=self.get_projects_path(projectId=projectId)
+        )
 
     def delete_project(self, projectId):
         """
@@ -105,7 +111,7 @@ class ProjectsResource(BaseResource):
         """
 
         return self.requester.request(
-            method="delete", path=self.prepare_path(projectId)
+            method="delete", path=self.get_projects_path(projectId=projectId)
         )
 
     def edit_project(self, projectId, data: List[ProjectPatchRequest]):
@@ -116,6 +122,6 @@ class ProjectsResource(BaseResource):
         """
         return self.requester.request(
             method="patch",
-            path=self.prepare_path(projectId),
+            path=self.get_projects_path(projectId=projectId),
             post_data=data,
         )

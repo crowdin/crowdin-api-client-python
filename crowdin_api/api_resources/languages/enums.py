@@ -2,14 +2,19 @@ from enum import Enum
 
 
 class LanguageTextDirection(Enum):
-    left_to_right = "ltr"
-    right_to_left = "rtl"
+    LEFT_TO_RIGHT = "ltr"
+    RIGHT_TO_LEFT = "rtl"
+
+
+class DenormalizePlaceholders(Enum):
+    ENABLE = 1
+    DISABLE = 0
 
 
 class LanguagesPatchPath(Enum):
-    name = "/name"
-    textDirection = "/textDirection"
-    pluralCategoryNames = "/pluralCategoryNames"
-    threeLettersCode = "/threeLettersCode"
-    localeCode = "/localeCode"
-    dialectOf = "/dialectOf"
+    NAME = "/name"
+    TEXT_DIRECTION = "/textDirection"
+    PLURAL_CATEGORY_NAMES = "/pluralCategoryNames"
+    THREE_LETTERS_CODE = "/threeLettersCode"
+    LOCALE_CODE = "/localeCode"
+    DIALECT_OF = "/dialectOf"

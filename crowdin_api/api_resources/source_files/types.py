@@ -12,13 +12,13 @@ from crowdin_api.typing import TypedDict
 
 
 class BranchPatchRequest(TypedDict):
-    value: Union[str, List[str]]
+    value: str
     op: Union[PatchOperation, str]
     path: BranchPatchPath
 
 
 class DirectoryPatchRequest(TypedDict):
-    value: Union[str, List[str]]
+    value: Union[str, int]
     op: Union[PatchOperation, str]
     path: DirectoryPatchPath
 
