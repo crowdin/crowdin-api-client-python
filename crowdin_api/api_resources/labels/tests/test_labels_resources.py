@@ -37,15 +37,15 @@ class TestLabelsResource:
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_custom_language(self, m_request, base_absolut_url):
+    def test_add_label(self, m_request, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_custom_language(projectId=1, title="title") == "response"
+        assert resource.add_label(projectId=1, title="title") == "response"
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_labels_path(projectId=1),
-            post_data={"title": "title"},
+            request_data={"title": "title"},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -84,7 +84,7 @@ class TestLabelsResource:
         assert resource.edit_label(projectId=1, labelId=2, data=data) == "response"
         m_request.assert_called_once_with(
             method="patch",
-            post_data=data,
+            request_data=data,
             path=resource.get_labels_path(projectId=1, labelId=2),
         )
 
@@ -94,11 +94,10 @@ class TestLabelsResource:
 
         resource = self.get_resource(base_absolut_url)
         assert (
-            resource.assign_label_to_strings(projectId=1, labelId=2, stringIds=[1, 2])
-            == "response"
+            resource.assign_label_to_strings(projectId=1, labelId=2, stringIds=[1, 2]) == "response"
         )
         m_request.assert_called_once_with(
-            post_data={"stringIds": [1, 2]},
+            request_data={"stringIds": [1, 2]},
             method="post",
             path=resource.get_labels_path(projectId=1, labelId=2),
         )
@@ -109,13 +108,11 @@ class TestLabelsResource:
 
         resource = self.get_resource(base_absolut_url)
         assert (
-            resource.unassign_label_from_strings(
-                projectId=1, labelId=2, stringIds=[1, 2]
-            )
+            resource.unassign_label_from_strings(projectId=1, labelId=2, stringIds=[1, 2])
             == "response"
         )
         m_request.assert_called_once_with(
-            post_data={"stringIds": [1, 2]},
+            params={"stringIds": "1,2"},
             method="delete",
             path=resource.get_labels_path(projectId=1, labelId=2),
         )

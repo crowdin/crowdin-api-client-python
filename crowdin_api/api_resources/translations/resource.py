@@ -1,14 +1,11 @@
-from typing import List, Optional, Union
+from typing import Dict, Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
+from crowdin_api.api_resources.enums import ExportProjectTranslationFormat
 from crowdin_api.api_resources.translations.enums import (
-    ExportProjectTranslationFormat,
+    CharTransformation,
     PreTranslationApplyMethod,
     PreTranslationAutoApproveOption,
-)
-from crowdin_api.api_resources.translations.types import (
-    BuildRequest,
-    PseudoBuildRequest,
 )
 
 
@@ -49,8 +46,8 @@ class TranslationsResource(BaseResource):
     def apply_pre_translation(
         self,
         projectId: int,
-        languageIds: List[str],
-        fileIds: List[int],
+        languageIds: Iterable[str],
+        fileIds: Iterable[int],
         method: Optional[PreTranslationApplyMethod] = None,
         engineId: Optional[int] = None,
         autoApproveOption: Optional[PreTranslationAutoApproveOption] = None,
@@ -68,7 +65,7 @@ class TranslationsResource(BaseResource):
         return self.requester.request(
             method="post",
             path=f"projects/{projectId}/pre-translations",
-            post_data={
+            request_data={
                 "languageIds": languageIds,
                 "fileIds": fileIds,
                 "method": method,
@@ -106,7 +103,7 @@ class TranslationsResource(BaseResource):
             method="post",
             headers=headers,
             path=f"{self.get_builds_path(projectId=projectId)}/files/{fileId}",
-            post_data={
+            request_data={
                 "targetLanguageId": targetLanguageId,
                 "skipUntranslatedStrings": skipUntranslatedStrings,
                 "skipUntranslatedFiles": skipUntranslatedFiles,
@@ -138,9 +135,7 @@ class TranslationsResource(BaseResource):
             params=params,
         )
 
-    def build_project_translation(
-        self, projectId: int, request_data: Union[PseudoBuildRequest, BuildRequest]
-    ):
+    def build_project_translation(self, projectId: int, request_data: Dict):
         """
         Build Project Translation.
 
@@ -151,7 +146,63 @@ class TranslationsResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_builds_path(projectId=projectId),
-            post_data=request_data,
+            request_data=request_data,
+        )
+
+    def build_crowdin_project_translation(
+        self,
+        projectId: int,
+        branchId: Optional[int] = None,
+        targetLanguageIds: Optional[Iterable[str]] = None,
+        skipUntranslatedStrings: Optional[bool] = None,
+        skipUntranslatedFiles: Optional[bool] = None,
+        exportApprovedOnly: Optional[bool] = None,
+        exportWithMinApprovalsCount: Optional[int] = None,
+    ):
+        """
+        Build Project Translation(Crowdin Translation Create Project Build Form).
+
+        Link to documentation:
+        https://support.crowdin.com/api/v2/#operation/api.projects.translations.builds.post
+        """
+
+        return self.build_project_translation(
+            projectId=projectId,
+            request_data={
+                "branchId": branchId,
+                "targetLanguageIds": targetLanguageIds,
+                "skipUntranslatedStrings": skipUntranslatedStrings,
+                "skipUntranslatedFiles": skipUntranslatedFiles,
+                "exportApprovedOnly": exportApprovedOnly,
+                "exportWithMinApprovalsCount": exportWithMinApprovalsCount,
+            },
+        )
+
+    def build_pseudo_project_translation(
+        self,
+        projectId: int,
+        pseudo: bool,
+        prefix: Optional[str] = None,
+        suffix: Optional[str] = None,
+        lengthTransformation: Optional[int] = None,
+        charTransformation: Optional[CharTransformation] = None,
+    ):
+        """
+        Build Project Translation(Translation Create Project Pseudo Build Form).
+
+        Link to documentation:
+        https://support.crowdin.com/api/v2/#operation/api.projects.translations.builds.post
+        """
+
+        return self.build_project_translation(
+            projectId=projectId,
+            request_data={
+                "pseudo": pseudo,
+                "prefix": prefix,
+                "suffix": suffix,
+                "lengthTransformation": lengthTransformation,
+                "charTransformation": charTransformation,
+            },
         )
 
     def upload_translation(
@@ -174,7 +225,7 @@ class TranslationsResource(BaseResource):
         return self.requester.request(
             method="post",
             path=f"projects/{projectId}/translations/{languageId}",
-            post_data={
+            request_data={
                 "storageId": storageId,
                 "fileId": fileId,
                 "importEqSuggestions": importEqSuggestions,
@@ -183,11 +234,7 @@ class TranslationsResource(BaseResource):
             },
         )
 
-    def download_project_translations(
-        self,
-        projectId: int,
-        buildId: str,
-    ):
+    def download_project_translations(self, projectId: int, buildId: str):
         """
         Download Project Translations.
 
@@ -200,11 +247,7 @@ class TranslationsResource(BaseResource):
             path=f"{self.get_builds_path(projectId=projectId, buildId=buildId)}/download",
         )
 
-    def check_project_build_status(
-        self,
-        projectId: int,
-        buildId: str,
-    ):
+    def check_project_build_status(self, projectId: int, buildId: str):
         """
         Check Project Build Status.
 
@@ -217,11 +260,7 @@ class TranslationsResource(BaseResource):
             path=self.get_builds_path(projectId=projectId, buildId=buildId),
         )
 
-    def cancel_build(
-        self,
-        projectId: int,
-        buildId: str,
-    ):
+    def cancel_build(self, projectId: int, buildId: str):
         """
         Cancel Build.
 
@@ -239,13 +278,13 @@ class TranslationsResource(BaseResource):
         projectId: int,
         targetLanguageId: str,
         format: Optional[ExportProjectTranslationFormat] = None,
-        labelIds: Optional[List[int]] = None,
-        branchIds: Optional[List[int]] = None,
-        directoryIds: Optional[List[int]] = None,
-        fileIds: Optional[List[int]] = None,
+        labelIds: Optional[Iterable[int]] = None,
+        branchIds: Optional[Iterable[int]] = None,
+        directoryIds: Optional[Iterable[int]] = None,
+        fileIds: Optional[Iterable[int]] = None,
         skipUntranslatedStrings: Optional[bool] = None,
         skipUntranslatedFiles: Optional[bool] = None,
-        exportApprovedOnly: Optional[int] = None,
+        exportApprovedOnly: Optional[bool] = None,
     ):
         """
         Export Project Translation.
@@ -255,9 +294,9 @@ class TranslationsResource(BaseResource):
         """
 
         return self.requester.request(
-            method="delete",
+            method="post",
             path=f"projects/{projectId}/translations/exports",
-            post_data={
+            request_data={
                 "targetLanguageId": targetLanguageId,
                 "format": format,
                 "labelIds": labelIds,

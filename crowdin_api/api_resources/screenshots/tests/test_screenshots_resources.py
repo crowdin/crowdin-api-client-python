@@ -2,10 +2,7 @@ from unittest import mock
 
 import pytest
 from crowdin_api.api_resources.enums import PatchOperation
-from crowdin_api.api_resources.screenshots.enums import (
-    ScreenshotPatchPath,
-    TagPatchPath,
-)
+from crowdin_api.api_resources.screenshots.enums import ScreenshotPatchPath, TagPatchPath
 from crowdin_api.api_resources.screenshots.resource import ScreenshotsResource
 from crowdin_api.requester import APIRequester
 
@@ -33,10 +30,7 @@ class TestSourceFilesResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.list_screenshots(projectId=1, **{"offset": 0, "limit": 10})
-            == "response"
-        )
+        assert resource.list_screenshots(projectId=1, **{"offset": 0, "limit": 10}) == "response"
         m_request.assert_called_once_with(
             method="get",
             params={"offset": 0, "limit": 10},
@@ -44,7 +38,7 @@ class TestSourceFilesResource:
         )
 
     @pytest.mark.parametrize(
-        "in_params, post_data",
+        "in_params, request_data",
         (
             (
                 {
@@ -60,7 +54,7 @@ class TestSourceFilesResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_screenshot(self, m_request, in_params, post_data, base_absolut_url):
+    def test_add_screenshot(self, m_request, in_params, request_data, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
@@ -68,7 +62,7 @@ class TestSourceFilesResource:
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_screenshots_path(projectId=1),
-            post_data=post_data,
+            request_data=request_data,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -88,15 +82,13 @@ class TestSourceFilesResource:
 
         resource = self.get_resource(base_absolut_url)
         assert (
-            resource.update_screenshot(
-                projectId=1, screenshotId=2, storageId=3, name="test"
-            )
+            resource.update_screenshot(projectId=1, screenshotId=2, storageId=3, name="test")
             == "response"
         )
         m_request.assert_called_once_with(
             method="put",
             path=resource.get_screenshots_path(projectId=1, screenshotId=2),
-            post_data={"storageId": 3, "name": "test"},
+            request_data={"storageId": 3, "name": "test"},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -123,13 +115,10 @@ class TestSourceFilesResource:
         ]
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.edit_screenshot(projectId=1, screenshotId=2, data=data)
-            == "response"
-        )
+        assert resource.edit_screenshot(projectId=1, screenshotId=2, data=data) == "response"
         m_request.assert_called_once_with(
             method="patch",
-            post_data=data,
+            request_data=data,
             path=resource.get_screenshots_path(projectId=1, screenshotId=2),
         )
 
@@ -167,16 +156,29 @@ class TestSourceFilesResource:
         data = [{"stringId": 1, "position": {"x": 1, "y": 2, "width": 3, "height": 4}}]
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.replace_tags(projectId=1, screenshotId=2, data=data) == "response"
-        )
+        assert resource.replace_tags(projectId=1, screenshotId=2, data=data) == "response"
         m_request.assert_called_once_with(
             method="put",
             path=resource.get_tags_path(
                 projectId=1,
                 screenshotId=2,
             ),
-            post_data=data,
+            request_data=data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_auto_tag(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.auto_tag(projectId=1, screenshotId=2, autoTag=False) == "response"
+        m_request.assert_called_once_with(
+            method="put",
+            path=resource.get_tags_path(
+                projectId=1,
+                screenshotId=2,
+            ),
+            request_data={"autoTag": False},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -193,7 +195,7 @@ class TestSourceFilesResource:
                 projectId=1,
                 screenshotId=2,
             ),
-            post_data=data,
+            request_data=data,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -241,12 +243,9 @@ class TestSourceFilesResource:
         ]
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.edit_tag(projectId=1, screenshotId=2, tagId=3, data=data)
-            == "response"
-        )
+        assert resource.edit_tag(projectId=1, screenshotId=2, tagId=3, data=data) == "response"
         m_request.assert_called_once_with(
             method="patch",
-            post_data=data,
+            request_data=data,
             path=resource.get_tags_path(projectId=1, screenshotId=2, tagId=3),
         )

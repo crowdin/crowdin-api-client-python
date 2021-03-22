@@ -67,9 +67,7 @@ class TestSourceFilesResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_string_comments(
-        self, m_request, in_params, request_params, base_absolut_url
-    ):
+    def test_list_string_comments(self, m_request, in_params, request_params, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
@@ -81,7 +79,7 @@ class TestSourceFilesResource:
         )
 
     @pytest.mark.parametrize(
-        "in_params, post_data",
+        "in_params, request_data",
         (
             (
                 {
@@ -113,9 +111,7 @@ class TestSourceFilesResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_string_comment(
-        self, m_request, in_params, post_data, base_absolut_url
-    ):
+    def test_add_string_comment(self, m_request, in_params, request_data, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
@@ -123,7 +119,7 @@ class TestSourceFilesResource:
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_string_comments_path(projectId=1),
-            post_data=post_data,
+            request_data=request_data,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -142,9 +138,7 @@ class TestSourceFilesResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.delete_string_comment(projectId=1, stringCommentId=2) == "response"
-        )
+        assert resource.delete_string_comment(projectId=1, stringCommentId=2) == "response"
         m_request.assert_called_once_with(
             method="delete",
             path=resource.get_string_comments_path(projectId=1, stringCommentId=2),
@@ -163,12 +157,9 @@ class TestSourceFilesResource:
         ]
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.edit_string_comment(projectId=1, stringCommentId=2, data=data)
-            == "response"
-        )
+        assert resource.edit_string_comment(projectId=1, stringCommentId=2, data=data) == "response"
         m_request.assert_called_once_with(
             method="patch",
-            post_data=data,
+            request_data=data,
             path=resource.get_string_comments_path(projectId=1, stringCommentId=2),
         )

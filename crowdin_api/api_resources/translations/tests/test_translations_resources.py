@@ -1,7 +1,9 @@
 from unittest import mock
 
 import pytest
+from crowdin_api.api_resources.enums import ExportProjectTranslationFormat
 from crowdin_api.api_resources.translations.enums import (
+    CharTransformation,
     PreTranslationApplyMethod,
     PreTranslationAutoApproveOption,
 )
@@ -20,17 +22,14 @@ class TestTranslationsResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.pre_translation_status(projectId=1, preTranslationId="2")
-            == "response"
-        )
+        assert resource.pre_translation_status(projectId=1, preTranslationId="2") == "response"
         m_request.assert_called_once_with(
             method="get",
             path="projects/1/pre-translations/2",
         )
 
     @pytest.mark.parametrize(
-        "in_params, post_data",
+        "in_params, request_data",
         (
             (
                 {
@@ -73,21 +72,19 @@ class TestTranslationsResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_apply_pre_translation(
-        self, m_request, in_params, post_data, base_absolut_url
-    ):
+    def test_apply_pre_translation(self, m_request, in_params, request_data, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
         assert resource.apply_pre_translation(projectId=1, **in_params) == "response"
         m_request.assert_called_once_with(
             method="post",
-            post_data=post_data,
+            request_data=request_data,
             path="projects/1/pre-translations",
         )
 
     @pytest.mark.parametrize(
-        "in_params, post_data, headers",
+        "in_params, request_data, headers",
         (
             (
                 {"targetLanguageId": "some"},
@@ -119,7 +116,7 @@ class TestTranslationsResource:
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_build_project_file_translation(
-        self, m_request, in_params, headers, post_data, base_absolut_url
+        self, m_request, in_params, headers, request_data, base_absolut_url
     ):
         m_request.return_value = "response"
 
@@ -130,7 +127,7 @@ class TestTranslationsResource:
         )
         m_request.assert_called_once_with(
             method="post",
-            post_data=post_data,
+            request_data=request_data,
             headers=headers,
             path="projects/1/translations/builds/files/2",
         )
@@ -149,8 +146,114 @@ class TestTranslationsResource:
             path="projects/1/translations/builds",
         )
 
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_build_project_translation(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.build_project_translation(projectId=1, request_data={"some_key": "some_value"})
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="post",
+            request_data={"some_key": "some_value"},
+            path=resource.get_builds_path(projectId=1),
+        )
+
     @pytest.mark.parametrize(
-        "in_params, post_data",
+        "in_params, request_data",
+        (
+            (
+                {},
+                {
+                    "branchId": None,
+                    "targetLanguageIds": None,
+                    "skipUntranslatedStrings": None,
+                    "skipUntranslatedFiles": None,
+                    "exportApprovedOnly": None,
+                    "exportWithMinApprovalsCount": None,
+                },
+            ),
+            (
+                {
+                    "branchId": 2,
+                    "targetLanguageIds": ["ua", "en"],
+                    "skipUntranslatedStrings": False,
+                    "skipUntranslatedFiles": True,
+                    "exportApprovedOnly": False,
+                    "exportWithMinApprovalsCount": True,
+                },
+                {
+                    "branchId": 2,
+                    "targetLanguageIds": ["ua", "en"],
+                    "skipUntranslatedStrings": False,
+                    "skipUntranslatedFiles": True,
+                    "exportApprovedOnly": False,
+                    "exportWithMinApprovalsCount": True,
+                },
+            ),
+        ),
+    )
+    @mock.patch(
+        "crowdin_api.api_resources.translations.resource."
+        "TranslationsResource.build_project_translation"
+    )
+    def test_build_crowdin_project_translation(
+        self, m_build_project_translation, in_params, request_data, base_absolut_url
+    ):
+        m_build_project_translation.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.build_crowdin_project_translation(projectId=1, **in_params) == "response"
+        m_build_project_translation.assert_called_once_with(projectId=1, request_data=request_data)
+
+    @pytest.mark.parametrize(
+        "in_params, request_data",
+        (
+            (
+                {"pseudo": True},
+                {
+                    "pseudo": True,
+                    "prefix": None,
+                    "suffix": None,
+                    "lengthTransformation": None,
+                    "charTransformation": None,
+                },
+            ),
+            (
+                {
+                    "pseudo": True,
+                    "prefix": "python",
+                    "suffix": "nohtyp",
+                    "lengthTransformation": 2,
+                    "charTransformation": CharTransformation.ARABIC,
+                },
+                {
+                    "pseudo": True,
+                    "prefix": "python",
+                    "suffix": "nohtyp",
+                    "lengthTransformation": 2,
+                    "charTransformation": CharTransformation.ARABIC,
+                },
+            ),
+        ),
+    )
+    @mock.patch(
+        "crowdin_api.api_resources.translations.resource."
+        "TranslationsResource.build_project_translation"
+    )
+    def test_build_pseudo_project_translation(
+        self, m_build_project_translation, in_params, request_data, base_absolut_url
+    ):
+        m_build_project_translation.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.build_pseudo_project_translation(projectId=1, **in_params) == "response"
+        m_build_project_translation.assert_called_once_with(projectId=1, request_data=request_data)
+
+    @pytest.mark.parametrize(
+        "in_params, request_data",
         (
             (
                 {
@@ -184,19 +287,14 @@ class TestTranslationsResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_upload_translation(
-        self, m_request, in_params, post_data, base_absolut_url
-    ):
+    def test_upload_translation(self, m_request, in_params, request_data, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.upload_translation(projectId=1, languageId="2", **in_params)
-            == "response"
-        )
+        assert resource.upload_translation(projectId=1, languageId="2", **in_params) == "response"
         m_request.assert_called_once_with(
             method="post",
-            post_data=post_data,
+            request_data=request_data,
             path="projects/1/translations/2",
         )
 
@@ -205,10 +303,7 @@ class TestTranslationsResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.download_project_translations(projectId=1, buildId="2")
-            == "response"
-        )
+        assert resource.download_project_translations(projectId=1, buildId="2") == "response"
         m_request.assert_called_once_with(
             method="get",
             path="projects/1/translations/builds/2/download",
@@ -219,9 +314,7 @@ class TestTranslationsResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.check_project_build_status(projectId=1, buildId="2") == "response"
-        )
+        assert resource.check_project_build_status(projectId=1, buildId="2") == "response"
         m_request.assert_called_once_with(
             method="get",
             path="projects/1/translations/builds/2",
@@ -236,4 +329,61 @@ class TestTranslationsResource:
         m_request.assert_called_once_with(
             method="delete",
             path="projects/1/translations/builds/2",
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, request_data",
+        (
+            (
+                {
+                    "targetLanguageId": "ua",
+                },
+                {
+                    "targetLanguageId": "ua",
+                    "format": None,
+                    "labelIds": None,
+                    "branchIds": None,
+                    "directoryIds": None,
+                    "fileIds": None,
+                    "skipUntranslatedStrings": None,
+                    "skipUntranslatedFiles": None,
+                    "exportApprovedOnly": None,
+                },
+            ),
+            (
+                {
+                    "targetLanguageId": "ua",
+                    "format": ExportProjectTranslationFormat.MACOSX,
+                    "labelIds": [1, 2, 3],
+                    "branchIds": [4, 5, 6],
+                    "directoryIds": [7, 8, 9],
+                    "fileIds": [10, 11, 12],
+                    "skipUntranslatedStrings": False,
+                    "skipUntranslatedFiles": True,
+                    "exportApprovedOnly": False,
+                },
+                {
+                    "targetLanguageId": "ua",
+                    "format": ExportProjectTranslationFormat.MACOSX,
+                    "labelIds": [1, 2, 3],
+                    "branchIds": [4, 5, 6],
+                    "directoryIds": [7, 8, 9],
+                    "fileIds": [10, 11, 12],
+                    "skipUntranslatedStrings": False,
+                    "skipUntranslatedFiles": True,
+                    "exportApprovedOnly": False,
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_export_project_translation(self, m_request, in_params, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.export_project_translation(projectId=1, **in_params) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            request_data=request_data,
+            path="projects/1/translations/exports",
         )

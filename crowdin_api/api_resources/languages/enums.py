@@ -6,11 +6,6 @@ class LanguageTextDirection(Enum):
     RIGHT_TO_LEFT = "rtl"
 
 
-class DenormalizePlaceholders(Enum):
-    ENABLE = 1
-    DISABLE = 0
-
-
 class LanguagesPatchPath(Enum):
     NAME = "/name"
     TEXT_DIRECTION = "/textDirection"

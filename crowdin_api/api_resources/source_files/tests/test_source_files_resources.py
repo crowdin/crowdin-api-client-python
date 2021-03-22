@@ -45,9 +45,7 @@ class TestSourceFilesResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_project_branches(
-        self, m_request, in_params, request_params, base_absolut_url
-    ):
+    def test_list_project_branches(self, m_request, in_params, request_params, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
@@ -59,7 +57,7 @@ class TestSourceFilesResource:
         )
 
     @pytest.mark.parametrize(
-        "in_params, post_data",
+        "in_params, request_data",
         (
             (
                 {
@@ -90,7 +88,7 @@ class TestSourceFilesResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_branch(self, m_request, in_params, post_data, base_absolut_url):
+    def test_add_branch(self, m_request, in_params, request_data, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
@@ -98,7 +96,7 @@ class TestSourceFilesResource:
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_branch_path(projectId=1),
-            post_data=post_data,
+            request_data=request_data,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -137,7 +135,7 @@ class TestSourceFilesResource:
         assert resource.edit_branch(projectId=1, branchId=2, data=data) == "response"
         m_request.assert_called_once_with(
             method="patch",
-            post_data=data,
+            request_data=data,
             path=resource.get_branch_path(projectId=1, branchId=2),
         )
 
@@ -157,19 +155,41 @@ class TestSourceFilesResource:
         "in_params, request_params",
         (
             (
-                {"offset": 0, "limit": 10},
-                {"offset": 0, "limit": 10, "name": None},
+                {
+                    "offset": 0,
+                    "limit": 10,
+                },
+                {
+                    "offset": 0,
+                    "limit": 10,
+                    "branchId": None,
+                    "directoryId": None,
+                    "filter": None,
+                    "recursion": None,
+                },
             ),
             (
-                {"offset": 0, "limit": 10, "name": "test"},
-                {"offset": 0, "limit": 10, "name": "test"},
+                {
+                    "offset": 0,
+                    "limit": 10,
+                    "branchId": 1,
+                    "directoryId": 2,
+                    "filter": "filter",
+                    "recursion": "recursion",
+                },
+                {
+                    "offset": 0,
+                    "limit": 10,
+                    "branchId": 1,
+                    "directoryId": 2,
+                    "filter": "filter",
+                    "recursion": "recursion",
+                },
             ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_directories(
-        self, m_request, in_params, request_params, base_absolut_url
-    ):
+    def test_list_directories(self, m_request, in_params, request_params, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
@@ -181,7 +201,7 @@ class TestSourceFilesResource:
         )
 
     @pytest.mark.parametrize(
-        "in_params, post_data",
+        "in_params, request_data",
         (
             (
                 {
@@ -217,7 +237,7 @@ class TestSourceFilesResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_directory(self, m_request, in_params, post_data, base_absolut_url):
+    def test_add_directory(self, m_request, in_params, request_data, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
@@ -225,7 +245,7 @@ class TestSourceFilesResource:
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_directory_path(projectId=1),
-            post_data=post_data,
+            request_data=request_data,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -262,12 +282,10 @@ class TestSourceFilesResource:
         ]
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.edit_directory(projectId=1, directoryId=2, data=data) == "response"
-        )
+        assert resource.edit_directory(projectId=1, directoryId=2, data=data) == "response"
         m_request.assert_called_once_with(
             method="patch",
-            post_data=data,
+            request_data=data,
             path=resource.get_directory_path(projectId=1, directoryId=2),
         )
 
@@ -330,7 +348,7 @@ class TestSourceFilesResource:
         )
 
     @pytest.mark.parametrize(
-        "in_params, post_data",
+        "in_params, request_data",
         (
             (
                 {
@@ -375,13 +393,13 @@ class TestSourceFilesResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_file(self, m_request, in_params, post_data, base_absolut_url):
+    def test_add_file(self, m_request, in_params, request_data, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
         assert resource.add_file(projectId=1, **in_params) == "response"
         m_request.assert_called_once_with(
-            method="post", path=resource.get_file_path(projectId=1), post_data=post_data
+            method="post", path=resource.get_file_path(projectId=1), request_data=request_data
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -408,31 +426,44 @@ class TestSourceFilesResource:
     def test_edit_file(self, m_request, base_absolut_url):
         m_request.return_value = "response"
 
-        data = [
-            {"value": "test", "op": PatchOperation.REPLACE, "path": FilePatchPath.NAME}
-        ]
+        data = [{"value": "test", "op": PatchOperation.REPLACE, "path": FilePatchPath.NAME}]
 
         resource = self.get_resource(base_absolut_url)
         assert resource.edit_file(projectId=1, fileId=2, data=data) == "response"
         m_request.assert_called_once_with(
             method="patch",
-            post_data=data,
+            request_data=data,
             path=resource.get_file_path(projectId=1, fileId=2),
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_update_or_restore_file(self, m_request, base_absolut_url):
+    def test_update_file(self, m_request, base_absolut_url):
         m_request.return_value = "response"
 
-        data = {"storageId": 1}
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.update_or_restore_file(projectId=1, fileId=2, data=data)
-            == "response"
-        )
+        assert resource.update_file(projectId=1, fileId=2, storageId=1) == "response"
         m_request.assert_called_once_with(
             method="put",
-            post_data=data,
+            request_data={
+                "storageId": 1,
+                "updateOption": None,
+                "importOptions": None,
+                "exportOptions": None,
+                "attachLabelIds": None,
+                "detachLabelIds": None,
+            },
+            path=resource.get_file_path(projectId=1, fileId=2),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_restore_file(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.restore_file(projectId=1, fileId=2, revisionId=3) == "response"
+        m_request.assert_called_once_with(
+            method="put",
+            request_data={"revisionId": 3},
             path=resource.get_file_path(projectId=1, fileId=2),
         )
 
@@ -479,10 +510,7 @@ class TestSourceFilesResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.get_file_revision(projectId=1, fileId=2, revisionId=3)
-            == "response"
-        )
+        assert resource.get_file_revision(projectId=1, fileId=2, revisionId=3) == "response"
         m_request.assert_called_once_with(
             method="get",
             path=resource.get_file_revisions_path(projectId=1, fileId=2, revisionId=3),

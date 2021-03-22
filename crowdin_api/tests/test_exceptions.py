@@ -56,9 +56,7 @@ class TestAPIException:
         exception = APIException(headers=headers)
         assert exception.request_id == result
 
-    @mock.patch(
-        "crowdin_api.exceptions.APIException.template", new_callable=PropertyMock
-    )
+    @mock.patch("crowdin_api.exceptions.APIException.template", new_callable=PropertyMock)
     def test_message(self, m_template):
         m_template.return_value = "template"
 

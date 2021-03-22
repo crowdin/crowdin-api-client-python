@@ -98,7 +98,7 @@ class TestAPIRequester:
             "method": "get",
             "path": "test",
             "params": {"test": "value"},
-            "post_data": {"should_retry": should_retry},
+            "request_data": {"should_retry": should_retry},
         }
 
         with pytest.raises(APIException):
@@ -119,9 +119,7 @@ class TestAPIRequester:
     ):
         path = "test"
         requester = APIRequester(base_url=base_absolut_url)
-        requests_mock.get(
-            urljoin(base_absolut_url, path), status_code=status_code, text="{}"
-        )
+        requests_mock.get(urljoin(base_absolut_url, path), status_code=status_code, text="{}")
 
         with pytest.raises(exception):
             requester._request(method="get", path=path)
@@ -135,9 +133,7 @@ class TestAPIRequester:
             requester._request(method="get", path=path)
 
     @pytest.mark.parametrize("status_code", (200, 299))
-    def test__request_with_success_status(
-        self, status_code, requests_mock, base_absolut_url
-    ):
+    def test__request_with_success_status(self, status_code, requests_mock, base_absolut_url):
         path = "test"
         requester = APIRequester(base_url=base_absolut_url)
         requests_mock.get(
@@ -164,7 +160,7 @@ class TestAPIRequester:
             ),
         ),
     )
-    def test___prepare_file(self, file_name, in_headers, out_headers, base_absolut_url):
+    def test__prepare_file(self, file_name, in_headers, out_headers, base_absolut_url):
         m_file = Mock()
         m_file.name = file_name
 
@@ -194,3 +190,18 @@ class TestAPIRequester:
 
         _requester = None  # noqa F841
         m_close.assert_called_once()
+
+    @pytest.mark.parametrize(
+        "in_data,out_data",
+        (
+            ({}, {}),
+            (None, None),
+            (
+                {"key_1": None, "key_2": 1, "key_3": {"key_1": None, "key_2": 1}},
+                {"key_2": 1, "key_3": {"key_2": 1}},
+            ),
+        ),
+    )
+    def test__clear_data(self, in_data, out_data, base_absolut_url):
+        requester = APIRequester(base_url=base_absolut_url)
+        assert requester._clear_data(in_data) == out_data

@@ -3,10 +3,7 @@ from unittest import mock
 import pytest
 from crowdin_api.api_resources import LanguagesResource
 from crowdin_api.api_resources.enums import PatchOperation
-from crowdin_api.api_resources.languages.enums import (
-    LanguagesPatchPath,
-    LanguageTextDirection,
-)
+from crowdin_api.api_resources.languages.enums import LanguagesPatchPath, LanguageTextDirection
 from crowdin_api.requester import APIRequester
 
 
@@ -29,7 +26,7 @@ class TestLanguagesResource:
         )
 
     @pytest.mark.parametrize(
-        "in_params, post_data",
+        "in_params, request_data",
         (
             (
                 {
@@ -72,15 +69,13 @@ class TestLanguagesResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_custom_language(
-        self, m_request, in_params, post_data, base_absolut_url
-    ):
+    def test_add_custom_language(self, m_request, in_params, request_data, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
         assert resource.add_custom_language(**in_params) == "response"
         m_request.assert_called_once_with(
-            method="post", path="languages", post_data=post_data
+            method="post", path="languages", request_data=request_data
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -113,6 +108,4 @@ class TestLanguagesResource:
 
         resource = self.get_resource(base_absolut_url)
         assert resource.edit_custom_language(languageId=1, data=data) == "response"
-        m_request.assert_called_once_with(
-            method="patch", post_data=data, path="languages/1"
-        )
+        m_request.assert_called_once_with(method="patch", request_data=data, path="languages/1")

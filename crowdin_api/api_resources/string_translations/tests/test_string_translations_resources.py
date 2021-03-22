@@ -1,11 +1,9 @@
 from unittest import mock
 
 import pytest
-from crowdin_api.api_resources.languages.enums import DenormalizePlaceholders
+from crowdin_api.api_resources.enums import DenormalizePlaceholders
 from crowdin_api.api_resources.string_translations.enums import VoteMark
-from crowdin_api.api_resources.string_translations.resource import (
-    StringTranslationsResource,
-)
+from crowdin_api.api_resources.string_translations.resource import StringTranslationsResource
 from crowdin_api.requester import APIRequester
 
 
@@ -68,9 +66,7 @@ class TestStringTranslationsResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.list_translation_approvals(projectId=1, **in_params) == "response"
-        )
+        assert resource.list_translation_approvals(projectId=1, **in_params) == "response"
         m_request.assert_called_once_with(
             method="get",
             params=request_params,
@@ -86,7 +82,7 @@ class TestStringTranslationsResource:
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_approvals_path(projectId=1),
-            post_data={"translationId": 2},
+            request_data={"translationId": 2},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -152,9 +148,7 @@ class TestStringTranslationsResource:
 
         resource = self.get_resource(base_absolut_url)
         assert (
-            resource.list_language_translations(
-                projectId=1, languageId="ua", **in_params
-            )
+            resource.list_language_translations(projectId=1, languageId="ua", **in_params)
             == "response"
         )
         m_request.assert_called_once_with(
@@ -207,9 +201,7 @@ class TestStringTranslationsResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_string_translations(
-        self, m_request, in_params, request_params, base_absolut_url
-    ):
+    def test_list_string_translations(self, m_request, in_params, request_params, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
@@ -221,7 +213,7 @@ class TestStringTranslationsResource:
         )
 
     @pytest.mark.parametrize(
-        "in_params, post_data",
+        "in_params, request_data",
         (
             (
                 {
@@ -253,15 +245,15 @@ class TestStringTranslationsResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_translation(self, m_request, in_params, post_data, base_absolut_url):
+    def test_add_translation(self, m_request, in_params, request_data, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_translation(projectId=1, **post_data) == "response"
+        assert resource.add_translation(projectId=1, **request_data) == "response"
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_translations_path(projectId=1),
-            post_data=post_data,
+            request_data=request_data,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -270,9 +262,7 @@ class TestStringTranslationsResource:
 
         resource = self.get_resource(base_absolut_url)
         assert (
-            resource.delete_string_translations(
-                projectId=1, stringId=2, languageId="ua"
-            )
+            resource.delete_string_translations(projectId=1, stringId=2, languageId="ua")
             == "response"
         )
         m_request.assert_called_once_with(
@@ -380,14 +370,11 @@ class TestStringTranslationsResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.add_vote(projectId=1, mark=VoteMark.UP, translationId=2)
-            == "response"
-        )
+        assert resource.add_vote(projectId=1, mark=VoteMark.UP, translationId=2) == "response"
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_translation_votes_path(projectId=1),
-            post_data={"translationId": 2, "mark": VoteMark.UP},
+            request_data={"translationId": 2, "mark": VoteMark.UP},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")

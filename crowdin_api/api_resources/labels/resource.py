@@ -1,4 +1,4 @@
-from typing import Iterable, List, Optional
+from typing import Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.labels.types import LabelsPatchRequest
@@ -38,7 +38,7 @@ class LabelsResource(BaseResource):
             params=self.get_page_params(page=page, offset=offset, limit=limit),
         )
 
-    def add_custom_language(self, projectId: int, title: str):
+    def add_label(self, projectId: int, title: str):
         """
         Add Label.
 
@@ -49,7 +49,7 @@ class LabelsResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_labels_path(projectId=projectId),
-            post_data={"title": title},
+            request_data={"title": title},
         )
 
     def get_label(self, projectId: int, labelId: int):
@@ -78,7 +78,7 @@ class LabelsResource(BaseResource):
             path=self.get_labels_path(projectId=projectId, labelId=labelId),
         )
 
-    def edit_label(self, projectId: int, labelId: int, data: List[LabelsPatchRequest]):
+    def edit_label(self, projectId: int, labelId: int, data: Iterable[LabelsPatchRequest]):
         """
         Edit Label.
 
@@ -89,12 +89,10 @@ class LabelsResource(BaseResource):
         return self.requester.request(
             method="patch",
             path=self.get_labels_path(projectId=projectId, labelId=labelId),
-            post_data=data,
+            request_data=data,
         )
 
-    def assign_label_to_strings(
-        self, projectId: int, labelId: int, stringIds: Iterable[int]
-    ):
+    def assign_label_to_strings(self, projectId: int, labelId: int, stringIds: Iterable[int]):
         """
         Assign Label to Strings.
 
@@ -104,13 +102,11 @@ class LabelsResource(BaseResource):
 
         return self.requester.request(
             method="post",
-            post_data={"stringIds": stringIds},
+            request_data={"stringIds": stringIds},
             path=self.get_labels_path(projectId=projectId, labelId=labelId),
         )
 
-    def unassign_label_from_strings(
-        self, projectId: int, labelId: int, stringIds: Iterable[int]
-    ):
+    def unassign_label_from_strings(self, projectId: int, labelId: int, stringIds: Iterable[int]):
         """
         Unassign Label from Strings.
 
@@ -120,6 +116,6 @@ class LabelsResource(BaseResource):
 
         return self.requester.request(
             method="delete",
-            post_data={"stringIds": stringIds},
+            params={"stringIds": ",".join(str(stringId) for stringId in stringIds)},
             path=self.get_labels_path(projectId=projectId, labelId=labelId),
         )

@@ -1,4 +1,4 @@
-from typing import List, Optional, Union
+from typing import Any, Iterable
 
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.source_files.enums import (
@@ -6,20 +6,19 @@ from crowdin_api.api_resources.source_files.enums import (
     DirectoryPatchPath,
     EscapeQuotes,
     FilePatchPath,
-    FileUpdateOption,
 )
 from crowdin_api.typing import TypedDict
 
 
 class BranchPatchRequest(TypedDict):
-    value: str
-    op: Union[PatchOperation, str]
+    value: Any
+    op: PatchOperation
     path: BranchPatchPath
 
 
 class DirectoryPatchRequest(TypedDict):
-    value: Union[str, int]
-    op: Union[PatchOperation, str]
+    value: Any
+    op: PatchOperation
     path: DirectoryPatchPath
 
 
@@ -36,7 +35,7 @@ class XmlImportOptions(TypedDict):
     translateContent: bool
     translateAttributes: bool
     contentSegmentation: bool
-    translatableElements: List[str]
+    translatableElements: Iterable[str]
 
 
 class OtherImportOptions(TypedDict):
@@ -52,18 +51,7 @@ class PropertyExportOptions:
     exportPattern: str
 
 
-class ReplaceFileFromStorageRequest(TypedDict):
-    storageId: int
-    updateOption: Optional[FileUpdateOption]
-    importOptions: Optional[
-        Union[SpreadsheetImportOptions, XmlImportOptions, OtherImportOptions]
-    ]
-    exportOptions: Optional[Union[GeneralExportOptions, PropertyExportOptions]]
-    attachLabelIds: Optional[List[int]]
-    detachLabelIds: Optional[List[int]]
-
-
 class FilePatchRequest(TypedDict):
-    value: Union[str, List[str]]
-    op: Union[PatchOperation, str]
+    value: Any
+    op: PatchOperation
     path: FilePatchPath

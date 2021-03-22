@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.string_comments.enums import (
@@ -19,9 +19,7 @@ class StringCommentsResource(BaseResource):
     https://support.crowdin.com/api/v2/#tag/String-Comments
     """
 
-    def get_string_comments_path(
-        self, projectId: int, stringCommentId: Optional[int] = None
-    ):
+    def get_string_comments_path(self, projectId: int, stringCommentId: Optional[int] = None):
         if stringCommentId is not None:
             return f"projects/{projectId}/comments/{stringCommentId}"
 
@@ -32,7 +30,7 @@ class StringCommentsResource(BaseResource):
         projectId: int,
         stringId: Optional[int] = None,
         type: Optional[StringCommentType] = None,
-        issueType: Optional[List[StringCommentIssueType]] = None,
+        issueType: Optional[Iterable[StringCommentIssueType]] = None,
         issueStatus: Optional[StringCommentIssueStatus] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
@@ -48,9 +46,7 @@ class StringCommentsResource(BaseResource):
         params = {
             "stringId": stringId,
             "type": type,
-            "issueType": None
-            if issueType is None
-            else ",".join(item.value for item in issueType),
+            "issueType": None if issueType is None else ",".join(item.value for item in issueType),
             "issueStatus": issueStatus,
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
@@ -79,7 +75,7 @@ class StringCommentsResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_string_comments_path(projectId=projectId),
-            post_data={
+            request_data={
                 "text": text,
                 "targetLanguageId": targetLanguageId,
                 "type": type,
@@ -121,7 +117,7 @@ class StringCommentsResource(BaseResource):
         self,
         projectId: int,
         stringCommentId: int,
-        data: List[StringCommentPatchRequest],
+        data: Iterable[StringCommentPatchRequest],
     ):
         """
         Edit String Comment.
@@ -132,7 +128,7 @@ class StringCommentsResource(BaseResource):
 
         return self.requester.request(
             method="patch",
-            post_data=data,
+            request_data=data,
             path=self.get_string_comments_path(
                 projectId=projectId, stringCommentId=stringCommentId
             ),

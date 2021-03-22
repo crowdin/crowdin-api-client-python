@@ -3,7 +3,7 @@ from typing import IO, Optional
 from crowdin_api.api_resources.abstract.resources import BaseResource
 
 
-class StorageResource(BaseResource):
+class StoragesResource(BaseResource):
     """
     Resource for Storages.
 
@@ -16,7 +16,8 @@ class StorageResource(BaseResource):
     Note: Storage is periodically cleared. The files that were already uploaded to your account will
     be removed from storage and will remain in your account.
 
-    Link to documentation: https://support.crowdin.com/api/v2/#tag/Storage
+    Link to documentation:
+    https://support.crowdin.com/api/v2/#tag/Storage
     """
 
     def get_storages_path(self, storageId: Optional[int] = None):
@@ -33,7 +34,8 @@ class StorageResource(BaseResource):
     ):
         """List Storages.
 
-        Link to documentation: https://support.crowdin.com/api/v2/#operation/api.storages.getMany
+        Link to documentation:
+        https://support.crowdin.com/api/v2/#operation/api.storages.getMany
         """
 
         return self.requester.request(
@@ -45,17 +47,17 @@ class StorageResource(BaseResource):
     def add_storage(self, file: IO):
         """Add Storage.
 
-        Link to documentation: https://support.crowdin.com/api/v2/#operation/api.storages.post
+        Link to documentation:
+        https://support.crowdin.com/api/v2/#operation/api.storages.post
         """
 
-        return self.requester.request(
-            method="post", path=self.get_storages_path(), file=file
-        )
+        return self.requester.request(method="post", path=self.get_storages_path(), file=file)
 
     def get_storage(self, storageId: int):
         """Get Storage.
 
-        Link to documentation: https://support.crowdin.com/api/v2/#operation/api.storages.get
+        Link to documentation:
+        https://support.crowdin.com/api/v2/#operation/api.storages.get
         """
 
         return self.requester.request(
@@ -65,7 +67,8 @@ class StorageResource(BaseResource):
     def delete_storage(self, storageId: int):
         """Delete Storage.
 
-        Link to documentation: https://support.crowdin.com/api/v2/#operation/api.storages.delete
+        Link to documentation:
+        https://support.crowdin.com/api/v2/#operation/api.storages.delete
         """
 
         return self.requester.request(

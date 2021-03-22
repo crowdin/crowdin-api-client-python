@@ -1,7 +1,7 @@
-from typing import List, Optional
+from typing import Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
-from crowdin_api.api_resources.languages.enums import DenormalizePlaceholders
+from crowdin_api.api_resources.enums import DenormalizePlaceholders
 from crowdin_api.api_resources.source_strings.enums import ScopeFilter
 from crowdin_api.api_resources.source_strings.types import SourceStringsPatchRequest
 
@@ -32,7 +32,7 @@ class SourceStringsResource(BaseResource):
         projectId: int,
         fileId: Optional[int] = None,
         denormalizePlaceholders: Optional[DenormalizePlaceholders] = None,
-        labelIds: Optional[List[int]] = None,
+        labelIds: Optional[Iterable[int]] = None,
         filter: Optional[str] = None,
         scope: Optional[ScopeFilter] = None,
         page: Optional[int] = None,
@@ -49,9 +49,7 @@ class SourceStringsResource(BaseResource):
         params = {
             "fileId": fileId,
             "denormalizePlaceholders": denormalizePlaceholders,
-            "labelIds": None
-            if labelIds is None
-            else ",".join(str(item) for item in labelIds),
+            "labelIds": None if labelIds is None else ",".join(str(item) for item in labelIds),
             "filter": filter,
             "scope": scope,
         }
@@ -83,7 +81,7 @@ class SourceStringsResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_source_strings_path(projectId=projectId),
-            post_data={
+            request_data={
                 "text": text,
                 "identifier": identifier,
                 "fileId": fileId,
@@ -119,9 +117,7 @@ class SourceStringsResource(BaseResource):
             path=self.get_source_strings_path(projectId=projectId, stringId=stringId),
         )
 
-    def edit_string(
-        self, projectId: int, stringId: int, data: List[SourceStringsPatchRequest]
-    ):
+    def edit_string(self, projectId: int, stringId: int, data: Iterable[SourceStringsPatchRequest]):
         """
         Edit String.
 
@@ -132,5 +128,5 @@ class SourceStringsResource(BaseResource):
         return self.requester.request(
             method="patch",
             path=self.get_source_strings_path(projectId=projectId, stringId=stringId),
-            post_data=data,
+            request_data=data,
         )

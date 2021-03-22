@@ -1,12 +1,8 @@
 from unittest import mock
 
 import pytest
-from crowdin_api.api_resources.enums import PatchOperation
-from crowdin_api.api_resources.languages.enums import DenormalizePlaceholders
-from crowdin_api.api_resources.source_strings.enums import (
-    ScopeFilter,
-    SourceStringsPatchPath,
-)
+from crowdin_api.api_resources.enums import DenormalizePlaceholders, PatchOperation
+from crowdin_api.api_resources.source_strings.enums import ScopeFilter, SourceStringsPatchPath
 from crowdin_api.api_resources.source_strings.resource import SourceStringsResource
 from crowdin_api.requester import APIRequester
 
@@ -78,7 +74,7 @@ class TestSourceFilesResource:
         )
 
     @pytest.mark.parametrize(
-        "in_params, post_data",
+        "in_params, request_data",
         (
             (
                 {
@@ -114,7 +110,7 @@ class TestSourceFilesResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_string(self, m_request, in_params, post_data, base_absolut_url):
+    def test_add_string(self, m_request, in_params, request_data, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
@@ -122,7 +118,7 @@ class TestSourceFilesResource:
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_source_strings_path(projectId=1),
-            post_data=post_data,
+            request_data=request_data,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -162,6 +158,6 @@ class TestSourceFilesResource:
         assert resource.edit_string(projectId=1, stringId=2, data=data) == "response"
         m_request.assert_called_once_with(
             method="patch",
-            post_data=data,
+            request_data=data,
             path=resource.get_source_strings_path(projectId=1, stringId=2),
         )

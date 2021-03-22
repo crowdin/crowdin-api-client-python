@@ -1,11 +1,11 @@
 from unittest import mock
 
-from crowdin_api.api_resources import StorageResource
+from crowdin_api.api_resources import StoragesResource
 from crowdin_api.requester import APIRequester
 
 
-class TestStorageResource:
-    resource_class = StorageResource
+class TestStoragesResource:
+    resource_class = StoragesResource
 
     def get_resource(self, base_absolut_url):
         return self.resource_class(requester=APIRequester(base_url=base_absolut_url))
@@ -28,9 +28,7 @@ class TestStorageResource:
 
         resource = self.get_resource(base_absolut_url)
         assert resource.add_storage("SOME_FILE") == "response"
-        m_request.assert_called_once_with(
-            method="post", path="storages", file="SOME_FILE"
-        )
+        m_request.assert_called_once_with(method="post", path="storages", file="SOME_FILE")
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_get_storage(self, m_request, base_absolut_url):

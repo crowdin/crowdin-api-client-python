@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.translation_status.enums import Category, Validation
@@ -104,7 +104,7 @@ class TranslationStatusResource(BaseResource):
     def get_project_progress(
         self,
         projectId: int,
-        languageIds: Optional[List[str]] = None,
+        languageIds: Optional[Iterable[str]] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -128,9 +128,9 @@ class TranslationStatusResource(BaseResource):
     def list_qa_check_issues(
         self,
         projectId: int,
-        category: Optional[List[Category]] = None,
-        validation: Optional[List[Validation]] = None,
-        languageIds: Optional[List[str]] = None,
+        category: Optional[Iterable[Category]] = None,
+        validation: Optional[Iterable[Validation]] = None,
+        languageIds: Optional[Iterable[str]] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -144,12 +144,8 @@ class TranslationStatusResource(BaseResource):
 
         params = {
             "languageIds": None if languageIds is None else ",".join(languageIds),
-            "category": ",".join((item.value for item in category))
-            if category
-            else None,
-            "validation": ",".join((item.value for item in validation))
-            if validation
-            else None,
+            "category": ",".join((item.value for item in category)) if category else None,
+            "validation": ",".join((item.value for item in validation)) if validation else None,
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 

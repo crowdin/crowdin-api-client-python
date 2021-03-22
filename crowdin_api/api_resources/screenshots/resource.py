@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.screenshots.types import (
@@ -65,7 +65,7 @@ class ScreenshotsResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_screenshots_path(projectId=projectId),
-            post_data={
+            request_data={
                 "storageId": storageId,
                 "name": name,
                 "autoTag": autoTag,
@@ -82,14 +82,10 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=self.get_screenshots_path(
-                projectId=projectId, screenshotId=screenshotId
-            ),
+            path=self.get_screenshots_path(projectId=projectId, screenshotId=screenshotId),
         )
 
-    def update_screenshot(
-        self, projectId: int, screenshotId: int, storageId: int, name: str
-    ):
+    def update_screenshot(self, projectId: int, screenshotId: int, storageId: int, name: str):
         """
         Update Screenshot.
 
@@ -99,13 +95,11 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="put",
-            post_data={
+            request_data={
                 "storageId": storageId,
                 "name": name,
             },
-            path=self.get_screenshots_path(
-                projectId=projectId, screenshotId=screenshotId
-            ),
+            path=self.get_screenshots_path(projectId=projectId, screenshotId=screenshotId),
         )
 
     def delete_screenshot(self, projectId: int, screenshotId: int):
@@ -118,13 +112,11 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="delete",
-            path=self.get_screenshots_path(
-                projectId=projectId, screenshotId=screenshotId
-            ),
+            path=self.get_screenshots_path(projectId=projectId, screenshotId=screenshotId),
         )
 
     def edit_screenshot(
-        self, projectId: int, screenshotId: int, data: List[ScreenshotPatchRequest]
+        self, projectId: int, screenshotId: int, data: Iterable[ScreenshotPatchRequest]
     ):
         """
         Edit Screenshot.
@@ -135,16 +127,12 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="patch",
-            post_data=data,
-            path=self.get_screenshots_path(
-                projectId=projectId, screenshotId=screenshotId
-            ),
+            request_data=data,
+            path=self.get_screenshots_path(projectId=projectId, screenshotId=screenshotId),
         )
 
     # Tags
-    def get_tags_path(
-        self, projectId: int, screenshotId: int, tagId: Optional[int] = None
-    ):
+    def get_tags_path(self, projectId: int, screenshotId: int, tagId: Optional[int] = None):
         if tagId is not None:
             return f"projects/{projectId}/screenshots/{screenshotId}/tags/{tagId}"
 
@@ -171,11 +159,9 @@ class ScreenshotsResource(BaseResource):
             params=self.get_page_params(page=page, offset=offset, limit=limit),
         )
 
-    def replace_tags(
-        self, projectId: int, screenshotId: int, data: List[AddTagRequest]
-    ):
+    def replace_tags(self, projectId: int, screenshotId: int, data: Iterable[AddTagRequest]):
         """
-        Replace Tags (Auto Tag).
+        Replace Tags.
 
         Link to documentation:
         https://support.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.putMany
@@ -184,10 +170,24 @@ class ScreenshotsResource(BaseResource):
         return self.requester.request(
             method="put",
             path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
-            post_data=data,
+            request_data=data,
         )
 
-    def add_tag(self, projectId: int, screenshotId: int, data: List[AddTagRequest]):
+    def auto_tag(self, projectId: int, screenshotId: int, autoTag: bool):
+        """
+        Auto Tag.
+
+        Link to documentation:
+        https://support.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.putMany
+        """
+
+        return self.requester.request(
+            method="put",
+            path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
+            request_data={"autoTag": autoTag},
+        )
+
+    def add_tag(self, projectId: int, screenshotId: int, data: Iterable[AddTagRequest]):
         """
         Add Tag.
 
@@ -198,7 +198,7 @@ class ScreenshotsResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
-            post_data=data,
+            request_data=data,
         )
 
     def clear_tags(self, projectId: int, screenshotId: int):
@@ -224,9 +224,7 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=self.get_tags_path(
-                projectId=projectId, screenshotId=screenshotId, tagId=tagId
-            ),
+            path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId, tagId=tagId),
         )
 
     def delete_tag(self, projectId: int, screenshotId: int, tagId: int):
@@ -239,13 +237,11 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="delete",
-            path=self.get_tags_path(
-                projectId=projectId, screenshotId=screenshotId, tagId=tagId
-            ),
+            path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId, tagId=tagId),
         )
 
     def edit_tag(
-        self, projectId: int, screenshotId: int, tagId: int, data: List[TagPatchRequest]
+        self, projectId: int, screenshotId: int, tagId: int, data: Iterable[TagPatchRequest]
     ):
         """
         Edit Tag.
@@ -256,8 +252,6 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="patch",
-            post_data=data,
-            path=self.get_tags_path(
-                projectId=projectId, screenshotId=screenshotId, tagId=tagId
-            ),
+            request_data=data,
+            path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId, tagId=tagId),
         )

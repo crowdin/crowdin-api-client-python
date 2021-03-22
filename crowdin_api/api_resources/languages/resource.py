@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.languages.enums import LanguageTextDirection
@@ -32,7 +32,8 @@ class LanguagesResource(BaseResource):
         """
         List Supported Languages.
 
-        Link to documentation: https://support.crowdin.com/api/v2/#operation/api.languages.getMany
+        Link to documentation:
+        https://support.crowdin.com/api/v2/#operation/api.languages.getMany
         """
 
         return self.requester.request(
@@ -47,20 +48,21 @@ class LanguagesResource(BaseResource):
         code: str,
         localeCode: str,
         textDirection: LanguageTextDirection,
-        pluralCategoryNames: List[str],
+        pluralCategoryNames: Iterable[str],
         twoLettersCode: Optional[str] = None,
         dialectOf: Optional[str] = None,
     ):
         """
         Add Custom Language.
 
-        Link to documentation: https://support.crowdin.com/api/v2/#operation/api.languages.post
+        Link to documentation:
+        https://support.crowdin.com/api/v2/#operation/api.languages.post
         """
 
         return self.requester.request(
             method="post",
             path=self.get_languages_path(),
-            post_data={
+            request_data={
                 "name": name,
                 "code": code,
                 "localeCode": localeCode,
@@ -71,37 +73,38 @@ class LanguagesResource(BaseResource):
             },
         )
 
-    def get_language(self, languageId):
+    def get_language(self, languageId: str):
         """
         Get Language.
 
-        Link to documentation: https://support.crowdin.com/api/v2/#operation/api.languages.get
+        Link to documentation:
+        https://support.crowdin.com/api/v2/#operation/api.languages.get
         """
 
         return self.requester.request(
             method="get", path=self.get_languages_path(languageId=languageId)
         )
 
-    def delete_custom_language(self, languageId):
+    def delete_custom_language(self, languageId: str):
         """
         Delete Custom Language.
 
-        Link to documentation: https://support.crowdin.com/api/v2/#operation/api.languages.delete
+        Link to documentation:
+        https://support.crowdin.com/api/v2/#operation/api.languages.delete
         """
 
         return self.requester.request(
             method="delete", path=self.get_languages_path(languageId=languageId)
         )
 
-    def edit_custom_language(self, languageId, data: List[LanguagesPatchRequest]):
+    def edit_custom_language(self, languageId: str, data: Iterable[LanguagesPatchRequest]):
         """
         Edit Custom Language.
 
-        Link to documentation: https://support.crowdin.com/api/v2/#operation/api.languages.patch
+        Link to documentation:
+        https://support.crowdin.com/api/v2/#operation/api.languages.patch
         """
 
         return self.requester.request(
-            method="patch",
-            path=self.get_languages_path(languageId=languageId),
-            post_data=data,
+            method="patch", path=self.get_languages_path(languageId=languageId), request_data=data
         )

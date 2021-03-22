@@ -6,12 +6,6 @@ class PreTranslationApplyMethod(Enum):
     MT = "mt"
 
 
-class ExportProjectTranslationFormat(Enum):
-    XLIFF = "xliff"
-    ANDROID = "android"
-    MACOSX = "macosx"
-
-
 class VoteMark(Enum):
     UP = "up"
     DOWN = "down"

@@ -1,7 +1,7 @@
-from typing import List, Optional
+from typing import Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
-from crowdin_api.api_resources.languages.enums import DenormalizePlaceholders
+from crowdin_api.api_resources.enums import DenormalizePlaceholders, PluralCategoryName
 from crowdin_api.api_resources.string_translations.enums import VoteMark
 
 
@@ -69,7 +69,7 @@ class StringTranslationsResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_approvals_path(projectId=projectId),
-            post_data={"translationId": translationId},
+            request_data={"translationId": translationId},
         )
 
     def get_approval(self, projectId: int, approvalId: int):
@@ -90,7 +90,7 @@ class StringTranslationsResource(BaseResource):
         Remove Approvall.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.approvals.get
+        https://support.crowdin.com/api/v2/#operation/api.projects.approvals.delete
         """
 
         return self.requester.request(
@@ -103,8 +103,8 @@ class StringTranslationsResource(BaseResource):
         self,
         projectId: int,
         languageId: str,
-        stringIds: Optional[List[int]] = None,
-        labelIds: Optional[List[int]] = None,
+        stringIds: Optional[Iterable[int]] = None,
+        labelIds: Optional[Iterable[int]] = None,
         fileId: Optional[int] = None,
         denormalizePlaceholders: Optional[DenormalizePlaceholders] = None,
         page: Optional[int] = None,
@@ -137,9 +137,7 @@ class StringTranslationsResource(BaseResource):
         )
 
     # Translations
-    def get_translations_path(
-        self, projectId: int, translationId: Optional[int] = None
-    ):
+    def get_translations_path(self, projectId: int, translationId: Optional[int] = None):
         if translationId is not None:
             return f"projects/{projectId}/translations/{translationId}"
 
@@ -181,7 +179,7 @@ class StringTranslationsResource(BaseResource):
         stringId: int,
         languageId: str,
         text: str,
-        pluralCategoryName: Optional[str] = None,
+        pluralCategoryName: Optional[PluralCategoryName] = None,
     ):
         """
         Add Translation.
@@ -193,7 +191,7 @@ class StringTranslationsResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_translations_path(projectId=projectId),
-            post_data={
+            request_data={
                 "stringId": stringId,
                 "languageId": languageId,
                 "text": text,
@@ -201,9 +199,7 @@ class StringTranslationsResource(BaseResource):
             },
         )
 
-    def delete_string_translations(
-        self, projectId: int, stringId: int, languageId: str
-    ):
+    def delete_string_translations(self, projectId: int, stringId: int, languageId: str):
         """
         Delete String Translations.
 
@@ -227,9 +223,7 @@ class StringTranslationsResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=self.get_translations_path(
-                projectId=projectId, translationId=translationId
-            ),
+            path=self.get_translations_path(projectId=projectId, translationId=translationId),
         )
 
     def restore_translation(self, projectId: int, translationId: int):
@@ -242,9 +236,7 @@ class StringTranslationsResource(BaseResource):
 
         return self.requester.request(
             method="put",
-            path=self.get_translations_path(
-                projectId=projectId, translationId=translationId
-            ),
+            path=self.get_translations_path(projectId=projectId, translationId=translationId),
         )
 
     def delete_translation(self, projectId: int, translationId: int):
@@ -257,9 +249,7 @@ class StringTranslationsResource(BaseResource):
 
         return self.requester.request(
             method="delete",
-            path=self.get_translations_path(
-                projectId=projectId, translationId=translationId
-            ),
+            path=self.get_translations_path(projectId=projectId, translationId=translationId),
         )
 
     # Translation Votes
@@ -299,12 +289,7 @@ class StringTranslationsResource(BaseResource):
             params=params,
         )
 
-    def add_vote(
-        self,
-        projectId: int,
-        mark: VoteMark,
-        translationId: int,
-    ):
+    def add_vote(self, projectId: int, mark: VoteMark, translationId: int):
         """
         Add Vote.
 
@@ -315,7 +300,7 @@ class StringTranslationsResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_translation_votes_path(projectId=projectId),
-            post_data={"translationId": translationId, "mark": mark},
+            request_data={"translationId": translationId, "mark": mark},
         )
 
     def get_vote(self, projectId: int, voteId: int):

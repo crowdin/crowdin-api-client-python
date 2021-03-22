@@ -1,15 +1,12 @@
-from typing import Optional, Union
+from typing import Any, Optional, Union
 
 from crowdin_api.api_resources.enums import PatchOperation
-from crowdin_api.api_resources.screenshots.enums import (
-    ScreenshotPatchPath,
-    TagPatchPath,
-)
+from crowdin_api.api_resources.screenshots.enums import ScreenshotPatchPath, TagPatchPath
 from crowdin_api.typing import TypedDict
 
 
 class ScreenshotPatchRequest(TypedDict):
-    value: str
+    value: Any
     op: Union[PatchOperation, str]
     path: ScreenshotPatchPath
 
@@ -27,6 +24,6 @@ class AddTagRequest(TypedDict):
 
 
 class TagPatchRequest(TypedDict):
-    value: Union[str, int, Position]
+    value: Any
     op: Union[PatchOperation, str]
     path: TagPatchPath
