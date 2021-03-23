@@ -4,7 +4,7 @@ import mimetypes
 import os
 import time
 from copy import copy
-from typing import IO, Optional, Union
+from typing import IO, Dict, Optional, Union
 from urllib.parse import urljoin
 
 import requests
@@ -46,7 +46,7 @@ class APIRequester:
         timeout: int = 80,
         retry_delay: Union[int, float] = 0.1,  # 100 ms
         max_retries: int = 5,
-        default_headers: Optional[dict] = None,
+        default_headers: Optional[Dict] = None,
     ):
         self.base_url = base_url
         self._session = requests.Session()
@@ -68,33 +68,47 @@ class APIRequester:
 
         headers = copy(headers or {})
         headers["Content-Type"] = (
-            mimetypes.MimeTypes().guess_type(file.name)[0]
-            or self.default_file_content_type
+            mimetypes.MimeTypes().guess_type(file.name)[0] or self.default_file_content_type
         )
         headers["Crowdin-API-FileName"] = os.path.basename(file.name)
         return {"file": file}, headers
+
+    def _clear_data(self, data: Optional[Dict] = None):
+        if data is None:
+            return data
+
+        result = {}
+
+        for key, value in data.items():
+            if value is None:
+                continue
+
+            if isinstance(value, dict):
+                value = self._clear_data(data=value)
+
+            result[key] = value
+
+        return result
 
     def _request(
         self,
         method: str,
         path: str,
-        params: Optional[dict] = None,
-        headers: Optional[dict] = None,
-        post_data: Optional[dict] = None,
+        params: Optional[Dict] = None,
+        headers: Optional[Dict] = None,
+        request_data: Optional[Dict] = None,
         file: IO = None,
     ):
         files, headers = self._prepare_file(file=file, headers=headers)
 
-        post_data = post_data or {}
+        request_data = request_data or {}
 
         result = self.session.request(
             method,
             urljoin(self.base_url, path),
-            params=loads(dumps(params or {})),
+            params=loads(dumps(self._clear_data(params or {}))),
             headers=headers,
-            data=dumps(
-                {key: value for key, value in post_data.items() if value is not None}
-            ),
+            data=dumps(self._clear_data(request_data)),
             timeout=self._timeout,
             files=files,
         )
@@ -106,9 +120,7 @@ class APIRequester:
         try:
             content = loads(content)
         except json.decoder.JSONDecodeError:
-            raise ParsingError(
-                context=content, http_status=status_code, headers=headers
-            )
+            raise ParsingError(context=content, http_status=status_code, headers=headers)
 
         # Success
         if 200 <= status_code <= 299:
@@ -124,7 +136,7 @@ class APIRequester:
         path,
         params=None,
         headers=None,
-        post_data=None,
+        request_data=None,
         file: IO = None,
     ):
         num_retries = 0
@@ -136,7 +148,7 @@ class APIRequester:
                     path=path,
                     params=params,
                     headers=headers,
-                    post_data=post_data,
+                    request_data=request_data,
                     file=file,
                 )
             except APIException as err:

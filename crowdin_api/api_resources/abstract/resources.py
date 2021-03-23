@@ -1,5 +1,5 @@
-from abc import ABCMeta, abstractmethod
-from typing import Optional, Union
+from abc import ABCMeta
+from typing import Optional
 
 from crowdin_api.requester import APIRequester
 
@@ -9,10 +9,11 @@ class BaseResource(metaclass=ABCMeta):
         self.requester = requester
         self.page_size = page_size
 
-    @property
-    @abstractmethod
-    def base_path(self):
-        """Base path for resource."""
+    def _get_page_params(self, page: int):
+        if page < 1:
+            raise ValueError("The page number must be greater than or equal to 1.")
+
+        return {"offset": max((page - 1) * self.page_size, 0), "limit": self.page_size}
 
     def get_page_params(
         self,
@@ -24,11 +25,7 @@ class BaseResource(metaclass=ABCMeta):
             raise ValueError("You must set page or offset and limit.")
 
         if page:
-            if page < 1:
-                raise ValueError("The page number must be greater than or equal to 1.")
-
-            offset = max((page - 1) * self.page_size, 0)
-            limit = self.page_size
+            return self._get_page_params(page=page)
         else:
             offset = offset or 0
             if offset < 0:
@@ -40,11 +37,3 @@ class BaseResource(metaclass=ABCMeta):
                 raise ValueError("The limit must be greater than or equal to 1.")
 
         return {"offset": offset, "limit": limit}
-
-    def prepare_path(self, object_id: Optional[Union[int, str]] = None):
-        base_path = self.base_path.strip("/")
-
-        if object_id is None:
-            return base_path
-
-        return "/".join([base_path, str(object_id)])

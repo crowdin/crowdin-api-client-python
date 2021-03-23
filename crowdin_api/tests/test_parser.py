@@ -20,9 +20,7 @@ from crowdin_api.parser import dumps, loads
                     hour=18,
                     minute=20,
                     second=0,
-                    tzinfo=datetime.timezone(
-                        datetime.timedelta(minutes=60 * 2), "+0200"
-                    ),
+                    tzinfo=datetime.timezone(datetime.timedelta(minutes=60 * 2), "+0200"),
                 )
             },
         ),
@@ -36,9 +34,7 @@ from crowdin_api.parser import dumps, loads
                     hour=18,
                     minute=20,
                     second=0,
-                    tzinfo=datetime.timezone(
-                        datetime.timedelta(minutes=60 * 2 + 30), "+0230"
-                    ),
+                    tzinfo=datetime.timezone(datetime.timedelta(minutes=60 * 2 + 30), "+0230"),
                 )
             },
         ),
@@ -52,9 +48,7 @@ from crowdin_api.parser import dumps, loads
                     hour=18,
                     minute=20,
                     second=0,
-                    tzinfo=datetime.timezone(
-                        datetime.timedelta(minutes=-60 * 2), "-0200"
-                    ),
+                    tzinfo=datetime.timezone(datetime.timedelta(minutes=-60 * 2), "-0200"),
                 )
             },
         ),
@@ -68,9 +62,7 @@ from crowdin_api.parser import dumps, loads
                     hour=18,
                     minute=20,
                     second=0,
-                    tzinfo=datetime.timezone(
-                        datetime.timedelta(minutes=-60 * 2 - 30), "-0230"
-                    ),
+                    tzinfo=datetime.timezone(datetime.timedelta(minutes=-60 * 2 - 30), "-0230"),
                 )
             },
         ),

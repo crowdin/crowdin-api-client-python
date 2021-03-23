@@ -42,15 +42,13 @@ class TestProjectsResource:
                     "offset": 0,
                     "limit": 10,
                     "userId": None,
-                    "hasManagerAccess": HasManagerAccess.FALSE,
+                    "hasManagerAccess": None,
                 },
             ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_projects(
-        self, m_request, in_params, request_params, base_absolut_url
-    ):
+    def test_list_projects(self, m_request, in_params, request_params, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
@@ -61,24 +59,36 @@ class TestProjectsResource:
             path="projects",
         )
 
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_project(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_project(request_data={"some_key": "some_value"}) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            request_data={"some_key": "some_value"},
+            path=resource.get_projects_path(),
+        )
+
     @pytest.mark.parametrize(
-        "in_params, post_data",
+        "in_params, request_data",
         (
             (
                 {
-                    "name": "Some",
-                    "sourceLanguageId": 1,
+                    "name": "name",
+                    "sourceLanguageId": "ua",
                 },
                 {
-                    "name": "Some",
-                    "sourceLanguageId": 1,
+                    "name": "name",
+                    "sourceLanguageId": "ua",
                     "identifier": None,
-                    "type": ProjectType.FILE_BASED,
+                    "type": None,
                     "normalizePlaceholder": None,
                     "saveMetaInfoInSource": None,
                     "targetLanguageIds": None,
-                    "visibility": ProjectVisibility.PRIVATE,
-                    "languageAccessPolicy": ProjectLanguageAccessPolicy.OPEN,
+                    "visibility": None,
+                    "languageAccessPolicy": None,
                     "cname": None,
                     "description": None,
                     "skipUntranslatedStrings": None,
@@ -88,49 +98,112 @@ class TestProjectsResource:
             ),
             (
                 {
-                    "name": "Some",
-                    "sourceLanguageId": 1,
-                    "identifier": "Some",
+                    "name": "name",
+                    "sourceLanguageId": "ua",
+                    "identifier": "identifier",
                     "type": ProjectType.STRING_BASED,
                     "normalizePlaceholder": True,
-                    "saveMetaInfoInSource": False,
-                    "targetLanguageIds": ["sm"],
+                    "saveMetaInfoInSource": True,
+                    "targetLanguageIds": ["ua", "en"],
                     "visibility": ProjectVisibility.OPEN,
                     "languageAccessPolicy": ProjectLanguageAccessPolicy.MODERATE,
-                    "cname": "None",
-                    "description": "None",
-                    "skipUntranslatedStrings": True,
-                    "skipUntranslatedFiles": True,
-                    "exportApprovedOnly": True,
+                    "cname": "cname",
+                    "description": "description",
+                    "skipUntranslatedStrings": "skipUntranslatedStrings",
+                    "skipUntranslatedFiles": "skipUntranslatedFiles",
+                    "exportApprovedOnly": "exportApprovedOnly",
                 },
                 {
-                    "name": "Some",
-                    "sourceLanguageId": 1,
-                    "identifier": "Some",
+                    "name": "name",
+                    "sourceLanguageId": "ua",
+                    "identifier": "identifier",
                     "type": ProjectType.STRING_BASED,
                     "normalizePlaceholder": True,
-                    "saveMetaInfoInSource": False,
-                    "targetLanguageIds": ["sm"],
+                    "saveMetaInfoInSource": True,
+                    "targetLanguageIds": ["ua", "en"],
                     "visibility": ProjectVisibility.OPEN,
                     "languageAccessPolicy": ProjectLanguageAccessPolicy.MODERATE,
-                    "cname": "None",
-                    "description": "None",
-                    "skipUntranslatedStrings": True,
-                    "skipUntranslatedFiles": True,
-                    "exportApprovedOnly": True,
+                    "cname": "cname",
+                    "description": "description",
+                    "skipUntranslatedStrings": "skipUntranslatedStrings",
+                    "skipUntranslatedFiles": "skipUntranslatedFiles",
+                    "exportApprovedOnly": "exportApprovedOnly",
                 },
             ),
         ),
     )
-    @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_project(self, m_request, in_params, post_data, base_absolut_url):
-        m_request.return_value = "response"
+    @mock.patch("crowdin_api.api_resources.projects.resource.ProjectsResource.add_project")
+    def test_add_file_based_project(self, m_add_project, in_params, request_data, base_absolut_url):
+        m_add_project.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_project(**in_params) == "response"
-        m_request.assert_called_once_with(
-            method="post", path="projects", post_data=post_data
-        )
+        assert resource.add_file_based_project(**in_params) == "response"
+        m_add_project.assert_called_once_with(request_data=request_data)
+
+    @pytest.mark.parametrize(
+        "in_params, request_data",
+        (
+            (
+                {
+                    "name": "name",
+                    "sourceLanguageId": "ua",
+                },
+                {
+                    "name": "name",
+                    "sourceLanguageId": "ua",
+                    "identifier": None,
+                    "type": None,
+                    "targetLanguageIds": None,
+                    "visibility": None,
+                    "languageAccessPolicy": None,
+                    "cname": None,
+                    "description": None,
+                    "skipUntranslatedStrings": None,
+                    "skipUntranslatedFiles": None,
+                    "exportApprovedOnly": None,
+                },
+            ),
+            (
+                {
+                    "name": "name",
+                    "sourceLanguageId": "ua",
+                    "identifier": "identifier",
+                    "type": ProjectType.STRING_BASED,
+                    "targetLanguageIds": ["ua", "en"],
+                    "visibility": ProjectVisibility.OPEN,
+                    "languageAccessPolicy": ProjectLanguageAccessPolicy.MODERATE,
+                    "cname": "cname",
+                    "description": "description",
+                    "skipUntranslatedStrings": "skipUntranslatedStrings",
+                    "skipUntranslatedFiles": "skipUntranslatedFiles",
+                    "exportApprovedOnly": "exportApprovedOnly",
+                },
+                {
+                    "name": "name",
+                    "sourceLanguageId": "ua",
+                    "identifier": "identifier",
+                    "type": ProjectType.STRING_BASED,
+                    "targetLanguageIds": ["ua", "en"],
+                    "visibility": ProjectVisibility.OPEN,
+                    "languageAccessPolicy": ProjectLanguageAccessPolicy.MODERATE,
+                    "cname": "cname",
+                    "description": "description",
+                    "skipUntranslatedStrings": "skipUntranslatedStrings",
+                    "skipUntranslatedFiles": "skipUntranslatedFiles",
+                    "exportApprovedOnly": "exportApprovedOnly",
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.api_resources.projects.resource.ProjectsResource.add_project")
+    def test_add_strings_based_projectt(
+        self, m_add_project, in_params, request_data, base_absolut_url
+    ):
+        m_add_project.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_strings_based_project(**in_params) == "response"
+        m_add_project.assert_called_once_with(request_data=request_data)
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_get_project(self, m_request, base_absolut_url):
@@ -162,6 +235,4 @@ class TestProjectsResource:
 
         resource = self.get_resource(base_absolut_url)
         assert resource.edit_project(projectId=1, data=data) == "response"
-        m_request.assert_called_once_with(
-            method="patch", post_data=data, path="projects/1"
-        )
+        m_request.assert_called_once_with(method="patch", request_data=data, path="projects/1")

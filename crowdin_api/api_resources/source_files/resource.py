@@ -1,7 +1,7 @@
-from typing import Any, List, Optional, Union
+from typing import Any, Iterable, Optional, Union
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
-from crowdin_api.api_resources.source_files.enums import FileType, Priority
+from crowdin_api.api_resources.source_files.enums import FileType, FileUpdateOption, Priority
 from crowdin_api.api_resources.source_files.types import (
     BranchPatchRequest,
     DirectoryPatchRequest,
@@ -9,7 +9,6 @@ from crowdin_api.api_resources.source_files.types import (
     GeneralExportOptions,
     OtherImportOptions,
     PropertyExportOptions,
-    ReplaceFileFromStorageRequest,
     SpreadsheetImportOptions,
     XmlImportOptions,
 )
@@ -32,14 +31,12 @@ class SourceFilesResource(BaseResource):
     https://support.crowdin.com/api/v2/#tag/Source-Files
     """
 
-    base_path = "projects"
-
     # Branches
     def get_branch_path(self, projectId: int, branchId: Optional[int] = None):
         if branchId is not None:
-            return f"{self.prepare_path(projectId) }/branches/{branchId}"
+            return f"projects/{projectId}/branches/{branchId}"
 
-        return f"{self.prepare_path(projectId) }/branches"
+        return f"projects/{projectId}/branches"
 
     def list_project_branches(
         self,
@@ -81,7 +78,7 @@ class SourceFilesResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_branch_path(projectId=projectId),
-            post_data={
+            request_data={
                 "name": name,
                 "title": title,
                 "exportPattern": exportPattern,
@@ -115,9 +112,7 @@ class SourceFilesResource(BaseResource):
             path=f"projects/{projectId}/branches/{branchId}",
         )
 
-    def edit_branch(
-        self, projectId: int, branchId: int, data: List[BranchPatchRequest]
-    ):
+    def edit_branch(self, projectId: int, branchId: int, data: Iterable[BranchPatchRequest]):
         """
         Edit Branch.
 
@@ -128,20 +123,23 @@ class SourceFilesResource(BaseResource):
         return self.requester.request(
             method="patch",
             path=self.get_branch_path(projectId=projectId, branchId=branchId),
-            post_data=data,
+            request_data=data,
         )
 
     # Directories
     def get_directory_path(self, projectId: int, directoryId: Optional[int] = None):
         if directoryId is not None:
-            return f"{self.prepare_path(projectId) }/directories/{directoryId}"
+            return f"projects/{projectId}/directories/{directoryId}"
 
-        return f"{self.prepare_path(projectId) }/directories"
+        return f"projects/{projectId}/directories"
 
     def list_directories(
         self,
         projectId: int,
-        name: Optional[str] = None,
+        branchId: Optional[int] = None,
+        directoryId: Optional[int] = None,
+        filter: Optional[str] = None,
+        recursion=None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -150,10 +148,15 @@ class SourceFilesResource(BaseResource):
         List Directories.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.branches.getMany
+        https://support.crowdin.com/api/v2/#operation/api.projects.directories.getMany
         """
 
-        params = {"name": name}
+        params = {
+            "branchId": branchId,
+            "directoryId": directoryId,
+            "filter": filter,
+            "recursion": recursion,
+        }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self.requester.request(
@@ -182,7 +185,7 @@ class SourceFilesResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_directory_path(projectId=projectId),
-            post_data={
+            request_data={
                 "name": name,
                 "branchId": branchId,
                 "directoryId": directoryId,
@@ -219,7 +222,7 @@ class SourceFilesResource(BaseResource):
         )
 
     def edit_directory(
-        self, projectId: int, directoryId: int, data: List[DirectoryPatchRequest]
+        self, projectId: int, directoryId: int, data: Iterable[DirectoryPatchRequest]
     ):
         """
         Edit Directory.
@@ -231,15 +234,15 @@ class SourceFilesResource(BaseResource):
         return self.requester.request(
             method="patch",
             path=self.get_directory_path(projectId=projectId, directoryId=directoryId),
-            post_data=data,
+            request_data=data,
         )
 
     # Files
     def get_file_path(self, projectId: int, fileId: Optional[int] = None):
         if fileId is not None:
-            return f"{self.prepare_path(projectId) }/files/{fileId}"
+            return f"projects/{projectId}/files/{fileId}"
 
-        return f"{self.prepare_path(projectId) }/files"
+        return f"projects/{projectId}/files"
 
     def list_files(
         self,
@@ -282,11 +285,9 @@ class SourceFilesResource(BaseResource):
         importOptions: Optional[
             Union[SpreadsheetImportOptions, XmlImportOptions, OtherImportOptions]
         ] = None,
-        exportOptions: Optional[
-            Union[PropertyExportOptions, GeneralExportOptions]
-        ] = None,
-        excludedTargetLanguages: Optional[List[str]] = None,
-        attachLabelIds: Optional[List[int]] = None,
+        exportOptions: Optional[Union[PropertyExportOptions, GeneralExportOptions]] = None,
+        excludedTargetLanguages: Optional[Iterable[str]] = None,
+        attachLabelIds: Optional[Iterable[int]] = None,
     ):
         """
         Add File.
@@ -298,7 +299,7 @@ class SourceFilesResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_file_path(projectId=projectId),
-            post_data={
+            request_data={
                 "name": name,
                 "branchId": branchId,
                 "directoryId": directoryId,
@@ -324,11 +325,9 @@ class SourceFilesResource(BaseResource):
             path=self.get_file_path(projectId=projectId, fileId=fileId),
         )
 
-    def update_or_restore_file(
-        self, projectId: int, fileId: int, data: ReplaceFileFromStorageRequest
-    ):
+    def restore_file(self, projectId: int, fileId: int, revisionId: int):
         """
-        Update or Restore File.
+        Restore File.
 
         Link to documentation:
         https://support.crowdin.com/api/v2/#operation/api.projects.files.put
@@ -337,7 +336,40 @@ class SourceFilesResource(BaseResource):
         return self.requester.request(
             method="put",
             path=self.get_file_path(projectId=projectId, fileId=fileId),
-            post_data=data,
+            request_data={"revisionId": revisionId},
+        )
+
+    def update_file(
+        self,
+        projectId: int,
+        fileId: int,
+        storageId: int,
+        updateOption: Optional[FileUpdateOption] = None,
+        importOptions: Optional[
+            Union[SpreadsheetImportOptions, XmlImportOptions, OtherImportOptions]
+        ] = None,
+        exportOptions: Optional[Union[GeneralExportOptions, PropertyExportOptions]] = None,
+        attachLabelIds: Optional[Iterable[int]] = None,
+        detachLabelIds: Optional[Iterable[int]] = None,
+    ):
+        """
+        Update File.
+
+        Link to documentation:
+        https://support.crowdin.com/api/v2/#operation/api.projects.files.put
+        """
+
+        return self.requester.request(
+            method="put",
+            path=self.get_file_path(projectId=projectId, fileId=fileId),
+            request_data={
+                "storageId": storageId,
+                "updateOption": updateOption,
+                "importOptions": importOptions,
+                "exportOptions": exportOptions,
+                "attachLabelIds": attachLabelIds,
+                "detachLabelIds": detachLabelIds,
+            },
         )
 
     def delete_file(self, projectId: int, fileId: int):
@@ -353,7 +385,7 @@ class SourceFilesResource(BaseResource):
             path=self.get_file_path(projectId=projectId, fileId=fileId),
         )
 
-    def edit_file(self, projectId: int, fileId: int, data: List[FilePatchRequest]):
+    def edit_file(self, projectId: int, fileId: int, data: Iterable[FilePatchRequest]):
         """
         Edit File.
 
@@ -364,7 +396,7 @@ class SourceFilesResource(BaseResource):
         return self.requester.request(
             method="patch",
             path=self.get_file_path(projectId=projectId, fileId=fileId),
-            post_data=data,
+            request_data=data,
         )
 
     def download_file(self, projectId: int, fileId: int):
@@ -384,12 +416,13 @@ class SourceFilesResource(BaseResource):
     def get_file_revisions_path(
         self, projectId: int, fileId: int, revisionId: Optional[int] = None
     ):
-        if revisionId is not None:
-            return (
-                f"{self.prepare_path(projectId)}/files/{fileId}/revisions/{revisionId}"
-            )
 
-        return f"{self.prepare_path(projectId)}/files/{fileId}/revisions"
+        file_path = self.get_file_path(projectId=projectId, fileId=fileId)
+
+        if revisionId is not None:
+            return f"{file_path}/revisions/{revisionId}"
+
+        return f"{file_path}/revisions"
 
     def list_file_revisions(
         self,

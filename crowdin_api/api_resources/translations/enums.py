@@ -18,9 +18,3 @@ class CharTransformation(Enum):
     EUROPEAN = "european"
     ARABIC = "arabic"
     CYRILLIC = "cyrillic"
-
-
-class ExportProjectTranslationFormat(Enum):
-    XLIFF = "xliff"
-    ANDROID = "android"
-    MACOSX = "macosx"

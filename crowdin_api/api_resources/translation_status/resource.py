@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.translation_status.enums import Category, Validation
@@ -17,8 +17,6 @@ class TranslationStatusResource(BaseResource):
     https://support.crowdin.com/api/v2/#tag/Translation-Status
     """
 
-    base_path = "projects"
-
     def get_branch_progress(
         self,
         projectId: int,
@@ -34,11 +32,9 @@ class TranslationStatusResource(BaseResource):
         https://support.crowdin.com/api/v2/#operation/api.projects.branches.languages.progress.getMany
         """
 
-        project_path = self.prepare_path(object_id=projectId)
-
         return self.requester.request(
             method="get",
-            path=f"{project_path}/branches/{branchId}/languages/progress",
+            path=f"projects/{projectId}/branches/{branchId}/languages/progress",
             params=self.get_page_params(page=page, offset=offset, limit=limit),
         )
 
@@ -57,11 +53,9 @@ class TranslationStatusResource(BaseResource):
         https://support.crowdin.com/api/v2/#operation/api.projects.directories.languages.progress.getMany
         """
 
-        project_path = self.prepare_path(object_id=projectId)
-
         return self.requester.request(
             method="get",
-            path=f"{project_path}/directories/{directoryId}/languages/progress",
+            path=f"projects/{projectId}/directories/{directoryId}/languages/progress",
             params=self.get_page_params(page=page, offset=offset, limit=limit),
         )
 
@@ -80,11 +74,9 @@ class TranslationStatusResource(BaseResource):
         https://support.crowdin.com/api/v2/#operation/api.projects.files.languages.progress.getMany
         """
 
-        project_path = self.prepare_path(object_id=projectId)
-
         return self.requester.request(
             method="get",
-            path=f"{project_path}/files/{fileId}/languages/progress",
+            path=f"projects/{projectId}/files/{fileId}/languages/progress",
             params=self.get_page_params(page=page, offset=offset, limit=limit),
         )
 
@@ -103,18 +95,16 @@ class TranslationStatusResource(BaseResource):
         https://support.crowdin.com/api/v2/#operation/api.projects.languages.files.progress.getMany
         """
 
-        project_path = self.prepare_path(object_id=projectId)
-
         return self.requester.request(
             method="get",
-            path=f"{project_path}/languages/{languageId}/progress",
+            path=f"projects/{projectId}/languages/{languageId}/progress",
             params=self.get_page_params(page=page, offset=offset, limit=limit),
         )
 
     def get_project_progress(
         self,
         projectId: int,
-        languageIds: Optional[str] = None,
+        languageIds: Optional[Iterable[str]] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -126,23 +116,21 @@ class TranslationStatusResource(BaseResource):
         https://support.crowdin.com/api/v2/#operation/api.projects.languages.progress.getMany
         """
 
-        project_path = self.prepare_path(object_id=projectId)
-
-        params = {"languageIds": languageIds}
+        params = {"languageIds": None if languageIds is None else ",".join(languageIds)}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self.requester.request(
             method="get",
-            path=f"{project_path}/languages/progress",
+            path=f"projects/{projectId}/languages/progress",
             params=params,
         )
 
     def list_qa_check_issues(
         self,
         projectId: int,
-        category: Optional[List[Category]] = None,
-        validation: Optional[List[Validation]] = None,
-        languageIds: Optional[str] = None,
+        category: Optional[Iterable[Category]] = None,
+        validation: Optional[Iterable[Validation]] = None,
+        languageIds: Optional[Iterable[str]] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -154,21 +142,15 @@ class TranslationStatusResource(BaseResource):
         https://support.crowdin.com/api/v2/#operation/api.projects.qa-checks.getMany
         """
 
-        project_path = self.prepare_path(object_id=projectId)
-
         params = {
-            "languageIds": languageIds,
-            "category": ",".join((item.value for item in category))
-            if category
-            else None,
-            "validation": ",".join((item.value for item in validation))
-            if validation
-            else None,
+            "languageIds": None if languageIds is None else ",".join(languageIds),
+            "category": ",".join((item.value for item in category)) if category else None,
+            "validation": ",".join((item.value for item in validation)) if validation else None,
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self.requester.request(
             method="get",
-            path=f"{project_path}/languages/progress",
+            path=f"projects/{projectId}/languages/progress",
             params=params,
         )

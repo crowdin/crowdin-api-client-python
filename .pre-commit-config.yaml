@@ -8,6 +8,7 @@ repos:
   rev: stable
   hooks:
     - id: black
+      args: ["-l 100"]
       language_version: python3.9
 - repo: https://gitlab.com/pycqa/flake8
   rev: 3.8.4

@@ -2,9 +2,7 @@ from unittest import mock
 
 import pytest
 from crowdin_api.api_resources.translation_status.enums import Category, Validation
-from crowdin_api.api_resources.translation_status.resource import (
-    TranslationStatusResource,
-)
+from crowdin_api.api_resources.translation_status.resource import TranslationStatusResource
 from crowdin_api.requester import APIRequester
 
 
@@ -19,9 +17,7 @@ class TestTranslationStatusResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.get_branch_progress(projectId=1, branchId=2, page=1) == "response"
-        )
+        assert resource.get_branch_progress(projectId=1, branchId=2, page=1) == "response"
         m_request.assert_called_once_with(
             method="get",
             params=resource.get_page_params(page=1, offset=None, limit=None),
@@ -33,10 +29,7 @@ class TestTranslationStatusResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.get_directory_progress(projectId=1, directoryId=2, page=1)
-            == "response"
-        )
+        assert resource.get_directory_progress(projectId=1, directoryId=2, page=1) == "response"
         m_request.assert_called_once_with(
             method="get",
             params=resource.get_page_params(page=1, offset=None, limit=None),
@@ -60,10 +53,7 @@ class TestTranslationStatusResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert (
-            resource.get_language_progress(projectId=1, languageId="sr", page=1)
-            == "response"
-        )
+        assert resource.get_language_progress(projectId=1, languageId="sr", page=1) == "response"
         m_request.assert_called_once_with(
             method="get",
             params=resource.get_page_params(page=1, offset=None, limit=None),
@@ -79,7 +69,7 @@ class TestTranslationStatusResource:
         params["languageIds"] = "sr,rs"
 
         assert (
-            resource.get_project_progress(projectId=1, languageIds="sr,rs", page=1)
+            resource.get_project_progress(projectId=1, languageIds=["sr", "rs"], page=1)
             == "response"
         )
         m_request.assert_called_once_with(
@@ -103,7 +93,7 @@ class TestTranslationStatusResource:
             ),
             (
                 {
-                    "languageIds": "some,string",
+                    "languageIds": ["some", "string"],
                     "category": [Category.ICU, Category.EMPTY],
                     "validation": [Validation.ICU_CHECK, Validation.TAGS_CHECK],
                 },
@@ -118,9 +108,7 @@ class TestTranslationStatusResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_qa_check_issues(
-        self, m_request, in_params, request_params, base_absolut_url
-    ):
+    def test_list_qa_check_issues(self, m_request, in_params, request_params, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)

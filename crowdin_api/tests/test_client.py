@@ -90,56 +90,39 @@ class TestCrowdinClient:
             default_headers=client.get_default_headers(),
         )
 
-    @mock.patch(
-        "crowdin_api.api_resources.StorageResource",
-        return_value="StorageResource",
-        autospec=True,
+    @pytest.mark.parametrize(
+        "property_name, class_name",
+        (
+            ("dictionaries", "DictionariesResource"),
+            ("distributions", "DistributionsResource"),
+            ("glossaries", "GlossariesResource"),
+            ("labels", "LabelsResource"),
+            ("languages", "LanguagesResource"),
+            ("projects", "ProjectsResource"),
+            ("reports", "ReportsResource"),
+            ("screenshots", "ScreenshotsResource"),
+            ("source_files", "SourceFilesResource"),
+            ("source_strings", "SourceStringsResource"),
+            ("storages", "StoragesResource"),
+            ("string_comments", "StringCommentsResource"),
+            ("string_translations", "StringTranslationsResource"),
+            ("tasks", "TasksResource"),
+            ("translation_memory", "TranslationMemoryResource"),
+            ("translation_status", "TranslationStatusResource"),
+            ("translations", "TranslationsResource"),
+            ("users", "UsersResource"),
+            ("webhooks", "WebhooksResource"),
+        ),
     )
     @mock.patch(
         "crowdin_api.client.CrowdinClient.get_api_requestor",
         return_value="api_requestor",
     )
-    def test_storages(self, _m_api_requestor, m_StorageResource):
-        client = CrowdinClient()
-
-        assert client.storages == "StorageResource"
-
-        m_StorageResource.assert_called_once_with(
-            requester="api_requestor", page_size=25
-        )
-
-    @mock.patch(
-        "crowdin_api.api_resources.LanguagesResource",
-        return_value="LanguagesResource",
-        autospec=True,
-    )
-    @mock.patch(
-        "crowdin_api.client.CrowdinClient.get_api_requestor",
-        return_value="api_requestor",
-    )
-    def test_languages(self, _m_api_requestor, m_LanguagesResource):
-        client = CrowdinClient()
-
-        assert client.languages == "LanguagesResource"
-
-        m_LanguagesResource.assert_called_once_with(
-            requester="api_requestor", page_size=25
-        )
-
-    @mock.patch(
-        "crowdin_api.api_resources.ProjectsResource",
-        return_value="ProjectsResource",
-        autospec=True,
-    )
-    @mock.patch(
-        "crowdin_api.client.CrowdinClient.get_api_requestor",
-        return_value="api_requestor",
-    )
-    def test_projects(self, _m_api_requestor, m_ProjectsResource):
-        client = CrowdinClient()
-
-        assert client.projects == "ProjectsResource"
-
-        m_ProjectsResource.assert_called_once_with(
-            requester="api_requestor", page_size=25
-        )
+    def test_storages(self, _m_api_requestor, property_name, class_name):
+        with mock.patch(
+            f"crowdin_api.api_resources.{class_name}",
+            return_value=class_name,
+        ) as m_resource:
+            client = CrowdinClient()
+            assert getattr(client, property_name) == class_name
+            m_resource.assert_called_once_with(requester="api_requestor", page_size=25)
