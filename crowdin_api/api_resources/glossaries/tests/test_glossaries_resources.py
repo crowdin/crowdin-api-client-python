@@ -21,7 +21,7 @@ class TestGlossariesResource:
     @pytest.mark.parametrize(
         "in_params, path",
         (
-            ({}, "glossaries/"),
+            ({}, "glossaries"),
             ({"glossaryId": 1}, "glossaries/1"),
         ),
     )
