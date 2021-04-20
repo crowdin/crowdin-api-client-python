@@ -117,18 +117,19 @@ class APIRequester:
         content = result.content
         headers = result.headers
 
+        # Success
+        if status_code < 200 or status_code > 299:
+            raise self.exception_map.get(status_code, self.default_exception)(
+                http_status=status_code, context=content, headers=headers
+            )
+
+        if not content:
+            return None
+
         try:
-            content = loads(content)
+            return loads(content)
         except json.decoder.JSONDecodeError:
             raise ParsingError(context=content, http_status=status_code, headers=headers)
-
-        # Success
-        if 200 <= status_code <= 299:
-            return content
-
-        raise self.exception_map.get(status_code, self.default_exception)(
-            http_status=status_code, context=content, headers=headers
-        )
 
     def request(
         self,

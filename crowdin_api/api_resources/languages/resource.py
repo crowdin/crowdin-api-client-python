@@ -49,6 +49,7 @@ class LanguagesResource(BaseResource):
         localeCode: str,
         textDirection: LanguageTextDirection,
         pluralCategoryNames: Iterable[str],
+        threeLettersCode: str,
         twoLettersCode: Optional[str] = None,
         dialectOf: Optional[str] = None,
     ):
@@ -68,6 +69,7 @@ class LanguagesResource(BaseResource):
                 "localeCode": localeCode,
                 "textDirection": textDirection,
                 "pluralCategoryNames": pluralCategoryNames,
+                "threeLettersCode": threeLettersCode,
                 "twoLettersCode": twoLettersCode,
                 "dialectOf": dialectOf,
             },
