@@ -10,7 +10,7 @@ class CrowdinClient:
 
     TIMEOUT: int = 60
     RETRY_DELAY: Union[int, float] = 0.1  # 100ms
-    MAX_RETRIES: Union[int, float] = 5
+    MAX_RETRIES: int = 5
     HTTP_PROTOCOL: str = "https"
     BASE_URL: str = "api.crowdin.com/api/v2/"
 

@@ -35,6 +35,7 @@ class TestLanguagesResource:
                     "localeCode": "some-sm",
                     "textDirection": LanguageTextDirection.LEFT_TO_RIGHT,
                     "pluralCategoryNames": ["one"],
+                    "threeLettersCode": "smm",
                 },
                 {
                     "name": "Some",
@@ -44,6 +45,7 @@ class TestLanguagesResource:
                     "pluralCategoryNames": ["one"],
                     "twoLettersCode": None,
                     "dialectOf": None,
+                    "threeLettersCode": "smm",
                 },
             ),
             (
@@ -55,6 +57,7 @@ class TestLanguagesResource:
                     "pluralCategoryNames": ["one"],
                     "twoLettersCode": "sm",
                     "dialectOf": "uk",
+                    "threeLettersCode": "smm",
                 },
                 {
                     "name": "Some",
@@ -64,6 +67,7 @@ class TestLanguagesResource:
                     "pluralCategoryNames": ["one"],
                     "twoLettersCode": "sm",
                     "dialectOf": "uk",
+                    "threeLettersCode": "smm",
                 },
             ),
         ),
