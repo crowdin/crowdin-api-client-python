@@ -117,6 +117,7 @@ class TestStringTranslationsResource:
                     "stringIds": None,
                     "labelIds": None,
                     "fileId": None,
+                    "croql": None,
                     "denormalizePlaceholders": None,
                 },
             ),
@@ -127,6 +128,7 @@ class TestStringTranslationsResource:
                     "stringIds": [1, 2, 3],
                     "labelIds": [3, 4, 5],
                     "fileId": 5,
+                    "croql": "croql",
                     "denormalizePlaceholders": DenormalizePlaceholders.ENABLE,
                 },
                 {
@@ -135,6 +137,7 @@ class TestStringTranslationsResource:
                     "stringIds": "1,2,3",
                     "labelIds": "3,4,5",
                     "fileId": 5,
+                    "croql": "croql",
                     "denormalizePlaceholders": DenormalizePlaceholders.ENABLE,
                 },
             ),

@@ -106,6 +106,7 @@ class StringTranslationsResource(BaseResource):
         stringIds: Optional[Iterable[int]] = None,
         labelIds: Optional[Iterable[int]] = None,
         fileId: Optional[int] = None,
+        croql: Optional[str] = None,
         denormalizePlaceholders: Optional[DenormalizePlaceholders] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
@@ -126,6 +127,7 @@ class StringTranslationsResource(BaseResource):
             if labelIds is None
             else ",".join(str(labelId) for labelId in labelIds),
             "fileId": fileId,
+            "croql": croql,
             "denormalizePlaceholders": denormalizePlaceholders,
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
@@ -157,7 +159,7 @@ class StringTranslationsResource(BaseResource):
         List String Translations
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.languages.translations.getMany
+        https://support.crowdin.com/api/v2/#operation/api.projects.translations.getMany
         """
 
         params = {

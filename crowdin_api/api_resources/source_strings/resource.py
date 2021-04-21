@@ -33,6 +33,7 @@ class SourceStringsResource(BaseResource):
         fileId: Optional[int] = None,
         denormalizePlaceholders: Optional[DenormalizePlaceholders] = None,
         labelIds: Optional[Iterable[int]] = None,
+        croql: Optional[str] = None,
         filter: Optional[str] = None,
         scope: Optional[ScopeFilter] = None,
         page: Optional[int] = None,
@@ -51,6 +52,7 @@ class SourceStringsResource(BaseResource):
             "denormalizePlaceholders": denormalizePlaceholders,
             "labelIds": None if labelIds is None else ",".join(str(item) for item in labelIds),
             "filter": filter,
+            "croql": croql,
             "scope": scope,
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
