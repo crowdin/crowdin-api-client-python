@@ -103,14 +103,17 @@ class APIRequester:
 
         request_data = request_data or {}
 
+        content_type = headers.get('Content-Type') if headers else None
+        data = files if files and content_type == 'application/octet-stream' else dumps(self._clear_data(request_data))
+
         result = self.session.request(
             method,
             urljoin(self.base_url, path),
             params=loads(dumps(self._clear_data(params or {}))),
             headers=headers,
-            data=dumps(self._clear_data(request_data)),
+            data=data,
             timeout=self._timeout,
-            files=files,
+            files=files if content_type != 'application/octet-stream' else None,
         )
 
         status_code = result.status_code
