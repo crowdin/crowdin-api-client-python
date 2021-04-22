@@ -353,9 +353,11 @@ class TestSourceFilesResource:
             (
                 {
                     "name": "name",
+                    "storageId": 1,
                 },
                 {
                     "name": "name",
+                    "storageId": 1,
                     "branchId": None,
                     "directoryId": None,
                     "title": None,
@@ -369,6 +371,7 @@ class TestSourceFilesResource:
             (
                 {
                     "name": "name",
+                    "storageId": 1,
                     "branchId": 1,
                     "directoryId": 1,
                     "title": "title",
@@ -380,6 +383,7 @@ class TestSourceFilesResource:
                 },
                 {
                     "name": "name",
+                    "storageId": 1,
                     "branchId": 1,
                     "directoryId": 1,
                     "title": "title",

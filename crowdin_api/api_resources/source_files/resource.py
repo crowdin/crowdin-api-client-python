@@ -279,6 +279,7 @@ class SourceFilesResource(BaseResource):
         projectId: int,
         storageId: int,
         name: str,
+        storageId: int,
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
         title: Optional[int] = None,
@@ -303,6 +304,7 @@ class SourceFilesResource(BaseResource):
             request_data={
                 "storageId": storageId,
                 "name": name,
+                "storageId": storageId,
                 "branchId": branchId,
                 "directoryId": directoryId,
                 "title": title,
