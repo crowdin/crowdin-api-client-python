@@ -142,34 +142,6 @@ class TestAPIRequester:
 
         assert requester._request(method="get", path=path) == {"test": 1}
 
-    @pytest.mark.parametrize(
-        "file_name,in_headers,out_headers",
-        (
-            (
-                "/test/some.txt",
-                {},
-                {"Crowdin-API-FileName": "some.txt", "Content-Type": "text/plain"},
-            ),
-            (
-                "/test/some",
-                {},
-                {
-                    "Crowdin-API-FileName": "some",
-                    "Content-Type": "application/octet-stream",
-                },
-            ),
-        ),
-    )
-    def test__prepare_file(self, file_name, in_headers, out_headers, base_absolut_url):
-        m_file = Mock()
-        m_file.name = file_name
-
-        requester = APIRequester(base_url=base_absolut_url)
-        files, headers = requester._prepare_file(file=m_file, headers={})
-
-        assert files["file"] == m_file
-        assert headers == out_headers
-
     @mock.patch("crowdin_api.requester.APIRequester.session", new_callable=PropertyMock)
     def test_close(self, m_session, base_absolut_url):
         session = Mock()

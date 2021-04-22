@@ -12,6 +12,7 @@ from crowdin_api import status
 from crowdin_api.exceptions import (
     APIException,
     AuthenticationFailed,
+    CrowdinException,
     MethodNotAllowed,
     NotFound,
     ParsingError,
@@ -62,17 +63,6 @@ class APIRequester:
     def session(self) -> requests.Session:
         return self._session
 
-    def _prepare_file(self, file, headers):
-        if not file:
-            return file, headers
-
-        headers = copy(headers or {})
-        headers["Content-Type"] = (
-            mimetypes.MimeTypes().guess_type(file.name)[0] or self.default_file_content_type
-        )
-        headers["Crowdin-API-FileName"] = os.path.basename(file.name)
-        return {"file": file}, headers
-
     def _clear_data(self, data: Optional[Dict] = None):
         if data is None:
             return data
@@ -99,18 +89,26 @@ class APIRequester:
         request_data: Optional[Dict] = None,
         file: IO = None,
     ):
-        files, headers = self._prepare_file(file=file, headers=headers)
 
-        request_data = request_data or {}
+        if file and request_data:
+            raise CrowdinException("API not support multipart data.")
+
+        if file:
+            headers = headers or {}
+            request_data = file
+            file_mime_type = mimetypes.MimeTypes().guess_type(file.name)[0]
+            headers["Content-Type"] = file_mime_type or self.default_file_content_type
+            headers["Crowdin-API-FileName"] = os.path.basename(file.name)
+        else:
+            request_data = dumps(self._clear_data(request_data))
 
         result = self.session.request(
             method,
             urljoin(self.base_url, path),
             params=loads(dumps(self._clear_data(params or {}))),
             headers=headers,
-            data=dumps(self._clear_data(request_data)),
+            data=request_data,
             timeout=self._timeout,
-            files=files,
         )
 
         status_code = result.status_code
@@ -123,11 +121,8 @@ class APIRequester:
                 http_status=status_code, context=content, headers=headers
             )
 
-        if not content:
-            return None
-
         try:
-            return loads(content)
+            return loads(content) if content else None
         except json.decoder.JSONDecodeError:
             raise ParsingError(context=content, http_status=status_code, headers=headers)
 
