@@ -278,6 +278,7 @@ class SourceFilesResource(BaseResource):
         self,
         projectId: int,
         name: str,
+        storageId: int,
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
         title: Optional[int] = None,
@@ -301,6 +302,7 @@ class SourceFilesResource(BaseResource):
             path=self.get_file_path(projectId=projectId),
             request_data={
                 "name": name,
+                "storageId": storageId,
                 "branchId": branchId,
                 "directoryId": directoryId,
                 "title": title,
