@@ -43,6 +43,11 @@ from crowdin_api import CrowdinClient
 class FirstCrowdinClient(CrowdinClient):
     TOKEN = "__token__"
     ORGANIZATION = "organizationName" # Optional, for Crowdin Enterprise only
+    TIMEOUT = 60  # Optional, sets http request timeout.
+    RETRY_DELAY = 0.1  # Optional, sets the delay between failed requests 
+    MAX_RETRIES = 5  # Optional, sets the number of retries
+    HEADERS = {"Some-Header": ""}  # Optional, sets additional http request headers
+    PAGE_SIZE = 25  # Optional, sets default page size 
 
 client = FirstCrowdinClient()
 
