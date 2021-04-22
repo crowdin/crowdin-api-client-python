@@ -277,6 +277,7 @@ class SourceFilesResource(BaseResource):
     def add_file(
         self,
         projectId: int,
+        storageId: int,
         name: str,
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
@@ -300,6 +301,7 @@ class SourceFilesResource(BaseResource):
             method="post",
             path=self.get_file_path(projectId=projectId),
             request_data={
+                "storageId": storageId,
                 "name": name,
                 "branchId": branchId,
                 "directoryId": directoryId,
