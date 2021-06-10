@@ -177,3 +177,15 @@ class TestAPIRequester:
     def test__clear_data(self, in_data, out_data, base_absolut_url):
         requester = APIRequester(base_url=base_absolut_url)
         assert requester._clear_data(in_data) == out_data
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    @pytest.mark.parametrize('kwargs', (
+            {"k_1": "v_1"},
+            {"k_2": "v_2",
+             "k_3": "v_3"},
+    ))
+    def test_kwargs_in_requester(self, m_request, base_absolut_url, kwargs):
+        m_request.return_value = "response"
+        _requester = APIRequester(base_url=base_absolut_url)
+        _requester.request('get', 'test', **kwargs)
+        m_request.assert_called_once_with('get', 'test', **kwargs)
