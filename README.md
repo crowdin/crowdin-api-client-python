@@ -10,8 +10,6 @@ For more about Crowdin API v2 see the documentation:
 - [Crowdin](https://support.crowdin.com/api/v2/)
 - [Crowdin Enterprise](https://support.crowdin.com/enterprise/api/)
 
-**Note:** the Crowdin Python Client is currently under development, so some API methods might be missing.
-
 ## Status
 
 [![PyPI](https://img.shields.io/pypi/v/crowdin-api-client?cacheSeconds=3600)](https://pypi.org/project/crowdin-api-client/)
