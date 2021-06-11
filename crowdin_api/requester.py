@@ -88,6 +88,7 @@ class APIRequester:
         headers: Optional[Dict] = None,
         request_data: Optional[Dict] = None,
         file: IO = None,
+        **kwargs
     ):
 
         if file and request_data:
@@ -109,6 +110,7 @@ class APIRequester:
             headers=headers,
             data=request_data,
             timeout=self._timeout,
+            **kwargs
         )
 
         status_code = result.status_code
@@ -134,6 +136,7 @@ class APIRequester:
         headers=None,
         request_data=None,
         file: IO = None,
+        **kwargs
     ):
         num_retries = 0
 
@@ -146,6 +149,7 @@ class APIRequester:
                     headers=headers,
                     request_data=request_data,
                     file=file,
+                    **kwargs
                 )
             except APIException as err:
                 num_retries += 1
