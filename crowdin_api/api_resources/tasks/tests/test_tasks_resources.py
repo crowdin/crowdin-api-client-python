@@ -353,7 +353,8 @@ class TestTasksResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.export_task_strings(projectId=1, taskId=2) == "response"
         m_request.assert_called_once_with(
-            method="post", path=resource.get_tasks_path(projectId=1, taskId=2) + "/exports"
+            method="post",
+            path=resource.get_tasks_path(projectId=1, taskId=2) + "/exports",
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -391,7 +392,9 @@ class TestTasksResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.edit_task(projectId=1, taskId=2, data=data) == "response"
         m_request.assert_called_once_with(
-            method="patch", request_data=data, path=resource.get_tasks_path(projectId=1, taskId=2)
+            method="patch",
+            request_data=data,
+            path=resource.get_tasks_path(projectId=1, taskId=2),
         )
 
     @pytest.mark.parametrize(
@@ -400,7 +403,12 @@ class TestTasksResource:
             ({}, {"status": None, "offset": 0, "limit": 25}),
             (
                 {"status": CrowdinTaskStatus.TODO, "isArchived": False},
-                {"status": CrowdinTaskStatus.TODO, "isArchived": False, "offset": 0, "limit": 25},
+                {
+                    "status": CrowdinTaskStatus.TODO,
+                    "isArchived": False,
+                    "offset": 0,
+                    "limit": 25,
+                },
             ),
         ),
     )

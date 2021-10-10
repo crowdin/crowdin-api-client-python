@@ -241,7 +241,11 @@ class ScreenshotsResource(BaseResource):
         )
 
     def edit_tag(
-        self, projectId: int, screenshotId: int, tagId: int, data: Iterable[TagPatchRequest]
+        self,
+        projectId: int,
+        screenshotId: int,
+        tagId: int,
+        data: Iterable[TagPatchRequest],
     ):
         """
         Edit Tag.

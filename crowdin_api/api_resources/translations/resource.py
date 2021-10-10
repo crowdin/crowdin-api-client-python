@@ -77,6 +77,33 @@ class TranslationsResource(BaseResource):
             },
         )
 
+    def build_project_directory_translation(
+        self,
+        projectId: int,
+        directoryId: int,
+        targetLanguageId: str,
+        skipUntranslatedStrings: Optional[bool] = None,
+        skipUntranslatedFiles: Optional[bool] = None,
+        exportApprovedOnly: Optional[bool] = None,
+    ):
+        """
+        Build Project Directory Translation.
+
+        Link to documentation:
+        https://support.crowdin.com/api/v2/#operation/api.projects.translations.builds.directories.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=f"{self.get_builds_path(projectId=projectId)}/directories/{directoryId}",
+            request_data={
+                "targetLanguageId": targetLanguageId,
+                "skipUntranslatedStrings": skipUntranslatedStrings,
+                "skipUntranslatedFiles": skipUntranslatedFiles,
+                "exportApprovedOnly": exportApprovedOnly,
+            },
+        )
+
     def build_project_file_translation(
         self,
         projectId: int,

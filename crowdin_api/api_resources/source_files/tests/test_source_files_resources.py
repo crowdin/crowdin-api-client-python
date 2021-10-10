@@ -403,7 +403,9 @@ class TestSourceFilesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.add_file(projectId=1, **in_params) == "response"
         m_request.assert_called_once_with(
-            method="post", path=resource.get_file_path(projectId=1), request_data=request_data
+            method="post",
+            path=resource.get_file_path(projectId=1),
+            request_data=request_data,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")

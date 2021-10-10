@@ -31,6 +31,7 @@ class SourceStringsResource(BaseResource):
         self,
         projectId: int,
         fileId: Optional[int] = None,
+        branchId: Optional[int] = None,
         denormalizePlaceholders: Optional[DenormalizePlaceholders] = None,
         labelIds: Optional[Iterable[int]] = None,
         croql: Optional[str] = None,
@@ -48,6 +49,7 @@ class SourceStringsResource(BaseResource):
         """
 
         params = {
+            "branchId": branchId,
             "fileId": fileId,
             "denormalizePlaceholders": denormalizePlaceholders,
             "labelIds": None if labelIds is None else ",".join(str(item) for item in labelIds),
@@ -72,6 +74,7 @@ class SourceStringsResource(BaseResource):
         context: Optional[str] = None,
         isHidden: Optional[bool] = None,
         maxLength: Optional[int] = None,
+        labelIds: Optional[Iterable[int]] = None,
     ):
         """
         Add String.
@@ -90,6 +93,7 @@ class SourceStringsResource(BaseResource):
                 "context": context,
                 "isHidden": isHidden,
                 "maxLength": maxLength,
+                "labelIds": labelIds,
             },
         )
 

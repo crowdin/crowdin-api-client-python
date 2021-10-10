@@ -402,7 +402,8 @@ class TestReportsResource:
             resource.generate_contribution_raw_data_report(projectId=1, **in_params) == "response"
         )
         m_generate_report.assert_called_once_with(
-            projectId=1, request_data={"name": "contribution-raw-data", "schema": schema}
+            projectId=1,
+            request_data={"name": "contribution-raw-data", "schema": schema},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -422,5 +423,6 @@ class TestReportsResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.download_report(projectId=1, reportId="hash") == "response"
         m_request.assert_called_once_with(
-            method="get", path=resource.get_reports_path(projectId=1, reportId="hash") + "/download"
+            method="get",
+            path=resource.get_reports_path(projectId=1, reportId="hash") + "/download",
         )

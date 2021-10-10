@@ -61,7 +61,8 @@ class DistributionsResource(BaseResource):
         """
 
         return self.requester.request(
-            method="get", path=self.get_distributions_path(projectId=projectId, hash=hash)
+            method="get",
+            path=self.get_distributions_path(projectId=projectId, hash=hash),
         )
 
     def delete_distribution(self, projectId: int, hash: str):
@@ -73,7 +74,8 @@ class DistributionsResource(BaseResource):
         """
 
         return self.requester.request(
-            method="delete", path=self.get_distributions_path(projectId=projectId, hash=hash)
+            method="delete",
+            path=self.get_distributions_path(projectId=projectId, hash=hash),
         )
 
     def edit_distribution(

@@ -108,5 +108,7 @@ class LanguagesResource(BaseResource):
         """
 
         return self.requester.request(
-            method="patch", path=self.get_languages_path(languageId=languageId), request_data=data
+            method="patch",
+            path=self.get_languages_path(languageId=languageId),
+            request_data=data,
         )

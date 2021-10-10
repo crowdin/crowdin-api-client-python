@@ -259,7 +259,8 @@ class TasksResource(BaseResource):
         """
 
         return self.requester.request(
-            method="post", path=f"{self.get_tasks_path(projectId=projectId, taskId=taskId)}/exports"
+            method="post",
+            path=f"{self.get_tasks_path(projectId=projectId, taskId=taskId)}/exports",
         )
 
     def get_task(self, projectId: int, taskId: int):
@@ -283,7 +284,8 @@ class TasksResource(BaseResource):
         """
 
         return self.requester.request(
-            method="delete", path=self.get_tasks_path(projectId=projectId, taskId=taskId)
+            method="delete",
+            path=self.get_tasks_path(projectId=projectId, taskId=taskId),
         )
 
     def edit_task(
