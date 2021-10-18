@@ -53,6 +53,7 @@ setup(
     license="MIT",
     install_requires=[
         "requests>=2.25.1",
+        "typing-extensions; python_version < '3.8.0'",
     ],
     classifiers=[
         "Programming Language :: Python",
