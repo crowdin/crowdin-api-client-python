@@ -4,7 +4,7 @@ import mimetypes
 import os
 import time
 from copy import copy
-from typing import IO, Dict, Optional, Union
+from typing import Dict, IO, List, Optional, Union
 from urllib.parse import urljoin
 
 import requests
@@ -63,20 +63,30 @@ class APIRequester:
     def session(self) -> requests.Session:
         return self._session
 
-    def _clear_data(self, data: Optional[Dict] = None):
+    def _clear_data(self, data: Optional[Union[Dict, List]] = None) -> Optional[Union[Dict, List]]:
         if data is None:
             return data
 
-        result = {}
+        if isinstance(data, dict):
+            result = dict()
+            for key, value in data.items():
+                if value is None:
+                    continue
 
-        for key, value in data.items():
-            if value is None:
-                continue
+                if isinstance(value, (dict, list, tuple, set, frozenset)):
+                    value = self._clear_data(data=value)
 
-            if isinstance(value, dict):
-                value = self._clear_data(data=value)
+                result[key] = value
+        elif isinstance(data, (list, tuple, set)):
+            result = list()
+            for value in data:
+                if value is None:
+                    continue
 
-            result[key] = value
+                if isinstance(value, (dict, list, tuple, set, frozenset)):
+                    value = self._clear_data(data=value)
+
+                result.append(value)
 
         return result
 

@@ -172,6 +172,18 @@ class TestAPIRequester:
                 {"key_1": None, "key_2": 1, "key_3": {"key_1": None, "key_2": 1}},
                 {"key_2": 1, "key_3": {"key_2": 1}},
             ),
+            (
+                [
+                    {"key_1": None, "key_2": 1, "key_3": {
+                        "key_1": None, "key_2": 1, "key3": [None, 3]
+                    }},
+                    {"key_1": None, "key_2": 1, "key_3": [{"key_1": None, "key_2": 1}]},
+                ],
+                [
+                    {"key_2": 1, "key_3": {"key_2": 1, "key3": [3]}},
+                    {"key_2": 1, "key_3": [{"key_2": 1}]},
+                ]
+            ),
         ),
     )
     def test__clear_data(self, in_data, out_data, base_absolut_url):
