@@ -41,10 +41,14 @@ class TestTasksResource:
     @pytest.mark.parametrize(
         "incoming_data, request_params",
         (
-            ({}, {"assigneeId": None, "offset": 0, "limit": 25}),
+            ({}, {"assigneeId": None, "status": None, "offset": 0, "limit": 25}),
             (
                 {"assigneeId": 1},
-                {"assigneeId": 1, "offset": 0, "limit": 25},
+                {"assigneeId": 1, "status": None, "offset": 0, "limit": 25},
+            ),
+            (
+                {"status": CrowdinTaskStatus.DONE},
+                {"assigneeId": None, "status": CrowdinTaskStatus.DONE, "offset": 0, "limit": 25},
             ),
         ),
     )
