@@ -46,6 +46,7 @@ class TasksResource(BaseResource):
         self,
         projectId: int,
         assigneeId: Optional[int] = None,
+        status: Optional[CrowdinTaskStatus] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -57,7 +58,7 @@ class TasksResource(BaseResource):
         https://support.crowdin.com/api/v2/#operation/api.projects.tasks.getMany
         """
 
-        params = {"assigneeId": assigneeId}
+        params = {"assigneeId": assigneeId, "status": status}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self.requester.request(
