@@ -35,6 +35,8 @@ pip install crowdin-api-client
 
 ## Quick Start
 
+### Create and list projects
+
 ```python
 from crowdin_api import CrowdinClient
 
@@ -60,6 +62,25 @@ projects = client.projects.list_projects(offset=10, limit=20)
 
 # Get list of Projects by page
 projects = client.projects.list_projects(page=2) # offset=25, limit=25
+```
+
+### Add a file
+
+```python
+from crowdin_api import CrowdinClient
+
+class FirstCrowdinClient(CrowdinClient):
+    TOKEN = "__token__"
+
+client = FirstCrowdinClient()
+
+file_name = '__path_to_the_file__'
+
+storage = client.storages.add_storage(open(file_name))
+
+my_file = client.source_files.add_file(__project_id__, storage['data']['id'], file_name)
+
+print(my_file)
 ```
 
 ## Seeking Assistance
