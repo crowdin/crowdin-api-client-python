@@ -109,7 +109,8 @@ class WebhooksResource(BaseResource):
         """
 
         return self.requester.request(
-            method="get", path=self.get_webhooks_path(projectId=projectId, webhookId=webhookId)
+            method="get",
+            path=self.get_webhooks_path(projectId=projectId, webhookId=webhookId),
         )
 
     def delete_webhook(self, projectId: int, webhookId: int):
@@ -121,7 +122,8 @@ class WebhooksResource(BaseResource):
         """
 
         return self.requester.request(
-            method="delete", path=self.get_webhooks_path(projectId=projectId, webhookId=webhookId)
+            method="delete",
+            path=self.get_webhooks_path(projectId=projectId, webhookId=webhookId),
         )
 
     def edit_webhook(self, projectId: int, webhookId: int, data: Iterable[WebhookPatchRequest]):

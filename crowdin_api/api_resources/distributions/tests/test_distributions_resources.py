@@ -65,7 +65,8 @@ class TestLanguagesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.delete_distribution(projectId=1, hash="hash") == "response"
         m_request.assert_called_once_with(
-            method="delete", path=resource.get_distributions_path(projectId=1, hash="hash")
+            method="delete",
+            path=resource.get_distributions_path(projectId=1, hash="hash"),
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")

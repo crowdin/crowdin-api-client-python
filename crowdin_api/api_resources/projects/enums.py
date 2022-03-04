@@ -47,3 +47,12 @@ class ProjectPatchPath(Enum):
     LANGUAGE_MAPPING = "/languageMapping"
     LANGUAGE_MAPPING_ID = "/languageMapping/{languageId}"
     LANGUAGE_MAPPING_KEY = "/languageMapping/{languageId}/{mappingKey}"
+
+
+class ProjectTranslateDuplicates(Enum):
+    SHOW = 0
+    HIDE_REGULAR_DETECTION = 1
+    SHOW_AUTO_TRANSLATE = 2
+    SHOW_REGULAR_DETECTION = 3
+    HIDE_STRICT_DETECTION = 4
+    SHOW_STRICT_DETECTION = 5

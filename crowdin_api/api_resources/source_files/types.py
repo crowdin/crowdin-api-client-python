@@ -29,6 +29,7 @@ class SpreadsheetImportOptions(TypedDict):
     firstLineContainsHeader: bool
     importTranslations: bool
     scheme: Scheme
+    srxStorageId: int
 
 
 class XmlImportOptions(TypedDict):
@@ -40,6 +41,7 @@ class XmlImportOptions(TypedDict):
 
 class OtherImportOptions(TypedDict):
     contentSegmentation: bool
+    srxStorageId: int
 
 
 class GeneralExportOptions(TypedDict):

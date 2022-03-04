@@ -48,7 +48,9 @@ class TestGlossariesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.add_glossary(name="test") == "response"
         m_request.assert_called_once_with(
-            method="post", path=resource.get_glossaries_path(), request_data={"name": "test"}
+            method="post",
+            path=resource.get_glossaries_path(),
+            request_data={"name": "test"},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -86,7 +88,9 @@ class TestGlossariesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.edit_glossary(glossaryId=1, data=data) == "response"
         m_request.assert_called_once_with(
-            method="patch", request_data=data, path=resource.get_glossaries_path(glossaryId=1)
+            method="patch",
+            request_data=data,
+            path=resource.get_glossaries_path(glossaryId=1),
         )
 
     # Export
@@ -127,7 +131,8 @@ class TestGlossariesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.check_glossary_export_status(glossaryId=1, exportId="hash") == "response"
         m_request.assert_called_once_with(
-            method="get", path=resource.get_glossary_export_path(glossaryId=1, exportId="hash")
+            method="get",
+            path=resource.get_glossary_export_path(glossaryId=1, exportId="hash"),
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -145,7 +150,10 @@ class TestGlossariesResource:
     @pytest.mark.parametrize(
         "incoming_data, request_data",
         (
-            ({"storageId": 1}, {"storageId": 1, "scheme": None, "firstLineContainsHeader": None}),
+            (
+                {"storageId": 1},
+                {"storageId": 1, "scheme": None, "firstLineContainsHeader": None},
+            ),
             (
                 {"storageId": 1, "scheme": {}, "firstLineContainsHeader": True},
                 {"storageId": 1, "scheme": {}, "firstLineContainsHeader": True},
@@ -171,7 +179,8 @@ class TestGlossariesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.check_glossary_import_status(glossaryId=1, importId="hash") == "response"
         m_request.assert_called_once_with(
-            method="get", path=resource.get_glossaries_path(glossaryId=1) + "/imports/hash"
+            method="get",
+            path=resource.get_glossaries_path(glossaryId=1) + "/imports/hash",
         )
 
     # Terms
@@ -265,7 +274,9 @@ class TestGlossariesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.add_term(glossaryId=1, **incoming_data) == "response"
         m_request.assert_called_once_with(
-            method="post", path=resource.get_terms_path(glossaryId=1), request_data=request_data
+            method="post",
+            path=resource.get_terms_path(glossaryId=1),
+            request_data=request_data,
         )
 
     @pytest.mark.parametrize(
@@ -288,7 +299,9 @@ class TestGlossariesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.clear_glossary(glossaryId=1, **incoming_data) == "response"
         m_request.assert_called_once_with(
-            method="delete", path=resource.get_terms_path(glossaryId=1), params=request_params
+            method="delete",
+            path=resource.get_terms_path(glossaryId=1),
+            params=request_params,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -326,5 +339,7 @@ class TestGlossariesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.edit_term(glossaryId=1, termId=2, data=data) == "response"
         m_request.assert_called_once_with(
-            method="patch", request_data=data, path=resource.get_terms_path(glossaryId=1, termId=2)
+            method="patch",
+            request_data=data,
+            path=resource.get_terms_path(glossaryId=1, termId=2),
         )

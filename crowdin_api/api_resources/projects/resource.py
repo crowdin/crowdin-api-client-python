@@ -4,10 +4,15 @@ from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.projects.enums import (
     HasManagerAccess,
     ProjectLanguageAccessPolicy,
+    ProjectTranslateDuplicates,
     ProjectType,
     ProjectVisibility,
 )
-from crowdin_api.api_resources.projects.types import ProjectPatchRequest
+from crowdin_api.api_resources.projects.types import (
+    NotificationSettings,
+    ProjectPatchRequest,
+    QACheckCategories,
+)
 
 
 class ProjectsResource(BaseResource):
@@ -67,12 +72,17 @@ class ProjectsResource(BaseResource):
         type: Optional[ProjectType] = None,
         normalizePlaceholder: Optional[bool] = None,
         saveMetaInfoInSource: Optional[bool] = None,
+        notificationSettings: Optional[NotificationSettings] = None,
         identifier: Optional[str] = None,
         targetLanguageIds: Optional[Iterable[str]] = None,
         visibility: Optional[ProjectVisibility] = None,
         languageAccessPolicy: Optional[ProjectLanguageAccessPolicy] = None,
         cname: Optional[str] = None,
         description: Optional[str] = None,
+        translateDuplicates: Optional[ProjectTranslateDuplicates] = None,
+        isMtAllowed: Optional[bool] = None,
+        autoSubstitution: Optional[bool] = None,
+        autoTranslateDialects: Optional[bool] = None,
         skipUntranslatedStrings: Optional[bool] = None,
         skipUntranslatedFiles: Optional[bool] = None,
         exportApprovedOnly: Optional[bool] = None,
@@ -92,6 +102,7 @@ class ProjectsResource(BaseResource):
                 "type": type,
                 "normalizePlaceholder": normalizePlaceholder,
                 "saveMetaInfoInSource": saveMetaInfoInSource,
+                "notificationSettings": notificationSettings,
                 "targetLanguageIds": targetLanguageIds,
                 "visibility": visibility,
                 "languageAccessPolicy": languageAccessPolicy,
@@ -100,6 +111,10 @@ class ProjectsResource(BaseResource):
                 "skipUntranslatedStrings": skipUntranslatedStrings,
                 "skipUntranslatedFiles": skipUntranslatedFiles,
                 "exportApprovedOnly": exportApprovedOnly,
+                "translateDuplicates": translateDuplicates,
+                "isMtAllowed": isMtAllowed,
+                "autoSubstitution": autoSubstitution,
+                "autoTranslateDialects": autoTranslateDialects,
             },
         )
 
@@ -114,9 +129,23 @@ class ProjectsResource(BaseResource):
         languageAccessPolicy: Optional[ProjectLanguageAccessPolicy] = None,
         cname: Optional[str] = None,
         description: Optional[str] = None,
+        translateDuplicates: Optional[ProjectTranslateDuplicates] = None,
+        isMtAllowed: Optional[bool] = None,
+        autoSubstitution: Optional[bool] = None,
+        autoTranslateDialects: Optional[bool] = None,
+        publicDownloads: Optional[bool] = None,
+        hiddenStringsProofreadersAccess: Optional[bool] = None,
+        useGlobalTm: Optional[bool] = None,
         skipUntranslatedStrings: Optional[bool] = None,
         skipUntranslatedFiles: Optional[bool] = None,
         exportApprovedOnly: Optional[bool] = None,
+        inContextProcessHiddenStrings: Optional[bool] = None,
+        inContextPseudoLanguageId: Optional[str] = None,
+        qaCheckIsActive: Optional[bool] = None,
+        qaCheckCategories: Optional[QACheckCategories] = None,
+        languageMapping: Optional[Dict] = None,
+        glossaryAccess: Optional[bool] = None,
+        notificationSettings: Optional[NotificationSettings] = None,
     ):
         """
         Add Project(Strings Based Project Form).
@@ -139,6 +168,20 @@ class ProjectsResource(BaseResource):
                 "skipUntranslatedStrings": skipUntranslatedStrings,
                 "skipUntranslatedFiles": skipUntranslatedFiles,
                 "exportApprovedOnly": exportApprovedOnly,
+                "translateDuplicates": translateDuplicates,
+                "isMtAllowed": isMtAllowed,
+                "autoSubstitution": autoSubstitution,
+                "autoTranslateDialects": autoTranslateDialects,
+                "publicDownloads": publicDownloads,
+                "hiddenStringsProofreadersAccess": hiddenStringsProofreadersAccess,
+                "useGlobalTm": useGlobalTm,
+                "inContextProcessHiddenStrings": inContextProcessHiddenStrings,
+                "inContextPseudoLanguageId": inContextPseudoLanguageId,
+                "qaCheckIsActive": qaCheckIsActive,
+                "qaCheckCategories": qaCheckCategories,
+                "languageMapping": languageMapping,
+                "glossaryAccess": glossaryAccess,
+                "notificationSettings": notificationSettings,
             },
         )
 
