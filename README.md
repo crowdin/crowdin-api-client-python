@@ -76,7 +76,7 @@ client = FirstCrowdinClient()
 
 file_name = '__path_to_the_file__'
 
-storage = client.storages.add_storage(open(file_name))
+storage = client.storages.add_storage(open(file_name, 'rb'))
 
 my_file = client.source_files.add_file(__project_id__, storage['data']['id'], file_name)
 
