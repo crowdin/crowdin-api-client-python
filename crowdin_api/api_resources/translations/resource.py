@@ -81,7 +81,7 @@ class TranslationsResource(BaseResource):
         self,
         projectId: int,
         directoryId: int,
-        targetLanguageId: str,
+        targetLanguageIds: Optional[Iterable[str]] = None,
         skipUntranslatedStrings: Optional[bool] = None,
         skipUntranslatedFiles: Optional[bool] = None,
         exportApprovedOnly: Optional[bool] = None,
@@ -97,7 +97,7 @@ class TranslationsResource(BaseResource):
             method="post",
             path=f"{self.get_builds_path(projectId=projectId)}/directories/{directoryId}",
             request_data={
-                "targetLanguageId": targetLanguageId,
+                "targetLanguageIds": targetLanguageIds,
                 "skipUntranslatedStrings": skipUntranslatedStrings,
                 "skipUntranslatedFiles": skipUntranslatedFiles,
                 "exportApprovedOnly": exportApprovedOnly,
