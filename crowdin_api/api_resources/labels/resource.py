@@ -103,7 +103,7 @@ class LabelsResource(BaseResource):
         return self.requester.request(
             method="post",
             request_data={"stringIds": stringIds},
-            path=self.get_labels_path(projectId=projectId, labelId=labelId),
+            path=f"{self.get_labels_path(projectId=projectId, labelId=labelId)}/strings",
         )
 
     def unassign_label_from_strings(self, projectId: int, labelId: int, stringIds: Iterable[int]):
@@ -117,5 +117,5 @@ class LabelsResource(BaseResource):
         return self.requester.request(
             method="delete",
             params={"stringIds": ",".join(str(stringId) for stringId in stringIds)},
-            path=self.get_labels_path(projectId=projectId, labelId=labelId),
+            path=f"{self.get_labels_path(projectId=projectId, labelId=labelId)}/strings",
         )
