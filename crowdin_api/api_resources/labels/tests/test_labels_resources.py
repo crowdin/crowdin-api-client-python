@@ -99,7 +99,7 @@ class TestLabelsResource:
         m_request.assert_called_once_with(
             request_data={"stringIds": [1, 2]},
             method="post",
-            path=resource.get_labels_path(projectId=1, labelId=2),
+            path=f"{resource.get_labels_path(projectId=1, labelId=2)}/strings",
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -114,5 +114,5 @@ class TestLabelsResource:
         m_request.assert_called_once_with(
             params={"stringIds": "1,2"},
             method="delete",
-            path=resource.get_labels_path(projectId=1, labelId=2),
+            path=f"{resource.get_labels_path(projectId=1, labelId=2)}/strings",
         )
