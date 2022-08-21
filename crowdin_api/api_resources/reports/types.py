@@ -22,3 +22,12 @@ class FuzzyRegularRate(TypedDict):
 class FuzzyIndividualRate(TypedDict):
     languageIds: Iterable[str]
     rates: Iterable[FuzzyRegularRate]
+
+
+class TranslateStep(TypedDict):
+    regularRates: Iterable[FuzzyRegularRate]
+    individualRates: Iterable[FuzzyIndividualRate]
+
+
+class StepTypes(TypedDict):
+    stepTypes: Iterable[TranslateStep]
