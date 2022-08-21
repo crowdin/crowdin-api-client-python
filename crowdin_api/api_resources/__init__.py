@@ -3,6 +3,7 @@ from .distributions.resource import DistributionsResource
 from .glossaries.resource import GlossariesResource
 from .labels.resource import LabelsResource
 from .languages.resource import LanguagesResource
+from .machine_translation_engines.resource import MachineTranslationEnginesResource
 from .projects.resource import ProjectsResource
 from .reports.resource import ReportsResource
 from .screenshots.resource import ScreenshotsResource
@@ -24,6 +25,7 @@ __all__ = [
     "GlossariesResource",
     "LabelsResource",
     "LanguagesResource",
+    "MachineTranslationEnginesResource",
     "ProjectsResource",
     "ReportsResource",
     "ScreenshotsResource",

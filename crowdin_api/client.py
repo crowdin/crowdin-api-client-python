@@ -155,6 +155,12 @@ class CrowdinClient:
         )
 
     @property
+    def machine_translations(self) -> api_resources.MachineTranslationEnginesResource:
+        return api_resources.MachineTranslationEnginesResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
     def users(self) -> api_resources.UsersResource:
         return api_resources.UsersResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE

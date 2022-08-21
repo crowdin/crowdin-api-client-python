@@ -42,9 +42,11 @@ class TestTranslationMemoryResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_tm(name="test") == "response"
+        assert resource.add_tm(name="test", languageId="fr") == "response"
         m_request.assert_called_once_with(
-            method="post", path=resource.get_tms_path(), request_data={"name": "test"}
+            method="post",
+            path=resource.get_tms_path(),
+            request_data={"name": "test", "languageId": "fr"},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
