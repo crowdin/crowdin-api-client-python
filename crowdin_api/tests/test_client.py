@@ -98,6 +98,7 @@ class TestCrowdinClient:
             ("glossaries", "GlossariesResource"),
             ("labels", "LabelsResource"),
             ("languages", "LanguagesResource"),
+            ("machine_translations", "MachineTranslationEnginesResource"),
             ("projects", "ProjectsResource"),
             ("reports", "ReportsResource"),
             ("screenshots", "ScreenshotsResource"),

@@ -46,7 +46,7 @@ class GlossariesResource(BaseResource):
             params=self.get_page_params(page=page, offset=offset, limit=limit),
         )
 
-    def add_glossary(self, name: str):
+    def add_glossary(self, name: str, languageId: str):
         """
         Add Glossary.
 
@@ -55,7 +55,9 @@ class GlossariesResource(BaseResource):
         """
 
         return self.requester.request(
-            method="post", path=self.get_glossaries_path(), request_data={"name": name}
+            method="post",
+            path=self.get_glossaries_path(),
+            request_data={"name": name, "languageId": languageId},
         )
 
     def get_glossary(self, glossaryId: int):

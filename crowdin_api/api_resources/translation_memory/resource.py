@@ -45,7 +45,7 @@ class TranslationMemoryResource(BaseResource):
             params=self.get_page_params(page=page, offset=offset, limit=limit),
         )
 
-    def add_tm(self, name: str):
+    def add_tm(self, name: str, languageId: str):
         """
         Add Glossary.
 
@@ -54,7 +54,9 @@ class TranslationMemoryResource(BaseResource):
         """
 
         return self.requester.request(
-            method="post", path=self.get_tms_path(), request_data={"name": name}
+            method="post",
+            path=self.get_tms_path(),
+            request_data={"name": name, "languageId": languageId},
         )
 
     def get_tm(self, tmId: int):
