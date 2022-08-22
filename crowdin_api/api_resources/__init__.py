@@ -4,7 +4,7 @@ from .glossaries.resource import GlossariesResource
 from .labels.resource import LabelsResource
 from .languages.resource import LanguagesResource
 from .projects.resource import ProjectsResource
-from .reports.resource import ReportsResource
+from .reports.resource import ReportsResource, EnterpriseReportsResource
 from .screenshots.resource import ScreenshotsResource
 from .source_files.resource import SourceFilesResource
 from .source_strings.resource import SourceStringsResource
@@ -26,6 +26,7 @@ __all__ = [
     "LanguagesResource",
     "ProjectsResource",
     "ReportsResource",
+    "EnterpriseReportsResource",
     "ScreenshotsResource",
     "SourceFilesResource",
     "SourceStringsResource",

@@ -2,6 +2,7 @@ import copy
 from typing import Dict, Optional, Type, Union
 
 from crowdin_api import api_resources
+from crowdin_api.enums import PlatformType
 from crowdin_api.requester import APIRequester
 
 
@@ -24,12 +25,21 @@ class CrowdinClient:
     def __init__(self):
         self._api_requestor = None
 
+        if self.ORGANIZATION is None:
+            self._platform_type = PlatformType.BASIC
+        else:
+            self._platform_type = PlatformType.ENTERPRISE
+
     @property
     def url(self) -> str:
-        if self.ORGANIZATION is None:
+        if not self._is_enterprise_platform:
             return "{0}://{1}".format(self.HTTP_PROTOCOL, self.BASE_URL)
 
         return "{0}://{1}.{2}".format(self.HTTP_PROTOCOL, self.ORGANIZATION, self.BASE_URL)
+
+    @property
+    def _is_enterprise_platform(self) -> bool:
+        return self._platform_type == PlatformType.ENTERPRISE
 
     def get_default_headers(self) -> Dict:
         headers = copy.deepcopy(self.HEADERS or {})
@@ -89,9 +99,17 @@ class CrowdinClient:
         )
 
     @property
-    def reports(self) -> api_resources.ReportsResource:
-        return api_resources.ReportsResource(
-            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+    def reports(self) -> Union[api_resources.ReportsResource,
+                               api_resources.EnterpriseReportsResource]:
+
+        if self._is_enterprise_platform:
+            report_class = api_resources.EnterpriseReportsResource
+        else:
+            report_class = api_resources.ReportsResource
+
+        return report_class(
+            requester=self.get_api_requestor(),
+            page_size=self.PAGE_SIZE,
         )
 
     @property
