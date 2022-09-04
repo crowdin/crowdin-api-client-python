@@ -7,3 +7,10 @@ class UserRole(Enum):
     PROOFREADER = "proofreader"
     TRANSLATOR = "translator"
     BLOCKED = "blocked"
+
+
+class UserPatchPath(Enum):
+    FIRST_NAME = "/firstName"
+    LAST_NAME = "/lastName"
+    TIMEZONE = "/timezone"
+    STATUS = "/status"

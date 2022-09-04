@@ -2,18 +2,10 @@ from typing import Dict, Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.users.enums import UserRole
+from crowdin_api.api_resources.users.types import UserPatchRequest
 
 
-class UsersResource(BaseResource):
-    """
-    Resource for Users.
-
-    Users API gives you the possibility to get profile information about the currently
-    authenticated user.
-
-    Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Users
-    """
+class BaseUsersResource(BaseResource):
 
     def get_authenticated_user(self):
         return self.requester.request(method="get", path="user")
@@ -33,6 +25,9 @@ class UsersResource(BaseResource):
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.members.getMany
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.getMany
         """
 
         params = {"search": search, "role": role, "languageId": languageId}
@@ -43,6 +38,45 @@ class UsersResource(BaseResource):
             path=f"projects/{projectId}/members",
             params=params,
         )
+
+
+class UsersResource(BaseUsersResource):
+    """
+    Resource for Users.
+
+    Users API gives you the possibility to get profile information about the currently
+    authenticated user.
+
+    Link to documentation:
+    https://developer.crowdin.com/api/v2/#tag/Users
+    """
+
+    def get_member_info(self, projectId: int, memberId: int):
+        """
+        Get Member Info.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.members.get
+        """
+
+        return self.requester.request(method="get", path=f"projects/{projectId}/members/{memberId}")
+
+
+class EnterpriseUsersResource(BaseUsersResource):
+    """
+    Resource for Enterprise platform Users.
+
+    Users API gives you the possibility to get profile information about the currently
+    authenticated user.
+
+    Link to documentation:
+    https://developer.crowdin.com/enterprise/api/v2/#tag/Users
+    """
+    def get_users_path(self, userId: Optional[int] = None):
+        if userId is not None:
+            return f"users/{userId}"
+
+        return "users"
 
     def add_project_member(
         self,
@@ -82,7 +116,7 @@ class UsersResource(BaseResource):
         Replace Project Member Permissions.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/#operation/api.projects.members.put
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.put
         """
 
         return self.requester.request(
@@ -104,19 +138,60 @@ class UsersResource(BaseResource):
         Delete Member From Project.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/#operation/api.projects.members.delete
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.delete
         """
 
         return self.requester.request(
             method="delete", path=f"projects/{projectId}/members/{memberId}"
         )
 
-    def get_member_info(self, projectId: int, memberId: int):
+    def invite_user(
+            self,
+            email: str,
+            firstName: Optional[str] = None,
+            lastName: Optional[str] = None,
+            timezone: Optional[str] = None
+    ):
         """
-        Get Member Info.
+        Invite User.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.members.get
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.post
+        """
+        return self.requester.request(
+            method="post",
+            path=self.get_users_path(),
+            request_data={
+                "email": email,
+                "firstName": firstName,
+                "lastName": lastName,
+                "timezone": timezone
+            }
+        )
+
+    def edit_user(self, userId: int, data: Iterable[UserPatchRequest]):
+        """
+        Edit User.
+
+        Link to documentation:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.patch
         """
 
-        return self.requester.request(method="get", path=f"projects/{projectId}/members/{memberId}")
+        return self.requester.request(
+            method="patch",
+            path=self.get_users_path(userId=userId),
+            request_data=data
+        )
+
+    def delete_user(self, userId: int):
+        """
+        Delete User.
+
+        Link to documentation:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.delete
+        """
+
+        return self.requester.request(
+            method="delete",
+            path=self.get_users_path(userId=userId)
+        )
