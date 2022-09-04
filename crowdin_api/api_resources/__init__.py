@@ -1,6 +1,7 @@
 from .dictionaries.resource import DictionariesResource
 from .distributions.resource import DistributionsResource
 from .glossaries.resource import GlossariesResource
+from .groups.resource import GroupsResource
 from .labels.resource import LabelsResource
 from .languages.resource import LanguagesResource
 from .machine_translation_engines.resource import MachineTranslationEnginesResource
@@ -23,6 +24,7 @@ __all__ = [
     "DictionariesResource",
     "DistributionsResource",
     "GlossariesResource",
+    "GroupsResource",
     "LabelsResource",
     "LanguagesResource",
     "MachineTranslationEnginesResource",

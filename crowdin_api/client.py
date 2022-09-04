@@ -3,6 +3,7 @@ from typing import Dict, Optional, Type, Union
 
 from crowdin_api import api_resources
 from crowdin_api.enums import PlatformType
+from crowdin_api.exceptions import CrowdinException
 from crowdin_api.requester import APIRequester
 
 
@@ -77,6 +78,15 @@ class CrowdinClient:
     @property
     def glossaries(self) -> api_resources.GlossariesResource:
         return api_resources.GlossariesResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
+    def groups(self) -> api_resources.GroupsResource:
+        if not self._is_enterprise_platform:
+            raise CrowdinException(detail="Not implemented for the base API")
+
+        return api_resources.GroupsResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 

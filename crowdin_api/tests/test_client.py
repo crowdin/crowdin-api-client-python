@@ -4,6 +4,10 @@ import pytest
 from crowdin_api import CrowdinClient
 
 
+class MockCrowdinClientEnterprise(CrowdinClient):
+    ORGANIZATION = "TEST_COMPANY"
+
+
 class TestCrowdinClient:
     @pytest.mark.parametrize(
         "http_protocol,organization,base_url,result",
@@ -125,5 +129,46 @@ class TestCrowdinClient:
             return_value=class_name,
         ) as m_resource:
             client = CrowdinClient()
+            assert getattr(client, property_name) == class_name
+            m_resource.assert_called_once_with(requester="api_requestor", page_size=25)
+
+
+class TestCrowdinClientEnterprise:
+    @pytest.mark.parametrize(
+        "property_name, class_name",
+        (
+            ("dictionaries", "DictionariesResource"),
+            ("distributions", "DistributionsResource"),
+            ("glossaries", "GlossariesResource"),
+            ("groups", "GroupsResource"),
+            ("labels", "LabelsResource"),
+            ("languages", "LanguagesResource"),
+            ("machine_translations", "MachineTranslationEnginesResource"),
+            ("projects", "ProjectsResource"),
+            ("reports", "EnterpriseReportsResource"),
+            ("screenshots", "ScreenshotsResource"),
+            ("source_files", "SourceFilesResource"),
+            ("source_strings", "SourceStringsResource"),
+            ("storages", "StoragesResource"),
+            ("string_comments", "StringCommentsResource"),
+            ("string_translations", "StringTranslationsResource"),
+            ("tasks", "TasksResource"),
+            ("translation_memory", "TranslationMemoryResource"),
+            ("translation_status", "TranslationStatusResource"),
+            ("translations", "TranslationsResource"),
+            ("users", "UsersResource"),
+            ("webhooks", "WebhooksResource"),
+        ),
+    )
+    @mock.patch(
+        "crowdin_api.client.CrowdinClient.get_api_requestor",
+        return_value="api_requestor",
+    )
+    def test_storages_with_organization(self, _m_api_requestor, property_name, class_name):
+        with mock.patch(
+            f"crowdin_api.api_resources.{class_name}",
+            return_value=class_name,
+        ) as m_resource:
+            client = MockCrowdinClientEnterprise()
             assert getattr(client, property_name) == class_name
             m_resource.assert_called_once_with(requester="api_requestor", page_size=25)
