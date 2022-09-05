@@ -35,7 +35,7 @@ class WebhooksResource(BaseResource):
     Use API to create, modify, and delete specific webhooks.
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/Webhooks
+    https://developer.crowdin.com/api/v2/#tag/Webhooks
     """
 
     def get_webhooks_path(self, projectId: int, webhookId: Optional[int] = None):
@@ -55,7 +55,7 @@ class WebhooksResource(BaseResource):
         List Webhooks.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#tag/Webhooks
+        https://developer.crowdin.com/api/v2/#tag/Webhooks
         """
 
         return self.requester.request(
@@ -81,7 +81,7 @@ class WebhooksResource(BaseResource):
         Add Webhook.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.webhooks.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.post
         """
 
         return self.requester.request(
@@ -105,7 +105,7 @@ class WebhooksResource(BaseResource):
         Get Webhook.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.webhooks.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.get
         """
 
         return self.requester.request(
@@ -118,7 +118,7 @@ class WebhooksResource(BaseResource):
         Delete Webhook.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.webhooks.delete
+        https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.delete
         """
 
         return self.requester.request(
@@ -131,7 +131,7 @@ class WebhooksResource(BaseResource):
         Edit Custom Language.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.webhooks.patch
+        https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.patch
         """
 
         return self.requester.request(

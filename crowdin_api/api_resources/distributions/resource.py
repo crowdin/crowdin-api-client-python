@@ -9,7 +9,7 @@ class DistributionsResource(BaseResource):
     Resource for Distributions.
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/Distributions
+    https://developer.crowdin.com/api/v2/#tag/Distributions
     """
 
     def get_distributions_path(self, projectId: int, hash: Optional[str] = None):
@@ -29,7 +29,7 @@ class DistributionsResource(BaseResource):
         List Distributions.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.distributions.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.getMany
         """
 
         return self.requester.request(
@@ -43,7 +43,7 @@ class DistributionsResource(BaseResource):
         Add Distribution.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.distributions.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.post
         """
 
         return self.requester.request(
@@ -57,7 +57,7 @@ class DistributionsResource(BaseResource):
         Get Distribution.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.distributions.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.get
         """
 
         return self.requester.request(
@@ -70,7 +70,7 @@ class DistributionsResource(BaseResource):
         Delete Distribution.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.distributions.delete
+        https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.delete
         """
 
         return self.requester.request(
@@ -85,7 +85,7 @@ class DistributionsResource(BaseResource):
         Edit Distribution.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.distributions.patch
+        https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.patch
         """
 
         return self.requester.request(
@@ -99,7 +99,7 @@ class DistributionsResource(BaseResource):
         Get Distribution Release.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.distributions.release.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.release.get
         """
 
         return self.requester.request(
@@ -112,7 +112,7 @@ class DistributionsResource(BaseResource):
         Release Distribution.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.distributions.release.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.release.post
         """
 
         return self.requester.request(

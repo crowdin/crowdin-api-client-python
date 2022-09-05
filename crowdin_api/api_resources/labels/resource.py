@@ -9,7 +9,7 @@ class LabelsResource(BaseResource):
     Resource for Labels.
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/Labels
+    https://developer.crowdin.com/api/v2/#tag/Labels
     """
 
     def get_labels_path(self, projectId: int, labelId: Optional[int] = None):
@@ -29,7 +29,7 @@ class LabelsResource(BaseResource):
         List Labels.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.labels.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.getMany
         """
 
         return self.requester.request(
@@ -43,7 +43,7 @@ class LabelsResource(BaseResource):
         Add Label.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.labels.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.post
         """
 
         return self.requester.request(
@@ -57,7 +57,7 @@ class LabelsResource(BaseResource):
         Get Label.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.labels.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.get
         """
 
         return self.requester.request(
@@ -70,7 +70,7 @@ class LabelsResource(BaseResource):
         Delete Label.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.labels.delete
+        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.delete
         """
 
         return self.requester.request(
@@ -83,7 +83,7 @@ class LabelsResource(BaseResource):
         Edit Label.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.labels.patch
+        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.patch
         """
 
         return self.requester.request(
@@ -97,7 +97,7 @@ class LabelsResource(BaseResource):
         Assign Label to Strings.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.labels.strings.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.strings.post
         """
 
         return self.requester.request(
@@ -111,7 +111,7 @@ class LabelsResource(BaseResource):
         Unassign Label from Strings.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.labels.strings.deleteMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.strings.deleteMany
         """
 
         return self.requester.request(

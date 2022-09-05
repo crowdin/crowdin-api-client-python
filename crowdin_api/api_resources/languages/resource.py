@@ -14,7 +14,7 @@ class LanguagesResource(BaseResource):
     Use API to get the list of all supported languages and retrieve additional details
     (e.g. text direction, internal code) on specific language.
 
-    Link to documentation: https://support.crowdin.com/api/v2/#tag/Languages
+    Link to documentation: https://developer.crowdin.com/api/v2/#tag/Languages
     """
 
     def get_languages_path(self, languageId: Optional[str] = None):
@@ -33,7 +33,7 @@ class LanguagesResource(BaseResource):
         List Supported Languages.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.languages.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.languages.getMany
         """
 
         return self.requester.request(
@@ -57,7 +57,7 @@ class LanguagesResource(BaseResource):
         Add Custom Language.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.languages.post
+        https://developer.crowdin.com/api/v2/#operation/api.languages.post
         """
 
         return self.requester.request(
@@ -80,7 +80,7 @@ class LanguagesResource(BaseResource):
         Get Language.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.languages.get
+        https://developer.crowdin.com/api/v2/#operation/api.languages.get
         """
 
         return self.requester.request(
@@ -92,7 +92,7 @@ class LanguagesResource(BaseResource):
         Delete Custom Language.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.languages.delete
+        https://developer.crowdin.com/api/v2/#operation/api.languages.delete
         """
 
         return self.requester.request(
@@ -104,7 +104,7 @@ class LanguagesResource(BaseResource):
         Edit Custom Language.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.languages.patch
+        https://developer.crowdin.com/api/v2/#operation/api.languages.patch
         """
 
         return self.requester.request(

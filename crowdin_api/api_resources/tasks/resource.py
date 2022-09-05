@@ -33,7 +33,7 @@ class TasksResource(BaseResource):
     Use API to create, modify, and delete specific tasks.
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/Tasks
+    https://developer.crowdin.com/api/v2/#tag/Tasks
     """
 
     def get_tasks_path(self, projectId: int, taskId: Optional[int] = None):
@@ -55,7 +55,7 @@ class TasksResource(BaseResource):
         List Tasks.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.tasks.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.getMany
         """
 
         params = {"assigneeId": assigneeId, "status": status}
@@ -72,7 +72,7 @@ class TasksResource(BaseResource):
         Add Task.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.tasks.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
         """
 
         return self.requester.request(
@@ -103,7 +103,7 @@ class TasksResource(BaseResource):
         Add Task(Crowdin Task Create Form).
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.tasks.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
         """
 
         return self.add_task(
@@ -144,7 +144,7 @@ class TasksResource(BaseResource):
         Add Task(Crowdin Vendor Oht Task Create Form).
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.tasks.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
         """
 
         return self.add_task(
@@ -187,7 +187,7 @@ class TasksResource(BaseResource):
         Add Task(Crowdin Vendor Gengo Task Create Form).
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.tasks.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
         """
 
         return self.add_task(
@@ -231,7 +231,7 @@ class TasksResource(BaseResource):
         Add Task(Crowdin Vendor Translated Task Create Form).
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.tasks.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
         """
         return self.add_task(
             projectId=projectId,
@@ -256,7 +256,7 @@ class TasksResource(BaseResource):
         Export Task Strings.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.tasks.exports.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.exports.post
         """
 
         return self.requester.request(
@@ -269,7 +269,7 @@ class TasksResource(BaseResource):
         Get Task.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.tasks.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.get
         """
 
         return self.requester.request(
@@ -281,7 +281,7 @@ class TasksResource(BaseResource):
         Delete Task.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.tasks.delete
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.delete
         """
 
         return self.requester.request(
@@ -299,7 +299,7 @@ class TasksResource(BaseResource):
         Edit Task.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.tasks.patch
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.patch
         """
 
         return self.requester.request(
@@ -320,7 +320,7 @@ class TasksResource(BaseResource):
         List Tasks.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.tasks.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.getMany
         """
 
         params = {"status": status}
@@ -337,7 +337,7 @@ class TasksResource(BaseResource):
         Edit Task Archived Status.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.user.tasks.patch
+        https://developer.crowdin.com/api/v2/#operation/api.user.tasks.patch
         """
 
         return self.requester.request(

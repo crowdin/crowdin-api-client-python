@@ -16,7 +16,7 @@ class StringCommentsResource(BaseResource):
     Use API to add or remove strings translations, approvals, and votes.
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/String-Comments
+    https://developer.crowdin.com/api/v2/#tag/String-Comments
     """
 
     def get_string_comments_path(self, projectId: int, stringCommentId: Optional[int] = None):
@@ -40,7 +40,7 @@ class StringCommentsResource(BaseResource):
         List String Comments.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.comments.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.getMany
         """
 
         params = {
@@ -69,7 +69,7 @@ class StringCommentsResource(BaseResource):
         Add String Comment.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.comments.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.post
         """
 
         return self.requester.request(
@@ -88,7 +88,7 @@ class StringCommentsResource(BaseResource):
         Get String Comment.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.comments.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.get
         """
 
         return self.requester.request(
@@ -103,7 +103,7 @@ class StringCommentsResource(BaseResource):
         Delete String Comment.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.comments.delete
+        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.delete
         """
 
         return self.requester.request(
@@ -123,7 +123,7 @@ class StringCommentsResource(BaseResource):
         Edit String Comment.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.comments.patch
+        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.patch
         """
 
         return self.requester.request(

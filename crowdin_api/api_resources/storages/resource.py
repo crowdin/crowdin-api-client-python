@@ -17,7 +17,7 @@ class StoragesResource(BaseResource):
     be removed from storage and will remain in your account.
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/Storage
+    https://developer.crowdin.com/api/v2/#tag/Storage
     """
 
     def get_storages_path(self, storageId: Optional[int] = None):
@@ -35,7 +35,7 @@ class StoragesResource(BaseResource):
         """List Storages.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.storages.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.storages.getMany
         """
 
         return self.requester.request(
@@ -48,7 +48,7 @@ class StoragesResource(BaseResource):
         """Add Storage.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.storages.post
+        https://developer.crowdin.com/api/v2/#operation/api.storages.post
         """
 
         return self.requester.request(method="post", path=self.get_storages_path(), file=file)
@@ -57,7 +57,7 @@ class StoragesResource(BaseResource):
         """Get Storage.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.storages.get
+        https://developer.crowdin.com/api/v2/#operation/api.storages.get
         """
 
         return self.requester.request(
@@ -68,7 +68,7 @@ class StoragesResource(BaseResource):
         """Delete Storage.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.storages.delete
+        https://developer.crowdin.com/api/v2/#operation/api.storages.delete
         """
 
         return self.requester.request(

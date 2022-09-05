@@ -28,7 +28,7 @@ class SourceFilesResource(BaseResource):
     Crowdin.
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/Source-Files
+    https://developer.crowdin.com/api/v2/#tag/Source-Files
     """
 
     # Branches
@@ -50,7 +50,7 @@ class SourceFilesResource(BaseResource):
         List Branches.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.branches.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.branches.getMany
         """
 
         params = {"name": name}
@@ -72,7 +72,7 @@ class SourceFilesResource(BaseResource):
         Add Branch.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.branches.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.branches.post
         """
 
         return self.requester.request(
@@ -91,7 +91,7 @@ class SourceFilesResource(BaseResource):
         Get Branch.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.branches.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.branches.get
         """
 
         return self.requester.request(
@@ -104,7 +104,7 @@ class SourceFilesResource(BaseResource):
         Delete Branch.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.branches.delete
+        https://developer.crowdin.com/api/v2/#operation/api.projects.branches.delete
         """
 
         return self.requester.request(
@@ -117,7 +117,7 @@ class SourceFilesResource(BaseResource):
         Edit Branch.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.branches.patch
+        https://developer.crowdin.com/api/v2/#operation/api.projects.branches.patch
         """
 
         return self.requester.request(
@@ -148,7 +148,7 @@ class SourceFilesResource(BaseResource):
         List Directories.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.directories.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.directories.getMany
         """
 
         params = {
@@ -179,7 +179,7 @@ class SourceFilesResource(BaseResource):
         Add Directory.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.directories.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.directories.post
         """
 
         return self.requester.request(
@@ -200,7 +200,7 @@ class SourceFilesResource(BaseResource):
         Get Directory.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.directories.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.directories.get
         """
 
         return self.requester.request(
@@ -213,7 +213,7 @@ class SourceFilesResource(BaseResource):
         Delete Directory.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.directories.delete
+        https://developer.crowdin.com/api/v2/#operation/api.projects.directories.delete
         """
 
         return self.requester.request(
@@ -228,7 +228,7 @@ class SourceFilesResource(BaseResource):
         Edit Directory.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.directories.patch
+        https://developer.crowdin.com/api/v2/#operation/api.projects.directories.patch
         """
 
         return self.requester.request(
@@ -259,7 +259,7 @@ class SourceFilesResource(BaseResource):
         List Files.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.files.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.files.getMany
         """
 
         params = {
@@ -294,7 +294,7 @@ class SourceFilesResource(BaseResource):
         Add File.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.files.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.files.post
         """
 
         return self.requester.request(
@@ -319,7 +319,7 @@ class SourceFilesResource(BaseResource):
         Get File.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.files.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.files.get
         """
 
         return self.requester.request(
@@ -332,7 +332,7 @@ class SourceFilesResource(BaseResource):
         Restore File.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.files.put
+        https://developer.crowdin.com/api/v2/#operation/api.projects.files.put
         """
 
         return self.requester.request(
@@ -358,7 +358,7 @@ class SourceFilesResource(BaseResource):
         Update File.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.files.put
+        https://developer.crowdin.com/api/v2/#operation/api.projects.files.put
         """
 
         return self.requester.request(
@@ -379,7 +379,7 @@ class SourceFilesResource(BaseResource):
         Delete File.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.files.delete
+        https://developer.crowdin.com/api/v2/#operation/api.projects.files.delete
         """
 
         return self.requester.request(
@@ -392,7 +392,7 @@ class SourceFilesResource(BaseResource):
         Edit File.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.files.patch
+        https://developer.crowdin.com/api/v2/#operation/api.projects.files.patch
         """
 
         return self.requester.request(
@@ -406,7 +406,7 @@ class SourceFilesResource(BaseResource):
         Download File.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.files.download.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.files.download.get
         """
 
         return self.requester.request(
@@ -438,7 +438,7 @@ class SourceFilesResource(BaseResource):
         List File Revisions.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.files.revisions.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.files.revisions.getMany
         """
 
         return self.requester.request(
@@ -452,7 +452,7 @@ class SourceFilesResource(BaseResource):
         Get File Revision.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.files.revisions.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.files.revisions.get
         """
 
         return self.requester.request(
