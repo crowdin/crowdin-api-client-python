@@ -189,8 +189,13 @@ class CrowdinClient:
         )
 
     @property
-    def users(self) -> api_resources.UsersResource:
-        return api_resources.UsersResource(
+    def users(self) -> Union[api_resources.UsersResource, api_resources.EnterpriseUsersResource]:
+        if self._is_enterprise_platform:
+            user_class = api_resources.EnterpriseUsersResource
+        else:
+            user_class = api_resources.UsersResource
+
+        return user_class(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 

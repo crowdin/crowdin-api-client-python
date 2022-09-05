@@ -156,7 +156,7 @@ class TestCrowdinClientEnterprise:
             ("translation_memory", "TranslationMemoryResource"),
             ("translation_status", "TranslationStatusResource"),
             ("translations", "TranslationsResource"),
-            ("users", "UsersResource"),
+            ("users", "EnterpriseUsersResource"),
             ("webhooks", "WebhooksResource"),
         ),
     )
