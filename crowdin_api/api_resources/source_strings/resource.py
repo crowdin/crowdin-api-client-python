@@ -18,7 +18,7 @@ class SourceStringsResource(BaseResource):
     iOS strings, PROPERTIES, XLIFF).
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/Source-Strings
+    https://developer.crowdin.com/api/v2/#tag/Source-Strings
     """
 
     def get_source_strings_path(self, projectId: int, stringId: Optional[int] = None):
@@ -45,7 +45,7 @@ class SourceStringsResource(BaseResource):
         List Strings.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.strings.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings.getMany
         """
 
         params = {
@@ -80,7 +80,7 @@ class SourceStringsResource(BaseResource):
         Add String.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.strings.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings.post
         """
 
         return self.requester.request(
@@ -102,7 +102,7 @@ class SourceStringsResource(BaseResource):
         Get String.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.strings.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings.get
         """
 
         return self.requester.request(
@@ -115,7 +115,7 @@ class SourceStringsResource(BaseResource):
         Delete String.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.strings.delete
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings.delete
         """
 
         return self.requester.request(
@@ -128,7 +128,7 @@ class SourceStringsResource(BaseResource):
         Edit String.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.strings.patch
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings.patch
         """
 
         return self.requester.request(

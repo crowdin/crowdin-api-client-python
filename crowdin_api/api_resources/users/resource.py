@@ -12,7 +12,7 @@ class UsersResource(BaseResource):
     authenticated user.
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/Users
+    https://developer.crowdin.com/api/v2/#tag/Users
     """
 
     def get_authenticated_user(self):
@@ -32,7 +32,7 @@ class UsersResource(BaseResource):
         List Project Members.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.members.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.members.getMany
         """
 
         params = {"search": search, "role": role, "languageId": languageId}
@@ -56,7 +56,7 @@ class UsersResource(BaseResource):
         Add Project Member.
 
         Link to documentation:
-        https://support.crowdin.com/enterprise/api/#operation/api.projects.members.post
+        https://developer.crowdin.com/enterprise/api/#operation/api.projects.members.post
         """
 
         return self.requester.request(
@@ -82,7 +82,7 @@ class UsersResource(BaseResource):
         Replace Project Member Permissions.
 
         Link to documentation:
-        https://support.crowdin.com/enterprise/api/#operation/api.projects.members.put
+        https://developer.crowdin.com/enterprise/api/#operation/api.projects.members.put
         """
 
         return self.requester.request(
@@ -104,7 +104,7 @@ class UsersResource(BaseResource):
         Delete Member From Project.
 
         Link to documentation:
-        https://support.crowdin.com/enterprise/api/#operation/api.projects.members.delete
+        https://developer.crowdin.com/enterprise/api/#operation/api.projects.members.delete
         """
 
         return self.requester.request(
@@ -116,7 +116,7 @@ class UsersResource(BaseResource):
         Get Member Info.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.members.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.members.get
         """
 
         return self.requester.request(method="get", path=f"projects/{projectId}/members/{memberId}")

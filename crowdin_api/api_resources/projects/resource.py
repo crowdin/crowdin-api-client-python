@@ -23,7 +23,7 @@ class ProjectsResource(BaseResource):
     Use API to manage projects, change their settings, or remove them if required.
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/Projects
+    https://developer.crowdin.com/api/v2/#tag/Projects
 
     """
 
@@ -45,7 +45,7 @@ class ProjectsResource(BaseResource):
         List Projects.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.getMany
         """
 
         params = {"userId": userId, "hasManagerAccess": hasManagerAccess}
@@ -58,7 +58,7 @@ class ProjectsResource(BaseResource):
         Add Project.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.post
         """
 
         return self.requester.request(
@@ -91,7 +91,7 @@ class ProjectsResource(BaseResource):
         Add Project(Files Based Project Form).
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.post
         """
 
         return self.add_project(
@@ -151,7 +151,7 @@ class ProjectsResource(BaseResource):
         Add Project(Strings Based Project Form).
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.post
         """
 
         return self.add_project(
@@ -190,7 +190,7 @@ class ProjectsResource(BaseResource):
         Get Project.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.get
         """
 
         return self.requester.request(
@@ -202,7 +202,7 @@ class ProjectsResource(BaseResource):
         Delete Project.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.delete
+        https://developer.crowdin.com/api/v2/#operation/api.projects.delete
         """
 
         return self.requester.request(
@@ -214,7 +214,7 @@ class ProjectsResource(BaseResource):
         Edit Project.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.patch
+        https://developer.crowdin.com/api/v2/#operation/api.projects.patch
         """
         return self.requester.request(
             method="patch",

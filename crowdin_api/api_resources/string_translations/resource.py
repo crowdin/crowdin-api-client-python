@@ -12,7 +12,7 @@ class StringTranslationsResource(BaseResource):
     Use API to add or remove strings translations, approvals, and votes.
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/String-Translations
+    https://developer.crowdin.com/api/v2/#tag/String-Translations
     """
 
     # Approval
@@ -37,7 +37,7 @@ class StringTranslationsResource(BaseResource):
         List Translation Approvals
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.approvals.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.getMany
         """
 
         params = {
@@ -63,7 +63,7 @@ class StringTranslationsResource(BaseResource):
         Add Approval.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.approvals.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.post
         """
 
         return self.requester.request(
@@ -77,7 +77,7 @@ class StringTranslationsResource(BaseResource):
         Get Approval.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.approvals.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.get
         """
 
         return self.requester.request(
@@ -90,7 +90,7 @@ class StringTranslationsResource(BaseResource):
         Remove Approvall.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.approvals.delete
+        https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.delete
         """
 
         return self.requester.request(
@@ -116,7 +116,7 @@ class StringTranslationsResource(BaseResource):
         List Language Translations
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.languages.translations.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.languages.translations.getMany
         """
 
         params = {
@@ -159,7 +159,7 @@ class StringTranslationsResource(BaseResource):
         List String Translations
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.translations.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.getMany
         """
 
         params = {
@@ -187,7 +187,7 @@ class StringTranslationsResource(BaseResource):
         Add Translation.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.translations.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.post
         """
 
         return self.requester.request(
@@ -206,7 +206,7 @@ class StringTranslationsResource(BaseResource):
         Delete String Translations.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.translations.deleteMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.deleteMany
         """
 
         return self.requester.request(
@@ -220,7 +220,7 @@ class StringTranslationsResource(BaseResource):
         Get Translation.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.translations.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.get
         """
 
         return self.requester.request(
@@ -233,7 +233,7 @@ class StringTranslationsResource(BaseResource):
         Restore Translation.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.translations.put
+        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.put
         """
 
         return self.requester.request(
@@ -246,7 +246,7 @@ class StringTranslationsResource(BaseResource):
         Delete Translation.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.translations.delete
+        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.delete
         """
 
         return self.requester.request(
@@ -275,7 +275,7 @@ class StringTranslationsResource(BaseResource):
         List Translation Votes
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.votes.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.votes.getMany
         """
 
         params = {
@@ -296,7 +296,7 @@ class StringTranslationsResource(BaseResource):
         Add Vote.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.votes.pos
+        https://developer.crowdin.com/api/v2/#operation/api.projects.votes.pos
         """
 
         return self.requester.request(
@@ -310,7 +310,7 @@ class StringTranslationsResource(BaseResource):
         Get Vote.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.votes.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.votes.get
         """
 
         return self.requester.request(
@@ -323,7 +323,7 @@ class StringTranslationsResource(BaseResource):
         Cancel Vote.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.votes.delete
+        https://developer.crowdin.com/api/v2/#operation/api.projects.votes.delete
         """
 
         return self.requester.request(

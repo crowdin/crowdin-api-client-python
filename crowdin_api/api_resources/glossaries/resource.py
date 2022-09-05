@@ -17,7 +17,7 @@ class GlossariesResource(BaseResource):
     operations and shall be completed with sequence of API methods.
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/Glossaries
+    https://developer.crowdin.com/api/v2/#tag/Glossaries
     """
 
     # Glossaries
@@ -37,7 +37,7 @@ class GlossariesResource(BaseResource):
         List Glossaries.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.getMany
         """
 
         return self.requester.request(
@@ -51,7 +51,7 @@ class GlossariesResource(BaseResource):
         Add Glossary.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.post
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.post
         """
 
         return self.requester.request(
@@ -65,7 +65,7 @@ class GlossariesResource(BaseResource):
         Get Glossary.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.get
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.get
         """
 
         return self.requester.request(
@@ -78,7 +78,7 @@ class GlossariesResource(BaseResource):
         Delete Glossary.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.delete
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.delete
         """
 
         return self.requester.request(
@@ -91,7 +91,7 @@ class GlossariesResource(BaseResource):
         Edit Glossary.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.patch
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.patch
         """
 
         return self.requester.request(
@@ -112,7 +112,7 @@ class GlossariesResource(BaseResource):
         Export Glossary.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.exports.post
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.exports.post
         """
 
         return self.requester.request(
@@ -126,7 +126,7 @@ class GlossariesResource(BaseResource):
         Check Glossary Export Status.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.exports.get
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.exports.get
         """
 
         return self.requester.request(
@@ -139,7 +139,7 @@ class GlossariesResource(BaseResource):
         Download Glossary.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.exports.download.download
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.exports.download.download
         """
 
         glossary_export_path = self.get_glossary_export_path(
@@ -163,7 +163,7 @@ class GlossariesResource(BaseResource):
         Import Glossary.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.imports.post
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.imports.post
         """
 
         return self.requester.request(
@@ -181,7 +181,7 @@ class GlossariesResource(BaseResource):
         Check Glossary Import Status.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.imports.get
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.imports.get
         """
 
         return self.requester.request(
@@ -210,7 +210,7 @@ class GlossariesResource(BaseResource):
         List Terms.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.terms.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.getMany
         """
 
         params = {
@@ -240,7 +240,7 @@ class GlossariesResource(BaseResource):
         Add Term.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.terms.post
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.post
         """
 
         return self.requester.request(
@@ -265,7 +265,7 @@ class GlossariesResource(BaseResource):
         Clear Glossary.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.terms.deleteMany
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.deleteMany
         """
 
         return self.requester.request(
@@ -282,7 +282,7 @@ class GlossariesResource(BaseResource):
         Get Term.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.terms.get
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.get
         """
 
         return self.requester.request(
@@ -295,7 +295,7 @@ class GlossariesResource(BaseResource):
         Delete Term.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.terms.delete
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.delete
         """
 
         return self.requester.request(
@@ -308,7 +308,7 @@ class GlossariesResource(BaseResource):
         Edit Term.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.glossaries.terms.patch
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.patch
         """
 
         return self.requester.request(

@@ -13,7 +13,7 @@ class DictionariesResource(BaseResource):
     Use API to get the list of organization dictionaries and to edit a specific dictionary.
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/Dictionaries
+    https://developer.crowdin.com/api/v2/#tag/Dictionaries
     """
 
     def list_dictionaries(
@@ -28,7 +28,7 @@ class DictionariesResource(BaseResource):
         List Dictionaries.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.dictionaries.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.dictionaries.getMany
         """
 
         params = self.get_page_params(page=page, offset=offset, limit=limit)
@@ -45,7 +45,7 @@ class DictionariesResource(BaseResource):
         Edit Dictionary.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.dictionaries.patch
+        https://developer.crowdin.com/api/v2/#operation/api.projects.dictionaries.patch
         """
 
         return self.requester.request(

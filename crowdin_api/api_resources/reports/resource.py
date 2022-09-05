@@ -31,7 +31,7 @@ class BaseReportsResource(BaseResource):
         Generate Report.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.download.download
@@ -72,7 +72,7 @@ class BaseReportsResource(BaseResource):
         Generate Report(Top Members).
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
@@ -105,7 +105,7 @@ class BaseReportsResource(BaseResource):
         Generate Report(Contribution Raw Data).
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
@@ -131,7 +131,7 @@ class BaseReportsResource(BaseResource):
         Check Report Generation Status.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.reports.get
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.get
 
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.get
@@ -147,7 +147,7 @@ class BaseReportsResource(BaseResource):
         Download Report.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.reports.download.download
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.download.download
 
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.download.download
@@ -170,7 +170,7 @@ class ReportsResource(BaseReportsResource):
     and shall be completed with a sequence of API methods.
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/Reports
+    https://developer.crowdin.com/api/v2/#tag/Reports
     """
 
     def generate_simple_cost_estimate_report(
@@ -191,7 +191,7 @@ class ReportsResource(BaseReportsResource):
         Generate Report(Cost Estimate Schema).
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
         """
 
         return self.generate_report(
@@ -232,7 +232,7 @@ class ReportsResource(BaseReportsResource):
         Generate Report(Cost Estimate Fuzzy Mode).
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
         """
 
         return self.generate_report(
@@ -271,7 +271,7 @@ class ReportsResource(BaseReportsResource):
         Generate Report(Translation Cost).
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
         """
 
         return self.generate_report(
@@ -308,7 +308,7 @@ class ReportsResource(BaseReportsResource):
         Generate Report(Translation Fuzzy Cost).
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
         """
 
         return self.generate_report(
@@ -370,7 +370,7 @@ class EnterpriseReportsResource(BaseReportsResource):
         Generate Report(Cost Estimate schema).
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
         """
         step_types_const = {
             "type": "Translate",

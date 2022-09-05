@@ -14,7 +14,7 @@ class TranslationStatusResource(BaseResource):
     file, language, branch, directory.
 
     Link to documentation:
-    https://support.crowdin.com/api/v2/#tag/Translation-Status
+    https://developer.crowdin.com/api/v2/#tag/Translation-Status
     """
 
     def get_branch_progress(
@@ -29,7 +29,7 @@ class TranslationStatusResource(BaseResource):
         Get Branch Progress.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.branches.languages.progress.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.branches.languages.progress.getMany
         """
 
         return self.requester.request(
@@ -50,7 +50,7 @@ class TranslationStatusResource(BaseResource):
         Get Directory Progress.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.directories.languages.progress.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.directories.languages.progress.getMany
         """
 
         return self.requester.request(
@@ -71,7 +71,7 @@ class TranslationStatusResource(BaseResource):
         Get File Progress.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.files.languages.progress.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.files.languages.progress.getMany
         """
 
         return self.requester.request(
@@ -92,7 +92,7 @@ class TranslationStatusResource(BaseResource):
         Get Language Progress.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.languages.files.progress.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.languages.files.progress.getMany
         """
 
         return self.requester.request(
@@ -113,7 +113,7 @@ class TranslationStatusResource(BaseResource):
         Get Project Progress.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.languages.progress.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.languages.progress.getMany
         """
 
         params = {"languageIds": None if languageIds is None else ",".join(languageIds)}
@@ -139,7 +139,7 @@ class TranslationStatusResource(BaseResource):
         List QA Check Issues.
 
         Link to documentation:
-        https://support.crowdin.com/api/v2/#operation/api.projects.qa-checks.getMany
+        https://developer.crowdin.com/api/v2/#operation/api.projects.qa-checks.getMany
         """
 
         params = {
