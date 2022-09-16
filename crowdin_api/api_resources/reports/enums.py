@@ -76,3 +76,11 @@ class ContributionMode:
     TRANSLATIONS = "translations"
     APPROVALS = "approvals"
     VOTES = "votes"
+
+
+class ReportSettingsTemplatesPatchPath(Enum):
+    NAME = "name"
+    CURRENCY = "currency"
+    UNIT = "unit"
+    MODE = "mode"
+    CONFIG = "config"

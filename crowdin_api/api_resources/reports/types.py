@@ -1,6 +1,11 @@
 from typing import Iterable, Union
 
-from crowdin_api.api_resources.reports.enums import FuzzyRateMode, SimpleRateMode
+from crowdin_api.api_resources.enums import PatchOperation
+from crowdin_api.api_resources.reports.enums import (
+    FuzzyRateMode,
+    SimpleRateMode,
+    ReportSettingsTemplatesPatchPath
+)
 from crowdin_api.typing import TypedDict
 
 
@@ -12,6 +17,10 @@ class SimpleRegularRate(TypedDict):
 class SimpleIndividualRate(TypedDict):
     languageIds: Iterable[str]
     rates: Iterable[SimpleRegularRate]
+
+
+class SimpleSettingsTemplateRate(SimpleIndividualRate):
+    userIds: Iterable[int]
 
 
 class FuzzyRegularRate(TypedDict):
@@ -31,3 +40,14 @@ class TranslateStep(TypedDict):
 
 class StepTypes(TypedDict):
     stepTypes: Iterable[TranslateStep]
+
+
+class Config(TypedDict):
+    regularRates: Iterable[SimpleRegularRate]
+    individualRates: Iterable[SimpleSettingsTemplateRate]
+
+
+class ReportSettingsTemplatesPatchRequest(TypedDict):
+    value: Union[str, int]
+    op: PatchOperation
+    path: ReportSettingsTemplatesPatchPath

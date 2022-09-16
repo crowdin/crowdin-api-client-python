@@ -16,6 +16,8 @@ from crowdin_api.api_resources.reports.types import (
     SimpleIndividualRate,
     SimpleRegularRate,
     StepTypes,
+    ReportSettingsTemplatesPatchRequest,
+    Config,
 )
 
 
@@ -159,7 +161,145 @@ class BaseReportsResource(BaseResource):
         )
 
 
-class ReportsResource(BaseReportsResource):
+class BaseReportSettingsTemplatesResource(BaseResource):
+    def get_report_settings_templates_path(
+        self,
+        projectId: int,
+        reportSettingsTemplateId: Optional[int] = None
+    ):
+        if reportSettingsTemplateId is not None:
+            return f"projects/{projectId}/reports/settings-templates/{reportSettingsTemplateId}"
+
+        return f"projects/{projectId}/reports/settings-templates"
+
+    def list_report_settings_template(
+        self,
+        projectId: int,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None
+    ):
+        """
+        List Report Settings Templates.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.settings-templates.getMany
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.getMany
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_report_settings_templates_path(projectId=projectId),
+            params=self.get_page_params(offset=offset, limit=limit),
+        )
+
+    def add_report_settings_template(
+        self,
+        projectId: int,
+        name: str,
+        currency: Currency,
+        unit: Unit,
+        config: Config,
+    ):
+        """
+        Add Report Settings Templates.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.settings-templates.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=self.get_report_settings_templates_path(
+                projectId=projectId,
+            ),
+            request_data={
+                "name": name,
+                "currency": currency,
+                "unit": unit,
+                "mode": "simple",
+                "config": config
+            }
+        )
+
+    def get_report_settings_template(
+        self,
+        projectId: int,
+        reportSettingsTemplateId: int,
+    ):
+        """
+        Get Report Settings Templates.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.settings-templates.get
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_report_settings_templates_path(
+                projectId=projectId,
+                reportSettingsTemplateId=reportSettingsTemplateId
+            ),
+        )
+
+    def edit_report_settings_template(
+        self,
+        projectId: int,
+        reportSettingsTemplateId: int,
+        data: Iterable[ReportSettingsTemplatesPatchRequest]
+
+    ):
+        """
+        Edit Report Settings Templates.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.settings-templates.patch
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.patch
+        """
+
+        return self.requester.request(
+            method="patch",
+            path=self.get_report_settings_templates_path(
+                projectId=projectId,
+                reportSettingsTemplateId=reportSettingsTemplateId
+            ),
+            request_data=data,
+        )
+
+    def delete_report_settings_template(
+        self,
+        projectId: int,
+        reportSettingsTemplateId: int,
+    ):
+        """
+        Delete Report Settings Templates.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.settings-templates.delete
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.settings-templates.delete
+        """
+
+        return self.requester.request(
+            method="delete",
+            path=self.get_report_settings_templates_path(
+                projectId=projectId,
+                reportSettingsTemplateId=reportSettingsTemplateId
+            ),
+        )
+
+
+class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
     """
     Resource for Reports.
 
@@ -330,7 +470,7 @@ class ReportsResource(BaseReportsResource):
         )
 
 
-class EnterpriseReportsResource(BaseReportsResource):
+class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
     """
     Resource for Enterprise Reports.
 
