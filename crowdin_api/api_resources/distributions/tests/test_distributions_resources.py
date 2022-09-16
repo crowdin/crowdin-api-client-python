@@ -1,7 +1,7 @@
 from unittest import mock
 
 import pytest
-from crowdin_api.api_resources.distributions.enums import DistributionPatchPath
+from crowdin_api.api_resources.distributions.enums import DistributionPatchPath, ExportMode
 from crowdin_api.api_resources.distributions.resource import DistributionsResource
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.requester import APIRequester
@@ -36,16 +36,53 @@ class TestLanguagesResource:
             path=resource.get_distributions_path(projectId=1),
         )
 
-    @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_distribution(self, m_request, base_absolut_url):
-        m_request.return_value = "response"
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {
+                    "name": "test",
+                    "fileIds": [1, 2, 3],
+                },
+                {
+                    "name": "test",
+                    "fileIds": [1, 2, 3],
+                    "exportMode": ExportMode.DEFAULT,
+                    "format": None,
+                    "exportPattern": None,
+                    "labelIds": None
 
+                },
+            ),
+            (
+                {
+                    "name": "test",
+                    "fileIds": [1, 2, 3],
+                    "exportMode": ExportMode.BUNDLE,
+                    "format": "crowdin-resx",
+                    "exportPattern": "strings-%two_letter_code%.resx",
+                    "labelIds": [1, 2, 3, 4],
+                },
+                {
+                    "name": "test",
+                    "fileIds": [1, 2, 3],
+                    "exportMode": ExportMode.BUNDLE,
+                    "format": "crowdin-resx",
+                    "exportPattern": "strings-%two_letter_code%.resx",
+                    "labelIds": [1, 2, 3, 4],
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_distribution(self,  m_request, incoming_data, request_data, base_absolut_url):
+        m_request.return_value = "response"
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_distribution(projectId=1, name="test", fileIds=[1, 2, 3]) == "response"
+        assert resource.add_distribution(projectId=1, **incoming_data) == "response"
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_distributions_path(projectId=1),
-            request_data={"name": "test", "fileIds": [1, 2, 3]},
+            request_data=request_data,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -77,7 +114,7 @@ class TestLanguagesResource:
             {
                 "value": "test",
                 "op": PatchOperation.REPLACE,
-                "path": DistributionPatchPath.TITLE,
+                "path": DistributionPatchPath.NAME,
             }
         ]
 

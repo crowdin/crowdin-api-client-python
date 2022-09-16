@@ -1,3 +1,4 @@
+from .bundles.resource import BundlesResource
 from .dictionaries.resource import DictionariesResource
 from .distributions.resource import DistributionsResource
 from .glossaries.resource import GlossariesResource
@@ -21,6 +22,7 @@ from .users.resource import UsersResource, EnterpriseUsersResource
 from .webhooks.resource import WebhooksResource
 
 __all__ = [
+    "BundlesResource",
     "DictionariesResource",
     "DistributionsResource",
     "GlossariesResource",

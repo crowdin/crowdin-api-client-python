@@ -1,6 +1,7 @@
 from typing import Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
+from crowdin_api.api_resources.distributions.enums import ExportMode
 from crowdin_api.api_resources.distributions.types import DistributionPatchRequest
 
 
@@ -21,7 +22,6 @@ class DistributionsResource(BaseResource):
     def list_distributions(
         self,
         projectId: int,
-        page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
     ):
@@ -35,10 +35,19 @@ class DistributionsResource(BaseResource):
         return self.requester.request(
             method="get",
             path=self.get_distributions_path(projectId=projectId),
-            params=self.get_page_params(page=page, offset=offset, limit=limit),
+            params=self.get_page_params(offset=offset, limit=limit),
         )
 
-    def add_distribution(self, projectId: int, name: str, fileIds: Iterable[int]):
+    def add_distribution(
+            self,
+            projectId: int,
+            name: str,
+            fileIds: Iterable[int],
+            exportMode: Optional[ExportMode] = ExportMode.DEFAULT,
+            format: Optional[str] = None,
+            exportPattern: Optional[str] = None,
+            labelIds: Optional[Iterable[int]] = None
+    ):
         """
         Add Distribution.
 
@@ -49,7 +58,14 @@ class DistributionsResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_distributions_path(projectId=projectId),
-            request_data={"name": name, "fileIds": fileIds},
+            request_data={
+                "exportMode": exportMode,
+                "name": name,
+                "fileIds": fileIds,
+                "format": format,
+                "exportPattern": exportPattern,
+                "labelIds": labelIds
+            },
         )
 
     def get_distribution(self, projectId: int, hash: str):
