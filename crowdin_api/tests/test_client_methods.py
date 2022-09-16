@@ -9,3 +9,10 @@ def test_groups_without_organization():
 
     with pytest.raises(CrowdinException, match="Not implemented for the base API"):
         client.groups.list_groups()
+
+
+def test_teams_without_organization():
+    client = CrowdinClient()
+
+    with pytest.raises(CrowdinException, match="Not implemented for the base API"):
+        client.teams.list_teams()

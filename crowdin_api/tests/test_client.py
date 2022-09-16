@@ -153,6 +153,7 @@ class TestCrowdinClientEnterprise:
             ("string_comments", "StringCommentsResource"),
             ("string_translations", "StringTranslationsResource"),
             ("tasks", "TasksResource"),
+            ("teams", "TeamsResource"),
             ("translation_memory", "TranslationMemoryResource"),
             ("translation_status", "TranslationStatusResource"),
             ("translations", "TranslationsResource"),
