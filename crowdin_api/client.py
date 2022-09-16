@@ -64,6 +64,12 @@ class CrowdinClient:
         return self._api_requestor
 
     @property
+    def bundles(self) -> api_resources.BundlesResource:
+        return api_resources.BundlesResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
     def dictionaries(self) -> api_resources.DictionariesResource:
         return api_resources.DictionariesResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE

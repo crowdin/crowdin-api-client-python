@@ -2,7 +2,14 @@ from enum import Enum
 
 
 class DistributionPatchPath(Enum):
+    EXPORT_MODE = "/exportMode"
     NAME = "/name"
-    TITLE = "/title"
+    FILE_IDS = "/fileIds"
+    FORMAT = "/format"
     EXPORT_PATTERN = "/exportPattern"
-    PRIORITY = "/priority"
+    LABEL_IDS = "/labelIds"
+
+
+class ExportMode(Enum):
+    DEFAULT = "default"
+    BUNDLE = "bundle"
