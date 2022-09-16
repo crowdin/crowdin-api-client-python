@@ -171,6 +171,15 @@ class CrowdinClient:
         )
 
     @property
+    def teams(self) -> api_resources.TeamsResource:
+        if not self._is_enterprise_platform:
+            raise CrowdinException(detail="Not implemented for the base API")
+
+        return api_resources.TeamsResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
     def translation_memory(self) -> api_resources.TranslationMemoryResource:
         return api_resources.TranslationMemoryResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
