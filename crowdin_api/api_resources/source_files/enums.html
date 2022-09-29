@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>crowdin_api.api_resources.source_files.enums API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>crowdin_api.api_resources.source_files.enums</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.enums.BranchPatchPath"><code class="flex name class">
+<span>class <span class="ident">BranchPatchPath</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.enums.BranchPatchPath.EXPORT_PATTERN"><code class="name">var <span class="ident">EXPORT_PATTERN</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.BranchPatchPath.NAME"><code class="name">var <span class="ident">NAME</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.BranchPatchPath.PRIORITY"><code class="name">var <span class="ident">PRIORITY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.BranchPatchPath.TITLE"><code class="name">var <span class="ident">TITLE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.DirectoryPatchPath"><code class="flex name class">
+<span>class <span class="ident">DirectoryPatchPath</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.BRANCH_ID"><code class="name">var <span class="ident">BRANCH_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.DIRECTORY_ID"><code class="name">var <span class="ident">DIRECTORY_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.EXPORT_PATTERN"><code class="name">var <span class="ident">EXPORT_PATTERN</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.NAME"><code class="name">var <span class="ident">NAME</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.PRIORITY"><code class="name">var <span class="ident">PRIORITY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.TITLE"><code class="name">var <span class="ident">TITLE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.EscapeQuotes"><code class="flex name class">
+<span>class <span class="ident">EscapeQuotes</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.enums.EscapeQuotes.ONE"><code class="name">var <span class="ident">ONE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.EscapeQuotes.THREE"><code class="name">var <span class="ident">THREE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.EscapeQuotes.TWO"><code class="name">var <span class="ident">TWO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.EscapeQuotes.ZERO"><code class="name">var <span class="ident">ZERO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FilePatchPath"><code class="flex name class">
+<span>class <span class="ident">FilePatchPath</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.enums.FilePatchPath.ATTACH_LABEL_IDS"><code class="name">var <span class="ident">ATTACH_LABEL_IDS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FilePatchPath.BRANCH_ID"><code class="name">var <span class="ident">BRANCH_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FilePatchPath.DETACH_LABEL_IDS"><code class="name">var <span class="ident">DETACH_LABEL_IDS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FilePatchPath.DIRECTORY_ID"><code class="name">var <span class="ident">DIRECTORY_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FilePatchPath.EXCLUDED_TARGET_LANGUAGES"><code class="name">var <span class="ident">EXCLUDED_TARGET_LANGUAGES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FilePatchPath.EXPORT_OPTIONS_ESCAPE_QUOTES"><code class="name">var <span class="ident">EXPORT_OPTIONS_ESCAPE_QUOTES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FilePatchPath.EXPORT_OPTIONS_EXPORT_PATTERN"><code class="name">var <span class="ident">EXPORT_OPTIONS_EXPORT_PATTERN</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FilePatchPath.NAME"><code class="name">var <span class="ident">NAME</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FilePatchPath.PRIORITY"><code class="name">var <span class="ident">PRIORITY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FilePatchPath.TITLE"><code class="name">var <span class="ident">TITLE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType"><code class="flex name class">
+<span>class <span class="ident">FileType</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.ANDROID"><code class="name">var <span class="ident">ANDROID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.AUTO"><code class="name">var <span class="ident">AUTO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.CHROME"><code class="name">var <span class="ident">CHROME</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.CSV"><code class="name">var <span class="ident">CSV</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.DKLANG"><code class="name">var <span class="ident">DKLANG</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.DOCX"><code class="name">var <span class="ident">DOCX</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.DTD"><code class="name">var <span class="ident">DTD</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.FLEX"><code class="name">var <span class="ident">FLEX</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.FLSNP"><code class="name">var <span class="ident">FLSNP</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.FM_HTML"><code class="name">var <span class="ident">FM_HTML</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.FM_MD"><code class="name">var <span class="ident">FM_MD</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.GETTEXT"><code class="name">var <span class="ident">GETTEXT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.HAML"><code class="name">var <span class="ident">HAML</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.HTML"><code class="name">var <span class="ident">HTML</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.INI"><code class="name">var <span class="ident">INI</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.JOOMLA"><code class="name">var <span class="ident">JOOMLA</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.JSON"><code class="name">var <span class="ident">JSON</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.MACOSX"><code class="name">var <span class="ident">MACOSX</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.MD"><code class="name">var <span class="ident">MD</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.MEDIAWIKI"><code class="name">var <span class="ident">MEDIAWIKI</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.NSH"><code class="name">var <span class="ident">NSH</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.PHP"><code class="name">var <span class="ident">PHP</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.PROPERTIES"><code class="name">var <span class="ident">PROPERTIES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.QTTS"><code class="name">var <span class="ident">QTTS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.RC"><code class="name">var <span class="ident">RC</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.RESJSON"><code class="name">var <span class="ident">RESJSON</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.RESW"><code class="name">var <span class="ident">RESW</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.RESX"><code class="name">var <span class="ident">RESX</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.SBV"><code class="name">var <span class="ident">SBV</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.SRT"><code class="name">var <span class="ident">SRT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.TXT"><code class="name">var <span class="ident">TXT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.VTT"><code class="name">var <span class="ident">VTT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.WXL"><code class="name">var <span class="ident">WXL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.XLIFF"><code class="name">var <span class="ident">XLIFF</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.XML"><code class="name">var <span class="ident">XML</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileType.YAML"><code class="name">var <span class="ident">YAML</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileUpdateOption"><code class="flex name class">
+<span>class <span class="ident">FileUpdateOption</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.enums.FileUpdateOption.CLEAR_TRANSLATIONS_AND_APPROVALS"><code class="name">var <span class="ident">CLEAR_TRANSLATIONS_AND_APPROVALS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileUpdateOption.KEEP_TRANSLATIONS"><code class="name">var <span class="ident">KEEP_TRANSLATIONS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.FileUpdateOption.KEEP_TRANSLATIONS_AND_APPROVALS"><code class="name">var <span class="ident">KEEP_TRANSLATIONS_AND_APPROVALS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.Priority"><code class="flex name class">
+<span>class <span class="ident">Priority</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.enums.Priority.HIGH"><code class="name">var <span class="ident">HIGH</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.Priority.LOW"><code class="name">var <span class="ident">LOW</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.enums.Priority.NORMAL"><code class="name">var <span class="ident">NORMAL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="crowdin_api.api_resources.source_files" href="index.html">crowdin_api.api_resources.source_files</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.enums.BranchPatchPath" href="#crowdin_api.api_resources.source_files.enums.BranchPatchPath">BranchPatchPath</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.enums.BranchPatchPath.EXPORT_PATTERN" href="#crowdin_api.api_resources.source_files.enums.BranchPatchPath.EXPORT_PATTERN">EXPORT_PATTERN</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.BranchPatchPath.NAME" href="#crowdin_api.api_resources.source_files.enums.BranchPatchPath.NAME">NAME</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.BranchPatchPath.PRIORITY" href="#crowdin_api.api_resources.source_files.enums.BranchPatchPath.PRIORITY">PRIORITY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.BranchPatchPath.TITLE" href="#crowdin_api.api_resources.source_files.enums.BranchPatchPath.TITLE">TITLE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.enums.DirectoryPatchPath" href="#crowdin_api.api_resources.source_files.enums.DirectoryPatchPath">DirectoryPatchPath</a></code></h4>
+<ul class="two-column">
+<li><code><a title="crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.BRANCH_ID" href="#crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.BRANCH_ID">BRANCH_ID</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.DIRECTORY_ID" href="#crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.DIRECTORY_ID">DIRECTORY_ID</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.EXPORT_PATTERN" href="#crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.EXPORT_PATTERN">EXPORT_PATTERN</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.NAME" href="#crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.NAME">NAME</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.PRIORITY" href="#crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.PRIORITY">PRIORITY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.TITLE" href="#crowdin_api.api_resources.source_files.enums.DirectoryPatchPath.TITLE">TITLE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.enums.EscapeQuotes" href="#crowdin_api.api_resources.source_files.enums.EscapeQuotes">EscapeQuotes</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.enums.EscapeQuotes.ONE" href="#crowdin_api.api_resources.source_files.enums.EscapeQuotes.ONE">ONE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.EscapeQuotes.THREE" href="#crowdin_api.api_resources.source_files.enums.EscapeQuotes.THREE">THREE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.EscapeQuotes.TWO" href="#crowdin_api.api_resources.source_files.enums.EscapeQuotes.TWO">TWO</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.EscapeQuotes.ZERO" href="#crowdin_api.api_resources.source_files.enums.EscapeQuotes.ZERO">ZERO</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.enums.FilePatchPath" href="#crowdin_api.api_resources.source_files.enums.FilePatchPath">FilePatchPath</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FilePatchPath.ATTACH_LABEL_IDS" href="#crowdin_api.api_resources.source_files.enums.FilePatchPath.ATTACH_LABEL_IDS">ATTACH_LABEL_IDS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FilePatchPath.BRANCH_ID" href="#crowdin_api.api_resources.source_files.enums.FilePatchPath.BRANCH_ID">BRANCH_ID</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FilePatchPath.DETACH_LABEL_IDS" href="#crowdin_api.api_resources.source_files.enums.FilePatchPath.DETACH_LABEL_IDS">DETACH_LABEL_IDS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FilePatchPath.DIRECTORY_ID" href="#crowdin_api.api_resources.source_files.enums.FilePatchPath.DIRECTORY_ID">DIRECTORY_ID</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FilePatchPath.EXCLUDED_TARGET_LANGUAGES" href="#crowdin_api.api_resources.source_files.enums.FilePatchPath.EXCLUDED_TARGET_LANGUAGES">EXCLUDED_TARGET_LANGUAGES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FilePatchPath.EXPORT_OPTIONS_ESCAPE_QUOTES" href="#crowdin_api.api_resources.source_files.enums.FilePatchPath.EXPORT_OPTIONS_ESCAPE_QUOTES">EXPORT_OPTIONS_ESCAPE_QUOTES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FilePatchPath.EXPORT_OPTIONS_EXPORT_PATTERN" href="#crowdin_api.api_resources.source_files.enums.FilePatchPath.EXPORT_OPTIONS_EXPORT_PATTERN">EXPORT_OPTIONS_EXPORT_PATTERN</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FilePatchPath.NAME" href="#crowdin_api.api_resources.source_files.enums.FilePatchPath.NAME">NAME</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FilePatchPath.PRIORITY" href="#crowdin_api.api_resources.source_files.enums.FilePatchPath.PRIORITY">PRIORITY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FilePatchPath.TITLE" href="#crowdin_api.api_resources.source_files.enums.FilePatchPath.TITLE">TITLE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.enums.FileType" href="#crowdin_api.api_resources.source_files.enums.FileType">FileType</a></code></h4>
+<ul class="two-column">
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.ANDROID" href="#crowdin_api.api_resources.source_files.enums.FileType.ANDROID">ANDROID</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.AUTO" href="#crowdin_api.api_resources.source_files.enums.FileType.AUTO">AUTO</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.CHROME" href="#crowdin_api.api_resources.source_files.enums.FileType.CHROME">CHROME</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.CSV" href="#crowdin_api.api_resources.source_files.enums.FileType.CSV">CSV</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.DKLANG" href="#crowdin_api.api_resources.source_files.enums.FileType.DKLANG">DKLANG</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.DOCX" href="#crowdin_api.api_resources.source_files.enums.FileType.DOCX">DOCX</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.DTD" href="#crowdin_api.api_resources.source_files.enums.FileType.DTD">DTD</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.FLEX" href="#crowdin_api.api_resources.source_files.enums.FileType.FLEX">FLEX</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.FLSNP" href="#crowdin_api.api_resources.source_files.enums.FileType.FLSNP">FLSNP</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.FM_HTML" href="#crowdin_api.api_resources.source_files.enums.FileType.FM_HTML">FM_HTML</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.FM_MD" href="#crowdin_api.api_resources.source_files.enums.FileType.FM_MD">FM_MD</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.GETTEXT" href="#crowdin_api.api_resources.source_files.enums.FileType.GETTEXT">GETTEXT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.HAML" href="#crowdin_api.api_resources.source_files.enums.FileType.HAML">HAML</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.HTML" href="#crowdin_api.api_resources.source_files.enums.FileType.HTML">HTML</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.INI" href="#crowdin_api.api_resources.source_files.enums.FileType.INI">INI</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.JOOMLA" href="#crowdin_api.api_resources.source_files.enums.FileType.JOOMLA">JOOMLA</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.JSON" href="#crowdin_api.api_resources.source_files.enums.FileType.JSON">JSON</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.MACOSX" href="#crowdin_api.api_resources.source_files.enums.FileType.MACOSX">MACOSX</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.MD" href="#crowdin_api.api_resources.source_files.enums.FileType.MD">MD</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.MEDIAWIKI" href="#crowdin_api.api_resources.source_files.enums.FileType.MEDIAWIKI">MEDIAWIKI</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.NSH" href="#crowdin_api.api_resources.source_files.enums.FileType.NSH">NSH</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.PHP" href="#crowdin_api.api_resources.source_files.enums.FileType.PHP">PHP</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.PROPERTIES" href="#crowdin_api.api_resources.source_files.enums.FileType.PROPERTIES">PROPERTIES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.QTTS" href="#crowdin_api.api_resources.source_files.enums.FileType.QTTS">QTTS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.RC" href="#crowdin_api.api_resources.source_files.enums.FileType.RC">RC</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.RESJSON" href="#crowdin_api.api_resources.source_files.enums.FileType.RESJSON">RESJSON</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.RESW" href="#crowdin_api.api_resources.source_files.enums.FileType.RESW">RESW</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.RESX" href="#crowdin_api.api_resources.source_files.enums.FileType.RESX">RESX</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.SBV" href="#crowdin_api.api_resources.source_files.enums.FileType.SBV">SBV</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.SRT" href="#crowdin_api.api_resources.source_files.enums.FileType.SRT">SRT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.TXT" href="#crowdin_api.api_resources.source_files.enums.FileType.TXT">TXT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.VTT" href="#crowdin_api.api_resources.source_files.enums.FileType.VTT">VTT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.WXL" href="#crowdin_api.api_resources.source_files.enums.FileType.WXL">WXL</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.XLIFF" href="#crowdin_api.api_resources.source_files.enums.FileType.XLIFF">XLIFF</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.XML" href="#crowdin_api.api_resources.source_files.enums.FileType.XML">XML</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileType.YAML" href="#crowdin_api.api_resources.source_files.enums.FileType.YAML">YAML</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.enums.FileUpdateOption" href="#crowdin_api.api_resources.source_files.enums.FileUpdateOption">FileUpdateOption</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileUpdateOption.CLEAR_TRANSLATIONS_AND_APPROVALS" href="#crowdin_api.api_resources.source_files.enums.FileUpdateOption.CLEAR_TRANSLATIONS_AND_APPROVALS">CLEAR_TRANSLATIONS_AND_APPROVALS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileUpdateOption.KEEP_TRANSLATIONS" href="#crowdin_api.api_resources.source_files.enums.FileUpdateOption.KEEP_TRANSLATIONS">KEEP_TRANSLATIONS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.FileUpdateOption.KEEP_TRANSLATIONS_AND_APPROVALS" href="#crowdin_api.api_resources.source_files.enums.FileUpdateOption.KEEP_TRANSLATIONS_AND_APPROVALS">KEEP_TRANSLATIONS_AND_APPROVALS</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.enums.Priority" href="#crowdin_api.api_resources.source_files.enums.Priority">Priority</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.enums.Priority.HIGH" href="#crowdin_api.api_resources.source_files.enums.Priority.HIGH">HIGH</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.Priority.LOW" href="#crowdin_api.api_resources.source_files.enums.Priority.LOW">LOW</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.enums.Priority.NORMAL" href="#crowdin_api.api_resources.source_files.enums.Priority.NORMAL">NORMAL</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

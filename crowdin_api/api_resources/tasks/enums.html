@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>crowdin_api.api_resources.tasks.enums API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>crowdin_api.api_resources.tasks.enums</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType"><code class="flex name class">
+<span>class <span class="ident">CrowdinGeneralTaskType</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType.PROOFREAD"><code class="name">var <span class="ident">PROOFREAD</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType.TRANSLATE"><code class="name">var <span class="ident">TRANSLATE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus"><code class="flex name class">
+<span>class <span class="ident">CrowdinTaskStatus</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus.CLOSED"><code class="name">var <span class="ident">CLOSED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus.DONE"><code class="name">var <span class="ident">DONE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus.IN_PROGRESS"><code class="name">var <span class="ident">IN_PROGRESS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus.TODO"><code class="name">var <span class="ident">TODO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.CrowdinTaskType"><code class="flex name class">
+<span>class <span class="ident">CrowdinTaskType</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.CrowdinTaskType.PROOFREAD"><code class="name">var <span class="ident">PROOFREAD</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.CrowdinTaskType.PROOFREAD_BY_VENDOR"><code class="name">var <span class="ident">PROOFREAD_BY_VENDOR</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.CrowdinTaskType.TRANSLATE"><code class="name">var <span class="ident">TRANSLATE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.CrowdinTaskType.TRANSLATE_BY_VENDOR"><code class="name">var <span class="ident">TRANSLATE_BY_VENDOR</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskExpertise"><code class="flex name class">
+<span>class <span class="ident">GengoCrowdinTaskExpertise</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskExpertise.PRO"><code class="name">var <span class="ident">PRO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskExpertise.STANDARD"><code class="name">var <span class="ident">STANDARD</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose"><code class="flex name class">
+<span>class <span class="ident">GengoCrowdinTaskPurpose</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.APP_OR_WEB_LOCALIZATION"><code class="name">var <span class="ident">APP_OR_WEB_LOCALIZATION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.BUSINESS"><code class="name">var <span class="ident">BUSINESS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.MEDIA_CONTENT"><code class="name">var <span class="ident">MEDIA_CONTENT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.ONLINE_CONTENT"><code class="name">var <span class="ident">ONLINE_CONTENT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.OTHER"><code class="name">var <span class="ident">OTHER</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.PERSONAL_USE"><code class="name">var <span class="ident">PERSONAL_USE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.SEMI_TECHNICAL"><code class="name">var <span class="ident">SEMI_TECHNICAL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.STANDARD"><code class="name">var <span class="ident">STANDARD</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone"><code class="flex name class">
+<span>class <span class="ident">GengoCrowdinTaskTone</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.BUSINESS"><code class="name">var <span class="ident">BUSINESS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.EMPTY"><code class="name">var <span class="ident">EMPTY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.FORMAL"><code class="name">var <span class="ident">FORMAL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.FRIENDLY"><code class="name">var <span class="ident">FRIENDLY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.INFORMAL"><code class="name">var <span class="ident">INFORMAL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.OTHER"><code class="name">var <span class="ident">OTHER</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskType"><code class="flex name class">
+<span>class <span class="ident">GengoCrowdinTaskType</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskType.TRANSLATE_BY_VENDOR"><code class="name">var <span class="ident">TRANSLATE_BY_VENDOR</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise"><code class="flex name class">
+<span>class <span class="ident">OhtCrowdinTaskExpertise</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.AD_WORDS_BANNERS"><code class="name">var <span class="ident">AD_WORDS_BANNERS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.AUTOMOTIVE_AEROSPACE"><code class="name">var <span class="ident">AUTOMOTIVE_AEROSPACE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.BUSINESS_FINANCE"><code class="name">var <span class="ident">BUSINESS_FINANCE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.CERTIFICATES_TRANSLATION"><code class="name">var <span class="ident">CERTIFICATES_TRANSLATION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.CV"><code class="name">var <span class="ident">CV</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.FOREX_CRYPTO"><code class="name">var <span class="ident">FOREX_CRYPTO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.GAMING_VIDEO_GAMES"><code class="name">var <span class="ident">GAMING_VIDEO_GAMES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.LEGAL_CERTIFICATE"><code class="name">var <span class="ident">LEGAL_CERTIFICATE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.MARKETING_CONSUMER_MEDIA"><code class="name">var <span class="ident">MARKETING_CONSUMER_MEDIA</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.MEDICAL"><code class="name">var <span class="ident">MEDICAL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.MOBILE_APPLICATIONS"><code class="name">var <span class="ident">MOBILE_APPLICATIONS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.PATENTS"><code class="name">var <span class="ident">PATENTS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.SCIENTIFIC"><code class="name">var <span class="ident">SCIENTIFIC</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.SCIENTIFIC_ACADEMIC"><code class="name">var <span class="ident">SCIENTIFIC_ACADEMIC</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.SOFTWARE_IT"><code class="name">var <span class="ident">SOFTWARE_IT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.STANDARD"><code class="name">var <span class="ident">STANDARD</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.TECHNICAL_ENGINEERING"><code class="name">var <span class="ident">TECHNICAL_ENGINEERING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.TOURISM"><code class="name">var <span class="ident">TOURISM</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.TRAINING_EMPLOYEE_HANDBOOKS"><code class="name">var <span class="ident">TRAINING_EMPLOYEE_HANDBOOKS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskType"><code class="flex name class">
+<span>class <span class="ident">OhtCrowdinTaskType</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskType.PROOFREAD_BY_VENDOR"><code class="name">var <span class="ident">PROOFREAD_BY_VENDOR</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskType.TRANSLATE_BY_VENDOR"><code class="name">var <span class="ident">TRANSLATE_BY_VENDOR</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath"><code class="flex name class">
+<span>class <span class="ident">TaskOperationPatchPath</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.ASSIGNEES"><code class="name">var <span class="ident">ASSIGNEES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.DATE_FROM"><code class="name">var <span class="ident">DATE_FROM</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.DATE_TO"><code class="name">var <span class="ident">DATE_TO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.DEADLINE"><code class="name">var <span class="ident">DEADLINE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.DESCRIPTION"><code class="name">var <span class="ident">DESCRIPTION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.FILE_IDS"><code class="name">var <span class="ident">FILE_IDS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.LABEL_IDS"><code class="name">var <span class="ident">LABEL_IDS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.SPLIT_FILES"><code class="name">var <span class="ident">SPLIT_FILES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.STATUS"><code class="name">var <span class="ident">STATUS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.TITLE"><code class="name">var <span class="ident">TITLE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskExpertise"><code class="flex name class">
+<span>class <span class="ident">TranslatedCrowdinTaskExpertise</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskExpertise.ECONOMY"><code class="name">var <span class="ident">ECONOMY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskExpertise.PREMIUM"><code class="name">var <span class="ident">PREMIUM</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskExpertise.PROFESSIONAL"><code class="name">var <span class="ident">PROFESSIONAL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects"><code class="flex name class">
+<span>class <span class="ident">TranslatedCrowdinTaskSubjects</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ACCOUNTING_FINANCE"><code class="name">var <span class="ident">ACCOUNTING_FINANCE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.AEROSPACE_DEFENCE"><code class="name">var <span class="ident">AEROSPACE_DEFENCE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ARCHITECTURE"><code class="name">var <span class="ident">ARCHITECTURE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ART"><code class="name">var <span class="ident">ART</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.AUTOMOTIVE"><code class="name">var <span class="ident">AUTOMOTIVE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CERTIFICATES_DIPLOMAS_LICENCES_CV_ETC"><code class="name">var <span class="ident">CERTIFICATES_DIPLOMAS_LICENCES_CV_ETC</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CHEMICAL"><code class="name">var <span class="ident">CHEMICAL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CIVIL_ENGINEERING_CONSTRUCTION"><code class="name">var <span class="ident">CIVIL_ENGINEERING_CONSTRUCTION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CORPORATE_SOCIAL_RESPONSIBILITY"><code class="name">var <span class="ident">CORPORATE_SOCIAL_RESPONSIBILITY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.COSMETICS"><code class="name">var <span class="ident">COSMETICS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CULINARY"><code class="name">var <span class="ident">CULINARY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ELECTRONICS_ELECTRICAL_ENGINEERING"><code class="name">var <span class="ident">ELECTRONICS_ELECTRICAL_ENGINEERING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ENERGY_POWER_GENERATION_OIL_GAS"><code class="name">var <span class="ident">ENERGY_POWER_GENERATION_OIL_GAS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ENVIRONMENT"><code class="name">var <span class="ident">ENVIRONMENT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.FASHION"><code class="name">var <span class="ident">FASHION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.GAMES_VISEOGAMES_CASINO"><code class="name">var <span class="ident">GAMES_VISEOGAMES_CASINO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.GENERAL"><code class="name">var <span class="ident">GENERAL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.GENERAL_BUSINESS_COMMERCE"><code class="name">var <span class="ident">GENERAL_BUSINESS_COMMERCE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.HISTORY_ARCHAEOLOGY"><code class="name">var <span class="ident">HISTORY_ARCHAEOLOGY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.INFORMATION_TECHNOLOGY"><code class="name">var <span class="ident">INFORMATION_TECHNOLOGY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.INSURANCE"><code class="name">var <span class="ident">INSURANCE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.INTERNET_ECOMMERCE"><code class="name">var <span class="ident">INTERNET_ECOMMERCE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.LEGAL_DOCUMENTS_CONTRACTS"><code class="name">var <span class="ident">LEGAL_DOCUMENTS_CONTRACTS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.LITERARY_TRANSLATIONS"><code class="name">var <span class="ident">LITERARY_TRANSLATIONS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MARKETING_ADVERTISING_MATERIAL_PUBLIC_RELATIONS"><code class="name">var <span class="ident">MARKETING_ADVERTISING_MATERIAL_PUBLIC_RELATIONS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MATEMATICS_AND_PHYSICS"><code class="name">var <span class="ident">MATEMATICS_AND_PHYSICS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MECHANICAL_MANUFACTURING"><code class="name">var <span class="ident">MECHANICAL_MANUFACTURING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MEDIA_JOURNALISM_PUBLISHING"><code class="name">var <span class="ident">MEDIA_JOURNALISM_PUBLISHING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MEDICAL_PHARMACEUTICAL"><code class="name">var <span class="ident">MEDICAL_PHARMACEUTICAL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MUSIC"><code class="name">var <span class="ident">MUSIC</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.PRIVATE_CORRESPONDENCE_LETTERS"><code class="name">var <span class="ident">PRIVATE_CORRESPONDENCE_LETTERS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.RELIGION"><code class="name">var <span class="ident">RELIGION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.SCIENCE"><code class="name">var <span class="ident">SCIENCE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.SHIPPING_SAILING_MARITIME"><code class="name">var <span class="ident">SHIPPING_SAILING_MARITIME</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.SOCIAL_SCIENCE"><code class="name">var <span class="ident">SOCIAL_SCIENCE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.TELECOMMUNICATIONS"><code class="name">var <span class="ident">TELECOMMUNICATIONS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.TRAVEL_TOURISM"><code class="name">var <span class="ident">TRAVEL_TOURISM</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskType"><code class="flex name class">
+<span>class <span class="ident">TranslatedCrowdinTaskType</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskType.TRANSLATE_BY_VENDOR"><code class="name">var <span class="ident">TRANSLATE_BY_VENDOR</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.VendorTaskOperationPatchPath"><code class="flex name class">
+<span>class <span class="ident">VendorTaskOperationPatchPath</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.enums.VendorTaskOperationPatchPath.description"><code class="name">var <span class="ident">description</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.VendorTaskOperationPatchPath.status"><code class="name">var <span class="ident">status</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.enums.VendorTaskOperationPatchPath.title"><code class="name">var <span class="ident">title</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="crowdin_api.api_resources.tasks" href="index.html">crowdin_api.api_resources.tasks</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType" href="#crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType">CrowdinGeneralTaskType</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType.PROOFREAD" href="#crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType.PROOFREAD">PROOFREAD</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType.TRANSLATE" href="#crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType.TRANSLATE">TRANSLATE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus.CLOSED" href="#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus.CLOSED">CLOSED</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus.DONE" href="#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus.DONE">DONE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus.IN_PROGRESS" href="#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus.IN_PROGRESS">IN_PROGRESS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus.TODO" href="#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus.TODO">TODO</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskType" href="#crowdin_api.api_resources.tasks.enums.CrowdinTaskType">CrowdinTaskType</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskType.PROOFREAD" href="#crowdin_api.api_resources.tasks.enums.CrowdinTaskType.PROOFREAD">PROOFREAD</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskType.PROOFREAD_BY_VENDOR" href="#crowdin_api.api_resources.tasks.enums.CrowdinTaskType.PROOFREAD_BY_VENDOR">PROOFREAD_BY_VENDOR</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskType.TRANSLATE" href="#crowdin_api.api_resources.tasks.enums.CrowdinTaskType.TRANSLATE">TRANSLATE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskType.TRANSLATE_BY_VENDOR" href="#crowdin_api.api_resources.tasks.enums.CrowdinTaskType.TRANSLATE_BY_VENDOR">TRANSLATE_BY_VENDOR</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskExpertise" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskExpertise">GengoCrowdinTaskExpertise</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskExpertise.PRO" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskExpertise.PRO">PRO</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskExpertise.STANDARD" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskExpertise.STANDARD">STANDARD</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose">GengoCrowdinTaskPurpose</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.APP_OR_WEB_LOCALIZATION" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.APP_OR_WEB_LOCALIZATION">APP_OR_WEB_LOCALIZATION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.BUSINESS" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.BUSINESS">BUSINESS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.MEDIA_CONTENT" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.MEDIA_CONTENT">MEDIA_CONTENT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.ONLINE_CONTENT" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.ONLINE_CONTENT">ONLINE_CONTENT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.OTHER" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.OTHER">OTHER</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.PERSONAL_USE" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.PERSONAL_USE">PERSONAL_USE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.SEMI_TECHNICAL" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.SEMI_TECHNICAL">SEMI_TECHNICAL</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.STANDARD" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskPurpose.STANDARD">STANDARD</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone">GengoCrowdinTaskTone</a></code></h4>
+<ul class="two-column">
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.BUSINESS" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.BUSINESS">BUSINESS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.EMPTY" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.EMPTY">EMPTY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.FORMAL" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.FORMAL">FORMAL</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.FRIENDLY" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.FRIENDLY">FRIENDLY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.INFORMAL" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.INFORMAL">INFORMAL</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.OTHER" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskTone.OTHER">OTHER</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskType" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskType">GengoCrowdinTaskType</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskType.TRANSLATE_BY_VENDOR" href="#crowdin_api.api_resources.tasks.enums.GengoCrowdinTaskType.TRANSLATE_BY_VENDOR">TRANSLATE_BY_VENDOR</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise">OhtCrowdinTaskExpertise</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.AD_WORDS_BANNERS" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.AD_WORDS_BANNERS">AD_WORDS_BANNERS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.AUTOMOTIVE_AEROSPACE" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.AUTOMOTIVE_AEROSPACE">AUTOMOTIVE_AEROSPACE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.BUSINESS_FINANCE" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.BUSINESS_FINANCE">BUSINESS_FINANCE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.CERTIFICATES_TRANSLATION" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.CERTIFICATES_TRANSLATION">CERTIFICATES_TRANSLATION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.CV" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.CV">CV</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.FOREX_CRYPTO" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.FOREX_CRYPTO">FOREX_CRYPTO</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.GAMING_VIDEO_GAMES" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.GAMING_VIDEO_GAMES">GAMING_VIDEO_GAMES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.LEGAL_CERTIFICATE" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.LEGAL_CERTIFICATE">LEGAL_CERTIFICATE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.MARKETING_CONSUMER_MEDIA" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.MARKETING_CONSUMER_MEDIA">MARKETING_CONSUMER_MEDIA</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.MEDICAL" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.MEDICAL">MEDICAL</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.MOBILE_APPLICATIONS" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.MOBILE_APPLICATIONS">MOBILE_APPLICATIONS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.PATENTS" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.PATENTS">PATENTS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.SCIENTIFIC" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.SCIENTIFIC">SCIENTIFIC</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.SCIENTIFIC_ACADEMIC" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.SCIENTIFIC_ACADEMIC">SCIENTIFIC_ACADEMIC</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.SOFTWARE_IT" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.SOFTWARE_IT">SOFTWARE_IT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.STANDARD" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.STANDARD">STANDARD</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.TECHNICAL_ENGINEERING" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.TECHNICAL_ENGINEERING">TECHNICAL_ENGINEERING</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.TOURISM" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.TOURISM">TOURISM</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.TRAINING_EMPLOYEE_HANDBOOKS" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskExpertise.TRAINING_EMPLOYEE_HANDBOOKS">TRAINING_EMPLOYEE_HANDBOOKS</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskType" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskType">OhtCrowdinTaskType</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskType.PROOFREAD_BY_VENDOR" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskType.PROOFREAD_BY_VENDOR">PROOFREAD_BY_VENDOR</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskType.TRANSLATE_BY_VENDOR" href="#crowdin_api.api_resources.tasks.enums.OhtCrowdinTaskType.TRANSLATE_BY_VENDOR">TRANSLATE_BY_VENDOR</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath" href="#crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath">TaskOperationPatchPath</a></code></h4>
+<ul class="two-column">
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.ASSIGNEES" href="#crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.ASSIGNEES">ASSIGNEES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.DATE_FROM" href="#crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.DATE_FROM">DATE_FROM</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.DATE_TO" href="#crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.DATE_TO">DATE_TO</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.DEADLINE" href="#crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.DEADLINE">DEADLINE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.DESCRIPTION" href="#crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.DESCRIPTION">DESCRIPTION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.FILE_IDS" href="#crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.FILE_IDS">FILE_IDS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.LABEL_IDS" href="#crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.LABEL_IDS">LABEL_IDS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.SPLIT_FILES" href="#crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.SPLIT_FILES">SPLIT_FILES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.STATUS" href="#crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.STATUS">STATUS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.TITLE" href="#crowdin_api.api_resources.tasks.enums.TaskOperationPatchPath.TITLE">TITLE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskExpertise" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskExpertise">TranslatedCrowdinTaskExpertise</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskExpertise.ECONOMY" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskExpertise.ECONOMY">ECONOMY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskExpertise.PREMIUM" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskExpertise.PREMIUM">PREMIUM</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskExpertise.PROFESSIONAL" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskExpertise.PROFESSIONAL">PROFESSIONAL</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects">TranslatedCrowdinTaskSubjects</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ACCOUNTING_FINANCE" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ACCOUNTING_FINANCE">ACCOUNTING_FINANCE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.AEROSPACE_DEFENCE" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.AEROSPACE_DEFENCE">AEROSPACE_DEFENCE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ARCHITECTURE" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ARCHITECTURE">ARCHITECTURE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ART" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ART">ART</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.AUTOMOTIVE" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.AUTOMOTIVE">AUTOMOTIVE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CERTIFICATES_DIPLOMAS_LICENCES_CV_ETC" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CERTIFICATES_DIPLOMAS_LICENCES_CV_ETC">CERTIFICATES_DIPLOMAS_LICENCES_CV_ETC</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CHEMICAL" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CHEMICAL">CHEMICAL</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CIVIL_ENGINEERING_CONSTRUCTION" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CIVIL_ENGINEERING_CONSTRUCTION">CIVIL_ENGINEERING_CONSTRUCTION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CORPORATE_SOCIAL_RESPONSIBILITY" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CORPORATE_SOCIAL_RESPONSIBILITY">CORPORATE_SOCIAL_RESPONSIBILITY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.COSMETICS" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.COSMETICS">COSMETICS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CULINARY" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.CULINARY">CULINARY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ELECTRONICS_ELECTRICAL_ENGINEERING" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ELECTRONICS_ELECTRICAL_ENGINEERING">ELECTRONICS_ELECTRICAL_ENGINEERING</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ENERGY_POWER_GENERATION_OIL_GAS" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ENERGY_POWER_GENERATION_OIL_GAS">ENERGY_POWER_GENERATION_OIL_GAS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ENVIRONMENT" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.ENVIRONMENT">ENVIRONMENT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.FASHION" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.FASHION">FASHION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.GAMES_VISEOGAMES_CASINO" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.GAMES_VISEOGAMES_CASINO">GAMES_VISEOGAMES_CASINO</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.GENERAL" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.GENERAL">GENERAL</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.GENERAL_BUSINESS_COMMERCE" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.GENERAL_BUSINESS_COMMERCE">GENERAL_BUSINESS_COMMERCE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.HISTORY_ARCHAEOLOGY" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.HISTORY_ARCHAEOLOGY">HISTORY_ARCHAEOLOGY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.INFORMATION_TECHNOLOGY" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.INFORMATION_TECHNOLOGY">INFORMATION_TECHNOLOGY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.INSURANCE" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.INSURANCE">INSURANCE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.INTERNET_ECOMMERCE" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.INTERNET_ECOMMERCE">INTERNET_ECOMMERCE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.LEGAL_DOCUMENTS_CONTRACTS" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.LEGAL_DOCUMENTS_CONTRACTS">LEGAL_DOCUMENTS_CONTRACTS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.LITERARY_TRANSLATIONS" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.LITERARY_TRANSLATIONS">LITERARY_TRANSLATIONS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MARKETING_ADVERTISING_MATERIAL_PUBLIC_RELATIONS" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MARKETING_ADVERTISING_MATERIAL_PUBLIC_RELATIONS">MARKETING_ADVERTISING_MATERIAL_PUBLIC_RELATIONS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MATEMATICS_AND_PHYSICS" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MATEMATICS_AND_PHYSICS">MATEMATICS_AND_PHYSICS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MECHANICAL_MANUFACTURING" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MECHANICAL_MANUFACTURING">MECHANICAL_MANUFACTURING</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MEDIA_JOURNALISM_PUBLISHING" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MEDIA_JOURNALISM_PUBLISHING">MEDIA_JOURNALISM_PUBLISHING</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MEDICAL_PHARMACEUTICAL" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MEDICAL_PHARMACEUTICAL">MEDICAL_PHARMACEUTICAL</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MUSIC" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.MUSIC">MUSIC</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.PRIVATE_CORRESPONDENCE_LETTERS" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.PRIVATE_CORRESPONDENCE_LETTERS">PRIVATE_CORRESPONDENCE_LETTERS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.RELIGION" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.RELIGION">RELIGION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.SCIENCE" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.SCIENCE">SCIENCE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.SHIPPING_SAILING_MARITIME" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.SHIPPING_SAILING_MARITIME">SHIPPING_SAILING_MARITIME</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.SOCIAL_SCIENCE" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.SOCIAL_SCIENCE">SOCIAL_SCIENCE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.TELECOMMUNICATIONS" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.TELECOMMUNICATIONS">TELECOMMUNICATIONS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.TRAVEL_TOURISM" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskSubjects.TRAVEL_TOURISM">TRAVEL_TOURISM</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskType" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskType">TranslatedCrowdinTaskType</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskType.TRANSLATE_BY_VENDOR" href="#crowdin_api.api_resources.tasks.enums.TranslatedCrowdinTaskType.TRANSLATE_BY_VENDOR">TRANSLATE_BY_VENDOR</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.enums.VendorTaskOperationPatchPath" href="#crowdin_api.api_resources.tasks.enums.VendorTaskOperationPatchPath">VendorTaskOperationPatchPath</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.enums.VendorTaskOperationPatchPath.description" href="#crowdin_api.api_resources.tasks.enums.VendorTaskOperationPatchPath.description">description</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.VendorTaskOperationPatchPath.status" href="#crowdin_api.api_resources.tasks.enums.VendorTaskOperationPatchPath.status">status</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.enums.VendorTaskOperationPatchPath.title" href="#crowdin_api.api_resources.tasks.enums.VendorTaskOperationPatchPath.title">title</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
