@@ -1,16 +1,16 @@
-[<p align='center'><img src='https://support.crowdin.com/assets/logos/crowdin-dark-symbol.png' data-canonical-src='https://support.crowdin.com/assets/logos/crowdin-dark-symbol.png' width='200' height='200' align='center'/></p>](https://crowdin.com)
+[<p align='center'><img src='https://support.crowdin.com/assets/logos/crowdin-dark-symbol.png' data-canonical-src='https://support.crowdin.com/assets/logos/crowdin-dark-symbol.png' width='150' height='150' align='center'/></p>](https://crowdin.com)
 
-# Crowdin Python client
+# Crowdin Python client [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fcrowdin%2Fcrowdin-api-client-python&text=The%20Crowdin%20Python%20client%20is%20a%20lightweight%20interface%20to%20the%20Crowdin%20API)&nbsp;[![GitHub Repo stars](https://img.shields.io/github/stars/crowdin/crowdin-api-client-python?style=social&cacheSeconds=1800)](https://github.com/crowdin/crowdin-api-client-python/stargazers)
 
-The Crowdin Python client is a lightweight interface to the Crowdin API v2. It provides common services for making API requests.
+The Crowdin Python client is a lightweight interface to the Crowdin API. It provides common services for making API requests.
 
 Crowdin API is a full-featured RESTful API that helps you to integrate localization into your development process. The endpoints that we use allow you to easily make calls to retrieve information and to execute actions needed.
 
-For more about Crowdin API v2 see the documentation:
-- [Crowdin](https://support.crowdin.com/api/v2/)
-- [Crowdin Enterprise](https://support.crowdin.com/enterprise/api/)
+<div align="center">
 
-## Status
+[**`API Client Docs`**](https://crowdin.github.io/crowdin-api-client-python/) &nbsp;|&nbsp;
+[**`Crowdin API`**](https://developer.crowdin.com/api/v2/) &nbsp;|&nbsp;
+[**`Crowdin Enterprise API`**](https://developer.crowdin.com/enterprise/api/v2/)
 
 [![PyPI](https://img.shields.io/pypi/v/crowdin-api-client?cacheSeconds=3600)](https://pypi.org/project/crowdin-api-client/)
 [![Downloads](https://pepy.tech/badge/crowdin-api-client)](https://pepy.tech/project/crowdin-api-client)
@@ -19,6 +19,8 @@ For more about Crowdin API v2 see the documentation:
 [![codecov](https://codecov.io/gh/crowdin/crowdin-api-client-python/branch/main/graph/badge.svg?token=sOUWIcNjWO)](https://codecov.io/gh/crowdin/crowdin-api-client-python)
 [![GitHub issues](https://img.shields.io/github/issues/crowdin/crowdin-api-client-python?cacheSeconds=3600)](https://github.com/crowdin/crowdin-api-client-python/issues)
 [![License](https://img.shields.io/github/license/crowdin/crowdin-api-client-python?cacheSeconds=3600)](https://github.com/crowdin/crowdin-api-client-python/blob/master/LICENSE)
+
+</div>
 
 ## Table of Contents
 * [Installation](#installation)

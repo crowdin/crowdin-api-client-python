@@ -7,11 +7,10 @@ from crowdin_api.api_resources.tasks.enums import (
 )
 from crowdin_api.typing import TypedDict
 
-CrowdinTaskAssignee = TypedDict(
-    "CrowdinTaskAssignee",
-    {"id": int, "wordsCount": int},
-    total=False,
-)
+
+class CrowdinTaskAssignee(TypedDict, total=False):
+    id: int
+    wordsCount: int
 
 
 class TaskPatchRequest(TypedDict):

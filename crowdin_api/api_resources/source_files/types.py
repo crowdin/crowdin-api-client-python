@@ -22,7 +22,9 @@ class DirectoryPatchRequest(TypedDict):
     path: DirectoryPatchPath
 
 
-Scheme = TypedDict("Scheme", {"identifier": int, "sourcePhrase": int}, total=False)
+class Scheme(TypedDict, total=False):
+    identifier: int
+    sourcePhrase: int
 
 
 class SpreadsheetImportOptions(TypedDict):

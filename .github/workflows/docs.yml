@@ -1,0 +1,32 @@
+name: Documentation
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build_and_deploy_docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r ./requirements/requirements-doc.txt
+
+      - name: Generate the docs locally in CI
+        run:  pdoc ./crowdin_api/ --html --config show_source_code=False --force --output-dir docs
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: gh-pages
+          folder: docs/crowdin_api
