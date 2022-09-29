@@ -65,6 +65,26 @@ Before sending your pull requests, make sure you followed the list below:
 - Ensure that there are unit tests for your code.
 - Run unit tests.
 
+#### Docs
+
+##### Generate
+
+To generate the docs run the following command:
+
+```console
+pdoc ./crowdin_api/ --html --config show_source_code=False --force --output-dir docs
+```
+
+##### Preview
+
+To preview the docs locally, run the following command:
+
+```console
+pdoc --http : docs/*
+```
+
+Open `http://127.0.0.1:8080` in browser
+
 #### Philosophy of code contribution
 
 - Include unit tests when you contribute new features, as they help to a) prove that your code works correctly, and b) guard against future breaking changes to lower the maintenance cost.
