@@ -20,6 +20,7 @@ from .translation_memory.resource import TranslationMemoryResource
 from .translation_status.resource import TranslationStatusResource
 from .translations.resource import TranslationsResource
 from .users.resource import UsersResource, EnterpriseUsersResource
+from .vendors.resource import VendorsResource
 from .webhooks.resource import WebhooksResource
 
 __all__ = [
@@ -47,5 +48,6 @@ __all__ = [
     "TranslationsResource",
     "UsersResource",
     "EnterpriseUsersResource",
+    "VendorsResource",
     "WebhooksResource",
 ]

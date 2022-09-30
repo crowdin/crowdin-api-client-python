@@ -8,7 +8,7 @@ from crowdin_api.api_resources.teams.enums import TeamPatchPath
 from crowdin_api.requester import APIRequester
 
 
-class TestBundlesResource:
+class TestTeamsResources:
     resource_class = TeamsResource
 
     def get_resource(self, base_absolut_url):
