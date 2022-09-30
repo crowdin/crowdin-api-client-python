@@ -160,6 +160,7 @@ class TestCrowdinClientEnterprise:
             ("translation_status", "TranslationStatusResource"),
             ("translations", "TranslationsResource"),
             ("users", "EnterpriseUsersResource"),
+            ("vendors", "VendorsResource"),
             ("webhooks", "WebhooksResource"),
         ),
     )
