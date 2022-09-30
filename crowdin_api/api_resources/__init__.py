@@ -21,6 +21,7 @@ from .translation_status.resource import TranslationStatusResource
 from .translations.resource import TranslationsResource
 from .users.resource import UsersResource, EnterpriseUsersResource
 from .webhooks.resource import WebhooksResource
+from .workflows.resource import WorkflowsResource
 
 __all__ = [
     "BundlesResource",
@@ -48,4 +49,5 @@ __all__ = [
     "UsersResource",
     "EnterpriseUsersResource",
     "WebhooksResource",
+    "WorkflowsResource",
 ]

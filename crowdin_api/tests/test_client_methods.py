@@ -16,3 +16,10 @@ def test_teams_without_organization():
 
     with pytest.raises(CrowdinException, match="Not implemented for the base API"):
         client.teams.list_teams()
+
+
+def test_workflows_without_organization():
+    client = CrowdinClient()
+
+    with pytest.raises(CrowdinException, match="Not implemented for the base API"):
+        client.workflows.list_workflow_templates()

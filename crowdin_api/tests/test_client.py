@@ -161,6 +161,7 @@ class TestCrowdinClientEnterprise:
             ("translations", "TranslationsResource"),
             ("users", "EnterpriseUsersResource"),
             ("webhooks", "WebhooksResource"),
+            ("workflows", "WorkflowsResource"),
         ),
     )
     @mock.patch(
