@@ -22,6 +22,7 @@ from .translations.resource import TranslationsResource
 from .users.resource import UsersResource, EnterpriseUsersResource
 from .vendors.resource import VendorsResource
 from .webhooks.resource import WebhooksResource
+from .workflows.resource import WorkflowsResource
 
 __all__ = [
     "BundlesResource",
@@ -50,4 +51,5 @@ __all__ = [
     "EnterpriseUsersResource",
     "VendorsResource",
     "WebhooksResource",
+    "WorkflowsResource",
 ]
