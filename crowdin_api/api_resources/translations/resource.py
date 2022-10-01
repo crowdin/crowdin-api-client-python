@@ -261,7 +261,7 @@ class TranslationsResource(BaseResource):
             },
         )
 
-    def download_project_translations(self, projectId: int, buildId: str):
+    def download_project_translations(self, projectId: int, buildId: int):
         """
         Download Project Translations.
 
