@@ -24,7 +24,7 @@ class TranslationsResource(BaseResource):
     https://developer.crowdin.com/api/v2/#tag/Translations
     """
 
-    def get_builds_path(self, projectId: int, buildId: Optional[str] = None):
+    def get_builds_path(self, projectId: int, buildId: Optional[int] = None):
         if buildId:
             return f"projects/{projectId}/translations/builds/{buildId}"
 
@@ -261,7 +261,7 @@ class TranslationsResource(BaseResource):
             },
         )
 
-    def download_project_translations(self, projectId: int, buildId: str):
+    def download_project_translations(self, projectId: int, buildId: int):
         """
         Download Project Translations.
 
@@ -274,7 +274,7 @@ class TranslationsResource(BaseResource):
             path=f"{self.get_builds_path(projectId=projectId, buildId=buildId)}/download",
         )
 
-    def check_project_build_status(self, projectId: int, buildId: str):
+    def check_project_build_status(self, projectId: int, buildId: int):
         """
         Check Project Build Status.
 
@@ -287,7 +287,7 @@ class TranslationsResource(BaseResource):
             path=self.get_builds_path(projectId=projectId, buildId=buildId),
         )
 
-    def cancel_build(self, projectId: int, buildId: str):
+    def cancel_build(self, projectId: int, buildId: int):
         """
         Cancel Build.
 
