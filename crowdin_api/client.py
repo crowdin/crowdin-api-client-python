@@ -10,20 +10,38 @@ from crowdin_api.requester import APIRequester
 class CrowdinClient:
     API_REQUESTER_CLASS: Type[APIRequester] = APIRequester
 
-    TIMEOUT: int = 60
-    RETRY_DELAY: Union[int, float] = 0.1  # 100ms
-    MAX_RETRIES: int = 5
-    HTTP_PROTOCOL: str = "https"
-    BASE_URL: str = "api.crowdin.com/api/v2/"
-
+    TIMEOUT = 60
+    RETRY_DELAY = 0.1  # 100ms
+    MAX_RETRIES = 5
+    HTTP_PROTOCOL = "https"
+    BASE_URL = "api.crowdin.com/api/v2/"
     HEADERS = {}
-
-    ORGANIZATION: Optional[str] = None
-    TOKEN = None
     USER_AGENT = "crowdin-api-client-python"
     PAGE_SIZE = 25
+    HEADERS = {}
 
-    def __init__(self):
+    def __init__(self, 
+                 organization: str|None =None,
+                 token: str|None=None,
+                 base_url: str=BASE_URL,
+                 user_agent: str=USER_AGENT,
+                 page_size: int=PAGE_SIZE,
+                 timeout: int=TIMEOUT,
+                 retry_delay: int|float=RETRY_DELAY,
+                 max_retries: int=MAX_RETRIES,
+                 http_protocol: str=HTTP_PROTOCOL,
+                 headers: dict=HEADERS
+                 ):
+        self.ORGANIZATION=organization
+        self.TOKEN=token
+        self.BASE_URL=base_url
+        self.USER_AGENT=user_agent
+        self.PAGE_SIZE=page_size
+        self.TIMEOUT=timeout
+        self.RETRY_DELAY=retry_delay
+        self.MAX_RETRIES=max_retries
+        self.HTTP_PROTOCOL=http_protocol
+        self.HEADERS=headers
         self._api_requestor = None
 
         if self.ORGANIZATION is None:
