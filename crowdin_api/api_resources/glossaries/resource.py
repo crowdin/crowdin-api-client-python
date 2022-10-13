@@ -1,9 +1,18 @@
 from typing import Dict, Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
-from crowdin_api.api_resources.enums import ExportFormat
-from crowdin_api.api_resources.glossaries.enums import TermPartOfSpeech
-from crowdin_api.api_resources.glossaries.types import GlossaryPatchRequest, TermPatchRequest
+from crowdin_api.api_resources.glossaries.enums import (
+    TermPartOfSpeech,
+    TermStatus,
+    TermType,
+    TermGender,
+)
+from crowdin_api.api_resources.glossaries.types import (
+    GlossaryPatchRequest,
+    TermPatchRequest,
+    LanguagesDetails,
+    GlossarySchemaRequest,
+)
 
 
 class GlossariesResource(BaseResource):
@@ -107,7 +116,7 @@ class GlossariesResource(BaseResource):
 
         return f"glossaries/{glossaryId}/exports"
 
-    def export_glossary(self, glossaryId: int, format: Optional[ExportFormat] = None):
+    def export_glossary(self, glossaryId: int, data: Optional[GlossarySchemaRequest] = None):
         """
         Export Glossary.
 
@@ -117,7 +126,7 @@ class GlossariesResource(BaseResource):
 
         return self.requester.request(
             method="post",
-            request_data={"format": format},
+            request_data=data,
             path=self.get_glossary_export_path(glossaryId=glossaryId),
         )
 
@@ -201,8 +210,7 @@ class GlossariesResource(BaseResource):
         glossaryId: int,
         userId: Optional[int] = None,
         languageId: Optional[str] = None,
-        translationOfTermId: Optional[int] = None,
-        page: Optional[int] = None,
+        conceptId: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
     ):
@@ -216,10 +224,10 @@ class GlossariesResource(BaseResource):
         params = {
             "userId": userId,
             "languageId": languageId,
-            "translationOfTermId": translationOfTermId,
+            "conceptId": conceptId,
         }
 
-        params.update(self.get_page_params(page=page, offset=offset, limit=limit))
+        params.update(self.get_page_params(offset=offset, limit=limit))
 
         return self.requester.request(
             method="get",
@@ -234,7 +242,12 @@ class GlossariesResource(BaseResource):
         text: str,
         description: Optional[str] = None,
         partOfSpeech: Optional[TermPartOfSpeech] = None,
-        translationOfTermId: Optional[int] = None,
+        status: Optional[TermStatus] = None,
+        type: Optional[TermType] = None,
+        gender: Optional[TermGender] = None,
+        note: Optional[str] = None,
+        url: Optional[str] = None,
+        conceptId: Optional[int] = None,
     ):
         """
         Add Term.
@@ -251,7 +264,12 @@ class GlossariesResource(BaseResource):
                 "text": text,
                 "description": description,
                 "partOfSpeech": partOfSpeech,
-                "translationOfTermId": translationOfTermId,
+                "status": status,
+                "type": type,
+                "gender": gender,
+                "note": note,
+                "url": url,
+                "conceptId": conceptId
             },
         )
 
@@ -259,7 +277,7 @@ class GlossariesResource(BaseResource):
         self,
         glossaryId: int,
         languageId: Optional[str] = None,
-        translationOfTermId: Optional[int] = None,
+        conceptId: Optional[int] = None,
     ):
         """
         Clear Glossary.
@@ -273,7 +291,7 @@ class GlossariesResource(BaseResource):
             path=self.get_terms_path(glossaryId=glossaryId),
             params={
                 "languageId": languageId,
-                "translationOfTermId": translationOfTermId,
+                "conceptId": conceptId,
             },
         )
 
@@ -315,4 +333,86 @@ class GlossariesResource(BaseResource):
             method="patch",
             request_data=data,
             path=self.get_terms_path(glossaryId=glossaryId, termId=termId),
+        )
+
+    def get_concepts_path(self, glossaryId: int, conceptId: Optional[int] = None):
+        if conceptId is not None:
+            return f"glossaries/{glossaryId}/concepts/{conceptId}"
+
+        return f"glossaries/{glossaryId}/concepts"
+
+    def list_concepts(
+        self,
+        glossaryId: int,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None
+    ):
+        """
+        List Concepts.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.getMany
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_concepts_path(glossaryId=glossaryId),
+            params=self.get_page_params(offset=offset, limit=limit),
+        )
+
+    def get_concept(self, glossaryId: int, conceptId: int):
+        """
+        Get Concept.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_concepts_path(glossaryId=glossaryId, conceptId=conceptId),
+        )
+
+    def update_concept(
+        self,
+        glossaryId: int,
+        conceptId: int,
+        languagesDetails: Iterable[LanguagesDetails],
+        subject: Optional[str] = None,
+        definition: Optional[str] = None,
+        note: Optional[str] = None,
+        url: Optional[str] = None,
+        figure: Optional[str] = None,
+    ):
+        """
+        Get Concept.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.put
+        """
+
+        return self.requester.request(
+            method="put",
+            path=self.get_concepts_path(glossaryId=glossaryId, conceptId=conceptId),
+            request_data={
+                "languagesDetails": languagesDetails,
+                "subject": subject,
+                "definition": definition,
+                "note": note,
+                "url": url,
+                "figure": figure,
+            },
+        )
+
+    def delete_concept(self, glossaryId: int, conceptId: int):
+        """
+        Delete Concept.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.delete
+        """
+
+        return self.requester.request(
+            method="delete",
+            path=self.get_concepts_path(glossaryId=glossaryId, conceptId=conceptId),
         )
