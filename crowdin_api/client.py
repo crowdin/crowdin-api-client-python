@@ -14,6 +14,8 @@ class CrowdinClient:
     RETRY_DELAY = 0.1  # 100ms
     MAX_RETRIES = 5
     HTTP_PROTOCOL = "https"
+    TOKEN = None
+    ORGANIZATION = None
     BASE_URL = "api.crowdin.com/api/v2/"
     HEADERS = {}
     USER_AGENT = "crowdin-api-client-python"
@@ -23,25 +25,25 @@ class CrowdinClient:
     def __init__(self, 
                  organization: str|None =None,
                  token: str|None=None,
-                 base_url: str=BASE_URL,
-                 user_agent: str=USER_AGENT,
-                 page_size: int=PAGE_SIZE,
-                 timeout: int=TIMEOUT,
-                 retry_delay: int|float=RETRY_DELAY,
-                 max_retries: int=MAX_RETRIES,
-                 http_protocol: str=HTTP_PROTOCOL,
-                 headers: dict=HEADERS
+                 base_url: str|None=None,
+                 user_agent: str|None=None,
+                 page_size: int|None=None,
+                 timeout: int|None=None,
+                 retry_delay: int|float|None=None,
+                 max_retries: int|None=None,
+                 http_protocol: str|None=None,
+                 headers: dict|None=None
                  ):
-        self.ORGANIZATION=organization
-        self.TOKEN=token
-        self.BASE_URL=base_url
-        self.USER_AGENT=user_agent
-        self.PAGE_SIZE=page_size
-        self.TIMEOUT=timeout
-        self.RETRY_DELAY=retry_delay
-        self.MAX_RETRIES=max_retries
-        self.HTTP_PROTOCOL=http_protocol
-        self.HEADERS=headers
+        self.ORGANIZATION=organization or self.ORGANIZATION
+        self.TOKEN=token or self.TOKEN
+        self.BASE_URL=base_url or self.BASE_URL
+        self.USER_AGENT=user_agent or self.USER_AGENT
+        self.PAGE_SIZE=page_size or self.PAGE_SIZE
+        self.TIMEOUT=timeout or self.TIMEOUT
+        self.RETRY_DELAY=retry_delay or self.RETRY_DELAY
+        self.MAX_RETRIES=max_retries or self.MAX_RETRIES
+        self.HTTP_PROTOCOL=http_protocol or self.HTTP_PROTOCOL
+        self.HEADERS=headers or self.HEADERS
         self._api_requestor = None
 
         if self.ORGANIZATION is None:
