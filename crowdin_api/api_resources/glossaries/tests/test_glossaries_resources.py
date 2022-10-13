@@ -1,11 +1,16 @@
 from unittest import mock
 
 import pytest
-from crowdin_api.api_resources.enums import ExportFormat, PatchOperation
+from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.glossaries.enums import (
     GlossaryPatchPath,
     TermPartOfSpeech,
     TermPatchPath,
+    TermStatus,
+    TermType,
+    TermGender,
+    GlossaryFormat,
+    GlossaryExportFields,
 )
 from crowdin_api.api_resources.glossaries.resource import GlossariesResource
 from crowdin_api.requester import APIRequester
@@ -108,8 +113,18 @@ class TestGlossariesResource:
     @pytest.mark.parametrize(
         "incoming_data, request_data",
         (
-            ({}, {"format": None}),
-            ({"format": ExportFormat.CSV}, {"format": ExportFormat.CSV}),
+            (None, None),
+            ({}, {}),
+            (
+                {
+                    "format": GlossaryFormat.CSV,
+                    "exportFields": [GlossaryExportFields.TERM, GlossaryExportFields.STATUS]
+                },
+                {
+                    "format": GlossaryFormat.CSV,
+                    "exportFields": [GlossaryExportFields.TERM, GlossaryExportFields.STATUS]
+                },
+            ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -117,7 +132,7 @@ class TestGlossariesResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.export_glossary(glossaryId=1, **incoming_data) == "response"
+        assert resource.export_glossary(glossaryId=1, data=incoming_data) == "response"
         m_request.assert_called_once_with(
             method="post",
             request_data=request_data,
@@ -203,7 +218,7 @@ class TestGlossariesResource:
                 {
                     "userId": None,
                     "languageId": None,
-                    "translationOfTermId": None,
+                    "conceptId": None,
                     "offset": 0,
                     "limit": 25,
                 },
@@ -212,12 +227,12 @@ class TestGlossariesResource:
                 {
                     "userId": 1,
                     "languageId": "ua",
-                    "translationOfTermId": 2,
+                    "conceptId": 2,
                 },
                 {
                     "userId": 1,
                     "languageId": "ua",
-                    "translationOfTermId": 2,
+                    "conceptId": 2,
                     "offset": 0,
                     "limit": 25,
                 },
@@ -246,7 +261,12 @@ class TestGlossariesResource:
                     "text": "text",
                     "description": None,
                     "partOfSpeech": None,
-                    "translationOfTermId": None,
+                    "status": None,
+                    "type": None,
+                    "gender": None,
+                    "note": None,
+                    "url": None,
+                    "conceptId": None,
                 },
             ),
             (
@@ -255,14 +275,24 @@ class TestGlossariesResource:
                     "text": "text",
                     "description": "description",
                     "partOfSpeech": TermPartOfSpeech.PARTICLE,
-                    "translationOfTermId": 1,
+                    "status": TermStatus.ADMITTED,
+                    "type": TermType.SHORT_FORM,
+                    "gender": TermGender.MASCULINE,
+                    "note": "text",
+                    "url": "https://test.test.com",
+                    "conceptId": 1,
                 },
                 {
                     "languageId": "ua",
                     "text": "text",
                     "description": "description",
                     "partOfSpeech": TermPartOfSpeech.PARTICLE,
-                    "translationOfTermId": 1,
+                    "status": TermStatus.ADMITTED,
+                    "type": TermType.SHORT_FORM,
+                    "gender": TermGender.MASCULINE,
+                    "note": "text",
+                    "url": "https://test.test.com",
+                    "conceptId": 1,
                 },
             ),
         ),
@@ -284,11 +314,11 @@ class TestGlossariesResource:
         (
             (
                 {},
-                {"languageId": None, "translationOfTermId": None},
+                {"languageId": None, "conceptId": None},
             ),
             (
-                {"languageId": "ua", "translationOfTermId": 1},
-                {"languageId": "ua", "translationOfTermId": 1},
+                {"languageId": "ua", "conceptId": 1},
+                {"languageId": "ua", "conceptId": 1},
             ),
         ),
     )
@@ -342,4 +372,116 @@ class TestGlossariesResource:
             method="patch",
             request_data=data,
             path=resource.get_terms_path(glossaryId=1, termId=2),
+        )
+
+    # Concepts
+    @pytest.mark.parametrize(
+        "in_params, path",
+        (
+            ({"glossaryId": 1}, "glossaries/1/concepts"),
+            ({"glossaryId": 1, "conceptId": 2}, "glossaries/1/concepts/2"),
+        ),
+    )
+    def test_get_concepts_path(self, in_params, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_concepts_path(**in_params) == path
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_params",
+        (
+            (
+                {},
+                {
+                    "offset": 0,
+                    "limit": 25,
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_concepts(self, m_request, incoming_data, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_concepts(glossaryId=1, **incoming_data) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            params=request_params,
+            path=resource.get_concepts_path(glossaryId=1),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_concept(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_concept(glossaryId=1, conceptId=2) == "response"
+        m_request.assert_called_once_with(
+            method="get", path=resource.get_concepts_path(glossaryId=1, conceptId=2)
+        )
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {
+                    "languagesDetails": [
+                        {"languageId": "en", "definition": "This is a sample definition."}
+                    ]
+                },
+                {
+                    "languagesDetails": [
+                        {"languageId": "en", "definition": "This is a sample definition."}
+                    ],
+                    "subject": None,
+                    "definition": None,
+                    "note": None,
+                    "url": None,
+                    "figure": None,
+                },
+            ),
+            (
+                {
+                    "languagesDetails": [
+                        {"languageId": "en", "definition": "This is a sample definition."}
+                    ],
+                    "subject": "general",
+                    "definition": "This is a sample definition.",
+                    "note": "Any concept-level note information",
+                    "url": "https://test.test.com",
+                    "figure": "string",
+                },
+                {
+                    "languagesDetails": [
+                        {"languageId": "en", "definition": "This is a sample definition."}
+                    ],
+                    "subject": "general",
+                    "definition": "This is a sample definition.",
+                    "note": "Any concept-level note information",
+                    "url": "https://test.test.com",
+                    "figure": "string",
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_update_concept(self, m_request, incoming_data, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.update_concept(glossaryId=1, conceptId=2, **incoming_data) == "response"
+        m_request.assert_called_once_with(
+            method="put",
+            path=resource.get_concepts_path(glossaryId=1, conceptId=2),
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_concept(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_concept(glossaryId=1, conceptId=2) == "response"
+        m_request.assert_called_once_with(
+            method="delete", path=resource.get_concepts_path(glossaryId=1, conceptId=2)
         )
