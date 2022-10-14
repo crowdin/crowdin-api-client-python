@@ -23,16 +23,18 @@ class CrowdinClient:
     HEADERS = {}
 
     def __init__(self, 
-                 organization: str|None =None,
-                 token: str|None=None,
-                 base_url: str|None=None,
-                 user_agent: str|None=None,
-                 page_size: int|None=None,
-                 timeout: int|None=None,
-                 retry_delay: int|float|None=None,
-                 max_retries: int|None=None,
-                 http_protocol: str|None=None,
-                 headers: dict|None=None
+                 # TODO: replace this with union type expressions
+                 # once we do not have to support <3.10 anymore
+                 organization: Optional[str] =None,
+                 token: Optional[str]=None,
+                 base_url: Optional[str]=None,
+                 user_agent: Optional[str]=None,
+                 page_size: Optional[int]=None,
+                 timeout: Optional[int]=None,
+                 retry_delay: Union[int, float, None]=None,
+                 max_retries: Optional[int]=None,
+                 http_protocol: Optional[str]=None,
+                 headers: Optional[dict]=None
                  ):
         self.ORGANIZATION=organization or self.ORGANIZATION
         self.TOKEN=token or self.TOKEN
