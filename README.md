@@ -66,6 +66,19 @@ projects = client.projects.list_projects(offset=10, limit=20)
 projects = client.projects.list_projects(page=2) # offset=25, limit=25
 ```
 
+Alternatively, you can create an instance of the CrowdinClient class with params like this:
+
+```python
+from crowdin_api import CrowdinClient
+
+# use the lower-case version of any of the constants above,
+# at least provide token
+client = CrowdinClient(token='__token__')
+
+# ... continue as above
+
+```
+
 ### Add a file
 
 ```python
