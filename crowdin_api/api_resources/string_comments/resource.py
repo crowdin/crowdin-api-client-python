@@ -60,6 +60,7 @@ class StringCommentsResource(BaseResource):
     def add_string_comment(
         self,
         projectId: int,
+        stringId: int,
         text: str,
         targetLanguageId: str,
         type: StringCommentType,
@@ -74,7 +75,7 @@ class StringCommentsResource(BaseResource):
 
         return self.requester.request(
             method="post",
-            path=self.get_string_comments_path(projectId=projectId),
+            path=self.get_string_comments_path(projectId=projectId, stringCommentId=stringId),
             request_data={
                 "text": text,
                 "targetLanguageId": targetLanguageId,

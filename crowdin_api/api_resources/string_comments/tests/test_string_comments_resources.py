@@ -115,10 +115,10 @@ class TestSourceFilesResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_string_comment(projectId=1, **in_params) == "response"
+        assert resource.add_string_comment(projectId=1, stringId=1, **in_params) == "response"
         m_request.assert_called_once_with(
             method="post",
-            path=resource.get_string_comments_path(projectId=1),
+            path=resource.get_string_comments_path(projectId=1, stringCommentId=1),
             request_data=request_data,
         )
 
