@@ -61,6 +61,7 @@ class StringCommentsResource(BaseResource):
         self,
         projectId: int,
         text: str,
+        stringId: int,
         targetLanguageId: str,
         type: StringCommentType,
         issueType: Optional[StringCommentIssueType] = None,
@@ -77,6 +78,7 @@ class StringCommentsResource(BaseResource):
             path=self.get_string_comments_path(projectId=projectId),
             request_data={
                 "text": text,
+                "stringId": stringId,
                 "targetLanguageId": targetLanguageId,
                 "type": type,
                 "issueType": issueType,

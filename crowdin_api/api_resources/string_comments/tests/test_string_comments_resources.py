@@ -84,11 +84,13 @@ class TestSourceFilesResource:
             (
                 {
                     "text": "text",
+                    "stringId": 1,
                     "targetLanguageId": "ua",
                     "type": StringCommentType.COMMENT,
                 },
                 {
                     "text": "text",
+                    "stringId": 1,
                     "targetLanguageId": "ua",
                     "type": StringCommentType.COMMENT,
                     "issueType": None,
@@ -97,12 +99,14 @@ class TestSourceFilesResource:
             (
                 {
                     "text": "text",
+                    "stringId": 1,
                     "targetLanguageId": "ua",
                     "type": StringCommentType.COMMENT,
                     "issueType": StringCommentIssueType.CONTEXT_REQUEST,
                 },
                 {
                     "text": "text",
+                    "stringId": 1,
                     "targetLanguageId": "ua",
                     "type": StringCommentType.COMMENT,
                     "issueType": StringCommentIssueType.CONTEXT_REQUEST,
