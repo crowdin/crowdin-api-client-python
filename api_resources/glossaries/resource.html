@@ -59,7 +59,7 @@ operations and shall be completed with sequence of API methods.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.post">https://developer.crowdin.com/api/v2/#operation/api.glossaries.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.add_term"><code class="name flex">
-<span>def <span class="ident">add_term</span></span>(<span>self, glossaryId: int, languageId: str, text: str, description: Optional[str] = None, partOfSpeech: Optional[<a title="crowdin_api.api_resources.glossaries.enums.TermPartOfSpeech" href="enums.html#crowdin_api.api_resources.glossaries.enums.TermPartOfSpeech">TermPartOfSpeech</a>] = None, translationOfTermId: Optional[int] = None)</span>
+<span>def <span class="ident">add_term</span></span>(<span>self, glossaryId: int, languageId: str, text: str, description: Optional[str] = None, partOfSpeech: Optional[<a title="crowdin_api.api_resources.glossaries.enums.TermPartOfSpeech" href="enums.html#crowdin_api.api_resources.glossaries.enums.TermPartOfSpeech">TermPartOfSpeech</a>] = None, status: Optional[<a title="crowdin_api.api_resources.glossaries.enums.TermStatus" href="enums.html#crowdin_api.api_resources.glossaries.enums.TermStatus">TermStatus</a>] = None, type: Optional[<a title="crowdin_api.api_resources.glossaries.enums.TermType" href="enums.html#crowdin_api.api_resources.glossaries.enums.TermType">TermType</a>] = None, gender: Optional[<a title="crowdin_api.api_resources.glossaries.enums.TermGender" href="enums.html#crowdin_api.api_resources.glossaries.enums.TermGender">TermGender</a>] = None, note: Optional[str] = None, url: Optional[str] = None, conceptId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Term.</p>
@@ -83,12 +83,20 @@ operations and shall be completed with sequence of API methods.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.imports.get">https://developer.crowdin.com/api/v2/#operation/api.glossaries.imports.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.clear_glossary"><code class="name flex">
-<span>def <span class="ident">clear_glossary</span></span>(<span>self, glossaryId: int, languageId: Optional[str] = None, translationOfTermId: Optional[int] = None)</span>
+<span>def <span class="ident">clear_glossary</span></span>(<span>self, glossaryId: int, languageId: Optional[str] = None, conceptId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Clear Glossary.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.deleteMany">https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.deleteMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_concept"><code class="name flex">
+<span>def <span class="ident">delete_concept</span></span>(<span>self, glossaryId: int, conceptId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete Concept.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.delete">https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_glossary"><code class="name flex">
 <span>def <span class="ident">delete_glossary</span></span>(<span>self, glossaryId: int)</span>
@@ -131,12 +139,26 @@ operations and shall be completed with sequence of API methods.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.patch">https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.export_glossary"><code class="name flex">
-<span>def <span class="ident">export_glossary</span></span>(<span>self, glossaryId: int, format: Optional[<a title="crowdin_api.api_resources.enums.ExportFormat" href="../enums.html#crowdin_api.api_resources.enums.ExportFormat">ExportFormat</a>] = None)</span>
+<span>def <span class="ident">export_glossary</span></span>(<span>self, glossaryId: int, data: Optional[<a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest" href="types.html#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest">GlossarySchemaRequest</a>] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Export Glossary.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.exports.post">https://developer.crowdin.com/api/v2/#operation/api.glossaries.exports.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_concept"><code class="name flex">
+<span>def <span class="ident">get_concept</span></span>(<span>self, glossaryId: int, conceptId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Concept.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.get">https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_concepts_path"><code class="name flex">
+<span>def <span class="ident">get_concepts_path</span></span>(<span>self, glossaryId: int, conceptId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_glossaries_path"><code class="name flex">
 <span>def <span class="ident">get_glossaries_path</span></span>(<span>self, glossaryId: Optional[int] = None)</span>
@@ -180,6 +202,14 @@ operations and shall be completed with sequence of API methods.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.imports.post">https://developer.crowdin.com/api/v2/#operation/api.glossaries.imports.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.list_concepts"><code class="name flex">
+<span>def <span class="ident">list_concepts</span></span>(<span>self, glossaryId: int, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Concepts.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.getMany">https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.getMany</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.list_glossaries"><code class="name flex">
 <span>def <span class="ident">list_glossaries</span></span>(<span>self, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
@@ -189,12 +219,20 @@ operations and shall be completed with sequence of API methods.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.getMany">https://developer.crowdin.com/api/v2/#operation/api.glossaries.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.list_terms"><code class="name flex">
-<span>def <span class="ident">list_terms</span></span>(<span>self, glossaryId: int, userId: Optional[int] = None, languageId: Optional[str] = None, translationOfTermId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_terms</span></span>(<span>self, glossaryId: int, userId: Optional[int] = None, languageId: Optional[str] = None, conceptId: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Terms.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.getMany">https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.update_concept"><code class="name flex">
+<span>def <span class="ident">update_concept</span></span>(<span>self, glossaryId: int, conceptId: int, languagesDetails: Iterable[<a title="crowdin_api.api_resources.glossaries.types.LanguagesDetails" href="types.html#crowdin_api.api_resources.glossaries.types.LanguagesDetails">LanguagesDetails</a>], subject: Optional[str] = None, definition: Optional[str] = None, note: Optional[str] = None, url: Optional[str] = None, figure: Optional[str] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Concept.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.put">https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.put</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -222,20 +260,25 @@ operations and shall be completed with sequence of API methods.</p>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.check_glossary_export_status" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.check_glossary_export_status">check_glossary_export_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.check_glossary_import_status" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.check_glossary_import_status">check_glossary_import_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.clear_glossary" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.clear_glossary">clear_glossary</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_concept" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_concept">delete_concept</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_glossary" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_glossary">delete_glossary</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_term" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_term">delete_term</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.download_glossary" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.download_glossary">download_glossary</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.edit_glossary" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.edit_glossary">edit_glossary</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.edit_term" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.edit_term">edit_term</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.export_glossary" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.export_glossary">export_glossary</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_concept" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_concept">get_concept</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_concepts_path" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_concepts_path">get_concepts_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_glossaries_path" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_glossaries_path">get_glossaries_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_glossary" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_glossary">get_glossary</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_glossary_export_path" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_glossary_export_path">get_glossary_export_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_term" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_term">get_term</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_terms_path" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.get_terms_path">get_terms_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.import_glossary" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.import_glossary">import_glossary</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.list_concepts" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.list_concepts">list_concepts</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.list_glossaries" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.list_glossaries">list_glossaries</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.list_terms" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.list_terms">list_terms</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.update_concept" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.update_concept">update_concept</a></code></li>
 </ul>
 </li>
 </ul>
