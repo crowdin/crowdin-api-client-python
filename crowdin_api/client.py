@@ -22,30 +22,31 @@ class CrowdinClient:
     PAGE_SIZE = 25
     HEADERS = {}
 
-    def __init__(self, 
-                 # TODO: replace this with union type expressions
-                 # once we do not have to support <3.10 anymore
-                 organization: Optional[str] =None,
-                 token: Optional[str]=None,
-                 base_url: Optional[str]=None,
-                 user_agent: Optional[str]=None,
-                 page_size: Optional[int]=None,
-                 timeout: Optional[int]=None,
-                 retry_delay: Union[int, float, None]=None,
-                 max_retries: Optional[int]=None,
-                 http_protocol: Optional[str]=None,
-                 headers: Optional[dict]=None
-                 ):
-        self.ORGANIZATION=organization or self.ORGANIZATION
-        self.TOKEN=token or self.TOKEN
-        self.BASE_URL=base_url or self.BASE_URL
-        self.USER_AGENT=user_agent or self.USER_AGENT
-        self.PAGE_SIZE=page_size or self.PAGE_SIZE
-        self.TIMEOUT=timeout or self.TIMEOUT
-        self.RETRY_DELAY=retry_delay or self.RETRY_DELAY
-        self.MAX_RETRIES=max_retries or self.MAX_RETRIES
-        self.HTTP_PROTOCOL=http_protocol or self.HTTP_PROTOCOL
-        self.HEADERS=headers or self.HEADERS
+    def __init__(
+        self,
+        # TODO: replace this with union type expressions
+        # once we do not have to support <3.10 anymore
+        organization: Optional[str] = None,
+        token: Optional[str] = None,
+        base_url: Optional[str] = None,
+        user_agent: Optional[str] = None,
+        page_size: Optional[int] = None,
+        timeout: Optional[int] = None,
+        retry_delay: Union[int, float, None] = None,
+        max_retries: Optional[int] = None,
+        http_protocol: Optional[str] = None,
+        headers: Optional[dict] = None
+    ):
+        self.ORGANIZATION = organization or self.ORGANIZATION
+        self.TOKEN = token or self.TOKEN
+        self.BASE_URL = base_url or self.BASE_URL
+        self.USER_AGENT = user_agent or self.USER_AGENT
+        self.PAGE_SIZE = page_size or self.PAGE_SIZE
+        self.TIMEOUT = timeout or self.TIMEOUT
+        self.RETRY_DELAY = retry_delay or self.RETRY_DELAY
+        self.MAX_RETRIES = max_retries or self.MAX_RETRIES
+        self.HTTP_PROTOCOL = http_protocol or self.HTTP_PROTOCOL
+        self.HEADERS = headers or self.HEADERS
         self._api_requestor = None
 
         if self.ORGANIZATION is None:

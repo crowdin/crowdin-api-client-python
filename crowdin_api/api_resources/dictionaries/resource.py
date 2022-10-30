@@ -34,7 +34,7 @@ class DictionariesResource(BaseResource):
         params = self.get_page_params(page=page, offset=offset, limit=limit)
         params["languageIds"] = None if languageIds is None else ",".join(languageIds)
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=f"projects/{projectId}/dictionaries",
             params=params,

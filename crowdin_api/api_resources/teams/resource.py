@@ -62,7 +62,7 @@ class TeamsResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_teams_path(),
             params=self.get_page_params(offset=offset, limit=limit),
@@ -129,7 +129,7 @@ class TeamsResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_members_path(teamId=teamId),
             params=self.get_page_params(offset=offset, limit=limit),

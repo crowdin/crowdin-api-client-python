@@ -8,6 +8,8 @@ class BaseResource(metaclass=ABCMeta):
     def __init__(self, requester: APIRequester, page_size=25):
         self.requester = requester
         self.page_size = page_size
+        self._flag_fetch_all = None
+        self._max_limit = None
 
     def _get_page_params(self, page: int):
         if page < 1:
@@ -37,3 +39,60 @@ class BaseResource(metaclass=ABCMeta):
                 raise ValueError("The limit must be greater than or equal to 1.")
 
         return {"offset": offset, "limit": limit}
+
+    def with_fetch_all(self, max_limit: Optional[int] = None):
+        self._max_limit = max_limit
+        self._flag_fetch_all = True
+        return self
+
+    def _get_entire_data(self, method: str, path: str, params: Optional[dict] = None):
+        if not self._flag_fetch_all:
+            return self.requester.request(
+                method=method,
+                path=path,
+                params=params,
+            )
+
+        contents = self._fetch_all(
+            method=method,
+            path=path,
+            params=params,
+            max_amount=self._max_limit
+        )
+        self._flag_fetch_all = False
+        self._max_limit = None
+        return contents
+
+    def _fetch_all(
+        self,
+        method: str,
+        path: str,
+        params: Optional[dict] = None,
+        max_amount: Optional[int] = None
+    ) -> list:
+        limit = 500
+        offset = 0
+        join_data = []
+        if params is None:
+            params = {}
+
+        if max_amount and max_amount < limit:
+            limit = max_amount
+
+        while True:
+            params.update({"limit": limit, "offset": offset})
+
+            content = self.requester.request(method=method, path=path, params=params)
+            data = content.get("data", [])
+            data and join_data.extend(data)
+
+            if len(data) < limit or (max_amount and len(join_data) >= max_amount):
+                break
+            else:
+                offset += limit
+
+            if max_amount and max_amount < len(join_data) + limit:
+                limit = max_amount - len(join_data)
+
+        content["data"] = join_data
+        return content

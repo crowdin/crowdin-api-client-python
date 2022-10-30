@@ -32,7 +32,7 @@ class LabelsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.labels.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_labels_path(projectId=projectId),
             params=self.get_page_params(page=page, offset=offset, limit=limit),

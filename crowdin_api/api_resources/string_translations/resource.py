@@ -48,7 +48,7 @@ class StringTranslationsResource(BaseResource):
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_approvals_path(projectId=projectId),
             params=params,
@@ -132,7 +132,7 @@ class StringTranslationsResource(BaseResource):
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=f"projects/{projectId}/languages/{languageId}/translations",
             params=params,
@@ -169,7 +169,7 @@ class StringTranslationsResource(BaseResource):
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_translations_path(projectId=projectId),
             params=params,
@@ -285,7 +285,7 @@ class StringTranslationsResource(BaseResource):
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_translation_votes_path(projectId=projectId),
             params=params,

@@ -36,7 +36,7 @@ class LanguagesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.languages.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_languages_path(),
             params=self.get_page_params(page=page, offset=offset, limit=limit),

@@ -49,7 +49,7 @@ class GlossariesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.glossaries.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_glossaries_path(),
             params=self.get_page_params(page=page, offset=offset, limit=limit),
@@ -229,7 +229,7 @@ class GlossariesResource(BaseResource):
 
         params.update(self.get_page_params(offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_terms_path(glossaryId=glossaryId),
             params=params,
@@ -354,7 +354,7 @@ class GlossariesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_concepts_path(glossaryId=glossaryId),
             params=self.get_page_params(offset=offset, limit=limit),

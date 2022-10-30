@@ -77,7 +77,7 @@ class GroupsResource(BaseResource):
         params = {"parentId": parentId}
         params.update(self.get_page_params(offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_groups_path(),
             params=params,

@@ -32,7 +32,7 @@ class TranslationStatusResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.branches.languages.progress.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=f"projects/{projectId}/branches/{branchId}/languages/progress",
             params=self.get_page_params(page=page, offset=offset, limit=limit),
@@ -53,7 +53,7 @@ class TranslationStatusResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.directories.languages.progress.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=f"projects/{projectId}/directories/{directoryId}/languages/progress",
             params=self.get_page_params(page=page, offset=offset, limit=limit),
@@ -74,7 +74,7 @@ class TranslationStatusResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.languages.progress.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=f"projects/{projectId}/files/{fileId}/languages/progress",
             params=self.get_page_params(page=page, offset=offset, limit=limit),
@@ -95,7 +95,7 @@ class TranslationStatusResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.languages.files.progress.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=f"projects/{projectId}/languages/{languageId}/progress",
             params=self.get_page_params(page=page, offset=offset, limit=limit),
@@ -119,7 +119,7 @@ class TranslationStatusResource(BaseResource):
         params = {"languageIds": None if languageIds is None else ",".join(languageIds)}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=f"projects/{projectId}/languages/progress",
             params=params,
@@ -149,7 +149,7 @@ class TranslationStatusResource(BaseResource):
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=f"projects/{projectId}/languages/progress",
             params=params,
