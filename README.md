@@ -85,10 +85,7 @@ client = CrowdinClient(token='__token__')
 ```python
 from crowdin_api import CrowdinClient
 
-class FirstCrowdinClient(CrowdinClient):
-    TOKEN = "__token__"
-
-client = FirstCrowdinClient()
+client = CrowdinClient(token='__token__')
 
 file_name = '__path_to_the_file__'
 
