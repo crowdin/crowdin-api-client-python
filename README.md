@@ -25,6 +25,7 @@ Crowdin API is a full-featured RESTful API that helps you to integrate localizat
 ## Table of Contents
 * [Installation](#installation)
 * [Quick Start](#quick-start)
+* [Fetch all records](#fetch-all-records)
 * [Seeking Assistance](#seeking-assistance)
 * [Contributing](#contributing)
 * [License](#license)
@@ -96,6 +97,22 @@ storage = client.storages.add_storage(open(file_name, 'rb'))
 my_file = client.source_files.add_file(__project_id__, storage['data']['id'], file_name)
 
 print(my_file)
+```
+
+### Fetch all records
+
+It is possible to fetch all records from paginatable methods (where we have limit and offset in arguments).
+
+```python
+from crowdin_api import CrowdinClient
+
+client = CrowdinClient(token='__token__')
+
+# get all projects
+print(client.projects.with_fetch_all().list_projects())
+
+# get projects but not more than 1000
+print(client.projects.with_fetch_all(1000).list_projects())
 ```
 
 ## Seeking Assistance

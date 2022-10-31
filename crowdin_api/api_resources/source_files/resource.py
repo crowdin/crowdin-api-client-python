@@ -56,7 +56,7 @@ class SourceFilesResource(BaseResource):
         params = {"name": name}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get", path=self.get_branch_path(projectId=projectId), params=params
         )
 
@@ -159,7 +159,7 @@ class SourceFilesResource(BaseResource):
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_directory_path(projectId=projectId),
             params=params,
@@ -270,7 +270,7 @@ class SourceFilesResource(BaseResource):
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get", path=self.get_file_path(projectId=projectId), params=params
         )
 
@@ -441,7 +441,7 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.revisions.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_file_revisions_path(projectId=projectId, fileId=fileId),
             params=self.get_page_params(page=page, offset=offset, limit=limit),

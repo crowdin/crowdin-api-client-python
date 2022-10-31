@@ -43,7 +43,7 @@ class TestWorkflowsResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.list_workflow_steps(projectId=1) == "response"
         m_request.assert_called_once_with(
-            method="get", path=resource.get_workflow_steps_path(projectId=1)
+            method="get", path=resource.get_workflow_steps_path(projectId=1), params=None
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")

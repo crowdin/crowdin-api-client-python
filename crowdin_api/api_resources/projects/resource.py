@@ -51,7 +51,7 @@ class ProjectsResource(BaseResource):
         params = {"userId": userId, "hasManagerAccess": hasManagerAccess}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(method="get", path=self.get_projects_path(), params=params)
+        return self._get_entire_data(method="get", path=self.get_projects_path(), params=params)
 
     def add_project(self, request_data: Dict):
         """

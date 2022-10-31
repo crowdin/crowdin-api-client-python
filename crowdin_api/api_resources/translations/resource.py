@@ -156,7 +156,7 @@ class TranslationsResource(BaseResource):
         params = {"branchId": branchId}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_builds_path(projectId=projectId),
             params=params,

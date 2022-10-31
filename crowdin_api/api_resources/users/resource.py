@@ -33,7 +33,7 @@ class BaseUsersResource(BaseResource):
         params = {"search": search, "role": role, "languageId": languageId}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=f"projects/{projectId}/members",
             params=params,

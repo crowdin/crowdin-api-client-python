@@ -39,7 +39,7 @@ class TranslationMemoryResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.tms.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_tms_path(),
             params=self.get_page_params(page=page, offset=offset, limit=limit),

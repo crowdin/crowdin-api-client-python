@@ -188,7 +188,7 @@ class BaseReportSettingsTemplatesResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_report_settings_templates_path(projectId=projectId),
             params=self.get_page_params(offset=offset, limit=limit),

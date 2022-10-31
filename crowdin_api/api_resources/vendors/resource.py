@@ -25,7 +25,7 @@ class VendorsResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path="vendors",
             params=self.get_page_params(offset=offset, limit=limit),

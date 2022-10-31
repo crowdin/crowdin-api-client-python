@@ -42,7 +42,7 @@ class ScreenshotsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_screenshots_path(projectId=projectId),
             params=self.get_page_params(page=page, offset=offset, limit=limit),
@@ -153,7 +153,7 @@ class ScreenshotsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
             params=self.get_page_params(page=page, offset=offset, limit=limit),

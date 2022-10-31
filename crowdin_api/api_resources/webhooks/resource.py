@@ -58,7 +58,7 @@ class WebhooksResource(BaseResource):
         https://developer.crowdin.com/api/v2/#tag/Webhooks
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_webhooks_path(projectId=projectId),
             params=self.get_page_params(page=page, offset=offset, limit=limit),

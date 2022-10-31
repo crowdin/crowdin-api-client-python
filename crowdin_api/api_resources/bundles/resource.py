@@ -39,7 +39,7 @@ class BundlesResource(BaseResource):
 
         params = self.get_page_params(offset=offset, limit=limit)
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_bundles_path(projectId=projectId),
             params=params,
@@ -146,7 +146,7 @@ class BundlesResource(BaseResource):
 
         params = self.get_page_params(offset=offset, limit=limit)
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=f"{self.get_bundles_path(projectId=projectId, bundleId=bundleId)}/files",
             params=params,

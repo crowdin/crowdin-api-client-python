@@ -61,7 +61,7 @@ class TasksResource(BaseResource):
         params = {"assigneeId": assigneeId, "status": status}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_tasks_path(projectId=projectId),
             params=params,
@@ -330,7 +330,7 @@ class TasksResource(BaseResource):
 
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(method="get", path="user/tasks", params=params)
+        return self._get_entire_data(method="get", path="user/tasks", params=params)
 
     def edit_task_archived_status(self, taskId: int, projectId: int, isArchived: bool = True):
         """
