@@ -76,7 +76,12 @@ class TestCrowdinClient:
         ),
     )
     def test_url_with_instance(self, http_protocol, organization, base_url, result):
-        client = CrowdinClient(http_protocol=http_protocol, base_url=base_url, organization=organization)
+        client = CrowdinClient(
+            http_protocol=http_protocol,
+            base_url=base_url,
+            organization=organization
+        )
+
         assert client.url == result
 
     @pytest.mark.parametrize(

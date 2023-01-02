@@ -75,7 +75,7 @@ class TestLanguagesResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_distribution(self,  m_request, incoming_data, request_data, base_absolut_url):
+    def test_add_distribution(self, m_request, incoming_data, request_data, base_absolut_url):
         m_request.return_value = "response"
         resource = self.get_resource(base_absolut_url)
         assert resource.add_distribution(projectId=1, **incoming_data) == "response"
