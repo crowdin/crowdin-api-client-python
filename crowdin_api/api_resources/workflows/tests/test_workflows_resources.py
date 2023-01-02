@@ -31,7 +31,7 @@ class TestWorkflowsResource:
             ({"templateId": 1}, "workflow-templates/1"),
         ),
     )
-    def test_get_workflow_steps_path(self, incoming_data, path, base_absolut_url):
+    def test_get_workflow_templates_path(self, incoming_data, path, base_absolut_url):
 
         resource = self.get_resource(base_absolut_url)
         assert resource.get_workflow_templates_path(**incoming_data) == path

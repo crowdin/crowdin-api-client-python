@@ -167,7 +167,7 @@ class TestEnterpriseUsersResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.invite_user(**in_params) == "response"
         m_request.assert_called_once_with(
-            method="post",  path="users", request_data=request_params
+            method="post", path="users", request_data=request_params
         )
 
     @pytest.mark.parametrize(
@@ -194,7 +194,7 @@ class TestEnterpriseUsersResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.edit_user(userId=1, data=in_params) == "response"
         m_request.assert_called_once_with(
-            method="patch",  path="users/1", request_data=request_params
+            method="patch", path="users/1", request_data=request_params
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
