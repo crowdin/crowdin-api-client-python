@@ -20,6 +20,11 @@ class VendorTaskOperationPatchPath(Enum):
     status = "/status"
 
 
+class ConfigTaskOperationPatchPath(Enum):
+    NAME = "/name"
+    CONFIG = "/config"
+
+
 class CrowdinTaskType(Enum):
     TRANSLATE = 0
     PROOFREAD = 1

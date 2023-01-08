@@ -19,6 +19,9 @@ from crowdin_api.api_resources.tasks.types import (
     CrowdinTaskAssignee,
     TaskPatchRequest,
     VendorPatchRequest,
+    TaskSettingsTemplateRequestData,
+    ConfigPatchRequest,
+    EnterpriseTaskSettingsTemplateRequestData,
 )
 
 
@@ -35,6 +38,116 @@ class TasksResource(BaseResource):
     Link to documentation:
     https://developer.crowdin.com/api/v2/#tag/Tasks
     """
+    def get_task_settings_templates_path(self, projectId: int, taskSettingsTemplateId: Optional[int] = None):
+        if taskSettingsTemplateId is not None:
+            return f"projects/{projectId}/tasks/settings-templates/{taskSettingsTemplateId}"
+
+        return f"projects/{projectId}/tasks/settings-templates"
+
+    def list_task_settings_templates(
+        self,
+        projectId: int,
+        page: Optional[int] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        List Task Settings Templates.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.getMany
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.getMany
+        """
+
+        params = self.get_page_params(page=page, offset=offset, limit=limit)
+
+        return self._get_entire_data(
+            method="get",
+            path=self.get_task_settings_templates_path(projectId=projectId),
+            params=params,
+        )
+
+    def add_task_settings_template(
+        self,
+        projectId: int,
+        request_data: TaskSettingsTemplateRequestData
+    ):
+        """
+        Add Task Settings Template.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=self.get_task_settings_templates_path(projectId=projectId),
+            request_data=request_data,
+        )
+
+    def get_task_settings_template(self, projectId: int, taskSettingsTemplateId: int):
+        """
+        Get Task Settings Template.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.get
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.get
+        """
+
+        return self.requester.request(
+            method="get", path=self.get_task_settings_templates_path(
+                projectId=projectId,
+                taskSettingsTemplateId=taskSettingsTemplateId
+            )
+        )
+
+    def delete_task_settings_template(self, projectId: int, taskSettingsTemplateId: int):
+        """
+        Delete Task Settings Template.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.delete
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.delete
+        """
+
+        return self.requester.request(
+            method="delete",
+            path=self.get_task_settings_templates_path(
+                projectId=projectId,
+                taskSettingsTemplateId=taskSettingsTemplateId
+            ),
+        )
+
+    def edit_task_settings_template(
+        self,
+        projectId: int,
+        taskSettingsTemplateId: int,
+        data: Iterable[ConfigPatchRequest],
+    ):
+        """
+        Edit Task Settings Template.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.patch
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.patch
+        """
+
+        return self.requester.request(
+            method="patch",
+            path=self.get_task_settings_templates_path(
+                projectId=projectId,
+                taskSettingsTemplateId=taskSettingsTemplateId
+            ),
+            request_data=data,
+        )
 
     def get_tasks_path(self, projectId: int, taskId: Optional[int] = None):
         if taskId is not None:
@@ -345,4 +458,37 @@ class TasksResource(BaseResource):
             path=f"user/tasks/{taskId}",
             params={"projectId": projectId},
             request_data=[{"op": "replace", "path": "/isArchived", "value": isArchived}],
+        )
+
+
+class EnterpriseTasksResource(TasksResource):
+    """
+    Resource for Tasks.
+
+    Create and assign tasks to get files translated or proofread by specific people. You can set
+    the due dates, split words between people, and receive notifications about the changes and
+    updates on tasks. Tasks are project-specific, so you’ll have to create them within a project.
+
+    Use API to create, modify, and delete specific tasks.
+
+    Link to documentation:
+    https://developer.crowdin.com/enterprise/api/v2/#tag/Tasks
+    """
+
+    def add_task_settings_template(
+        self,
+        projectId: int,
+        request_data: EnterpriseTaskSettingsTemplateRequestData
+    ):
+        """
+        Add Task Settings Template.
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=self.get_task_settings_templates_path(projectId=projectId),
+            request_data=request_data,
         )

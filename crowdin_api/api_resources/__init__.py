@@ -14,7 +14,7 @@ from .source_strings.resource import SourceStringsResource
 from .storages.resource import StoragesResource
 from .string_comments.resource import StringCommentsResource
 from .string_translations.resource import StringTranslationsResource
-from .tasks.resource import TasksResource
+from .tasks.resource import TasksResource, EnterpriseTasksResource
 from .teams.resource import TeamsResource
 from .translation_memory.resource import TranslationMemoryResource
 from .translation_status.resource import TranslationStatusResource
@@ -43,6 +43,7 @@ __all__ = [
     "StringCommentsResource",
     "StringTranslationsResource",
     "TasksResource",
+    "EnterpriseTasksResource",
     "TeamsResource",
     "TranslationMemoryResource",
     "TranslationStatusResource",

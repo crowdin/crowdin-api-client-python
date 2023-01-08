@@ -16,8 +16,9 @@ from crowdin_api.api_resources.tasks.enums import (
     TranslatedCrowdinTaskExpertise,
     TranslatedCrowdinTaskSubjects,
     TranslatedCrowdinTaskType,
+    ConfigTaskOperationPatchPath,
 )
-from crowdin_api.api_resources.tasks.resource import TasksResource
+from crowdin_api.api_resources.tasks.resource import TasksResource, EnterpriseTasksResource
 from crowdin_api.requester import APIRequester
 
 
@@ -26,6 +27,115 @@ class TestTasksResource:
 
     def get_resource(self, base_absolut_url):
         return self.resource_class(requester=APIRequester(base_url=base_absolut_url))
+
+    @pytest.mark.parametrize(
+        "incoming_data, path",
+        (
+            ({"projectId": 1}, "projects/1/tasks/settings-templates"),
+            (
+                {"projectId": 1, "taskSettingsTemplateId": 2},
+                "projects/1/tasks/settings-templates/2"
+            ),
+        ),
+    )
+    def test_get_task_settings_templates_path(self, incoming_data, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_task_settings_templates_path(**incoming_data) == path
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_params",
+        (
+            ({}, {"offset": 0, "limit": 25}),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_task_settings_templates(
+        self, m_request, incoming_data, request_params, base_absolut_url
+    ):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_task_settings_templates(projectId=1, **incoming_data) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            params=request_params,
+            path=resource.get_task_settings_templates_path(projectId=1),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_task_settings_template(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+        request_data = {
+            "name": "Default template",
+            "config": {
+                "languages": [
+                    {
+                        "languageId": "uk",
+                        "userIds": [1]
+                    }
+                ]
+            }
+        }
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_task_settings_template(
+            projectId=1, request_data=request_data
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_task_settings_templates_path(projectId=1),
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_task_settings_template(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_task_settings_template(
+            projectId=1, taskSettingsTemplateId=2
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="get", path=resource.get_task_settings_templates_path(
+                projectId=1, taskSettingsTemplateId=2
+            )
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_task_settings_template(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_task_settings_template(
+            projectId=1, taskSettingsTemplateId=2
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="delete", path=resource.get_task_settings_templates_path(
+                projectId=1, taskSettingsTemplateId=2
+            )
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_task_settings_template(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        data = [
+            {
+                "value": "value",
+                "op": PatchOperation.REPLACE,
+                "path": ConfigTaskOperationPatchPath.NAME,
+            }
+        ]
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_task_settings_template(
+            projectId=1, taskSettingsTemplateId=2, data=data
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            request_data=data,
+            path=resource.get_task_settings_templates_path(projectId=1, taskSettingsTemplateId=2),
+        )
 
     @pytest.mark.parametrize(
         "incoming_data, path",
@@ -442,4 +552,37 @@ class TestTasksResource:
             path="user/tasks/2",
             params={"projectId": 1},
             request_data=[{"op": "replace", "path": "/isArchived", "value": False}],
+        )
+
+
+class TestEnterpriseTasksResource:
+    resource_class = EnterpriseTasksResource
+
+    def get_resource(self, base_absolut_url):
+        return self.resource_class(requester=APIRequester(base_url=base_absolut_url))
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_task_settings_template(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+        request_data = {
+            "name": "Default template",
+            "config": {
+                "languages": [
+                    {
+                        "languageId": "uk",
+                        "userIds": [1],
+                        "teamIds": [1]
+                    }
+                ]
+            }
+        }
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_task_settings_template(
+            projectId=1, request_data=request_data
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_task_settings_templates_path(projectId=1),
+            request_data=request_data,
         )
