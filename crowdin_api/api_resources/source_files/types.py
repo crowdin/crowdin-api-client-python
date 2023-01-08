@@ -41,6 +41,17 @@ class XmlImportOptions(TypedDict):
     translatableElements: Iterable[str]
 
 
+class DocxFileImportOptions(TypedDict):
+    cleanTagsAggressively: bool
+    translateHiddenText: bool
+    translateHyperlinkUrls: bool
+    translateHiddenRowsAndColumns: bool
+    importNotes: bool
+    importHiddenSlides: bool
+    contentSegmentation: bool
+    srxStorageId: bool
+
+
 class OtherImportOptions(TypedDict):
     contentSegmentation: bool
     srxStorageId: int
