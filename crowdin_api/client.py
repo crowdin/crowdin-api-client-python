@@ -188,9 +188,15 @@ class CrowdinClient:
         )
 
     @property
-    def tasks(self) -> api_resources.TasksResource:
-        return api_resources.TasksResource(
-            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+    def tasks(self) -> Union[api_resources.TasksResource, api_resources.EnterpriseTasksResource]:
+        if self._is_enterprise_platform:
+            report_class = api_resources.EnterpriseTasksResource
+        else:
+            report_class = api_resources.TasksResource
+
+        return report_class(
+            requester=self.get_api_requestor(),
+            page_size=self.PAGE_SIZE,
         )
 
     @property
