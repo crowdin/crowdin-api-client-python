@@ -14,3 +14,8 @@ class UserPatchPath(Enum):
     LAST_NAME = "/lastName"
     TIMEZONE = "/timezone"
     STATUS = "/status"
+
+
+class ProjectRole(Enum):
+    TRANSLATOR = "translator"
+    PROOFREADER = "proofreader"
