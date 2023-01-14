@@ -1,7 +1,7 @@
 from typing import Optional, Iterable
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
-from crowdin_api.api_resources.teams.types import Permissions, TeamPatchRequest
+from crowdin_api.api_resources.teams.types import Permissions, TeamPatchRequest, TeamByProjectRole
 
 
 class TeamsResource(BaseResource):
@@ -35,6 +35,7 @@ class TeamsResource(BaseResource):
         accessToAllWorkflowSteps: bool = True,
         managerAccess: bool = False,
         permissions: Optional[Permissions] = None,
+        roles: Optional[Iterable[TeamByProjectRole]] = None
     ):
         """
         Add Team To Project.
@@ -50,7 +51,8 @@ class TeamsResource(BaseResource):
                 "teamId": teamId,
                 "accessToAllWorkflowSteps": accessToAllWorkflowSteps,
                 "managerAccess": managerAccess,
-                "permissions": permissions
+                "permissions": permissions,
+                "roles": roles
             },
         )
 

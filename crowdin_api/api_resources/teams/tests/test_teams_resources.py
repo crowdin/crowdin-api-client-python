@@ -47,7 +47,8 @@ class TestTeamsResources:
                     "teamId": 1,
                     "accessToAllWorkflowSteps": True,
                     "managerAccess": False,
-                    "permissions": None
+                    "permissions": None,
+                    "roles": None,
                 }
             ),
             (
@@ -71,7 +72,92 @@ class TestTeamsResources:
                             "workflowStepIds": [313]
                         },
                         "de": {"workflowStepIds": "all"}
-                    }
+                    },
+                    "roles": None
+                },
+            ),
+            (
+                {
+                    "teamId": 1,
+                    "accessToAllWorkflowSteps": False,
+                    "managerAccess": False,
+                    "permissions": {
+                        "it": {
+                            "workflowStepIds": [
+                                313
+                            ]
+                        },
+                        "de": {
+                            "workflowStepIds": "all"
+                        }
+                    },
+                    "roles": [
+                        {
+                            "name": "translator",
+                            "permissions": {
+                                "allLanguages": False,
+                                "languagesAccess": {
+                                    "uk": {
+                                        "allContent": False,
+                                        "workflowStepIds": [
+                                            882
+                                        ]
+                                    },
+                                    "it": {
+                                        "allContent": True
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "name": "proofreader",
+                            "permissions": {
+                                "allLanguages": True,
+                                "languagesAccess": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "teamId": 1,
+                    "accessToAllWorkflowSteps": False,
+                    "managerAccess": False,
+                    "permissions": {
+                        "it": {
+                            "workflowStepIds": [
+                                313
+                            ]
+                        },
+                        "de": {
+                            "workflowStepIds": "all"
+                        }
+                    },
+                    "roles": [
+                        {
+                            "name": "translator",
+                            "permissions": {
+                                "allLanguages": False,
+                                "languagesAccess": {
+                                    "uk": {
+                                        "allContent": False,
+                                        "workflowStepIds": [
+                                            882
+                                        ]
+                                    },
+                                    "it": {
+                                        "allContent": True
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "name": "proofreader",
+                            "permissions": {
+                                "allLanguages": True,
+                                "languagesAccess": []
+                            }
+                        }
+                    ]
                 },
             ),
         ),
