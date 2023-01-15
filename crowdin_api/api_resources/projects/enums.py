@@ -56,3 +56,36 @@ class ProjectTranslateDuplicates(Enum):
     SHOW_REGULAR_DETECTION = 3
     HIDE_STRICT_DETECTION = 4
     SHOW_STRICT_DETECTION = 5
+
+
+class EscapeQuotes(Enum):
+    """
+    Values available:
+        0 - Do not escape single quote
+        1 - Escape single quote by another single quote
+        2 - Escape single quote by a backslash
+        3 - Escape single quote by another single quote only in strings containing variables
+    """
+    ZERO = 0
+    ONE = 1
+    TWO = 2
+    THREE = 3
+
+
+class EscapeSpecialCharacters(Enum):
+    """
+    Defines whether any special characters (=, :, ! and #) should be escaped by backslash in
+    exported translations.
+    You can add escape_special_characters per-file option. *
+
+    Acceptable values are:
+        0 - Do not escape special characters
+        1 - Escape special characters by a backslash
+    """
+    ZERO = 0
+    ONE = 1
+
+
+class ProjectFilePatchPath(Enum):
+    FORMAT = "/format"
+    SETTINGS = "/settings"
