@@ -32,6 +32,67 @@
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeQuotes"><code class="flex name class">
+<span>class <span class="ident">EscapeQuotes</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Values available:
+0 - Do not escape single quote
+1 - Escape single quote by another single quote
+2 - Escape single quote by a backslash
+3 - Escape single quote by another single quote only in strings containing variables</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeQuotes.ONE"><code class="name">var <span class="ident">ONE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeQuotes.THREE"><code class="name">var <span class="ident">THREE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeQuotes.TWO"><code class="name">var <span class="ident">TWO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeQuotes.ZERO"><code class="name">var <span class="ident">ZERO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters"><code class="flex name class">
+<span>class <span class="ident">EscapeSpecialCharacters</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Defines whether any special characters (=, :, ! and #) should be escaped by backslash in
+exported translations.
+You can add escape_special_characters per-file option. *</p>
+<p>Acceptable values are:
+0 - Do not escape special characters
+1 - Escape special characters by a backslash</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters.ONE"><code class="name">var <span class="ident">ONE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters.ZERO"><code class="name">var <span class="ident">ZERO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.projects.enums.HasManagerAccess"><code class="flex name class">
 <span>class <span class="ident">HasManagerAccess</span></span>
 <span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
@@ -49,6 +110,28 @@
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.enums.HasManagerAccess.TRUE"><code class="name">var <span class="ident">TRUE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectFilePatchPath"><code class="flex name class">
+<span>class <span class="ident">ProjectFilePatchPath</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectFilePatchPath.FORMAT"><code class="name">var <span class="ident">FORMAT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectFilePatchPath.SETTINGS"><code class="name">var <span class="ident">SETTINGS</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -289,10 +372,33 @@
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.EscapeQuotes" href="#crowdin_api.api_resources.projects.enums.EscapeQuotes">EscapeQuotes</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.EscapeQuotes.ONE" href="#crowdin_api.api_resources.projects.enums.EscapeQuotes.ONE">ONE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.EscapeQuotes.THREE" href="#crowdin_api.api_resources.projects.enums.EscapeQuotes.THREE">THREE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.EscapeQuotes.TWO" href="#crowdin_api.api_resources.projects.enums.EscapeQuotes.TWO">TWO</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.EscapeQuotes.ZERO" href="#crowdin_api.api_resources.projects.enums.EscapeQuotes.ZERO">ZERO</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters" href="#crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters">EscapeSpecialCharacters</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters.ONE" href="#crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters.ONE">ONE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters.ZERO" href="#crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters.ZERO">ZERO</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="crowdin_api.api_resources.projects.enums.HasManagerAccess" href="#crowdin_api.api_resources.projects.enums.HasManagerAccess">HasManagerAccess</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.projects.enums.HasManagerAccess.FALSE" href="#crowdin_api.api_resources.projects.enums.HasManagerAccess.FALSE">FALSE</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.HasManagerAccess.TRUE" href="#crowdin_api.api_resources.projects.enums.HasManagerAccess.TRUE">TRUE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.ProjectFilePatchPath" href="#crowdin_api.api_resources.projects.enums.ProjectFilePatchPath">ProjectFilePatchPath</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectFilePatchPath.FORMAT" href="#crowdin_api.api_resources.projects.enums.ProjectFilePatchPath.FORMAT">FORMAT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectFilePatchPath.SETTINGS" href="#crowdin_api.api_resources.projects.enums.ProjectFilePatchPath.SETTINGS">SETTINGS</a></code></li>
 </ul>
 </li>
 <li>

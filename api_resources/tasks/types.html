@@ -32,6 +32,42 @@
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
+<dt id="crowdin_api.api_resources.tasks.types.ConfigPatchRequest"><code class="flex name class">
+<span>class <span class="ident">ConfigPatchRequest</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.types.ConfigPatchRequest.op"><code class="name">var <span class="ident">op</span> : <a title="crowdin_api.api_resources.enums.PatchOperation" href="../enums.html#crowdin_api.api_resources.enums.PatchOperation">PatchOperation</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.types.ConfigPatchRequest.path"><code class="name">var <span class="ident">path</span> : <a title="crowdin_api.api_resources.tasks.enums.ConfigTaskOperationPatchPath" href="enums.html#crowdin_api.api_resources.tasks.enums.ConfigTaskOperationPatchPath">ConfigTaskOperationPatchPath</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.types.ConfigPatchRequest.value"><code class="name">var <span class="ident">value</span> : Union[str, int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee"><code class="flex name class">
 <span>class <span class="ident">CrowdinTaskAssignee</span></span>
 <span>(</span><span>*args, **kwargs)</span>
@@ -59,6 +95,70 @@ dict(one=1, two=2)</p></div>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee.wordsCount"><code class="name">var <span class="ident">wordsCount</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateConfigLanguage"><code class="flex name class">
+<span>class <span class="ident">EnterpriseTaskSettingsTemplateConfigLanguage</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateConfigLanguage.languageId"><code class="name">var <span class="ident">languageId</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateConfigLanguage.teamIds"><code class="name">var <span class="ident">teamIds</span> : Optional[Iterable[int]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateConfigLanguage.userIds"><code class="name">var <span class="ident">userIds</span> : Optional[Iterable[int]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateLanguages"><code class="flex name class">
+<span>class <span class="ident">EnterpriseTaskSettingsTemplateLanguages</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateLanguages.languages"><code class="name">var <span class="ident">languages</span> : Iterable[<a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateConfigLanguage" href="#crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateConfigLanguage">EnterpriseTaskSettingsTemplateConfigLanguage</a>]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -95,6 +195,66 @@ dict(one=1, two=2)</p></div>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.types.TaskPatchRequest.value"><code class="name">var <span class="ident">value</span> : Any</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.types.TaskSettingsTemplateConfigLanguage"><code class="flex name class">
+<span>class <span class="ident">TaskSettingsTemplateConfigLanguage</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.types.TaskSettingsTemplateConfigLanguage.languageId"><code class="name">var <span class="ident">languageId</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.types.TaskSettingsTemplateConfigLanguage.userIds"><code class="name">var <span class="ident">userIds</span> : Optional[Iterable[int]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.types.TaskSettingsTemplateLanguages"><code class="flex name class">
+<span>class <span class="ident">TaskSettingsTemplateLanguages</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.tasks.types.TaskSettingsTemplateLanguages.languages"><code class="name">var <span class="ident">languages</span> : Iterable[<a title="crowdin_api.api_resources.tasks.types.TaskSettingsTemplateConfigLanguage" href="#crowdin_api.api_resources.tasks.types.TaskSettingsTemplateConfigLanguage">TaskSettingsTemplateConfigLanguage</a>]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -153,10 +313,32 @@ dict(one=1, two=2)</p></div>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
+<h4><code><a title="crowdin_api.api_resources.tasks.types.ConfigPatchRequest" href="#crowdin_api.api_resources.tasks.types.ConfigPatchRequest">ConfigPatchRequest</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.types.ConfigPatchRequest.op" href="#crowdin_api.api_resources.tasks.types.ConfigPatchRequest.op">op</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.types.ConfigPatchRequest.path" href="#crowdin_api.api_resources.tasks.types.ConfigPatchRequest.path">path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.types.ConfigPatchRequest.value" href="#crowdin_api.api_resources.tasks.types.ConfigPatchRequest.value">value</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee" href="#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee">CrowdinTaskAssignee</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee.id" href="#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee.id">id</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee.wordsCount" href="#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee.wordsCount">wordsCount</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateConfigLanguage" href="#crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateConfigLanguage">EnterpriseTaskSettingsTemplateConfigLanguage</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateConfigLanguage.languageId" href="#crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateConfigLanguage.languageId">languageId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateConfigLanguage.teamIds" href="#crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateConfigLanguage.teamIds">teamIds</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateConfigLanguage.userIds" href="#crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateConfigLanguage.userIds">userIds</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateLanguages" href="#crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateLanguages">EnterpriseTaskSettingsTemplateLanguages</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateLanguages.languages" href="#crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateLanguages.languages">languages</a></code></li>
 </ul>
 </li>
 <li>
@@ -165,6 +347,19 @@ dict(one=1, two=2)</p></div>
 <li><code><a title="crowdin_api.api_resources.tasks.types.TaskPatchRequest.op" href="#crowdin_api.api_resources.tasks.types.TaskPatchRequest.op">op</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.types.TaskPatchRequest.path" href="#crowdin_api.api_resources.tasks.types.TaskPatchRequest.path">path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.types.TaskPatchRequest.value" href="#crowdin_api.api_resources.tasks.types.TaskPatchRequest.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.types.TaskSettingsTemplateConfigLanguage" href="#crowdin_api.api_resources.tasks.types.TaskSettingsTemplateConfigLanguage">TaskSettingsTemplateConfigLanguage</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.types.TaskSettingsTemplateConfigLanguage.languageId" href="#crowdin_api.api_resources.tasks.types.TaskSettingsTemplateConfigLanguage.languageId">languageId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.types.TaskSettingsTemplateConfigLanguage.userIds" href="#crowdin_api.api_resources.tasks.types.TaskSettingsTemplateConfigLanguage.userIds">userIds</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.tasks.types.TaskSettingsTemplateLanguages" href="#crowdin_api.api_resources.tasks.types.TaskSettingsTemplateLanguages">TaskSettingsTemplateLanguages</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.tasks.types.TaskSettingsTemplateLanguages.languages" href="#crowdin_api.api_resources.tasks.types.TaskSettingsTemplateLanguages.languages">languages</a></code></li>
 </ul>
 </li>
 <li>

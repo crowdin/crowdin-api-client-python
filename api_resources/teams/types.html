@@ -32,8 +32,8 @@
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="crowdin_api.api_resources.teams.types.De"><code class="flex name class">
-<span>class <span class="ident">De</span></span>
+<dt id="crowdin_api.api_resources.teams.types.LanguageData"><code class="flex name class">
+<span>class <span class="ident">LanguageData</span></span>
 <span>(</span><span>*args, **kwargs)</span>
 </code></dt>
 <dd>
@@ -54,14 +54,18 @@ dict(one=1, two=2)</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
-<dt id="crowdin_api.api_resources.teams.types.De.workflowStepIds"><code class="name">var <span class="ident">workflowStepIds</span> : str</code></dt>
+<dt id="crowdin_api.api_resources.teams.types.LanguageData.allContent"><code class="name">var <span class="ident">allContent</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.teams.types.LanguageData.workflowStepIds"><code class="name">var <span class="ident">workflowStepIds</span> : Optional[Iterable[Any]]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
 </dl>
 </dd>
-<dt id="crowdin_api.api_resources.teams.types.It"><code class="flex name class">
-<span>class <span class="ident">It</span></span>
+<dt id="crowdin_api.api_resources.teams.types.LanguagesAccessData"><code class="flex name class">
+<span>class <span class="ident">LanguagesAccessData</span></span>
 <span>(</span><span>*args, **kwargs)</span>
 </code></dt>
 <dd>
@@ -82,7 +86,11 @@ dict(one=1, two=2)</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
-<dt id="crowdin_api.api_resources.teams.types.It.workflowStepIds"><code class="name">var <span class="ident">workflowStepIds</span> : Iterable[int]</code></dt>
+<dt id="crowdin_api.api_resources.teams.types.LanguagesAccessData.it"><code class="name">var <span class="ident">it</span> : <a title="crowdin_api.api_resources.teams.types.LanguageData" href="#crowdin_api.api_resources.teams.types.LanguageData">LanguageData</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.teams.types.LanguagesAccessData.uk"><code class="name">var <span class="ident">uk</span> : <a title="crowdin_api.api_resources.teams.types.LanguageData" href="#crowdin_api.api_resources.teams.types.LanguageData">LanguageData</a></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -110,11 +118,75 @@ dict(one=1, two=2)</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
-<dt id="crowdin_api.api_resources.teams.types.Permissions.de"><code class="name">var <span class="ident">de</span> : <a title="crowdin_api.api_resources.teams.types.De" href="#crowdin_api.api_resources.teams.types.De">De</a></code></dt>
+<dt id="crowdin_api.api_resources.teams.types.Permissions.de"><code class="name">var <span class="ident">de</span> : <a title="crowdin_api.api_resources.teams.types.WorkflowStepId" href="#crowdin_api.api_resources.teams.types.WorkflowStepId">WorkflowStepId</a></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.teams.types.Permissions.it"><code class="name">var <span class="ident">it</span> : <a title="crowdin_api.api_resources.teams.types.It" href="#crowdin_api.api_resources.teams.types.It">It</a></code></dt>
+<dt id="crowdin_api.api_resources.teams.types.Permissions.it"><code class="name">var <span class="ident">it</span> : <a title="crowdin_api.api_resources.teams.types.WorkflowStepId" href="#crowdin_api.api_resources.teams.types.WorkflowStepId">WorkflowStepId</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.teams.types.RolePermission"><code class="flex name class">
+<span>class <span class="ident">RolePermission</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.teams.types.RolePermission.allLanguages"><code class="name">var <span class="ident">allLanguages</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.teams.types.RolePermission.languagesAccess"><code class="name">var <span class="ident">languagesAccess</span> : Optional[<a title="crowdin_api.api_resources.teams.types.LanguagesAccessData" href="#crowdin_api.api_resources.teams.types.LanguagesAccessData">LanguagesAccessData</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.teams.types.TeamByProjectRole"><code class="flex name class">
+<span>class <span class="ident">TeamByProjectRole</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.teams.types.TeamByProjectRole.name"><code class="name">var <span class="ident">name</span> : <a title="crowdin_api.api_resources.teams.enums.TeamRole" href="enums.html#crowdin_api.api_resources.teams.enums.TeamRole">TeamRole</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.teams.types.TeamByProjectRole.permissions"><code class="name">var <span class="ident">permissions</span> : <a title="crowdin_api.api_resources.teams.types.RolePermission" href="#crowdin_api.api_resources.teams.types.RolePermission">RolePermission</a></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -156,6 +228,34 @@ dict(one=1, two=2)</p></div>
 </dd>
 </dl>
 </dd>
+<dt id="crowdin_api.api_resources.teams.types.WorkflowStepId"><code class="flex name class">
+<span>class <span class="ident">WorkflowStepId</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.teams.types.WorkflowStepId.workflowStepIds"><code class="name">var <span class="ident">workflowStepIds</span> : Union[str, Iterable[int]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 </dl>
 </section>
 </article>
@@ -173,15 +273,17 @@ dict(one=1, two=2)</p></div>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="crowdin_api.api_resources.teams.types.De" href="#crowdin_api.api_resources.teams.types.De">De</a></code></h4>
+<h4><code><a title="crowdin_api.api_resources.teams.types.LanguageData" href="#crowdin_api.api_resources.teams.types.LanguageData">LanguageData</a></code></h4>
 <ul class="">
-<li><code><a title="crowdin_api.api_resources.teams.types.De.workflowStepIds" href="#crowdin_api.api_resources.teams.types.De.workflowStepIds">workflowStepIds</a></code></li>
+<li><code><a title="crowdin_api.api_resources.teams.types.LanguageData.allContent" href="#crowdin_api.api_resources.teams.types.LanguageData.allContent">allContent</a></code></li>
+<li><code><a title="crowdin_api.api_resources.teams.types.LanguageData.workflowStepIds" href="#crowdin_api.api_resources.teams.types.LanguageData.workflowStepIds">workflowStepIds</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="crowdin_api.api_resources.teams.types.It" href="#crowdin_api.api_resources.teams.types.It">It</a></code></h4>
+<h4><code><a title="crowdin_api.api_resources.teams.types.LanguagesAccessData" href="#crowdin_api.api_resources.teams.types.LanguagesAccessData">LanguagesAccessData</a></code></h4>
 <ul class="">
-<li><code><a title="crowdin_api.api_resources.teams.types.It.workflowStepIds" href="#crowdin_api.api_resources.teams.types.It.workflowStepIds">workflowStepIds</a></code></li>
+<li><code><a title="crowdin_api.api_resources.teams.types.LanguagesAccessData.it" href="#crowdin_api.api_resources.teams.types.LanguagesAccessData.it">it</a></code></li>
+<li><code><a title="crowdin_api.api_resources.teams.types.LanguagesAccessData.uk" href="#crowdin_api.api_resources.teams.types.LanguagesAccessData.uk">uk</a></code></li>
 </ul>
 </li>
 <li>
@@ -192,11 +294,31 @@ dict(one=1, two=2)</p></div>
 </ul>
 </li>
 <li>
+<h4><code><a title="crowdin_api.api_resources.teams.types.RolePermission" href="#crowdin_api.api_resources.teams.types.RolePermission">RolePermission</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.teams.types.RolePermission.allLanguages" href="#crowdin_api.api_resources.teams.types.RolePermission.allLanguages">allLanguages</a></code></li>
+<li><code><a title="crowdin_api.api_resources.teams.types.RolePermission.languagesAccess" href="#crowdin_api.api_resources.teams.types.RolePermission.languagesAccess">languagesAccess</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.teams.types.TeamByProjectRole" href="#crowdin_api.api_resources.teams.types.TeamByProjectRole">TeamByProjectRole</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.teams.types.TeamByProjectRole.name" href="#crowdin_api.api_resources.teams.types.TeamByProjectRole.name">name</a></code></li>
+<li><code><a title="crowdin_api.api_resources.teams.types.TeamByProjectRole.permissions" href="#crowdin_api.api_resources.teams.types.TeamByProjectRole.permissions">permissions</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="crowdin_api.api_resources.teams.types.TeamPatchRequest" href="#crowdin_api.api_resources.teams.types.TeamPatchRequest">TeamPatchRequest</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.teams.types.TeamPatchRequest.op" href="#crowdin_api.api_resources.teams.types.TeamPatchRequest.op">op</a></code></li>
 <li><code><a title="crowdin_api.api_resources.teams.types.TeamPatchRequest.path" href="#crowdin_api.api_resources.teams.types.TeamPatchRequest.path">path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.teams.types.TeamPatchRequest.value" href="#crowdin_api.api_resources.teams.types.TeamPatchRequest.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.teams.types.WorkflowStepId" href="#crowdin_api.api_resources.teams.types.WorkflowStepId">WorkflowStepId</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.teams.types.WorkflowStepId.workflowStepIds" href="#crowdin_api.api_resources.teams.types.WorkflowStepId.workflowStepIds">workflowStepIds</a></code></li>
 </ul>
 </li>
 </ul>
