@@ -38,7 +38,9 @@ class TasksResource(BaseResource):
     Link to documentation:
     https://developer.crowdin.com/api/v2/#tag/Tasks
     """
-    def get_task_settings_templates_path(self, projectId: int, taskSettingsTemplateId: Optional[int] = None):
+    def get_task_settings_templates_path(
+        self, projectId: int, taskSettingsTemplateId: Optional[int] = None
+    ):
         if taskSettingsTemplateId is not None:
             return f"projects/{projectId}/tasks/settings-templates/{taskSettingsTemplateId}"
 

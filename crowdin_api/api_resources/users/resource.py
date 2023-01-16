@@ -2,13 +2,19 @@ from typing import Dict, Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.users.enums import UserRole
-from crowdin_api.api_resources.users.types import UserPatchRequest
+from crowdin_api.api_resources.users.types import UserPatchRequest, ProjectMemberRole
 
 
 class BaseUsersResource(BaseResource):
 
     def get_authenticated_user(self):
         return self.requester.request(method="get", path="user")
+
+    def get_members_path(self, projectId: int, memberId: Optional[int] = None):
+        if memberId is not None:
+            return f"projects/{projectId}/members/{memberId}"
+
+        return f"projects/{projectId}/members"
 
     def list_project_members(
         self,
@@ -35,7 +41,7 @@ class BaseUsersResource(BaseResource):
 
         return self._get_entire_data(
             method="get",
-            path=f"projects/{projectId}/members",
+            path=self.get_members_path(projectId=projectId),
             params=params,
         )
 
@@ -59,7 +65,10 @@ class UsersResource(BaseUsersResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.members.get
         """
 
-        return self.requester.request(method="get", path=f"projects/{projectId}/members/{memberId}")
+        return self.requester.request(
+            method="get",
+            path=self.get_members_path(projectId=projectId, memberId=memberId)
+        )
 
 
 class EnterpriseUsersResource(BaseUsersResource):
@@ -85,22 +94,24 @@ class EnterpriseUsersResource(BaseUsersResource):
         accessToAllWorkflowSteps: Optional[bool] = None,
         managerAccess: Optional[bool] = None,
         permissions: Optional[Dict] = None,
+        roles: Optional[Iterable[ProjectMemberRole]] = None
     ):
         """
         Add Project Member.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/#operation/api.projects.members.post
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.post
         """
 
         return self.requester.request(
             method="post",
-            path=f"projects/{projectId}/members",
+            path=self.get_members_path(projectId=projectId),
             request_data={
                 "userIds": userIds,
                 "accessToAllWorkflowSteps": accessToAllWorkflowSteps,
                 "managerAccess": managerAccess,
                 "permissions": permissions,
+                "roles": roles
             },
         )
 
@@ -111,6 +122,7 @@ class EnterpriseUsersResource(BaseUsersResource):
         accessToAllWorkflowSteps: Optional[bool] = None,
         managerAccess: Optional[bool] = None,
         permissions: Optional[Dict] = None,
+        roles: Optional[Iterable[ProjectMemberRole]] = None
     ):
         """
         Replace Project Member Permissions.
@@ -121,11 +133,12 @@ class EnterpriseUsersResource(BaseUsersResource):
 
         return self.requester.request(
             method="put",
-            path=f"projects/{projectId}/members/{memberId}",
+            path=self.get_members_path(projectId=projectId, memberId=memberId),
             request_data={
                 "accessToAllWorkflowSteps": accessToAllWorkflowSteps,
                 "managerAccess": managerAccess,
                 "permissions": permissions,
+                "roles": roles
             },
         )
 
@@ -142,15 +155,15 @@ class EnterpriseUsersResource(BaseUsersResource):
         """
 
         return self.requester.request(
-            method="delete", path=f"projects/{projectId}/members/{memberId}"
+            method="delete", path=self.get_members_path(projectId=projectId, memberId=memberId)
         )
 
     def invite_user(
-            self,
-            email: str,
-            firstName: Optional[str] = None,
-            lastName: Optional[str] = None,
-            timezone: Optional[str] = None
+        self,
+        email: str,
+        firstName: Optional[str] = None,
+        lastName: Optional[str] = None,
+        timezone: Optional[str] = None
     ):
         """
         Invite User.
