@@ -12,6 +12,14 @@ from crowdin_api.api_resources.projects.types import (
     NotificationSettings,
     ProjectPatchRequest,
     QACheckCategories,
+    PropertyFileFormatSettings,
+    XmlFileFormatSettings,
+    DocxFileFormatSettings,
+    MediaWikiFileFormatSettings,
+    TxtFileFormatSettings,
+    OtherFileFormatSettings,
+    SpecificFileFormatSettings,
+    ProjectFilePatchRequest,
 )
 
 
@@ -219,5 +227,147 @@ class ProjectsResource(BaseResource):
         return self.requester.request(
             method="patch",
             path=self.get_projects_path(projectId=projectId),
+            request_data=data,
+        )
+
+    def get_project_file_path(
+        self,
+        projectId: int,
+        fileFormatSettingsId: Optional[int] = None
+    ):
+        if fileFormatSettingsId is not None:
+            return f"projects/{projectId}/file-format-settings/{fileFormatSettingsId}"
+
+        return f"projects/{projectId}/file-format-settings"
+
+    def download_project_file_custom_segmentation(self, projectId: int, fileFormatSettingsId: int):
+        """
+        Download Project File Format Settings Custom Segmentation.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.custom-segmentations.get
+        """
+        path = self.get_project_file_path(
+            projectId=projectId,
+            fileFormatSettingsId=fileFormatSettingsId
+        )
+
+        return self.requester.request(
+            method="get",
+            path=f"{path}/custom-segmentations",
+        )
+
+    def reset_project_file_custom_segmentation(self, projectId: int, fileFormatSettingsId: int):
+        """
+        Reset Project File Format Settings Custom Segmentation.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.custom-segmentations.delete
+        """
+        path = self.get_project_file_path(
+            projectId=projectId,
+            fileFormatSettingsId=fileFormatSettingsId
+        )
+
+        return self.requester.request(
+            method="delete",
+            path=f"{path}/custom-segmentations",
+        )
+
+    def list_project_files(
+        self,
+        projectId: int,
+        page: Optional[int] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        List Project File Format Settings.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.getMany
+        """
+        params = self.get_page_params(page=page, offset=offset, limit=limit)
+
+        return self._get_entire_data(
+            method="get",
+            path=self.get_project_file_path(projectId=projectId),
+            params=params
+        )
+
+    def add_project_file(
+        self,
+        projectId: int,
+        format: str,
+        settings: Union[
+            PropertyFileFormatSettings, XmlFileFormatSettings, SpecificFileFormatSettings,
+            DocxFileFormatSettings, MediaWikiFileFormatSettings, TxtFileFormatSettings,
+            OtherFileFormatSettings
+        ]
+    ):
+        """
+        Add Project File Format Settings.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=self.get_project_file_path(projectId=projectId),
+            request_data={"format": format, "settings": settings}
+        )
+
+    def get_project_file(self, projectId: int, fileFormatSettingsId: int):
+        """
+        Get Project File Format Settings.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_project_file_path(
+                projectId=projectId,
+                fileFormatSettingsId=fileFormatSettingsId
+            ),
+        )
+
+    def delete_project_file(self, projectId: int, fileFormatSettingsId: int):
+        """
+        Delete Project File Format Settings.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.delete
+        """
+
+        return self.requester.request(
+            method="delete",
+            path=self.get_project_file_path(
+                projectId=projectId,
+                fileFormatSettingsId=fileFormatSettingsId
+            ),
+        )
+
+    def edit_project_file(
+        self,
+        projectId: int,
+        fileFormatSettingsId: int,
+        data: Iterable[ProjectFilePatchRequest]
+    ):
+        """
+        Edit Project File Format Settings.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.patch
+        """
+
+        return self.requester.request(
+            method="patch",
+            path=self.get_project_file_path(
+                projectId=projectId,
+                fileFormatSettingsId=fileFormatSettingsId
+            ),
             request_data=data,
         )

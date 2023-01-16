@@ -1,7 +1,12 @@
-from typing import Any
+from typing import Any, Iterable, List, Union
 
 from crowdin_api.api_resources.enums import PatchOperation
-from crowdin_api.api_resources.projects.enums import ProjectPatchPath
+from crowdin_api.api_resources.projects.enums import (
+    ProjectPatchPath,
+    EscapeQuotes,
+    EscapeSpecialCharacters,
+    ProjectFilePatchPath,
+)
 from crowdin_api.typing import TypedDict
 
 
@@ -31,3 +36,69 @@ class QACheckCategories(TypedDict):
     ICU: bool
     TERMS: bool
     DUPLICATE: bool
+
+
+class PropertyFileFormatSettings(TypedDict):
+    escapeQuotes: EscapeQuotes
+    escapeSpecialCharacters: EscapeSpecialCharacters
+    exportPattern: str
+
+
+class XmlFileFormatSettings(TypedDict):
+    translateContent: bool
+    translateAttributes: bool
+    translatableElements: Iterable[str]
+    contentSegmentation: bool
+    srxStorageId: int
+    exportPattern: str
+
+
+class SpecificFileFormatSettings(TypedDict):
+    """
+    Includes kind standard file format settings:
+        - WebXml file
+        - Html file
+        - Adoc file
+        - Md file
+        - FmMd file
+        - FmHtml file
+        - MadcapFisnp file
+        - Idml file
+        - Mif file
+        - Dita file
+    """
+    contentSegmentation: bool
+    srxStorageId: int
+    exportPattern: str
+
+
+class DocxFileFormatSettings(TypedDict):
+    cleanTagsAggressively: bool
+    translateHiddenText: bool
+    translateHyperlinkUrls: bool
+    translateHiddenRowsAndColumns: bool
+    importNotes: bool
+    importHiddenSlides: bool
+    contentSegmentation: bool
+    srxStorageId: int
+    exportPattern: str
+
+
+class MediaWikiFileFormatSettings(TypedDict):
+    srxStorageId: int
+    exportPattern: str
+
+
+class TxtFileFormatSettings(TypedDict):
+    srxStorageId: int
+    exportPattern: str
+
+
+class OtherFileFormatSettings(TypedDict):
+    exportPattern: str
+
+
+class ProjectFilePatchRequest(TypedDict):
+    value: Union[str, List[str]]
+    op: PatchOperation
+    path: ProjectFilePatchPath

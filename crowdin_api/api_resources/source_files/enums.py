@@ -63,6 +63,13 @@ class FileType(Enum):
 
 
 class EscapeQuotes(Enum):
+    """
+    Values available:
+        0 - Do not escape single quote
+        1 - Escape single quote by another single quote
+        2 - Escape single quote by a backslash
+        3 - Escape single quote by another single quote only in strings containing variables
+    """
     ZERO = 0
     ONE = 1
     TWO = 2
