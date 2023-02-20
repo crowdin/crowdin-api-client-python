@@ -49,7 +49,7 @@ class DocxFileImportOptions(TypedDict):
     importNotes: bool
     importHiddenSlides: bool
     contentSegmentation: bool
-    srxStorageId: bool
+    srxStorageId: int
 
 
 class OtherImportOptions(TypedDict):
