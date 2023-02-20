@@ -50,7 +50,8 @@ class FirstCrowdinClient(CrowdinClient):
     RETRY_DELAY = 0.1  # Optional, sets the delay between failed requests 
     MAX_RETRIES = 5  # Optional, sets the number of retries
     HEADERS = {"Some-Header": ""}  # Optional, sets additional http request headers
-    PAGE_SIZE = 25  # Optional, sets default page size 
+    PAGE_SIZE = 25  # Optional, sets default page size
+    EXTENDED_REQUEST_PARAMS = {"some-parameters": ""}  # Optional, sets additional parameters for request
 
 client = FirstCrowdinClient()
 

@@ -20,7 +20,7 @@ class CrowdinClient:
     HEADERS = {}
     USER_AGENT = "crowdin-api-client-python"
     PAGE_SIZE = 25
-    HEADERS = {}
+    EXTENDED_REQUEST_PARAMS = None
 
     def __init__(
         self,
@@ -35,7 +35,8 @@ class CrowdinClient:
         retry_delay: Union[int, float, None] = None,
         max_retries: Optional[int] = None,
         http_protocol: Optional[str] = None,
-        headers: Optional[dict] = None
+        headers: Optional[dict] = None,
+        extended_request_params: Optional[dict] = None
     ):
         self.ORGANIZATION = organization or self.ORGANIZATION
         self.TOKEN = token or self.TOKEN
@@ -47,6 +48,7 @@ class CrowdinClient:
         self.MAX_RETRIES = max_retries or self.MAX_RETRIES
         self.HTTP_PROTOCOL = http_protocol or self.HTTP_PROTOCOL
         self.HEADERS = headers or self.HEADERS
+        self.EXTENDED_REQUEST_PARAMS = extended_request_params or self.EXTENDED_REQUEST_PARAMS
         self._api_requestor = None
 
         if self.ORGANIZATION is None:
@@ -82,6 +84,7 @@ class CrowdinClient:
                 base_url=self.url,
                 timeout=self.TIMEOUT,
                 default_headers=self.get_default_headers(),
+                extended_params=self.EXTENDED_REQUEST_PARAMS
             )
 
         return self._api_requestor
