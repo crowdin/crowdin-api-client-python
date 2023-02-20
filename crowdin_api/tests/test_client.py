@@ -130,6 +130,7 @@ class TestCrowdinClient:
             base_url=client.url,
             timeout=client.TIMEOUT,
             default_headers=client.get_default_headers(),
+            extended_params=client.EXTENDED_REQUEST_PARAMS
         )
 
     @pytest.mark.parametrize(

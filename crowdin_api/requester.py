@@ -48,11 +48,15 @@ class APIRequester:
         retry_delay: Union[int, float] = 0.1,  # 100 ms
         max_retries: int = 5,
         default_headers: Optional[Dict] = None,
+        extended_params: Optional[Dict] = None,
     ):
         self.base_url = base_url
         self._session = requests.Session()
         self._retry_delay = retry_delay
         self._max_retries = max_retries
+        self._extended_params = {} if extended_params is None else extended_params
+        if not isinstance(self._extended_params, dict):
+            raise TypeError(f"extended_params must be dict, not {type(self._extended_params)}")
 
         headers = copy(self.default_headers)
         headers.update(default_headers or {})
@@ -113,6 +117,7 @@ class APIRequester:
         else:
             request_data = dumps(self._clear_data(request_data))
 
+        kwargs = {**self._extended_params, **kwargs}
         result = self.session.request(
             method,
             urljoin(self.base_url, path),
