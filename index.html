@@ -69,7 +69,7 @@
 <dl>
 <dt id="crowdin_api.CrowdinClient"><code class="flex name class">
 <span>class <span class="ident">CrowdinClient</span></span>
-<span>(</span><span>organization: Optional[str] = None, token: Optional[str] = None, base_url: Optional[str] = None, user_agent: Optional[str] = None, page_size: Optional[int] = None, timeout: Optional[int] = None, retry_delay: Union[int, float, None] = None, max_retries: Optional[int] = None, http_protocol: Optional[str] = None, headers: Optional[dict] = None)</span>
+<span>(</span><span>organization: Optional[str] = None, token: Optional[str] = None, base_url: Optional[str] = None, user_agent: Optional[str] = None, page_size: Optional[int] = None, timeout: Optional[int] = None, retry_delay: Union[int, float, None] = None, max_retries: Optional[int] = None, http_protocol: Optional[str] = None, headers: Optional[dict] = None, extended_request_params: Optional[dict] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -80,6 +80,10 @@
 <div class="desc"><p>HTTP wrapper.</p></div>
 </dd>
 <dt id="crowdin_api.CrowdinClient.BASE_URL"><code class="name">var <span class="ident">BASE_URL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.CrowdinClient.EXTENDED_REQUEST_PARAMS"><code class="name">var <span class="ident">EXTENDED_REQUEST_PARAMS</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -271,6 +275,7 @@
 <ul class="">
 <li><code><a title="crowdin_api.CrowdinClient.API_REQUESTER_CLASS" href="#crowdin_api.CrowdinClient.API_REQUESTER_CLASS">API_REQUESTER_CLASS</a></code></li>
 <li><code><a title="crowdin_api.CrowdinClient.BASE_URL" href="#crowdin_api.CrowdinClient.BASE_URL">BASE_URL</a></code></li>
+<li><code><a title="crowdin_api.CrowdinClient.EXTENDED_REQUEST_PARAMS" href="#crowdin_api.CrowdinClient.EXTENDED_REQUEST_PARAMS">EXTENDED_REQUEST_PARAMS</a></code></li>
 <li><code><a title="crowdin_api.CrowdinClient.HEADERS" href="#crowdin_api.CrowdinClient.HEADERS">HEADERS</a></code></li>
 <li><code><a title="crowdin_api.CrowdinClient.HTTP_PROTOCOL" href="#crowdin_api.CrowdinClient.HTTP_PROTOCOL">HTTP_PROTOCOL</a></code></li>
 <li><code><a title="crowdin_api.CrowdinClient.MAX_RETRIES" href="#crowdin_api.CrowdinClient.MAX_RETRIES">MAX_RETRIES</a></code></li>
