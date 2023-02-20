@@ -49,7 +49,7 @@ setup(
     url="https://github.com/crowdin/crowdin-api-client-python",
     packages=find_packages(exclude=["*tests*", "*fixtures.py"]),
     package_dir={"crowdin_api": "crowdin_api"},
-    python_requires=">=3.6.*",
+    python_requires=">=3.6",
     license="MIT",
     install_requires=[
         "requests>=2.25.1",
