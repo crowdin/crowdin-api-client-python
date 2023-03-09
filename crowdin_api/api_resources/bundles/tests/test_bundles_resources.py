@@ -21,8 +21,7 @@ class TestBundlesResource:
             ({"projectId": 1, "bundleId": 1}, "projects/1/bundles/1"),
         ),
     )
-    def test_get_reports_path(self, incoming_data, path, base_absolut_url):
-
+    def test_get_bundles_path(self, incoming_data, path, base_absolut_url):
         resource = self.get_resource(base_absolut_url)
         assert resource.get_bundles_path(**incoming_data) == path
 
