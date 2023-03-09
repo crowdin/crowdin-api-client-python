@@ -129,6 +129,12 @@ class BundlesResource(BaseResource):
             request_data=data,
         )
 
+    def download_bundle(
+        self,
+        projectId: int,
+        bundleId: int,
+        exportId: str
+    ):
         """
         Download bundle.
 
@@ -138,17 +144,17 @@ class BundlesResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get
         """
-    def download_bundle(
-        self,
-        projectId: int,
-        bundleId: int,
-        exportId: str):
 
         return self.requester.request(
             method="get",
             path=f"{self.get_bundles_path(projectId=projectId, bundleId=bundleId, exportId=exportId)}/download",
         )
 
+    def export_bundle(
+        self,
+        projectId: int,
+        bundleId: int
+    ):
         """
         Export bundle.
 
@@ -158,16 +164,18 @@ class BundlesResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.post
         """
-    def export_bundle(
-        self,
-        projectId: int,
-        bundleId: int):
 
         return self.requester.request(
             method="post",
             path=f"{self.get_bundles_path(projectId=projectId, bundleId=bundleId)}/exports",
         )
 
+    def check_bundle_export_status(
+        self,
+        projectId: int,
+        bundleId: int,
+        exportId: str
+    ):
         """
         Check Bundle Export Status.
 
@@ -177,11 +185,6 @@ class BundlesResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.get
         """
-    def check_bundle_export_status(
-        self,
-        projectId: int,
-        bundleId: int,
-        exportId: str):
 
         return self.requester.request(
             method="get",
