@@ -25,6 +25,16 @@ class TestBundlesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.get_bundles_path(**incoming_data) == path
 
+    @pytest.mark.parametrize(
+        "incoming_data, path",
+        (
+            ({"projectId": 1, "bundleId": 2, "exportId": "3"}, "projects/1/bundles/2/exports/3"),
+        ),
+    )
+    def test_get_bundles_exports_path(self, incoming_data, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_bundles_exports_path(**incoming_data) == path
+
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_get_bundle(self, m_request, base_absolut_url):
         m_request.return_value = "response"
