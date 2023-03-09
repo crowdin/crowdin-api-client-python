@@ -166,7 +166,7 @@ class TestBundlesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.download_bundle(projectId=1, bundleId=1, exportId="1") == "response"
         m_request.assert_called_once_with(
-            method="get", path=f"{resource.get_bundles_path(projectId=1, bundleId=1, exportId='1')}/download"
+            method="get", path=f"{resource.get_bundles_exports_path(projectId=1, bundleId=1, exportId='1')}/download"
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -186,7 +186,7 @@ class TestBundlesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.check_bundle_export_status(projectId=1, bundleId=1, exportId="1") == "response"
         m_request.assert_called_once_with(
-            method="get", path=resource.get_bundles_path(projectId=1, bundleId=1, exportId="1")
+            method="get", path=resource.get_bundles_exports_path(projectId=1, bundleId=1, exportId="1")
         )
 
     @pytest.mark.parametrize(

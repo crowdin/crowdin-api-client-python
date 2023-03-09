@@ -14,14 +14,15 @@ class BundlesResource(BaseResource):
     Link to documentation for enterprise:
     https://developer.crowdin.com/enterprise/api/v2/#tag/Bundles
     """
-    def get_bundles_path(self, projectId: int, bundleId: Optional[int] = None, exportId: Optional[str] = None):
+    def get_bundles_path(self, projectId: int, bundleId: Optional[int] = None):
         if bundleId:
-            if exportId:
-                return f"projects/{projectId}/bundles/{bundleId}/exports/{exportId}"
-
             return f"projects/{projectId}/bundles/{bundleId}"
 
         return f"projects/{projectId}/bundles"
+
+    def get_bundles_exports_path(self, projectId:int, bundleId:int,  exportId:str):
+        bundles_path = self.get_bundles_path(projectId, bundleId)
+        return f"{bundles_path}/exports/{exportId}"
 
     def list_bundles(
         self,
@@ -147,7 +148,7 @@ class BundlesResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=f"{self.get_bundles_path(projectId=projectId, bundleId=bundleId, exportId=exportId)}/download",
+            path=f"{self.get_bundles_exports_path(projectId=projectId, bundleId=bundleId, exportId=exportId)}/download",
         )
 
     def export_bundle(
@@ -188,7 +189,7 @@ class BundlesResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=self.get_bundles_path(projectId=projectId, bundleId=bundleId, exportId=exportId),
+            path=self.get_bundles_exports_path(projectId=projectId, bundleId=bundleId, exportId=exportId),
         )
 
     def get_bundle_list_files(
