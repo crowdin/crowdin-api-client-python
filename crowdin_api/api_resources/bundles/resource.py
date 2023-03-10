@@ -20,9 +20,11 @@ class BundlesResource(BaseResource):
 
         return f"projects/{projectId}/bundles"
 
-    def get_bundles_exports_path(self, projectId:int, bundleId:int,  exportId:str):
+    def get_bundles_exports_path(self, projectId:int, bundleId:int, exportId: Optional[str] = None):
         bundles_path = self.get_bundles_path(projectId, bundleId)
-        return f"{bundles_path}/exports/{exportId}"
+        if exportId:
+            return f"{bundles_path}/exports/{exportId}"
+        return f"{bundles_path}/exports"
 
     def list_bundles(
         self,
@@ -168,7 +170,7 @@ class BundlesResource(BaseResource):
 
         return self.requester.request(
             method="post",
-            path=f"{self.get_bundles_path(projectId=projectId, bundleId=bundleId)}/exports",
+            path=f"{self.get_bundles_exports_path(projectId=projectId, bundleId=bundleId)}",
         )
 
     def check_bundle_export_status(
