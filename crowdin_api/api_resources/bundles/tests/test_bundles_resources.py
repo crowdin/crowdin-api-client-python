@@ -186,7 +186,7 @@ class TestBundlesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.export_bundle(projectId=1, bundleId=1) == "response"
         m_request.assert_called_once_with(
-            method="post", path=f"{resource.get_bundles_exports_path(projectId=1, bundleId=1)}"
+            method="post", path={resource.get_bundles_exports_path(projectId=1, bundleId=1)}
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")

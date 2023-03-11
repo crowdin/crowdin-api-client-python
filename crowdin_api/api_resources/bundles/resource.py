@@ -170,7 +170,7 @@ class BundlesResource(BaseResource):
 
         return self.requester.request(
             method="post",
-            path=f"{self.get_bundles_exports_path(projectId=projectId, bundleId=bundleId)}",
+            path=self.get_bundles_exports_path(projectId=projectId, bundleId=bundleId),
         )
 
     def check_bundle_export_status(
