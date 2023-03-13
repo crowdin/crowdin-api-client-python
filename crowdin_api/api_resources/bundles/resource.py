@@ -14,12 +14,17 @@ class BundlesResource(BaseResource):
     Link to documentation for enterprise:
     https://developer.crowdin.com/enterprise/api/v2/#tag/Bundles
     """
-
     def get_bundles_path(self, projectId: int, bundleId: Optional[int] = None):
         if bundleId:
             return f"projects/{projectId}/bundles/{bundleId}"
 
         return f"projects/{projectId}/bundles"
+
+    def get_bundles_exports_path(self, projectId:int, bundleId:int, exportId: Optional[str] = None):
+        bundles_path = self.get_bundles_path(projectId, bundleId)
+        if exportId:
+            return f"{bundles_path}/exports/{exportId}"
+        return f"{bundles_path}/exports"
 
     def list_bundles(
         self,
@@ -125,6 +130,68 @@ class BundlesResource(BaseResource):
             method="patch",
             path=self.get_bundles_path(projectId=projectId, bundleId=bundleId),
             request_data=data,
+        )
+
+    def download_bundle(
+        self,
+        projectId: int,
+        bundleId: int,
+        exportId: str
+    ):
+        """
+        Download bundle.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.download.get
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=f"{self.get_bundles_exports_path(projectId=projectId, bundleId=bundleId, exportId=exportId)}/download",
+        )
+
+    def export_bundle(
+        self,
+        projectId: int,
+        bundleId: int
+    ):
+        """
+        Export bundle.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=self.get_bundles_exports_path(projectId=projectId, bundleId=bundleId),
+        )
+
+    def check_bundle_export_status(
+        self,
+        projectId: int,
+        bundleId: int,
+        exportId: str
+    ):
+        """
+        Check Bundle Export Status.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.get
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_bundles_exports_path(projectId=projectId, bundleId=bundleId, exportId=exportId),
         )
 
     def get_bundle_list_files(
