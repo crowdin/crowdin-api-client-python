@@ -46,6 +46,7 @@ class ProjectsResource(BaseResource):
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        groupId: Optional[int] = None,
         userId: Optional[Union[int, str]] = None,
         hasManagerAccess: Optional[HasManagerAccess] = None,
     ):
@@ -56,7 +57,7 @@ class ProjectsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.getMany
         """
 
-        params = {"userId": userId, "hasManagerAccess": hasManagerAccess}
+        params = {"userId": userId, "hasManagerAccess": hasManagerAccess, "groupId": groupId}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(method="get", path=self.get_projects_path(), params=params)
