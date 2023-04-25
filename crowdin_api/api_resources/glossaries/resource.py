@@ -38,6 +38,7 @@ class GlossariesResource(BaseResource):
 
     def list_glossaries(
         self,
+        groupId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -49,10 +50,13 @@ class GlossariesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.glossaries.getMany
         """
 
+        params = {"groupId": groupId}
+        params.update(self.get_page_params(page=page, offset=offset, limit=limit))
+
         return self._get_entire_data(
             method="get",
             path=self.get_glossaries_path(),
-            params=self.get_page_params(page=page, offset=offset, limit=limit),
+            params=params,
         )
 
     def add_glossary(self, name: str, languageId: str):
