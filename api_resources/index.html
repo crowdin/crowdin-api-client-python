@@ -169,6 +169,16 @@
 <p>Link to documentation for enterprise:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.BundlesResource.check_bundle_export_status"><code class="name flex">
+<span>def <span class="ident">check_bundle_export_status</span></span>(<span>self, projectId: int, bundleId: int, exportId: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check Bundle Export Status.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.get">https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.get</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.get</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.BundlesResource.delete_bundle"><code class="name flex">
 <span>def <span class="ident">delete_bundle</span></span>(<span>self, projectId: int, bundleId: int)</span>
 </code></dt>
@@ -179,6 +189,16 @@
 <p>Link to documentation for enterprise:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.delete</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.BundlesResource.download_bundle"><code class="name flex">
+<span>def <span class="ident">download_bundle</span></span>(<span>self, projectId: int, bundleId: int, exportId: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Download bundle.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.download.get">https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.download.get</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.BundlesResource.edit_bundle"><code class="name flex">
 <span>def <span class="ident">edit_bundle</span></span>(<span>self, projectId: int, bundleId: int, data: Iterable[<a title="crowdin_api.api_resources.bundles.types.BundlePatchRequest" href="bundles/types.html#crowdin_api.api_resources.bundles.types.BundlePatchRequest">BundlePatchRequest</a>])</span>
 </code></dt>
@@ -188,6 +208,16 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.patch</a></p>
 <p>Link to documentation for enterprise:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.BundlesResource.export_bundle"><code class="name flex">
+<span>def <span class="ident">export_bundle</span></span>(<span>self, projectId: int, bundleId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Export bundle.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.BundlesResource.get_bundle"><code class="name flex">
 <span>def <span class="ident">get_bundle</span></span>(<span>self, projectId: int, bundleId: int)</span>
@@ -208,6 +238,12 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.files.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.files.getMany</a></p>
 <p>Link to documentation for enterprise:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.files.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.files.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.BundlesResource.get_bundles_exports_path"><code class="name flex">
+<span>def <span class="ident">get_bundles_exports_path</span></span>(<span>self, projectId: int, bundleId: int, exportId: Optional[str] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.BundlesResource.get_bundles_path"><code class="name flex">
 <span>def <span class="ident">get_bundles_path</span></span>(<span>self, projectId: int, bundleId: Optional[int] = None)</span>
@@ -726,7 +762,7 @@ operations and shall be completed with sequence of API methods.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.getMany">https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.GlossariesResource.list_glossaries"><code class="name flex">
-<span>def <span class="ident">list_glossaries</span></span>(<span>self, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_glossaries</span></span>(<span>self, groupId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Glossaries.</p>
@@ -1134,7 +1170,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ProjectsResource.list_projects"><code class="name flex">
-<span>def <span class="ident">list_projects</span></span>(<span>self, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None, userId: Union[int, str, None] = None, hasManagerAccess: Optional[<a title="crowdin_api.api_resources.projects.enums.HasManagerAccess" href="projects/enums.html#crowdin_api.api_resources.projects.enums.HasManagerAccess">HasManagerAccess</a>] = None)</span>
+<span>def <span class="ident">list_projects</span></span>(<span>self, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None, groupId: Optional[int] = None, userId: Union[int, str, None] = None, hasManagerAccess: Optional[<a title="crowdin_api.api_resources.projects.enums.HasManagerAccess" href="projects/enums.html#crowdin_api.api_resources.projects.enums.HasManagerAccess">HasManagerAccess</a>] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Projects.</p>
@@ -2788,10 +2824,14 @@ the details of a specific template.</p>
 <h4><code><a title="crowdin_api.api_resources.BundlesResource" href="#crowdin_api.api_resources.BundlesResource">BundlesResource</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.BundlesResource.add_bundle" href="#crowdin_api.api_resources.BundlesResource.add_bundle">add_bundle</a></code></li>
+<li><code><a title="crowdin_api.api_resources.BundlesResource.check_bundle_export_status" href="#crowdin_api.api_resources.BundlesResource.check_bundle_export_status">check_bundle_export_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.BundlesResource.delete_bundle" href="#crowdin_api.api_resources.BundlesResource.delete_bundle">delete_bundle</a></code></li>
+<li><code><a title="crowdin_api.api_resources.BundlesResource.download_bundle" href="#crowdin_api.api_resources.BundlesResource.download_bundle">download_bundle</a></code></li>
 <li><code><a title="crowdin_api.api_resources.BundlesResource.edit_bundle" href="#crowdin_api.api_resources.BundlesResource.edit_bundle">edit_bundle</a></code></li>
+<li><code><a title="crowdin_api.api_resources.BundlesResource.export_bundle" href="#crowdin_api.api_resources.BundlesResource.export_bundle">export_bundle</a></code></li>
 <li><code><a title="crowdin_api.api_resources.BundlesResource.get_bundle" href="#crowdin_api.api_resources.BundlesResource.get_bundle">get_bundle</a></code></li>
 <li><code><a title="crowdin_api.api_resources.BundlesResource.get_bundle_list_files" href="#crowdin_api.api_resources.BundlesResource.get_bundle_list_files">get_bundle_list_files</a></code></li>
+<li><code><a title="crowdin_api.api_resources.BundlesResource.get_bundles_exports_path" href="#crowdin_api.api_resources.BundlesResource.get_bundles_exports_path">get_bundles_exports_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.BundlesResource.get_bundles_path" href="#crowdin_api.api_resources.BundlesResource.get_bundles_path">get_bundles_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.BundlesResource.list_bundles" href="#crowdin_api.api_resources.BundlesResource.list_bundles">list_bundles</a></code></li>
 </ul>
