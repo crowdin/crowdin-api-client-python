@@ -34,15 +34,38 @@ class TestGlossariesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.get_glossaries_path(**in_params) == path
 
+    @pytest.mark.parametrize(
+        "incoming_data, request_params",
+        (
+            (
+                {},
+                {
+                    "groupId": None,
+                    "offset": 0,
+                    "limit": 25,
+                },
+            ),
+            (
+                {
+                    "groupId": 1,
+                },
+                {
+                    "groupId": 1,
+                    "offset": 0,
+                    "limit": 25,
+                },
+            ),
+        ),
+    )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_glossaries(self, m_request, base_absolut_url):
+    def test_list_glossaries(self, m_request, incoming_data, request_params, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.list_glossaries() == "response"
+        assert resource.list_glossaries(**incoming_data) == "response"
         m_request.assert_called_once_with(
             method="get",
-            params=resource.get_page_params(),
+            params=request_params,
             path=resource.get_glossaries_path(),
         )
 
