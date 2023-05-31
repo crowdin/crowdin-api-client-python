@@ -105,7 +105,7 @@ class TestAPIRequester:
             urljoin(base_absolut_url, path),
             params={},
             headers=None,
-            data="null",
+            data=None,
             timeout=80,
             **expected_result,
         )
