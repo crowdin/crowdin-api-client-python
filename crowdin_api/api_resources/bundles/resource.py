@@ -20,7 +20,7 @@ class BundlesResource(BaseResource):
 
         return f"projects/{projectId}/bundles"
 
-    def get_bundles_exports_path(self, projectId:int, bundleId:int, exportId: Optional[str] = None):
+    def get_bundles_exports_path(self, projectId: int, bundleId: int, exportId: Optional[str] = None):
         bundles_path = self.get_bundles_path(projectId, bundleId)
         if exportId:
             return f"{bundles_path}/exports/{exportId}"
