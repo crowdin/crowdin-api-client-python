@@ -114,7 +114,7 @@ class APIRequester:
             file_mime_type = mimetypes.MimeTypes().guess_type(file.name)[0]
             headers["Content-Type"] = file_mime_type or self.default_file_content_type
             headers["Crowdin-API-FileName"] = os.path.basename(file.name)
-        else:
+        elif request_data is not None:
             request_data = dumps(self._clear_data(request_data))
 
         kwargs = {**self._extended_params, **kwargs}
