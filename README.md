@@ -22,14 +22,6 @@ Crowdin API is a full-featured RESTful API that helps you to integrate localizat
 
 </div>
 
-## Table of Contents
-* [Installation](#installation)
-* [Quick Start](#quick-start)
-* [Fetch all records](#fetch-all-records)
-* [Seeking Assistance](#seeking-assistance)
-* [Contributing](#contributing)
-* [License](#license)
-
 ## Installation
 
 ```console
@@ -117,13 +109,12 @@ print(client.projects.with_fetch_all(1000).list_projects())
 
 If you find any problems or would like to suggest a feature, please read the [How can I contribute](https://github.com/crowdin/crowdin-api-client-python/blob/main/CONTRIBUTING.md#how-can-i-contribute) section in our contributing guidelines.
 
-Need help working with Crowdin Python client or have any questions? [Contact](https://crowdin.com/contacts) Customer Success Service.
-
 ## Contributing
 
-If you want to contribute please read the [Contributing](https://github.com/crowdin/crowdin-api-client-python/blob/main/CONTRIBUTING.md) guidelines.
+If you would like to contribute please read the [Contributing](https://github.com/crowdin/crowdin-api-client-python/blob/main/CONTRIBUTING.md) guidelines.
 
 ## License
+
 <pre>
 The Crowdin Python client is licensed under the MIT License.
 See the LICENSE file distributed with this work for additional
