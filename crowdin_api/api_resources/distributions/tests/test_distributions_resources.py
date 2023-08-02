@@ -43,33 +43,27 @@ class TestLanguagesResource:
                 {
                     "name": "test",
                     "fileIds": [1, 2, 3],
+                    "bundleIds": None,
                 },
                 {
                     "name": "test",
                     "fileIds": [1, 2, 3],
-                    "exportMode": ExportMode.DEFAULT,
-                    "format": None,
-                    "exportPattern": None,
-                    "labelIds": None
-
+                    "bundleIds": None,
+                    "exportMode": ExportMode.DEFAULT
                 },
             ),
             (
                 {
                     "name": "test",
-                    "fileIds": [1, 2, 3],
-                    "exportMode": ExportMode.BUNDLE,
-                    "format": "crowdin-resx",
-                    "exportPattern": "strings-%two_letter_code%.resx",
-                    "labelIds": [1, 2, 3, 4],
+                    "bundleIds": [1],
+                    "fileIds": None,
+                    "exportMode": ExportMode.BUNDLE
                 },
                 {
                     "name": "test",
-                    "fileIds": [1, 2, 3],
-                    "exportMode": ExportMode.BUNDLE,
-                    "format": "crowdin-resx",
-                    "exportPattern": "strings-%two_letter_code%.resx",
-                    "labelIds": [1, 2, 3, 4],
+                    "bundleIds": [1],
+                    "fileIds": None,
+                    "exportMode": ExportMode.BUNDLE
                 },
             ),
         ),
