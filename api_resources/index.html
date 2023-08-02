@@ -312,7 +312,7 @@
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.DistributionsResource.add_distribution"><code class="name flex">
-<span>def <span class="ident">add_distribution</span></span>(<span>self, projectId: int, name: str, fileIds: Iterable[int], exportMode: Optional[<a title="crowdin_api.api_resources.distributions.enums.ExportMode" href="distributions/enums.html#crowdin_api.api_resources.distributions.enums.ExportMode">ExportMode</a>] = ExportMode.DEFAULT, format: Optional[str] = None, exportPattern: Optional[str] = None, labelIds: Optional[Iterable[int]] = None)</span>
+<span>def <span class="ident">add_distribution</span></span>(<span>self, projectId: int, name: str, fileIds: Optional[Iterable[int]] = None, bundleIds: Optional[Iterable[int]] = None, exportMode: Optional[<a title="crowdin_api.api_resources.distributions.enums.ExportMode" href="distributions/enums.html#crowdin_api.api_resources.distributions.enums.ExportMode">ExportMode</a>] = ExportMode.DEFAULT)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Distribution.</p>
