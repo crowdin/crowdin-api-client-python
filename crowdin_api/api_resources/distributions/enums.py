@@ -5,9 +5,7 @@ class DistributionPatchPath(Enum):
     EXPORT_MODE = "/exportMode"
     NAME = "/name"
     FILE_IDS = "/fileIds"
-    FORMAT = "/format"
-    EXPORT_PATTERN = "/exportPattern"
-    LABEL_IDS = "/labelIds"
+    BUNDLE_IDS = "/bundleIds"
 
 
 class ExportMode(Enum):

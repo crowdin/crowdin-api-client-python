@@ -42,11 +42,9 @@ class DistributionsResource(BaseResource):
             self,
             projectId: int,
             name: str,
-            fileIds: Iterable[int],
-            exportMode: Optional[ExportMode] = ExportMode.DEFAULT,
-            format: Optional[str] = None,
-            exportPattern: Optional[str] = None,
-            labelIds: Optional[Iterable[int]] = None
+            fileIds: Optional[Iterable[int]] = None,
+            bundleIds: Optional[Iterable[int]] = None,
+            exportMode: Optional[ExportMode] = ExportMode.DEFAULT
     ):
         """
         Add Distribution.
@@ -62,9 +60,7 @@ class DistributionsResource(BaseResource):
                 "exportMode": exportMode,
                 "name": name,
                 "fileIds": fileIds,
-                "format": format,
-                "exportPattern": exportPattern,
-                "labelIds": labelIds
+                "bundleIds": bundleIds
             },
         )
 
