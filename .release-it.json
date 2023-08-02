@@ -1,0 +1,25 @@
+{
+  "git": {
+    "push": true,
+    "commit": true,
+    "commitMessage": "chore: version ${version} [skip ci]",
+    "requireBranch": "main",
+    "changelog": false,
+    "tag": true
+  },
+  "github": {
+    "release": false
+  },
+  "plugins": {
+    "@j-ulrich/release-it-regex-bumper": {
+      "in": "crowdin_api/__init__.py",
+      "out": [
+        {
+          "file": "crowdin_api/__init__.py",
+          "search": "__version__ = \"\\d+\\.\\d+\\.\\d+\"",
+          "replace": "__version__ = \"{{versionWithoutPrerelease}}\""
+        }
+      ]
+    }
+  }
+}
