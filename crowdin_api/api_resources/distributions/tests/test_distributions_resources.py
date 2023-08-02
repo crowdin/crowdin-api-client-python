@@ -43,10 +43,12 @@ class TestLanguagesResource:
                 {
                     "name": "test",
                     "fileIds": [1, 2, 3],
+                    "bundleIds": None,
                 },
                 {
                     "name": "test",
                     "fileIds": [1, 2, 3],
+                    "bundleIds": None,
                     "exportMode": ExportMode.DEFAULT
                 },
             ),
@@ -54,11 +56,13 @@ class TestLanguagesResource:
                 {
                     "name": "test",
                     "bundleIds": [1],
+                    "fileIds": None,
                     "exportMode": ExportMode.BUNDLE
                 },
                 {
                     "name": "test",
-                    "bundleIds": [2],
+                    "bundleIds": [1],
+                    "fileIds": None,
                     "exportMode": ExportMode.BUNDLE
                 },
             ),
