@@ -3,7 +3,8 @@ name: PyPI Deployment
 on:
   release:
     types: [published]
-  workflow_dispatch:
+  repository_dispatch:
+    types: [publish]
 
 jobs:
   build:
