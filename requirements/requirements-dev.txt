@@ -1,10 +1,10 @@
 -r requirements.txt
 
-black==20.8b1
-pre-commit==2.10.1
-xenon==0.7.1
-doc8==0.8.1
-pytest==6.2.2
-pytest-cov==2.11.1
-requests-mock==1.8.0
-flake8==5.0.4
+black==23.7.0
+pre-commit==3.4.0
+xenon==0.9.1
+doc8==1.1.1
+pytest==7.4.1
+pytest-cov==4.1.0
+requests-mock==1.11.0
+flake8==6.1.0
