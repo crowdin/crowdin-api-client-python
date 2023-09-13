@@ -372,7 +372,7 @@ class ProjectsResource(BaseResource):
             ),
             request_data=data,
         )
-    
+
     def get_strings_exporter_path(
         self,
         projectId: int,
@@ -381,7 +381,7 @@ class ProjectsResource(BaseResource):
         if systemStringExporterSettingId is None:
             return f"projects/{projectId}/strings-exporter-settings"
         return f"projects/{projectId}/strings-exporter-settings/{systemStringExporterSettingId}"
-    
+
     def list_project_strings_exporter(
         self,
         projectId: int,
