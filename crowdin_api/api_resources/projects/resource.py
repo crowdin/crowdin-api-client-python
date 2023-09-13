@@ -372,3 +372,32 @@ class ProjectsResource(BaseResource):
             ),
             request_data=data,
         )
+    
+    def get_strings_exporter_path(
+        self,
+        projectId: int,
+        systemStringExporterSettingId: Optional[int] = None
+    ):
+        if systemStringExporterSettingId is None:
+            return f"projects/{projectId}/strings-exporter-settings"
+        return f"projects/{projectId}/strings-exporter-settings/{systemStringExporterSettingId}"
+    
+    def list_project_strings_exporter(
+        self,
+        projectId: int,
+        page: Optional[int] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        List Project Strings Exporter Settings.
+
+        Link to documetation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.getMany
+        """
+        params = self.get_page_params(page=page, offset=offset, limit=limit)
+        return self._get_entire_data(
+            method="get",
+            path=self.get_strings_exporter_path(projectId=projectId),
+            params=params,
+        )
