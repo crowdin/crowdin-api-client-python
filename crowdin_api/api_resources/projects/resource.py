@@ -426,3 +426,20 @@ class ProjectsResource(BaseResource):
             path=self.get_strings_exporter_path(projectId=projectId),
             request_data={"format": format, "settings": settings},
         )
+
+    def get_project_strings_exporter(
+        self, projectId: int, systemStringsExporterSettingId: int
+    ):
+        """
+        Get Project Strings Exporter Settings
+
+        Link to documetation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.get
+        """
+        return self.requester.request(
+            method="get",
+            path=self.get_strings_exporter_path(
+                projectId=projectId,
+                systemStringExporterSettingId=systemStringsExporterSettingId,
+            ),
+        )
