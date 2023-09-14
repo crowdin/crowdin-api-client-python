@@ -460,3 +460,29 @@ class ProjectsResource(BaseResource):
                 systemStringExporterSettingId=systemStringsExporterSettingId,
             ),
         )
+
+    def edit_project_strings_exporter(
+        self,
+        projectId: int,
+        systemStringExporterSettingId: int,
+        format: str,
+        settings: Union[
+            AndroidStringsExporterSettings,
+            MacOSXStringsExporterSettings,
+            XliffStringsExporterSettings,
+        ],
+    ):
+        """
+        Edit Project Strings Exporter Settings.
+
+        Link to documetation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.patch
+        """
+        return self.requester.request(
+            method="patch",
+            path=self.get_strings_exporter_path(
+                projectId=projectId,
+                systemStringExporterSettingId=systemStringExporterSettingId
+            ),
+            request_data={"format": format, "settings": settings},
+        )
