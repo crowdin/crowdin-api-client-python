@@ -20,6 +20,9 @@ from crowdin_api.api_resources.projects.types import (
     OtherFileFormatSettings,
     SpecificFileFormatSettings,
     ProjectFilePatchRequest,
+    AndroidStringsExporterSettings,
+    MacOSXStringsExporterSettings,
+    XliffStringsExporterSettings,
 )
 
 
@@ -400,4 +403,26 @@ class ProjectsResource(BaseResource):
             method="get",
             path=self.get_strings_exporter_path(projectId=projectId),
             params=params,
+        )
+
+    def add_project_strings_exporter(
+        self,
+        projectId: int,
+        format: str,
+        settings: Union[
+            AndroidStringsExporterSettings,
+            MacOSXStringsExporterSettings,
+            XliffStringsExporterSettings,
+        ],
+    ):
+        """
+        Add Project Strings Exporter Settings.
+
+        Link to documetation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.post
+        """
+        return self.requester.request(
+            method="post",
+            path=self.get_strings_exporter_path(projectId=projectId),
+            request_data={"format": format, "settings": settings},
         )
