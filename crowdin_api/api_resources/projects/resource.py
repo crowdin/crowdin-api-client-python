@@ -443,3 +443,20 @@ class ProjectsResource(BaseResource):
                 systemStringExporterSettingId=systemStringsExporterSettingId,
             ),
         )
+
+    def delete_project_strings_exporter(
+        self, projectId: int, systemStringsExporterSettingId: int
+    ):
+        """
+        Delete Project Strings Exporter Settings.
+
+        Link to documetation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.delete
+        """
+        return self.requester.request(
+            method="delete",
+            path=self.get_strings_exporter_path(
+                projectId=projectId,
+                systemStringExporterSettingId=systemStringsExporterSettingId,
+            ),
+        )
