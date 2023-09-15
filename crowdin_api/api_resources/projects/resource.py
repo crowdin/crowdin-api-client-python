@@ -379,18 +379,15 @@ class ProjectsResource(BaseResource):
     def get_strings_exporter_path(
         self,
         projectId: int,
-        systemStringExporterSettingId: Optional[int] = None
+        systemStringExporterSettingsId: Optional[int] = None
     ):
-        if systemStringExporterSettingId is None:
+        if systemStringExporterSettingsId is None:
             return f"projects/{projectId}/strings-exporter-settings"
-        return f"projects/{projectId}/strings-exporter-settings/{systemStringExporterSettingId}"
+        return f"projects/{projectId}/strings-exporter-settings/{systemStringExporterSettingsId}"
 
-    def list_project_strings_exporter(
+    def list_project_strings_exporter_settings(
         self,
         projectId: int,
-        page: Optional[int] = None,
-        offset: Optional[int] = None,
-        limit: Optional[int] = None,
     ):
         """
         List Project Strings Exporter Settings.
@@ -398,14 +395,12 @@ class ProjectsResource(BaseResource):
         Link to documetation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.getMany
         """
-        params = self.get_page_params(page=page, offset=offset, limit=limit)
         return self._get_entire_data(
             method="get",
             path=self.get_strings_exporter_path(projectId=projectId),
-            params=params,
         )
 
-    def add_project_strings_exporter(
+    def add_project_strings_exporter_settings(
         self,
         projectId: int,
         format: str,
@@ -427,8 +422,8 @@ class ProjectsResource(BaseResource):
             request_data={"format": format, "settings": settings},
         )
 
-    def get_project_strings_exporter(
-        self, projectId: int, systemStringsExporterSettingId: int
+    def get_project_strings_exporter_settings(
+        self, projectId: int, systemStringExporterSettingsId: int
     ):
         """
         Get Project Strings Exporter Settings
@@ -440,12 +435,12 @@ class ProjectsResource(BaseResource):
             method="get",
             path=self.get_strings_exporter_path(
                 projectId=projectId,
-                systemStringExporterSettingId=systemStringsExporterSettingId,
+                systemStringExporterSettingId=systemStringExporterSettingsId,
             ),
         )
 
-    def delete_project_strings_exporter(
-        self, projectId: int, systemStringsExporterSettingId: int
+    def delete_project_strings_exporter_settings(
+        self, projectId: int, systemStringExporterSettingsId: int
     ):
         """
         Delete Project Strings Exporter Settings.
@@ -457,14 +452,14 @@ class ProjectsResource(BaseResource):
             method="delete",
             path=self.get_strings_exporter_path(
                 projectId=projectId,
-                systemStringExporterSettingId=systemStringsExporterSettingId,
+                systemStringExporterSettingsId=systemStringExporterSettingsId,
             ),
         )
 
-    def edit_project_strings_exporter(
+    def edit_project_strings_exporter_settings(
         self,
         projectId: int,
-        systemStringExporterSettingId: int,
+        systemStringExporterSettingsId: int,
         format: str,
         settings: Union[
             AndroidStringsExporterSettings,
@@ -482,7 +477,7 @@ class ProjectsResource(BaseResource):
             method="patch",
             path=self.get_strings_exporter_path(
                 projectId=projectId,
-                systemStringExporterSettingId=systemStringExporterSettingId
+                systemStringExporterSettingsId=systemStringExporterSettingsId
             ),
             request_data={"format": format, "settings": settings},
         )
