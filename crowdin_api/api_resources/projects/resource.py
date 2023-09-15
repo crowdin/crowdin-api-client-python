@@ -20,6 +20,9 @@ from crowdin_api.api_resources.projects.types import (
     OtherFileFormatSettings,
     SpecificFileFormatSettings,
     ProjectFilePatchRequest,
+    AndroidStringsExporterSettings,
+    MacOSXStringsExporterSettings,
+    XliffStringsExporterSettings,
 )
 
 
@@ -371,4 +374,110 @@ class ProjectsResource(BaseResource):
                 fileFormatSettingsId=fileFormatSettingsId
             ),
             request_data=data,
+        )
+
+    def get_strings_exporter_path(
+        self,
+        projectId: int,
+        systemStringExporterSettingsId: Optional[int] = None
+    ):
+        if systemStringExporterSettingsId is None:
+            return f"projects/{projectId}/strings-exporter-settings"
+        return f"projects/{projectId}/strings-exporter-settings/{systemStringExporterSettingsId}"
+
+    def list_project_strings_exporter_settings(
+        self,
+        projectId: int,
+    ):
+        """
+        List Project Strings Exporter Settings.
+
+        Link to documetation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.getMany
+        """
+        return self._get_entire_data(
+            method="get",
+            path=self.get_strings_exporter_path(projectId=projectId),
+        )
+
+    def add_project_strings_exporter_settings(
+        self,
+        projectId: int,
+        format: str,
+        settings: Union[
+            AndroidStringsExporterSettings,
+            MacOSXStringsExporterSettings,
+            XliffStringsExporterSettings,
+        ],
+    ):
+        """
+        Add Project Strings Exporter Settings.
+
+        Link to documetation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.post
+        """
+        return self.requester.request(
+            method="post",
+            path=self.get_strings_exporter_path(projectId=projectId),
+            request_data={"format": format, "settings": settings},
+        )
+
+    def get_project_strings_exporter_settings(
+        self, projectId: int, systemStringExporterSettingsId: int
+    ):
+        """
+        Get Project Strings Exporter Settings
+
+        Link to documetation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.get
+        """
+        return self.requester.request(
+            method="get",
+            path=self.get_strings_exporter_path(
+                projectId=projectId,
+                systemStringExporterSettingsId=systemStringExporterSettingsId,
+            ),
+        )
+
+    def delete_project_strings_exporter_settings(
+        self, projectId: int, systemStringExporterSettingsId: int
+    ):
+        """
+        Delete Project Strings Exporter Settings.
+
+        Link to documetation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.delete
+        """
+        return self.requester.request(
+            method="delete",
+            path=self.get_strings_exporter_path(
+                projectId=projectId,
+                systemStringExporterSettingsId=systemStringExporterSettingsId,
+            ),
+        )
+
+    def edit_project_strings_exporter_settings(
+        self,
+        projectId: int,
+        systemStringExporterSettingsId: int,
+        format: str,
+        settings: Union[
+            AndroidStringsExporterSettings,
+            MacOSXStringsExporterSettings,
+            XliffStringsExporterSettings,
+        ],
+    ):
+        """
+        Edit Project Strings Exporter Settings.
+
+        Link to documetation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.patch
+        """
+        return self.requester.request(
+            method="patch",
+            path=self.get_strings_exporter_path(
+                projectId=projectId,
+                systemStringExporterSettingsId=systemStringExporterSettingsId
+            ),
+            request_data={"format": format, "settings": settings},
         )

@@ -1,4 +1,4 @@
-from typing import Any, Iterable, List, Union
+from typing import Any, Iterable, List, Union, Dict
 
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.projects.enums import (
@@ -96,6 +96,18 @@ class TxtFileFormatSettings(TypedDict):
 
 class OtherFileFormatSettings(TypedDict):
     exportPattern: str
+
+
+class AndroidStringsExporterSettings(TypedDict):
+    convertPlaceholders: bool
+
+
+class MacOSXStringsExporterSettings(TypedDict):
+    convertPlaceholders: bool
+
+
+class XliffStringsExporterSettings(TypedDict):
+    languagePairMapping: Dict[str, str]
 
 
 class ProjectFilePatchRequest(TypedDict):
