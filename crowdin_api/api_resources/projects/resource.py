@@ -435,7 +435,7 @@ class ProjectsResource(BaseResource):
             method="get",
             path=self.get_strings_exporter_path(
                 projectId=projectId,
-                systemStringExporterSettingId=systemStringExporterSettingsId,
+                systemStringExporterSettingsId=systemStringExporterSettingsId,
             ),
         )
 
