@@ -11,13 +11,15 @@ from crowdin_api.api_resources.reports.enums import (
     GroupBy,
     SimpleRateMode,
     Unit,
-    ReportSettingsTemplatesPatchPath,
+    ReportSettingsTemplatesPatchPath, MatchType, ReportLabelIncludeType,
 )
+from crowdin_api.api_resources.reports.requests.cost_estimation_post_editing import IndividualRate, NetRateSchemes
 from crowdin_api.api_resources.reports.resource import (
     ReportsResource,
     EnterpriseReportsResource,
     BaseReportSettingsTemplatesResource,
 )
+from crowdin_api.api_resources.reports.types import BaseRates, Match
 from crowdin_api.requester import APIRequester
 
 
@@ -425,6 +427,284 @@ class TestReportsResource:
         m_generate_report.assert_called_once_with(
             projectId=1,
             request_data={"name": "contribution-raw-data", "schema": schema},
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, schema",
+        [
+            (
+                    {
+                        "unit": Unit.WORDS,
+                        "currency": Currency.UAH,
+                        "format": Format.XLSX,
+                        "base_rates": BaseRates(fullTranslation=0, proofread=0),
+                        "individual_rates": [
+                            IndividualRate(languageIds=["uk"], userIds=[1], fullTranslation=0.1, proofread=0.1)
+                        ],
+                        "net_rate_schemes": NetRateSchemes(tmMatch=[
+                            Match(matchType=MatchType.OPTION_100, price=70)
+                        ]),
+                        "calculate_internal_matches": True,
+                        "include_pre_translated_strings": True,
+                        "language_id": "uk",
+                        "file_ids": [1, 2],
+                        "directory_ids": [1, 2],
+                        "branch_ids": [1, 2],
+                        "date_from": datetime(year=1988, month=1, day=4),
+                        "date_to": datetime(year=2015, month=10, day=13),
+                        "label_ids": [1],
+                        "label_include_type": ReportLabelIncludeType.STRINGS_WITH_LABEL
+                    },
+                    {
+                        "unit": Unit.WORDS,
+                        "currency": Currency.UAH,
+                        "format": Format.XLSX,
+                        "baseRates": {
+                            "fullTranslation": 0,
+                            "proofread": 0
+                        },
+                        "individualRates": [
+                            {
+                                "languageIds": ["uk"],
+                                "userIds": [1],
+                                "fullTranslation": 0.1,
+                                "proofread": 0.1
+                            }
+                        ],
+                        "netRateSchemes": {
+                            "tmMatch": [
+                                {
+                                    "matchType": MatchType.OPTION_100,
+                                    "price": 70
+                                }
+                            ]
+                        },
+                        "calculateInternalMatches": True,
+                        "includePreTranslatedStrings": True,
+                        "languageId": "uk",
+                        "fileIds": [1, 2],
+                        "directoryIds": [1, 2],
+                        "branchIds": [1, 2],
+                        "dateFrom": datetime(year=1988, month=1, day=4),
+                        "dateTo": datetime(year=2015, month=10, day=13),
+                        "labelIds": [1],
+                        "labelIncludeType": ReportLabelIncludeType.STRINGS_WITH_LABEL
+                    }
+            )
+        ]
+    )
+    @mock.patch("crowdin_api.api_resources.reports.resource.ReportsResource.generate_report")
+    def test_generate_costs_estimation_post_editing_general_report(
+        self, m_generate_report, in_params, schema, base_absolut_url
+    ):
+        m_generate_report.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.generate_costs_estimation_post_editing_general_report(
+                project_id=1,
+                **in_params
+            ) == "response"
+        )
+        m_generate_report.assert_called_once_with(
+            projectId=1,
+            request_data={
+                "name": "costs-estimation-pe",
+                "schema": schema
+            }
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, schema",
+        [
+            (
+                {
+                    "unit": Unit.WORDS,
+                    "currency": Currency.UAH,
+                    "format": Format.XLSX,
+                    "base_rates": BaseRates(fullTranslation=0, proofread=0),
+                    "individual_rates": [
+                        IndividualRate(languageIds=["uk"], userIds=[1], fullTranslation=0.1, proofread=0.1)
+                    ],
+                    "net_rate_schemes": NetRateSchemes(tmMatch=[
+                        Match(matchType=MatchType.OPTION_100, price=70)
+                    ]),
+                    "calculate_internal_matches": True,
+                    "include_pre_translated_strings": True,
+                    "task_id": 1
+                },
+                {
+                    "unit": Unit.WORDS,
+                    "currency": Currency.UAH,
+                    "format": Format.XLSX,
+                    "baseRates": {
+                        "fullTranslation": 0,
+                        "proofread": 0
+                    },
+                    "individualRates": [
+                        {
+                            "languageIds": ["uk"],
+                            "userIds": [1],
+                            "fullTranslation": 0.1,
+                            "proofread": 0.1
+                        }
+                    ],
+                    "netRateSchemes": {
+                        "tmMatch": [
+                            {
+                                "matchType": MatchType.OPTION_100,
+                                "price": 70
+                            }
+                        ]
+                    },
+                    "calculateInternalMatches": True,
+                    "includePreTranslatedStrings": True,
+                    "taskId": 1
+                }
+            )
+        ]
+    )
+    @mock.patch("crowdin_api.api_resources.reports.resource.ReportsResource.generate_report")
+    def test_generate_costs_estimation_post_editing_by_task_report(
+        self, m_generate_report, in_params, schema, base_absolut_url
+    ):
+        m_generate_report.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.generate_costs_estimation_post_editing_by_task_report(
+                project_id=1,
+                **in_params
+            ) == "response"
+        )
+        m_generate_report.assert_called_once_with(
+            projectId=1,
+            request_data={
+                "name": "costs-estimation-pe",
+                "schema": schema
+            }
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, schema",
+        [
+            (
+                {
+                    "unit": Unit.WORDS,
+                    "currency": Currency.UAH,
+                    "format": Format.XLSX,
+                    "base_rates": BaseRates(fullTranslation=0, proofread=0),
+                    "individual_rates": [
+                        IndividualRate(languageIds=["uk"], userIds=[1], fullTranslation=0.1, proofread=0.1)
+                    ],
+                    "net_rate_schemes": NetRateSchemes(tmMatch=[
+                        Match(matchType=MatchType.OPTION_99_82, price=70)
+                    ]),
+                    "group_by": GroupBy.LANGUAGE,
+                    "date_from": datetime(year=1988, month=1, day=4),
+                    "date_to": datetime(year=2015, month=10, day=13),
+                    "language_id": "uk",
+                    "user_ids": [1],
+                    "file_ids": [1],
+                    "directory_ids": [1],
+                    "branch_ids": [1]
+                },
+                {
+                    "unit": Unit.WORDS,
+                    "currency": Currency.UAH,
+                    "format": Format.XLSX,
+                    "baseRates": BaseRates(fullTranslation=0, proofread=0),
+                    "individualRates": [
+                        IndividualRate(languageIds=["uk"], userIds=[1], fullTranslation=0.1, proofread=0.1)
+                    ],
+                    "netRateSchemes": NetRateSchemes(tmMatch=[
+                        Match(matchType=MatchType.OPTION_99_82, price=70)
+                    ]),
+                    "groupBy": GroupBy.LANGUAGE,
+                    "dateFrom": datetime(year=1988, month=1, day=4),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                    "languageId": "uk",
+                    "userIds": [1],
+                    "fileIds": [1],
+                    "directoryIds": [1],
+                    "branchIds": [1]
+                }
+            )
+        ]
+    )
+    @mock.patch("crowdin_api.api_resources.reports.resource.ReportsResource.generate_report")
+    def test_generate_translation_costs_post_editing_general_report(
+        self, m_generate_report, in_params, schema, base_absolut_url
+    ):
+        m_generate_report.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.generate_translation_costs_post_editing_general_report(
+                project_id=1,
+                **in_params
+            ) == "response"
+        )
+        m_generate_report.assert_called_once_with(
+            projectId=1,
+            request_data={
+                "name": "translation-costs-pe",
+                "schema": schema
+            }
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, schema",
+        [
+            (
+                {
+                    "unit": Unit.WORDS,
+                    "currency": Currency.UAH,
+                    "format": Format.XLSX,
+                    "base_rates": BaseRates(fullTranslation=0, proofread=0),
+                    "individual_rates": [
+                        IndividualRate(languageIds=["uk"], userIds=[1], fullTranslation=0.1, proofread=0.1)
+                    ],
+                    "net_rate_schemes": NetRateSchemes(tmMatch=[
+                        Match(matchType=MatchType.OPTION_99_82, price=70)
+                    ]),
+                    "task_id": 1
+                },
+                {
+                    "unit": Unit.WORDS,
+                    "currency": Currency.UAH,
+                    "format": Format.XLSX,
+                    "baseRates": BaseRates(fullTranslation=0, proofread=0),
+                    "individualRates": [
+                        IndividualRate(languageIds=["uk"], userIds=[1], fullTranslation=0.1, proofread=0.1)
+                    ],
+                    "netRateSchemes": NetRateSchemes(tmMatch=[
+                        Match(matchType=MatchType.OPTION_99_82, price=70)
+                    ]),
+                    "taskId": 1
+                }
+            )
+        ]
+    )
+    @mock.patch("crowdin_api.api_resources.reports.resource.ReportsResource.generate_report")
+    def test_generate_translation_costs_post_editing_by_task_report(
+        self, m_generate_report, in_params, schema, base_absolut_url
+    ):
+        m_generate_report.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.generate_translation_costs_post_editing_by_task_report(
+                project_id=1,
+                **in_params
+            ) == "response"
+        )
+        m_generate_report.assert_called_once_with(
+            projectId=1,
+            request_data={
+                "name": "translation-costs-pe",
+                "schema": schema
+            }
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
