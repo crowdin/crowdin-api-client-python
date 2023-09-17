@@ -6,6 +6,8 @@ class ReportName(Enum):
     TRANSLATION_COSTS = "translation-costs"
     TOP_MEMBERS = "top-members"
     CONTRIBUTION_RAW_DATA = "contribution-raw-data"
+    COSTS_ESTIMATION_POST_EDITING = "costs-estimation-pe"
+    TRANSLATION_COSTS_POST_EDITING = "translation-costs-pe"
 
 
 class Unit(Enum):
@@ -84,3 +86,15 @@ class ReportSettingsTemplatesPatchPath(Enum):
     UNIT = "unit"
     MODE = "mode"
     CONFIG = "config"
+
+
+class ReportLabelIncludeType(Enum):
+    STRINGS_WITH_LABEL = "strings_with_label"
+    STRINGS_WITHOUT_LABEL = "strings_without_label"
+
+
+class MatchType(Enum):
+    PERFECT = "perfect"
+    OPTION_100 = "100"
+    OPTION_99_82 = "99-82"
+    OPTION_81_60 = "81-60"
