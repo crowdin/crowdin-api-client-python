@@ -23,6 +23,7 @@ from crowdin_api.api_resources.projects.types import (
     AndroidStringsExporterSettings,
     MacOSXStringsExporterSettings,
     XliffStringsExporterSettings,
+    QAChecksIgnorableCategories
 )
 
 
@@ -155,6 +156,7 @@ class ProjectsResource(BaseResource):
         inContextPseudoLanguageId: Optional[str] = None,
         qaCheckIsActive: Optional[bool] = None,
         qaCheckCategories: Optional[QACheckCategories] = None,
+        qaChecksIgnorableCategories: Optional[QAChecksIgnorableCategories] = None,
         languageMapping: Optional[Dict] = None,
         glossaryAccess: Optional[bool] = None,
         notificationSettings: Optional[NotificationSettings] = None,
@@ -191,6 +193,7 @@ class ProjectsResource(BaseResource):
                 "inContextPseudoLanguageId": inContextPseudoLanguageId,
                 "qaCheckIsActive": qaCheckIsActive,
                 "qaCheckCategories": qaCheckCategories,
+                "qaChecksIgnorableCategories": qaChecksIgnorableCategories,
                 "languageMapping": languageMapping,
                 "glossaryAccess": glossaryAccess,
                 "notificationSettings": notificationSettings,
@@ -234,7 +237,7 @@ class ProjectsResource(BaseResource):
             request_data=data,
         )
 
-    def get_project_file_path(
+    def get_project_file_format_settings_path(
         self,
         projectId: int,
         fileFormatSettingsId: Optional[int] = None
@@ -251,7 +254,7 @@ class ProjectsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.custom-segmentations.get
         """
-        path = self.get_project_file_path(
+        path = self.get_project_file_format_settings_path(
             projectId=projectId,
             fileFormatSettingsId=fileFormatSettingsId
         )
@@ -268,7 +271,7 @@ class ProjectsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.custom-segmentations.delete
         """
-        path = self.get_project_file_path(
+        path = self.get_project_file_format_settings_path(
             projectId=projectId,
             fileFormatSettingsId=fileFormatSettingsId
         )
@@ -278,7 +281,7 @@ class ProjectsResource(BaseResource):
             path=f"{path}/custom-segmentations",
         )
 
-    def list_project_files(
+    def list_project_file_format_settings(
         self,
         projectId: int,
         page: Optional[int] = None,
@@ -295,11 +298,11 @@ class ProjectsResource(BaseResource):
 
         return self._get_entire_data(
             method="get",
-            path=self.get_project_file_path(projectId=projectId),
+            path=self.get_project_file_format_settings_path(projectId=projectId),
             params=params
         )
 
-    def add_project_file(
+    def add_project_file_format_settings(
         self,
         projectId: int,
         format: str,
@@ -318,11 +321,11 @@ class ProjectsResource(BaseResource):
 
         return self.requester.request(
             method="post",
-            path=self.get_project_file_path(projectId=projectId),
+            path=self.get_project_file_format_settings_path(projectId=projectId),
             request_data={"format": format, "settings": settings}
         )
 
-    def get_project_file(self, projectId: int, fileFormatSettingsId: int):
+    def get_project_file_format_settings(self, projectId: int, fileFormatSettingsId: int):
         """
         Get Project File Format Settings.
 
@@ -332,13 +335,13 @@ class ProjectsResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=self.get_project_file_path(
+            path=self.get_project_file_format_settings_path(
                 projectId=projectId,
                 fileFormatSettingsId=fileFormatSettingsId
             ),
         )
 
-    def delete_project_file(self, projectId: int, fileFormatSettingsId: int):
+    def delete_project_file_format_settings(self, projectId: int, fileFormatSettingsId: int):
         """
         Delete Project File Format Settings.
 
@@ -348,13 +351,13 @@ class ProjectsResource(BaseResource):
 
         return self.requester.request(
             method="delete",
-            path=self.get_project_file_path(
+            path=self.get_project_file_format_settings_path(
                 projectId=projectId,
                 fileFormatSettingsId=fileFormatSettingsId
             ),
         )
 
-    def edit_project_file(
+    def edit_project_file_format_settings(
         self,
         projectId: int,
         fileFormatSettingsId: int,
@@ -369,7 +372,7 @@ class ProjectsResource(BaseResource):
 
         return self.requester.request(
             method="patch",
-            path=self.get_project_file_path(
+            path=self.get_project_file_format_settings_path(
                 projectId=projectId,
                 fileFormatSettingsId=fileFormatSettingsId
             ),

@@ -44,6 +44,8 @@ class ProjectPatchPath(Enum):
     QA_CHECK_IS_ACTIVE = "/qaCheckIsActive"
     QA_CHECK_CATEGORIES = "/qaCheckCategories"
     QA_CHECK_CATEGORY = "/qaCheckCategories/{category}"
+    QA_CHECKS_IGNORABLE_CATEGORIES = "/qaChecksIgnorableCategories"
+    QA_CHECKS_IGNORABLE_CATEGORY = "/qaChecksIgnorableCategories/{category}"
     LANGUAGE_MAPPING = "/languageMapping"
     LANGUAGE_MAPPING_ID = "/languageMapping/{languageId}"
     LANGUAGE_MAPPING_KEY = "/languageMapping/{languageId}/{mappingKey}"
