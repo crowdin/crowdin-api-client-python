@@ -38,6 +38,22 @@ class QACheckCategories(TypedDict):
     DUPLICATE: bool
 
 
+class QAChecksIgnorableCategories(TypedDict):
+    EMPTY: bool
+    SIZE: bool
+    TAGS: bool
+    SPACES: bool
+    VARIABLES: bool
+    PUNCTUATION: bool
+    SYMBOLREGISTER: bool
+    SPECIALSYMBOLS: bool
+    WRONGTRANSLATION: bool
+    SPELLCHECK: bool
+    ICU: bool
+    TERMS: bool
+    DUPLICATE: bool
+
+
 class PropertyFileFormatSettings(TypedDict):
     escapeQuotes: EscapeQuotes
     escapeSpecialCharacters: EscapeSpecialCharacters

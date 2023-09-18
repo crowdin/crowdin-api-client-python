@@ -12,7 +12,7 @@ from crowdin_api.api_resources.projects.enums import (
     ProjectVisibility,
     ProjectFilePatchPath,
 )
-from crowdin_api.api_resources.projects.types import NotificationSettings, QACheckCategories
+from crowdin_api.api_resources.projects.types import NotificationSettings, QACheckCategories, QAChecksIgnorableCategories
 from crowdin_api.requester import APIRequester
 
 
@@ -213,6 +213,7 @@ class TestProjectsResource:
                     "inContextPseudoLanguageId": None,
                     "qaCheckIsActive": None,
                     "qaCheckCategories": None,
+                    "qaChecksIgnorableCategories": None,
                     "languageMapping": None,
                     "glossaryAccess": None,
                     "notificationSettings": None,
@@ -243,6 +244,21 @@ class TestProjectsResource:
                     "inContextPseudoLanguageId": "ua",
                     "qaCheckIsActive": True,
                     "qaCheckCategories": QACheckCategories(
+                        EMPTY=True,
+                        SIZE=True,
+                        TAGS=True,
+                        SPACES=True,
+                        VARIABLES=True,
+                        PUNCTUATION=True,
+                        SYMBOLREGISTER=True,
+                        SPECIALSYMBOLS=True,
+                        WRONGTRANSLATION=True,
+                        SPELLCHECK=True,
+                        ICU=True,
+                        TERMS=True,
+                        DUPLICATE=True,
+                    ),
+                    "qaChecksIgnorableCategories": QAChecksIgnorableCategories(
                         EMPTY=True,
                         SIZE=True,
                         TAGS=True,
@@ -289,6 +305,21 @@ class TestProjectsResource:
                     "inContextPseudoLanguageId": "ua",
                     "qaCheckIsActive": True,
                     "qaCheckCategories": QACheckCategories(
+                        EMPTY=True,
+                        SIZE=True,
+                        TAGS=True,
+                        SPACES=True,
+                        VARIABLES=True,
+                        PUNCTUATION=True,
+                        SYMBOLREGISTER=True,
+                        SPECIALSYMBOLS=True,
+                        WRONGTRANSLATION=True,
+                        SPELLCHECK=True,
+                        ICU=True,
+                        TERMS=True,
+                        DUPLICATE=True,
+                    ),
+                    "qaChecksIgnorableCategories": QAChecksIgnorableCategories(
                         EMPTY=True,
                         SIZE=True,
                         TAGS=True,
