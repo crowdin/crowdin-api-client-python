@@ -363,9 +363,9 @@ class TestProjectsResource:
             ({"projectId": 1, "fileFormatSettingsId": 2}, "projects/1/file-format-settings/2"),
         ),
     )
-    def test_get_project_file_path(self, in_params, path, base_absolut_url):
+    def test_get_project_file_format_settings_path(self, in_params, path, base_absolut_url):
         resource = self.get_resource(base_absolut_url)
-        assert resource.get_project_file_path(**in_params) == path
+        assert resource.get_project_file_format_settings_path(**in_params) == path
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_download_project_file_custom_segmentation(self, m_request, base_absolut_url):
@@ -410,15 +410,15 @@ class TestProjectsResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_project_files(self, m_request, in_params, request_params, base_absolut_url):
+    def test_list_project_file_format_settings(self, m_request, in_params, request_params, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.list_project_files(projectId=1, **in_params) == "response"
+        assert resource.list_project_file_format_settings(projectId=1, **in_params) == "response"
         m_request.assert_called_once_with(
             method="get",
             params=request_params,
-            path=resource.get_project_file_path(projectId=1),
+            path=resource.get_project_file_format_settings_path(projectId=1),
         )
 
     @pytest.mark.parametrize(
@@ -443,43 +443,43 @@ class TestProjectsResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_project_file(self, m_add_project, in_params, request_data, base_absolut_url):
+    def test_add_project_file_format_settings(self, m_add_project, in_params, request_data, base_absolut_url):
         m_add_project.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_project_file(projectId=1, **in_params) == "response"
+        assert resource.add_project_file_format_settings(projectId=1, **in_params) == "response"
         m_add_project.assert_called_once_with(
             method="post",
-            path=resource.get_project_file_path(projectId=1),
+            path=resource.get_project_file_format_settings_path(projectId=1),
             request_data=request_data
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_get_project_file(self, m_request, base_absolut_url):
+    def test_get_project_file_format_settings(self, m_request, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.get_project_file(projectId=1, fileFormatSettingsId=2) == "response"
+        assert resource.get_project_file_format_settings(projectId=1, fileFormatSettingsId=2) == "response"
 
         m_request.assert_called_once_with(
             method="get",
-            path=resource.get_project_file_path(projectId=1, fileFormatSettingsId=2),
+            path=resource.get_project_file_format_settings_path(projectId=1, fileFormatSettingsId=2),
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_delete_project_file(self, m_request, base_absolut_url):
+    def test_delete_project_file_format_settings(self, m_request, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.delete_project_file(projectId=1, fileFormatSettingsId=2) == "response"
+        assert resource.delete_project_file_format_settings(projectId=1, fileFormatSettingsId=2) == "response"
 
         m_request.assert_called_once_with(
             method="delete",
-            path=resource.get_project_file_path(projectId=1, fileFormatSettingsId=2),
+            path=resource.get_project_file_format_settings_path(projectId=1, fileFormatSettingsId=2),
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_edit_file(self, m_request, base_absolut_url):
+    def test_edit_project_file_format_settings(self, m_request, base_absolut_url):
         m_request.return_value = "response"
 
         data = [
@@ -487,12 +487,12 @@ class TestProjectsResource:
         ]
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.edit_project_file(
+        assert resource.edit_project_file_format_settings(
             projectId=1, fileFormatSettingsId=2, data=data
         ) == "response"
 
         m_request.assert_called_once_with(
             method="patch",
             request_data=data,
-            path=resource.get_project_file_path(projectId=1, fileFormatSettingsId=2),
+            path=resource.get_project_file_format_settings_path(projectId=1, fileFormatSettingsId=2),
         )
