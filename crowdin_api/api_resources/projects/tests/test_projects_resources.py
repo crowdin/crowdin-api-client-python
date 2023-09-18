@@ -12,7 +12,11 @@ from crowdin_api.api_resources.projects.enums import (
     ProjectVisibility,
     ProjectFilePatchPath,
 )
-from crowdin_api.api_resources.projects.types import NotificationSettings, QACheckCategories, QAChecksIgnorableCategories
+from crowdin_api.api_resources.projects.types import (
+    NotificationSettings,
+    QACheckCategories,
+    QAChecksIgnorableCategories
+)
 from crowdin_api.requester import APIRequester
 
 
