@@ -23,6 +23,7 @@ from crowdin_api.api_resources.projects.types import (
     AndroidStringsExporterSettings,
     MacOSXStringsExporterSettings,
     XliffStringsExporterSettings,
+    QAChecksIgnorableCategories
 )
 
 
@@ -155,6 +156,7 @@ class ProjectsResource(BaseResource):
         inContextPseudoLanguageId: Optional[str] = None,
         qaCheckIsActive: Optional[bool] = None,
         qaCheckCategories: Optional[QACheckCategories] = None,
+        qaChecksIgnorableCategories: Optional[QAChecksIgnorableCategories] = None,
         languageMapping: Optional[Dict] = None,
         glossaryAccess: Optional[bool] = None,
         notificationSettings: Optional[NotificationSettings] = None,
@@ -191,6 +193,7 @@ class ProjectsResource(BaseResource):
                 "inContextPseudoLanguageId": inContextPseudoLanguageId,
                 "qaCheckIsActive": qaCheckIsActive,
                 "qaCheckCategories": qaCheckCategories,
+                "qaChecksIgnorableCategories": qaChecksIgnorableCategories,
                 "languageMapping": languageMapping,
                 "glossaryAccess": glossaryAccess,
                 "notificationSettings": notificationSettings,
