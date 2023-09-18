@@ -52,6 +52,8 @@ class QAChecksIgnorableCategories(TypedDict):
     ICU: bool
     TERMS: bool
     DUPLICATE: bool
+    FTL: bool
+    ANDROID: bool
 
 
 class PropertyFileFormatSettings(TypedDict):

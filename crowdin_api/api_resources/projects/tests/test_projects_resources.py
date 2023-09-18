@@ -276,6 +276,8 @@ class TestProjectsResource:
                         ICU=True,
                         TERMS=True,
                         DUPLICATE=True,
+                        FTL=True,
+                        ANDROID=True
                     ),
                     "languageMapping": {},
                     "glossaryAccess": True,
@@ -337,6 +339,8 @@ class TestProjectsResource:
                         ICU=True,
                         TERMS=True,
                         DUPLICATE=True,
+                        FTL=True,
+                        ANDROID=True,
                     ),
                     "languageMapping": {},
                     "glossaryAccess": True,
