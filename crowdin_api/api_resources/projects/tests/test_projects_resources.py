@@ -554,8 +554,7 @@ class TestProjectsResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.list_project_strings_exporter_settings(1) == "response"
         m_request.assert_called_once_with(
-            method="get",
-            path=resource.get_strings_exporter_path(1)
+            method="get", path=resource.get_strings_exporter_path(1)
         )
 
     @pytest.mark.parametrize(
