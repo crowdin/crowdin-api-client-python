@@ -547,9 +547,16 @@ class TestProjectsResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.get_strings_exporter_path(**in_params) == path
 
-    @pytest.mark.skip(reason="Confusion about assertion")
-    def test_list_project_strings_exporter_settings(self):
-        pass
+    @mock.patch("crowdin_api.api_resources.abstract.resources.BaseResource._get_entire_data")
+    def test_list_project_strings_exporter_settings(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_project_strings_exporter_settings(1) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_strings_exporter_path(1)
+        )
 
     @pytest.mark.parametrize(
         "in_params, request_data",
