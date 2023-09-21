@@ -2,3 +2,4 @@ wheel
 setuptools
 
 requests>=2.25.1
+deprecated
