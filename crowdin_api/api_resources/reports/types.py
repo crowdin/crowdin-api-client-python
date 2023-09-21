@@ -62,4 +62,3 @@ class Match(TypedDict):
 class BaseRates(TypedDict):
     fullTranslation: float
     proofread: float
-
