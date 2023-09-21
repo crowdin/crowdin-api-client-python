@@ -4,7 +4,8 @@ from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.reports.enums import (
     FuzzyRateMode,
     SimpleRateMode,
-    ReportSettingsTemplatesPatchPath
+    ReportSettingsTemplatesPatchPath,
+    MatchType
 )
 from crowdin_api.typing import TypedDict
 
@@ -51,3 +52,13 @@ class ReportSettingsTemplatesPatchRequest(TypedDict):
     value: Union[str, int]
     op: PatchOperation
     path: ReportSettingsTemplatesPatchPath
+
+
+class Match(TypedDict):
+    matchType: MatchType
+    price: float
+
+
+class BaseRates(TypedDict):
+    fullTranslation: float
+    proofread: float
