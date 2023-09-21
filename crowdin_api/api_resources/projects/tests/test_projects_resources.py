@@ -535,3 +535,191 @@ class TestProjectsResource:
             request_data=data,
             path=resource.get_project_file_format_settings_path(projectId=1, fileFormatSettingsId=2),
         )
+
+    @pytest.mark.parametrize(
+        "in_params, path",
+        (
+            ({"projectId": 1}, "projects/1/strings-exporter-settings"),
+            ({"projectId": 1, "systemStringExporterSettingsId": 2}, "projects/1/strings-exporter-settings/2"),
+        ),
+    )
+    def test_get_strings_exporter_path(self, in_params, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_strings_exporter_path(**in_params) == path
+
+    @mock.patch("crowdin_api.api_resources.abstract.resources.BaseResource._get_entire_data")
+    def test_list_project_strings_exporter_settings(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_project_strings_exporter_settings(1) == "response"
+        m_request.assert_called_once_with(
+            method="get", path=resource.get_strings_exporter_path(1)
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, request_data",
+        (
+            (
+                {
+                    "format": "android",
+                    "settings": {
+                        "convertPlaceholders": True,
+                    },
+                },
+                {
+                    "format": "android",
+                    "settings": {
+                        "convertPlaceholders": True,
+                    },
+                },
+            ),
+            (
+                {
+                    "format": "macosx",
+                    "settings": {
+                        "convertPlaceholders": True,
+                    },
+                },
+                {
+                    "format": "macosx",
+                    "settings": {
+                        "convertPlaceholders": True,
+                    },
+                },
+            ),
+            (
+                {
+                    "format": "xliff",
+                    "settings": {
+                        "languagePaitMapping": {
+                            "uk": "es",
+                            "de": "en",
+                        },
+                    },
+                },
+                {
+                    "format": "xliff",
+                    "settings": {
+                        "languagePaitMapping": {
+                            "uk": "es",
+                            "de": "en",
+                        },
+                    },
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_project_strings_exporter_settings(self, m_request, in_params, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_project_strings_exporter_settings(projectId=1, **in_params) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_strings_exporter_path(projectId=1),
+            request_data=request_data
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_project_strings_exporter_settings(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_project_strings_exporter_settings(
+            projectId=1, systemStringExporterSettingsId=2
+        ) == "response"
+
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_strings_exporter_path(
+                projectId=1, systemStringExporterSettingsId=2
+            ),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_project_strings_exporter_settings(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_project_strings_exporter_settings(
+            projectId=1, systemStringExporterSettingsId=2
+        ) == "response"
+
+        m_request.assert_called_once_with(
+            method="delete",
+            path=resource.get_strings_exporter_path(
+                projectId=1, systemStringExporterSettingsId=2
+            ),
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, request_data",
+        (
+            (
+                {
+                    "format": "android",
+                    "settings": {
+                        "convertPlaceholders": True,
+                    },
+                },
+                {
+                    "format": "android",
+                    "settings": {
+                        "convertPlaceholders": True,
+                    },
+                },
+            ),
+            (
+                {
+                    "format": "macosx",
+                    "settings": {
+                        "convertPlaceholders": True,
+                    },
+                },
+                {
+                    "format": "macosx",
+                    "settings": {
+                        "convertPlaceholders": True,
+                    },
+                },
+            ),
+            (
+                {
+                    "format": "xliff",
+                    "settings": {
+                        "languagePaitMapping": {
+                            "uk": "es",
+                            "de": "en",
+                        },
+                    },
+                },
+                {
+                    "format": "xliff",
+                    "settings": {
+                        "languagePaitMapping": {
+                            "uk": "es",
+                            "de": "en",
+                        },
+                    },
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_project_strings_exporter_settings(self, m_request, in_params, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_project_strings_exporter_settings(
+            projectId=1,
+            systemStringExporterSettingsId=2,
+            **in_params,
+        ) == "response"
+
+        m_request.assert_called_once_with(
+            method="patch",
+            path=resource.get_strings_exporter_path(projectId=1, systemStringExporterSettingsId=2),
+            request_data=request_data,
+        )
