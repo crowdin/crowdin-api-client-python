@@ -54,6 +54,7 @@ setup(
     install_requires=[
         "requests>=2.25.1",
         "typing-extensions; python_version < '3.8.0'",
+        "deprecated"
     ],
     classifiers=[
         "Programming Language :: Python",

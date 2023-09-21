@@ -1,14 +1,11 @@
-from abc import ABC
-from datetime import datetime
-from typing import Iterable, Union, Optional
+from typing import Iterable, Union
 
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.reports.enums import (
     FuzzyRateMode,
     SimpleRateMode,
     ReportSettingsTemplatesPatchPath,
-    MatchType,
-    ReportLabelIncludeType
+    MatchType
 )
 from crowdin_api.typing import TypedDict
 
@@ -66,45 +63,3 @@ class BaseRates(TypedDict):
     fullTranslation: float
     proofread: float
 
-
-# class GenerateReportRequest(ABC):
-#     pass
-#
-#
-# class GenerateGroupReportRequest(ABC):
-#     pass
-
-# class CostEstimationPostEditingGenerateReportRequest:
-#     class IndividualRate(TypedDict):
-#         languageIds: Iterable[str]
-#         userIds: Iterable[str]
-#         fullTranslation: float
-#         proofread: float
-#
-#     class NetRatesSchemes(TypedDict):
-#         tmMatch: Iterable[Match]
-#
-#     class SchemaBase(ABC):
-#         pass
-#
-#     class GeneralSchema(SchemaBase):
-#         baseRates: BaseRates
-#         individualRates: Iterable[IndividualRate]
-#         netRateSchemes: NetRatesSchemes
-#         languageId: Optional[str]
-#         fileIds: Optional[Iterable[int]]
-#         directoryIds: Optional[Iterable[int]]
-#         branchIds: Optional[Iterable[int]]
-#         dateFrom: Optional[datetime]
-#         dateTo: Optional[datetime]
-#         labelIds: Optional[Iterable[int]]
-#         labelIncludeType: Optional[ReportLabelIncludeType]
-#
-#     class ByTaskSchema(SchemaBase):
-#         baseRates: Optional[BaseRates]
-#         individualRates: Optional[Iterable[IndividualRate]]
-#         netRateSchemes: Optional[NetRatesSchemes]
-#         taskId: Optional[int]
-#
-#     name = "costs-estimation-pe"
-#     schema: SchemaBase

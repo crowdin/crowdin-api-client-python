@@ -1,6 +1,7 @@
 import abc
 from datetime import datetime
 from typing import Dict, Iterable, Optional
+from deprecated import deprecated
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.reports.enums import (
@@ -12,7 +13,6 @@ from crowdin_api.api_resources.reports.enums import (
     ReportLabelIncludeType,
 )
 from crowdin_api.api_resources.reports.requests.cost_estimation_post_editing import (
-    # CostEstimationPostEditingGenerateReportRequest,
     IndividualRate as CostEstimationPeIndividualRate,
     NetRateSchemes as CostEstimationPeNetRateSchemes
 )
@@ -27,10 +27,8 @@ from crowdin_api.api_resources.reports.types import (
     SimpleRegularRate,
     StepTypes,
     ReportSettingsTemplatesPatchRequest,
-    Config, BaseRates,
-)
-from crowdin_api.api_resources.reports.requests.cost_estimation_post_editing import (
-    SchemaBase as CostEstimationPostEditingSchema
+    Config,
+    BaseRates
 )
 
 
@@ -59,18 +57,22 @@ class BaseReportsResource(BaseResource):
         )
 
     @abc.abstractmethod
+    @deprecated("Use other methods instead")
     def generate_simple_cost_estimate_report(self, projectId: int, **kwargs):
         raise NotImplementedError("Not implemented")
 
     @abc.abstractmethod
+    @deprecated("Use other methods instead")
     def generate_fuzzy_cost_estimate_report(self, projectId: int, **kwargs):
         raise NotImplementedError("Not implemented")
 
     @abc.abstractmethod
+    @deprecated("Use other methods instead")
     def generate_simple_translation_cost_report(self, projectId: int, **kwargs):
         raise NotImplementedError("Not implemented")
 
     @abc.abstractmethod
+    @deprecated("Use other methods instead")
     def generate_fuzzy_translation_cost_report(self, projectId: int, **kwargs):
         raise NotImplementedError("Not implemented")
 
@@ -141,11 +143,9 @@ class BaseReportsResource(BaseResource):
             },
         )
 
-    # request_data: CostEstimationPostEditingGenerateReportRequest
     def generate_costs_estimation_post_editing_general_report(
         self,
         project_id: int,
-        # schema: CostEstimationPostEditingSchema
         base_rates: BaseRates,
         individual_rates: Iterable[CostEstimationPeIndividualRate],
         net_rate_schemes: CostEstimationPeNetRateSchemes,
@@ -178,9 +178,9 @@ class BaseReportsResource(BaseResource):
             request_data={
                 "name": "costs-estimation-pe",
                 "schema": {
-                    "unit": unit,  # .value if isinstance(unit, Enum) else None,
-                    "currency": currency,  # .value if isinstance(currency, Enum) else None,
-                    "format": format,  # .value if isinstance(format, Enum) else None,
+                    "unit": unit,
+                    "currency": currency,
+                    "format": format,
                     "baseRates": base_rates,
                     "individualRates": individual_rates,
                     "netRateSchemes": net_rate_schemes,
@@ -512,6 +512,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
     https://developer.crowdin.com/api/v2/#tag/Reports
     """
 
+    @deprecated("Use other methods instead")
     def generate_simple_cost_estimate_report(
         self,
         projectId: int,
@@ -552,6 +553,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
             },
         )
 
+    @deprecated("Use other methods instead")
     def generate_fuzzy_cost_estimate_report(
         self,
         projectId: int,
@@ -594,6 +596,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
             },
         )
 
+    @deprecated("Use other methods instead")
     def generate_simple_translation_cost_report(
         self,
         projectId: int,
@@ -631,6 +634,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
             },
         )
 
+    @deprecated("Use other methods instead")
     def generate_fuzzy_translation_cost_report(
         self,
         projectId: int,
@@ -692,6 +696,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
 
         return stepTypes
 
+    @deprecated("Use other methods instead")
     def generate_simple_cost_estimate_report(
         self,
         projectId: int,
@@ -734,6 +739,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
             },
         )
 
+    @deprecated("Use other methods instead")
     def generate_fuzzy_cost_estimate_report(
         self,
         projectId: int,
@@ -777,6 +783,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
             }
         )
 
+    @deprecated("Use other methods instead")
     def generate_simple_translation_cost_report(
         self,
         projectId: int,
@@ -816,6 +823,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
             },
         )
 
+    @deprecated("Use other methods instead")
     def generate_fuzzy_translation_cost_report(
         self,
         projectId: int,
@@ -876,7 +884,6 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
             request_data=request_data,
         )
 
-    # TODO: add test
     def generate_group_translation_costs_post_editing_general_report(
         self,
         group_id: int,
@@ -926,7 +933,6 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
 
         return "reports"
 
-    # TODO: add test
     def generate_organization_translation_costs_post_editing_general_report(
         self,
         base_rates: BaseRates,
