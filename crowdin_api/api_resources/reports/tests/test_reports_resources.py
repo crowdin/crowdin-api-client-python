@@ -442,63 +442,63 @@ class TestReportsResource:
         "in_params, schema",
         [
             (
-                    {
-                        "unit": Unit.WORDS,
-                        "currency": Currency.UAH,
-                        "format": Format.XLSX,
-                        "base_rates": BaseRates(fullTranslation=0, proofread=0),
-                        "individual_rates": [
-                            IndividualRate(languageIds=["uk"], userIds=[1], fullTranslation=0.1, proofread=0.1)
-                        ],
-                        "net_rate_schemes": NetRateSchemes(tmMatch=[
-                            Match(matchType=MatchType.OPTION_100, price=70)
-                        ]),
-                        "calculate_internal_matches": True,
-                        "include_pre_translated_strings": True,
-                        "language_id": "uk",
-                        "file_ids": [1, 2],
-                        "directory_ids": [1, 2],
-                        "branch_ids": [1, 2],
-                        "date_from": datetime(year=1988, month=1, day=4),
-                        "date_to": datetime(year=2015, month=10, day=13),
-                        "label_ids": [1],
-                        "label_include_type": ReportLabelIncludeType.STRINGS_WITH_LABEL
+                {
+                    "unit": Unit.WORDS,
+                    "currency": Currency.UAH,
+                    "format": Format.XLSX,
+                    "base_rates": BaseRates(fullTranslation=0, proofread=0),
+                    "individual_rates": [
+                        IndividualRate(languageIds=["uk"], userIds=[1], fullTranslation=0.1, proofread=0.1)
+                    ],
+                    "net_rate_schemes": NetRateSchemes(tmMatch=[
+                        Match(matchType=MatchType.OPTION_100, price=70)
+                    ]),
+                    "calculate_internal_matches": True,
+                    "include_pre_translated_strings": True,
+                    "language_id": "uk",
+                    "file_ids": [1, 2],
+                    "directory_ids": [1, 2],
+                    "branch_ids": [1, 2],
+                    "date_from": datetime(year=1988, month=1, day=4),
+                    "date_to": datetime(year=2015, month=10, day=13),
+                    "label_ids": [1],
+                    "label_include_type": ReportLabelIncludeType.STRINGS_WITH_LABEL
+                },
+                {
+                    "unit": Unit.WORDS,
+                    "currency": Currency.UAH,
+                    "format": Format.XLSX,
+                    "baseRates": {
+                        "fullTranslation": 0,
+                        "proofread": 0
                     },
-                    {
-                        "unit": Unit.WORDS,
-                        "currency": Currency.UAH,
-                        "format": Format.XLSX,
-                        "baseRates": {
-                            "fullTranslation": 0,
-                            "proofread": 0
-                        },
-                        "individualRates": [
+                    "individualRates": [
+                        {
+                            "languageIds": ["uk"],
+                            "userIds": [1],
+                            "fullTranslation": 0.1,
+                            "proofread": 0.1
+                        }
+                    ],
+                    "netRateSchemes": {
+                        "tmMatch": [
                             {
-                                "languageIds": ["uk"],
-                                "userIds": [1],
-                                "fullTranslation": 0.1,
-                                "proofread": 0.1
+                                "matchType": MatchType.OPTION_100,
+                                "price": 70
                             }
-                        ],
-                        "netRateSchemes": {
-                            "tmMatch": [
-                                {
-                                    "matchType": MatchType.OPTION_100,
-                                    "price": 70
-                                }
-                            ]
-                        },
-                        "calculateInternalMatches": True,
-                        "includePreTranslatedStrings": True,
-                        "languageId": "uk",
-                        "fileIds": [1, 2],
-                        "directoryIds": [1, 2],
-                        "branchIds": [1, 2],
-                        "dateFrom": datetime(year=1988, month=1, day=4),
-                        "dateTo": datetime(year=2015, month=10, day=13),
-                        "labelIds": [1],
-                        "labelIncludeType": ReportLabelIncludeType.STRINGS_WITH_LABEL
-                    }
+                        ]
+                    },
+                    "calculateInternalMatches": True,
+                    "includePreTranslatedStrings": True,
+                    "languageId": "uk",
+                    "fileIds": [1, 2],
+                    "directoryIds": [1, 2],
+                    "branchIds": [1, 2],
+                    "dateFrom": datetime(year=1988, month=1, day=4),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                    "labelIds": [1],
+                    "labelIncludeType": ReportLabelIncludeType.STRINGS_WITH_LABEL
+                }
             )
         ]
     )
@@ -1305,73 +1305,73 @@ class TestEnterpriseReportsResource:
         "in_params, schema",
         [
             (
-                    {
-                        "project_ids": [1, 2, 3],
-                        "unit": Unit.WORDS,
-                        "currency": Currency.UAH,
-                        "format": Format.XLSX,
-                        "base_rates": BaseRates(fullTranslation=0, proofread=0),
-                        "individual_rates": [
-                            GroupIndividualRate(languageIds=["uk"], userIds=[1], fullTranslation=0.1, proofread=0.1)
+                {
+                    "project_ids": [1, 2, 3],
+                    "unit": Unit.WORDS,
+                    "currency": Currency.UAH,
+                    "format": Format.XLSX,
+                    "base_rates": BaseRates(fullTranslation=0, proofread=0),
+                    "individual_rates": [
+                        GroupIndividualRate(languageIds=["uk"], userIds=[1], fullTranslation=0.1, proofread=0.1)
+                    ],
+                    "net_rate_schemes": GroupNetRateSchemes(
+                        tmMatch=[
+                            Match(matchType=MatchType.OPTION_100, price=70)
                         ],
-                        "net_rate_schemes": GroupNetRateSchemes(
-                            tmMatch=[
-                                Match(matchType=MatchType.OPTION_100, price=70)
-                            ],
-                            mtMatch=[
-                                Match(matchType=MatchType.OPTION_99_82, price=50)
-                            ],
-                            suggestionMatch=[
-                                Match(matchType=MatchType.OPTION_81_60, price=30)
-                            ]
-                        ),
-                        "group_by": GroupBy.LANGUAGE,
-                        "date_from": None,
-                        "date_to": None,
-                        "user_ids": [10, 11]
+                        mtMatch=[
+                            Match(matchType=MatchType.OPTION_99_82, price=50)
+                        ],
+                        suggestionMatch=[
+                            Match(matchType=MatchType.OPTION_81_60, price=30)
+                        ]
+                    ),
+                    "group_by": GroupBy.LANGUAGE,
+                    "date_from": None,
+                    "date_to": None,
+                    "user_ids": [10, 11]
+                },
+                {
+                    "projectIds": [1, 2, 3],
+                    "unit": Unit.WORDS,
+                    "currency": Currency.UAH,
+                    "format": Format.XLSX,
+                    "baseRates": {
+                        "fullTranslation": 0,
+                        "proofread": 0
                     },
-                    {
-                        "projectIds": [1, 2, 3],
-                        "unit": Unit.WORDS,
-                        "currency": Currency.UAH,
-                        "format": Format.XLSX,
-                        "baseRates": {
-                            "fullTranslation": 0,
-                            "proofread": 0
-                        },
-                        "individualRates": [
+                    "individualRates": [
+                        {
+                            "languageIds": ["uk"],
+                            "userIds": [1],
+                            "fullTranslation": 0.1,
+                            "proofread": 0.1
+                        }
+                    ],
+                    "netRateSchemes": {
+                        "tmMatch": [
                             {
-                                "languageIds": ["uk"],
-                                "userIds": [1],
-                                "fullTranslation": 0.1,
-                                "proofread": 0.1
+                                "matchType": MatchType.OPTION_100,
+                                "price": 70
                             }
                         ],
-                        "netRateSchemes": {
-                            "tmMatch": [
-                                {
-                                    "matchType": MatchType.OPTION_100,
-                                    "price": 70
-                                }
-                            ],
-                            "mtMatch": [
-                                {
-                                    "matchType": MatchType.OPTION_99_82,
-                                    "price": 50
-                                }
-                            ],
-                            "suggestionMatch": [
-                                {
-                                    "matchType": MatchType.OPTION_81_60,
-                                    "price": 30
-                                }
-                            ]
-                        },
-                        "groupBy": GroupBy.LANGUAGE,
-                        "dateFrom": None,
-                        "dateTo": None,
-                        "userIds": [10, 11]
-                    }
+                        "mtMatch": [
+                            {
+                                "matchType": MatchType.OPTION_99_82,
+                                "price": 50
+                            }
+                        ],
+                        "suggestionMatch": [
+                            {
+                                "matchType": MatchType.OPTION_81_60,
+                                "price": 30
+                            }
+                        ]
+                    },
+                    "groupBy": GroupBy.LANGUAGE,
+                    "dateFrom": None,
+                    "dateTo": None,
+                    "userIds": [10, 11]
+                }
             )
         ]
     )
