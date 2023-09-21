@@ -1,6 +1,7 @@
 import abc
 from datetime import datetime
 from typing import Dict, Iterable, Optional
+from deprecated import deprecated
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.reports.enums import (
@@ -9,6 +10,15 @@ from crowdin_api.api_resources.reports.enums import (
     Format,
     GroupBy,
     Unit,
+    ReportLabelIncludeType,
+)
+from crowdin_api.api_resources.reports.requests.cost_estimation_post_editing import (
+    IndividualRate as CostEstimationPeIndividualRate,
+    NetRateSchemes as CostEstimationPeNetRateSchemes
+)
+from crowdin_api.api_resources.reports.requests.translation_costs_post_editing import (
+    IndividualRate as TranslationCostsPeIndividualRate,
+    NetRateSchemes as TranslationCostsPeNetRateSchemes
 )
 from crowdin_api.api_resources.reports.types import (
     FuzzyIndividualRate,
@@ -18,6 +28,7 @@ from crowdin_api.api_resources.reports.types import (
     StepTypes,
     ReportSettingsTemplatesPatchRequest,
     Config,
+    BaseRates
 )
 
 
@@ -46,18 +57,22 @@ class BaseReportsResource(BaseResource):
         )
 
     @abc.abstractmethod
+    @deprecated("Use other methods instead")
     def generate_simple_cost_estimate_report(self, projectId: int, **kwargs):
         raise NotImplementedError("Not implemented")
 
     @abc.abstractmethod
+    @deprecated("Use other methods instead")
     def generate_fuzzy_cost_estimate_report(self, projectId: int, **kwargs):
         raise NotImplementedError("Not implemented")
 
     @abc.abstractmethod
+    @deprecated("Use other methods instead")
     def generate_simple_translation_cost_report(self, projectId: int, **kwargs):
         raise NotImplementedError("Not implemented")
 
     @abc.abstractmethod
+    @deprecated("Use other methods instead")
     def generate_fuzzy_translation_cost_report(self, projectId: int, **kwargs):
         raise NotImplementedError("Not implemented")
 
@@ -126,6 +141,190 @@ class BaseReportsResource(BaseResource):
                     "dateTo": dateTo,
                 },
             },
+        )
+
+    def generate_costs_estimation_post_editing_general_report(
+        self,
+        project_id: int,
+        base_rates: BaseRates,
+        individual_rates: Iterable[CostEstimationPeIndividualRate],
+        net_rate_schemes: CostEstimationPeNetRateSchemes,
+        unit: Optional[Unit] = None,
+        currency: Optional[Currency] = None,
+        format: Optional[Format] = None,
+        calculate_internal_matches: Optional[bool] = None,
+        include_pre_translated_strings: Optional[bool] = None,
+        language_id: Optional[str] = None,
+        file_ids: Optional[Iterable[int]] = None,
+        directory_ids: Optional[Iterable[int]] = None,
+        branch_ids: Optional[Iterable[int]] = None,
+        date_from: Optional[datetime] = None,
+        date_to: Optional[datetime] = None,
+        label_ids: Optional[Iterable[int]] = None,
+        label_include_type: Optional[ReportLabelIncludeType] = None
+    ):
+        """
+        Generate Report.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        """
+
+        return self.generate_report(
+            projectId=project_id,
+            request_data={
+                "name": "costs-estimation-pe",
+                "schema": {
+                    "unit": unit,
+                    "currency": currency,
+                    "format": format,
+                    "baseRates": base_rates,
+                    "individualRates": individual_rates,
+                    "netRateSchemes": net_rate_schemes,
+                    "calculateInternalMatches": calculate_internal_matches,
+                    "includePreTranslatedStrings": include_pre_translated_strings,
+                    "languageId": language_id,
+                    "fileIds": file_ids,
+                    "directoryIds": directory_ids,
+                    "branchIds": branch_ids,
+                    "dateFrom": date_from,
+                    "dateTo": date_to,
+                    "labelIds": label_ids,
+                    "labelIncludeType": label_include_type
+                }
+            }
+        )
+
+    def generate_costs_estimation_post_editing_by_task_report(
+        self,
+        project_id: int,
+        unit: Optional[Unit] = None,
+        currency: Optional[Currency] = None,
+        format: Optional[Format] = None,
+        base_rates: Optional[BaseRates] = None,
+        individual_rates: Optional[Iterable[CostEstimationPeIndividualRate]] = None,
+        net_rate_schemes: Optional[CostEstimationPeNetRateSchemes] = None,
+        calculate_internal_matches: Optional[bool] = None,
+        include_pre_translated_strings: Optional[bool] = None,
+        task_id: Optional[int] = None
+    ):
+        """
+        Generate Report.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        """
+
+        return self.generate_report(
+            projectId=project_id,
+            request_data={
+                "name": "costs-estimation-pe",
+                "schema": {
+                    "unit": unit,
+                    "currency": currency,
+                    "format": format,
+                    "baseRates": base_rates,
+                    "individualRates": individual_rates,
+                    "netRateSchemes": net_rate_schemes,
+                    "calculateInternalMatches": calculate_internal_matches,
+                    "includePreTranslatedStrings": include_pre_translated_strings,
+                    "taskId": task_id
+                }
+            }
+        )
+
+    def generate_translation_costs_post_editing_general_report(
+        self,
+        project_id: int,
+        base_rates: BaseRates,
+        individual_rates: Iterable[CostEstimationPeIndividualRate],
+        net_rate_schemes: CostEstimationPeNetRateSchemes,
+        unit: Optional[Unit] = None,
+        currency: Optional[Currency] = None,
+        format: Optional[Format] = None,
+        group_by: Optional[GroupBy] = None,
+        date_from: Optional[datetime] = None,
+        date_to: Optional[datetime] = None,
+        language_id: Optional[str] = None,
+        user_ids: Optional[Iterable[int]] = None,
+        file_ids: Optional[Iterable[int]] = None,
+        directory_ids: Optional[Iterable[int]] = None,
+        branch_ids: Optional[Iterable[int]] = None
+    ):
+        """
+        Generate Report.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        """
+
+        return self.generate_report(
+            projectId=project_id,
+            request_data={
+                "name": "translation-costs-pe",
+                "schema": {
+                    "unit": unit,
+                    "currency": currency,
+                    "format": format,
+                    "baseRates": base_rates,
+                    "individualRates": individual_rates,
+                    "netRateSchemes": net_rate_schemes,
+                    "groupBy": group_by,
+                    "dateFrom": date_from,
+                    "dateTo": date_to,
+                    "languageId": language_id,
+                    "userIds": user_ids,
+                    "fileIds": file_ids,
+                    "directoryIds": directory_ids,
+                    "branchIds": branch_ids
+                }
+            }
+        )
+
+    def generate_translation_costs_post_editing_by_task_report(
+        self,
+        project_id: int,
+        base_rates: BaseRates,
+        individual_rates: Iterable[CostEstimationPeIndividualRate],
+        net_rate_schemes: CostEstimationPeNetRateSchemes,
+        unit: Optional[Unit] = None,
+        currency: Optional[Currency] = None,
+        format: Optional[Format] = None,
+        task_id: Optional[int] = None
+    ):
+        """
+        Generate Report.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        """
+
+        return self.generate_report(
+            projectId=project_id,
+            request_data={
+                "name": "translation-costs-pe",
+                "schema": {
+                    "unit": unit,
+                    "currency": currency,
+                    "format": format,
+                    "baseRates": base_rates,
+                    "individualRates": individual_rates,
+                    "netRateSchemes": net_rate_schemes,
+                    "taskId": task_id
+                }
+            }
         )
 
     def check_report_generation_status(self, projectId: int, reportId: str):
@@ -313,6 +512,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
     https://developer.crowdin.com/api/v2/#tag/Reports
     """
 
+    @deprecated("Use other methods instead")
     def generate_simple_cost_estimate_report(
         self,
         projectId: int,
@@ -353,6 +553,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
             },
         )
 
+    @deprecated("Use other methods instead")
     def generate_fuzzy_cost_estimate_report(
         self,
         projectId: int,
@@ -395,6 +596,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
             },
         )
 
+    @deprecated("Use other methods instead")
     def generate_simple_translation_cost_report(
         self,
         projectId: int,
@@ -432,6 +634,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
             },
         )
 
+    @deprecated("Use other methods instead")
     def generate_fuzzy_translation_cost_report(
         self,
         projectId: int,
@@ -493,6 +696,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
 
         return stepTypes
 
+    @deprecated("Use other methods instead")
     def generate_simple_cost_estimate_report(
         self,
         projectId: int,
@@ -535,6 +739,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
             },
         )
 
+    @deprecated("Use other methods instead")
     def generate_fuzzy_cost_estimate_report(
         self,
         projectId: int,
@@ -578,6 +783,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
             }
         )
 
+    @deprecated("Use other methods instead")
     def generate_simple_translation_cost_report(
         self,
         projectId: int,
@@ -617,6 +823,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
             },
         )
 
+    @deprecated("Use other methods instead")
     def generate_fuzzy_translation_cost_report(
         self,
         projectId: int,
@@ -652,6 +859,118 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
                     "groupBy": groupBy,
                     "dateFrom": dateFrom,
                     "dateTo": dateTo,
+                },
+            },
+        )
+
+    @staticmethod
+    def get_group_reports_path(group_id: int, report_id: Optional[str] = None):
+        if report_id is not None:
+            return f"groups/{group_id}/reports/{group_id}"
+
+        return f"groups/{group_id}/reports"
+
+    def generate_group_report(self, group_id: int, request_data: Dict):
+        """
+        Generate Group Report.
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=self.get_group_reports_path(group_id=group_id),
+            request_data=request_data,
+        )
+
+    def generate_group_translation_costs_post_editing_general_report(
+        self,
+        group_id: int,
+        base_rates: BaseRates,
+        individual_rates: Iterable[TranslationCostsPeIndividualRate],
+        net_rate_schemes: TranslationCostsPeNetRateSchemes,
+        project_ids: Optional[Iterable[int]] = None,
+        unit: Optional[Unit] = None,
+        currency: Optional[Currency] = None,
+        format: Optional[Format] = None,
+        group_by: Optional[GroupBy] = None,
+        date_from: Optional[datetime] = None,
+        date_to: Optional[datetime] = None,
+        user_ids: Optional[Iterable[int]] = None
+    ):
+        """
+        Generate Group Report (General).
+
+        Link to documentation:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post
+        """
+
+        return self.generate_group_report(
+            group_id=group_id,
+            request_data={
+                "name": "group-translation-costs-pe",
+                "schema": {
+                    "projectIds": project_ids,
+                    "unit": unit,
+                    "currency": currency,
+                    "format": format,
+                    "baseRates": base_rates,
+                    "individualRates": individual_rates,
+                    "netRateSchemes": net_rate_schemes,
+                    "groupBy": group_by,
+                    "dateFrom": date_from,
+                    "dateTo": date_to,
+                    "userIds": user_ids
+                },
+            },
+        )
+
+    @staticmethod
+    def get_organization_reports_path(report_id: Optional[str] = None):
+        if report_id is not None:
+            return f"reports/{report_id}"
+
+        return "reports"
+
+    def generate_organization_translation_costs_post_editing_general_report(
+        self,
+        base_rates: BaseRates,
+        individual_rates: Iterable[TranslationCostsPeIndividualRate],
+        net_rate_schemes: TranslationCostsPeNetRateSchemes,
+        project_ids: Optional[Iterable[int]] = None,
+        unit: Optional[Unit] = None,
+        currency: Optional[Currency] = None,
+        format: Optional[Format] = None,
+        group_by: Optional[GroupBy] = None,
+        date_from: Optional[datetime] = None,
+        date_to: Optional[datetime] = None,
+        user_ids: Optional[Iterable[int]] = None
+    ):
+        """
+        Generate Organization Report (General).
+
+        Link to documentation:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=self.get_organization_reports_path(),
+            request_data={
+                "name": "group-translation-costs-pe",
+                "schema": {
+                    "projectIds": project_ids,
+                    "unit": unit,
+                    "currency": currency,
+                    "format": format,
+                    "baseRates": base_rates,
+                    "individualRates": individual_rates,
+                    "netRateSchemes": net_rate_schemes,
+                    "groupBy": group_by,
+                    "dateFrom": date_from,
+                    "dateTo": date_to,
+                    "userIds": user_ids
                 },
             },
         )
