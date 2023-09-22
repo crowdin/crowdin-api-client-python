@@ -66,6 +66,10 @@
 <dd>
 <div class="desc"></div>
 </dd>
+<dt><code class="name"><a title="crowdin_api.api_resources.notifications" href="notifications/index.html">crowdin_api.api_resources.notifications</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt><code class="name"><a title="crowdin_api.api_resources.projects" href="projects/index.html">crowdin_api.api_resources.projects</a></code></dt>
 <dd>
 <div class="desc"></div>
@@ -393,6 +397,21 @@ and shall be completed with a sequence of API methods.</p>
 <li><a title="crowdin_api.api_resources.reports.resource.BaseReportSettingsTemplatesResource" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportSettingsTemplatesResource">BaseReportSettingsTemplatesResource</a></li>
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
 </ul>
+<h3>Static methods</h3>
+<dl>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.get_group_reports_path"><code class="name flex">
+<span>def <span class="ident">get_group_reports_path</span></span>(<span>group_id: int, report_id: Optional[str] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.get_organization_reports_path"><code class="name flex">
+<span>def <span class="ident">get_organization_reports_path</span></span>(<span>report_id: Optional[str] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.EnterpriseReportsResource.generate_fuzzy_cost_estimate_report"><code class="name flex">
@@ -410,6 +429,30 @@ and shall be completed with a sequence of API methods.</p>
 <div class="desc"><p>Generate Report(Translation Cost Fuzzy Mode).</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_report"><code class="name flex">
+<span>def <span class="ident">generate_group_report</span></span>(<span>self, group_id: int, request_data: Dict[~KT, ~VT])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Group Report.</p>
+<p>Link to documentation for enterprise:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_translation_costs_post_editing_general_report"><code class="name flex">
+<span>def <span class="ident">generate_group_translation_costs_post_editing_general_report</span></span>(<span>self, group_id: int, base_rates: <a title="crowdin_api.api_resources.reports.types.BaseRates" href="reports/types.html#crowdin_api.api_resources.reports.types.BaseRates">BaseRates</a>, individual_rates: Iterable[<a title="crowdin_api.api_resources.reports.requests.translation_costs_post_editing.IndividualRate" href="reports/requests/translation_costs_post_editing.html#crowdin_api.api_resources.reports.requests.translation_costs_post_editing.IndividualRate">IndividualRate</a>], net_rate_schemes: <a title="crowdin_api.api_resources.reports.requests.translation_costs_post_editing.NetRateSchemes" href="reports/requests/translation_costs_post_editing.html#crowdin_api.api_resources.reports.requests.translation_costs_post_editing.NetRateSchemes">NetRateSchemes</a>, project_ids: Optional[Iterable[int]] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, group_by: Optional[<a title="crowdin_api.api_resources.reports.enums.GroupBy" href="reports/enums.html#crowdin_api.api_resources.reports.enums.GroupBy">GroupBy</a>] = None, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None, user_ids: Optional[Iterable[int]] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Group Report (General).</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.generate_organization_translation_costs_post_editing_general_report"><code class="name flex">
+<span>def <span class="ident">generate_organization_translation_costs_post_editing_general_report</span></span>(<span>self, base_rates: <a title="crowdin_api.api_resources.reports.types.BaseRates" href="reports/types.html#crowdin_api.api_resources.reports.types.BaseRates">BaseRates</a>, individual_rates: Iterable[<a title="crowdin_api.api_resources.reports.requests.translation_costs_post_editing.IndividualRate" href="reports/requests/translation_costs_post_editing.html#crowdin_api.api_resources.reports.requests.translation_costs_post_editing.IndividualRate">IndividualRate</a>], net_rate_schemes: <a title="crowdin_api.api_resources.reports.requests.translation_costs_post_editing.NetRateSchemes" href="reports/requests/translation_costs_post_editing.html#crowdin_api.api_resources.reports.requests.translation_costs_post_editing.NetRateSchemes">NetRateSchemes</a>, project_ids: Optional[Iterable[int]] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, group_by: Optional[<a title="crowdin_api.api_resources.reports.enums.GroupBy" href="reports/enums.html#crowdin_api.api_resources.reports.enums.GroupBy">GroupBy</a>] = None, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None, user_ids: Optional[Iterable[int]] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Organization Report (General).</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.EnterpriseReportsResource.generate_simple_cost_estimate_report"><code class="name flex">
 <span>def <span class="ident">generate_simple_cost_estimate_report</span></span>(<span>self, projectId: int, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, languageId: Optional[str] = None, fileIds: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, stepTypes: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.StepTypes" href="reports/types.html#crowdin_api.api_resources.reports.types.StepTypes">StepTypes</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
@@ -435,8 +478,12 @@ and shall be completed with a sequence of API methods.</p>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.check_report_generation_status" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.check_report_generation_status">check_report_generation_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.download_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.download_report">download_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report">generate_contribution_raw_data_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report">generate_costs_estimation_post_editing_by_task_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report">generate_costs_estimation_post_editing_general_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report">generate_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report">generate_top_members_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report">generate_translation_costs_post_editing_by_task_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report">generate_translation_costs_post_editing_general_report</a></code></li>
 </ul>
 </li>
 <li><code><b><a title="crowdin_api.api_resources.reports.resource.BaseReportSettingsTemplatesResource" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportSettingsTemplatesResource">BaseReportSettingsTemplatesResource</a></b></code>:
@@ -1077,16 +1124,24 @@ Use API to manage projects, change their settings, or remove them if required.</
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.post">https://developer.crowdin.com/api/v2/#operation/api.projects.post</a></p></div>
 </dd>
-<dt id="crowdin_api.api_resources.ProjectsResource.add_project_file"><code class="name flex">
-<span>def <span class="ident">add_project_file</span></span>(<span>self, projectId: int, format: str, settings: Union[<a title="crowdin_api.api_resources.projects.types.PropertyFileFormatSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.PropertyFileFormatSettings">PropertyFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.XmlFileFormatSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.XmlFileFormatSettings">XmlFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.SpecificFileFormatSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.SpecificFileFormatSettings">SpecificFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.DocxFileFormatSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.DocxFileFormatSettings">DocxFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings">MediaWikiFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.TxtFileFormatSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.TxtFileFormatSettings">TxtFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.OtherFileFormatSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.OtherFileFormatSettings">OtherFileFormatSettings</a>])</span>
+<dt id="crowdin_api.api_resources.ProjectsResource.add_project_file_format_settings"><code class="name flex">
+<span>def <span class="ident">add_project_file_format_settings</span></span>(<span>self, projectId: int, format: str, settings: Union[<a title="crowdin_api.api_resources.projects.types.PropertyFileFormatSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.PropertyFileFormatSettings">PropertyFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.XmlFileFormatSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.XmlFileFormatSettings">XmlFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.SpecificFileFormatSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.SpecificFileFormatSettings">SpecificFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.DocxFileFormatSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.DocxFileFormatSettings">DocxFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings">MediaWikiFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.TxtFileFormatSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.TxtFileFormatSettings">TxtFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.OtherFileFormatSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.OtherFileFormatSettings">OtherFileFormatSettings</a>])</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Project File Format Settings.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.post">https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.ProjectsResource.add_project_strings_exporter_settings"><code class="name flex">
+<span>def <span class="ident">add_project_strings_exporter_settings</span></span>(<span>self, projectId: int, format: str, settings: Union[<a title="crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings">AndroidStringsExporterSettings</a>, <a title="crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings">MacOSXStringsExporterSettings</a>, <a title="crowdin_api.api_resources.projects.types.XliffStringsExporterSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.XliffStringsExporterSettings">XliffStringsExporterSettings</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add Project Strings Exporter Settings.</p>
+<p>Link to documetation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.post">https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.post</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.ProjectsResource.add_strings_based_project"><code class="name flex">
-<span>def <span class="ident">add_strings_based_project</span></span>(<span>self, name: str, sourceLanguageId: str, identifier: Optional[str] = None, type: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectType" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectType">ProjectType</a>] = None, targetLanguageIds: Optional[Iterable[str]] = None, visibility: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectVisibility" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectVisibility">ProjectVisibility</a>] = None, languageAccessPolicy: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy">ProjectLanguageAccessPolicy</a>] = None, cname: Optional[str] = None, description: Optional[str] = None, translateDuplicates: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates">ProjectTranslateDuplicates</a>] = None, isMtAllowed: Optional[bool] = None, autoSubstitution: Optional[bool] = None, autoTranslateDialects: Optional[bool] = None, publicDownloads: Optional[bool] = None, hiddenStringsProofreadersAccess: Optional[bool] = None, useGlobalTm: Optional[bool] = None, skipUntranslatedStrings: Optional[bool] = None, skipUntranslatedFiles: Optional[bool] = None, exportApprovedOnly: Optional[bool] = None, inContextProcessHiddenStrings: Optional[bool] = None, inContextPseudoLanguageId: Optional[str] = None, qaCheckIsActive: Optional[bool] = None, qaCheckCategories: Optional[<a title="crowdin_api.api_resources.projects.types.QACheckCategories" href="projects/types.html#crowdin_api.api_resources.projects.types.QACheckCategories">QACheckCategories</a>] = None, languageMapping: Optional[Dict[~KT, ~VT]] = None, glossaryAccess: Optional[bool] = None, notificationSettings: Optional[<a title="crowdin_api.api_resources.projects.types.NotificationSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.NotificationSettings">NotificationSettings</a>] = None)</span>
+<span>def <span class="ident">add_strings_based_project</span></span>(<span>self, name: str, sourceLanguageId: str, identifier: Optional[str] = None, type: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectType" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectType">ProjectType</a>] = None, targetLanguageIds: Optional[Iterable[str]] = None, visibility: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectVisibility" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectVisibility">ProjectVisibility</a>] = None, languageAccessPolicy: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy">ProjectLanguageAccessPolicy</a>] = None, cname: Optional[str] = None, description: Optional[str] = None, translateDuplicates: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates">ProjectTranslateDuplicates</a>] = None, isMtAllowed: Optional[bool] = None, autoSubstitution: Optional[bool] = None, autoTranslateDialects: Optional[bool] = None, publicDownloads: Optional[bool] = None, hiddenStringsProofreadersAccess: Optional[bool] = None, useGlobalTm: Optional[bool] = None, skipUntranslatedStrings: Optional[bool] = None, skipUntranslatedFiles: Optional[bool] = None, exportApprovedOnly: Optional[bool] = None, inContextProcessHiddenStrings: Optional[bool] = None, inContextPseudoLanguageId: Optional[str] = None, qaCheckIsActive: Optional[bool] = None, qaCheckCategories: Optional[<a title="crowdin_api.api_resources.projects.types.QACheckCategories" href="projects/types.html#crowdin_api.api_resources.projects.types.QACheckCategories">QACheckCategories</a>] = None, qaChecksIgnorableCategories: Optional[<a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories" href="projects/types.html#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories">QAChecksIgnorableCategories</a>] = None, languageMapping: Optional[Dict[~KT, ~VT]] = None, glossaryAccess: Optional[bool] = None, notificationSettings: Optional[<a title="crowdin_api.api_resources.projects.types.NotificationSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.NotificationSettings">NotificationSettings</a>] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Project(Strings Based Project Form).</p>
@@ -1101,13 +1156,21 @@ Use API to manage projects, change their settings, or remove them if required.</
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.delete</a></p></div>
 </dd>
-<dt id="crowdin_api.api_resources.ProjectsResource.delete_project_file"><code class="name flex">
-<span>def <span class="ident">delete_project_file</span></span>(<span>self, projectId: int, fileFormatSettingsId: int)</span>
+<dt id="crowdin_api.api_resources.ProjectsResource.delete_project_file_format_settings"><code class="name flex">
+<span>def <span class="ident">delete_project_file_format_settings</span></span>(<span>self, projectId: int, fileFormatSettingsId: int)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Project File Format Settings.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ProjectsResource.delete_project_strings_exporter_settings"><code class="name flex">
+<span>def <span class="ident">delete_project_strings_exporter_settings</span></span>(<span>self, projectId: int, systemStringExporterSettingsId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete Project Strings Exporter Settings.</p>
+<p>Link to documetation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ProjectsResource.download_project_file_custom_segmentation"><code class="name flex">
 <span>def <span class="ident">download_project_file_custom_segmentation</span></span>(<span>self, projectId: int, fileFormatSettingsId: int)</span>
@@ -1125,13 +1188,21 @@ Use API to manage projects, change their settings, or remove them if required.</
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.patch</a></p></div>
 </dd>
-<dt id="crowdin_api.api_resources.ProjectsResource.edit_project_file"><code class="name flex">
-<span>def <span class="ident">edit_project_file</span></span>(<span>self, projectId: int, fileFormatSettingsId: int, data: Iterable[<a title="crowdin_api.api_resources.projects.types.ProjectFilePatchRequest" href="projects/types.html#crowdin_api.api_resources.projects.types.ProjectFilePatchRequest">ProjectFilePatchRequest</a>])</span>
+<dt id="crowdin_api.api_resources.ProjectsResource.edit_project_file_format_settings"><code class="name flex">
+<span>def <span class="ident">edit_project_file_format_settings</span></span>(<span>self, projectId: int, fileFormatSettingsId: int, data: Iterable[<a title="crowdin_api.api_resources.projects.types.ProjectFilePatchRequest" href="projects/types.html#crowdin_api.api_resources.projects.types.ProjectFilePatchRequest">ProjectFilePatchRequest</a>])</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Project File Format Settings.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ProjectsResource.edit_project_strings_exporter_settings"><code class="name flex">
+<span>def <span class="ident">edit_project_strings_exporter_settings</span></span>(<span>self, projectId: int, systemStringExporterSettingsId: int, format: str, settings: Union[<a title="crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings">AndroidStringsExporterSettings</a>, <a title="crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings">MacOSXStringsExporterSettings</a>, <a title="crowdin_api.api_resources.projects.types.XliffStringsExporterSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.XliffStringsExporterSettings">XliffStringsExporterSettings</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit Project Strings Exporter Settings.</p>
+<p>Link to documetation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ProjectsResource.get_project"><code class="name flex">
 <span>def <span class="ident">get_project</span></span>(<span>self, projectId: int)</span>
@@ -1141,19 +1212,27 @@ Use API to manage projects, change their settings, or remove them if required.</
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.get">https://developer.crowdin.com/api/v2/#operation/api.projects.get</a></p></div>
 </dd>
-<dt id="crowdin_api.api_resources.ProjectsResource.get_project_file"><code class="name flex">
-<span>def <span class="ident">get_project_file</span></span>(<span>self, projectId: int, fileFormatSettingsId: int)</span>
+<dt id="crowdin_api.api_resources.ProjectsResource.get_project_file_format_settings"><code class="name flex">
+<span>def <span class="ident">get_project_file_format_settings</span></span>(<span>self, projectId: int, fileFormatSettingsId: int)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Project File Format Settings.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.get">https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.get</a></p></div>
 </dd>
-<dt id="crowdin_api.api_resources.ProjectsResource.get_project_file_path"><code class="name flex">
-<span>def <span class="ident">get_project_file_path</span></span>(<span>self, projectId: int, fileFormatSettingsId: Optional[int] = None)</span>
+<dt id="crowdin_api.api_resources.ProjectsResource.get_project_file_format_settings_path"><code class="name flex">
+<span>def <span class="ident">get_project_file_format_settings_path</span></span>(<span>self, projectId: int, fileFormatSettingsId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ProjectsResource.get_project_strings_exporter_settings"><code class="name flex">
+<span>def <span class="ident">get_project_strings_exporter_settings</span></span>(<span>self, projectId: int, systemStringExporterSettingsId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Project Strings Exporter Settings</p>
+<p>Link to documetation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.get">https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ProjectsResource.get_projects_path"><code class="name flex">
 <span>def <span class="ident">get_projects_path</span></span>(<span>self, projectId: Optional[int] = None)</span>
@@ -1161,13 +1240,27 @@ Use API to manage projects, change their settings, or remove them if required.</
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ProjectsResource.list_project_files"><code class="name flex">
-<span>def <span class="ident">list_project_files</span></span>(<span>self, projectId: int, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<dt id="crowdin_api.api_resources.ProjectsResource.get_strings_exporter_path"><code class="name flex">
+<span>def <span class="ident">get_strings_exporter_path</span></span>(<span>self, projectId: int, systemStringExporterSettingsId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ProjectsResource.list_project_file_format_settings"><code class="name flex">
+<span>def <span class="ident">list_project_file_format_settings</span></span>(<span>self, projectId: int, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Project File Format Settings.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ProjectsResource.list_project_strings_exporter_settings"><code class="name flex">
+<span>def <span class="ident">list_project_strings_exporter_settings</span></span>(<span>self, projectId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Project Strings Exporter Settings.</p>
+<p>Link to documetation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ProjectsResource.list_projects"><code class="name flex">
 <span>def <span class="ident">list_projects</span></span>(<span>self, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None, groupId: Optional[int] = None, userId: Union[int, str, None] = None, hasManagerAccess: Optional[<a title="crowdin_api.api_resources.projects.enums.HasManagerAccess" href="projects/enums.html#crowdin_api.api_resources.projects.enums.HasManagerAccess">HasManagerAccess</a>] = None)</span>
@@ -1247,8 +1340,12 @@ and shall be completed with a sequence of API methods.</p>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.check_report_generation_status" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.check_report_generation_status">check_report_generation_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.download_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.download_report">download_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report">generate_contribution_raw_data_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report">generate_costs_estimation_post_editing_by_task_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report">generate_costs_estimation_post_editing_general_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report">generate_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report">generate_top_members_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report">generate_translation_costs_post_editing_by_task_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report">generate_translation_costs_post_editing_general_report</a></code></li>
 </ul>
 </li>
 <li><code><b><a title="crowdin_api.api_resources.reports.resource.BaseReportSettingsTemplatesResource" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportSettingsTemplatesResource">BaseReportSettingsTemplatesResource</a></b></code>:
@@ -2799,6 +2896,7 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.labels" href="labels/index.html">crowdin_api.api_resources.labels</a></code></li>
 <li><code><a title="crowdin_api.api_resources.languages" href="languages/index.html">crowdin_api.api_resources.languages</a></code></li>
 <li><code><a title="crowdin_api.api_resources.machine_translation_engines" href="machine_translation_engines/index.html">crowdin_api.api_resources.machine_translation_engines</a></code></li>
+<li><code><a title="crowdin_api.api_resources.notifications" href="notifications/index.html">crowdin_api.api_resources.notifications</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects" href="projects/index.html">crowdin_api.api_resources.projects</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports" href="reports/index.html">crowdin_api.api_resources.reports</a></code></li>
 <li><code><a title="crowdin_api.api_resources.screenshots" href="screenshots/index.html">crowdin_api.api_resources.screenshots</a></code></li>
@@ -2861,8 +2959,13 @@ the details of a specific template.</p>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_fuzzy_cost_estimate_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_fuzzy_cost_estimate_report">generate_fuzzy_cost_estimate_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_fuzzy_translation_cost_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_fuzzy_translation_cost_report">generate_fuzzy_translation_cost_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_group_report">generate_group_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_translation_costs_post_editing_general_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_group_translation_costs_post_editing_general_report">generate_group_translation_costs_post_editing_general_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_organization_translation_costs_post_editing_general_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_organization_translation_costs_post_editing_general_report">generate_organization_translation_costs_post_editing_general_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_simple_cost_estimate_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_simple_cost_estimate_report">generate_simple_cost_estimate_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_simple_translation_cost_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_simple_translation_cost_report">generate_simple_translation_cost_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.get_group_reports_path" href="#crowdin_api.api_resources.EnterpriseReportsResource.get_group_reports_path">get_group_reports_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.get_organization_reports_path" href="#crowdin_api.api_resources.EnterpriseReportsResource.get_organization_reports_path">get_organization_reports_path</a></code></li>
 </ul>
 </li>
 <li>
@@ -2961,18 +3064,24 @@ the details of a specific template.</p>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.ProjectsResource.add_file_based_project" href="#crowdin_api.api_resources.ProjectsResource.add_file_based_project">add_file_based_project</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ProjectsResource.add_project" href="#crowdin_api.api_resources.ProjectsResource.add_project">add_project</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ProjectsResource.add_project_file" href="#crowdin_api.api_resources.ProjectsResource.add_project_file">add_project_file</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ProjectsResource.add_project_file_format_settings" href="#crowdin_api.api_resources.ProjectsResource.add_project_file_format_settings">add_project_file_format_settings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ProjectsResource.add_project_strings_exporter_settings" href="#crowdin_api.api_resources.ProjectsResource.add_project_strings_exporter_settings">add_project_strings_exporter_settings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ProjectsResource.add_strings_based_project" href="#crowdin_api.api_resources.ProjectsResource.add_strings_based_project">add_strings_based_project</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ProjectsResource.delete_project" href="#crowdin_api.api_resources.ProjectsResource.delete_project">delete_project</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ProjectsResource.delete_project_file" href="#crowdin_api.api_resources.ProjectsResource.delete_project_file">delete_project_file</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ProjectsResource.delete_project_file_format_settings" href="#crowdin_api.api_resources.ProjectsResource.delete_project_file_format_settings">delete_project_file_format_settings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ProjectsResource.delete_project_strings_exporter_settings" href="#crowdin_api.api_resources.ProjectsResource.delete_project_strings_exporter_settings">delete_project_strings_exporter_settings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ProjectsResource.download_project_file_custom_segmentation" href="#crowdin_api.api_resources.ProjectsResource.download_project_file_custom_segmentation">download_project_file_custom_segmentation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ProjectsResource.edit_project" href="#crowdin_api.api_resources.ProjectsResource.edit_project">edit_project</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ProjectsResource.edit_project_file" href="#crowdin_api.api_resources.ProjectsResource.edit_project_file">edit_project_file</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ProjectsResource.edit_project_file_format_settings" href="#crowdin_api.api_resources.ProjectsResource.edit_project_file_format_settings">edit_project_file_format_settings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ProjectsResource.edit_project_strings_exporter_settings" href="#crowdin_api.api_resources.ProjectsResource.edit_project_strings_exporter_settings">edit_project_strings_exporter_settings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ProjectsResource.get_project" href="#crowdin_api.api_resources.ProjectsResource.get_project">get_project</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ProjectsResource.get_project_file" href="#crowdin_api.api_resources.ProjectsResource.get_project_file">get_project_file</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ProjectsResource.get_project_file_path" href="#crowdin_api.api_resources.ProjectsResource.get_project_file_path">get_project_file_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ProjectsResource.get_project_file_format_settings" href="#crowdin_api.api_resources.ProjectsResource.get_project_file_format_settings">get_project_file_format_settings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ProjectsResource.get_project_file_format_settings_path" href="#crowdin_api.api_resources.ProjectsResource.get_project_file_format_settings_path">get_project_file_format_settings_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ProjectsResource.get_project_strings_exporter_settings" href="#crowdin_api.api_resources.ProjectsResource.get_project_strings_exporter_settings">get_project_strings_exporter_settings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ProjectsResource.get_projects_path" href="#crowdin_api.api_resources.ProjectsResource.get_projects_path">get_projects_path</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ProjectsResource.list_project_files" href="#crowdin_api.api_resources.ProjectsResource.list_project_files">list_project_files</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ProjectsResource.get_strings_exporter_path" href="#crowdin_api.api_resources.ProjectsResource.get_strings_exporter_path">get_strings_exporter_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ProjectsResource.list_project_file_format_settings" href="#crowdin_api.api_resources.ProjectsResource.list_project_file_format_settings">list_project_file_format_settings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ProjectsResource.list_project_strings_exporter_settings" href="#crowdin_api.api_resources.ProjectsResource.list_project_strings_exporter_settings">list_project_strings_exporter_settings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ProjectsResource.list_projects" href="#crowdin_api.api_resources.ProjectsResource.list_projects">list_projects</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ProjectsResource.reset_project_file_custom_segmentation" href="#crowdin_api.api_resources.ProjectsResource.reset_project_file_custom_segmentation">reset_project_file_custom_segmentation</a></code></li>
 </ul>
