@@ -138,6 +138,32 @@ class StringTranslationsResource(BaseResource):
             params=params,
         )
 
+    def translation_alignment(
+        self,
+        projectId: int,
+        sourceLanguageId: str,
+        targetLanguageId: str,
+        text: str,
+    ):
+        """
+        Translation Alignment
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.alignment.post
+        """
+
+        data = {
+            "sourceLanguageId": sourceLanguageId,
+            "targetLanguageId": targetLanguageId,
+            "text": text,
+        }
+
+        return self.requester.request(
+            method="post",
+            path=f"projects/{projectId}/translations/alignment",
+            request_data=data,
+        )
+
     # Translations
     def get_translations_path(self, projectId: int, translationId: Optional[int] = None):
         if translationId is not None:

@@ -160,6 +160,25 @@ class TestStringTranslationsResource:
             path="projects/1/languages/ua/translations",
         )
 
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_translation_alignment(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+
+        data = {
+            "sourceLanguageId": "en",
+            "targetLanguageId": "de",
+            "text": "Your password has been reset successfully!"
+        }
+
+        assert resource.translation_alignment(1, **data)
+        m_request.assert_called_once_with(
+            method="post",
+            path="projects/1/translations/alignment",
+            request_data=data,
+        )
+
     # Translations
     @pytest.mark.parametrize(
         "in_params, path",

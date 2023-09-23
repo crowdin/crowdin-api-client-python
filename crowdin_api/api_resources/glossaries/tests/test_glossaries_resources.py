@@ -221,6 +221,29 @@ class TestGlossariesResource:
             path=resource.get_glossaries_path(glossaryId=1) + "/imports/hash",
         )
 
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_concordance_search_in_glossaries(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        data = {
+            "sourceLanguageId": "es",
+            "targetLanguageId": "de",
+            "expressions": [
+                "Welcome!",
+                "Save as...",
+                "View",
+                "About...",
+            ],
+        }
+
+        assert resource.concordance_search_in_glossaries(1, **data) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path="projects/1/glossaries/concordance",
+            request_data=data,
+        )
+
     # Terms
     @pytest.mark.parametrize(
         "in_params, path",

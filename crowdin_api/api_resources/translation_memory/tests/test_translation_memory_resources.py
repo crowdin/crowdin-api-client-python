@@ -171,6 +171,32 @@ class TestTranslationMemoryResource:
             path=resource.get_tm_export_path(tmId=1, exportId="hash") + "/download",
         )
 
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_concordance_search_in_tms(self, m_reqeust, base_absolut_url):
+        m_reqeust.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+
+        data = {
+            "sourceLanguageId": "en",
+            "targetLanguageId": "de",
+            "autoSubstitution": True,
+            "minRelevant": 60,
+            "expressions": [
+                "Welcome!",
+                "Save as...",
+                "View",
+                "About..."
+            ],
+        }
+
+        assert resource.concordance_search_in_tms(1, **data) == "response"
+        m_reqeust.assert_called_once_with(
+            method="post",
+            path="projects/1/tms/concordance",
+            request_data=data
+        )
+
     # Import
     @pytest.mark.parametrize(
         "in_params, request_data",
