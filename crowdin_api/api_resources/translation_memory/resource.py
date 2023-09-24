@@ -159,6 +159,36 @@ class TranslationMemoryResource(BaseResource):
             path=f"{self.get_tm_export_path(tmId=tmId, exportId=exportId)}/download",
         )
 
+    def concordance_search_in_tms(
+        self,
+        projectId: int,
+        sourceLanguageId: str,
+        targetLanguageId: str,
+        autoSubstitution: bool,
+        minRelevant: int,
+        expressions: Iterable[str],
+    ):
+        """
+        Concordance search in TMs
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tms.concordance.post
+        """
+
+        data = {
+            "sourceLanguageId": sourceLanguageId,
+            "targetLanguageId": targetLanguageId,
+            "autoSubstitution": autoSubstitution,
+            "minRelevant": minRelevant,
+            "expressions": expressions,
+        }
+
+        return self.requester.request(
+            method="post",
+            path=f"projects/{projectId}/tms/concordance",
+            request_data=data,
+        )
+
     # Import
     def import_tm(
         self,

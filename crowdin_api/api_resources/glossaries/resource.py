@@ -202,6 +202,31 @@ class GlossariesResource(BaseResource):
             path=f"{self.get_glossaries_path(glossaryId=glossaryId)}/imports/{importId}",
         )
 
+    def concordance_search_in_glossaries(
+        self,
+        projectId: int,
+        sourceLanguageId: str,
+        targetLanguageId: str,
+        expressions: Iterable[str],
+    ):
+        """
+        Concordance search in Glossaries
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.glossaries.concordance.post
+        """
+        data = {
+            "sourceLanguageId": sourceLanguageId,
+            "targetLanguageId": targetLanguageId,
+            "expressions": expressions,
+        }
+
+        return self.requester.request(
+            method="post",
+            path=f"projects/{projectId}/glossaries/concordance",
+            request_data=data,
+        )
+
     # Terms
     def get_terms_path(self, glossaryId: int, termId: Optional[int] = None):
         if termId is not None:
