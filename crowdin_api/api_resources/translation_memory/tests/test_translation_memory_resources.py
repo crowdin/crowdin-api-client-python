@@ -2,8 +2,14 @@ from unittest import mock
 
 import pytest
 from crowdin_api.api_resources.enums import ExportFormat, PatchOperation
-from crowdin_api.api_resources.translation_memory.enums import TranslationMemoryPatchPath
-from crowdin_api.api_resources.translation_memory.resource import TranslationMemoryResource
+from crowdin_api.api_resources.translation_memory.enums import (
+    TranslationMemoryPatchPath,
+    TranslationMemorySegmentRecordOperation,
+    TranslationMemorySegmentRecordOperationPath,
+)
+from crowdin_api.api_resources.translation_memory.resource import (
+    TranslationMemoryResource,
+)
 from crowdin_api.requester import APIRequester
 
 
@@ -98,6 +104,103 @@ class TestTranslationMemoryResource:
         m_request.assert_called_once_with(
             method="delete",
             path=resource.get_tms_path(tmId=1) + "/segments",
+        )
+
+    # TM Segments
+    @pytest.mark.parametrize(
+        "in_params, path",
+        (
+            ({"tmId": 1}, "tms/1/segments"),
+            ({"tmId": 1, "segmentId": 1}, "tms/1/segments/1"),
+        ),
+    )
+    def test_get_tm_segments_path(self, in_params, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_tm_segments_path(**in_params) == path
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_tm_segments(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_tm_segments(1) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_tm_segments_path(1),
+            params={"offset": 0, "limit": 25},
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_create_tm_segment(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        records = [
+            {
+                "languageId": "uk",
+                "text": "Перекладений текст",
+            }
+        ]
+        assert resource.create_tm_segment(1, records=records) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_tm_segments_path(1),
+            request_data={"records": records},
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_tm_segment(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_tm_segment(tmId=1, segmentId=2) == "response"
+        m_request.assert_called_once_with(
+            method="get", path=resource.get_tm_segments_path(tmId=1, segmentId=2)
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_tm_segment(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_tm_segment(tmId=1, segmentId=2) == "response"
+        m_request.assert_called_once_with(
+            method="delete", path=resource.get_tm_segments_path(tmId=1, segmentId=2)
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_tm_segment(
+        self, m_request, base_absolut_url
+    ):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        data = [
+            {
+                "op": TranslationMemorySegmentRecordOperation.ADD,
+                "path": TranslationMemorySegmentRecordOperationPath.ADD,
+                "value": {
+                    "text": "Перекладений текст",
+                    "languageId": "uk",
+                },
+            }
+        ]
+        assert (
+            resource.edit_tm_segment(tmId=1, segmentId=2, data=data) == "response"
+        )
+        m_request.assert_called_once_with(
+            method="patch",
+            path=resource.get_tm_segments_path(tmId=1, segmentId=2),
+            request_data=[
+                {
+                    "op": TranslationMemorySegmentRecordOperation.ADD,
+                    "path": TranslationMemorySegmentRecordOperationPath.ADD,
+                    "value": {
+                        "text": "Перекладений текст",
+                        "languageId": "uk",
+                    }
+                },
+            ],
         )
 
     # Export

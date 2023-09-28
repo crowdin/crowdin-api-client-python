@@ -1,8 +1,14 @@
-from typing import Dict, Iterable, Optional
+from typing import Dict, Iterable, Optional, Union
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.enums import ExportFormat
-from crowdin_api.api_resources.translation_memory.types import TranslationMemoryPatchRequest
+from crowdin_api.api_resources.translation_memory.types import (
+    TranslationMemoryPatchRequest,
+    TranslationMemorySegmentRecord,
+    TranslationMemorySegmentRecordOperationAdd,
+    TranslationMemorySegmentRecordOperationReplace,
+    TranslationMemorySegmentRecordOperationRemove,
+)
 
 
 class TranslationMemoryResource(BaseResource):
@@ -101,6 +107,95 @@ class TranslationMemoryResource(BaseResource):
 
         return self.requester.request(
             method="delete", path=f"{self.get_tms_path(tmId=tmId)}/segments"
+        )
+
+    # TM Segments
+    def get_tm_segments_path(self, tmId: int, segmentId: Optional[int] = None):
+        if segmentId is None:
+            return f"tms/{tmId}/segments"
+        return f"tms/{tmId}/segments/{segmentId}"
+
+    def list_tm_segments(
+        self,
+        tmId: int,
+        page: Optional[int] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        List TM Segments.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.tms.segments.getMany
+        """
+        return self._get_entire_data(
+            method="get",
+            path=self.get_tm_segments_path(tmId=tmId),
+            params=self.get_page_params(page=page, offset=offset, limit=limit),
+        )
+
+    def create_tm_segment(
+        self, tmId: int, records: Iterable[TranslationMemorySegmentRecord]
+    ):
+        """
+        Create TM Segment.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.tms.segments.post
+        """
+        data = {"records": records}
+
+        return self.requester.request(
+            method="post",
+            path=self.get_tm_segments_path(tmId=tmId),
+            request_data=data,
+        )
+
+    def get_tm_segment(self, tmId: int, segmentId: int):
+        """
+        Get TM Segment.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.tms.segments.get
+        """
+        return self.requester.request(
+            method="get", path=self.get_tm_segments_path(tmId=tmId, segmentId=segmentId)
+        )
+
+    def delete_tm_segment(self, tmId: int, segmentId: int):
+        """
+        Delete TM Segment.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.tms.segments.delete
+        """
+        return self.requester.request(
+            method="delete",
+            path=self.get_tm_segments_path(tmId=tmId, segmentId=segmentId)
+        )
+
+    def edit_tm_segment(
+        self,
+        tmId: int,
+        segmentId: int,
+        data: Iterable[
+            Union[
+                TranslationMemorySegmentRecordOperationAdd,
+                TranslationMemorySegmentRecordOperationReplace,
+                TranslationMemorySegmentRecordOperationRemove,
+            ]
+        ],
+    ):
+        """
+        Edit TM Segment.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.tms.segments.patch
+        """
+        return self.requester.request(
+            method="patch",
+            path=self.get_tm_segments_path(tmId=tmId, segmentId=segmentId),
+            request_data=data,
         )
 
     # Export
