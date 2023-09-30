@@ -402,6 +402,18 @@ class SourceFilesResource(BaseResource):
             request_data=data,
         )
 
+    def download_file_preview(self, projectId: int, fileId: int):
+        """
+        Download File Preview.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.files.preview.get
+        """
+        return self.requester.request(
+            method="get",
+            path=f"{self.get_file_path(projectId, fileId)}/preview"
+        )
+
     def download_file(self, projectId: int, fileId: int):
         """
         Download File.
