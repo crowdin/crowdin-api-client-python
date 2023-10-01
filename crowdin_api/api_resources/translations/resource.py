@@ -54,6 +54,8 @@ class TranslationsResource(BaseResource):
         duplicateTranslations: Optional[bool] = None,
         translateUntranslatedOnly: Optional[bool] = None,
         translateWithPerfectMatchOnly: Optional[bool] = None,
+        labelIds: Optional[Iterable[int]] = None,
+        excludeLabelIds: Optional[Iterable[int]] = None,
     ):
         """
         Apply Pre-Translation.
@@ -61,6 +63,11 @@ class TranslationsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.pre-translations.post
         """
+        if labelIds is None:
+            labelIds = []
+
+        if excludeLabelIds is None:
+            excludeLabelIds = []
 
         return self.requester.request(
             method="post",
@@ -74,6 +81,8 @@ class TranslationsResource(BaseResource):
                 "duplicateTranslations": duplicateTranslations,
                 "translateUntranslatedOnly": translateUntranslatedOnly,
                 "translateWithPerfectMatchOnly": translateWithPerfectMatchOnly,
+                "labelIds": labelIds,
+                "excludeLabelIds": excludeLabelIds,
             },
         )
 
