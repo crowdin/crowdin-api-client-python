@@ -70,3 +70,20 @@ class FilePatchRequest(TypedDict):
     value: Any
     op: PatchOperation
     path: FilePatchPath
+
+
+class HtmlFileImportOptions(TypedDict):
+    excludedElements: Iterable[str]
+    contentSegmentation: bool
+    srxStorageId: int
+
+
+class HtmlWithFrontMatterFileImportOptions(HtmlFileImportOptions):
+    excludedFrontMatterElements: Iterable[str]
+
+
+class MdxV1FileImportOptions(TypedDict):
+    excludedFrontMatterElements: Iterable[str]
+    excludeCodeBlocks: bool
+    contentSegmentation: bool
+    srxStorageId: bool

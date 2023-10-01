@@ -7,6 +7,9 @@ from crowdin_api.api_resources.source_files.types import (
     DirectoryPatchRequest,
     FilePatchRequest,
     GeneralExportOptions,
+    HtmlFileImportOptions,
+    HtmlWithFrontMatterFileImportOptions,
+    MdxV1FileImportOptions,
     OtherImportOptions,
     PropertyExportOptions,
     SpreadsheetImportOptions,
@@ -284,9 +287,17 @@ class SourceFilesResource(BaseResource):
         directoryId: Optional[int] = None,
         title: Optional[int] = None,
         type: Optional[FileType] = FileType.AUTO,
-        importOptions: Optional[Union[
-            SpreadsheetImportOptions, XmlImportOptions, DocxFileImportOptions, OtherImportOptions
-        ]] = None,
+        importOptions: Optional[
+            Union[
+                SpreadsheetImportOptions,
+                XmlImportOptions,
+                DocxFileImportOptions,
+                OtherImportOptions,
+                HtmlFileImportOptions,
+                HtmlWithFrontMatterFileImportOptions,
+                MdxV1FileImportOptions,
+            ]
+        ] = None,
         exportOptions: Optional[Union[PropertyExportOptions, GeneralExportOptions]] = None,
         excludedTargetLanguages: Optional[Iterable[str]] = None,
         attachLabelIds: Optional[Iterable[int]] = None,
@@ -348,9 +359,17 @@ class SourceFilesResource(BaseResource):
         fileId: int,
         storageId: int,
         updateOption: Optional[FileUpdateOption] = None,
-        importOptions: Optional[Union[
-            SpreadsheetImportOptions, XmlImportOptions, DocxFileImportOptions, OtherImportOptions
-        ]] = None,
+        importOptions: Optional[
+            Union[
+                SpreadsheetImportOptions,
+                XmlImportOptions,
+                DocxFileImportOptions,
+                OtherImportOptions,
+                HtmlFileImportOptions,
+                HtmlWithFrontMatterFileImportOptions,
+                MdxV1FileImportOptions,
+            ]
+        ] = None,
         exportOptions: Optional[Union[GeneralExportOptions, PropertyExportOptions]] = None,
         attachLabelIds: Optional[Iterable[int]] = None,
         detachLabelIds: Optional[Iterable[int]] = None,
