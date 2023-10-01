@@ -7,6 +7,7 @@ from crowdin_api.api_resources.source_files.types import (
     DirectoryPatchRequest,
     FilePatchRequest,
     GeneralExportOptions,
+    JavascriptExportOptions,
     OtherImportOptions,
     PropertyExportOptions,
     SpreadsheetImportOptions,
@@ -287,7 +288,7 @@ class SourceFilesResource(BaseResource):
         importOptions: Optional[Union[
             SpreadsheetImportOptions, XmlImportOptions, DocxFileImportOptions, OtherImportOptions
         ]] = None,
-        exportOptions: Optional[Union[PropertyExportOptions, GeneralExportOptions]] = None,
+        exportOptions: Optional[Union[PropertyExportOptions, GeneralExportOptions, JavascriptExportOptions]] = None,
         excludedTargetLanguages: Optional[Iterable[str]] = None,
         attachLabelIds: Optional[Iterable[int]] = None,
     ):
@@ -351,7 +352,7 @@ class SourceFilesResource(BaseResource):
         importOptions: Optional[Union[
             SpreadsheetImportOptions, XmlImportOptions, DocxFileImportOptions, OtherImportOptions
         ]] = None,
-        exportOptions: Optional[Union[GeneralExportOptions, PropertyExportOptions]] = None,
+        exportOptions: Optional[Union[GeneralExportOptions, PropertyExportOptions, JavascriptExportOptions]] = None,
         attachLabelIds: Optional[Iterable[int]] = None,
         detachLabelIds: Optional[Iterable[int]] = None,
     ):
