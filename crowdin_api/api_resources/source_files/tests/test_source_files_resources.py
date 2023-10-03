@@ -474,6 +474,17 @@ class TestSourceFilesResource:
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_download_file_preview(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.download_file_preview(1, 1) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_file_path(1, 1) + "/preview",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_download_file(self, m_request, base_absolut_url):
         m_request.return_value = "response"
 
