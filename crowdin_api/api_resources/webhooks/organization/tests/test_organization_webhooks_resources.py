@@ -109,61 +109,61 @@ class TestOrganizationWebhooksResource:
     @pytest.mark.parametrize(
         "in_params, request_data",
         (
-                (
-                        {
-                            "name": "Some",
-                            "url": "https://example.com",
-                            "events": [
-                                EnterpriseOrgWebhookEvent.PROJECT_CREATED,
-                                EnterpriseOrgWebhookEvent.PROJECT_DELETED
-                            ],
-                            "request_type": WebhookRequestType.POST
-                        },
-                        {
-                            "name": "Some",
-                            "url": "https://example.com",
-                            "events": [
-                                EnterpriseOrgWebhookEvent.PROJECT_CREATED,
-                                EnterpriseOrgWebhookEvent.PROJECT_DELETED
-                            ],
-                            "requestType": WebhookRequestType.POST,
-                            "isActive": None,
-                            "batchingEnabled": None,
-                            "contentType": None,
-                            "headers": None,
-                            "payload": None
-                        }
-                ),
-                (
-                        {
-                            "name": "Some",
-                            "url": "https://example.com",
-                            "events": [
-                                EnterpriseOrgWebhookEvent.GROUP_CREATED,
-                                EnterpriseOrgWebhookEvent.GROUP_DELETED
-                            ],
-                            "request_type": WebhookRequestType.POST,
-                            "is_active": True,
-                            "batching_enabled": False,
-                            "content_type": WebhookContentType.APPLICATION_JSON,
-                            "headers": {},
-                            "payload": {}
-                        },
-                        {
-                            "name": "Some",
-                            "url": "https://example.com",
-                            "events": [
-                                EnterpriseOrgWebhookEvent.GROUP_CREATED,
-                                EnterpriseOrgWebhookEvent.GROUP_DELETED
-                            ],
-                            "requestType": WebhookRequestType.POST,
-                            "isActive": True,
-                            "batchingEnabled": False,
-                            "contentType": WebhookContentType.APPLICATION_JSON,
-                            "headers": {},
-                            "payload": {}
-                        }
-                )
+            (
+                {
+                    "name": "Some",
+                    "url": "https://example.com",
+                    "events": [
+                        EnterpriseOrgWebhookEvent.PROJECT_CREATED,
+                        EnterpriseOrgWebhookEvent.PROJECT_DELETED
+                    ],
+                    "request_type": WebhookRequestType.POST
+                },
+                {
+                    "name": "Some",
+                    "url": "https://example.com",
+                    "events": [
+                        EnterpriseOrgWebhookEvent.PROJECT_CREATED,
+                        EnterpriseOrgWebhookEvent.PROJECT_DELETED
+                    ],
+                    "requestType": WebhookRequestType.POST,
+                    "isActive": None,
+                    "batchingEnabled": None,
+                    "contentType": None,
+                    "headers": None,
+                    "payload": None
+                }
+            ),
+            (
+                {
+                    "name": "Some",
+                    "url": "https://example.com",
+                    "events": [
+                        EnterpriseOrgWebhookEvent.GROUP_CREATED,
+                        EnterpriseOrgWebhookEvent.GROUP_DELETED
+                    ],
+                    "request_type": WebhookRequestType.POST,
+                    "is_active": True,
+                    "batching_enabled": False,
+                    "content_type": WebhookContentType.APPLICATION_JSON,
+                    "headers": {},
+                    "payload": {}
+                },
+                {
+                    "name": "Some",
+                    "url": "https://example.com",
+                    "events": [
+                        EnterpriseOrgWebhookEvent.GROUP_CREATED,
+                        EnterpriseOrgWebhookEvent.GROUP_DELETED
+                    ],
+                    "requestType": WebhookRequestType.POST,
+                    "isActive": True,
+                    "batchingEnabled": False,
+                    "contentType": WebhookContentType.APPLICATION_JSON,
+                    "headers": {},
+                    "payload": {}
+                }
+            )
         )
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
