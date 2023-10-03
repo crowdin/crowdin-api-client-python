@@ -45,6 +45,8 @@ class TestTranslationsResource:
                     "duplicateTranslations": None,
                     "translateUntranslatedOnly": None,
                     "translateWithPerfectMatchOnly": None,
+                    "labelIds": [],
+                    "excludeLabelIds": [],
                 },
             ),
             (
@@ -57,6 +59,8 @@ class TestTranslationsResource:
                     "duplicateTranslations": False,
                     "translateUntranslatedOnly": False,
                     "translateWithPerfectMatchOnly": False,
+                    "labelIds": [1],
+                    "excludeLabelIds": [1],
                 },
                 {
                     "languageIds": ["some", "language"],
@@ -67,6 +71,8 @@ class TestTranslationsResource:
                     "duplicateTranslations": False,
                     "translateUntranslatedOnly": False,
                     "translateWithPerfectMatchOnly": False,
+                    "labelIds": [1],
+                    "excludeLabelIds": [1],
                 },
             ),
         ),
