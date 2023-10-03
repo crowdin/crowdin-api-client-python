@@ -394,6 +394,84 @@ class TestSourceFilesResource:
                     "attachLabelIds": [1],
                 },
             ),
+            (
+                {
+                    "name": "name",
+                    "storageId": 1,
+                    "branchId": 1,
+                    "directoryId": 1,
+                    "title": "title",
+                    "type": FileType.HTML,
+                    "importOptions": {"excludedElements": ["element"]},
+                    "exportOptions": {"exportPattern": "exportPattern"},
+                    "excludedTargetLanguages": ["excludedTargetLanguages"],
+                    "attachLabelIds": [1],
+                },
+                {
+                    "name": "name",
+                    "storageId": 1,
+                    "branchId": 1,
+                    "directoryId": 1,
+                    "title": "title",
+                    "type": FileType.HTML,
+                    "importOptions": {"excludedElements": ["element"]},
+                    "exportOptions": {"exportPattern": "exportPattern"},
+                    "excludedTargetLanguages": ["excludedTargetLanguages"],
+                    "attachLabelIds": [1],
+                },
+            ),
+            (
+                {
+                    "name": "name",
+                    "storageId": 1,
+                    "branchId": 1,
+                    "directoryId": 1,
+                    "title": "title",
+                    "type": FileType.HTML,
+                    "importOptions": {"excludedFrontMatterElements": ["element"]},
+                    "exportOptions": {"exportPattern": "exportPattern"},
+                    "excludedTargetLanguages": ["excludedTargetLanguages"],
+                    "attachLabelIds": [1],
+                },
+                {
+                    "name": "name",
+                    "storageId": 1,
+                    "branchId": 1,
+                    "directoryId": 1,
+                    "title": "title",
+                    "type": FileType.HTML,
+                    "importOptions": {"excludedFrontMatterElements": ["element"]},
+                    "exportOptions": {"exportPattern": "exportPattern"},
+                    "excludedTargetLanguages": ["excludedTargetLanguages"],
+                    "attachLabelIds": [1],
+                },
+            ),
+            (
+                {
+                    "name": "name",
+                    "storageId": 1,
+                    "branchId": 1,
+                    "directoryId": 1,
+                    "title": "title",
+                    "type": FileType.MD,
+                    "importOptions": {"excludeCodeBlocks": False},
+                    "exportOptions": {"exportPattern": "exportPattern"},
+                    "excludedTargetLanguages": ["excludedTargetLanguages"],
+                    "attachLabelIds": [1],
+                },
+                {
+                    "name": "name",
+                    "storageId": 1,
+                    "branchId": 1,
+                    "directoryId": 1,
+                    "title": "title",
+                    "type": FileType.MD,
+                    "importOptions": {"excludeCodeBlocks": False},
+                    "exportOptions": {"exportPattern": "exportPattern"},
+                    "excludedTargetLanguages": ["excludedTargetLanguages"],
+                    "attachLabelIds": [1],
+                },
+            ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -527,7 +605,10 @@ class TestSourceFilesResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.get_file_revision(projectId=1, fileId=2, revisionId=3) == "response"
+        assert (
+            resource.get_file_revision(projectId=1, fileId=2, revisionId=3)
+            == "response"
+        )
         m_request.assert_called_once_with(
             method="get",
             path=resource.get_file_revisions_path(projectId=1, fileId=2, revisionId=3),

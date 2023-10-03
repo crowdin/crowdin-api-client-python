@@ -15,6 +15,7 @@ from crowdin_api.api_resources.source_files.types import (
     HtmlFileImportOptions,
     HtmlWithFrontMatterFileImportOptions,
     MdxV1FileImportOptions,
+    MdxV2FileImportOptions,
     OtherImportOptions,
     PropertyExportOptions,
     SpreadsheetImportOptions,
@@ -303,10 +304,11 @@ class SourceFilesResource(BaseResource):
                 HtmlFileImportOptions,
                 HtmlWithFrontMatterFileImportOptions,
                 MdxV1FileImportOptions,
+                MdxV2FileImportOptions,
             ]
         ] = None,
         exportOptions: Optional[
-            Union[PropertyExportOptions, GeneralExportOptions]
+            Union[PropertyExportOptions, GeneralExportOptions, JavascriptExportOptions]
         ] = None,
         excludedTargetLanguages: Optional[Iterable[str]] = None,
         attachLabelIds: Optional[Iterable[int]] = None,
@@ -377,10 +379,11 @@ class SourceFilesResource(BaseResource):
                 HtmlFileImportOptions,
                 HtmlWithFrontMatterFileImportOptions,
                 MdxV1FileImportOptions,
+                MdxV2FileImportOptions,
             ]
         ] = None,
         exportOptions: Optional[
-            Union[GeneralExportOptions, PropertyExportOptions]
+            Union[GeneralExportOptions, PropertyExportOptions, JavascriptExportOptions]
         ] = None,
         attachLabelIds: Optional[Iterable[int]] = None,
         detachLabelIds: Optional[Iterable[int]] = None,

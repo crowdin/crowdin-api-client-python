@@ -92,4 +92,11 @@ class MdxV1FileImportOptions(TypedDict):
     excludedFrontMatterElements: Iterable[str]
     excludeCodeBlocks: bool
     contentSegmentation: bool
-    srxStorageId: bool
+    srxStorageId: int
+
+
+class MdxV2FileImportOptions(TypedDict):
+    excludedFrontMatterElements: Iterable[str]
+    excludeCodeBlocks: bool
+    contentSegmentation: bool
+    srxStorageId: int
