@@ -5,6 +5,7 @@ from crowdin_api.api_resources.source_files.enums import (
     BranchPatchPath,
     DirectoryPatchPath,
     EscapeQuotes,
+    ExportQuotes,
     FilePatchPath,
 )
 from crowdin_api.typing import TypedDict
@@ -63,6 +64,11 @@ class GeneralExportOptions(TypedDict):
 
 class PropertyExportOptions:
     escapeQuotes: EscapeQuotes
+    exportPattern: str
+
+
+class JavascriptExportOptions:
+    exportQuotes: ExportQuotes
     exportPattern: str
 
 

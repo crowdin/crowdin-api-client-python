@@ -76,6 +76,11 @@ class EscapeQuotes(Enum):
     THREE = 3
 
 
+class ExportQuotes(Enum):
+    SINGLE = "single"
+    DOUBLE = "double"
+
+
 class FileUpdateOption(Enum):
     CLEAR_TRANSLATIONS_AND_APPROVALS = "clear_translations_and_approvals"
     KEEP_TRANSLATIONS = "keep_translations"
