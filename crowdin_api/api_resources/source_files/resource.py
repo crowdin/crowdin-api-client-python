@@ -1,13 +1,21 @@
 from typing import Any, Iterable, Optional, Union
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
-from crowdin_api.api_resources.source_files.enums import FileType, FileUpdateOption, Priority
+from crowdin_api.api_resources.source_files.enums import (
+    FileType,
+    FileUpdateOption,
+    Priority,
+)
 from crowdin_api.api_resources.source_files.types import (
     BranchPatchRequest,
     DirectoryPatchRequest,
     FilePatchRequest,
     GeneralExportOptions,
     JavascriptExportOptions,
+    HtmlFileImportOptions,
+    HtmlWithFrontMatterFileImportOptions,
+    MdxV1FileImportOptions,
+    MdxV2FileImportOptions,
     OtherImportOptions,
     PropertyExportOptions,
     SpreadsheetImportOptions,
@@ -114,7 +122,9 @@ class SourceFilesResource(BaseResource):
             path=f"projects/{projectId}/branches/{branchId}",
         )
 
-    def edit_branch(self, projectId: int, branchId: int, data: Iterable[BranchPatchRequest]):
+    def edit_branch(
+        self, projectId: int, branchId: int, data: Iterable[BranchPatchRequest]
+    ):
         """
         Edit Branch.
 
@@ -285,10 +295,21 @@ class SourceFilesResource(BaseResource):
         directoryId: Optional[int] = None,
         title: Optional[int] = None,
         type: Optional[FileType] = FileType.AUTO,
-        importOptions: Optional[Union[
-            SpreadsheetImportOptions, XmlImportOptions, DocxFileImportOptions, OtherImportOptions
-        ]] = None,
-        exportOptions: Optional[Union[PropertyExportOptions, GeneralExportOptions, JavascriptExportOptions]] = None,
+        importOptions: Optional[
+            Union[
+                SpreadsheetImportOptions,
+                XmlImportOptions,
+                DocxFileImportOptions,
+                OtherImportOptions,
+                HtmlFileImportOptions,
+                HtmlWithFrontMatterFileImportOptions,
+                MdxV1FileImportOptions,
+                MdxV2FileImportOptions,
+            ]
+        ] = None,
+        exportOptions: Optional[
+            Union[PropertyExportOptions, GeneralExportOptions, JavascriptExportOptions]
+        ] = None,
         excludedTargetLanguages: Optional[Iterable[str]] = None,
         attachLabelIds: Optional[Iterable[int]] = None,
     ):
@@ -349,10 +370,21 @@ class SourceFilesResource(BaseResource):
         fileId: int,
         storageId: int,
         updateOption: Optional[FileUpdateOption] = None,
-        importOptions: Optional[Union[
-            SpreadsheetImportOptions, XmlImportOptions, DocxFileImportOptions, OtherImportOptions
-        ]] = None,
-        exportOptions: Optional[Union[GeneralExportOptions, PropertyExportOptions, JavascriptExportOptions]] = None,
+        importOptions: Optional[
+            Union[
+                SpreadsheetImportOptions,
+                XmlImportOptions,
+                DocxFileImportOptions,
+                OtherImportOptions,
+                HtmlFileImportOptions,
+                HtmlWithFrontMatterFileImportOptions,
+                MdxV1FileImportOptions,
+                MdxV2FileImportOptions,
+            ]
+        ] = None,
+        exportOptions: Optional[
+            Union[GeneralExportOptions, PropertyExportOptions, JavascriptExportOptions]
+        ] = None,
         attachLabelIds: Optional[Iterable[int]] = None,
         detachLabelIds: Optional[Iterable[int]] = None,
     ):
@@ -411,8 +443,7 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.preview.get
         """
         return self.requester.request(
-            method="get",
-            path=f"{self.get_file_path(projectId, fileId)}/preview"
+            method="get", path=f"{self.get_file_path(projectId, fileId)}/preview"
         )
 
     def download_file(self, projectId: int, fileId: int):
@@ -432,7 +463,6 @@ class SourceFilesResource(BaseResource):
     def get_file_revisions_path(
         self, projectId: int, fileId: int, revisionId: Optional[int] = None
     ):
-
         file_path = self.get_file_path(projectId=projectId, fileId=fileId)
 
         if revisionId is not None:
