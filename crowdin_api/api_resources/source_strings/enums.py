@@ -13,3 +13,18 @@ class SourceStringsPatchPath(Enum):
     IS_HIDDEN = "/isHidden"
     MAXLENGTH = "/maxLength"
     LABEL_IDS = "/labelIds"
+
+
+class StringBatchOperations(Enum):
+    REPLACE = "replace"
+    REMOVE = "remove"
+    ADD = "add"
+
+
+class StringBatchOperationsPath(Enum):
+    IDENTIFIER = "/{stringId}/identifier"
+    TEXT = "/{stringId}/text"
+    CONTEXT = "/{stringId}/context"
+    IS_HIDDEN = "/{stringId}/isHidden"
+    MAX_LENGTH = "/{stringId}/maxLength"
+    LABEL_IDS = "/{stringId}/labelIds"
