@@ -3,7 +3,10 @@ from typing import Iterable, Optional
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.enums import DenormalizePlaceholders
 from crowdin_api.api_resources.source_strings.enums import ScopeFilter
-from crowdin_api.api_resources.source_strings.types import SourceStringsPatchRequest
+from crowdin_api.api_resources.source_strings.types import (
+    SourceStringsPatchRequest,
+    StringBatchOperationPatchRequest,
+)
 
 
 class SourceStringsResource(BaseResource):
@@ -134,5 +137,22 @@ class SourceStringsResource(BaseResource):
         return self.requester.request(
             method="patch",
             path=self.get_source_strings_path(projectId=projectId, stringId=stringId),
+            request_data=data,
+        )
+
+    def string_batch_operation(
+        self,
+        projectId: int,
+        data: Iterable[StringBatchOperationPatchRequest],
+    ):
+        """
+        String Batch Operations.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.strings.batchPatch
+        """
+        return self.requester.request(
+            method="patch",
+            path=self.get_source_strings_path(projectId=projectId),
             request_data=data,
         )

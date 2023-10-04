@@ -2,7 +2,12 @@ from unittest import mock
 
 import pytest
 from crowdin_api.api_resources.enums import DenormalizePlaceholders, PatchOperation
-from crowdin_api.api_resources.source_strings.enums import ScopeFilter, SourceStringsPatchPath
+from crowdin_api.api_resources.source_strings.enums import (
+    ScopeFilter,
+    SourceStringsPatchPath,
+    StringBatchOperationsPath,
+    StringBatchOperations,
+)
 from crowdin_api.api_resources.source_strings.resource import SourceStringsResource
 from crowdin_api.requester import APIRequester
 
@@ -169,4 +174,28 @@ class TestSourceFilesResource:
             method="patch",
             request_data=data,
             path=resource.get_source_strings_path(projectId=1, stringId=2),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_string_batch_operation(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        data = [
+            {
+                "op": StringBatchOperations.REPLACE,
+                "path": StringBatchOperationsPath.IS_HIDDEN,
+                "value": True,
+            },
+            {
+                "op": StringBatchOperations.REMOVE,
+                "path": StringBatchOperationsPath.CONTEXT,
+                "value": "some value",
+            },
+        ]
+        resource = self.get_resource(base_absolut_url)
+        assert resource.string_batch_operation(1, data=data) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path=resource.get_source_strings_path(1),
+            request_data=data,
         )
