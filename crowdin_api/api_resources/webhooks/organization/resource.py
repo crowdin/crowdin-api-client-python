@@ -16,8 +16,8 @@ class OrganizationWebhooksResource(BaseResource):
     ):
         return f"{self.BASE_URL}/{organization_webhook_id}"
 
-    """Webhooks allow you to collect information about events that happen in your Crowdin account. You can select the 
-    request type, content type, and add a custom payload, which allows you to create integrations with other systems 
+    """Webhooks allow you to collect information about events that happen in your Crowdin account. You can select the
+    request type, content type, and add a custom payload, which allows you to create integrations with other systems
     on your own.
 
     You can configure webhooks for the following events:
