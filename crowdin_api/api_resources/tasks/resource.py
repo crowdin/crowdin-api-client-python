@@ -5,6 +5,7 @@ from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.tasks.enums import (
     CrowdinGeneralTaskType,
     CrowdinTaskStatus,
+    LanguageServiceTaskType,
     GengoCrowdinTaskExpertise,
     GengoCrowdinTaskPurpose,
     GengoCrowdinTaskTone,
@@ -14,6 +15,8 @@ from crowdin_api.api_resources.tasks.enums import (
     TranslatedCrowdinTaskExpertise,
     TranslatedCrowdinTaskSubjects,
     TranslatedCrowdinTaskType,
+    ManualCrowdinTaskType,
+    ManualCrowdinVendors,
 )
 from crowdin_api.api_resources.tasks.types import (
     CrowdinTaskAssignee,
@@ -209,9 +212,12 @@ class TasksResource(BaseResource):
         splitFiles: Optional[bool] = None,
         skipAssignedStrings: Optional[bool] = None,
         skipUntranslatedStrings: Optional[bool] = None,
+        includePreTranslatedStringsOnly: Optional[bool] = None,
         labelIds: Optional[Iterable[int]] = None,
+        excludeLabelIds: Optional[Iterable[int]] = None,
         assignees: Optional[Iterable[CrowdinTaskAssignee]] = None,
         deadline: Optional[datetime] = None,
+        startedAt: Optional[datetime] = None,
         dateFrom: Optional[datetime] = None,
         dateTo: Optional[datetime] = None,
     ):
@@ -234,12 +240,59 @@ class TasksResource(BaseResource):
                 "splitFiles": splitFiles,
                 "skipAssignedStrings": skipAssignedStrings,
                 "skipUntranslatedStrings": skipUntranslatedStrings,
+                "includePreTranslatedStringsOnly": includePreTranslatedStringsOnly,
                 "labelIds": labelIds,
+                "excludeLabelIds": excludeLabelIds,
                 "assignees": assignees,
                 "deadline": deadline,
+                "startedAt": startedAt,
                 "dateFrom": dateFrom,
                 "dateTo": dateTo,
             },
+        )
+
+    def add_language_service_task(
+        self,
+        projectId: int,
+        title: str,
+        languageId: str,
+        fileIds: Iterable[str],
+        type: LanguageServiceTaskType,
+        status: Optional[CrowdinTaskStatus] = None,
+        description: Optional[str] = None,
+        labelIds: Optional[Iterable[int]] = None,
+        excludeLabelIds: Optional[Iterable[int]] = None,
+        skipUntranslatedStrings: Optional[bool] = None,
+        includePreTranslatedStringsOnly: Optional[bool] = None,
+        includeUntranslatedStringsOnly: Optional[bool] = None,
+        dateFrom: Optional[datetime] = None,
+        dateTo: Optional[datetime] = None,
+    ):
+        """
+        Add Task(Crowdin Language Service Task Create Form).
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
+        """
+
+        return self.add_task(
+            projectId=projectId,
+            request_data={
+                "title": title,
+                "languageId": languageId,
+                "fileIds": fileIds,
+                "type": type,
+                "vendor": "crowdin_language_service",
+                "status": status,
+                "description": description,
+                "labelIds": labelIds,
+                "excludeLabelIds": excludeLabelIds,
+                "skipUntranslatedStrings": skipUntranslatedStrings,
+                "includePreTranslatedStringsOnly": includePreTranslatedStringsOnly,
+                "includeUntranslatedStringsOnly": includeUntranslatedStringsOnly,
+                "dateFrom": dateFrom,
+                "dateTo": dateTo,
+            }
         )
 
     def add_vendor_oht_task(
@@ -253,6 +306,10 @@ class TasksResource(BaseResource):
         description: Optional[str] = None,
         expertise: Optional[OhtCrowdinTaskExpertise] = None,
         labelIds: Optional[Iterable[int]] = None,
+        excludeLabelIds: Optional[Iterable[int]] = None,
+        skipUntranslatedStrings: Optional[bool] = None,
+        includePreTranslatedStringsOnly: Optional[bool] = None,
+        includeUntranslatedStringsOnly: Optional[bool] = None,
         dateFrom: Optional[datetime] = None,
         dateTo: Optional[datetime] = None,
     ):
@@ -274,6 +331,10 @@ class TasksResource(BaseResource):
                 "description": description,
                 "expertise": expertise,
                 "labelIds": labelIds,
+                "excludeLabelIds": excludeLabelIds,
+                "skipUntranslatedStrings": skipUntranslatedStrings,
+                "includePreTranslatedStringsOnly": includePreTranslatedStringsOnly,
+                "includeUntranslatedStringsOnly": includeUntranslatedStringsOnly,
                 "dateFrom": dateFrom,
                 "dateTo": dateTo,
                 "vendor": "oht",
@@ -296,6 +357,7 @@ class TasksResource(BaseResource):
         usePreferred: Optional[bool] = None,
         editService: Optional[bool] = None,
         labelIds: Optional[Iterable[int]] = None,
+        excludeLabelIds: Optional[Iterable[int]] = None,
         dateFrom: Optional[datetime] = None,
         dateTo: Optional[datetime] = None,
     ):
@@ -322,6 +384,7 @@ class TasksResource(BaseResource):
                 "usePreferred": usePreferred,
                 "editService": editService,
                 "labelIds": labelIds,
+                "excludeLabelIds": excludeLabelIds,
                 "dateFrom": dateFrom,
                 "dateTo": dateTo,
                 "vendor": "gengo",
@@ -340,6 +403,7 @@ class TasksResource(BaseResource):
         expertise: Optional[TranslatedCrowdinTaskExpertise] = None,
         subject: Optional[TranslatedCrowdinTaskSubjects] = None,
         labelIds: Optional[Iterable[int]] = None,
+        excludeLabelIds: Optional[Iterable[int]] = None,
         dateFrom: Optional[datetime] = None,
         dateTo: Optional[datetime] = None,
     ):
@@ -361,10 +425,62 @@ class TasksResource(BaseResource):
                 "expertise": expertise,
                 "subject": subject,
                 "labelIds": labelIds,
+                "excludeLabelIds": excludeLabelIds,
                 "dateFrom": dateFrom,
                 "dateTo": dateTo,
                 "vender": "translated",
             },
+        )
+
+    def add_vendor_manual_task(
+        self,
+        projectId: int,
+        title: str,
+        languageId: str,
+        fileIds: Iterable[int],
+        type: ManualCrowdinTaskType,
+        vendor: ManualCrowdinVendors,
+        status: Optional[CrowdinTaskStatus] = None,
+        description: Optional[str] = None,
+        skipAssignedStrings: Optional[bool] = None,
+        skipUntranslatedStrings: Optional[bool] = None,
+        includePreTranslatedStringsOnly: Optional[bool] = None,
+        labelIds: Optional[Iterable[int]] = None,
+        excludeLabelIds: Optional[Iterable[int]] = None,
+        assignees: Optional[Iterable[CrowdinTaskAssignee]] = None,
+        deadline: Optional[datetime] = None,
+        startedAt: Optional[datetime] = None,
+        dateFrom: Optional[datetime] = None,
+        dateTo: Optional[datetime] = None,
+    ):
+        """
+        Add Task(Crowdin Vendor Manual Task Create Form).
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
+        """
+
+        return self.add_task(
+            projectId=projectId,
+            request_data={
+                "title": title,
+                "languageId": languageId,
+                "fileIds": fileIds,
+                "type": type,
+                "vendor": vendor,
+                "status": status,
+                "description": description,
+                "skipAssignedStrings": skipAssignedStrings,
+                "skipUntranslatedStrings": skipUntranslatedStrings,
+                "includePreTranslatedStringsOnly": includePreTranslatedStringsOnly,
+                "labelIds": labelIds,
+                "excludeLabelIds": excludeLabelIds,
+                "assignees": assignees,
+                "deadline": deadline,
+                "startedAt": startedAt,
+                "dateFrom": dateFrom,
+                "dateTo": dateTo,
+            }
         )
 
     def export_task_strings(self, projectId: int, taskId: int):

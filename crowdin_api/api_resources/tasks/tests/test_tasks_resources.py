@@ -17,6 +17,9 @@ from crowdin_api.api_resources.tasks.enums import (
     TranslatedCrowdinTaskSubjects,
     TranslatedCrowdinTaskType,
     ConfigTaskOperationPatchPath,
+    LanguageServiceTaskType,
+    ManualCrowdinTaskType,
+    ManualCrowdinVendors,
 )
 from crowdin_api.api_resources.tasks.resource import TasksResource, EnterpriseTasksResource
 from crowdin_api.requester import APIRequester
@@ -204,9 +207,12 @@ class TestTasksResource:
                     "splitFiles": None,
                     "skipAssignedStrings": None,
                     "skipUntranslatedStrings": None,
+                    "includePreTranslatedStringsOnly": None,
                     "labelIds": None,
+                    "excludeLabelIds": None,
                     "assignees": None,
                     "deadline": None,
+                    "startedAt": None,
                     "dateFrom": None,
                     "dateTo": None,
                 },
@@ -222,9 +228,12 @@ class TestTasksResource:
                     "splitFiles": False,
                     "skipAssignedStrings": False,
                     "skipUntranslatedStrings": False,
+                    "includePreTranslatedStringsOnly": False,
                     "labelIds": [4, 5, 6],
+                    "excludeLabelIds": [7, 8, 9],
                     "assignees": [{"id": 1, "wordsCount": 2}],
                     "deadline": datetime(year=1988, month=9, day=26),
+                    "startedAt": datetime(year=1966, month=2, day=1),
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
                 },
@@ -238,9 +247,12 @@ class TestTasksResource:
                     "splitFiles": False,
                     "skipAssignedStrings": False,
                     "skipUntranslatedStrings": False,
+                    "includePreTranslatedStringsOnly": False,
                     "labelIds": [4, 5, 6],
+                    "excludeLabelIds": [7, 8, 9],
                     "assignees": [{"id": 1, "wordsCount": 2}],
                     "deadline": datetime(year=1988, month=9, day=26),
+                    "startedAt": datetime(year=1966, month=2, day=1),
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
                 },
@@ -263,6 +275,78 @@ class TestTasksResource:
                     "title": "title",
                     "languageId": "ua",
                     "fileIds": [1, 2, 3],
+                    "type": LanguageServiceTaskType.TRANSLATE_BY_VENDOR,
+                },
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "fileIds": [1, 2, 3],
+                    "type": LanguageServiceTaskType.TRANSLATE_BY_VENDOR,
+                    "vendor": "crowdin_language_service",
+                    "status": None,
+                    "description": None,
+                    "labelIds": None,
+                    "excludeLabelIds": None,
+                    "skipUntranslatedStrings": None,
+                    "includePreTranslatedStringsOnly": None,
+                    "includeUntranslatedStringsOnly": None,
+                    "dateFrom": None,
+                    "dateTo": None,
+                },
+            ),
+            (
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "fileIds": [1, 2, 3],
+                    "type": LanguageServiceTaskType.TRANSLATE_BY_VENDOR,
+                    "status": CrowdinTaskStatus.TODO,
+                    "description": "description",
+                    "labelIds": [4, 5, 6],
+                    "excludeLabelIds": [7, 8, 9],
+                    "skipUntranslatedStrings": False,
+                    "includePreTranslatedStringsOnly": False,
+                    "includeUntranslatedStringsOnly": False,
+                    "dateFrom": datetime(year=1988, month=1, day=4),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "fileIds": [1, 2, 3],
+                    "type": LanguageServiceTaskType.TRANSLATE_BY_VENDOR,
+                    "vendor": "crowdin_language_service",
+                    "status": CrowdinTaskStatus.TODO,
+                    "description": "description",
+                    "labelIds": [4, 5, 6],
+                    "excludeLabelIds": [7, 8, 9],
+                    "skipUntranslatedStrings": False,
+                    "includePreTranslatedStringsOnly": False,
+                    "includeUntranslatedStringsOnly": False,
+                    "dateFrom": datetime(year=1988, month=1, day=4),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
+    def test_add_language_service_task(
+        self, m_add_task, incoming_data, request_data, base_absolut_url
+    ):
+        m_add_task.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_language_service_task(projectId=1, **incoming_data) == "response"
+        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "fileIds": [1, 2, 3],
                     "type": OhtCrowdinTaskType.TRANSLATE_BY_VENDOR,
                 },
                 {
@@ -275,6 +359,10 @@ class TestTasksResource:
                     "description": None,
                     "expertise": None,
                     "labelIds": None,
+                    "excludeLabelIds": None,
+                    "skipUntranslatedStrings": None,
+                    "includePreTranslatedStringsOnly": None,
+                    "includeUntranslatedStringsOnly": None,
                     "dateFrom": None,
                     "dateTo": None,
                 },
@@ -289,6 +377,10 @@ class TestTasksResource:
                     "description": "description",
                     "expertise": OhtCrowdinTaskExpertise.AD_WORDS_BANNERS,
                     "labelIds": [4, 5, 6],
+                    "excludeLabelIds": [7, 8, 9],
+                    "skipUntranslatedStrings": False,
+                    "includePreTranslatedStringsOnly": False,
+                    "includeUntranslatedStringsOnly": False,
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
                 },
@@ -302,6 +394,10 @@ class TestTasksResource:
                     "description": "description",
                     "expertise": OhtCrowdinTaskExpertise.AD_WORDS_BANNERS,
                     "labelIds": [4, 5, 6],
+                    "excludeLabelIds": [7, 8, 9],
+                    "skipUntranslatedStrings": False,
+                    "includePreTranslatedStringsOnly": False,
+                    "includeUntranslatedStringsOnly": False,
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
                 },
@@ -341,6 +437,7 @@ class TestTasksResource:
                     "usePreferred": None,
                     "editService": None,
                     "labelIds": None,
+                    "excludeLabelIds": None,
                     "dateFrom": None,
                     "dateTo": None,
                 },
@@ -360,6 +457,7 @@ class TestTasksResource:
                     "usePreferred": True,
                     "editService": True,
                     "labelIds": [4, 5, 6],
+                    "excludeLabelIds": [7, 8, 9],
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
                 },
@@ -378,6 +476,7 @@ class TestTasksResource:
                     "usePreferred": True,
                     "editService": True,
                     "labelIds": [4, 5, 6],
+                    "excludeLabelIds": [7, 8, 9],
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
                 },
@@ -413,6 +512,7 @@ class TestTasksResource:
                     "expertise": None,
                     "subject": None,
                     "labelIds": None,
+                    "excludeLabelIds": None,
                     "dateFrom": None,
                     "dateTo": None,
                 },
@@ -428,6 +528,7 @@ class TestTasksResource:
                     "expertise": TranslatedCrowdinTaskExpertise.ECONOMY,
                     "subject": TranslatedCrowdinTaskSubjects.ART,
                     "labelIds": [4, 5, 6],
+                    "excludeLabelIds": [7, 8, 9],
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
                 },
@@ -442,6 +543,7 @@ class TestTasksResource:
                     "expertise": TranslatedCrowdinTaskExpertise.ECONOMY,
                     "subject": TranslatedCrowdinTaskSubjects.ART,
                     "labelIds": [4, 5, 6],
+                    "excludeLabelIds": [7, 8, 9],
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
                 },
@@ -456,6 +558,89 @@ class TestTasksResource:
 
         resource = self.get_resource(base_absolut_url)
         assert resource.add_vendor_translated_task(projectId=1, **incoming_data) == "response"
+        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "fileIds": [1, 2, 3],
+                    "type": ManualCrowdinTaskType.TRANSLATE_BY_VENDOR,
+                    "vendor": ManualCrowdinVendors.ACCLARO,
+                },
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "fileIds": [1, 2, 3],
+                    "type": ManualCrowdinTaskType.TRANSLATE_BY_VENDOR,
+                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "status": None,
+                    "description": None,
+                    "skipAssignedStrings": None,
+                    "skipUntranslatedStrings": None,
+                    "includePreTranslatedStringsOnly": None,
+                    "labelIds": None,
+                    "excludeLabelIds": None,
+                    "assignees": None,
+                    "deadline": None,
+                    "startedAt": None,
+                    "dateFrom": None,
+                    "dateTo": None,
+                },
+            ),
+            (
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "fileIds": [1, 2, 3],
+                    "type": ManualCrowdinTaskType.TRANSLATE_BY_VENDOR,
+                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "status": CrowdinTaskStatus.TODO,
+                    "description": "description",
+                    "skipAssignedStrings": False,
+                    "skipUntranslatedStrings": False,
+                    "includePreTranslatedStringsOnly": False,
+                    "labelIds": [1, 2, 3],
+                    "excludeLabelIds": [4, 5, 6],
+                    "assignees": [{"id": 1, "wordsCount": 2}],
+                    "deadline": datetime(year=1988, month=9, day=26),
+                    "startedAt": datetime(year=1966, month=2, day=1),
+                    "dateFrom": datetime(year=1988, month=1, day=4),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "fileIds": [1, 2, 3],
+                    "type": ManualCrowdinTaskType.TRANSLATE_BY_VENDOR,
+                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "status": CrowdinTaskStatus.TODO,
+                    "description": "description",
+                    "skipAssignedStrings": False,
+                    "skipUntranslatedStrings": False,
+                    "includePreTranslatedStringsOnly": False,
+                    "labelIds": [1, 2, 3],
+                    "excludeLabelIds": [4, 5, 6],
+                    "assignees": [{"id": 1, "wordsCount": 2}],
+                    "deadline": datetime(year=1988, month=9, day=26),
+                    "startedAt": datetime(year=1966, month=2, day=1),
+                    "dateFrom": datetime(year=1988, month=1, day=4),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
+    def test_add_vendor_manual_task(
+        self, m_add_task, incoming_data, request_data, base_absolut_url
+    ):
+        m_add_task.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_vendor_manual_task(projectId=1, **incoming_data) == "response"
         m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
 
     @mock.patch("crowdin_api.requester.APIRequester.request")

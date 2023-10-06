@@ -44,6 +44,12 @@ class CrowdinTaskStatus(Enum):
     CLOSED = "closed"
 
 
+# Language Service
+class LanguageServiceTaskType(Enum):
+    TRANSLATE_BY_VENDOR = 2
+    PROOFREAD_BY_VENDOR = 3
+
+
 # Oht
 class OhtCrowdinTaskType(Enum):
     TRANSLATE_BY_VENDOR = 2
@@ -153,3 +159,25 @@ class TranslatedCrowdinTaskSubjects(Enum):
     SOCIAL_SCIENCE = "social_science"
     TELECOMMUNICATIONS = "telecommunications"
     TRAVEL_TOURISM = "travel_tourism"
+
+
+# Manual
+class ManualCrowdinTaskType(Enum):
+    TRANSLATE_BY_VENDOR = 2
+    PROOFREAD_BY_VENDOR = 3
+
+
+class ManualCrowdinVendors(Enum):
+    ALCONOST = "alconost"
+    BABBLE_ON = "babbleon"
+    TOMEDES = "tomedes"
+    E2F = "e2f"
+    WRITE_PATH = "write_path_admin"
+    INLINGO = "inlingo"
+    ACCLARO = "acclaro"
+    TRANSLATE_BY_HUMANS = "translate_by_humans"
+    LINGO24 = "lingo24"
+    ASSERTIO_LANGUAGE_SERVICE = "assertio_language_services"
+    GTE_LOCALIZE = "gte_localize"
+    KETTU_SOLUTIONS = "kettu_solutions"
+    LANGUAGELINE_TRANSLATION_SOLUTIONS = "languageline_solutions"
