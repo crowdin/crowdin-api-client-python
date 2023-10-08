@@ -58,7 +58,10 @@ class BundlesResource(BaseResource):
         sourcePatterns: Iterable[str],
         exportPattern: str,
         ignorePatterns: Optional[Iterable[str]] = None,
-        labelIds: Optional[Iterable[int]] = None
+        isMultilingual: Optional[bool] = None,
+        includeProjectSourceLanguage: Optional[bool] = None,
+        labelIds: Optional[Iterable[int]] = None,
+        excludeLabelIds: Optional[Iterable[int]] = None,
     ):
         """
         Add Bundles.
@@ -79,7 +82,10 @@ class BundlesResource(BaseResource):
                 "sourcePatterns": sourcePatterns,
                 "exportPattern": exportPattern,
                 "ignorePatterns": ignorePatterns,
+                "isMultilingual": isMultilingual,
+                "includeProjectSourceLanguage": includeProjectSourceLanguage,
                 "labelIds": labelIds,
+                "excludeLabelIds": excludeLabelIds,
             }
         )
 
