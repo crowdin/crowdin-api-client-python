@@ -66,6 +66,7 @@ class TestAPIException:
 
         template = Mock()
         m_template.return_value = template
-        _ = APIException().message
+        exc = APIException()
+        _ = exc.message
 
         template.format.assert_called_once_with(exc=exc)
