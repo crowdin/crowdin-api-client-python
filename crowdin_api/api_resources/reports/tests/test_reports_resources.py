@@ -1,5 +1,6 @@
 from datetime import datetime
 from unittest import mock
+import warnings
 
 import pytest
 
@@ -139,6 +140,7 @@ class TestReportsResource:
         m_generate_report.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
+        warnings.simplefilter('ignore', category=DeprecationWarning)
         assert resource.generate_simple_cost_estimate_report(projectId=1, **in_params) == "response"
         m_generate_report.assert_called_once_with(
             projectId=1, request_data={"name": "costs-estimation", "schema": schema}
@@ -209,6 +211,7 @@ class TestReportsResource:
         m_generate_report.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
+        warnings.simplefilter('ignore', category=DeprecationWarning)
         assert resource.generate_fuzzy_cost_estimate_report(projectId=1, **in_params) == "response"
         m_generate_report.assert_called_once_with(
             projectId=1, request_data={"name": "costs-estimation", "schema": schema}
@@ -273,6 +276,7 @@ class TestReportsResource:
         m_generate_report.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
+        warnings.simplefilter('ignore', category=DeprecationWarning)
         assert (
             resource.generate_simple_translation_cost_report(projectId=1, **in_params) == "response"
         )
@@ -339,6 +343,7 @@ class TestReportsResource:
         m_generate_report.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
+        warnings.simplefilter('ignore', category=DeprecationWarning)
         assert (
             resource.generate_fuzzy_translation_cost_report(projectId=1, **in_params) == "response"
         )
@@ -863,6 +868,7 @@ class TestEnterpriseReportsResource:
         mock_generate_report.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
+        warnings.simplefilter('ignore', category=DeprecationWarning)
         assert resource.generate_simple_cost_estimate_report(projectId=1, **in_params) == "response"
         mock_generate_report.assert_called_once_with(
             projectId=1, request_data={"name": "costs-estimation", "schema": schema}
@@ -949,6 +955,7 @@ class TestEnterpriseReportsResource:
         m_generate_report.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
+        warnings.simplefilter('ignore', category=DeprecationWarning)
         assert resource.generate_fuzzy_cost_estimate_report(projectId=1, **in_params) == "response"
         m_generate_report.assert_called_once_with(
             projectId=1, request_data={"name": "costs-estimation", "schema": schema}
@@ -1030,6 +1037,7 @@ class TestEnterpriseReportsResource:
         m_generate_report.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
+        warnings.simplefilter('ignore', category=DeprecationWarning)
         assert (
             resource.generate_simple_translation_cost_report(projectId=1, **in_params) == "response"
         )
@@ -1113,6 +1121,7 @@ class TestEnterpriseReportsResource:
         m_generate_report.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
+        warnings.simplefilter('ignore', category=DeprecationWarning)
         assert (
             resource.generate_fuzzy_translation_cost_report(projectId=1, **in_params) == "response"
         )
