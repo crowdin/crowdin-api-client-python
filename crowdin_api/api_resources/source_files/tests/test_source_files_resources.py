@@ -1,6 +1,5 @@
 from unittest import mock
-import sys
-print(sys.path)
+
 import pytest
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.source_files.enums import (
