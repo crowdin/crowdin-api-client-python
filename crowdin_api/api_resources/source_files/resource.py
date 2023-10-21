@@ -294,6 +294,7 @@ class SourceFilesResource(BaseResource):
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
         title: Optional[int] = None,
+        context:Optional[str]=None,
         type: Optional[FileType] = FileType.AUTO,
         importOptions: Optional[
             Union[
@@ -330,6 +331,7 @@ class SourceFilesResource(BaseResource):
                 "directoryId": directoryId,
                 "title": title,
                 "type": type,
+                "context": context,
                 "importOptions": importOptions,
                 "exportOptions": exportOptions,
                 "excludedTargetLanguages": excludedTargetLanguages,
@@ -337,7 +339,7 @@ class SourceFilesResource(BaseResource):
             },
         )
 
-    def get_file(self, projectId: int, fileId: int):
+    def get_file(self, projectId: int,context:str, fileId: int):
         """
         Get File.
 
@@ -347,6 +349,7 @@ class SourceFilesResource(BaseResource):
 
         return self.requester.request(
             method="get",
+            context=context,
             path=self.get_file_path(projectId=projectId, fileId=fileId),
         )
 
@@ -421,7 +424,7 @@ class SourceFilesResource(BaseResource):
             path=self.get_file_path(projectId=projectId, fileId=fileId),
         )
 
-    def edit_file(self, projectId: int, fileId: int, data: Iterable[FilePatchRequest]):
+    def edit_file(self, projectId: int,context:str, fileId: int, data: Iterable[FilePatchRequest]):
         """
         Edit File.
 
@@ -431,6 +434,7 @@ class SourceFilesResource(BaseResource):
 
         return self.requester.request(
             method="patch",
+            context=context,
             path=self.get_file_path(projectId=projectId, fileId=fileId),
             request_data=data,
         )
