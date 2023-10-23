@@ -250,7 +250,7 @@ class SourceFilesResource(BaseResource):
         )
 
     # Files
-    def get_file_path(self, projectId: int, context: str, fileId: Optional[int] = None):
+    def get_file_path(self, projectId: int, fileId: Optional[int] = None):
         if fileId is not None:
             return f"projects/{projectId}/files/{fileId}"
 
@@ -339,7 +339,7 @@ class SourceFilesResource(BaseResource):
             },
         )
 
-    def get_file(self, projectId: int, context: str, fileId: int):
+    def get_file(self, projectId: int, fileId: int):
         """
         Get File.
 
@@ -349,7 +349,6 @@ class SourceFilesResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            context=context,
             path=self.get_file_path(projectId=projectId, fileId=fileId),
         )
 
@@ -424,7 +423,7 @@ class SourceFilesResource(BaseResource):
             path=self.get_file_path(projectId=projectId, fileId=fileId),
         )
 
-    def edit_file(self, projectId: int, context: str, fileId: int, data: Iterable[FilePatchRequest]):
+    def edit_file(self, projectId: int, fileId: int, data: Iterable[FilePatchRequest]):
         """
         Edit File.
 
@@ -434,7 +433,6 @@ class SourceFilesResource(BaseResource):
 
         return self.requester.request(
             method="patch",
-            context=context,
             path=self.get_file_path(projectId=projectId, fileId=fileId),
             request_data=data,
         )
