@@ -92,6 +92,7 @@ class FilePatchPath(Enum):
     DIRECTORY_ID = "/directoryId"
     NAME = "/name"
     TITLE = "/title"
+    CONTEXT = "/context"
     PRIORITY = "/priority"
     IMPORT_OPTIONS_CLEAN_TAGS_AGGRESSIVELY = "/importOptions/cleanTagsAggressively"
     IMPORT_OPTIONS_TRANSLATE_HIDDEN_TEXT = "/importOptions/translateHiddenText"

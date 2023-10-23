@@ -294,6 +294,7 @@ class SourceFilesResource(BaseResource):
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
         title: Optional[int] = None,
+        context: Optional[str] = None,
         type: Optional[FileType] = FileType.AUTO,
         importOptions: Optional[
             Union[
@@ -330,6 +331,7 @@ class SourceFilesResource(BaseResource):
                 "directoryId": directoryId,
                 "title": title,
                 "type": type,
+                "context": context,
                 "importOptions": importOptions,
                 "exportOptions": exportOptions,
                 "excludedTargetLanguages": excludedTargetLanguages,
