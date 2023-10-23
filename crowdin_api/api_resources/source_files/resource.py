@@ -250,7 +250,7 @@ class SourceFilesResource(BaseResource):
         )
 
     # Files
-    def get_file_path(self, projectId: int, fileId: Optional[int] = None):
+    def get_file_path(self, projectId: int, context: str, fileId: Optional[int] = None):
         if fileId is not None:
             return f"projects/{projectId}/files/{fileId}"
 
@@ -294,7 +294,7 @@ class SourceFilesResource(BaseResource):
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
         title: Optional[int] = None,
-        context: Optional[str]=None,
+        context: Optional[str] = None,
         type: Optional[FileType] = FileType.AUTO,
         importOptions: Optional[
             Union[
@@ -339,7 +339,7 @@ class SourceFilesResource(BaseResource):
             },
         )
 
-    def get_file(self, projectId: int,context:str, fileId: int):
+    def get_file(self, projectId: int, context: str, fileId: int):
         """
         Get File.
 
@@ -424,7 +424,7 @@ class SourceFilesResource(BaseResource):
             path=self.get_file_path(projectId=projectId, fileId=fileId),
         )
 
-    def edit_file(self, projectId: int,context:str, fileId: int, data: Iterable[FilePatchRequest]):
+    def edit_file(self, projectId: int, context: str, fileId: int, data: Iterable[FilePatchRequest]):
         """
         Edit File.
 

@@ -376,7 +376,7 @@ class TestSourceFilesResource:
                     "branchId": 1,
                     "directoryId": 1,
                     "title": "title",
-                     "context": "context",
+                    "context": "context",
                     "type": FileType.RESW,
                     "importOptions": {"contentSegmentation": True},
                     "exportOptions": {"exportPattern": "exportPattern"},
