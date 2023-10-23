@@ -92,6 +92,42 @@ class LabelsResource(BaseResource):
             request_data=data,
         )
 
+    def get_screenshots_path(self, project_id: int, label_id: int):
+        return f"projects/{project_id}/labels/{label_id}/screenshots"
+
+    def assign_label_to_screenshots(self, project_id: int, label_id: int, screenshot_ids: Iterable[int]):
+        """
+        Assign Label to Screenshots
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.screenshots.post
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.labels.screenshots.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=self.get_screenshots_path(project_id, label_id),
+            request_data={
+                "screenshotIds": screenshot_ids
+            }
+        )
+
+    def unassign_label_from_screenshots(self, project_id: int, label_id: int, screenshot_ids: Iterable[int]):
+        """
+        Unassign Label from Screenshots
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.screenshots.deleteMany
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.labels.screenshots.deleteMany
+        """
+
+        query = ",".join(str(screenshot_id) for screenshot_id in screenshot_ids)
+
+        return self.requester.request(
+            method="delete",
+            path=f"{self.get_screenshots_path(project_id, label_id)}?screenshotIds={query}"
+        )
+
     def assign_label_to_strings(self, projectId: int, labelId: int, stringIds: Iterable[int]):
         """
         Assign Label to Strings.

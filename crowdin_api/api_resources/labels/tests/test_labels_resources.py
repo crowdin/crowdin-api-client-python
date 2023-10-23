@@ -88,6 +88,53 @@ class TestLabelsResource:
             path=resource.get_labels_path(projectId=1, labelId=2),
         )
 
+    @pytest.mark.parametrize(
+        "in_params, body",
+        [
+            (
+                [1, 2, 3],
+                {
+                    "screenshotIds": [1, 2, 3]
+                }
+            )
+        ]
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_assign_label_to_screenshots(self, m_request, in_params, body, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.assign_label_to_screenshots(project_id=1, label_id=2, screenshot_ids=in_params)
+        )
+        m_request.assert_called_once_with(
+            request_data=body,
+            method="post",
+            path=resource.get_screenshots_path(1, 2)
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, query_string",
+        [
+            (
+                [1, 2, 3],
+                "1,2,3"
+            )
+        ]
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_unassign_label_to_screenshots(self, m_request, in_params, query_string, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.unassign_label_from_screenshots(project_id=1, label_id=2, screenshot_ids=in_params)
+        )
+        m_request.assert_called_once_with(
+            method="delete",
+            path=f"{resource.get_screenshots_path(1, 2)}?screenshotIds={query_string}"
+        )
+
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_assign_label_to_strings(self, m_request, base_absolut_url):
         m_request.return_value = "response"
