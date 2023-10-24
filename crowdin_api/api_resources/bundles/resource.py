@@ -213,9 +213,9 @@ class BundlesResource(BaseResource):
     def get_bundle_list_files(
         self,
         bundleId: int,
+        projectId: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
-        projectId: Optional[int] = None,
     ):
         """
         Get Bundle List Files.
