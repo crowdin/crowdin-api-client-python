@@ -19,8 +19,8 @@ class TranslationStatusResource(BaseResource):
 
     def get_branch_progress(
         self,
-        projectId: int,
         branchId: int,
+        projectId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -32,6 +32,8 @@ class TranslationStatusResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.branches.languages.progress.getMany
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self._get_entire_data(
             method="get",
             path=f"projects/{projectId}/branches/{branchId}/languages/progress",
@@ -40,8 +42,8 @@ class TranslationStatusResource(BaseResource):
 
     def get_directory_progress(
         self,
-        projectId: int,
         directoryId: int,
+        projectId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -53,6 +55,8 @@ class TranslationStatusResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.directories.languages.progress.getMany
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self._get_entire_data(
             method="get",
             path=f"projects/{projectId}/directories/{directoryId}/languages/progress",
@@ -61,8 +65,8 @@ class TranslationStatusResource(BaseResource):
 
     def get_file_progress(
         self,
-        projectId: int,
         fileId: int,
+        projectId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -74,6 +78,8 @@ class TranslationStatusResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.languages.progress.getMany
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self._get_entire_data(
             method="get",
             path=f"projects/{projectId}/files/{fileId}/languages/progress",
@@ -82,8 +88,8 @@ class TranslationStatusResource(BaseResource):
 
     def get_language_progress(
         self,
-        projectId: int,
         languageId: str,
+        projectId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -95,6 +101,8 @@ class TranslationStatusResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.languages.files.progress.getMany
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self._get_entire_data(
             method="get",
             path=f"projects/{projectId}/languages/{languageId}/progress",
@@ -103,7 +111,7 @@ class TranslationStatusResource(BaseResource):
 
     def get_project_progress(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         languageIds: Optional[Iterable[str]] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
@@ -116,6 +124,7 @@ class TranslationStatusResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.languages.progress.getMany
         """
 
+        projectId = projectId or self.get_project_id()
         params = {"languageIds": None if languageIds is None else ",".join(languageIds)}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
@@ -127,7 +136,7 @@ class TranslationStatusResource(BaseResource):
 
     def list_qa_check_issues(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         category: Optional[Iterable[Category]] = None,
         validation: Optional[Iterable[Validation]] = None,
         languageIds: Optional[Iterable[str]] = None,
@@ -142,6 +151,7 @@ class TranslationStatusResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.qa-checks.getMany
         """
 
+        projectId = projectId or self.get_project_id()
         params = {
             "languageIds": None if languageIds is None else ",".join(languageIds),
             "category": ",".join((item.value for item in category)) if category else None,

@@ -24,7 +24,7 @@ class StringTranslationsResource(BaseResource):
 
     def list_translation_approvals(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         fileId: Optional[int] = None,
         stringId: Optional[int] = None,
         languageId: Optional[str] = None,
@@ -40,6 +40,7 @@ class StringTranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.getMany
         """
 
+        projectId = projectId or self.get_project_id()
         params = {
             "fileId": fileId,
             "stringId": stringId,
@@ -56,8 +57,8 @@ class StringTranslationsResource(BaseResource):
 
     def add_approval(
         self,
-        projectId: int,
         translationId: int,
+        projectId: Optional[int] = None,
     ):
         """
         Add Approval.
@@ -66,13 +67,15 @@ class StringTranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.post
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="post",
             path=self.get_approvals_path(projectId=projectId),
             request_data={"translationId": translationId},
         )
 
-    def get_approval(self, projectId: int, approvalId: int):
+    def get_approval(self, approvalId: int, projectId: Optional[int] = None):
         """
         Get Approval.
 
@@ -80,18 +83,22 @@ class StringTranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_approvals_path(projectId=projectId, approvalId=approvalId),
         )
 
-    def remove_approval(self, projectId: int, approvalId: int):
+    def remove_approval(self, approvalId: int, projectId: Optional[int] = None):
         """
         Remove Approvall.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.delete
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="delete",
@@ -101,8 +108,8 @@ class StringTranslationsResource(BaseResource):
     # Language Translations
     def list_language_translations(
         self,
-        projectId: int,
         languageId: str,
+        projectId: Optional[int] = None,
         stringIds: Optional[Iterable[int]] = None,
         labelIds: Optional[Iterable[int]] = None,
         fileId: Optional[int] = None,
@@ -119,6 +126,7 @@ class StringTranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.languages.translations.getMany
         """
 
+        projectId = projectId or self.get_project_id()
         params = {
             "stringIds": None
             if stringIds is None
@@ -140,10 +148,10 @@ class StringTranslationsResource(BaseResource):
 
     def translation_alignment(
         self,
-        projectId: int,
         sourceLanguageId: str,
         targetLanguageId: str,
         text: str,
+        projectId: Optional[int] = None,
     ):
         """
         Translation Alignment
@@ -152,6 +160,7 @@ class StringTranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.alignment.post
         """
 
+        projectId = projectId or self.get_project_id()
         data = {
             "sourceLanguageId": sourceLanguageId,
             "targetLanguageId": targetLanguageId,
@@ -173,7 +182,7 @@ class StringTranslationsResource(BaseResource):
 
     def list_string_translations(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         stringId: Optional[int] = None,
         languageId: Optional[str] = None,
         denormalizePlaceholders: Optional[DenormalizePlaceholders] = None,
@@ -188,6 +197,7 @@ class StringTranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.getMany
         """
 
+        projectId = projectId or self.get_project_id()
         params = {
             "stringId": stringId,
             "languageId": languageId,
@@ -203,10 +213,10 @@ class StringTranslationsResource(BaseResource):
 
     def add_translation(
         self,
-        projectId: int,
         stringId: int,
         languageId: str,
         text: str,
+        projectId: Optional[int] = None,
         pluralCategoryName: Optional[PluralCategoryName] = None,
     ):
         """
@@ -215,6 +225,8 @@ class StringTranslationsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
@@ -227,7 +239,9 @@ class StringTranslationsResource(BaseResource):
             },
         )
 
-    def delete_string_translations(self, projectId: int, stringId: int, languageId: str):
+    def delete_string_translations(
+        self, stringId: int, languageId: str, projectId: Optional[int] = None
+    ):
         """
         Delete String Translations.
 
@@ -235,13 +249,15 @@ class StringTranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.deleteMany
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="delete",
             params={"stringId": stringId, "languageId": languageId},
             path=self.get_translations_path(projectId=projectId),
         )
 
-    def get_translation(self, projectId: int, translationId: int):
+    def get_translation(self, translationId: int, projectId: Optional[int] = None):
         """
         Get Translation.
 
@@ -249,12 +265,14 @@ class StringTranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_translations_path(projectId=projectId, translationId=translationId),
         )
 
-    def restore_translation(self, projectId: int, translationId: int):
+    def restore_translation(self, translationId: int, projectId: Optional[int] = None):
         """
         Restore Translation.
 
@@ -262,18 +280,22 @@ class StringTranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.put
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="put",
             path=self.get_translations_path(projectId=projectId, translationId=translationId),
         )
 
-    def delete_translation(self, projectId: int, translationId: int):
+    def delete_translation(self, translationId: int, projectId: Optional[int] = None):
         """
         Delete Translation.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.delete
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="delete",
@@ -289,7 +311,7 @@ class StringTranslationsResource(BaseResource):
 
     def list_translation_votes(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         stringId: Optional[int] = None,
         languageId: Optional[str] = None,
         translationId: Optional[int] = None,
@@ -304,6 +326,8 @@ class StringTranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.votes.getMany
         """
 
+        projectId = projectId or self.get_project_id()
+
         params = {
             "stringId": stringId,
             "languageId": languageId,
@@ -317,7 +341,9 @@ class StringTranslationsResource(BaseResource):
             params=params,
         )
 
-    def add_vote(self, projectId: int, mark: VoteMark, translationId: int):
+    def add_vote(
+        self, mark: VoteMark, translationId: int, projectId: Optional[int] = None
+    ):
         """
         Add Vote.
 
@@ -325,13 +351,15 @@ class StringTranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.votes.pos
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="post",
             path=self.get_translation_votes_path(projectId=projectId),
             request_data={"translationId": translationId, "mark": mark},
         )
 
-    def get_vote(self, projectId: int, voteId: int):
+    def get_vote(self, voteId: int, projectId: Optional[int] = None):
         """
         Get Vote.
 
@@ -339,18 +367,22 @@ class StringTranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.votes.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_translation_votes_path(projectId=projectId, voteId=voteId),
         )
 
-    def cancel_vote(self, projectId: int, voteId: int):
+    def cancel_vote(self, voteId: int, projectId: Optional[int] = None):
         """
         Cancel Vote.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.votes.delete
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="delete",

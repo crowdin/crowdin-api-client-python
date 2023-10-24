@@ -30,7 +30,7 @@ class ScreenshotsResource(BaseResource):
 
     def list_screenshots(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -42,6 +42,8 @@ class ScreenshotsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.getMany
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self._get_entire_data(
             method="get",
             path=self.get_screenshots_path(projectId=projectId),
@@ -50,9 +52,9 @@ class ScreenshotsResource(BaseResource):
 
     def add_screenshot(
         self,
-        projectId: int,
         storageId: int,
         name: str,
+        projectId: Optional[int] = None,
         autoTag: Optional[bool] = None,
     ):
         """
@@ -61,6 +63,8 @@ class ScreenshotsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
@@ -72,7 +76,7 @@ class ScreenshotsResource(BaseResource):
             },
         )
 
-    def get_screenshot(self, projectId: int, screenshotId: int):
+    def get_screenshot(self, screenshotId: int, projectId: Optional[int] = None):
         """
         Get Screenshot.
 
@@ -80,18 +84,28 @@ class ScreenshotsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_screenshots_path(projectId=projectId, screenshotId=screenshotId),
         )
 
-    def update_screenshot(self, projectId: int, screenshotId: int, storageId: int, name: str):
+    def update_screenshot(
+        self,
+        screenshotId: int,
+        storageId: int,
+        name: str,
+        projectId: Optional[int] = None,
+    ):
         """
         Update Screenshot.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.put
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="put",
@@ -102,7 +116,7 @@ class ScreenshotsResource(BaseResource):
             path=self.get_screenshots_path(projectId=projectId, screenshotId=screenshotId),
         )
 
-    def delete_screenshot(self, projectId: int, screenshotId: int):
+    def delete_screenshot(self, screenshotId: int, projectId: Optional[int] = None):
         """
         Delete Screenshot.
 
@@ -110,13 +124,18 @@ class ScreenshotsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.delete
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="delete",
             path=self.get_screenshots_path(projectId=projectId, screenshotId=screenshotId),
         )
 
     def edit_screenshot(
-        self, projectId: int, screenshotId: int, data: Iterable[ScreenshotPatchRequest]
+        self,
+        screenshotId: int,
+        data: Iterable[ScreenshotPatchRequest],
+        projectId: Optional[int] = None,
     ):
         """
         Edit Screenshot.
@@ -124,6 +143,8 @@ class ScreenshotsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.patch
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="patch",
@@ -140,8 +161,8 @@ class ScreenshotsResource(BaseResource):
 
     def list_tags(
         self,
-        projectId: int,
         screenshotId: int,
+        projectId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -153,13 +174,20 @@ class ScreenshotsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.getMany
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self._get_entire_data(
             method="get",
             path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
             params=self.get_page_params(page=page, offset=offset, limit=limit),
         )
 
-    def replace_tags(self, projectId: int, screenshotId: int, data: Iterable[AddTagRequest]):
+    def replace_tags(
+        self,
+        screenshotId: int,
+        data: Iterable[AddTagRequest],
+        projectId: Optional[int] = None,
+    ):
         """
         Replace Tags.
 
@@ -167,13 +195,17 @@ class ScreenshotsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.putMany
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="put",
             path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
             request_data=data,
         )
 
-    def auto_tag(self, projectId: int, screenshotId: int, autoTag: bool):
+    def auto_tag(
+        self, screenshotId: int, autoTag: bool, projectId: Optional[int] = None
+    ):
         """
         Auto Tag.
 
@@ -181,13 +213,20 @@ class ScreenshotsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.putMany
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="put",
             path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
             request_data={"autoTag": autoTag},
         )
 
-    def add_tag(self, projectId: int, screenshotId: int, data: Iterable[AddTagRequest]):
+    def add_tag(
+        self,
+        screenshotId: int,
+        data: Iterable[AddTagRequest],
+        projectId: Optional[int] = None,
+    ):
         """
         Add Tag.
 
@@ -195,13 +234,15 @@ class ScreenshotsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.post
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="post",
             path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
             request_data=data,
         )
 
-    def clear_tags(self, projectId: int, screenshotId: int):
+    def clear_tags(self, screenshotId: int, projectId: Optional[int] = None):
         """
         Clear Tags.
 
@@ -209,12 +250,14 @@ class ScreenshotsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.deleteMany
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="delete",
             path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
         )
 
-    def get_tag(self, projectId: int, screenshotId: int, tagId: int):
+    def get_tag(self, screenshotId: int, tagId: int, projectId: Optional[int] = None):
         """
         Get Tag.
 
@@ -222,18 +265,24 @@ class ScreenshotsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId, tagId=tagId),
         )
 
-    def delete_tag(self, projectId: int, screenshotId: int, tagId: int):
+    def delete_tag(
+        self, screenshotId: int, tagId: int, projectId: Optional[int] = None
+    ):
         """
         Delete Tag.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.delete
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="delete",
@@ -242,10 +291,10 @@ class ScreenshotsResource(BaseResource):
 
     def edit_tag(
         self,
-        projectId: int,
         screenshotId: int,
         tagId: int,
         data: Iterable[TagPatchRequest],
+        projectId: Optional[int] = None,
     ):
         """
         Edit Tag.
@@ -253,6 +302,8 @@ class ScreenshotsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.patch
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="patch",

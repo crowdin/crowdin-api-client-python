@@ -39,7 +39,7 @@ class BaseReportsResource(BaseResource):
 
         return f"projects/{projectId}/reports"
 
-    def generate_report(self, projectId: int, request_data: Dict):
+    def generate_report(self, request_data: Dict, projectId: Optional[int] = None):
         """
         Generate Report.
 
@@ -50,6 +50,8 @@ class BaseReportsResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.download.download
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="post",
             path=self.get_reports_path(projectId=projectId),
@@ -58,27 +60,35 @@ class BaseReportsResource(BaseResource):
 
     @abc.abstractmethod
     @deprecated("Use other methods instead")
-    def generate_simple_cost_estimate_report(self, projectId: int, **kwargs):
+    def generate_simple_cost_estimate_report(
+        self, projectId: Optional[int] = None, **kwargs
+    ):
         raise NotImplementedError("Not implemented")
 
     @abc.abstractmethod
     @deprecated("Use other methods instead")
-    def generate_fuzzy_cost_estimate_report(self, projectId: int, **kwargs):
+    def generate_fuzzy_cost_estimate_report(
+        self, projectId: Optional[int] = None, **kwargs
+    ):
         raise NotImplementedError("Not implemented")
 
     @abc.abstractmethod
     @deprecated("Use other methods instead")
-    def generate_simple_translation_cost_report(self, projectId: int, **kwargs):
+    def generate_simple_translation_cost_report(
+        self, projectId: Optional[int] = None, **kwargs
+    ):
         raise NotImplementedError("Not implemented")
 
     @abc.abstractmethod
     @deprecated("Use other methods instead")
-    def generate_fuzzy_translation_cost_report(self, projectId: int, **kwargs):
+    def generate_fuzzy_translation_cost_report(
+        self, projectId: Optional[int] = None, **kwargs
+    ):
         raise NotImplementedError("Not implemented")
 
     def generate_top_members_report(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         unit: Optional[Unit] = None,
         languageId: Optional[str] = None,
         format: Optional[Format] = Format.XLSX,
@@ -94,6 +104,9 @@ class BaseReportsResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
         """
+
+        projectId = projectId or self.get_project_id()
+
         return self.generate_report(
             projectId=projectId,
             request_data={
@@ -110,8 +123,8 @@ class BaseReportsResource(BaseResource):
 
     def generate_contribution_raw_data_report(
         self,
-        projectId: int,
         mode: ContributionMode,
+        projectId: Optional[int] = None,
         unit: Optional[Unit] = None,
         languageId: Optional[str] = None,
         userId: Optional[int] = None,
@@ -127,6 +140,8 @@ class BaseReportsResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.generate_report(
             projectId=projectId,
@@ -145,10 +160,10 @@ class BaseReportsResource(BaseResource):
 
     def generate_costs_estimation_post_editing_general_report(
         self,
-        project_id: int,
         base_rates: BaseRates,
         individual_rates: Iterable[CostEstimationPeIndividualRate],
         net_rate_schemes: CostEstimationPeNetRateSchemes,
+        project_id: Optional[int] = None,
         unit: Optional[Unit] = None,
         currency: Optional[Currency] = None,
         format: Optional[Format] = None,
@@ -172,6 +187,8 @@ class BaseReportsResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
         """
+
+        project_id = project_id or self.get_project_id()
 
         return self.generate_report(
             projectId=project_id,
@@ -200,7 +217,7 @@ class BaseReportsResource(BaseResource):
 
     def generate_costs_estimation_post_editing_by_task_report(
         self,
-        project_id: int,
+        project_id: Optional[int] = None,
         unit: Optional[Unit] = None,
         currency: Optional[Currency] = None,
         format: Optional[Format] = None,
@@ -220,6 +237,8 @@ class BaseReportsResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
         """
+
+        project_id = project_id or self.get_project_id()
 
         return self.generate_report(
             projectId=project_id,
@@ -241,10 +260,10 @@ class BaseReportsResource(BaseResource):
 
     def generate_translation_costs_post_editing_general_report(
         self,
-        project_id: int,
         base_rates: BaseRates,
         individual_rates: Iterable[CostEstimationPeIndividualRate],
         net_rate_schemes: CostEstimationPeNetRateSchemes,
+        project_id: Optional[int] = None,
         unit: Optional[Unit] = None,
         currency: Optional[Currency] = None,
         format: Optional[Format] = None,
@@ -266,6 +285,8 @@ class BaseReportsResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
         """
+
+        project_id = project_id or self.get_project_id()
 
         return self.generate_report(
             projectId=project_id,
@@ -292,10 +313,10 @@ class BaseReportsResource(BaseResource):
 
     def generate_translation_costs_post_editing_by_task_report(
         self,
-        project_id: int,
         base_rates: BaseRates,
         individual_rates: Iterable[CostEstimationPeIndividualRate],
         net_rate_schemes: CostEstimationPeNetRateSchemes,
+        project_id: Optional[int] = None,
         unit: Optional[Unit] = None,
         currency: Optional[Currency] = None,
         format: Optional[Format] = None,
@@ -310,6 +331,8 @@ class BaseReportsResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
         """
+
+        project_id = project_id or self.get_project_id()
 
         return self.generate_report(
             projectId=project_id,
@@ -327,7 +350,9 @@ class BaseReportsResource(BaseResource):
             }
         )
 
-    def check_report_generation_status(self, projectId: int, reportId: str):
+    def check_report_generation_status(
+        self, reportId: str, projectId: Optional[int] = None
+    ):
         """
         Check Report Generation Status.
 
@@ -338,12 +363,14 @@ class BaseReportsResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_reports_path(projectId=projectId, reportId=reportId),
         )
 
-    def download_report(self, projectId: int, reportId: str):
+    def download_report(self, reportId: str, projectId: Optional[int] = None):
         """
         Download Report.
 
@@ -353,6 +380,8 @@ class BaseReportsResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.download.download
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="get",
@@ -373,7 +402,7 @@ class BaseReportSettingsTemplatesResource(BaseResource):
 
     def list_report_settings_template(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None
     ):
@@ -387,6 +416,8 @@ class BaseReportSettingsTemplatesResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.getMany
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self._get_entire_data(
             method="get",
             path=self.get_report_settings_templates_path(projectId=projectId),
@@ -395,11 +426,11 @@ class BaseReportSettingsTemplatesResource(BaseResource):
 
     def add_report_settings_template(
         self,
-        projectId: int,
         name: str,
         currency: Currency,
         unit: Unit,
         config: Config,
+        projectId: Optional[int] = None,
     ):
         """
         Add Report Settings Templates.
@@ -410,6 +441,8 @@ class BaseReportSettingsTemplatesResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
@@ -427,8 +460,8 @@ class BaseReportSettingsTemplatesResource(BaseResource):
 
     def get_report_settings_template(
         self,
-        projectId: int,
         reportSettingsTemplateId: int,
+        projectId: Optional[int] = None,
     ):
         """
         Get Report Settings Templates.
@@ -440,6 +473,8 @@ class BaseReportSettingsTemplatesResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_report_settings_templates_path(
@@ -450,10 +485,9 @@ class BaseReportSettingsTemplatesResource(BaseResource):
 
     def edit_report_settings_template(
         self,
-        projectId: int,
         reportSettingsTemplateId: int,
-        data: Iterable[ReportSettingsTemplatesPatchRequest]
-
+        data: Iterable[ReportSettingsTemplatesPatchRequest],
+        projectId: Optional[int] = None,
     ):
         """
         Edit Report Settings Templates.
@@ -464,6 +498,8 @@ class BaseReportSettingsTemplatesResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.patch
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="patch",
@@ -476,8 +512,8 @@ class BaseReportSettingsTemplatesResource(BaseResource):
 
     def delete_report_settings_template(
         self,
-        projectId: int,
         reportSettingsTemplateId: int,
+        projectId: Optional[int] = None,
     ):
         """
         Delete Report Settings Templates.
@@ -488,6 +524,8 @@ class BaseReportSettingsTemplatesResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.settings-templates.delete
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="delete",
@@ -515,7 +553,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
     @deprecated("Use other methods instead")
     def generate_simple_cost_estimate_report(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         # Schema
         unit: Optional[Unit] = None,
         currency: Optional[Currency] = None,
@@ -533,6 +571,8 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.generate_report(
             projectId=projectId,
@@ -556,7 +596,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
     @deprecated("Use other methods instead")
     def generate_fuzzy_cost_estimate_report(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         # Schema
         unit: Optional[Unit] = None,
         currency: Optional[Currency] = None,
@@ -575,6 +615,8 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.generate_report(
             projectId=projectId,
@@ -599,7 +641,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
     @deprecated("Use other methods instead")
     def generate_simple_translation_cost_report(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         unit: Optional[Unit] = None,
         currency: Optional[Currency] = None,
         format: Optional[Format] = Format.XLSX,
@@ -615,6 +657,8 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.generate_report(
             projectId=projectId,
@@ -637,7 +681,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
     @deprecated("Use other methods instead")
     def generate_fuzzy_translation_cost_report(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         unit: Optional[Unit] = None,
         currency: Optional[Currency] = None,
         format: Optional[Format] = Format.XLSX,
@@ -653,6 +697,8 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.generate_report(
             projectId=projectId,
@@ -699,7 +745,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
     @deprecated("Use other methods instead")
     def generate_simple_cost_estimate_report(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         # Schema
         unit: Optional[Unit] = None,
         currency: Optional[Currency] = None,
@@ -716,6 +762,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
         """
+        projectId = projectId or self.get_project_id()
         step_types_const = {
             "type": "Translate",
             "mode": "simple",
@@ -742,7 +789,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
     @deprecated("Use other methods instead")
     def generate_fuzzy_cost_estimate_report(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         # Schema
         unit: Optional[Unit] = None,
         currency: Optional[Currency] = None,
@@ -759,6 +806,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Links to documentation:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
         """
+        projectId = projectId or self.get_project_id()
         step_types_const = {
             "type": "Translate",
             "mode": "fuzzy",
@@ -786,7 +834,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
     @deprecated("Use other methods instead")
     def generate_simple_translation_cost_report(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         unit: Optional[Unit] = None,
         currency: Optional[Currency] = None,
         format: Optional[Format] = Format.XLSX,
@@ -801,6 +849,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Link to documentation:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
         """
+        projectId = projectId or self.get_project_id()
         step_types_const = {
             "type": "Translate",
             "mode": "simple",
@@ -826,7 +875,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
     @deprecated("Use other methods instead")
     def generate_fuzzy_translation_cost_report(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         unit: Optional[Unit] = None,
         currency: Optional[Currency] = None,
         format: Optional[Format] = Format.XLSX,
@@ -841,6 +890,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Link to documentation:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
         """
+        projectId = projectId or self.get_project_id()
         step_types_const = {
             "type": "Translate",
             "mode": "fuzzy",

@@ -10,6 +10,7 @@ from crowdin_api.requester import APIRequester
 class CrowdinClient:
     API_REQUESTER_CLASS: Type[APIRequester] = APIRequester
 
+    PROJECT_ID = None
     TIMEOUT = 60
     RETRY_DELAY = 0.1  # 100ms
     MAX_RETRIES = 5
@@ -26,6 +27,7 @@ class CrowdinClient:
         self,
         # TODO: replace this with union type expressions
         # once we do not have to support <3.10 anymore
+        project_id: Optional[int] = None,
         organization: Optional[str] = None,
         token: Optional[str] = None,
         base_url: Optional[str] = None,
@@ -38,6 +40,7 @@ class CrowdinClient:
         headers: Optional[dict] = None,
         extended_request_params: Optional[dict] = None
     ):
+        self.PROJECT_ID = project_id or self.PROJECT_ID
         self.ORGANIZATION = organization or self.ORGANIZATION
         self.TOKEN = token or self.TOKEN
         self.BASE_URL = base_url or self.BASE_URL
@@ -91,24 +94,52 @@ class CrowdinClient:
 
     @property
     def bundles(self) -> api_resources.BundlesResource:
+        if self.PROJECT_ID:
+            return api_resources.BundlesResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.BundlesResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def dictionaries(self) -> api_resources.DictionariesResource:
+        if self.PROJECT_ID:
+            return api_resources.DictionariesResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.DictionariesResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def distributions(self) -> api_resources.DistributionsResource:
+        if self.PROJECT_ID:
+            return api_resources.DistributionsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.DistributionsResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def glossaries(self) -> api_resources.GlossariesResource:
+        if self.PROJECT_ID:
+            return api_resources.GlossariesResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.GlossariesResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
@@ -118,24 +149,52 @@ class CrowdinClient:
         if not self._is_enterprise_platform:
             raise CrowdinException(detail="Not implemented for the base API")
 
+        if self.PROJECT_ID:
+            return api_resources.GroupsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.GroupsResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def labels(self) -> api_resources.LabelsResource:
+        if self.PROJECT_ID:
+            return api_resources.LabelsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.LabelsResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def languages(self) -> api_resources.LanguagesResource:
+        if self.PROJECT_ID:
+            return api_resources.LanguagesResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.LanguagesResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def projects(self) -> api_resources.ProjectsResource:
+        if self.PROJECT_ID:
+            return api_resources.ProjectsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.ProjectsResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
@@ -149,6 +208,13 @@ class CrowdinClient:
         else:
             report_class = api_resources.ReportsResource
 
+        if self.PROJECT_ID:
+            return report_class(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return report_class(
             requester=self.get_api_requestor(),
             page_size=self.PAGE_SIZE,
@@ -156,36 +222,78 @@ class CrowdinClient:
 
     @property
     def screenshots(self) -> api_resources.ScreenshotsResource:
+        if self.PROJECT_ID:
+            return api_resources.ScreenshotsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.ScreenshotsResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def source_files(self) -> api_resources.SourceFilesResource:
+        if self.PROJECT_ID:
+            return api_resources.SourceFilesResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.SourceFilesResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def source_strings(self) -> api_resources.SourceStringsResource:
+        if self.PROJECT_ID:
+            return api_resources.SourceStringsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.SourceStringsResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def storages(self) -> api_resources.StoragesResource:
+        if self.PROJECT_ID:
+            return api_resources.StoragesResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.StoragesResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def string_comments(self) -> api_resources.StringCommentsResource:
+        if self.PROJECT_ID:
+            return api_resources.StringCommentsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.StringCommentsResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def string_translations(self) -> api_resources.StringTranslationsResource:
+        if self.PROJECT_ID:
+            return api_resources.StringTranslationsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.StringTranslationsResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
@@ -197,6 +305,13 @@ class CrowdinClient:
         else:
             report_class = api_resources.TasksResource
 
+        if self.PROJECT_ID:
+            return report_class(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return report_class(
             requester=self.get_api_requestor(),
             page_size=self.PAGE_SIZE,
@@ -207,30 +322,65 @@ class CrowdinClient:
         if not self._is_enterprise_platform:
             raise CrowdinException(detail="Not implemented for the base API")
 
+        if self.PROJECT_ID:
+            return api_resources.TeamsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.TeamsResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def translation_memory(self) -> api_resources.TranslationMemoryResource:
+        if self.PROJECT_ID:
+            return api_resources.TranslationMemoryResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.TranslationMemoryResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def translation_status(self) -> api_resources.TranslationStatusResource:
+        if self.PROJECT_ID:
+            return api_resources.TranslationStatusResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.TranslationStatusResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def translations(self) -> api_resources.TranslationsResource:
+        if self.PROJECT_ID:
+            return api_resources.TranslationsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.TranslationsResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def machine_translations(self) -> api_resources.MachineTranslationEnginesResource:
+        if self.PROJECT_ID:
+            return api_resources.MachineTranslationEnginesResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.MachineTranslationEnginesResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
@@ -242,6 +392,13 @@ class CrowdinClient:
         else:
             user_class = api_resources.UsersResource
 
+        if self.PROJECT_ID:
+            return user_class(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return user_class(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
@@ -251,12 +408,26 @@ class CrowdinClient:
         if not self._is_enterprise_platform:
             raise CrowdinException(detail="Not implemented for the base API")
 
+        if self.PROJECT_ID:
+            return api_resources.VendorsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.VendorsResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
     @property
     def webhooks(self) -> api_resources.WebhooksResource:
+        if self.PROJECT_ID:
+            return api_resources.WebhooksResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.WebhooksResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
@@ -265,6 +436,13 @@ class CrowdinClient:
     def workflows(self) -> api_resources.WorkflowsResource:
         if not self._is_enterprise_platform:
             raise CrowdinException(detail="Not implemented for the base API")
+
+        if self.PROJECT_ID:
+            return api_resources.WorkflowsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
 
         return api_resources.WorkflowsResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE

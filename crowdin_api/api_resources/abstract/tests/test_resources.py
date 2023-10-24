@@ -7,6 +7,14 @@ from crowdin_api.requester import APIRequester
 
 
 class TestBaseResource:
+    def test_get_project_id(self, base_absolut_url):
+        project_id = 1
+        resource = BaseResource(
+            requester=APIRequester(base_url=base_absolut_url),
+            project_id=project_id,
+        )
+        assert resource.get_project_id() == project_id
+
     @pytest.mark.parametrize(
         "in_params,out_params",
         (

@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.notifications.types import (
@@ -28,8 +28,8 @@ class NotificationResource(BaseResource):
 
     def send_notification_to_project_members(
         self,
-        projectId: int,
         request_data: Union[ByUserIdsRequestScheme, ByRoleRequestScehme],
+        projectId: Optional[int] = None,
     ):
         """
         Send Notification To Project Members
@@ -41,6 +41,9 @@ class NotificationResource(BaseResource):
         Link to documentation (Enterprise):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.notify.post
         """
+
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="post",
             path=f"projects/{projectId}/notify",

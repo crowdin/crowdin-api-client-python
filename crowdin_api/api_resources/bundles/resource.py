@@ -28,7 +28,7 @@ class BundlesResource(BaseResource):
 
     def list_bundles(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
     ):
@@ -43,6 +43,7 @@ class BundlesResource(BaseResource):
         """
 
         params = self.get_page_params(offset=offset, limit=limit)
+        projectId = projectId or self.get_project_id()
 
         return self._get_entire_data(
             method="get",
@@ -52,11 +53,11 @@ class BundlesResource(BaseResource):
 
     def add_bundle(
         self,
-        projectId: int,
         name: str,
         format: str,
         sourcePatterns: Iterable[str],
         exportPattern: str,
+        projectId: Optional[int] = None,
         ignorePatterns: Optional[Iterable[str]] = None,
         isMultilingual: Optional[bool] = None,
         includeProjectSourceLanguage: Optional[bool] = None,
@@ -72,6 +73,8 @@ class BundlesResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
@@ -89,7 +92,7 @@ class BundlesResource(BaseResource):
             }
         )
 
-    def get_bundle(self, projectId: int, bundleId: int):
+    def get_bundle(self, bundleId: int, projectId: Optional[int] = None):
         """
         Get Bundle.
 
@@ -100,12 +103,14 @@ class BundlesResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_bundles_path(projectId=projectId, bundleId=bundleId),
         )
 
-    def delete_bundle(self, projectId: int, bundleId: int):
+    def delete_bundle(self, bundleId: int, projectId: Optional[int] = None):
         """
         Delete Bundle.
 
@@ -116,12 +121,19 @@ class BundlesResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.delete
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="delete",
             path=self.get_bundles_path(projectId=projectId, bundleId=bundleId),
         )
 
-    def edit_bundle(self, projectId: int, bundleId: int, data: Iterable[BundlePatchRequest]):
+    def edit_bundle(
+        self,
+        bundleId: int,
+        data: Iterable[BundlePatchRequest],
+        projectId: Optional[int] = None,
+    ):
         """
         Edit Bundle.
 
@@ -132,6 +144,8 @@ class BundlesResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.patch
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="patch",
             path=self.get_bundles_path(projectId=projectId, bundleId=bundleId),
@@ -139,10 +153,7 @@ class BundlesResource(BaseResource):
         )
 
     def download_bundle(
-        self,
-        projectId: int,
-        bundleId: int,
-        exportId: str
+        self, bundleId: int, exportId: str, projectId: Optional[int] = None
     ):
         """
         Download bundle.
@@ -154,16 +165,14 @@ class BundlesResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=f"{self.get_bundles_exports_path(projectId=projectId, bundleId=bundleId, exportId=exportId)}/download",
         )
 
-    def export_bundle(
-        self,
-        projectId: int,
-        bundleId: int
-    ):
+    def export_bundle(self, bundleId: int, projectId: Optional[int] = None):
         """
         Export bundle.
 
@@ -174,16 +183,15 @@ class BundlesResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.post
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="post",
             path=self.get_bundles_exports_path(projectId=projectId, bundleId=bundleId),
         )
 
     def check_bundle_export_status(
-        self,
-        projectId: int,
-        bundleId: int,
-        exportId: str
+        self, bundleId: int, exportId: str, projectId: Optional[int] = None
     ):
         """
         Check Bundle Export Status.
@@ -195,6 +203,8 @@ class BundlesResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_bundles_exports_path(projectId=projectId, bundleId=bundleId, exportId=exportId),
@@ -202,10 +212,10 @@ class BundlesResource(BaseResource):
 
     def get_bundle_list_files(
         self,
-        projectId: int,
         bundleId: int,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        projectId: Optional[int] = None,
     ):
         """
         Get Bundle List Files.
@@ -218,6 +228,7 @@ class BundlesResource(BaseResource):
         """
 
         params = self.get_page_params(offset=offset, limit=limit)
+        projectId = projectId or self.get_project_id()
 
         return self._get_entire_data(
             method="get",

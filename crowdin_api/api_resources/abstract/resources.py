@@ -5,11 +5,19 @@ from crowdin_api.requester import APIRequester
 
 
 class BaseResource(metaclass=ABCMeta):
-    def __init__(self, requester: APIRequester, page_size=25):
+    def __init__(
+        self, requester: APIRequester, project_id: Optional[int] = None, page_size=25
+    ):
         self.requester = requester
+        self.project_id = project_id
         self.page_size = page_size
         self._flag_fetch_all = None
         self._max_limit = None
+
+    def get_project_id(self):
+        if self.project_id is None:
+            raise ValueError("You must set project id for client")
+        return self.project_id
 
     def _get_page_params(self, page: int):
         if page < 1:

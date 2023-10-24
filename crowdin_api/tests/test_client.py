@@ -164,6 +164,7 @@ class TestCrowdinClient:
         return_value="api_requestor",
     )
     def test_storages(self, _m_api_requestor, property_name, class_name):
+        # Without `project_id`
         with mock.patch(
             f"crowdin_api.api_resources.{class_name}",
             return_value=class_name,
@@ -171,6 +172,17 @@ class TestCrowdinClient:
             client = CrowdinClient()
             assert getattr(client, property_name) == class_name
             m_resource.assert_called_once_with(requester="api_requestor", page_size=25)
+
+        # With `project_id`
+        with mock.patch(
+            f"crowdin_api.api_resources.{class_name}",
+            return_value=class_name,
+        ) as m_resource:
+            client = CrowdinClient(project_id=1)
+            assert getattr(client, property_name) == class_name
+            m_resource.assert_called_once_with(
+                requester="api_requestor", project_id=1, page_size=25
+            )
 
 
 class TestCrowdinClientEnterprise:
@@ -209,6 +221,7 @@ class TestCrowdinClientEnterprise:
         return_value="api_requestor",
     )
     def test_storages_with_organization(self, _m_api_requestor, property_name, class_name):
+        # Without `project_id`
         with mock.patch(
             f"crowdin_api.api_resources.{class_name}",
             return_value=class_name,
@@ -216,3 +229,14 @@ class TestCrowdinClientEnterprise:
             client = MockCrowdinClientEnterprise()
             assert getattr(client, property_name) == class_name
             m_resource.assert_called_once_with(requester="api_requestor", page_size=25)
+
+        # With `project_id`
+        with mock.patch(
+            f"crowdin_api.api_resources.{class_name}",
+            return_value=class_name,
+        ) as m_resource:
+            client = MockCrowdinClientEnterprise(project_id=1)
+            assert getattr(client, property_name) == class_name
+            m_resource.assert_called_once_with(
+                requester="api_requestor", project_id=1, page_size=25
+            )

@@ -204,10 +204,10 @@ class GlossariesResource(BaseResource):
 
     def concordance_search_in_glossaries(
         self,
-        projectId: int,
         sourceLanguageId: str,
         targetLanguageId: str,
         expressions: Iterable[str],
+        projectId: Optional[int] = None,
     ):
         """
         Concordance search in Glossaries
@@ -220,6 +220,8 @@ class GlossariesResource(BaseResource):
             "targetLanguageId": targetLanguageId,
             "expressions": expressions,
         }
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",

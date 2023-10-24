@@ -30,13 +30,17 @@ class TranslationsResource(BaseResource):
 
         return f"projects/{projectId}/translations/builds"
 
-    def pre_translation_status(self, projectId: int, preTranslationId: str):
+    def pre_translation_status(
+        self, preTranslationId: str, projectId: Optional[int] = None
+    ):
         """
         Pre-Translation Status.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#tag/Translations/paths/~1projects~1{projectId}~1pre-translations~1{preTranslationId}/get
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="get",
@@ -45,9 +49,9 @@ class TranslationsResource(BaseResource):
 
     def apply_pre_translation(
         self,
-        projectId: int,
         languageIds: Iterable[str],
         fileIds: Iterable[int],
+        projectId: Optional[int] = None,
         method: Optional[PreTranslationApplyMethod] = None,
         engineId: Optional[int] = None,
         autoApproveOption: Optional[PreTranslationAutoApproveOption] = None,
@@ -69,6 +73,8 @@ class TranslationsResource(BaseResource):
         if excludeLabelIds is None:
             excludeLabelIds = []
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="post",
             path=f"projects/{projectId}/pre-translations",
@@ -88,8 +94,8 @@ class TranslationsResource(BaseResource):
 
     def build_project_directory_translation(
         self,
-        projectId: int,
         directoryId: int,
+        projectId: Optional[int] = None,
         targetLanguageIds: Optional[Iterable[str]] = None,
         skipUntranslatedStrings: Optional[bool] = None,
         skipUntranslatedFiles: Optional[bool] = None,
@@ -101,6 +107,8 @@ class TranslationsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.directories.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
@@ -115,9 +123,9 @@ class TranslationsResource(BaseResource):
 
     def build_project_file_translation(
         self,
-        projectId: int,
         fileId: int,
         targetLanguageId: str,
+        projectId: Optional[int] = None,
         skipUntranslatedStrings: Optional[bool] = None,
         skipUntranslatedFiles: Optional[bool] = None,
         exportApprovedOnly: Optional[bool] = None,
@@ -135,6 +143,8 @@ class TranslationsResource(BaseResource):
         else:
             headers = None
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="post",
             headers=headers,
@@ -149,7 +159,7 @@ class TranslationsResource(BaseResource):
 
     def list_project_builds(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         branchId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
@@ -162,6 +172,7 @@ class TranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.getMany
         """
 
+        projectId = projectId or self.get_project_id()
         params = {"branchId": branchId}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
@@ -171,13 +182,17 @@ class TranslationsResource(BaseResource):
             params=params,
         )
 
-    def build_project_translation(self, projectId: int, request_data: Dict):
+    def build_project_translation(
+        self, request_data: Dict, projectId: Optional[int] = None
+    ):
         """
         Build Project Translation.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
@@ -187,7 +202,7 @@ class TranslationsResource(BaseResource):
 
     def build_crowdin_project_translation(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         branchId: Optional[int] = None,
         targetLanguageIds: Optional[Iterable[str]] = None,
         skipUntranslatedStrings: Optional[bool] = None,
@@ -201,6 +216,8 @@ class TranslationsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.build_project_translation(
             projectId=projectId,
@@ -216,8 +233,8 @@ class TranslationsResource(BaseResource):
 
     def build_pseudo_project_translation(
         self,
-        projectId: int,
         pseudo: bool,
+        projectId: Optional[int] = None,
         prefix: Optional[str] = None,
         suffix: Optional[str] = None,
         lengthTransformation: Optional[int] = None,
@@ -229,6 +246,8 @@ class TranslationsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.build_project_translation(
             projectId=projectId,
@@ -243,10 +262,10 @@ class TranslationsResource(BaseResource):
 
     def upload_translation(
         self,
-        projectId: int,
         languageId: str,
         storageId: int,
         fileId: int,
+        projectId: Optional[int] = None,
         importEqSuggestions: Optional[bool] = None,
         autoApproveImported: Optional[bool] = None,
         translateHidden: Optional[bool] = None,
@@ -257,6 +276,8 @@ class TranslationsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.postOnLanguage
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
@@ -270,7 +291,9 @@ class TranslationsResource(BaseResource):
             },
         )
 
-    def download_project_translations(self, projectId: int, buildId: int):
+    def download_project_translations(
+        self, buildId: int, projectId: Optional[int] = None
+    ):
         """
         Download Project Translations.
 
@@ -278,12 +301,14 @@ class TranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.download.download
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=f"{self.get_builds_path(projectId=projectId, buildId=buildId)}/download",
         )
 
-    def check_project_build_status(self, projectId: int, buildId: int):
+    def check_project_build_status(self, buildId: int, projectId: Optional[int] = None):
         """
         Check Project Build Status.
 
@@ -291,18 +316,22 @@ class TranslationsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_builds_path(projectId=projectId, buildId=buildId),
         )
 
-    def cancel_build(self, projectId: int, buildId: int):
+    def cancel_build(self, buildId: int, projectId: Optional[int] = None):
         """
         Cancel Build.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.delete
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="delete",
@@ -311,8 +340,8 @@ class TranslationsResource(BaseResource):
 
     def export_project_translation(
         self,
-        projectId: int,
         targetLanguageId: str,
+        projectId: Optional[int] = None,
         format: Optional[ExportProjectTranslationFormat] = None,
         labelIds: Optional[Iterable[int]] = None,
         branchIds: Optional[Iterable[int]] = None,
@@ -328,6 +357,8 @@ class TranslationsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.exports.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",

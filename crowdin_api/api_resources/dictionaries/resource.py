@@ -18,7 +18,7 @@ class DictionariesResource(BaseResource):
 
     def list_dictionaries(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         languageIds: Optional[Iterable[str]] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
@@ -33,6 +33,7 @@ class DictionariesResource(BaseResource):
 
         params = self.get_page_params(page=page, offset=offset, limit=limit)
         params["languageIds"] = None if languageIds is None else ",".join(languageIds)
+        projectId = projectId or self.get_project_id()
 
         return self._get_entire_data(
             method="get",
@@ -40,13 +41,20 @@ class DictionariesResource(BaseResource):
             params=params,
         )
 
-    def edit_dictionary(self, projectId: int, languageId: str, data: Iterable[DictionaryPatchPath]):
+    def edit_dictionary(
+        self,
+        languageId: str,
+        data: Iterable[DictionaryPatchPath],
+        projectId: Optional[int] = None,
+    ):
         """
         Edit Dictionary.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.dictionaries.patch
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="patch",

@@ -200,7 +200,7 @@ class ProjectsResource(BaseResource):
             },
         )
 
-    def get_project(self, projectId: int):
+    def get_project(self, projectId: Optional[int] = None):
         """
         Get Project.
 
@@ -208,11 +208,13 @@ class ProjectsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get", path=self.get_projects_path(projectId=projectId)
         )
 
-    def delete_project(self, projectId: int):
+    def delete_project(self, projectId: Optional[int] = None):
         """
         Delete Project.
 
@@ -220,17 +222,24 @@ class ProjectsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.delete
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="delete", path=self.get_projects_path(projectId=projectId)
         )
 
-    def edit_project(self, projectId: int, data: Iterable[ProjectPatchRequest]):
+    def edit_project(
+        self, data: Iterable[ProjectPatchRequest], projectId: Optional[int] = None
+    ):
         """
         Edit Project.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.patch
         """
+
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="patch",
             path=self.get_projects_path(projectId=projectId),
@@ -247,13 +256,18 @@ class ProjectsResource(BaseResource):
 
         return f"projects/{projectId}/file-format-settings"
 
-    def download_project_file_custom_segmentation(self, projectId: int, fileFormatSettingsId: int):
+    def download_project_file_custom_segmentation(
+        self, fileFormatSettingsId: int, projectId: Optional[int] = None
+    ):
         """
         Download Project File Format Settings Custom Segmentation.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.custom-segmentations.get
         """
+
+        projectId = projectId or self.get_project_id()
+
         path = self.get_project_file_format_settings_path(
             projectId=projectId,
             fileFormatSettingsId=fileFormatSettingsId
@@ -264,13 +278,17 @@ class ProjectsResource(BaseResource):
             path=f"{path}/custom-segmentations",
         )
 
-    def reset_project_file_custom_segmentation(self, projectId: int, fileFormatSettingsId: int):
+    def reset_project_file_custom_segmentation(
+        self, fileFormatSettingsId: int, projectId: Optional[int] = None
+    ):
         """
         Reset Project File Format Settings Custom Segmentation.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.custom-segmentations.delete
         """
+
+        projectId = projectId or self.get_project_id()
         path = self.get_project_file_format_settings_path(
             projectId=projectId,
             fileFormatSettingsId=fileFormatSettingsId
@@ -283,7 +301,7 @@ class ProjectsResource(BaseResource):
 
     def list_project_file_format_settings(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -294,6 +312,8 @@ class ProjectsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.getMany
         """
+
+        projectId = projectId or self.get_project_id()
         params = self.get_page_params(page=page, offset=offset, limit=limit)
 
         return self._get_entire_data(
@@ -304,13 +324,13 @@ class ProjectsResource(BaseResource):
 
     def add_project_file_format_settings(
         self,
-        projectId: int,
         format: str,
         settings: Union[
             PropertyFileFormatSettings, XmlFileFormatSettings, SpecificFileFormatSettings,
             DocxFileFormatSettings, MediaWikiFileFormatSettings, TxtFileFormatSettings,
             OtherFileFormatSettings
-        ]
+        ],
+        projectId: Optional[int] = None,
     ):
         """
         Add Project File Format Settings.
@@ -319,19 +339,25 @@ class ProjectsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.post
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="post",
             path=self.get_project_file_format_settings_path(projectId=projectId),
             request_data={"format": format, "settings": settings}
         )
 
-    def get_project_file_format_settings(self, projectId: int, fileFormatSettingsId: int):
+    def get_project_file_format_settings(
+        self, fileFormatSettingsId: int, projectId: Optional[int] = None
+    ):
         """
         Get Project File Format Settings.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.get
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="get",
@@ -341,13 +367,17 @@ class ProjectsResource(BaseResource):
             ),
         )
 
-    def delete_project_file_format_settings(self, projectId: int, fileFormatSettingsId: int):
+    def delete_project_file_format_settings(
+        self, fileFormatSettingsId: int, projectId: Optional[int] = None
+    ):
         """
         Delete Project File Format Settings.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.delete
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="delete",
@@ -359,9 +389,9 @@ class ProjectsResource(BaseResource):
 
     def edit_project_file_format_settings(
         self,
-        projectId: int,
         fileFormatSettingsId: int,
-        data: Iterable[ProjectFilePatchRequest]
+        data: Iterable[ProjectFilePatchRequest],
+        projectId: Optional[int] = None,
     ):
         """
         Edit Project File Format Settings.
@@ -369,6 +399,8 @@ class ProjectsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.patch
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="patch",
@@ -390,7 +422,7 @@ class ProjectsResource(BaseResource):
 
     def list_project_strings_exporter_settings(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
     ):
         """
         List Project Strings Exporter Settings.
@@ -398,6 +430,9 @@ class ProjectsResource(BaseResource):
         Link to documetation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.getMany
         """
+
+        projectId = projectId or self.get_project_id()
+
         return self._get_entire_data(
             method="get",
             path=self.get_strings_exporter_path(projectId=projectId),
@@ -405,13 +440,13 @@ class ProjectsResource(BaseResource):
 
     def add_project_strings_exporter_settings(
         self,
-        projectId: int,
         format: str,
         settings: Union[
             AndroidStringsExporterSettings,
             MacOSXStringsExporterSettings,
             XliffStringsExporterSettings,
         ],
+        projectId: Optional[int] = None,
     ):
         """
         Add Project Strings Exporter Settings.
@@ -419,6 +454,9 @@ class ProjectsResource(BaseResource):
         Link to documetation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.post
         """
+
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="post",
             path=self.get_strings_exporter_path(projectId=projectId),
@@ -426,7 +464,7 @@ class ProjectsResource(BaseResource):
         )
 
     def get_project_strings_exporter_settings(
-        self, projectId: int, systemStringExporterSettingsId: int
+        self, systemStringExporterSettingsId: int, projectId: Optional[int] = None
     ):
         """
         Get Project Strings Exporter Settings
@@ -434,6 +472,9 @@ class ProjectsResource(BaseResource):
         Link to documetation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.get
         """
+
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_strings_exporter_path(
@@ -443,7 +484,7 @@ class ProjectsResource(BaseResource):
         )
 
     def delete_project_strings_exporter_settings(
-        self, projectId: int, systemStringExporterSettingsId: int
+        self, systemStringExporterSettingsId: int, projectId: Optional[int] = None
     ):
         """
         Delete Project Strings Exporter Settings.
@@ -451,6 +492,9 @@ class ProjectsResource(BaseResource):
         Link to documetation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.delete
         """
+
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="delete",
             path=self.get_strings_exporter_path(
@@ -461,7 +505,6 @@ class ProjectsResource(BaseResource):
 
     def edit_project_strings_exporter_settings(
         self,
-        projectId: int,
         systemStringExporterSettingsId: int,
         format: str,
         settings: Union[
@@ -469,6 +512,7 @@ class ProjectsResource(BaseResource):
             MacOSXStringsExporterSettings,
             XliffStringsExporterSettings,
         ],
+        projectId: Optional[int] = None,
     ):
         """
         Edit Project Strings Exporter Settings.
@@ -476,6 +520,9 @@ class ProjectsResource(BaseResource):
         Link to documetation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.patch
         """
+
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="patch",
             path=self.get_strings_exporter_path(

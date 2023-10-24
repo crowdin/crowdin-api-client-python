@@ -31,6 +31,13 @@ class TestTasksResource:
     def get_resource(self, base_absolut_url):
         return self.resource_class(requester=APIRequester(base_url=base_absolut_url))
 
+    def test_resource_with_id(self, base_absolut_url):
+        project_id = 1
+        resource = self.resource_class(
+            requester=APIRequester(base_url=base_absolut_url), project_id=project_id
+        )
+        assert resource.get_project_id() == project_id
+
     @pytest.mark.parametrize(
         "incoming_data, path",
         (

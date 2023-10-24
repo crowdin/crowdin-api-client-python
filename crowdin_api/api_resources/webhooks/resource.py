@@ -46,7 +46,7 @@ class WebhooksResource(BaseResource):
 
     def list_webhooks(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -58,6 +58,8 @@ class WebhooksResource(BaseResource):
         https://developer.crowdin.com/api/v2/#tag/Webhooks
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self._get_entire_data(
             method="get",
             path=self.get_webhooks_path(projectId=projectId),
@@ -66,11 +68,11 @@ class WebhooksResource(BaseResource):
 
     def add_webhook(
         self,
-        projectId: int,
         name: str,
         url: str,
         events: Iterable[WebhookEvents],
         requestType: WebhookRequestType,
+        projectId: Optional[int] = None,
         isActive: Optional[bool] = None,
         batchingEnabled: Optional[bool] = None,
         contentType: Optional[WebhookContentType] = None,
@@ -83,6 +85,8 @@ class WebhooksResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
@@ -100,7 +104,7 @@ class WebhooksResource(BaseResource):
             },
         )
 
-    def get_webhook(self, projectId: int, webhookId: int):
+    def get_webhook(self, webhookId: int, projectId: Optional[int] = None):
         """
         Get Webhook.
 
@@ -108,12 +112,14 @@ class WebhooksResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_webhooks_path(projectId=projectId, webhookId=webhookId),
         )
 
-    def delete_webhook(self, projectId: int, webhookId: int):
+    def delete_webhook(self, webhookId: int, projectId: Optional[int] = None):
         """
         Delete Webhook.
 
@@ -121,18 +127,27 @@ class WebhooksResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.delete
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="delete",
             path=self.get_webhooks_path(projectId=projectId, webhookId=webhookId),
         )
 
-    def edit_webhook(self, projectId: int, webhookId: int, data: Iterable[WebhookPatchRequest]):
+    def edit_webhook(
+        self,
+        webhookId: int,
+        data: Iterable[WebhookPatchRequest],
+        projectId: Optional[int] = None,
+    ):
         """
         Edit Custom Language.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.patch
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="patch",

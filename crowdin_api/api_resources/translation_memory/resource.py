@@ -256,12 +256,12 @@ class TranslationMemoryResource(BaseResource):
 
     def concordance_search_in_tms(
         self,
-        projectId: int,
         sourceLanguageId: str,
         targetLanguageId: str,
         autoSubstitution: bool,
         minRelevant: int,
         expressions: Iterable[str],
+        projectId: Optional[int] = None,
     ):
         """
         Concordance search in TMs
@@ -270,6 +270,7 @@ class TranslationMemoryResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.tms.concordance.post
         """
 
+        projectId = projectId or self.get_project_id()
         data = {
             "sourceLanguageId": sourceLanguageId,
             "targetLanguageId": targetLanguageId,
