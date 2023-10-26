@@ -26,6 +26,8 @@ class StringTranslationsResource(BaseResource):
         self,
         projectId: Optional[int] = None,
         fileId: Optional[int] = None,
+        labelIds: Optional[str] = None,
+        excludeLabelIds: Optional[str] = None,
         stringId: Optional[int] = None,
         languageId: Optional[str] = None,
         translationId: Optional[int] = None,
@@ -43,6 +45,8 @@ class StringTranslationsResource(BaseResource):
         projectId = projectId or self.get_project_id()
         params = {
             "fileId": fileId,
+            "labelIds": labelIds,
+            "excludeLabelIds": excludeLabelIds,
             "stringId": stringId,
             "languageId": languageId,
             "translationId": translationId,
@@ -315,6 +319,9 @@ class StringTranslationsResource(BaseResource):
         stringId: Optional[int] = None,
         languageId: Optional[str] = None,
         translationId: Optional[int] = None,
+        fileId: Optional[int] = None,
+        labelIds: Optional[str] = None,
+        excludeLabelIds: Optional[str] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -332,6 +339,9 @@ class StringTranslationsResource(BaseResource):
             "stringId": stringId,
             "languageId": languageId,
             "translationId": translationId,
+            "fileId": fileId,
+            "labelIds": labelIds,
+            "excludeLabelIds": excludeLabelIds,
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
