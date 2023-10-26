@@ -32,7 +32,7 @@ class SourceStringsResource(BaseResource):
 
     def list_strings(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         fileId: Optional[int] = None,
         branchId: Optional[int] = None,
         denormalizePlaceholders: Optional[DenormalizePlaceholders] = None,
@@ -51,6 +51,7 @@ class SourceStringsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.strings.getMany
         """
 
+        projectId = projectId or self.get_project_id()
         params = {
             "branchId": branchId,
             "fileId": fileId,
@@ -70,8 +71,8 @@ class SourceStringsResource(BaseResource):
 
     def add_string(
         self,
-        projectId: int,
         text: str,
+        projectId: Optional[int] = None,
         identifier: Optional[str] = None,
         fileId: Optional[int] = None,
         context: Optional[str] = None,
@@ -85,6 +86,8 @@ class SourceStringsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.strings.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
@@ -100,7 +103,7 @@ class SourceStringsResource(BaseResource):
             },
         )
 
-    def get_string(self, projectId: int, stringId: int):
+    def get_string(self, stringId: int, projectId: Optional[int] = None):
         """
         Get String.
 
@@ -108,12 +111,14 @@ class SourceStringsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.strings.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_source_strings_path(projectId=projectId, stringId=stringId),
         )
 
-    def delete_string(self, projectId: int, stringId: int):
+    def delete_string(self, stringId: int, projectId: Optional[int] = None):
         """
         Delete String.
 
@@ -121,18 +126,27 @@ class SourceStringsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.strings.delete
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="delete",
             path=self.get_source_strings_path(projectId=projectId, stringId=stringId),
         )
 
-    def edit_string(self, projectId: int, stringId: int, data: Iterable[SourceStringsPatchRequest]):
+    def edit_string(
+        self,
+        stringId: int,
+        data: Iterable[SourceStringsPatchRequest],
+        projectId: Optional[int] = None,
+    ):
         """
         Edit String.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.strings.patch
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="patch",
@@ -142,8 +156,8 @@ class SourceStringsResource(BaseResource):
 
     def string_batch_operation(
         self,
-        projectId: int,
         data: Iterable[StringBatchOperationPatchRequest],
+        projectId: Optional[int] = None,
     ):
         """
         String Batch Operations.
@@ -151,6 +165,9 @@ class SourceStringsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.strings.batchPatch
         """
+
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="patch",
             path=self.get_source_strings_path(projectId=projectId),

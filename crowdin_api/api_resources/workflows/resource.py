@@ -30,7 +30,7 @@ class WorkflowsResource(BaseResource):
 
         return "workflow-templates"
 
-    def list_workflow_steps(self, projectId: int):
+    def list_workflow_steps(self, projectId: Optional[int] = None):
         """
         List Workflow Steps.
 
@@ -38,18 +38,22 @@ class WorkflowsResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.workflow-steps.getMany
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self._get_entire_data(
             method="get",
             path=self.get_workflow_steps_path(projectId=projectId),
         )
 
-    def get_workflow_step(self, projectId: int, stepId: int):
+    def get_workflow_step(self, stepId: int, projectId: Optional[int] = None):
         """
         Get Workflow Step.
 
         Link to documentation:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.workflow-steps.get
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="get",

@@ -30,8 +30,8 @@ class TeamsResource(BaseResource):
 
     def add_team_to_project(
         self,
-        projectId: int,
         teamId: int,
+        projectId: Optional[int] = None,
         accessToAllWorkflowSteps: bool = True,
         managerAccess: bool = False,
         permissions: Optional[Permissions] = None,
@@ -43,6 +43,8 @@ class TeamsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.teams.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",

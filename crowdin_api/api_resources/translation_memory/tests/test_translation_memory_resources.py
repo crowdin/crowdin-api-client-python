@@ -19,6 +19,13 @@ class TestTranslationMemoryResource:
     def get_resource(self, base_absolut_url):
         return self.resource_class(requester=APIRequester(base_url=base_absolut_url))
 
+    def test_resource_with_id(self, base_absolut_url):
+        project_id = 1
+        resource = self.resource_class(
+            requester=APIRequester(base_url=base_absolut_url), project_id=project_id
+        )
+        assert resource.get_project_id() == project_id
+
     # Translation Memory
     @pytest.mark.parametrize(
         "in_params, path",
@@ -293,7 +300,7 @@ class TestTranslationMemoryResource:
             ],
         }
 
-        assert resource.concordance_search_in_tms(1, **data) == "response"
+        assert resource.concordance_search_in_tms(projectId=1, **data) == "response"
         m_reqeust.assert_called_once_with(
             method="post",
             path="projects/1/tms/concordance",

@@ -50,7 +50,7 @@ class SourceFilesResource(BaseResource):
 
     def list_project_branches(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         name: Optional[str] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
@@ -63,6 +63,7 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.branches.getMany
         """
 
+        projectId = projectId or self.get_project_id()
         params = {"name": name}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
@@ -72,8 +73,8 @@ class SourceFilesResource(BaseResource):
 
     def add_branch(
         self,
-        projectId: int,
         name: str,
+        projectId: Optional[int] = None,
         title: Optional[str] = None,
         exportPattern: Optional[str] = None,
         priority: Optional[Priority] = None,
@@ -84,6 +85,8 @@ class SourceFilesResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.branches.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
@@ -96,7 +99,7 @@ class SourceFilesResource(BaseResource):
             },
         )
 
-    def get_branch(self, projectId: int, branchId: int):
+    def get_branch(self, branchId: int, projectId: Optional[int] = None):
         """
         Get Branch.
 
@@ -104,12 +107,14 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.branches.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_branch_path(projectId=projectId, branchId=branchId),
         )
 
-    def delete_branch(self, projectId: int, branchId: int):
+    def delete_branch(self, branchId: int, projectId: Optional[int] = None):
         """
         Delete Branch.
 
@@ -117,13 +122,18 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.branches.delete
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="delete",
             path=f"projects/{projectId}/branches/{branchId}",
         )
 
     def edit_branch(
-        self, projectId: int, branchId: int, data: Iterable[BranchPatchRequest]
+        self,
+        branchId: int,
+        data: Iterable[BranchPatchRequest],
+        projectId: Optional[int] = None,
     ):
         """
         Edit Branch.
@@ -131,6 +141,8 @@ class SourceFilesResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.branches.patch
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="patch",
@@ -147,7 +159,7 @@ class SourceFilesResource(BaseResource):
 
     def list_directories(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
         filter: Optional[str] = None,
@@ -163,6 +175,7 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.directories.getMany
         """
 
+        projectId = projectId or self.get_project_id()
         params = {
             "branchId": branchId,
             "directoryId": directoryId,
@@ -179,8 +192,8 @@ class SourceFilesResource(BaseResource):
 
     def add_directory(
         self,
-        projectId: int,
         name: str,
+        projectId: Optional[int] = None,
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
         title: Optional[int] = None,
@@ -193,6 +206,8 @@ class SourceFilesResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.directories.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
@@ -207,7 +222,7 @@ class SourceFilesResource(BaseResource):
             },
         )
 
-    def get_directory(self, projectId: int, directoryId: int):
+    def get_directory(self, directoryId: int, projectId: Optional[int] = None):
         """
         Get Directory.
 
@@ -215,12 +230,14 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.directories.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_directory_path(projectId=projectId, directoryId=directoryId),
         )
 
-    def delete_directory(self, projectId: int, directoryId: int):
+    def delete_directory(self, directoryId: int, projectId: Optional[int] = None):
         """
         Delete Directory.
 
@@ -228,13 +245,18 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.directories.delete
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="delete",
             path=self.get_directory_path(projectId=projectId, directoryId=directoryId),
         )
 
     def edit_directory(
-        self, projectId: int, directoryId: int, data: Iterable[DirectoryPatchRequest]
+        self,
+        directoryId: int,
+        data: Iterable[DirectoryPatchRequest],
+        projectId: Optional[int] = None,
     ):
         """
         Edit Directory.
@@ -242,6 +264,8 @@ class SourceFilesResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.directories.patch
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="patch",
@@ -258,7 +282,7 @@ class SourceFilesResource(BaseResource):
 
     def list_files(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
         filter: Optional[str] = None,
@@ -274,6 +298,7 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.getMany
         """
 
+        projectId = projectId or self.get_project_id()
         params = {
             "branchId": branchId,
             "directoryId": directoryId,
@@ -288,9 +313,9 @@ class SourceFilesResource(BaseResource):
 
     def add_file(
         self,
-        projectId: int,
         storageId: int,
         name: str,
+        projectId: Optional[int] = None,
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
         title: Optional[int] = None,
@@ -321,6 +346,8 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.post
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="post",
             path=self.get_file_path(projectId=projectId),
@@ -339,7 +366,7 @@ class SourceFilesResource(BaseResource):
             },
         )
 
-    def get_file(self, projectId: int, fileId: int):
+    def get_file(self, fileId: int, projectId: Optional[int] = None):
         """
         Get File.
 
@@ -347,18 +374,24 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get",
             path=self.get_file_path(projectId=projectId, fileId=fileId),
         )
 
-    def restore_file(self, projectId: int, fileId: int, revisionId: int):
+    def restore_file(
+        self, fileId: int, revisionId: int, projectId: Optional[int] = None
+    ):
         """
         Restore File.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.put
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="put",
@@ -368,9 +401,9 @@ class SourceFilesResource(BaseResource):
 
     def update_file(
         self,
-        projectId: int,
         fileId: int,
         storageId: int,
+        projectId: Optional[int] = None,
         updateOption: Optional[FileUpdateOption] = None,
         importOptions: Optional[
             Union[
@@ -397,6 +430,8 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.put
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="put",
             path=self.get_file_path(projectId=projectId, fileId=fileId),
@@ -410,7 +445,7 @@ class SourceFilesResource(BaseResource):
             },
         )
 
-    def delete_file(self, projectId: int, fileId: int):
+    def delete_file(self, fileId: int, projectId: Optional[int] = None):
         """
         Delete File.
 
@@ -418,12 +453,19 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.delete
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="delete",
             path=self.get_file_path(projectId=projectId, fileId=fileId),
         )
 
-    def edit_file(self, projectId: int, fileId: int, data: Iterable[FilePatchRequest]):
+    def edit_file(
+        self,
+        fileId: int,
+        data: Iterable[FilePatchRequest],
+        projectId: Optional[int] = None,
+    ):
         """
         Edit File.
 
@@ -431,30 +473,37 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.patch
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="patch",
             path=self.get_file_path(projectId=projectId, fileId=fileId),
             request_data=data,
         )
 
-    def download_file_preview(self, projectId: int, fileId: int):
+    def download_file_preview(self, fileId: int, projectId: Optional[int] = None):
         """
         Download File Preview.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.preview.get
         """
+
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get", path=f"{self.get_file_path(projectId, fileId)}/preview"
         )
 
-    def download_file(self, projectId: int, fileId: int):
+    def download_file(self, fileId: int, projectId: Optional[int] = None):
         """
         Download File.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.download.get
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="get",
@@ -474,8 +523,8 @@ class SourceFilesResource(BaseResource):
 
     def list_file_revisions(
         self,
-        projectId: int,
         fileId: int,
+        projectId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -487,19 +536,25 @@ class SourceFilesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.revisions.getMany
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self._get_entire_data(
             method="get",
             path=self.get_file_revisions_path(projectId=projectId, fileId=fileId),
             params=self.get_page_params(page=page, offset=offset, limit=limit),
         )
 
-    def get_file_revision(self, projectId: int, fileId: int, revisionId: int):
+    def get_file_revision(
+        self, fileId: int, revisionId: int, projectId: Optional[int] = None
+    ):
         """
         Get File Revision.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.files.revisions.get
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="get",

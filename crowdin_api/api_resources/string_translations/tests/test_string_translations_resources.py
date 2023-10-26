@@ -13,6 +13,13 @@ class TestStringTranslationsResource:
     def get_resource(self, base_absolut_url):
         return self.resource_class(requester=APIRequester(base_url=base_absolut_url))
 
+    def test_resource_with_id(self, base_absolut_url):
+        project_id = 1
+        resource = self.resource_class(
+            requester=APIRequester(base_url=base_absolut_url), project_id=project_id
+        )
+        assert resource.get_project_id() == project_id
+
     # Approval
     @pytest.mark.parametrize(
         "in_params, path",
@@ -172,7 +179,7 @@ class TestStringTranslationsResource:
             "text": "Your password has been reset successfully!"
         }
 
-        assert resource.translation_alignment(1, **data)
+        assert resource.translation_alignment(projectId=1, **data)
         m_request.assert_called_once_with(
             method="post",
             path="projects/1/translations/alignment",

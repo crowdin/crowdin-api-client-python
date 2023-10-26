@@ -51,7 +51,7 @@ class TasksResource(BaseResource):
 
     def list_task_settings_templates(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -66,6 +66,7 @@ class TasksResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.getMany
         """
 
+        projectId = projectId or self.get_project_id()
         params = self.get_page_params(page=page, offset=offset, limit=limit)
 
         return self._get_entire_data(
@@ -76,9 +77,9 @@ class TasksResource(BaseResource):
 
     def add_task_settings_template(
         self,
-        projectId: int,
         name: str,
-        config: TaskSettingsTemplateLanguages
+        config: TaskSettingsTemplateLanguages,
+        projectId: Optional[int] = None,
     ):
         """
         Add Task Settings Template.
@@ -87,13 +88,17 @@ class TasksResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.post
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="post",
             path=self.get_task_settings_templates_path(projectId=projectId),
             request_data={"name": name, "config": config},
         )
 
-    def get_task_settings_template(self, projectId: int, taskSettingsTemplateId: int):
+    def get_task_settings_template(
+        self, taskSettingsTemplateId: int, projectId: Optional[int] = None
+    ):
         """
         Get Task Settings Template.
 
@@ -104,6 +109,8 @@ class TasksResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get", path=self.get_task_settings_templates_path(
                 projectId=projectId,
@@ -111,7 +118,9 @@ class TasksResource(BaseResource):
             )
         )
 
-    def delete_task_settings_template(self, projectId: int, taskSettingsTemplateId: int):
+    def delete_task_settings_template(
+        self, taskSettingsTemplateId: int, projectId: Optional[int] = None
+    ):
         """
         Delete Task Settings Template.
 
@@ -121,6 +130,8 @@ class TasksResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.delete
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="delete",
@@ -132,9 +143,9 @@ class TasksResource(BaseResource):
 
     def edit_task_settings_template(
         self,
-        projectId: int,
         taskSettingsTemplateId: int,
         data: Iterable[ConfigPatchRequest],
+        projectId: Optional[int] = None,
     ):
         """
         Edit Task Settings Template.
@@ -145,6 +156,8 @@ class TasksResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.patch
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="patch",
@@ -163,7 +176,7 @@ class TasksResource(BaseResource):
 
     def list_tasks(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         assigneeId: Optional[int] = None,
         status: Optional[CrowdinTaskStatus] = None,
         page: Optional[int] = None,
@@ -177,6 +190,7 @@ class TasksResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.getMany
         """
 
+        projectId = projectId or self.get_project_id()
         params = {"assigneeId": assigneeId, "status": status}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
@@ -186,13 +200,15 @@ class TasksResource(BaseResource):
             params=params,
         )
 
-    def add_task(self, projectId: int, request_data: Dict):
+    def add_task(self, request_data: Dict, projectId: Optional[int] = None):
         """
         Add Task.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
@@ -202,11 +218,11 @@ class TasksResource(BaseResource):
 
     def add_general_task(
         self,
-        projectId: int,
         title: str,
         languageId: str,
         fileIds: Iterable[int],
         type: CrowdinGeneralTaskType,
+        projectId: Optional[int] = None,
         status: Optional[CrowdinTaskStatus] = None,
         description: Optional[str] = None,
         splitFiles: Optional[bool] = None,
@@ -227,6 +243,8 @@ class TasksResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.add_task(
             projectId=projectId,
@@ -253,11 +271,11 @@ class TasksResource(BaseResource):
 
     def add_language_service_task(
         self,
-        projectId: int,
         title: str,
         languageId: str,
         fileIds: Iterable[str],
         type: LanguageServiceTaskType,
+        projectId: Optional[int] = None,
         status: Optional[CrowdinTaskStatus] = None,
         description: Optional[str] = None,
         labelIds: Optional[Iterable[int]] = None,
@@ -274,6 +292,8 @@ class TasksResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.add_task(
             projectId=projectId,
@@ -297,11 +317,11 @@ class TasksResource(BaseResource):
 
     def add_vendor_oht_task(
         self,
-        projectId: int,
         title: str,
         languageId: str,
         fileIds: Iterable[int],
         type: OhtCrowdinTaskType,
+        projectId: Optional[int] = None,
         status: Optional[CrowdinTaskStatus] = None,
         description: Optional[str] = None,
         expertise: Optional[OhtCrowdinTaskExpertise] = None,
@@ -319,6 +339,8 @@ class TasksResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.add_task(
             projectId=projectId,
@@ -343,11 +365,11 @@ class TasksResource(BaseResource):
 
     def add_vendor_gengo_task(
         self,
-        projectId: int,
         title: str,
         languageId: str,
         fileIds: Iterable[int],
         type: GengoCrowdinTaskType,
+        projectId: Optional[int] = None,
         status: Optional[CrowdinTaskStatus] = None,
         description: Optional[str] = None,
         expertise: Optional[GengoCrowdinTaskExpertise] = None,
@@ -367,6 +389,8 @@ class TasksResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.add_task(
             projectId=projectId,
@@ -393,11 +417,11 @@ class TasksResource(BaseResource):
 
     def add_vendor_translated_task(
         self,
-        projectId: int,
         title: str,
         languageId: str,
         fileIds: Iterable[int],
         type: TranslatedCrowdinTaskType,
+        projectId: Optional[int] = None,
         status: Optional[CrowdinTaskStatus] = None,
         description: Optional[str] = None,
         expertise: Optional[TranslatedCrowdinTaskExpertise] = None,
@@ -413,6 +437,9 @@ class TasksResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
         """
+
+        projectId = projectId or self.get_project_id()
+
         return self.add_task(
             projectId=projectId,
             request_data={
@@ -434,12 +461,12 @@ class TasksResource(BaseResource):
 
     def add_vendor_manual_task(
         self,
-        projectId: int,
         title: str,
         languageId: str,
         fileIds: Iterable[int],
         type: ManualCrowdinTaskType,
         vendor: ManualCrowdinVendors,
+        projectId: Optional[int] = None,
         status: Optional[CrowdinTaskStatus] = None,
         description: Optional[str] = None,
         skipAssignedStrings: Optional[bool] = None,
@@ -459,6 +486,8 @@ class TasksResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.add_task(
             projectId=projectId,
@@ -480,10 +509,10 @@ class TasksResource(BaseResource):
                 "startedAt": startedAt,
                 "dateFrom": dateFrom,
                 "dateTo": dateTo,
-            }
+            },
         )
 
-    def export_task_strings(self, projectId: int, taskId: int):
+    def export_task_strings(self, taskId: int, projectId: Optional[int] = None):
         """
         Export Task Strings.
 
@@ -491,12 +520,14 @@ class TasksResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.exports.post
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="post",
             path=f"{self.get_tasks_path(projectId=projectId, taskId=taskId)}/exports",
         )
 
-    def get_task(self, projectId: int, taskId: int):
+    def get_task(self, taskId: int, projectId: Optional[int] = None):
         """
         Get Task.
 
@@ -504,17 +535,21 @@ class TasksResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.get
         """
 
+        projectId = projectId or self.get_project_id()
+
         return self.requester.request(
             method="get", path=self.get_tasks_path(projectId=projectId, taskId=taskId)
         )
 
-    def delete_task(self, projectId: int, taskId: int):
+    def delete_task(self, taskId: int, projectId: Optional[int] = None):
         """
         Delete Task.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.delete
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="delete",
@@ -523,9 +558,9 @@ class TasksResource(BaseResource):
 
     def edit_task(
         self,
-        projectId: int,
         taskId: int,
         data: Union[Iterable[VendorPatchRequest], Iterable[TaskPatchRequest]],
+        projectId: Optional[int] = None,
     ):
         """
         Edit Task.
@@ -533,6 +568,8 @@ class TasksResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.patch
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="patch",
@@ -564,13 +601,17 @@ class TasksResource(BaseResource):
 
         return self._get_entire_data(method="get", path="user/tasks", params=params)
 
-    def edit_task_archived_status(self, taskId: int, projectId: int, isArchived: bool = True):
+    def edit_task_archived_status(
+        self, taskId: int, isArchived: bool = True, projectId: Optional[int] = None
+    ):
         """
         Edit Task Archived Status.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.user.tasks.patch
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="patch",
@@ -596,9 +637,9 @@ class EnterpriseTasksResource(TasksResource):
 
     def add_task_settings_template(
         self,
-        projectId: int,
         name: str,
-        config: EnterpriseTaskSettingsTemplateLanguages
+        config: EnterpriseTaskSettingsTemplateLanguages,
+        projectId: Optional[int] = None,
     ):
         """
         Add Task Settings Template.
@@ -606,6 +647,8 @@ class EnterpriseTasksResource(TasksResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",

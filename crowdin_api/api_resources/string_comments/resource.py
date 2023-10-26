@@ -27,7 +27,7 @@ class StringCommentsResource(BaseResource):
 
     def list_string_comments(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         stringId: Optional[int] = None,
         type: Optional[StringCommentType] = None,
         issueType: Optional[Iterable[StringCommentIssueType]] = None,
@@ -43,6 +43,7 @@ class StringCommentsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.comments.getMany
         """
 
+        projectId = projectId or self.get_project_id()
         params = {
             "stringId": stringId,
             "type": type,
@@ -59,11 +60,11 @@ class StringCommentsResource(BaseResource):
 
     def add_string_comment(
         self,
-        projectId: int,
         text: str,
         stringId: int,
         targetLanguageId: str,
         type: StringCommentType,
+        projectId: Optional[int] = None,
         issueType: Optional[StringCommentIssueType] = None,
     ):
         """
@@ -72,6 +73,8 @@ class StringCommentsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.comments.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
@@ -85,13 +88,15 @@ class StringCommentsResource(BaseResource):
             },
         )
 
-    def get_string_comment(self, projectId: int, stringCommentId: int):
+    def get_string_comment(self, stringCommentId: int, projectId: Optional[int] = None):
         """
         Get String Comment.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.comments.get
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="get",
@@ -100,13 +105,17 @@ class StringCommentsResource(BaseResource):
             ),
         )
 
-    def delete_string_comment(self, projectId: int, stringCommentId: int):
+    def delete_string_comment(
+        self, stringCommentId: int, projectId: Optional[int] = None
+    ):
         """
         Delete String Comment.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.comments.delete
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="delete",
@@ -117,9 +126,9 @@ class StringCommentsResource(BaseResource):
 
     def edit_string_comment(
         self,
-        projectId: int,
         stringCommentId: int,
         data: Iterable[StringCommentPatchRequest],
+        projectId: Optional[int] = None,
     ):
         """
         Edit String Comment.
@@ -127,6 +136,8 @@ class StringCommentsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.comments.patch
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="patch",

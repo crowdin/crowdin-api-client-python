@@ -18,7 +18,7 @@ class BaseUsersResource(BaseResource):
 
     def list_project_members(
         self,
-        projectId: int,
+        projectId: Optional[int] = None,
         search: Optional[str] = None,
         role: Optional[UserRole] = None,
         languageId: Optional[str] = None,
@@ -36,6 +36,7 @@ class BaseUsersResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.getMany
         """
 
+        projectId = projectId or self.get_project_id()
         params = {"search": search, "role": role, "languageId": languageId}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
@@ -57,13 +58,15 @@ class UsersResource(BaseUsersResource):
     https://developer.crowdin.com/api/v2/#tag/Users
     """
 
-    def get_member_info(self, projectId: int, memberId: int):
+    def get_member_info(self, memberId: int, projectId: Optional[int] = None):
         """
         Get Member Info.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.members.get
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="get",
@@ -89,8 +92,8 @@ class EnterpriseUsersResource(BaseUsersResource):
 
     def add_project_member(
         self,
-        projectId: int,
         userIds: Iterable[int],
+        projectId: Optional[int] = None,
         accessToAllWorkflowSteps: Optional[bool] = None,
         managerAccess: Optional[bool] = None,
         permissions: Optional[Dict] = None,
@@ -102,6 +105,8 @@ class EnterpriseUsersResource(BaseUsersResource):
         Link to documentation:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.post
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
@@ -117,8 +122,8 @@ class EnterpriseUsersResource(BaseUsersResource):
 
     def replace_project_member_permissions(
         self,
-        projectId: int,
         memberId: int,
+        projectId: Optional[int] = None,
         accessToAllWorkflowSteps: Optional[bool] = None,
         managerAccess: Optional[bool] = None,
         permissions: Optional[Dict] = None,
@@ -130,6 +135,8 @@ class EnterpriseUsersResource(BaseUsersResource):
         Link to documentation:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.put
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="put",
@@ -144,8 +151,8 @@ class EnterpriseUsersResource(BaseUsersResource):
 
     def delete_member_from_project(
         self,
-        projectId: int,
         memberId: int,
+        projectId: Optional[int] = None,
     ):
         """
         Delete Member From Project.
@@ -153,6 +160,8 @@ class EnterpriseUsersResource(BaseUsersResource):
         Link to documentation:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.delete
         """
+
+        projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="delete", path=self.get_members_path(projectId=projectId, memberId=memberId)

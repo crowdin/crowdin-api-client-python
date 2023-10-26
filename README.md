@@ -43,6 +43,7 @@ from crowdin_api import CrowdinClient
 
 class FirstCrowdinClient(CrowdinClient):
     TOKEN = "__token__"
+    PROJECT_ID = 1 # Optional, set project id for all API's
     ORGANIZATION = "organizationName" # Optional, for Crowdin Enterprise only
     TIMEOUT = 60  # Optional, sets http request timeout.
     RETRY_DELAY = 0.1  # Optional, sets the delay between failed requests 
