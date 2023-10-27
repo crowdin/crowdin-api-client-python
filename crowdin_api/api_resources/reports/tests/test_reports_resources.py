@@ -1550,7 +1550,63 @@ class TestBaseReportSettingsTemplatesResource:
                                 ]
                             }
                         ]
-                    }
+                    },
+                    "isPublic": None,
+                },
+            ),
+            (
+                {
+                    "name": "test_name",
+                    "currency": Currency.UAH,
+                    "unit": Unit.WORDS,
+                    "config": {
+                        "regularRates": [
+                            {
+                                "mode": "tm_match",
+                                "value": 0.1
+                            }
+                        ],
+                        "individualRates": [
+                            {
+                                "languageIds": ["uk"],
+                                "userIds": [1],
+                                "rates": [
+                                    {
+                                        "mode": "tm_match",
+                                        "value": 0.1
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "isPublic": False,
+                },
+                {
+                    "name": "test_name",
+                    "currency": Currency.UAH,
+                    "unit": Unit.WORDS,
+                    "mode": "simple",
+                    "config": {
+                        "regularRates": [
+                            {
+                                "mode": "tm_match",
+                                "value": 0.1
+                            }
+                        ],
+                        "individualRates": [
+                            {
+                                "languageIds": ["uk"],
+                                "userIds": [1],
+                                "rates": [
+                                    {
+                                        "mode": "tm_match",
+                                        "value": 0.1
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "isPublic": False,
                 },
             ),
         ),
