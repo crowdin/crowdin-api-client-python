@@ -430,6 +430,7 @@ class BaseReportSettingsTemplatesResource(BaseResource):
         currency: Currency,
         unit: Unit,
         config: Config,
+        isPublic: Optional[bool] = None,
         projectId: Optional[int] = None,
     ):
         """
@@ -454,7 +455,8 @@ class BaseReportSettingsTemplatesResource(BaseResource):
                 "currency": currency,
                 "unit": unit,
                 "mode": "simple",
-                "config": config
+                "config": config,
+                "isPublic": isPublic,
             }
         )
 
