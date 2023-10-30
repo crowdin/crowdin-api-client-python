@@ -15,17 +15,29 @@ class ApplicationResource(BaseResource):
     """
 
     def get_application_path(self, applicationIdentifier: str, path: str):
-        if applicationIdentifier and path:
-            return f"applications/{applicationIdentifier}/api/{path}"
+
+        return f"applications/{applicationIdentifier}/api/{path}"
 
     def get_application_data(self, applicationIdentifier: str, path: str):
 
+        """
+        Get the application data
+        You can refer to the documentation
+        https://developer.crowdin.com/api/v2/#operation/api.applications.api.get
+        """
         return self.requester.request(
             method="get",
             path=self.get_application_path(applicationIdentifier, path),
         )
 
     def update_application_data(self, applicationIdentifier: str, path: str, data: dict):
+        """
+
+        Update the application data
+        You can refer to the documentation
+        https://developer.crowdin.com/api/v2/#operation/api.applications.api.put
+
+        """
         json_data = dumps(data)
         return self.requester.request(
             method="put",
@@ -34,6 +46,13 @@ class ApplicationResource(BaseResource):
         )
 
     def add_application_data(self, applicationIdentifier: str, path: str, data: dict):
+        """
+
+        Add the application data
+        You can refer to the documentation
+        https://developer.crowdin.com/api/v2/#operation/api.applications.api.post
+
+        """
         json_data = dumps(data)
         return self.requester.request(
             method="post",
@@ -42,12 +61,26 @@ class ApplicationResource(BaseResource):
         )
 
     def delete_application_data(self, applicationIdentifier: str, path: str):
+        """
+
+        Delete the application data
+        You can refer to the documentation
+        https://developer.crowdin.com/api/v2/#operation/api.applications.api.delete
+
+        """
         return self.requester.request(
             method='delete',
             path=self.get_application_path(applicationIdentifier, path)
         )
 
     def edit_application_data(self, applicationIdentifier: str, path: str, data: dict):
+        """
+
+        Edit the application data
+        You can refer to the documentation
+        https://developer.crowdin.com/api/v2/#operation/api.applications.api.patch
+
+        """
         json_data = dumps(data)
         return self.requester.request(
             method="patch",
