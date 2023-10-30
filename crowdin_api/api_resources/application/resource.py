@@ -14,7 +14,7 @@ class ApplicationResource(BaseResource):
     """
   
     def get_application_path(self, applicationIdentifier: str, path: str):
-        if applicationIdentifier:
+        if applicationIdentifier and path:
             return f"applications/{applicationIdentifier}/api/{path}"
     def get_application_data(self, applicationIdentifier: str ,path: str):
         return self.requester.request(
@@ -31,7 +31,7 @@ class ApplicationResource(BaseResource):
     def add_application_data(self, applicationIdentifier: str ,path: str, data: dict):
         json_data = dumps(data)
         return self.requester.request(
-            method="add",
+            method="post",
             path=self.get_application_path(applicationIdentifier,path),
             request_data=json_data,
         )
