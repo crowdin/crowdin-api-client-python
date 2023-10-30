@@ -5,7 +5,9 @@ from crowdin_api.api_resources.abstract.resources import BaseResource
 
 class ApplicationResource(BaseResource):
     """
-    Resource for Applications.
+    Crowdin Apps are web applications that can be integrated with Crowdin to extend its functionality.
+
+    Use the API to manage the necessary app data.
 
     Link to documentation:
     https://developer.crowdin.com/api/v2/#tag/Applications
@@ -21,7 +23,7 @@ class ApplicationResource(BaseResource):
     def get_application_data(self, applicationIdentifier: str, path: str):
 
         """
-        Get the application data
+        Get Application Data.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.applications.api.get
@@ -29,6 +31,7 @@ class ApplicationResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.get
         """
+
         return self.requester.request(
             method="get",
             path=self.get_application_path(applicationIdentifier, path),
@@ -36,7 +39,7 @@ class ApplicationResource(BaseResource):
 
     def update_application_data(self, applicationIdentifier: str, path: str, data: dict):
         """
-        Update the application data
+        Update or Restore Application Data.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.applications.api.put
@@ -44,6 +47,7 @@ class ApplicationResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.put
         """
+
         json_data = dumps(data)
         return self.requester.request(
             method="put",
@@ -53,7 +57,7 @@ class ApplicationResource(BaseResource):
 
     def add_application_data(self, applicationIdentifier: str, path: str, data: dict):
         """
-        Add the application data
+        Add Application Data.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.applications.api.post
@@ -61,6 +65,7 @@ class ApplicationResource(BaseResource):
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.post
         """
+
         json_data = dumps(data)
         return self.requester.request(
             method="post",
@@ -70,15 +75,15 @@ class ApplicationResource(BaseResource):
 
     def delete_application_data(self, applicationIdentifier: str, path: str):
         """
-        Delete the application data
+        Delete Application Data.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.applications.api.delete
 
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.delete
-
         """
+
         return self.requester.request(
             method='delete',
             path=self.get_application_path(applicationIdentifier, path)
@@ -86,15 +91,15 @@ class ApplicationResource(BaseResource):
 
     def edit_application_data(self, applicationIdentifier: str, path: str, data: dict):
         """
-        Edit the application data
+        Edit Application Data.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.applications.api.patch
 
         Link to documentation for enterprise:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.patch
-
         """
+
         json_data = dumps(data)
         return self.requester.request(
             method="patch",
