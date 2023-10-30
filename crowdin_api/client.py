@@ -90,12 +90,13 @@ class CrowdinClient:
             )
 
         return self._api_requestor
-    
+
     @property
     def applications(self) -> ApplicationResource:
         return ApplicationResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
+
     @property
     def bundles(self) -> api_resources.BundlesResource:
         return api_resources.BundlesResource(
