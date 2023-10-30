@@ -17,11 +17,9 @@ class ApplicationResource(BaseResource):
     """
 
     def get_application_path(self, applicationIdentifier: str, path: str):
-
         return f"applications/{applicationIdentifier}/api/{path}"
 
     def get_application_data(self, applicationIdentifier: str, path: str):
-
         """
         Get Application Data.
 

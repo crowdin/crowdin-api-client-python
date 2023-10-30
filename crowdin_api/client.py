@@ -1,7 +1,6 @@
 import copy
 from typing import Dict, Optional, Type, Union
 
-
 from crowdin_api import api_resources
 from crowdin_api.enums import PlatformType
 from crowdin_api.exceptions import CrowdinException
