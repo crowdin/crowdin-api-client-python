@@ -1,0 +1,825 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>crowdin_api.api_resources.projects.types API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>crowdin_api.api_resources.projects.types</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings"><code class="flex name class">
+<span>class <span class="ident">AndroidStringsExporterSettings</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings.convertPlaceholders"><code class="name">var <span class="ident">convertPlaceholders</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.DocxFileFormatSettings"><code class="flex name class">
+<span>class <span class="ident">DocxFileFormatSettings</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.cleanTagsAggressively"><code class="name">var <span class="ident">cleanTagsAggressively</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.contentSegmentation"><code class="name">var <span class="ident">contentSegmentation</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.exportPattern"><code class="name">var <span class="ident">exportPattern</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.importHiddenSlides"><code class="name">var <span class="ident">importHiddenSlides</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.importNotes"><code class="name">var <span class="ident">importNotes</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.srxStorageId"><code class="name">var <span class="ident">srxStorageId</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.translateHiddenRowsAndColumns"><code class="name">var <span class="ident">translateHiddenRowsAndColumns</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.translateHiddenText"><code class="name">var <span class="ident">translateHiddenText</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.translateHyperlinkUrls"><code class="name">var <span class="ident">translateHyperlinkUrls</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings"><code class="flex name class">
+<span>class <span class="ident">MacOSXStringsExporterSettings</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings.convertPlaceholders"><code class="name">var <span class="ident">convertPlaceholders</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings"><code class="flex name class">
+<span>class <span class="ident">MediaWikiFileFormatSettings</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings.exportPattern"><code class="name">var <span class="ident">exportPattern</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings.srxStorageId"><code class="name">var <span class="ident">srxStorageId</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.NotificationSettings"><code class="flex name class">
+<span>class <span class="ident">NotificationSettings</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.NotificationSettings.managerLanguageCompleted"><code class="name">var <span class="ident">managerLanguageCompleted</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.NotificationSettings.managerNewStrings"><code class="name">var <span class="ident">managerNewStrings</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.NotificationSettings.translatorNewStrings"><code class="name">var <span class="ident">translatorNewStrings</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.OtherFileFormatSettings"><code class="flex name class">
+<span>class <span class="ident">OtherFileFormatSettings</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.OtherFileFormatSettings.exportPattern"><code class="name">var <span class="ident">exportPattern</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.ProjectFilePatchRequest"><code class="flex name class">
+<span>class <span class="ident">ProjectFilePatchRequest</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.ProjectFilePatchRequest.op"><code class="name">var <span class="ident">op</span> : <a title="crowdin_api.api_resources.enums.PatchOperation" href="../enums.html#crowdin_api.api_resources.enums.PatchOperation">PatchOperation</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.ProjectFilePatchRequest.path"><code class="name">var <span class="ident">path</span> : <a title="crowdin_api.api_resources.projects.enums.ProjectFilePatchPath" href="enums.html#crowdin_api.api_resources.projects.enums.ProjectFilePatchPath">ProjectFilePatchPath</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.ProjectFilePatchRequest.value"><code class="name">var <span class="ident">value</span> : Union[str, List[str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.ProjectPatchRequest"><code class="flex name class">
+<span>class <span class="ident">ProjectPatchRequest</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.ProjectPatchRequest.op"><code class="name">var <span class="ident">op</span> : <a title="crowdin_api.api_resources.enums.PatchOperation" href="../enums.html#crowdin_api.api_resources.enums.PatchOperation">PatchOperation</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.ProjectPatchRequest.path"><code class="name">var <span class="ident">path</span> : <a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath" href="enums.html#crowdin_api.api_resources.projects.enums.ProjectPatchPath">ProjectPatchPath</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.ProjectPatchRequest.value"><code class="name">var <span class="ident">value</span> : Any</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.PropertyFileFormatSettings"><code class="flex name class">
+<span>class <span class="ident">PropertyFileFormatSettings</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.PropertyFileFormatSettings.escapeQuotes"><code class="name">var <span class="ident">escapeQuotes</span> : <a title="crowdin_api.api_resources.projects.enums.EscapeQuotes" href="enums.html#crowdin_api.api_resources.projects.enums.EscapeQuotes">EscapeQuotes</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.PropertyFileFormatSettings.escapeSpecialCharacters"><code class="name">var <span class="ident">escapeSpecialCharacters</span> : <a title="crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters" href="enums.html#crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters">EscapeSpecialCharacters</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.PropertyFileFormatSettings.exportPattern"><code class="name">var <span class="ident">exportPattern</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QACheckCategories"><code class="flex name class">
+<span>class <span class="ident">QACheckCategories</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.QACheckCategories.DUPLICATE"><code class="name">var <span class="ident">DUPLICATE</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QACheckCategories.EMPTY"><code class="name">var <span class="ident">EMPTY</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QACheckCategories.ICU"><code class="name">var <span class="ident">ICU</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QACheckCategories.PUNCTUATION"><code class="name">var <span class="ident">PUNCTUATION</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QACheckCategories.SIZE"><code class="name">var <span class="ident">SIZE</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QACheckCategories.SPACES"><code class="name">var <span class="ident">SPACES</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QACheckCategories.SPECIALSYMBOLS"><code class="name">var <span class="ident">SPECIALSYMBOLS</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QACheckCategories.SPELLCHECK"><code class="name">var <span class="ident">SPELLCHECK</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QACheckCategories.SYMBOLREGISTER"><code class="name">var <span class="ident">SYMBOLREGISTER</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QACheckCategories.TAGS"><code class="name">var <span class="ident">TAGS</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QACheckCategories.TERMS"><code class="name">var <span class="ident">TERMS</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QACheckCategories.VARIABLES"><code class="name">var <span class="ident">VARIABLES</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QACheckCategories.WRONGTRANSLATION"><code class="name">var <span class="ident">WRONGTRANSLATION</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories"><code class="flex name class">
+<span>class <span class="ident">QAChecksIgnorableCategories</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.ANDROID"><code class="name">var <span class="ident">ANDROID</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.DUPLICATE"><code class="name">var <span class="ident">DUPLICATE</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.EMPTY"><code class="name">var <span class="ident">EMPTY</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.FTL"><code class="name">var <span class="ident">FTL</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.ICU"><code class="name">var <span class="ident">ICU</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.PUNCTUATION"><code class="name">var <span class="ident">PUNCTUATION</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SIZE"><code class="name">var <span class="ident">SIZE</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SPACES"><code class="name">var <span class="ident">SPACES</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SPECIALSYMBOLS"><code class="name">var <span class="ident">SPECIALSYMBOLS</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SPELLCHECK"><code class="name">var <span class="ident">SPELLCHECK</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SYMBOLREGISTER"><code class="name">var <span class="ident">SYMBOLREGISTER</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.TAGS"><code class="name">var <span class="ident">TAGS</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.TERMS"><code class="name">var <span class="ident">TERMS</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.VARIABLES"><code class="name">var <span class="ident">VARIABLES</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.WRONGTRANSLATION"><code class="name">var <span class="ident">WRONGTRANSLATION</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.SpecificFileFormatSettings"><code class="flex name class">
+<span>class <span class="ident">SpecificFileFormatSettings</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Includes kind standard file format settings:
+- WebXml file
+- Html file
+- Adoc file
+- Md file
+- FmMd file
+- FmHtml file
+- MadcapFisnp file
+- Idml file
+- Mif file
+- Dita file</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.SpecificFileFormatSettings.contentSegmentation"><code class="name">var <span class="ident">contentSegmentation</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.SpecificFileFormatSettings.exportPattern"><code class="name">var <span class="ident">exportPattern</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.SpecificFileFormatSettings.srxStorageId"><code class="name">var <span class="ident">srxStorageId</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.TxtFileFormatSettings"><code class="flex name class">
+<span>class <span class="ident">TxtFileFormatSettings</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.TxtFileFormatSettings.exportPattern"><code class="name">var <span class="ident">exportPattern</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.TxtFileFormatSettings.srxStorageId"><code class="name">var <span class="ident">srxStorageId</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.XliffStringsExporterSettings"><code class="flex name class">
+<span>class <span class="ident">XliffStringsExporterSettings</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.XliffStringsExporterSettings.languagePairMapping"><code class="name">var <span class="ident">languagePairMapping</span> : Dict[str, str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.XmlFileFormatSettings"><code class="flex name class">
+<span>class <span class="ident">XmlFileFormatSettings</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.types.XmlFileFormatSettings.contentSegmentation"><code class="name">var <span class="ident">contentSegmentation</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.XmlFileFormatSettings.exportPattern"><code class="name">var <span class="ident">exportPattern</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.XmlFileFormatSettings.srxStorageId"><code class="name">var <span class="ident">srxStorageId</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.XmlFileFormatSettings.translatableElements"><code class="name">var <span class="ident">translatableElements</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.XmlFileFormatSettings.translateAttributes"><code class="name">var <span class="ident">translateAttributes</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.types.XmlFileFormatSettings.translateContent"><code class="name">var <span class="ident">translateContent</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="crowdin_api.api_resources.projects" href="index.html">crowdin_api.api_resources.projects</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings" href="#crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings">AndroidStringsExporterSettings</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings.convertPlaceholders" href="#crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings.convertPlaceholders">convertPlaceholders</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.DocxFileFormatSettings" href="#crowdin_api.api_resources.projects.types.DocxFileFormatSettings">DocxFileFormatSettings</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.cleanTagsAggressively" href="#crowdin_api.api_resources.projects.types.DocxFileFormatSettings.cleanTagsAggressively">cleanTagsAggressively</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.contentSegmentation" href="#crowdin_api.api_resources.projects.types.DocxFileFormatSettings.contentSegmentation">contentSegmentation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.exportPattern" href="#crowdin_api.api_resources.projects.types.DocxFileFormatSettings.exportPattern">exportPattern</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.importHiddenSlides" href="#crowdin_api.api_resources.projects.types.DocxFileFormatSettings.importHiddenSlides">importHiddenSlides</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.importNotes" href="#crowdin_api.api_resources.projects.types.DocxFileFormatSettings.importNotes">importNotes</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.srxStorageId" href="#crowdin_api.api_resources.projects.types.DocxFileFormatSettings.srxStorageId">srxStorageId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.translateHiddenRowsAndColumns" href="#crowdin_api.api_resources.projects.types.DocxFileFormatSettings.translateHiddenRowsAndColumns">translateHiddenRowsAndColumns</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.translateHiddenText" href="#crowdin_api.api_resources.projects.types.DocxFileFormatSettings.translateHiddenText">translateHiddenText</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.DocxFileFormatSettings.translateHyperlinkUrls" href="#crowdin_api.api_resources.projects.types.DocxFileFormatSettings.translateHyperlinkUrls">translateHyperlinkUrls</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings" href="#crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings">MacOSXStringsExporterSettings</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings.convertPlaceholders" href="#crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings.convertPlaceholders">convertPlaceholders</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings" href="#crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings">MediaWikiFileFormatSettings</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings.exportPattern" href="#crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings.exportPattern">exportPattern</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings.srxStorageId" href="#crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings.srxStorageId">srxStorageId</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.NotificationSettings" href="#crowdin_api.api_resources.projects.types.NotificationSettings">NotificationSettings</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.types.NotificationSettings.managerLanguageCompleted" href="#crowdin_api.api_resources.projects.types.NotificationSettings.managerLanguageCompleted">managerLanguageCompleted</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.NotificationSettings.managerNewStrings" href="#crowdin_api.api_resources.projects.types.NotificationSettings.managerNewStrings">managerNewStrings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.NotificationSettings.translatorNewStrings" href="#crowdin_api.api_resources.projects.types.NotificationSettings.translatorNewStrings">translatorNewStrings</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.OtherFileFormatSettings" href="#crowdin_api.api_resources.projects.types.OtherFileFormatSettings">OtherFileFormatSettings</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.types.OtherFileFormatSettings.exportPattern" href="#crowdin_api.api_resources.projects.types.OtherFileFormatSettings.exportPattern">exportPattern</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.ProjectFilePatchRequest" href="#crowdin_api.api_resources.projects.types.ProjectFilePatchRequest">ProjectFilePatchRequest</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.types.ProjectFilePatchRequest.op" href="#crowdin_api.api_resources.projects.types.ProjectFilePatchRequest.op">op</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.ProjectFilePatchRequest.path" href="#crowdin_api.api_resources.projects.types.ProjectFilePatchRequest.path">path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.ProjectFilePatchRequest.value" href="#crowdin_api.api_resources.projects.types.ProjectFilePatchRequest.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.ProjectPatchRequest" href="#crowdin_api.api_resources.projects.types.ProjectPatchRequest">ProjectPatchRequest</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.types.ProjectPatchRequest.op" href="#crowdin_api.api_resources.projects.types.ProjectPatchRequest.op">op</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.ProjectPatchRequest.path" href="#crowdin_api.api_resources.projects.types.ProjectPatchRequest.path">path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.ProjectPatchRequest.value" href="#crowdin_api.api_resources.projects.types.ProjectPatchRequest.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.PropertyFileFormatSettings" href="#crowdin_api.api_resources.projects.types.PropertyFileFormatSettings">PropertyFileFormatSettings</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.types.PropertyFileFormatSettings.escapeQuotes" href="#crowdin_api.api_resources.projects.types.PropertyFileFormatSettings.escapeQuotes">escapeQuotes</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.PropertyFileFormatSettings.escapeSpecialCharacters" href="#crowdin_api.api_resources.projects.types.PropertyFileFormatSettings.escapeSpecialCharacters">escapeSpecialCharacters</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.PropertyFileFormatSettings.exportPattern" href="#crowdin_api.api_resources.projects.types.PropertyFileFormatSettings.exportPattern">exportPattern</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.QACheckCategories" href="#crowdin_api.api_resources.projects.types.QACheckCategories">QACheckCategories</a></code></h4>
+<ul class="two-column">
+<li><code><a title="crowdin_api.api_resources.projects.types.QACheckCategories.DUPLICATE" href="#crowdin_api.api_resources.projects.types.QACheckCategories.DUPLICATE">DUPLICATE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QACheckCategories.EMPTY" href="#crowdin_api.api_resources.projects.types.QACheckCategories.EMPTY">EMPTY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QACheckCategories.ICU" href="#crowdin_api.api_resources.projects.types.QACheckCategories.ICU">ICU</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QACheckCategories.PUNCTUATION" href="#crowdin_api.api_resources.projects.types.QACheckCategories.PUNCTUATION">PUNCTUATION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QACheckCategories.SIZE" href="#crowdin_api.api_resources.projects.types.QACheckCategories.SIZE">SIZE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QACheckCategories.SPACES" href="#crowdin_api.api_resources.projects.types.QACheckCategories.SPACES">SPACES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QACheckCategories.SPECIALSYMBOLS" href="#crowdin_api.api_resources.projects.types.QACheckCategories.SPECIALSYMBOLS">SPECIALSYMBOLS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QACheckCategories.SPELLCHECK" href="#crowdin_api.api_resources.projects.types.QACheckCategories.SPELLCHECK">SPELLCHECK</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QACheckCategories.SYMBOLREGISTER" href="#crowdin_api.api_resources.projects.types.QACheckCategories.SYMBOLREGISTER">SYMBOLREGISTER</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QACheckCategories.TAGS" href="#crowdin_api.api_resources.projects.types.QACheckCategories.TAGS">TAGS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QACheckCategories.TERMS" href="#crowdin_api.api_resources.projects.types.QACheckCategories.TERMS">TERMS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QACheckCategories.VARIABLES" href="#crowdin_api.api_resources.projects.types.QACheckCategories.VARIABLES">VARIABLES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QACheckCategories.WRONGTRANSLATION" href="#crowdin_api.api_resources.projects.types.QACheckCategories.WRONGTRANSLATION">WRONGTRANSLATION</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories">QAChecksIgnorableCategories</a></code></h4>
+<ul class="two-column">
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.ANDROID" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.ANDROID">ANDROID</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.DUPLICATE" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.DUPLICATE">DUPLICATE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.EMPTY" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.EMPTY">EMPTY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.FTL" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.FTL">FTL</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.ICU" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.ICU">ICU</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.PUNCTUATION" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.PUNCTUATION">PUNCTUATION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SIZE" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SIZE">SIZE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SPACES" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SPACES">SPACES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SPECIALSYMBOLS" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SPECIALSYMBOLS">SPECIALSYMBOLS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SPELLCHECK" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SPELLCHECK">SPELLCHECK</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SYMBOLREGISTER" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.SYMBOLREGISTER">SYMBOLREGISTER</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.TAGS" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.TAGS">TAGS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.TERMS" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.TERMS">TERMS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.VARIABLES" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.VARIABLES">VARIABLES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.WRONGTRANSLATION" href="#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories.WRONGTRANSLATION">WRONGTRANSLATION</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.SpecificFileFormatSettings" href="#crowdin_api.api_resources.projects.types.SpecificFileFormatSettings">SpecificFileFormatSettings</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.types.SpecificFileFormatSettings.contentSegmentation" href="#crowdin_api.api_resources.projects.types.SpecificFileFormatSettings.contentSegmentation">contentSegmentation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.SpecificFileFormatSettings.exportPattern" href="#crowdin_api.api_resources.projects.types.SpecificFileFormatSettings.exportPattern">exportPattern</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.SpecificFileFormatSettings.srxStorageId" href="#crowdin_api.api_resources.projects.types.SpecificFileFormatSettings.srxStorageId">srxStorageId</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.TxtFileFormatSettings" href="#crowdin_api.api_resources.projects.types.TxtFileFormatSettings">TxtFileFormatSettings</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.types.TxtFileFormatSettings.exportPattern" href="#crowdin_api.api_resources.projects.types.TxtFileFormatSettings.exportPattern">exportPattern</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.TxtFileFormatSettings.srxStorageId" href="#crowdin_api.api_resources.projects.types.TxtFileFormatSettings.srxStorageId">srxStorageId</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.XliffStringsExporterSettings" href="#crowdin_api.api_resources.projects.types.XliffStringsExporterSettings">XliffStringsExporterSettings</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.types.XliffStringsExporterSettings.languagePairMapping" href="#crowdin_api.api_resources.projects.types.XliffStringsExporterSettings.languagePairMapping">languagePairMapping</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.types.XmlFileFormatSettings" href="#crowdin_api.api_resources.projects.types.XmlFileFormatSettings">XmlFileFormatSettings</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.types.XmlFileFormatSettings.contentSegmentation" href="#crowdin_api.api_resources.projects.types.XmlFileFormatSettings.contentSegmentation">contentSegmentation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.XmlFileFormatSettings.exportPattern" href="#crowdin_api.api_resources.projects.types.XmlFileFormatSettings.exportPattern">exportPattern</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.XmlFileFormatSettings.srxStorageId" href="#crowdin_api.api_resources.projects.types.XmlFileFormatSettings.srxStorageId">srxStorageId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.XmlFileFormatSettings.translatableElements" href="#crowdin_api.api_resources.projects.types.XmlFileFormatSettings.translatableElements">translatableElements</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.XmlFileFormatSettings.translateAttributes" href="#crowdin_api.api_resources.projects.types.XmlFileFormatSettings.translateAttributes">translateAttributes</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.types.XmlFileFormatSettings.translateContent" href="#crowdin_api.api_resources.projects.types.XmlFileFormatSettings.translateContent">translateContent</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

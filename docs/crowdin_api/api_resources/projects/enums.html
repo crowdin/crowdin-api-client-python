@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>crowdin_api.api_resources.projects.enums API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>crowdin_api.api_resources.projects.enums</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeQuotes"><code class="flex name class">
+<span>class <span class="ident">EscapeQuotes</span></span>
+<span>(</span><span>*args, **kwds)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Values available:
+0 - Do not escape single quote
+1 - Escape single quote by another single quote
+2 - Escape single quote by a backslash
+3 - Escape single quote by another single quote only in strings containing variables</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeQuotes.ONE"><code class="name">var <span class="ident">ONE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeQuotes.THREE"><code class="name">var <span class="ident">THREE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeQuotes.TWO"><code class="name">var <span class="ident">TWO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeQuotes.ZERO"><code class="name">var <span class="ident">ZERO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters"><code class="flex name class">
+<span>class <span class="ident">EscapeSpecialCharacters</span></span>
+<span>(</span><span>*args, **kwds)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Defines whether any special characters (=, :, ! and #) should be escaped by backslash in
+exported translations.
+You can add escape_special_characters per-file option. *</p>
+<p>Acceptable values are:
+0 - Do not escape special characters
+1 - Escape special characters by a backslash</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters.ONE"><code class="name">var <span class="ident">ONE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters.ZERO"><code class="name">var <span class="ident">ZERO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.HasManagerAccess"><code class="flex name class">
+<span>class <span class="ident">HasManagerAccess</span></span>
+<span>(</span><span>*args, **kwds)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a collection of name/value pairs.</p>
+<p>Example enumeration:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; class Color(Enum):
+...     RED = 1
+...     BLUE = 2
+...     GREEN = 3
+</code></pre>
+<p>Access them by:</p>
+<ul>
+<li>attribute access::</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color.RED
+&lt;Color.RED: 1&gt;
+</code></pre>
+<ul>
+<li>value lookup:</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color(1)
+&lt;Color.RED: 1&gt;
+</code></pre>
+<ul>
+<li>name lookup:</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color['RED']
+&lt;Color.RED: 1&gt;
+</code></pre>
+<p>Enumerations can be iterated over, and know how many members they have:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; len(Color)
+3
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; list(Color)
+[&lt;Color.RED: 1&gt;, &lt;Color.BLUE: 2&gt;, &lt;Color.GREEN: 3&gt;]
+</code></pre>
+<p>Methods can be added to enumerations, and members can have their own
+attributes &ndash; see the documentation for details.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.HasManagerAccess.FALSE"><code class="name">var <span class="ident">FALSE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.HasManagerAccess.TRUE"><code class="name">var <span class="ident">TRUE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectFilePatchPath"><code class="flex name class">
+<span>class <span class="ident">ProjectFilePatchPath</span></span>
+<span>(</span><span>*args, **kwds)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a collection of name/value pairs.</p>
+<p>Example enumeration:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; class Color(Enum):
+...     RED = 1
+...     BLUE = 2
+...     GREEN = 3
+</code></pre>
+<p>Access them by:</p>
+<ul>
+<li>attribute access::</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color.RED
+&lt;Color.RED: 1&gt;
+</code></pre>
+<ul>
+<li>value lookup:</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color(1)
+&lt;Color.RED: 1&gt;
+</code></pre>
+<ul>
+<li>name lookup:</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color['RED']
+&lt;Color.RED: 1&gt;
+</code></pre>
+<p>Enumerations can be iterated over, and know how many members they have:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; len(Color)
+3
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; list(Color)
+[&lt;Color.RED: 1&gt;, &lt;Color.BLUE: 2&gt;, &lt;Color.GREEN: 3&gt;]
+</code></pre>
+<p>Methods can be added to enumerations, and members can have their own
+attributes &ndash; see the documentation for details.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectFilePatchPath.FORMAT"><code class="name">var <span class="ident">FORMAT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectFilePatchPath.SETTINGS"><code class="name">var <span class="ident">SETTINGS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy"><code class="flex name class">
+<span>class <span class="ident">ProjectLanguageAccessPolicy</span></span>
+<span>(</span><span>*args, **kwds)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a collection of name/value pairs.</p>
+<p>Example enumeration:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; class Color(Enum):
+...     RED = 1
+...     BLUE = 2
+...     GREEN = 3
+</code></pre>
+<p>Access them by:</p>
+<ul>
+<li>attribute access::</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color.RED
+&lt;Color.RED: 1&gt;
+</code></pre>
+<ul>
+<li>value lookup:</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color(1)
+&lt;Color.RED: 1&gt;
+</code></pre>
+<ul>
+<li>name lookup:</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color['RED']
+&lt;Color.RED: 1&gt;
+</code></pre>
+<p>Enumerations can be iterated over, and know how many members they have:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; len(Color)
+3
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; list(Color)
+[&lt;Color.RED: 1&gt;, &lt;Color.BLUE: 2&gt;, &lt;Color.GREEN: 3&gt;]
+</code></pre>
+<p>Methods can be added to enumerations, and members can have their own
+attributes &ndash; see the documentation for details.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy.MODERATE"><code class="name">var <span class="ident">MODERATE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy.OPEN"><code class="name">var <span class="ident">OPEN</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath"><code class="flex name class">
+<span>class <span class="ident">ProjectPatchPath</span></span>
+<span>(</span><span>*args, **kwds)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a collection of name/value pairs.</p>
+<p>Example enumeration:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; class Color(Enum):
+...     RED = 1
+...     BLUE = 2
+...     GREEN = 3
+</code></pre>
+<p>Access them by:</p>
+<ul>
+<li>attribute access::</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color.RED
+&lt;Color.RED: 1&gt;
+</code></pre>
+<ul>
+<li>value lookup:</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color(1)
+&lt;Color.RED: 1&gt;
+</code></pre>
+<ul>
+<li>name lookup:</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color['RED']
+&lt;Color.RED: 1&gt;
+</code></pre>
+<p>Enumerations can be iterated over, and know how many members they have:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; len(Color)
+3
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; list(Color)
+[&lt;Color.RED: 1&gt;, &lt;Color.BLUE: 2&gt;, &lt;Color.GREEN: 3&gt;]
+</code></pre>
+<p>Methods can be added to enumerations, and members can have their own
+attributes &ndash; see the documentation for details.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.AUTO_SUBSTITUTION"><code class="name">var <span class="ident">AUTO_SUBSTITUTION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.AUTO_TRANSLATE_DIALECTS"><code class="name">var <span class="ident">AUTO_TRANSLATE_DIALECTS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.CNAME"><code class="name">var <span class="ident">CNAME</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.DESCRIPTION"><code class="name">var <span class="ident">DESCRIPTION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.EXPORT_APPROVED_ONLY"><code class="name">var <span class="ident">EXPORT_APPROVED_ONLY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.IN_CONTEXT"><code class="name">var <span class="ident">IN_CONTEXT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.IN_CONTEXT_PSEUDO_LANGUAGE_ID"><code class="name">var <span class="ident">IN_CONTEXT_PSEUDO_LANGUAGE_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.IS_MT_ALLOWED"><code class="name">var <span class="ident">IS_MT_ALLOWED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_ACCESS_POLICY"><code class="name">var <span class="ident">LANGUAGE_ACCESS_POLICY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING"><code class="name">var <span class="ident">LANGUAGE_MAPPING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING_ID"><code class="name">var <span class="ident">LANGUAGE_MAPPING_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING_KEY"><code class="name">var <span class="ident">LANGUAGE_MAPPING_KEY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.NAME"><code class="name">var <span class="ident">NAME</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.NORMALIZE_PLACEHOLDER"><code class="name">var <span class="ident">NORMALIZE_PLACEHOLDER</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.PUBLIC_DOWNLOADS"><code class="name">var <span class="ident">PUBLIC_DOWNLOADS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECKS_IGNORABLE_CATEGORIES"><code class="name">var <span class="ident">QA_CHECKS_IGNORABLE_CATEGORIES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECKS_IGNORABLE_CATEGORY"><code class="name">var <span class="ident">QA_CHECKS_IGNORABLE_CATEGORY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_CATEGORIES"><code class="name">var <span class="ident">QA_CHECK_CATEGORIES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_CATEGORY"><code class="name">var <span class="ident">QA_CHECK_CATEGORY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_IS_ACTIVE"><code class="name">var <span class="ident">QA_CHECK_IS_ACTIVE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.SAVE_META_INFO_IN_SOURCE"><code class="name">var <span class="ident">SAVE_META_INFO_IN_SOURCE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.SKIP_UNTRANSLATED_FILES"><code class="name">var <span class="ident">SKIP_UNTRANSLATED_FILES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.SKIP_UNTRANSLATED_STRINGS"><code class="name">var <span class="ident">SKIP_UNTRANSLATED_STRINGS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TARGET_LANGUAGE_IDS"><code class="name">var <span class="ident">TARGET_LANGUAGE_IDS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TRANSLATE_DUPLICATES"><code class="name">var <span class="ident">TRANSLATE_DUPLICATES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.USE_GLOBAL_TM"><code class="name">var <span class="ident">USE_GLOBAL_TM</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.VISIBILITY"><code class="name">var <span class="ident">VISIBILITY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates"><code class="flex name class">
+<span>class <span class="ident">ProjectTranslateDuplicates</span></span>
+<span>(</span><span>*args, **kwds)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a collection of name/value pairs.</p>
+<p>Example enumeration:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; class Color(Enum):
+...     RED = 1
+...     BLUE = 2
+...     GREEN = 3
+</code></pre>
+<p>Access them by:</p>
+<ul>
+<li>attribute access::</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color.RED
+&lt;Color.RED: 1&gt;
+</code></pre>
+<ul>
+<li>value lookup:</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color(1)
+&lt;Color.RED: 1&gt;
+</code></pre>
+<ul>
+<li>name lookup:</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color['RED']
+&lt;Color.RED: 1&gt;
+</code></pre>
+<p>Enumerations can be iterated over, and know how many members they have:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; len(Color)
+3
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; list(Color)
+[&lt;Color.RED: 1&gt;, &lt;Color.BLUE: 2&gt;, &lt;Color.GREEN: 3&gt;]
+</code></pre>
+<p>Methods can be added to enumerations, and members can have their own
+attributes &ndash; see the documentation for details.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.HIDE_REGULAR_DETECTION"><code class="name">var <span class="ident">HIDE_REGULAR_DETECTION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.HIDE_STRICT_DETECTION"><code class="name">var <span class="ident">HIDE_STRICT_DETECTION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.SHOW"><code class="name">var <span class="ident">SHOW</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.SHOW_AUTO_TRANSLATE"><code class="name">var <span class="ident">SHOW_AUTO_TRANSLATE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.SHOW_REGULAR_DETECTION"><code class="name">var <span class="ident">SHOW_REGULAR_DETECTION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.SHOW_STRICT_DETECTION"><code class="name">var <span class="ident">SHOW_STRICT_DETECTION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectType"><code class="flex name class">
+<span>class <span class="ident">ProjectType</span></span>
+<span>(</span><span>*args, **kwds)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a collection of name/value pairs.</p>
+<p>Example enumeration:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; class Color(Enum):
+...     RED = 1
+...     BLUE = 2
+...     GREEN = 3
+</code></pre>
+<p>Access them by:</p>
+<ul>
+<li>attribute access::</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color.RED
+&lt;Color.RED: 1&gt;
+</code></pre>
+<ul>
+<li>value lookup:</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color(1)
+&lt;Color.RED: 1&gt;
+</code></pre>
+<ul>
+<li>name lookup:</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color['RED']
+&lt;Color.RED: 1&gt;
+</code></pre>
+<p>Enumerations can be iterated over, and know how many members they have:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; len(Color)
+3
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; list(Color)
+[&lt;Color.RED: 1&gt;, &lt;Color.BLUE: 2&gt;, &lt;Color.GREEN: 3&gt;]
+</code></pre>
+<p>Methods can be added to enumerations, and members can have their own
+attributes &ndash; see the documentation for details.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectType.FILE_BASED"><code class="name">var <span class="ident">FILE_BASED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectType.STRING_BASED"><code class="name">var <span class="ident">STRING_BASED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectVisibility"><code class="flex name class">
+<span>class <span class="ident">ProjectVisibility</span></span>
+<span>(</span><span>*args, **kwds)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a collection of name/value pairs.</p>
+<p>Example enumeration:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; class Color(Enum):
+...     RED = 1
+...     BLUE = 2
+...     GREEN = 3
+</code></pre>
+<p>Access them by:</p>
+<ul>
+<li>attribute access::</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color.RED
+&lt;Color.RED: 1&gt;
+</code></pre>
+<ul>
+<li>value lookup:</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color(1)
+&lt;Color.RED: 1&gt;
+</code></pre>
+<ul>
+<li>name lookup:</li>
+</ul>
+<pre><code class="language-python-repl">&gt;&gt;&gt; Color['RED']
+&lt;Color.RED: 1&gt;
+</code></pre>
+<p>Enumerations can be iterated over, and know how many members they have:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; len(Color)
+3
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; list(Color)
+[&lt;Color.RED: 1&gt;, &lt;Color.BLUE: 2&gt;, &lt;Color.GREEN: 3&gt;]
+</code></pre>
+<p>Methods can be added to enumerations, and members can have their own
+attributes &ndash; see the documentation for details.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectVisibility.OPEN"><code class="name">var <span class="ident">OPEN</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectVisibility.PRIVATE"><code class="name">var <span class="ident">PRIVATE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="crowdin_api.api_resources.projects" href="index.html">crowdin_api.api_resources.projects</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.EscapeQuotes" href="#crowdin_api.api_resources.projects.enums.EscapeQuotes">EscapeQuotes</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.EscapeQuotes.ONE" href="#crowdin_api.api_resources.projects.enums.EscapeQuotes.ONE">ONE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.EscapeQuotes.THREE" href="#crowdin_api.api_resources.projects.enums.EscapeQuotes.THREE">THREE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.EscapeQuotes.TWO" href="#crowdin_api.api_resources.projects.enums.EscapeQuotes.TWO">TWO</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.EscapeQuotes.ZERO" href="#crowdin_api.api_resources.projects.enums.EscapeQuotes.ZERO">ZERO</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters" href="#crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters">EscapeSpecialCharacters</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters.ONE" href="#crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters.ONE">ONE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters.ZERO" href="#crowdin_api.api_resources.projects.enums.EscapeSpecialCharacters.ZERO">ZERO</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.HasManagerAccess" href="#crowdin_api.api_resources.projects.enums.HasManagerAccess">HasManagerAccess</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.HasManagerAccess.FALSE" href="#crowdin_api.api_resources.projects.enums.HasManagerAccess.FALSE">FALSE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.HasManagerAccess.TRUE" href="#crowdin_api.api_resources.projects.enums.HasManagerAccess.TRUE">TRUE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.ProjectFilePatchPath" href="#crowdin_api.api_resources.projects.enums.ProjectFilePatchPath">ProjectFilePatchPath</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectFilePatchPath.FORMAT" href="#crowdin_api.api_resources.projects.enums.ProjectFilePatchPath.FORMAT">FORMAT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectFilePatchPath.SETTINGS" href="#crowdin_api.api_resources.projects.enums.ProjectFilePatchPath.SETTINGS">SETTINGS</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy" href="#crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy">ProjectLanguageAccessPolicy</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy.MODERATE" href="#crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy.MODERATE">MODERATE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy.OPEN" href="#crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy.OPEN">OPEN</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath">ProjectPatchPath</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.AUTO_SUBSTITUTION" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.AUTO_SUBSTITUTION">AUTO_SUBSTITUTION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.AUTO_TRANSLATE_DIALECTS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.AUTO_TRANSLATE_DIALECTS">AUTO_TRANSLATE_DIALECTS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.CNAME" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.CNAME">CNAME</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.DESCRIPTION" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.DESCRIPTION">DESCRIPTION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.EXPORT_APPROVED_ONLY" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.EXPORT_APPROVED_ONLY">EXPORT_APPROVED_ONLY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.IN_CONTEXT" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.IN_CONTEXT">IN_CONTEXT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.IN_CONTEXT_PSEUDO_LANGUAGE_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.IN_CONTEXT_PSEUDO_LANGUAGE_ID">IN_CONTEXT_PSEUDO_LANGUAGE_ID</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.IS_MT_ALLOWED" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.IS_MT_ALLOWED">IS_MT_ALLOWED</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_ACCESS_POLICY" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_ACCESS_POLICY">LANGUAGE_ACCESS_POLICY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING">LANGUAGE_MAPPING</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING_ID">LANGUAGE_MAPPING_ID</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING_KEY" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING_KEY">LANGUAGE_MAPPING_KEY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.NAME" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.NAME">NAME</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.NORMALIZE_PLACEHOLDER" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.NORMALIZE_PLACEHOLDER">NORMALIZE_PLACEHOLDER</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.PUBLIC_DOWNLOADS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.PUBLIC_DOWNLOADS">PUBLIC_DOWNLOADS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECKS_IGNORABLE_CATEGORIES" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECKS_IGNORABLE_CATEGORIES">QA_CHECKS_IGNORABLE_CATEGORIES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECKS_IGNORABLE_CATEGORY" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECKS_IGNORABLE_CATEGORY">QA_CHECKS_IGNORABLE_CATEGORY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_CATEGORIES" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_CATEGORIES">QA_CHECK_CATEGORIES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_CATEGORY" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_CATEGORY">QA_CHECK_CATEGORY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_IS_ACTIVE" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_IS_ACTIVE">QA_CHECK_IS_ACTIVE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.SAVE_META_INFO_IN_SOURCE" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.SAVE_META_INFO_IN_SOURCE">SAVE_META_INFO_IN_SOURCE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.SKIP_UNTRANSLATED_FILES" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.SKIP_UNTRANSLATED_FILES">SKIP_UNTRANSLATED_FILES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.SKIP_UNTRANSLATED_STRINGS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.SKIP_UNTRANSLATED_STRINGS">SKIP_UNTRANSLATED_STRINGS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TARGET_LANGUAGE_IDS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.TARGET_LANGUAGE_IDS">TARGET_LANGUAGE_IDS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TRANSLATE_DUPLICATES" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.TRANSLATE_DUPLICATES">TRANSLATE_DUPLICATES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.USE_GLOBAL_TM" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.USE_GLOBAL_TM">USE_GLOBAL_TM</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.VISIBILITY" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.VISIBILITY">VISIBILITY</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates" href="#crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates">ProjectTranslateDuplicates</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.HIDE_REGULAR_DETECTION" href="#crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.HIDE_REGULAR_DETECTION">HIDE_REGULAR_DETECTION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.HIDE_STRICT_DETECTION" href="#crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.HIDE_STRICT_DETECTION">HIDE_STRICT_DETECTION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.SHOW" href="#crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.SHOW">SHOW</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.SHOW_AUTO_TRANSLATE" href="#crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.SHOW_AUTO_TRANSLATE">SHOW_AUTO_TRANSLATE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.SHOW_REGULAR_DETECTION" href="#crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.SHOW_REGULAR_DETECTION">SHOW_REGULAR_DETECTION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.SHOW_STRICT_DETECTION" href="#crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates.SHOW_STRICT_DETECTION">SHOW_STRICT_DETECTION</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.ProjectType" href="#crowdin_api.api_resources.projects.enums.ProjectType">ProjectType</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectType.FILE_BASED" href="#crowdin_api.api_resources.projects.enums.ProjectType.FILE_BASED">FILE_BASED</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectType.STRING_BASED" href="#crowdin_api.api_resources.projects.enums.ProjectType.STRING_BASED">STRING_BASED</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.ProjectVisibility" href="#crowdin_api.api_resources.projects.enums.ProjectVisibility">ProjectVisibility</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectVisibility.OPEN" href="#crowdin_api.api_resources.projects.enums.ProjectVisibility.OPEN">OPEN</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectVisibility.PRIVATE" href="#crowdin_api.api_resources.projects.enums.ProjectVisibility.PRIVATE">PRIVATE</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

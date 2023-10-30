@@ -1,6 +1,8 @@
 import copy
 from typing import Dict, Optional, Type, Union
 
+# from crowdin_api.api_resources.application.resource import Application
+
 from crowdin_api import api_resources
 from crowdin_api.enums import PlatformType
 from crowdin_api.exceptions import CrowdinException
@@ -88,7 +90,12 @@ class CrowdinClient:
             )
 
         return self._api_requestor
-
+    
+    @property
+    def applications(self) -> api_resources.ApplicationResource:
+        return api_resources.ApplicationResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
     @property
     def bundles(self) -> api_resources.BundlesResource:
         return api_resources.BundlesResource(
