@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource"><code class="flex name class">
 <span>class <span class="ident">SourceStringsResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Source Strings.</p>
@@ -52,7 +52,7 @@ iOS strings, PROPERTIES, XLIFF).</p>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.add_string"><code class="name flex">
-<span>def <span class="ident">add_string</span></span>(<span>self, projectId: int, text: str, identifier: Optional[str] = None, fileId: Optional[int] = None, context: Optional[str] = None, isHidden: Optional[bool] = None, maxLength: Optional[int] = None, labelIds: Optional[Iterable[int]] = None)</span>
+<span>def <span class="ident">add_string</span></span>(<span>self, text: str, projectId: Optional[int] = None, identifier: Optional[str] = None, fileId: Optional[int] = None, context: Optional[str] = None, isHidden: Optional[bool] = None, maxLength: Optional[int] = None, labelIds: Optional[Iterable[int]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add String.</p>
@@ -60,7 +60,7 @@ iOS strings, PROPERTIES, XLIFF).</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings.post">https://developer.crowdin.com/api/v2/#operation/api.projects.strings.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.delete_string"><code class="name flex">
-<span>def <span class="ident">delete_string</span></span>(<span>self, projectId: int, stringId: int)</span>
+<span>def <span class="ident">delete_string</span></span>(<span>self, stringId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete String.</p>
@@ -68,7 +68,7 @@ iOS strings, PROPERTIES, XLIFF).</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.strings.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.edit_string"><code class="name flex">
-<span>def <span class="ident">edit_string</span></span>(<span>self, projectId: int, stringId: int, data: Iterable[<a title="crowdin_api.api_resources.source_strings.types.SourceStringsPatchRequest" href="types.html#crowdin_api.api_resources.source_strings.types.SourceStringsPatchRequest">SourceStringsPatchRequest</a>])</span>
+<span>def <span class="ident">edit_string</span></span>(<span>self, stringId: int, data: Iterable[<a title="crowdin_api.api_resources.source_strings.types.SourceStringsPatchRequest" href="types.html#crowdin_api.api_resources.source_strings.types.SourceStringsPatchRequest">SourceStringsPatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit String.</p>
@@ -82,7 +82,7 @@ iOS strings, PROPERTIES, XLIFF).</p>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_string"><code class="name flex">
-<span>def <span class="ident">get_string</span></span>(<span>self, projectId: int, stringId: int)</span>
+<span>def <span class="ident">get_string</span></span>(<span>self, stringId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get String.</p>
@@ -90,12 +90,20 @@ iOS strings, PROPERTIES, XLIFF).</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings.get">https://developer.crowdin.com/api/v2/#operation/api.projects.strings.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.list_strings"><code class="name flex">
-<span>def <span class="ident">list_strings</span></span>(<span>self, projectId: int, fileId: Optional[int] = None, branchId: Optional[int] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, labelIds: Optional[Iterable[int]] = None, croql: Optional[str] = None, filter: Optional[str] = None, scope: Optional[<a title="crowdin_api.api_resources.source_strings.enums.ScopeFilter" href="enums.html#crowdin_api.api_resources.source_strings.enums.ScopeFilter">ScopeFilter</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_strings</span></span>(<span>self, projectId: Optional[int] = None, fileId: Optional[int] = None, branchId: Optional[int] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, labelIds: Optional[Iterable[int]] = None, croql: Optional[str] = None, filter: Optional[str] = None, scope: Optional[<a title="crowdin_api.api_resources.source_strings.enums.ScopeFilter" href="enums.html#crowdin_api.api_resources.source_strings.enums.ScopeFilter">ScopeFilter</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Strings.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.strings.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.string_batch_operation"><code class="name flex">
+<span>def <span class="ident">string_batch_operation</span></span>(<span>self, data: Iterable[<a title="crowdin_api.api_resources.source_strings.types.StringBatchOperationPatchRequest" href="types.html#crowdin_api.api_resources.source_strings.types.StringBatchOperationPatchRequest">StringBatchOperationPatchRequest</a>], projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>String Batch Operations.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings.batchPatch">https://developer.crowdin.com/api/v2/#operation/api.projects.strings.batchPatch</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -124,6 +132,7 @@ iOS strings, PROPERTIES, XLIFF).</p>
 <li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_source_strings_path" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_source_strings_path">get_source_strings_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_string" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_string">get_string</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.list_strings" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.list_strings">list_strings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.string_batch_operation" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.string_batch_operation">string_batch_operation</a></code></li>
 </ul>
 </li>
 </ul>

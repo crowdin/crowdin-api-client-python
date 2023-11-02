@@ -34,12 +34,13 @@
 <dl>
 <dt id="crowdin_api.api_resources.abstract.resources.BaseResource"><code class="flex name class">
 <span>class <span class="ident">BaseResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
 <h3>Subclasses</h3>
 <ul class="hlist">
+<li><a title="crowdin_api.api_resources.application.resource.ApplicationResource" href="../application/resource.html#crowdin_api.api_resources.application.resource.ApplicationResource">ApplicationResource</a></li>
 <li><a title="crowdin_api.api_resources.bundles.resource.BundlesResource" href="../bundles/resource.html#crowdin_api.api_resources.bundles.resource.BundlesResource">BundlesResource</a></li>
 <li><a title="crowdin_api.api_resources.dictionaries.resource.DictionariesResource" href="../dictionaries/resource.html#crowdin_api.api_resources.dictionaries.resource.DictionariesResource">DictionariesResource</a></li>
 <li><a title="crowdin_api.api_resources.distributions.resource.DistributionsResource" href="../distributions/resource.html#crowdin_api.api_resources.distributions.resource.DistributionsResource">DistributionsResource</a></li>
@@ -65,6 +66,7 @@
 <li><a title="crowdin_api.api_resources.translations.resource.TranslationsResource" href="../translations/resource.html#crowdin_api.api_resources.translations.resource.TranslationsResource">TranslationsResource</a></li>
 <li><a title="crowdin_api.api_resources.users.resource.BaseUsersResource" href="../users/resource.html#crowdin_api.api_resources.users.resource.BaseUsersResource">BaseUsersResource</a></li>
 <li><a title="crowdin_api.api_resources.vendors.resource.VendorsResource" href="../vendors/resource.html#crowdin_api.api_resources.vendors.resource.VendorsResource">VendorsResource</a></li>
+<li><a title="crowdin_api.api_resources.webhooks.organization.resource.OrganizationWebhooksResource" href="../webhooks/organization/resource.html#crowdin_api.api_resources.webhooks.organization.resource.OrganizationWebhooksResource">OrganizationWebhooksResource</a></li>
 <li><a title="crowdin_api.api_resources.webhooks.resource.WebhooksResource" href="../webhooks/resource.html#crowdin_api.api_resources.webhooks.resource.WebhooksResource">WebhooksResource</a></li>
 <li><a title="crowdin_api.api_resources.workflows.resource.WorkflowsResource" href="../workflows/resource.html#crowdin_api.api_resources.workflows.resource.WorkflowsResource">WorkflowsResource</a></li>
 </ul>
@@ -72,6 +74,12 @@
 <dl>
 <dt id="crowdin_api.api_resources.abstract.resources.BaseResource.get_page_params"><code class="name flex">
 <span>def <span class="ident">get_page_params</span></span>(<span>self, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.abstract.resources.BaseResource.get_project_id"><code class="name flex">
+<span>def <span class="ident">get_project_id</span></span>(<span>self)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -104,6 +112,7 @@
 <h4><code><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.abstract.resources.BaseResource.get_page_params" href="#crowdin_api.api_resources.abstract.resources.BaseResource.get_page_params">get_page_params</a></code></li>
+<li><code><a title="crowdin_api.api_resources.abstract.resources.BaseResource.get_project_id" href="#crowdin_api.api_resources.abstract.resources.BaseResource.get_project_id">get_project_id</a></code></li>
 <li><code><a title="crowdin_api.api_resources.abstract.resources.BaseResource.with_fetch_all" href="#crowdin_api.api_resources.abstract.resources.BaseResource.with_fetch_all">with_fetch_all</a></code></li>
 </ul>
 </li>

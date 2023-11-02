@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.client.CrowdinClient"><code class="flex name class">
 <span>class <span class="ident">CrowdinClient</span></span>
-<span>(</span><span>organization: Optional[str] = None, token: Optional[str] = None, base_url: Optional[str] = None, user_agent: Optional[str] = None, page_size: Optional[int] = None, timeout: Optional[int] = None, retry_delay: Union[int, float, None] = None, max_retries: Optional[int] = None, http_protocol: Optional[str] = None, headers: Optional[dict] = None, extended_request_params: Optional[dict] = None)</span>
+<span>(</span><span>project_id: Optional[int] = None, organization: Optional[str] = None, token: Optional[str] = None, base_url: Optional[str] = None, user_agent: Optional[str] = None, page_size: Optional[int] = None, timeout: Optional[int] = None, retry_delay: Union[int, float, None] = None, max_retries: Optional[int] = None, http_protocol: Optional[str] = None, headers: Optional[dict] = None, extended_request_params: Optional[dict] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -72,6 +72,10 @@
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.client.CrowdinClient.PROJECT_ID"><code class="name">var <span class="ident">PROJECT_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.client.CrowdinClient.RETRY_DELAY"><code class="name">var <span class="ident">RETRY_DELAY</span></code></dt>
 <dd>
 <div class="desc"></div>
@@ -91,6 +95,10 @@
 </dl>
 <h3>Instance variables</h3>
 <dl>
+<dt id="crowdin_api.client.CrowdinClient.applications"><code class="name">var <span class="ident">applications</span> : <a title="crowdin_api.api_resources.application.resource.ApplicationResource" href="api_resources/application/resource.html#crowdin_api.api_resources.application.resource.ApplicationResource">ApplicationResource</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.client.CrowdinClient.bundles"><code class="name">var <span class="ident">bundles</span> : <a title="crowdin_api.api_resources.bundles.resource.BundlesResource" href="api_resources/bundles/resource.html#crowdin_api.api_resources.bundles.resource.BundlesResource">BundlesResource</a></code></dt>
 <dd>
 <div class="desc"></div>
@@ -239,10 +247,12 @@
 <li><code><a title="crowdin_api.client.CrowdinClient.MAX_RETRIES" href="#crowdin_api.client.CrowdinClient.MAX_RETRIES">MAX_RETRIES</a></code></li>
 <li><code><a title="crowdin_api.client.CrowdinClient.ORGANIZATION" href="#crowdin_api.client.CrowdinClient.ORGANIZATION">ORGANIZATION</a></code></li>
 <li><code><a title="crowdin_api.client.CrowdinClient.PAGE_SIZE" href="#crowdin_api.client.CrowdinClient.PAGE_SIZE">PAGE_SIZE</a></code></li>
+<li><code><a title="crowdin_api.client.CrowdinClient.PROJECT_ID" href="#crowdin_api.client.CrowdinClient.PROJECT_ID">PROJECT_ID</a></code></li>
 <li><code><a title="crowdin_api.client.CrowdinClient.RETRY_DELAY" href="#crowdin_api.client.CrowdinClient.RETRY_DELAY">RETRY_DELAY</a></code></li>
 <li><code><a title="crowdin_api.client.CrowdinClient.TIMEOUT" href="#crowdin_api.client.CrowdinClient.TIMEOUT">TIMEOUT</a></code></li>
 <li><code><a title="crowdin_api.client.CrowdinClient.TOKEN" href="#crowdin_api.client.CrowdinClient.TOKEN">TOKEN</a></code></li>
 <li><code><a title="crowdin_api.client.CrowdinClient.USER_AGENT" href="#crowdin_api.client.CrowdinClient.USER_AGENT">USER_AGENT</a></code></li>
+<li><code><a title="crowdin_api.client.CrowdinClient.applications" href="#crowdin_api.client.CrowdinClient.applications">applications</a></code></li>
 <li><code><a title="crowdin_api.client.CrowdinClient.bundles" href="#crowdin_api.client.CrowdinClient.bundles">bundles</a></code></li>
 <li><code><a title="crowdin_api.client.CrowdinClient.dictionaries" href="#crowdin_api.client.CrowdinClient.dictionaries">dictionaries</a></code></li>
 <li><code><a title="crowdin_api.client.CrowdinClient.distributions" href="#crowdin_api.client.CrowdinClient.distributions">distributions</a></code></li>

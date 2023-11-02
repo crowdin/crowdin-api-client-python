@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportSettingsTemplatesResource"><code class="flex name class">
 <span>class <span class="ident">BaseReportSettingsTemplatesResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -50,7 +50,7 @@
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportSettingsTemplatesResource.add_report_settings_template"><code class="name flex">
-<span>def <span class="ident">add_report_settings_template</span></span>(<span>self, projectId: int, name: str, currency: <a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>, unit: <a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>, config: <a title="crowdin_api.api_resources.reports.types.Config" href="types.html#crowdin_api.api_resources.reports.types.Config">Config</a>)</span>
+<span>def <span class="ident">add_report_settings_template</span></span>(<span>self, name: str, currency: <a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>, unit: <a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>, config: <a title="crowdin_api.api_resources.reports.types.Config" href="types.html#crowdin_api.api_resources.reports.types.Config">Config</a>, isPublic: Optional[bool] = None, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Report Settings Templates.</p>
@@ -60,7 +60,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportSettingsTemplatesResource.delete_report_settings_template"><code class="name flex">
-<span>def <span class="ident">delete_report_settings_template</span></span>(<span>self, projectId: int, reportSettingsTemplateId: int)</span>
+<span>def <span class="ident">delete_report_settings_template</span></span>(<span>self, reportSettingsTemplateId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Report Settings Templates.</p>
@@ -70,7 +70,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.settings-templates.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.settings-templates.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportSettingsTemplatesResource.edit_report_settings_template"><code class="name flex">
-<span>def <span class="ident">edit_report_settings_template</span></span>(<span>self, projectId: int, reportSettingsTemplateId: int, data: Iterable[<a title="crowdin_api.api_resources.reports.types.ReportSettingsTemplatesPatchRequest" href="types.html#crowdin_api.api_resources.reports.types.ReportSettingsTemplatesPatchRequest">ReportSettingsTemplatesPatchRequest</a>])</span>
+<span>def <span class="ident">edit_report_settings_template</span></span>(<span>self, reportSettingsTemplateId: int, data: Iterable[<a title="crowdin_api.api_resources.reports.types.ReportSettingsTemplatesPatchRequest" href="types.html#crowdin_api.api_resources.reports.types.ReportSettingsTemplatesPatchRequest">ReportSettingsTemplatesPatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Report Settings Templates.</p>
@@ -80,7 +80,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportSettingsTemplatesResource.get_report_settings_template"><code class="name flex">
-<span>def <span class="ident">get_report_settings_template</span></span>(<span>self, projectId: int, reportSettingsTemplateId: int)</span>
+<span>def <span class="ident">get_report_settings_template</span></span>(<span>self, reportSettingsTemplateId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Report Settings Templates.</p>
@@ -96,7 +96,7 @@
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportSettingsTemplatesResource.list_report_settings_template"><code class="name flex">
-<span>def <span class="ident">list_report_settings_template</span></span>(<span>self, projectId: int, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_report_settings_template</span></span>(<span>self, projectId: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Report Settings Templates.</p>
@@ -109,7 +109,7 @@
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource"><code class="flex name class">
 <span>class <span class="ident">BaseReportsResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -125,7 +125,7 @@
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.check_report_generation_status"><code class="name flex">
-<span>def <span class="ident">check_report_generation_status</span></span>(<span>self, projectId: int, reportId: str)</span>
+<span>def <span class="ident">check_report_generation_status</span></span>(<span>self, reportId: str, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Check Report Generation Status.</p>
@@ -135,7 +135,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.download_report"><code class="name flex">
-<span>def <span class="ident">download_report</span></span>(<span>self, projectId: int, reportId: str)</span>
+<span>def <span class="ident">download_report</span></span>(<span>self, reportId: str, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Download Report.</p>
@@ -145,7 +145,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.download.download">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.download.download</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report"><code class="name flex">
-<span>def <span class="ident">generate_contribution_raw_data_report</span></span>(<span>self, projectId: int, mode: <a title="crowdin_api.api_resources.reports.enums.ContributionMode" href="enums.html#crowdin_api.api_resources.reports.enums.ContributionMode">ContributionMode</a>, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, languageId: Optional[str] = None, userId: Optional[int] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">generate_contribution_raw_data_report</span></span>(<span>self, mode: <a title="crowdin_api.api_resources.reports.enums.ContributionMode" href="enums.html#crowdin_api.api_resources.reports.enums.ContributionMode">ContributionMode</a>, projectId: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, languageId: Optional[str] = None, userId: Optional[int] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report(Contribution Raw Data).</p>
@@ -155,7 +155,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report"><code class="name flex">
-<span>def <span class="ident">generate_costs_estimation_post_editing_by_task_report</span></span>(<span>self, project_id: int, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, base_rates: Optional[<a title="crowdin_api.api_resources.reports.types.BaseRates" href="types.html#crowdin_api.api_resources.reports.types.BaseRates">BaseRates</a>] = None, individual_rates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate">IndividualRate</a>]] = None, net_rate_schemes: Optional[<a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes">NetRateSchemes</a>] = None, calculate_internal_matches: Optional[bool] = None, include_pre_translated_strings: Optional[bool] = None, task_id: Optional[int] = None)</span>
+<span>def <span class="ident">generate_costs_estimation_post_editing_by_task_report</span></span>(<span>self, project_id: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, base_rates: Optional[<a title="crowdin_api.api_resources.reports.types.BaseRates" href="types.html#crowdin_api.api_resources.reports.types.BaseRates">BaseRates</a>] = None, individual_rates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate">IndividualRate</a>]] = None, net_rate_schemes: Optional[<a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes">NetRateSchemes</a>] = None, calculate_internal_matches: Optional[bool] = None, include_pre_translated_strings: Optional[bool] = None, task_id: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report.</p>
@@ -165,7 +165,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report"><code class="name flex">
-<span>def <span class="ident">generate_costs_estimation_post_editing_general_report</span></span>(<span>self, project_id: int, base_rates: <a title="crowdin_api.api_resources.reports.types.BaseRates" href="types.html#crowdin_api.api_resources.reports.types.BaseRates">BaseRates</a>, individual_rates: Iterable[<a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate">IndividualRate</a>], net_rate_schemes: <a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes">NetRateSchemes</a>, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, calculate_internal_matches: Optional[bool] = None, include_pre_translated_strings: Optional[bool] = None, language_id: Optional[str] = None, file_ids: Optional[Iterable[int]] = None, directory_ids: Optional[Iterable[int]] = None, branch_ids: Optional[Iterable[int]] = None, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None, label_ids: Optional[Iterable[int]] = None, label_include_type: Optional[<a title="crowdin_api.api_resources.reports.enums.ReportLabelIncludeType" href="enums.html#crowdin_api.api_resources.reports.enums.ReportLabelIncludeType">ReportLabelIncludeType</a>] = None)</span>
+<span>def <span class="ident">generate_costs_estimation_post_editing_general_report</span></span>(<span>self, base_rates: <a title="crowdin_api.api_resources.reports.types.BaseRates" href="types.html#crowdin_api.api_resources.reports.types.BaseRates">BaseRates</a>, individual_rates: Iterable[<a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate">IndividualRate</a>], net_rate_schemes: <a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes">NetRateSchemes</a>, project_id: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, calculate_internal_matches: Optional[bool] = None, include_pre_translated_strings: Optional[bool] = None, language_id: Optional[str] = None, file_ids: Optional[Iterable[int]] = None, directory_ids: Optional[Iterable[int]] = None, branch_ids: Optional[Iterable[int]] = None, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None, label_ids: Optional[Iterable[int]] = None, label_include_type: Optional[<a title="crowdin_api.api_resources.reports.enums.ReportLabelIncludeType" href="enums.html#crowdin_api.api_resources.reports.enums.ReportLabelIncludeType">ReportLabelIncludeType</a>] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report.</p>
@@ -175,19 +175,19 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_fuzzy_cost_estimate_report"><code class="name flex">
-<span>def <span class="ident">generate_fuzzy_cost_estimate_report</span></span>(<span>self, projectId: int, **kwargs)</span>
+<span>def <span class="ident">generate_fuzzy_cost_estimate_report</span></span>(<span>self, projectId: Optional[int] = None, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_fuzzy_translation_cost_report"><code class="name flex">
-<span>def <span class="ident">generate_fuzzy_translation_cost_report</span></span>(<span>self, projectId: int, **kwargs)</span>
+<span>def <span class="ident">generate_fuzzy_translation_cost_report</span></span>(<span>self, projectId: Optional[int] = None, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report"><code class="name flex">
-<span>def <span class="ident">generate_report</span></span>(<span>self, projectId: int, request_data: Dict[~KT, ~VT])</span>
+<span>def <span class="ident">generate_report</span></span>(<span>self, request_data: Dict[~KT, ~VT], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report.</p>
@@ -197,19 +197,19 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.download.download">https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.download.download</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_simple_cost_estimate_report"><code class="name flex">
-<span>def <span class="ident">generate_simple_cost_estimate_report</span></span>(<span>self, projectId: int, **kwargs)</span>
+<span>def <span class="ident">generate_simple_cost_estimate_report</span></span>(<span>self, projectId: Optional[int] = None, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_simple_translation_cost_report"><code class="name flex">
-<span>def <span class="ident">generate_simple_translation_cost_report</span></span>(<span>self, projectId: int, **kwargs)</span>
+<span>def <span class="ident">generate_simple_translation_cost_report</span></span>(<span>self, projectId: Optional[int] = None, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report"><code class="name flex">
-<span>def <span class="ident">generate_top_members_report</span></span>(<span>self, projectId: int, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, languageId: Optional[str] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">generate_top_members_report</span></span>(<span>self, projectId: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, languageId: Optional[str] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report(Top Members).</p>
@@ -219,7 +219,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report"><code class="name flex">
-<span>def <span class="ident">generate_translation_costs_post_editing_by_task_report</span></span>(<span>self, project_id: int, base_rates: <a title="crowdin_api.api_resources.reports.types.BaseRates" href="types.html#crowdin_api.api_resources.reports.types.BaseRates">BaseRates</a>, individual_rates: Iterable[<a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate">IndividualRate</a>], net_rate_schemes: <a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes">NetRateSchemes</a>, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, task_id: Optional[int] = None)</span>
+<span>def <span class="ident">generate_translation_costs_post_editing_by_task_report</span></span>(<span>self, base_rates: <a title="crowdin_api.api_resources.reports.types.BaseRates" href="types.html#crowdin_api.api_resources.reports.types.BaseRates">BaseRates</a>, individual_rates: Iterable[<a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate">IndividualRate</a>], net_rate_schemes: <a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes">NetRateSchemes</a>, project_id: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, task_id: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report.</p>
@@ -229,7 +229,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report"><code class="name flex">
-<span>def <span class="ident">generate_translation_costs_post_editing_general_report</span></span>(<span>self, project_id: int, base_rates: <a title="crowdin_api.api_resources.reports.types.BaseRates" href="types.html#crowdin_api.api_resources.reports.types.BaseRates">BaseRates</a>, individual_rates: Iterable[<a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate">IndividualRate</a>], net_rate_schemes: <a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes">NetRateSchemes</a>, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, group_by: Optional[<a title="crowdin_api.api_resources.reports.enums.GroupBy" href="enums.html#crowdin_api.api_resources.reports.enums.GroupBy">GroupBy</a>] = None, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None, language_id: Optional[str] = None, user_ids: Optional[Iterable[int]] = None, file_ids: Optional[Iterable[int]] = None, directory_ids: Optional[Iterable[int]] = None, branch_ids: Optional[Iterable[int]] = None)</span>
+<span>def <span class="ident">generate_translation_costs_post_editing_general_report</span></span>(<span>self, base_rates: <a title="crowdin_api.api_resources.reports.types.BaseRates" href="types.html#crowdin_api.api_resources.reports.types.BaseRates">BaseRates</a>, individual_rates: Iterable[<a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.IndividualRate">IndividualRate</a>], net_rate_schemes: <a title="crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes" href="requests/cost_estimation_post_editing.html#crowdin_api.api_resources.reports.requests.cost_estimation_post_editing.NetRateSchemes">NetRateSchemes</a>, project_id: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, group_by: Optional[<a title="crowdin_api.api_resources.reports.enums.GroupBy" href="enums.html#crowdin_api.api_resources.reports.enums.GroupBy">GroupBy</a>] = None, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None, language_id: Optional[str] = None, user_ids: Optional[Iterable[int]] = None, file_ids: Optional[Iterable[int]] = None, directory_ids: Optional[Iterable[int]] = None, branch_ids: Optional[Iterable[int]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report.</p>
@@ -248,7 +248,7 @@
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource"><code class="flex name class">
 <span>class <span class="ident">EnterpriseReportsResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Enterprise Reports.</p>
@@ -282,7 +282,7 @@ and shall be completed with a sequence of API methods.</p>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_fuzzy_cost_estimate_report"><code class="name flex">
-<span>def <span class="ident">generate_fuzzy_cost_estimate_report</span></span>(<span>self, projectId: int, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, languageId: Optional[str] = None, fileIds: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, stepTypes: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.StepTypes" href="types.html#crowdin_api.api_resources.reports.types.StepTypes">StepTypes</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">generate_fuzzy_cost_estimate_report</span></span>(<span>self, projectId: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, languageId: Optional[str] = None, fileIds: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, stepTypes: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.StepTypes" href="types.html#crowdin_api.api_resources.reports.types.StepTypes">StepTypes</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report(Cost Estimate Fuzzy Mode).</p>
@@ -290,7 +290,7 @@ and shall be completed with a sequence of API methods.</p>
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_fuzzy_translation_cost_report"><code class="name flex">
-<span>def <span class="ident">generate_fuzzy_translation_cost_report</span></span>(<span>self, projectId: int, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, groupBy: Optional[<a title="crowdin_api.api_resources.reports.enums.GroupBy" href="enums.html#crowdin_api.api_resources.reports.enums.GroupBy">GroupBy</a>] = None, stepTypes: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.StepTypes" href="types.html#crowdin_api.api_resources.reports.types.StepTypes">StepTypes</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">generate_fuzzy_translation_cost_report</span></span>(<span>self, projectId: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, groupBy: Optional[<a title="crowdin_api.api_resources.reports.enums.GroupBy" href="enums.html#crowdin_api.api_resources.reports.enums.GroupBy">GroupBy</a>] = None, stepTypes: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.StepTypes" href="types.html#crowdin_api.api_resources.reports.types.StepTypes">StepTypes</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report(Translation Cost Fuzzy Mode).</p>
@@ -322,7 +322,7 @@ and shall be completed with a sequence of API methods.</p>
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_simple_cost_estimate_report"><code class="name flex">
-<span>def <span class="ident">generate_simple_cost_estimate_report</span></span>(<span>self, projectId: int, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, languageId: Optional[str] = None, fileIds: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, stepTypes: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.StepTypes" href="types.html#crowdin_api.api_resources.reports.types.StepTypes">StepTypes</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">generate_simple_cost_estimate_report</span></span>(<span>self, projectId: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, languageId: Optional[str] = None, fileIds: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, stepTypes: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.StepTypes" href="types.html#crowdin_api.api_resources.reports.types.StepTypes">StepTypes</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report(Cost Estimate schema).</p>
@@ -330,7 +330,7 @@ and shall be completed with a sequence of API methods.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_simple_translation_cost_report"><code class="name flex">
-<span>def <span class="ident">generate_simple_translation_cost_report</span></span>(<span>self, projectId: int, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, groupBy: Optional[<a title="crowdin_api.api_resources.reports.enums.GroupBy" href="enums.html#crowdin_api.api_resources.reports.enums.GroupBy">GroupBy</a>] = None, stepTypes: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.StepTypes" href="types.html#crowdin_api.api_resources.reports.types.StepTypes">StepTypes</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">generate_simple_translation_cost_report</span></span>(<span>self, projectId: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, groupBy: Optional[<a title="crowdin_api.api_resources.reports.enums.GroupBy" href="enums.html#crowdin_api.api_resources.reports.enums.GroupBy">GroupBy</a>] = None, stepTypes: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.StepTypes" href="types.html#crowdin_api.api_resources.reports.types.StepTypes">StepTypes</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report(Translation Cost).</p>
@@ -366,7 +366,7 @@ and shall be completed with a sequence of API methods.</p>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.ReportsResource"><code class="flex name class">
 <span>class <span class="ident">ReportsResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Reports.</p>
@@ -385,7 +385,7 @@ and shall be completed with a sequence of API methods.</p>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.reports.resource.ReportsResource.generate_fuzzy_cost_estimate_report"><code class="name flex">
-<span>def <span class="ident">generate_fuzzy_cost_estimate_report</span></span>(<span>self, projectId: int, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, languageId: Optional[str] = None, fileIds: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, calculateInternalFuzzyMatches: Optional[bool] = None, regularRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.FuzzyRegularRate" href="types.html#crowdin_api.api_resources.reports.types.FuzzyRegularRate">FuzzyRegularRate</a>]] = None, individualRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.FuzzyIndividualRate" href="types.html#crowdin_api.api_resources.reports.types.FuzzyIndividualRate">FuzzyIndividualRate</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">generate_fuzzy_cost_estimate_report</span></span>(<span>self, projectId: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, languageId: Optional[str] = None, fileIds: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, calculateInternalFuzzyMatches: Optional[bool] = None, regularRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.FuzzyRegularRate" href="types.html#crowdin_api.api_resources.reports.types.FuzzyRegularRate">FuzzyRegularRate</a>]] = None, individualRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.FuzzyIndividualRate" href="types.html#crowdin_api.api_resources.reports.types.FuzzyIndividualRate">FuzzyIndividualRate</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report(Cost Estimate Fuzzy Mode).</p>
@@ -393,7 +393,7 @@ and shall be completed with a sequence of API methods.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.ReportsResource.generate_fuzzy_translation_cost_report"><code class="name flex">
-<span>def <span class="ident">generate_fuzzy_translation_cost_report</span></span>(<span>self, projectId: int, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, groupBy: Optional[<a title="crowdin_api.api_resources.reports.enums.GroupBy" href="enums.html#crowdin_api.api_resources.reports.enums.GroupBy">GroupBy</a>] = None, regularRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.FuzzyRegularRate" href="types.html#crowdin_api.api_resources.reports.types.FuzzyRegularRate">FuzzyRegularRate</a>]] = None, individualRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.FuzzyIndividualRate" href="types.html#crowdin_api.api_resources.reports.types.FuzzyIndividualRate">FuzzyIndividualRate</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">generate_fuzzy_translation_cost_report</span></span>(<span>self, projectId: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, groupBy: Optional[<a title="crowdin_api.api_resources.reports.enums.GroupBy" href="enums.html#crowdin_api.api_resources.reports.enums.GroupBy">GroupBy</a>] = None, regularRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.FuzzyRegularRate" href="types.html#crowdin_api.api_resources.reports.types.FuzzyRegularRate">FuzzyRegularRate</a>]] = None, individualRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.FuzzyIndividualRate" href="types.html#crowdin_api.api_resources.reports.types.FuzzyIndividualRate">FuzzyIndividualRate</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report(Translation Fuzzy Cost).</p>
@@ -401,7 +401,7 @@ and shall be completed with a sequence of API methods.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.ReportsResource.generate_simple_cost_estimate_report"><code class="name flex">
-<span>def <span class="ident">generate_simple_cost_estimate_report</span></span>(<span>self, projectId: int, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, languageId: Optional[str] = None, fileIds: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, regularRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.SimpleRegularRate" href="types.html#crowdin_api.api_resources.reports.types.SimpleRegularRate">SimpleRegularRate</a>]] = None, individualRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.SimpleIndividualRate" href="types.html#crowdin_api.api_resources.reports.types.SimpleIndividualRate">SimpleIndividualRate</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">generate_simple_cost_estimate_report</span></span>(<span>self, projectId: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, languageId: Optional[str] = None, fileIds: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, regularRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.SimpleRegularRate" href="types.html#crowdin_api.api_resources.reports.types.SimpleRegularRate">SimpleRegularRate</a>]] = None, individualRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.SimpleIndividualRate" href="types.html#crowdin_api.api_resources.reports.types.SimpleIndividualRate">SimpleIndividualRate</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report(Cost Estimate Schema).</p>
@@ -409,7 +409,7 @@ and shall be completed with a sequence of API methods.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.ReportsResource.generate_simple_translation_cost_report"><code class="name flex">
-<span>def <span class="ident">generate_simple_translation_cost_report</span></span>(<span>self, projectId: int, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, groupBy: Optional[<a title="crowdin_api.api_resources.reports.enums.GroupBy" href="enums.html#crowdin_api.api_resources.reports.enums.GroupBy">GroupBy</a>] = None, regularRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.SimpleRegularRate" href="types.html#crowdin_api.api_resources.reports.types.SimpleRegularRate">SimpleRegularRate</a>]] = None, individualRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.SimpleIndividualRate" href="types.html#crowdin_api.api_resources.reports.types.SimpleIndividualRate">SimpleIndividualRate</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">generate_simple_translation_cost_report</span></span>(<span>self, projectId: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, groupBy: Optional[<a title="crowdin_api.api_resources.reports.enums.GroupBy" href="enums.html#crowdin_api.api_resources.reports.enums.GroupBy">GroupBy</a>] = None, regularRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.SimpleRegularRate" href="types.html#crowdin_api.api_resources.reports.types.SimpleRegularRate">SimpleRegularRate</a>]] = None, individualRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.SimpleIndividualRate" href="types.html#crowdin_api.api_resources.reports.types.SimpleIndividualRate">SimpleIndividualRate</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report(Translation Cost).</p>

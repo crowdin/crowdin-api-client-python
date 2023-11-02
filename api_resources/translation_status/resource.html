@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource"><code class="flex name class">
 <span>class <span class="ident">TranslationStatusResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Translation Status.</p>
@@ -50,7 +50,7 @@ file, language, branch, directory.</p>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_branch_progress"><code class="name flex">
-<span>def <span class="ident">get_branch_progress</span></span>(<span>self, projectId: int, branchId: int, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">get_branch_progress</span></span>(<span>self, branchId: int, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Branch Progress.</p>
@@ -58,7 +58,7 @@ file, language, branch, directory.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.branches.languages.progress.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.branches.languages.progress.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_directory_progress"><code class="name flex">
-<span>def <span class="ident">get_directory_progress</span></span>(<span>self, projectId: int, directoryId: int, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">get_directory_progress</span></span>(<span>self, directoryId: int, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Directory Progress.</p>
@@ -66,7 +66,7 @@ file, language, branch, directory.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.directories.languages.progress.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.directories.languages.progress.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_file_progress"><code class="name flex">
-<span>def <span class="ident">get_file_progress</span></span>(<span>self, projectId: int, fileId: int, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">get_file_progress</span></span>(<span>self, fileId: int, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get File Progress.</p>
@@ -74,7 +74,7 @@ file, language, branch, directory.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.languages.progress.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.files.languages.progress.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_language_progress"><code class="name flex">
-<span>def <span class="ident">get_language_progress</span></span>(<span>self, projectId: int, languageId: str, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">get_language_progress</span></span>(<span>self, languageId: str, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Language Progress.</p>
@@ -82,7 +82,7 @@ file, language, branch, directory.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.languages.files.progress.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.languages.files.progress.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_project_progress"><code class="name flex">
-<span>def <span class="ident">get_project_progress</span></span>(<span>self, projectId: int, languageIds: Optional[Iterable[str]] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">get_project_progress</span></span>(<span>self, projectId: Optional[int] = None, languageIds: Optional[Iterable[str]] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Project Progress.</p>
@@ -90,7 +90,7 @@ file, language, branch, directory.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.languages.progress.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.languages.progress.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.list_qa_check_issues"><code class="name flex">
-<span>def <span class="ident">list_qa_check_issues</span></span>(<span>self, projectId: int, category: Optional[Iterable[<a title="crowdin_api.api_resources.translation_status.enums.Category" href="enums.html#crowdin_api.api_resources.translation_status.enums.Category">Category</a>]] = None, validation: Optional[Iterable[<a title="crowdin_api.api_resources.translation_status.enums.Validation" href="enums.html#crowdin_api.api_resources.translation_status.enums.Validation">Validation</a>]] = None, languageIds: Optional[Iterable[str]] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_qa_check_issues</span></span>(<span>self, projectId: Optional[int] = None, category: Optional[Iterable[<a title="crowdin_api.api_resources.translation_status.enums.Category" href="enums.html#crowdin_api.api_resources.translation_status.enums.Category">Category</a>]] = None, validation: Optional[Iterable[<a title="crowdin_api.api_resources.translation_status.enums.Validation" href="enums.html#crowdin_api.api_resources.translation_status.enums.Validation">Validation</a>]] = None, languageIds: Optional[Iterable[str]] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List QA Check Issues.</p>

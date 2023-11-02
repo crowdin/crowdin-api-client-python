@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.distributions.resource.DistributionsResource"><code class="flex name class">
 <span>class <span class="ident">DistributionsResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Distributions.</p>
@@ -47,7 +47,7 @@
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.distributions.resource.DistributionsResource.add_distribution"><code class="name flex">
-<span>def <span class="ident">add_distribution</span></span>(<span>self, projectId: int, name: str, fileIds: Optional[Iterable[int]] = None, bundleIds: Optional[Iterable[int]] = None, exportMode: Optional[<a title="crowdin_api.api_resources.distributions.enums.ExportMode" href="enums.html#crowdin_api.api_resources.distributions.enums.ExportMode">ExportMode</a>] = ExportMode.DEFAULT)</span>
+<span>def <span class="ident">add_distribution</span></span>(<span>self, name: str, projectId: Optional[int] = None, fileIds: Optional[Iterable[int]] = None, bundleIds: Optional[Iterable[int]] = None, exportMode: Optional[<a title="crowdin_api.api_resources.distributions.enums.ExportMode" href="enums.html#crowdin_api.api_resources.distributions.enums.ExportMode">ExportMode</a>] = ExportMode.DEFAULT)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Distribution.</p>
@@ -55,7 +55,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.post">https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.distributions.resource.DistributionsResource.delete_distribution"><code class="name flex">
-<span>def <span class="ident">delete_distribution</span></span>(<span>self, projectId: int, hash: str)</span>
+<span>def <span class="ident">delete_distribution</span></span>(<span>self, hash: str, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Distribution.</p>
@@ -63,7 +63,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.distributions.resource.DistributionsResource.edit_distribution"><code class="name flex">
-<span>def <span class="ident">edit_distribution</span></span>(<span>self, projectId: int, hash: str, data: Iterable[<a title="crowdin_api.api_resources.distributions.types.DistributionPatchRequest" href="types.html#crowdin_api.api_resources.distributions.types.DistributionPatchRequest">DistributionPatchRequest</a>])</span>
+<span>def <span class="ident">edit_distribution</span></span>(<span>self, hash: str, data: Iterable[<a title="crowdin_api.api_resources.distributions.types.DistributionPatchRequest" href="types.html#crowdin_api.api_resources.distributions.types.DistributionPatchRequest">DistributionPatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Distribution.</p>
@@ -71,7 +71,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.distributions.resource.DistributionsResource.get_distribution"><code class="name flex">
-<span>def <span class="ident">get_distribution</span></span>(<span>self, projectId: int, hash: str)</span>
+<span>def <span class="ident">get_distribution</span></span>(<span>self, hash: str, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Distribution.</p>
@@ -79,7 +79,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.get">https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.distributions.resource.DistributionsResource.get_distribution_release"><code class="name flex">
-<span>def <span class="ident">get_distribution_release</span></span>(<span>self, projectId: int, hash: str)</span>
+<span>def <span class="ident">get_distribution_release</span></span>(<span>self, hash: str, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Distribution Release.</p>
@@ -93,7 +93,7 @@
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.distributions.resource.DistributionsResource.list_distributions"><code class="name flex">
-<span>def <span class="ident">list_distributions</span></span>(<span>self, projectId: int, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_distributions</span></span>(<span>self, projectId: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Distributions.</p>
@@ -101,7 +101,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.distributions.resource.DistributionsResource.release_distribution"><code class="name flex">
-<span>def <span class="ident">release_distribution</span></span>(<span>self, projectId: int, hash: str)</span>
+<span>def <span class="ident">release_distribution</span></span>(<span>self, hash: str, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Release Distribution.</p>

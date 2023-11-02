@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.webhooks.resource.WebhooksResource"><code class="flex name class">
 <span>class <span class="ident">WebhooksResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Webhooks.</p>
@@ -65,7 +65,7 @@ create integrations with other systems on your own.</p>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.webhooks.resource.WebhooksResource.add_webhook"><code class="name flex">
-<span>def <span class="ident">add_webhook</span></span>(<span>self, projectId: int, name: str, url: str, events: Iterable[<a title="crowdin_api.api_resources.webhooks.enums.WebhookEvents" href="enums.html#crowdin_api.api_resources.webhooks.enums.WebhookEvents">WebhookEvents</a>], requestType: <a title="crowdin_api.api_resources.webhooks.enums.WebhookRequestType" href="enums.html#crowdin_api.api_resources.webhooks.enums.WebhookRequestType">WebhookRequestType</a>, isActive: Optional[bool] = None, batchingEnabled: Optional[bool] = None, contentType: Optional[<a title="crowdin_api.api_resources.webhooks.enums.WebhookContentType" href="enums.html#crowdin_api.api_resources.webhooks.enums.WebhookContentType">WebhookContentType</a>] = None, headers: Optional[Dict[~KT, ~VT]] = None, payload: Optional[Dict[~KT, ~VT]] = None)</span>
+<span>def <span class="ident">add_webhook</span></span>(<span>self, name: str, url: str, events: Iterable[<a title="crowdin_api.api_resources.webhooks.enums.WebhookEvents" href="enums.html#crowdin_api.api_resources.webhooks.enums.WebhookEvents">WebhookEvents</a>], requestType: <a title="crowdin_api.api_resources.webhooks.enums.WebhookRequestType" href="enums.html#crowdin_api.api_resources.webhooks.enums.WebhookRequestType">WebhookRequestType</a>, projectId: Optional[int] = None, isActive: Optional[bool] = None, batchingEnabled: Optional[bool] = None, contentType: Optional[<a title="crowdin_api.api_resources.webhooks.enums.WebhookContentType" href="enums.html#crowdin_api.api_resources.webhooks.enums.WebhookContentType">WebhookContentType</a>] = None, headers: Optional[Dict[~KT, ~VT]] = None, payload: Optional[Dict[~KT, ~VT]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Webhook.</p>
@@ -73,7 +73,7 @@ create integrations with other systems on your own.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.post">https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.webhooks.resource.WebhooksResource.delete_webhook"><code class="name flex">
-<span>def <span class="ident">delete_webhook</span></span>(<span>self, projectId: int, webhookId: int)</span>
+<span>def <span class="ident">delete_webhook</span></span>(<span>self, webhookId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Webhook.</p>
@@ -81,7 +81,7 @@ create integrations with other systems on your own.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.webhooks.resource.WebhooksResource.edit_webhook"><code class="name flex">
-<span>def <span class="ident">edit_webhook</span></span>(<span>self, projectId: int, webhookId: int, data: Iterable[<a title="crowdin_api.api_resources.webhooks.types.WebhookPatchRequest" href="types.html#crowdin_api.api_resources.webhooks.types.WebhookPatchRequest">WebhookPatchRequest</a>])</span>
+<span>def <span class="ident">edit_webhook</span></span>(<span>self, webhookId: int, data: Iterable[<a title="crowdin_api.api_resources.webhooks.types.WebhookPatchRequest" href="types.html#crowdin_api.api_resources.webhooks.types.WebhookPatchRequest">WebhookPatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Custom Language.</p>
@@ -89,7 +89,7 @@ create integrations with other systems on your own.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.webhooks.resource.WebhooksResource.get_webhook"><code class="name flex">
-<span>def <span class="ident">get_webhook</span></span>(<span>self, projectId: int, webhookId: int)</span>
+<span>def <span class="ident">get_webhook</span></span>(<span>self, webhookId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Webhook.</p>
@@ -103,7 +103,7 @@ create integrations with other systems on your own.</p>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.webhooks.resource.WebhooksResource.list_webhooks"><code class="name flex">
-<span>def <span class="ident">list_webhooks</span></span>(<span>self, projectId: int, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_webhooks</span></span>(<span>self, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Webhooks.</p>

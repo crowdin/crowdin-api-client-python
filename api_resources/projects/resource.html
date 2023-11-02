@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource"><code class="flex name class">
 <span>class <span class="ident">ProjectsResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Storages.</p>
@@ -65,7 +65,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.post">https://developer.crowdin.com/api/v2/#operation/api.projects.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.add_project_file_format_settings"><code class="name flex">
-<span>def <span class="ident">add_project_file_format_settings</span></span>(<span>self, projectId: int, format: str, settings: Union[<a title="crowdin_api.api_resources.projects.types.PropertyFileFormatSettings" href="types.html#crowdin_api.api_resources.projects.types.PropertyFileFormatSettings">PropertyFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.XmlFileFormatSettings" href="types.html#crowdin_api.api_resources.projects.types.XmlFileFormatSettings">XmlFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.SpecificFileFormatSettings" href="types.html#crowdin_api.api_resources.projects.types.SpecificFileFormatSettings">SpecificFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.DocxFileFormatSettings" href="types.html#crowdin_api.api_resources.projects.types.DocxFileFormatSettings">DocxFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings" href="types.html#crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings">MediaWikiFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.TxtFileFormatSettings" href="types.html#crowdin_api.api_resources.projects.types.TxtFileFormatSettings">TxtFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.OtherFileFormatSettings" href="types.html#crowdin_api.api_resources.projects.types.OtherFileFormatSettings">OtherFileFormatSettings</a>])</span>
+<span>def <span class="ident">add_project_file_format_settings</span></span>(<span>self, format: str, settings: Union[<a title="crowdin_api.api_resources.projects.types.PropertyFileFormatSettings" href="types.html#crowdin_api.api_resources.projects.types.PropertyFileFormatSettings">PropertyFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.XmlFileFormatSettings" href="types.html#crowdin_api.api_resources.projects.types.XmlFileFormatSettings">XmlFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.SpecificFileFormatSettings" href="types.html#crowdin_api.api_resources.projects.types.SpecificFileFormatSettings">SpecificFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.DocxFileFormatSettings" href="types.html#crowdin_api.api_resources.projects.types.DocxFileFormatSettings">DocxFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings" href="types.html#crowdin_api.api_resources.projects.types.MediaWikiFileFormatSettings">MediaWikiFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.TxtFileFormatSettings" href="types.html#crowdin_api.api_resources.projects.types.TxtFileFormatSettings">TxtFileFormatSettings</a>, <a title="crowdin_api.api_resources.projects.types.OtherFileFormatSettings" href="types.html#crowdin_api.api_resources.projects.types.OtherFileFormatSettings">OtherFileFormatSettings</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Project File Format Settings.</p>
@@ -73,7 +73,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.post">https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.add_project_strings_exporter_settings"><code class="name flex">
-<span>def <span class="ident">add_project_strings_exporter_settings</span></span>(<span>self, projectId: int, format: str, settings: Union[<a title="crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings" href="types.html#crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings">AndroidStringsExporterSettings</a>, <a title="crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings" href="types.html#crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings">MacOSXStringsExporterSettings</a>, <a title="crowdin_api.api_resources.projects.types.XliffStringsExporterSettings" href="types.html#crowdin_api.api_resources.projects.types.XliffStringsExporterSettings">XliffStringsExporterSettings</a>])</span>
+<span>def <span class="ident">add_project_strings_exporter_settings</span></span>(<span>self, format: str, settings: Union[<a title="crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings" href="types.html#crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings">AndroidStringsExporterSettings</a>, <a title="crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings" href="types.html#crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings">MacOSXStringsExporterSettings</a>, <a title="crowdin_api.api_resources.projects.types.XliffStringsExporterSettings" href="types.html#crowdin_api.api_resources.projects.types.XliffStringsExporterSettings">XliffStringsExporterSettings</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Project Strings Exporter Settings.</p>
@@ -89,7 +89,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.post">https://developer.crowdin.com/api/v2/#operation/api.projects.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.delete_project"><code class="name flex">
-<span>def <span class="ident">delete_project</span></span>(<span>self, projectId: int)</span>
+<span>def <span class="ident">delete_project</span></span>(<span>self, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Project.</p>
@@ -97,7 +97,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.delete_project_file_format_settings"><code class="name flex">
-<span>def <span class="ident">delete_project_file_format_settings</span></span>(<span>self, projectId: int, fileFormatSettingsId: int)</span>
+<span>def <span class="ident">delete_project_file_format_settings</span></span>(<span>self, fileFormatSettingsId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Project File Format Settings.</p>
@@ -105,7 +105,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.delete_project_strings_exporter_settings"><code class="name flex">
-<span>def <span class="ident">delete_project_strings_exporter_settings</span></span>(<span>self, projectId: int, systemStringExporterSettingsId: int)</span>
+<span>def <span class="ident">delete_project_strings_exporter_settings</span></span>(<span>self, systemStringExporterSettingsId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Project Strings Exporter Settings.</p>
@@ -113,7 +113,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.download_project_file_custom_segmentation"><code class="name flex">
-<span>def <span class="ident">download_project_file_custom_segmentation</span></span>(<span>self, projectId: int, fileFormatSettingsId: int)</span>
+<span>def <span class="ident">download_project_file_custom_segmentation</span></span>(<span>self, fileFormatSettingsId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Download Project File Format Settings Custom Segmentation.</p>
@@ -121,7 +121,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.custom-segmentations.get">https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.custom-segmentations.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.edit_project"><code class="name flex">
-<span>def <span class="ident">edit_project</span></span>(<span>self, projectId: int, data: Iterable[<a title="crowdin_api.api_resources.projects.types.ProjectPatchRequest" href="types.html#crowdin_api.api_resources.projects.types.ProjectPatchRequest">ProjectPatchRequest</a>])</span>
+<span>def <span class="ident">edit_project</span></span>(<span>self, data: Iterable[<a title="crowdin_api.api_resources.projects.types.ProjectPatchRequest" href="types.html#crowdin_api.api_resources.projects.types.ProjectPatchRequest">ProjectPatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Project.</p>
@@ -129,7 +129,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.edit_project_file_format_settings"><code class="name flex">
-<span>def <span class="ident">edit_project_file_format_settings</span></span>(<span>self, projectId: int, fileFormatSettingsId: int, data: Iterable[<a title="crowdin_api.api_resources.projects.types.ProjectFilePatchRequest" href="types.html#crowdin_api.api_resources.projects.types.ProjectFilePatchRequest">ProjectFilePatchRequest</a>])</span>
+<span>def <span class="ident">edit_project_file_format_settings</span></span>(<span>self, fileFormatSettingsId: int, data: Iterable[<a title="crowdin_api.api_resources.projects.types.ProjectFilePatchRequest" href="types.html#crowdin_api.api_resources.projects.types.ProjectFilePatchRequest">ProjectFilePatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Project File Format Settings.</p>
@@ -137,7 +137,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.edit_project_strings_exporter_settings"><code class="name flex">
-<span>def <span class="ident">edit_project_strings_exporter_settings</span></span>(<span>self, projectId: int, systemStringExporterSettingsId: int, format: str, settings: Union[<a title="crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings" href="types.html#crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings">AndroidStringsExporterSettings</a>, <a title="crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings" href="types.html#crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings">MacOSXStringsExporterSettings</a>, <a title="crowdin_api.api_resources.projects.types.XliffStringsExporterSettings" href="types.html#crowdin_api.api_resources.projects.types.XliffStringsExporterSettings">XliffStringsExporterSettings</a>])</span>
+<span>def <span class="ident">edit_project_strings_exporter_settings</span></span>(<span>self, systemStringExporterSettingsId: int, format: str, settings: Union[<a title="crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings" href="types.html#crowdin_api.api_resources.projects.types.AndroidStringsExporterSettings">AndroidStringsExporterSettings</a>, <a title="crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings" href="types.html#crowdin_api.api_resources.projects.types.MacOSXStringsExporterSettings">MacOSXStringsExporterSettings</a>, <a title="crowdin_api.api_resources.projects.types.XliffStringsExporterSettings" href="types.html#crowdin_api.api_resources.projects.types.XliffStringsExporterSettings">XliffStringsExporterSettings</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Project Strings Exporter Settings.</p>
@@ -145,7 +145,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.get_project"><code class="name flex">
-<span>def <span class="ident">get_project</span></span>(<span>self, projectId: int)</span>
+<span>def <span class="ident">get_project</span></span>(<span>self, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Project.</p>
@@ -153,7 +153,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.get">https://developer.crowdin.com/api/v2/#operation/api.projects.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.get_project_file_format_settings"><code class="name flex">
-<span>def <span class="ident">get_project_file_format_settings</span></span>(<span>self, projectId: int, fileFormatSettingsId: int)</span>
+<span>def <span class="ident">get_project_file_format_settings</span></span>(<span>self, fileFormatSettingsId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Project File Format Settings.</p>
@@ -167,7 +167,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.get_project_strings_exporter_settings"><code class="name flex">
-<span>def <span class="ident">get_project_strings_exporter_settings</span></span>(<span>self, projectId: int, systemStringExporterSettingsId: int)</span>
+<span>def <span class="ident">get_project_strings_exporter_settings</span></span>(<span>self, systemStringExporterSettingsId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Project Strings Exporter Settings</p>
@@ -187,7 +187,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.list_project_file_format_settings"><code class="name flex">
-<span>def <span class="ident">list_project_file_format_settings</span></span>(<span>self, projectId: int, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_project_file_format_settings</span></span>(<span>self, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Project File Format Settings.</p>
@@ -195,7 +195,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.list_project_strings_exporter_settings"><code class="name flex">
-<span>def <span class="ident">list_project_strings_exporter_settings</span></span>(<span>self, projectId: int)</span>
+<span>def <span class="ident">list_project_strings_exporter_settings</span></span>(<span>self, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Project Strings Exporter Settings.</p>
@@ -211,7 +211,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.resource.ProjectsResource.reset_project_file_custom_segmentation"><code class="name flex">
-<span>def <span class="ident">reset_project_file_custom_segmentation</span></span>(<span>self, projectId: int, fileFormatSettingsId: int)</span>
+<span>def <span class="ident">reset_project_file_custom_segmentation</span></span>(<span>self, fileFormatSettingsId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Reset Project File Format Settings Custom Segmentation.</p>

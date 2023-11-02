@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.dictionaries.resource.DictionariesResource"><code class="flex name class">
 <span>class <span class="ident">DictionariesResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Dictionaries.</p>
@@ -49,7 +49,7 @@
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.dictionaries.resource.DictionariesResource.edit_dictionary"><code class="name flex">
-<span>def <span class="ident">edit_dictionary</span></span>(<span>self, projectId: int, languageId: str, data: Iterable[<a title="crowdin_api.api_resources.dictionaries.types.DictionaryPatchPath" href="types.html#crowdin_api.api_resources.dictionaries.types.DictionaryPatchPath">DictionaryPatchPath</a>])</span>
+<span>def <span class="ident">edit_dictionary</span></span>(<span>self, languageId: str, data: Iterable[<a title="crowdin_api.api_resources.dictionaries.types.DictionaryPatchPath" href="types.html#crowdin_api.api_resources.dictionaries.types.DictionaryPatchPath">DictionaryPatchPath</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Dictionary.</p>
@@ -57,7 +57,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.dictionaries.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.dictionaries.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.dictionaries.resource.DictionariesResource.list_dictionaries"><code class="name flex">
-<span>def <span class="ident">list_dictionaries</span></span>(<span>self, projectId: int, languageIds: Optional[Iterable[str]] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_dictionaries</span></span>(<span>self, projectId: Optional[int] = None, languageIds: Optional[Iterable[str]] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Dictionaries.</p>

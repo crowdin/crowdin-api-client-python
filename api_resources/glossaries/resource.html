@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource"><code class="flex name class">
 <span>class <span class="ident">GlossariesResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Glossaries.</p>
@@ -89,6 +89,14 @@ operations and shall be completed with sequence of API methods.</p>
 <div class="desc"><p>Clear Glossary.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.deleteMany">https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.deleteMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.concordance_search_in_glossaries"><code class="name flex">
+<span>def <span class="ident">concordance_search_in_glossaries</span></span>(<span>self, sourceLanguageId: str, targetLanguageId: str, expressions: Iterable[str], projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Concordance search in Glossaries</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.glossaries.concordance.post">https://developer.crowdin.com/api/v2/#operation/api.projects.glossaries.concordance.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_concept"><code class="name flex">
 <span>def <span class="ident">delete_concept</span></span>(<span>self, glossaryId: int, conceptId: int)</span>
@@ -260,6 +268,7 @@ operations and shall be completed with sequence of API methods.</p>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.check_glossary_export_status" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.check_glossary_export_status">check_glossary_export_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.check_glossary_import_status" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.check_glossary_import_status">check_glossary_import_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.clear_glossary" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.clear_glossary">clear_glossary</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.concordance_search_in_glossaries" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.concordance_search_in_glossaries">concordance_search_in_glossaries</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_concept" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_concept">delete_concept</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_glossary" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_glossary">delete_glossary</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_term" href="#crowdin_api.api_resources.glossaries.resource.GlossariesResource.delete_term">delete_term</a></code></li>

@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource"><code class="flex name class">
 <span>class <span class="ident">BundlesResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Bundles.</p>
@@ -49,7 +49,7 @@
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.add_bundle"><code class="name flex">
-<span>def <span class="ident">add_bundle</span></span>(<span>self, projectId: int, name: str, format: str, sourcePatterns: Iterable[str], exportPattern: str, ignorePatterns: Optional[Iterable[str]] = None, labelIds: Optional[Iterable[int]] = None)</span>
+<span>def <span class="ident">add_bundle</span></span>(<span>self, name: str, format: str, sourcePatterns: Iterable[str], exportPattern: str, projectId: Optional[int] = None, ignorePatterns: Optional[Iterable[str]] = None, isMultilingual: Optional[bool] = None, includeProjectSourceLanguage: Optional[bool] = None, labelIds: Optional[Iterable[int]] = None, excludeLabelIds: Optional[Iterable[int]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Bundles.</p>
@@ -59,7 +59,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.check_bundle_export_status"><code class="name flex">
-<span>def <span class="ident">check_bundle_export_status</span></span>(<span>self, projectId: int, bundleId: int, exportId: str)</span>
+<span>def <span class="ident">check_bundle_export_status</span></span>(<span>self, bundleId: int, exportId: str, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Check Bundle Export Status.</p>
@@ -69,7 +69,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.delete_bundle"><code class="name flex">
-<span>def <span class="ident">delete_bundle</span></span>(<span>self, projectId: int, bundleId: int)</span>
+<span>def <span class="ident">delete_bundle</span></span>(<span>self, bundleId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Bundle.</p>
@@ -79,7 +79,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.download_bundle"><code class="name flex">
-<span>def <span class="ident">download_bundle</span></span>(<span>self, projectId: int, bundleId: int, exportId: str)</span>
+<span>def <span class="ident">download_bundle</span></span>(<span>self, bundleId: int, exportId: str, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Download bundle.</p>
@@ -89,7 +89,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.edit_bundle"><code class="name flex">
-<span>def <span class="ident">edit_bundle</span></span>(<span>self, projectId: int, bundleId: int, data: Iterable[<a title="crowdin_api.api_resources.bundles.types.BundlePatchRequest" href="types.html#crowdin_api.api_resources.bundles.types.BundlePatchRequest">BundlePatchRequest</a>])</span>
+<span>def <span class="ident">edit_bundle</span></span>(<span>self, bundleId: int, data: Iterable[<a title="crowdin_api.api_resources.bundles.types.BundlePatchRequest" href="types.html#crowdin_api.api_resources.bundles.types.BundlePatchRequest">BundlePatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Bundle.</p>
@@ -99,7 +99,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.export_bundle"><code class="name flex">
-<span>def <span class="ident">export_bundle</span></span>(<span>self, projectId: int, bundleId: int)</span>
+<span>def <span class="ident">export_bundle</span></span>(<span>self, bundleId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Export bundle.</p>
@@ -109,7 +109,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.get_bundle"><code class="name flex">
-<span>def <span class="ident">get_bundle</span></span>(<span>self, projectId: int, bundleId: int)</span>
+<span>def <span class="ident">get_bundle</span></span>(<span>self, bundleId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Bundle.</p>
@@ -119,7 +119,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.get_bundle_list_files"><code class="name flex">
-<span>def <span class="ident">get_bundle_list_files</span></span>(<span>self, projectId: int, bundleId: int, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">get_bundle_list_files</span></span>(<span>self, bundleId: int, projectId: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Bundle List Files.</p>
@@ -141,7 +141,7 @@
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.list_bundles"><code class="name flex">
-<span>def <span class="ident">list_bundles</span></span>(<span>self, projectId: int, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_bundles</span></span>(<span>self, projectId: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Bundles.</p>

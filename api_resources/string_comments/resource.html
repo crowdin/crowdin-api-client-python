@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.string_comments.resource.StringCommentsResource"><code class="flex name class">
 <span>class <span class="ident">StringCommentsResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for String Comments.</p>
@@ -48,7 +48,7 @@
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.string_comments.resource.StringCommentsResource.add_string_comment"><code class="name flex">
-<span>def <span class="ident">add_string_comment</span></span>(<span>self, projectId: int, text: str, stringId: int, targetLanguageId: str, type: <a title="crowdin_api.api_resources.string_comments.enums.StringCommentType" href="enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentType">StringCommentType</a>, issueType: Optional[<a title="crowdin_api.api_resources.string_comments.enums.StringCommentIssueType" href="enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentIssueType">StringCommentIssueType</a>] = None)</span>
+<span>def <span class="ident">add_string_comment</span></span>(<span>self, text: str, stringId: int, targetLanguageId: str, type: <a title="crowdin_api.api_resources.string_comments.enums.StringCommentType" href="enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentType">StringCommentType</a>, projectId: Optional[int] = None, issueType: Optional[<a title="crowdin_api.api_resources.string_comments.enums.StringCommentIssueType" href="enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentIssueType">StringCommentIssueType</a>] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add String Comment.</p>
@@ -56,7 +56,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.comments.post">https://developer.crowdin.com/api/v2/#operation/api.projects.comments.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_comments.resource.StringCommentsResource.delete_string_comment"><code class="name flex">
-<span>def <span class="ident">delete_string_comment</span></span>(<span>self, projectId: int, stringCommentId: int)</span>
+<span>def <span class="ident">delete_string_comment</span></span>(<span>self, stringCommentId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete String Comment.</p>
@@ -64,7 +64,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.comments.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.comments.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_comments.resource.StringCommentsResource.edit_string_comment"><code class="name flex">
-<span>def <span class="ident">edit_string_comment</span></span>(<span>self, projectId: int, stringCommentId: int, data: Iterable[<a title="crowdin_api.api_resources.string_comments.types.StringCommentPatchRequest" href="types.html#crowdin_api.api_resources.string_comments.types.StringCommentPatchRequest">StringCommentPatchRequest</a>])</span>
+<span>def <span class="ident">edit_string_comment</span></span>(<span>self, stringCommentId: int, data: Iterable[<a title="crowdin_api.api_resources.string_comments.types.StringCommentPatchRequest" href="types.html#crowdin_api.api_resources.string_comments.types.StringCommentPatchRequest">StringCommentPatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit String Comment.</p>
@@ -72,7 +72,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.comments.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.comments.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_comments.resource.StringCommentsResource.get_string_comment"><code class="name flex">
-<span>def <span class="ident">get_string_comment</span></span>(<span>self, projectId: int, stringCommentId: int)</span>
+<span>def <span class="ident">get_string_comment</span></span>(<span>self, stringCommentId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get String Comment.</p>
@@ -86,7 +86,7 @@
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_comments.resource.StringCommentsResource.list_string_comments"><code class="name flex">
-<span>def <span class="ident">list_string_comments</span></span>(<span>self, projectId: int, stringId: Optional[int] = None, type: Optional[<a title="crowdin_api.api_resources.string_comments.enums.StringCommentType" href="enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentType">StringCommentType</a>] = None, issueType: Optional[Iterable[<a title="crowdin_api.api_resources.string_comments.enums.StringCommentIssueType" href="enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentIssueType">StringCommentIssueType</a>]] = None, issueStatus: Optional[<a title="crowdin_api.api_resources.string_comments.enums.StringCommentIssueStatus" href="enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentIssueStatus">StringCommentIssueStatus</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_string_comments</span></span>(<span>self, projectId: Optional[int] = None, stringId: Optional[int] = None, type: Optional[<a title="crowdin_api.api_resources.string_comments.enums.StringCommentType" href="enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentType">StringCommentType</a>] = None, issueType: Optional[Iterable[<a title="crowdin_api.api_resources.string_comments.enums.StringCommentIssueType" href="enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentIssueType">StringCommentIssueType</a>]] = None, issueStatus: Optional[<a title="crowdin_api.api_resources.string_comments.enums.StringCommentIssueStatus" href="enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentIssueStatus">StringCommentIssueStatus</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List String Comments.</p>

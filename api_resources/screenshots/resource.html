@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource"><code class="flex name class">
 <span>class <span class="ident">ScreenshotsResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Screenshots.</p>
@@ -50,7 +50,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.add_screenshot"><code class="name flex">
-<span>def <span class="ident">add_screenshot</span></span>(<span>self, projectId: int, storageId: int, name: str, autoTag: Optional[bool] = None)</span>
+<span>def <span class="ident">add_screenshot</span></span>(<span>self, storageId: int, name: str, projectId: Optional[int] = None, autoTag: Optional[bool] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Screenshot.</p>
@@ -58,7 +58,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.post">https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.add_tag"><code class="name flex">
-<span>def <span class="ident">add_tag</span></span>(<span>self, projectId: int, screenshotId: int, data: Iterable[<a title="crowdin_api.api_resources.screenshots.types.AddTagRequest" href="types.html#crowdin_api.api_resources.screenshots.types.AddTagRequest">AddTagRequest</a>])</span>
+<span>def <span class="ident">add_tag</span></span>(<span>self, screenshotId: int, data: Iterable[<a title="crowdin_api.api_resources.screenshots.types.AddTagRequest" href="types.html#crowdin_api.api_resources.screenshots.types.AddTagRequest">AddTagRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Tag.</p>
@@ -66,7 +66,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.post">https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.auto_tag"><code class="name flex">
-<span>def <span class="ident">auto_tag</span></span>(<span>self, projectId: int, screenshotId: int, autoTag: bool)</span>
+<span>def <span class="ident">auto_tag</span></span>(<span>self, screenshotId: int, autoTag: bool, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Auto Tag.</p>
@@ -74,7 +74,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.putMany">https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.putMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.clear_tags"><code class="name flex">
-<span>def <span class="ident">clear_tags</span></span>(<span>self, projectId: int, screenshotId: int)</span>
+<span>def <span class="ident">clear_tags</span></span>(<span>self, screenshotId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Clear Tags.</p>
@@ -82,7 +82,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.deleteMany">https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.deleteMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.delete_screenshot"><code class="name flex">
-<span>def <span class="ident">delete_screenshot</span></span>(<span>self, projectId: int, screenshotId: int)</span>
+<span>def <span class="ident">delete_screenshot</span></span>(<span>self, screenshotId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Screenshot.</p>
@@ -90,7 +90,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.delete_tag"><code class="name flex">
-<span>def <span class="ident">delete_tag</span></span>(<span>self, projectId: int, screenshotId: int, tagId: int)</span>
+<span>def <span class="ident">delete_tag</span></span>(<span>self, screenshotId: int, tagId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Tag.</p>
@@ -98,7 +98,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.edit_screenshot"><code class="name flex">
-<span>def <span class="ident">edit_screenshot</span></span>(<span>self, projectId: int, screenshotId: int, data: Iterable[<a title="crowdin_api.api_resources.screenshots.types.ScreenshotPatchRequest" href="types.html#crowdin_api.api_resources.screenshots.types.ScreenshotPatchRequest">ScreenshotPatchRequest</a>])</span>
+<span>def <span class="ident">edit_screenshot</span></span>(<span>self, screenshotId: int, data: Iterable[<a title="crowdin_api.api_resources.screenshots.types.ScreenshotPatchRequest" href="types.html#crowdin_api.api_resources.screenshots.types.ScreenshotPatchRequest">ScreenshotPatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Screenshot.</p>
@@ -106,7 +106,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.edit_tag"><code class="name flex">
-<span>def <span class="ident">edit_tag</span></span>(<span>self, projectId: int, screenshotId: int, tagId: int, data: Iterable[<a title="crowdin_api.api_resources.screenshots.types.TagPatchRequest" href="types.html#crowdin_api.api_resources.screenshots.types.TagPatchRequest">TagPatchRequest</a>])</span>
+<span>def <span class="ident">edit_tag</span></span>(<span>self, screenshotId: int, tagId: int, data: Iterable[<a title="crowdin_api.api_resources.screenshots.types.TagPatchRequest" href="types.html#crowdin_api.api_resources.screenshots.types.TagPatchRequest">TagPatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Tag.</p>
@@ -114,7 +114,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.get_screenshot"><code class="name flex">
-<span>def <span class="ident">get_screenshot</span></span>(<span>self, projectId: int, screenshotId: int)</span>
+<span>def <span class="ident">get_screenshot</span></span>(<span>self, screenshotId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Screenshot.</p>
@@ -128,7 +128,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.get_tag"><code class="name flex">
-<span>def <span class="ident">get_tag</span></span>(<span>self, projectId: int, screenshotId: int, tagId: int)</span>
+<span>def <span class="ident">get_tag</span></span>(<span>self, screenshotId: int, tagId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Tag.</p>
@@ -142,7 +142,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.list_screenshots"><code class="name flex">
-<span>def <span class="ident">list_screenshots</span></span>(<span>self, projectId: int, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_screenshots</span></span>(<span>self, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Screenshots.</p>
@@ -150,7 +150,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.list_tags"><code class="name flex">
-<span>def <span class="ident">list_tags</span></span>(<span>self, projectId: int, screenshotId: int, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_tags</span></span>(<span>self, screenshotId: int, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Tags.</p>
@@ -158,7 +158,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.replace_tags"><code class="name flex">
-<span>def <span class="ident">replace_tags</span></span>(<span>self, projectId: int, screenshotId: int, data: Iterable[<a title="crowdin_api.api_resources.screenshots.types.AddTagRequest" href="types.html#crowdin_api.api_resources.screenshots.types.AddTagRequest">AddTagRequest</a>])</span>
+<span>def <span class="ident">replace_tags</span></span>(<span>self, screenshotId: int, data: Iterable[<a title="crowdin_api.api_resources.screenshots.types.AddTagRequest" href="types.html#crowdin_api.api_resources.screenshots.types.AddTagRequest">AddTagRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Replace Tags.</p>
@@ -166,7 +166,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.putMany">https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.putMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.update_screenshot"><code class="name flex">
-<span>def <span class="ident">update_screenshot</span></span>(<span>self, projectId: int, screenshotId: int, storageId: int, name: str)</span>
+<span>def <span class="ident">update_screenshot</span></span>(<span>self, screenshotId: int, storageId: int, name: str, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Update Screenshot.</p>

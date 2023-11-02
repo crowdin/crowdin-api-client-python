@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.workflows.resource.WorkflowsResource"><code class="flex name class">
 <span>class <span class="ident">WorkflowsResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Workflows.</p>
@@ -52,7 +52,7 @@ the details of a specific template.</p>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.workflows.resource.WorkflowsResource.get_workflow_step"><code class="name flex">
-<span>def <span class="ident">get_workflow_step</span></span>(<span>self, projectId: int, stepId: int)</span>
+<span>def <span class="ident">get_workflow_step</span></span>(<span>self, stepId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Workflow Step.</p>
@@ -80,7 +80,7 @@ the details of a specific template.</p>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.workflows.resource.WorkflowsResource.list_workflow_steps"><code class="name flex">
-<span>def <span class="ident">list_workflow_steps</span></span>(<span>self, projectId: int)</span>
+<span>def <span class="ident">list_workflow_steps</span></span>(<span>self, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Workflow Steps.</p>

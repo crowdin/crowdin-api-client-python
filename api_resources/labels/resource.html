@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.labels.resource.LabelsResource"><code class="flex name class">
 <span>class <span class="ident">LabelsResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Labels.</p>
@@ -47,15 +47,24 @@
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.labels.resource.LabelsResource.add_label"><code class="name flex">
-<span>def <span class="ident">add_label</span></span>(<span>self, projectId: int, title: str)</span>
+<span>def <span class="ident">add_label</span></span>(<span>self, title: str, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Label.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.labels.post">https://developer.crowdin.com/api/v2/#operation/api.projects.labels.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.labels.resource.LabelsResource.assign_label_to_screenshots"><code class="name flex">
+<span>def <span class="ident">assign_label_to_screenshots</span></span>(<span>self, label_id: int, screenshot_ids: Iterable[int], project_id: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Assign Label to Screenshots</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.labels.screenshots.post">https://developer.crowdin.com/api/v2/#operation/api.projects.labels.screenshots.post</a>
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.labels.screenshots.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.labels.screenshots.post</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.labels.resource.LabelsResource.assign_label_to_strings"><code class="name flex">
-<span>def <span class="ident">assign_label_to_strings</span></span>(<span>self, projectId: int, labelId: int, stringIds: Iterable[int])</span>
+<span>def <span class="ident">assign_label_to_strings</span></span>(<span>self, labelId: int, stringIds: Iterable[int], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Assign Label to Strings.</p>
@@ -63,7 +72,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.labels.strings.post">https://developer.crowdin.com/api/v2/#operation/api.projects.labels.strings.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.labels.resource.LabelsResource.delete_label"><code class="name flex">
-<span>def <span class="ident">delete_label</span></span>(<span>self, projectId: int, labelId: int)</span>
+<span>def <span class="ident">delete_label</span></span>(<span>self, labelId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Label.</p>
@@ -71,7 +80,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.labels.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.labels.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.labels.resource.LabelsResource.edit_label"><code class="name flex">
-<span>def <span class="ident">edit_label</span></span>(<span>self, projectId: int, labelId: int, data: Iterable[<a title="crowdin_api.api_resources.labels.types.LabelsPatchRequest" href="types.html#crowdin_api.api_resources.labels.types.LabelsPatchRequest">LabelsPatchRequest</a>])</span>
+<span>def <span class="ident">edit_label</span></span>(<span>self, labelId: int, data: Iterable[<a title="crowdin_api.api_resources.labels.types.LabelsPatchRequest" href="types.html#crowdin_api.api_resources.labels.types.LabelsPatchRequest">LabelsPatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Label.</p>
@@ -79,7 +88,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.labels.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.labels.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.labels.resource.LabelsResource.get_label"><code class="name flex">
-<span>def <span class="ident">get_label</span></span>(<span>self, projectId: int, labelId: int)</span>
+<span>def <span class="ident">get_label</span></span>(<span>self, labelId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Label.</p>
@@ -92,16 +101,31 @@
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.labels.resource.LabelsResource.get_screenshots_path"><code class="name flex">
+<span>def <span class="ident">get_screenshots_path</span></span>(<span>self, project_id: int, label_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.labels.resource.LabelsResource.list_labels"><code class="name flex">
-<span>def <span class="ident">list_labels</span></span>(<span>self, projectId: int, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_labels</span></span>(<span>self, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Labels.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.labels.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.labels.getMany</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.labels.resource.LabelsResource.unassign_label_from_screenshots"><code class="name flex">
+<span>def <span class="ident">unassign_label_from_screenshots</span></span>(<span>self, label_id: int, screenshot_ids: Iterable[int], project_id: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Unassign Label from Screenshots</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.labels.screenshots.deleteMany">https://developer.crowdin.com/api/v2/#operation/api.projects.labels.screenshots.deleteMany</a>
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.labels.screenshots.deleteMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.labels.screenshots.deleteMany</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.labels.resource.LabelsResource.unassign_label_from_strings"><code class="name flex">
-<span>def <span class="ident">unassign_label_from_strings</span></span>(<span>self, projectId: int, labelId: int, stringIds: Iterable[int])</span>
+<span>def <span class="ident">unassign_label_from_strings</span></span>(<span>self, labelId: int, stringIds: Iterable[int], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Unassign Label from Strings.</p>
@@ -130,12 +154,15 @@
 <h4><code><a title="crowdin_api.api_resources.labels.resource.LabelsResource" href="#crowdin_api.api_resources.labels.resource.LabelsResource">LabelsResource</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.labels.resource.LabelsResource.add_label" href="#crowdin_api.api_resources.labels.resource.LabelsResource.add_label">add_label</a></code></li>
+<li><code><a title="crowdin_api.api_resources.labels.resource.LabelsResource.assign_label_to_screenshots" href="#crowdin_api.api_resources.labels.resource.LabelsResource.assign_label_to_screenshots">assign_label_to_screenshots</a></code></li>
 <li><code><a title="crowdin_api.api_resources.labels.resource.LabelsResource.assign_label_to_strings" href="#crowdin_api.api_resources.labels.resource.LabelsResource.assign_label_to_strings">assign_label_to_strings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.labels.resource.LabelsResource.delete_label" href="#crowdin_api.api_resources.labels.resource.LabelsResource.delete_label">delete_label</a></code></li>
 <li><code><a title="crowdin_api.api_resources.labels.resource.LabelsResource.edit_label" href="#crowdin_api.api_resources.labels.resource.LabelsResource.edit_label">edit_label</a></code></li>
 <li><code><a title="crowdin_api.api_resources.labels.resource.LabelsResource.get_label" href="#crowdin_api.api_resources.labels.resource.LabelsResource.get_label">get_label</a></code></li>
 <li><code><a title="crowdin_api.api_resources.labels.resource.LabelsResource.get_labels_path" href="#crowdin_api.api_resources.labels.resource.LabelsResource.get_labels_path">get_labels_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.labels.resource.LabelsResource.get_screenshots_path" href="#crowdin_api.api_resources.labels.resource.LabelsResource.get_screenshots_path">get_screenshots_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.labels.resource.LabelsResource.list_labels" href="#crowdin_api.api_resources.labels.resource.LabelsResource.list_labels">list_labels</a></code></li>
+<li><code><a title="crowdin_api.api_resources.labels.resource.LabelsResource.unassign_label_from_screenshots" href="#crowdin_api.api_resources.labels.resource.LabelsResource.unassign_label_from_screenshots">unassign_label_from_screenshots</a></code></li>
 <li><code><a title="crowdin_api.api_resources.labels.resource.LabelsResource.unassign_label_from_strings" href="#crowdin_api.api_resources.labels.resource.LabelsResource.unassign_label_from_strings">unassign_label_from_strings</a></code></li>
 </ul>
 </li>

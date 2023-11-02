@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.users.resource.BaseUsersResource"><code class="flex name class">
 <span>class <span class="ident">BaseUsersResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -62,7 +62,7 @@
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.BaseUsersResource.list_project_members"><code class="name flex">
-<span>def <span class="ident">list_project_members</span></span>(<span>self, projectId: int, search: Optional[str] = None, role: Optional[<a title="crowdin_api.api_resources.users.enums.UserRole" href="enums.html#crowdin_api.api_resources.users.enums.UserRole">UserRole</a>] = None, languageId: Optional[str] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_project_members</span></span>(<span>self, projectId: Optional[int] = None, search: Optional[str] = None, role: Optional[<a title="crowdin_api.api_resources.users.enums.UserRole" href="enums.html#crowdin_api.api_resources.users.enums.UserRole">UserRole</a>] = None, languageId: Optional[str] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Project Members.</p>
@@ -75,7 +75,7 @@
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource"><code class="flex name class">
 <span>class <span class="ident">EnterpriseUsersResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Enterprise platform Users.</p>
@@ -91,7 +91,7 @@ authenticated user.</p>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.add_project_member"><code class="name flex">
-<span>def <span class="ident">add_project_member</span></span>(<span>self, projectId: int, userIds: Iterable[int], accessToAllWorkflowSteps: Optional[bool] = None, managerAccess: Optional[bool] = None, permissions: Optional[Dict[~KT, ~VT]] = None, roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.types.ProjectMemberRole" href="types.html#crowdin_api.api_resources.users.types.ProjectMemberRole">ProjectMemberRole</a>]] = None)</span>
+<span>def <span class="ident">add_project_member</span></span>(<span>self, userIds: Iterable[int], projectId: Optional[int] = None, accessToAllWorkflowSteps: Optional[bool] = None, managerAccess: Optional[bool] = None, permissions: Optional[Dict[~KT, ~VT]] = None, roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.types.ProjectMemberRole" href="types.html#crowdin_api.api_resources.users.types.ProjectMemberRole">ProjectMemberRole</a>]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Project Member.</p>
@@ -99,7 +99,7 @@ authenticated user.</p>
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.delete_member_from_project"><code class="name flex">
-<span>def <span class="ident">delete_member_from_project</span></span>(<span>self, projectId: int, memberId: int)</span>
+<span>def <span class="ident">delete_member_from_project</span></span>(<span>self, memberId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Member From Project.</p>
@@ -137,7 +137,7 @@ authenticated user.</p>
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.replace_project_member_permissions"><code class="name flex">
-<span>def <span class="ident">replace_project_member_permissions</span></span>(<span>self, projectId: int, memberId: int, accessToAllWorkflowSteps: Optional[bool] = None, managerAccess: Optional[bool] = None, permissions: Optional[Dict[~KT, ~VT]] = None, roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.types.ProjectMemberRole" href="types.html#crowdin_api.api_resources.users.types.ProjectMemberRole">ProjectMemberRole</a>]] = None)</span>
+<span>def <span class="ident">replace_project_member_permissions</span></span>(<span>self, memberId: int, projectId: Optional[int] = None, accessToAllWorkflowSteps: Optional[bool] = None, managerAccess: Optional[bool] = None, permissions: Optional[Dict[~KT, ~VT]] = None, roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.types.ProjectMemberRole" href="types.html#crowdin_api.api_resources.users.types.ProjectMemberRole">ProjectMemberRole</a>]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Replace Project Member Permissions.</p>
@@ -156,7 +156,7 @@ authenticated user.</p>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.UsersResource"><code class="flex name class">
 <span>class <span class="ident">UsersResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Users.</p>
@@ -172,7 +172,7 @@ authenticated user.</p>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.users.resource.UsersResource.get_member_info"><code class="name flex">
-<span>def <span class="ident">get_member_info</span></span>(<span>self, projectId: int, memberId: int)</span>
+<span>def <span class="ident">get_member_info</span></span>(<span>self, memberId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Member Info.</p>

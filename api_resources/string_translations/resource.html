@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource"><code class="flex name class">
 <span>class <span class="ident">StringTranslationsResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for String Translations.</p>
@@ -48,7 +48,7 @@
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_approval"><code class="name flex">
-<span>def <span class="ident">add_approval</span></span>(<span>self, projectId: int, translationId: int)</span>
+<span>def <span class="ident">add_approval</span></span>(<span>self, translationId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Approval.</p>
@@ -56,7 +56,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.post">https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_translation"><code class="name flex">
-<span>def <span class="ident">add_translation</span></span>(<span>self, projectId: int, stringId: int, languageId: str, text: str, pluralCategoryName: Optional[<a title="crowdin_api.api_resources.enums.PluralCategoryName" href="../enums.html#crowdin_api.api_resources.enums.PluralCategoryName">PluralCategoryName</a>] = None)</span>
+<span>def <span class="ident">add_translation</span></span>(<span>self, stringId: int, languageId: str, text: str, projectId: Optional[int] = None, pluralCategoryName: Optional[<a title="crowdin_api.api_resources.enums.PluralCategoryName" href="../enums.html#crowdin_api.api_resources.enums.PluralCategoryName">PluralCategoryName</a>] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Translation.</p>
@@ -64,7 +64,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.post">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_vote"><code class="name flex">
-<span>def <span class="ident">add_vote</span></span>(<span>self, projectId: int, mark: <a title="crowdin_api.api_resources.string_translations.enums.VoteMark" href="enums.html#crowdin_api.api_resources.string_translations.enums.VoteMark">VoteMark</a>, translationId: int)</span>
+<span>def <span class="ident">add_vote</span></span>(<span>self, mark: <a title="crowdin_api.api_resources.string_translations.enums.VoteMark" href="enums.html#crowdin_api.api_resources.string_translations.enums.VoteMark">VoteMark</a>, translationId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Vote.</p>
@@ -72,7 +72,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.votes.pos">https://developer.crowdin.com/api/v2/#operation/api.projects.votes.pos</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.cancel_vote"><code class="name flex">
-<span>def <span class="ident">cancel_vote</span></span>(<span>self, projectId: int, voteId: int)</span>
+<span>def <span class="ident">cancel_vote</span></span>(<span>self, voteId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Cancel Vote.</p>
@@ -80,7 +80,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.votes.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.votes.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.delete_string_translations"><code class="name flex">
-<span>def <span class="ident">delete_string_translations</span></span>(<span>self, projectId: int, stringId: int, languageId: str)</span>
+<span>def <span class="ident">delete_string_translations</span></span>(<span>self, stringId: int, languageId: str, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete String Translations.</p>
@@ -88,7 +88,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.deleteMany">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.deleteMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.delete_translation"><code class="name flex">
-<span>def <span class="ident">delete_translation</span></span>(<span>self, projectId: int, translationId: int)</span>
+<span>def <span class="ident">delete_translation</span></span>(<span>self, translationId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Translation.</p>
@@ -96,7 +96,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.get_approval"><code class="name flex">
-<span>def <span class="ident">get_approval</span></span>(<span>self, projectId: int, approvalId: int)</span>
+<span>def <span class="ident">get_approval</span></span>(<span>self, approvalId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Approval.</p>
@@ -110,7 +110,7 @@
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.get_translation"><code class="name flex">
-<span>def <span class="ident">get_translation</span></span>(<span>self, projectId: int, translationId: int)</span>
+<span>def <span class="ident">get_translation</span></span>(<span>self, translationId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Translation.</p>
@@ -130,7 +130,7 @@
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.get_vote"><code class="name flex">
-<span>def <span class="ident">get_vote</span></span>(<span>self, projectId: int, voteId: int)</span>
+<span>def <span class="ident">get_vote</span></span>(<span>self, voteId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Vote.</p>
@@ -138,7 +138,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.votes.get">https://developer.crowdin.com/api/v2/#operation/api.projects.votes.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.list_language_translations"><code class="name flex">
-<span>def <span class="ident">list_language_translations</span></span>(<span>self, projectId: int, languageId: str, stringIds: Optional[Iterable[int]] = None, labelIds: Optional[Iterable[int]] = None, fileId: Optional[int] = None, croql: Optional[str] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_language_translations</span></span>(<span>self, languageId: str, projectId: Optional[int] = None, stringIds: Optional[Iterable[int]] = None, labelIds: Optional[Iterable[int]] = None, fileId: Optional[int] = None, croql: Optional[str] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Language Translations</p>
@@ -146,7 +146,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.languages.translations.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.languages.translations.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.list_string_translations"><code class="name flex">
-<span>def <span class="ident">list_string_translations</span></span>(<span>self, projectId: int, stringId: Optional[int] = None, languageId: Optional[str] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_string_translations</span></span>(<span>self, projectId: Optional[int] = None, stringId: Optional[int] = None, languageId: Optional[str] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List String Translations</p>
@@ -154,7 +154,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.list_translation_approvals"><code class="name flex">
-<span>def <span class="ident">list_translation_approvals</span></span>(<span>self, projectId: int, fileId: Optional[int] = None, stringId: Optional[int] = None, languageId: Optional[str] = None, translationId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_translation_approvals</span></span>(<span>self, projectId: Optional[int] = None, fileId: Optional[int] = None, labelIds: Optional[str] = None, excludeLabelIds: Optional[str] = None, stringId: Optional[int] = None, languageId: Optional[str] = None, translationId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Translation Approvals</p>
@@ -162,7 +162,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.list_translation_votes"><code class="name flex">
-<span>def <span class="ident">list_translation_votes</span></span>(<span>self, projectId: int, stringId: Optional[int] = None, languageId: Optional[str] = None, translationId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_translation_votes</span></span>(<span>self, projectId: Optional[int] = None, stringId: Optional[int] = None, languageId: Optional[str] = None, translationId: Optional[int] = None, fileId: Optional[int] = None, labelIds: Optional[str] = None, excludeLabelIds: Optional[str] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Translation Votes</p>
@@ -170,7 +170,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.votes.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.votes.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.remove_approval"><code class="name flex">
-<span>def <span class="ident">remove_approval</span></span>(<span>self, projectId: int, approvalId: int)</span>
+<span>def <span class="ident">remove_approval</span></span>(<span>self, approvalId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Remove Approvall.</p>
@@ -178,12 +178,20 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.restore_translation"><code class="name flex">
-<span>def <span class="ident">restore_translation</span></span>(<span>self, projectId: int, translationId: int)</span>
+<span>def <span class="ident">restore_translation</span></span>(<span>self, translationId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Restore Translation.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.put">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.put</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.translation_alignment"><code class="name flex">
+<span>def <span class="ident">translation_alignment</span></span>(<span>self, sourceLanguageId: str, targetLanguageId: str, text: str, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Translation Alignment</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.alignment.post">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.alignment.post</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -224,6 +232,7 @@
 <li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.list_translation_votes" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.list_translation_votes">list_translation_votes</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.remove_approval" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.remove_approval">remove_approval</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.restore_translation" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.restore_translation">restore_translation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.translation_alignment" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.translation_alignment">translation_alignment</a></code></li>
 </ul>
 </li>
 </ul>

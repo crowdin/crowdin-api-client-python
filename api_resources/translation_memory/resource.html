@@ -34,7 +34,7 @@
 <dl>
 <dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource"><code class="flex name class">
 <span>class <span class="ident">TranslationMemoryResource</span></span>
-<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, page_size=25)</span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Resource for Translation Memory.</p>
@@ -83,6 +83,22 @@ are asynchronous operations and shall be completed with sequence of API methods.
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.tms.segments.clear">https://developer.crowdin.com/api/v2/#operation/api.tms.segments.clear</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.concordance_search_in_tms"><code class="name flex">
+<span>def <span class="ident">concordance_search_in_tms</span></span>(<span>self, sourceLanguageId: str, targetLanguageId: str, autoSubstitution: bool, minRelevant: int, expressions: Iterable[str], projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Concordance search in TMs</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tms.concordance.post">https://developer.crowdin.com/api/v2/#operation/api.projects.tms.concordance.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.create_tm_segment"><code class="name flex">
+<span>def <span class="ident">create_tm_segment</span></span>(<span>self, tmId: int, records: Iterable[<a title="crowdin_api.api_resources.translation_memory.types.TranslationMemorySegmentRecord" href="types.html#crowdin_api.api_resources.translation_memory.types.TranslationMemorySegmentRecord">TranslationMemorySegmentRecord</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create TM Segment.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.tms.segments.post">https://developer.crowdin.com/api/v2/#operation/api.tms.segments.post</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.delete_tm"><code class="name flex">
 <span>def <span class="ident">delete_tm</span></span>(<span>self, tmId: int)</span>
 </code></dt>
@@ -90,6 +106,14 @@ are asynchronous operations and shall be completed with sequence of API methods.
 <div class="desc"><p>Delete TM.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.tms.delete">https://developer.crowdin.com/api/v2/#operation/api.tms.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.delete_tm_segment"><code class="name flex">
+<span>def <span class="ident">delete_tm_segment</span></span>(<span>self, tmId: int, segmentId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete TM Segment.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.tms.segments.delete">https://developer.crowdin.com/api/v2/#operation/api.tms.segments.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.download_tm"><code class="name flex">
 <span>def <span class="ident">download_tm</span></span>(<span>self, tmId: int, exportId: str)</span>
@@ -106,6 +130,14 @@ are asynchronous operations and shall be completed with sequence of API methods.
 <div class="desc"><p>Edit TM.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.tms.patch">https://developer.crowdin.com/api/v2/#operation/api.tms.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.edit_tm_segment"><code class="name flex">
+<span>def <span class="ident">edit_tm_segment</span></span>(<span>self, tmId: int, segmentId: int, data: Iterable[Union[<a title="crowdin_api.api_resources.translation_memory.types.TranslationMemorySegmentRecordOperationAdd" href="types.html#crowdin_api.api_resources.translation_memory.types.TranslationMemorySegmentRecordOperationAdd">TranslationMemorySegmentRecordOperationAdd</a>, <a title="crowdin_api.api_resources.translation_memory.types.TranslationMemorySegmentRecordOperationReplace" href="types.html#crowdin_api.api_resources.translation_memory.types.TranslationMemorySegmentRecordOperationReplace">TranslationMemorySegmentRecordOperationReplace</a>, <a title="crowdin_api.api_resources.translation_memory.types.TranslationMemorySegmentRecordOperationRemove" href="types.html#crowdin_api.api_resources.translation_memory.types.TranslationMemorySegmentRecordOperationRemove">TranslationMemorySegmentRecordOperationRemove</a>]])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit TM Segment.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.tms.segments.patch">https://developer.crowdin.com/api/v2/#operation/api.tms.segments.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.export_tm"><code class="name flex">
 <span>def <span class="ident">export_tm</span></span>(<span>self, tmId: int, sourceLanguageId: Optional[str] = None, targetLanguageId: Optional[str] = None, format: Optional[<a title="crowdin_api.api_resources.enums.ExportFormat" href="../enums.html#crowdin_api.api_resources.enums.ExportFormat">ExportFormat</a>] = None)</span>
@@ -129,6 +161,20 @@ are asynchronous operations and shall be completed with sequence of API methods.
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.get_tm_segment"><code class="name flex">
+<span>def <span class="ident">get_tm_segment</span></span>(<span>self, tmId: int, segmentId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get TM Segment.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.tms.segments.get">https://developer.crowdin.com/api/v2/#operation/api.tms.segments.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.get_tm_segments_path"><code class="name flex">
+<span>def <span class="ident">get_tm_segments_path</span></span>(<span>self, tmId: int, segmentId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.get_tms_path"><code class="name flex">
 <span>def <span class="ident">get_tms_path</span></span>(<span>self, tmId: Optional[int] = None)</span>
 </code></dt>
@@ -142,6 +188,14 @@ are asynchronous operations and shall be completed with sequence of API methods.
 <div class="desc"><p>Import TM.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.tms.imports.post">https://developer.crowdin.com/api/v2/#operation/api.tms.imports.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.list_tm_segments"><code class="name flex">
+<span>def <span class="ident">list_tm_segments</span></span>(<span>self, tmId: int, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List TM Segments.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.tms.segments.getMany">https://developer.crowdin.com/api/v2/#operation/api.tms.segments.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.list_tms"><code class="name flex">
 <span>def <span class="ident">list_tms</span></span>(<span>self, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -176,14 +230,21 @@ are asynchronous operations and shall be completed with sequence of API methods.
 <li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.check_tm_export_status" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.check_tm_export_status">check_tm_export_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.check_tm_import_status" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.check_tm_import_status">check_tm_import_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.clear_tm" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.clear_tm">clear_tm</a></code></li>
+<li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.concordance_search_in_tms" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.concordance_search_in_tms">concordance_search_in_tms</a></code></li>
+<li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.create_tm_segment" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.create_tm_segment">create_tm_segment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.delete_tm" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.delete_tm">delete_tm</a></code></li>
+<li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.delete_tm_segment" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.delete_tm_segment">delete_tm_segment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.download_tm" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.download_tm">download_tm</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.edit_tm" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.edit_tm">edit_tm</a></code></li>
+<li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.edit_tm_segment" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.edit_tm_segment">edit_tm_segment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.export_tm" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.export_tm">export_tm</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.get_tm" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.get_tm">get_tm</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.get_tm_export_path" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.get_tm_export_path">get_tm_export_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.get_tm_segment" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.get_tm_segment">get_tm_segment</a></code></li>
+<li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.get_tm_segments_path" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.get_tm_segments_path">get_tm_segments_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.get_tms_path" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.get_tms_path">get_tms_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.import_tm" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.import_tm">import_tm</a></code></li>
+<li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.list_tm_segments" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.list_tm_segments">list_tm_segments</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.list_tms" href="#crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.list_tms">list_tms</a></code></li>
 </ul>
 </li>
