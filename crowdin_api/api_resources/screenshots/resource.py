@@ -56,7 +56,7 @@ class ScreenshotsResource(BaseResource):
         name: str,
         projectId: Optional[int] = None,
         autoTag: Optional[bool] = None,
-        labelIds: Optional[Iterable[int]] = None 
+        labelIds: Optional[Iterable[int]] = None
     ):
         """
         Add Screenshot.
@@ -67,14 +67,14 @@ class ScreenshotsResource(BaseResource):
 
         projectId = projectId or self.get_project_id()
 
-        request_data={
-                "storageId": storageId,
-                "name": name,
-                "autoTag": autoTag,
-            }
+        request_data = {
+            "storageId": storageId,
+            "name": name,
+            "autoTag": autoTag,
+        }
 
         if labelIds is not None:
-            request_data.update({"labelIds":labelIds})
+            request_data.update({"labelIds": labelIds})
 
         return self.requester.request(
             method="post",
