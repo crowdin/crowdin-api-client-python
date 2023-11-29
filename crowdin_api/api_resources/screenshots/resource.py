@@ -31,6 +31,7 @@ class ScreenshotsResource(BaseResource):
     def list_screenshots(
         self,
         projectId: Optional[int] = None,
+        stringId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -46,11 +47,13 @@ class ScreenshotsResource(BaseResource):
 
         projectId = projectId or self.get_project_id()
 
+        params = {"stringId": stringId, "labelIds": labelIds, "excludeLabelIds": excludeLabelIds}
+        params.update(self.get_page_params(page=page, offset=offset, limit=limit))
+
         return self._get_entire_data(
             method="get",
             path=self.get_screenshots_path(projectId=projectId),
-            params=self.get_page_params(
-                page=page, offset=offset, limit=limit, labelIds=labelIds, excludeLabelIds=excludeLabelIds),
+            params=params,
         )
 
     def add_screenshot(
@@ -59,7 +62,10 @@ class ScreenshotsResource(BaseResource):
         name: str,
         projectId: Optional[int] = None,
         autoTag: Optional[bool] = None,
-        labelIds: Optional[Iterable[int]] = None
+        fileId: Optional[int] = None,
+        branchId: Optional[int] = None,
+        directoryId: Optional[int] = None,
+        labelIds: Optional[Iterable[int]] = None,
     ):
         """
         Add Screenshot.
@@ -70,19 +76,19 @@ class ScreenshotsResource(BaseResource):
 
         projectId = projectId or self.get_project_id()
 
-        request_data = {
-            "storageId": storageId,
-            "name": name,
-            "autoTag": autoTag,
-        }
-
-        if labelIds is not None:
-            request_data.update({"labelIds": labelIds})
 
         return self.requester.request(
             method="post",
             path=self.get_screenshots_path(projectId=projectId),
-            request_data=request_data,
+            request_data={
+                "storageId": storageId,
+                "name": name,
+                "autoTag": autoTag,
+                "fileId": fileId,
+                "branchId": branchId,
+                "directoryId": directoryId,
+                "labelIds": labelIds,
+            },
         )
 
     def get_screenshot(self, screenshotId: int, projectId: Optional[int] = None):
@@ -97,8 +103,7 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=self.get_screenshots_path(
-                projectId=projectId, screenshotId=screenshotId),
+            path=self.get_screenshots_path(projectId=projectId, screenshotId=screenshotId),
         )
 
     def update_screenshot(
@@ -123,8 +128,7 @@ class ScreenshotsResource(BaseResource):
                 "storageId": storageId,
                 "name": name,
             },
-            path=self.get_screenshots_path(
-                projectId=projectId, screenshotId=screenshotId),
+            path=self.get_screenshots_path(projectId=projectId, screenshotId=screenshotId),
         )
 
     def delete_screenshot(self, screenshotId: int, projectId: Optional[int] = None):
@@ -139,8 +143,7 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="delete",
-            path=self.get_screenshots_path(
-                projectId=projectId, screenshotId=screenshotId),
+            path=self.get_screenshots_path(projectId=projectId, screenshotId=screenshotId),
         )
 
     def edit_screenshot(
@@ -161,8 +164,7 @@ class ScreenshotsResource(BaseResource):
         return self.requester.request(
             method="patch",
             request_data=data,
-            path=self.get_screenshots_path(
-                projectId=projectId, screenshotId=screenshotId),
+            path=self.get_screenshots_path(projectId=projectId, screenshotId=screenshotId),
         )
 
     # Tags
@@ -212,8 +214,7 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="put",
-            path=self.get_tags_path(
-                projectId=projectId, screenshotId=screenshotId),
+            path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
             request_data=data,
         )
 
@@ -231,8 +232,7 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="put",
-            path=self.get_tags_path(
-                projectId=projectId, screenshotId=screenshotId),
+            path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
             request_data={"autoTag": autoTag},
         )
 
@@ -253,8 +253,7 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="post",
-            path=self.get_tags_path(
-                projectId=projectId, screenshotId=screenshotId),
+            path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
             request_data=data,
         )
 
@@ -270,8 +269,7 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="delete",
-            path=self.get_tags_path(
-                projectId=projectId, screenshotId=screenshotId),
+            path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
         )
 
     def get_tag(self, screenshotId: int, tagId: int, projectId: Optional[int] = None):
@@ -286,8 +284,7 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=self.get_tags_path(
-                projectId=projectId, screenshotId=screenshotId, tagId=tagId),
+            path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId, tagId=tagId),
         )
 
     def delete_tag(
@@ -304,8 +301,7 @@ class ScreenshotsResource(BaseResource):
 
         return self.requester.request(
             method="delete",
-            path=self.get_tags_path(
-                projectId=projectId, screenshotId=screenshotId, tagId=tagId),
+            path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId, tagId=tagId),
         )
 
     def edit_tag(
@@ -327,6 +323,5 @@ class ScreenshotsResource(BaseResource):
         return self.requester.request(
             method="patch",
             request_data=data,
-            path=self.get_tags_path(
-                projectId=projectId, screenshotId=screenshotId, tagId=tagId),
+            path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId, tagId=tagId),
         )

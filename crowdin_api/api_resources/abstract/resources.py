@@ -30,15 +30,9 @@ class BaseResource(metaclass=ABCMeta):
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
-        labelIds: Optional[Iterable[int]] = None,
-        excludeLabelIds: Optional[Iterable[int]] = None
     ):
         if page is not None and (offset is not None or limit is not None):
             raise ValueError("You must set page or offset and limit.")
-
-        if (labelIds is not None and excludeLabelIds is not None):
-            raise ValueError(
-                "Cannot use both labelIds and excludeLabelIds together.")
 
         if page:
             return self._get_page_params(page=page)
@@ -54,15 +48,7 @@ class BaseResource(metaclass=ABCMeta):
                 raise ValueError(
                     "The limit must be greater than or equal to 1.")
 
-        params = {"offset": offset, "limit": limit}
-
-        if labelIds is not None:
-            params.update({"labelIds": labelIds})
-
-        if excludeLabelIds is not None:
-            params.update({"excludeLabelIds": excludeLabelIds})
-
-        return params
+        return {"offset": offset, "limit": limit}
 
     def with_fetch_all(self, max_limit: Optional[int] = None):
         self._max_limit = max_limit
