@@ -55,8 +55,8 @@ class TestSourceFilesResource:
                 {"storageId": 1, "name": "name", "autoTag": None},
             ),
             (
-                {"storageId": 1, "name": "name", "autoTag": True},
-                {"storageId": 1, "name": "name", "autoTag": True},
+                {"storageId": 1, "name": "name", "autoTag": True, "labelIds": [1, 2]},
+                {"storageId": 1, "name": "name", "autoTag": True, "labelIds": [1, 2]},
             ),
         ),
     )
