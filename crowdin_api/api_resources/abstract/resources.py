@@ -1,5 +1,5 @@
 from abc import ABCMeta
-from typing import Optional
+from typing import Optional, Iterable
 
 from crowdin_api.requester import APIRequester
 
@@ -21,7 +21,8 @@ class BaseResource(metaclass=ABCMeta):
 
     def _get_page_params(self, page: int):
         if page < 1:
-            raise ValueError("The page number must be greater than or equal to 1.")
+            raise ValueError(
+                "The page number must be greater than or equal to 1.")
 
         return {"offset": max((page - 1) * self.page_size, 0), "limit": self.page_size}
 
@@ -30,23 +31,39 @@ class BaseResource(metaclass=ABCMeta):
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        labelIds: Optional[Iterable[int]] = None,
+        excludeLabelIds: Optional[Iterable[int]] = None
     ):
         if page is not None and (offset is not None or limit is not None):
             raise ValueError("You must set page or offset and limit.")
+
+        if (labelIds is not None and excludeLabelIds is not None):
+            raise ValueError(
+                "Cannot use both labelIds and excludeLabelIds together.")
 
         if page:
             return self._get_page_params(page=page)
         else:
             offset = offset or 0
             if offset < 0:
-                raise ValueError("The offset must be greater than or equal to 0.")
+                raise ValueError(
+                    "The offset must be greater than or equal to 0.")
 
             limit = limit or self.page_size
 
             if limit < 1:
-                raise ValueError("The limit must be greater than or equal to 1.")
+                raise ValueError(
+                    "The limit must be greater than or equal to 1.")
 
-        return {"offset": offset, "limit": limit}
+        params = {"offset": offset, "limit": limit}
+
+        if labelIds is not None:
+            params.update({"labelIds": labelIds})
+
+        if excludeLabelIds is not None:
+            params.update({"excludeLabelIds": excludeLabelIds})
+
+        return params
 
     def with_fetch_all(self, max_limit: Optional[int] = None):
         self._max_limit = max_limit
@@ -90,7 +107,8 @@ class BaseResource(metaclass=ABCMeta):
         while True:
             params.update({"limit": limit, "offset": offset})
 
-            content = self.requester.request(method=method, path=path, params=params)
+            content = self.requester.request(
+                method=method, path=path, params=params)
             data = content.get("data", [])
             data and join_data.extend(data)
 
