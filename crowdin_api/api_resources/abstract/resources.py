@@ -21,8 +21,7 @@ class BaseResource(metaclass=ABCMeta):
 
     def _get_page_params(self, page: int):
         if page < 1:
-            raise ValueError(
-                "The page number must be greater than or equal to 1.")
+            raise ValueError("The page number must be greater than or equal to 1.")
 
         return {"offset": max((page - 1) * self.page_size, 0), "limit": self.page_size}
 

@@ -190,39 +190,20 @@ class TestSourceFilesResource:
 
         resource = self.get_resource(base_absolut_url)
         assert resource.list_tags(projectId=1, screenshotId=2) == "response"
-        assert resource.list_tags(
-            projectId=1, screenshotId=2, labelIds=[1, 2]) == "response"
-        assert resource.list_tags(
-            projectId=1, screenshotId=2, excludeLabelIds=[3, 2]) == "response"
-        assert_call_list = [
-            mock.call(
-                method="get",
-                params={"offset": 0, "limit": 25},
-                path=resource.get_tags_path(projectId=1, screenshotId=2)
-            ),
-            mock.call(
-                method="get",
-                params={"offset": 0, "limit": 25, "labelIds": [1, 2]},
-                path=resource.get_tags_path(projectId=1, screenshotId=2)
-            ),
-            mock.call(
-                method="get",
-                params={"offset": 0, "limit": 25, "excludeLabelIds": [3, 2]},
-                path=resource.get_tags_path(projectId=1, screenshotId=2)
-            )
-        ]
-        assert m_request.call_args_list == assert_call_list
+        m_request.assert_called_once_with(
+            method="get",
+            params={"offset": 0, "limit": 25},
+            path=resource.get_tags_path(projectId=1, screenshotId=2),
+        )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_replace_tags(self, m_request, base_absolut_url):
         m_request.return_value = "response"
 
-        data = [{"stringId": 1, "position": {
-            "x": 1, "y": 2, "width": 3, "height": 4}}]
+        data = [{"stringId": 1, "position": {"x": 1, "y": 2, "width": 3, "height": 4}}]
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.replace_tags(
-            projectId=1, screenshotId=2, data=data) == "response"
+        assert resource.replace_tags(projectId=1, screenshotId=2, data=data) == "response"
         m_request.assert_called_once_with(
             method="put",
             path=resource.get_tags_path(
@@ -237,8 +218,7 @@ class TestSourceFilesResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.auto_tag(
-            projectId=1, screenshotId=2, autoTag=False) == "response"
+        assert resource.auto_tag(projectId=1, screenshotId=2, autoTag=False) == "response"
         m_request.assert_called_once_with(
             method="put",
             path=resource.get_tags_path(
@@ -252,12 +232,10 @@ class TestSourceFilesResource:
     def test_add_tag(self, m_request, base_absolut_url):
         m_request.return_value = "response"
 
-        data = [{"stringId": 1, "position": {
-            "x": 1, "y": 2, "width": 3, "height": 4}}]
+        data = [{"stringId": 1, "position": {"x": 1, "y": 2, "width": 3, "height": 4}}]
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_tag(
-            projectId=1, screenshotId=2, data=data) == "response"
+        assert resource.add_tag(projectId=1, screenshotId=2, data=data) == "response"
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_tags_path(
@@ -282,8 +260,7 @@ class TestSourceFilesResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.get_tag(
-            projectId=1, screenshotId=2, tagId=3) == "response"
+        assert resource.get_tag(projectId=1, screenshotId=2, tagId=3) == "response"
         m_request.assert_called_once_with(
             method="get",
             path=resource.get_tags_path(projectId=1, screenshotId=2, tagId=3),
@@ -294,8 +271,7 @@ class TestSourceFilesResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.delete_tag(
-            projectId=1, screenshotId=2, tagId=3) == "response"
+        assert resource.delete_tag(projectId=1, screenshotId=2, tagId=3) == "response"
         m_request.assert_called_once_with(
             method="delete",
             path=resource.get_tags_path(projectId=1, screenshotId=2, tagId=3),
@@ -314,8 +290,7 @@ class TestSourceFilesResource:
         ]
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.edit_tag(
-            projectId=1, screenshotId=2, tagId=3, data=data) == "response"
+        assert resource.edit_tag(projectId=1, screenshotId=2, tagId=3, data=data) == "response"
         m_request.assert_called_once_with(
             method="patch",
             request_data=data,

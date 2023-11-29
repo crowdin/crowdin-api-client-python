@@ -179,8 +179,6 @@ class ScreenshotsResource(BaseResource):
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
-        labelIds: Optional[Iterable[int]] = None,
-        excludeLabelIds: Optional[Iterable[int]] = None
     ):
         """
         List Tags.
@@ -193,10 +191,8 @@ class ScreenshotsResource(BaseResource):
 
         return self._get_entire_data(
             method="get",
-            path=self.get_tags_path(
-                projectId=projectId, screenshotId=screenshotId),
-            params=self.get_page_params(
-                page=page, offset=offset, limit=limit, labelIds=labelIds, excludeLabelIds=excludeLabelIds),
+            path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
+            params=self.get_page_params(page=page, offset=offset, limit=limit),
         )
 
     def replace_tags(

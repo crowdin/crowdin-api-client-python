@@ -48,8 +48,7 @@ class TestAPIRequester:
 
         requester = APIRequester(base_url=base_absolut_url)
 
-        session.headers.update.assert_called_once_with(
-            requester.default_headers)
+        session.headers.update.assert_called_once_with(requester.default_headers)
         assert requester.base_url == base_absolut_url
 
     @pytest.mark.parametrize(
@@ -60,8 +59,7 @@ class TestAPIRequester:
         ),
     )
     def test_init_extended_params(self, base_absolut_url, in_extended_params, out_extended_params):
-        requester = APIRequester(
-            base_url=base_absolut_url, extended_params=in_extended_params)
+        requester = APIRequester(base_url=base_absolut_url, extended_params=in_extended_params)
         assert requester._extended_params == out_extended_params
 
     @pytest.mark.parametrize(
@@ -74,8 +72,7 @@ class TestAPIRequester:
     )
     def test_init_extended_params_raise_error(self, base_absolut_url, extended_params, error_msg):
         with pytest.raises(TypeError, match=error_msg):
-            APIRequester(base_url=base_absolut_url,
-                         extended_params=extended_params)
+            APIRequester(base_url=base_absolut_url, extended_params=extended_params)
 
     @pytest.mark.parametrize(
         "in_extended_params, in_kwargs, expected_result",
@@ -93,17 +90,14 @@ class TestAPIRequester:
         self, m_session, base_absolut_url, in_extended_params, in_kwargs, expected_result
     ):
         path = "test"
-        ResponseMock = namedtuple(
-            "ResponseMock", "status_code content headers")
-        fixture_response_mock = ResponseMock(
-            status_code=200, content=None, headers=None)
+        ResponseMock = namedtuple("ResponseMock", "status_code content headers")
+        fixture_response_mock = ResponseMock(status_code=200, content=None, headers=None)
 
         session = Mock()
         session.request = Mock(return_value=fixture_response_mock)
         m_session.return_value = session
 
-        requester = APIRequester(
-            base_url=base_absolut_url, extended_params=in_extended_params)
+        requester = APIRequester(base_url=base_absolut_url, extended_params=in_extended_params)
         requester._request(method="get", path=path, **in_kwargs)
 
         session.request.assert_called_once_with(
@@ -188,8 +182,7 @@ class TestAPIRequester:
     ):
         path = "test"
         requester = APIRequester(base_url=base_absolut_url)
-        requests_mock.get(urljoin(base_absolut_url, path),
-                          status_code=status_code, text="{}")
+        requests_mock.get(urljoin(base_absolut_url, path), status_code=status_code, text="{}")
 
         with pytest.raises(exception):
             requester._request(method="get", path=path)
@@ -197,8 +190,7 @@ class TestAPIRequester:
     def test__request_wrong_response(self, requests_mock, base_absolut_url):
         path = "test"
         requester = APIRequester(base_url=base_absolut_url)
-        requests_mock.get(urljoin(base_absolut_url, path),
-                          text="{ is not JSON ]")
+        requests_mock.get(urljoin(base_absolut_url, path), text="{ is not JSON ]")
 
         with pytest.raises(ParsingError):
             requester._request(method="get", path=path)
@@ -248,8 +240,7 @@ class TestAPIRequester:
                     {"key_1": None, "key_2": 1, "key_3": {
                         "key_1": None, "key_2": 1, "key3": [None, 3]
                     }},
-                    {"key_1": None, "key_2": 1, "key_3": [
-                        {"key_1": None, "key_2": 1}]},
+                    {"key_1": None, "key_2": 1, "key_3": [{"key_1": None, "key_2": 1}]},
                 ],
                 [
                     {"key_2": 1, "key_3": {"key_2": 1, "key3": [3]}},
