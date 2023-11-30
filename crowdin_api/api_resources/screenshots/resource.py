@@ -32,11 +32,11 @@ class ScreenshotsResource(BaseResource):
         self,
         projectId: Optional[int] = None,
         stringId: Optional[int] = None,
+        labelIds: Optional[Iterable[int]] = None,
+        excludeLabelIds: Optional[Iterable[int]] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
-        labelIds: Optional[Iterable[int]] = None,
-        excludeLabelIds: Optional[Iterable[int]] = None
     ):
         """
         List Screenshots.
@@ -75,7 +75,6 @@ class ScreenshotsResource(BaseResource):
         """
 
         projectId = projectId or self.get_project_id()
-
 
         return self.requester.request(
             method="post",

@@ -1,5 +1,5 @@
 from abc import ABCMeta
-from typing import Optional, Iterable
+from typing import Optional
 
 from crowdin_api.requester import APIRequester
 
@@ -39,14 +39,12 @@ class BaseResource(metaclass=ABCMeta):
         else:
             offset = offset or 0
             if offset < 0:
-                raise ValueError(
-                    "The offset must be greater than or equal to 0.")
+                raise ValueError("The offset must be greater than or equal to 0.")
 
             limit = limit or self.page_size
 
             if limit < 1:
-                raise ValueError(
-                    "The limit must be greater than or equal to 1.")
+                raise ValueError("The limit must be greater than or equal to 1.")
 
         return {"offset": offset, "limit": limit}
 
@@ -92,8 +90,7 @@ class BaseResource(metaclass=ABCMeta):
         while True:
             params.update({"limit": limit, "offset": offset})
 
-            content = self.requester.request(
-                method=method, path=path, params=params)
+            content = self.requester.request(method=method, path=path, params=params)
             data = content.get("data", [])
             data and join_data.extend(data)
 
