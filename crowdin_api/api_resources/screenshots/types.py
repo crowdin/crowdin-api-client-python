@@ -6,7 +6,7 @@ from crowdin_api.typing import TypedDict
 
 
 class ScreenshotPatchRequest(TypedDict):
-    value: Any
+    value: str
     op: Union[PatchOperation, str]
     path: ScreenshotPatchPath
 

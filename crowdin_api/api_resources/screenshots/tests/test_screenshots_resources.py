@@ -35,41 +35,50 @@ class TestSourceFilesResource:
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_list_screenshots(self, m_request, base_absolut_url):
         m_request.return_value = "response"
-
         resource = self.get_resource(base_absolut_url)
         assert resource.list_screenshots(projectId=1, **{"offset": 0, "limit": 10}) == "response"
         m_request.assert_called_once_with(
             method="get",
-            params={"offset": 0, "limit": 10},
             path=resource.get_screenshots_path(projectId=1),
+            params={'stringId': None, 'labelIds': None, 'excludeLabelIds': None, 'offset': 0, 'limit': 10},
         )
 
     @pytest.mark.parametrize(
-        "in_params, request_data",
-        (
+        "in_params, expected_params",
+        [
             (
                 {
                     "storageId": 1,
-                    "name": "name",
+                    "name": "test_screenshot",
+                    "projectId": 1,
+                    "autoTag": True,
+                    "fileId": 2,
+                    "branchId": 3,
+                    "directoryId": 4,
+                    "labelIds": [5, 6],
                 },
-                {"storageId": 1, "name": "name", "autoTag": None},
+                {
+                    "storageId": 1,
+                    "name": "test_screenshot",
+                    "autoTag": True,
+                    "fileId": 2,
+                    "branchId": 3,
+                    "directoryId": 4,
+                    "labelIds": [5, 6],
+                },
             ),
-            (
-                {"storageId": 1, "name": "name", "autoTag": True},
-                {"storageId": 1, "name": "name", "autoTag": True},
-            ),
-        ),
+        ],
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_screenshot(self, m_request, in_params, request_data, base_absolut_url):
+    def test_add_screenshot(self, m_request, in_params, expected_params, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_screenshot(projectId=1, **in_params) == "response"
+        assert resource.add_screenshot(**in_params) == "response"
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_screenshots_path(projectId=1),
-            request_data=request_data,
+            request_data=expected_params,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -77,7 +86,8 @@ class TestSourceFilesResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.get_screenshot(projectId=1, screenshotId=2) == "response"
+        assert resource.get_screenshot(
+            projectId=1, screenshotId=2) == "response"
         m_request.assert_called_once_with(
             method="get",
             path=resource.get_screenshots_path(projectId=1, screenshotId=2),
@@ -89,7 +99,8 @@ class TestSourceFilesResource:
 
         resource = self.get_resource(base_absolut_url)
         assert (
-            resource.update_screenshot(projectId=1, screenshotId=2, storageId=3, name="test")
+            resource.update_screenshot(
+                projectId=1, screenshotId=2, storageId=3, name="test")
             == "response"
         )
         m_request.assert_called_once_with(
@@ -103,7 +114,8 @@ class TestSourceFilesResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.delete_screenshot(projectId=1, screenshotId=2) == "response"
+        assert resource.delete_screenshot(
+            projectId=1, screenshotId=2) == "response"
         m_request.assert_called_once_with(
             method="delete",
             path=resource.get_screenshots_path(projectId=1, screenshotId=2),
@@ -122,7 +134,8 @@ class TestSourceFilesResource:
         ]
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.edit_screenshot(projectId=1, screenshotId=2, data=data) == "response"
+        assert resource.edit_screenshot(
+            projectId=1, screenshotId=2, data=data) == "response"
         m_request.assert_called_once_with(
             method="patch",
             request_data=data,
@@ -133,7 +146,8 @@ class TestSourceFilesResource:
     @pytest.mark.parametrize(
         "in_params, path",
         (
-            ({"projectId": 1, "screenshotId": 2}, "projects/1/screenshots/2/tags"),
+            ({"projectId": 1, "screenshotId": 2},
+             "projects/1/screenshots/2/tags"),
             (
                 {"projectId": 1, "screenshotId": 2, "tagId": 3},
                 "projects/1/screenshots/2/tags/3",

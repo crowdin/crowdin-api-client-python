@@ -31,6 +31,9 @@ class ScreenshotsResource(BaseResource):
     def list_screenshots(
         self,
         projectId: Optional[int] = None,
+        stringId: Optional[int] = None,
+        labelIds: Optional[Iterable[int]] = None,
+        excludeLabelIds: Optional[Iterable[int]] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -44,10 +47,13 @@ class ScreenshotsResource(BaseResource):
 
         projectId = projectId or self.get_project_id()
 
+        params = {"stringId": stringId, "labelIds": labelIds, "excludeLabelIds": excludeLabelIds}
+        params.update(self.get_page_params(page=page, offset=offset, limit=limit))
+
         return self._get_entire_data(
             method="get",
             path=self.get_screenshots_path(projectId=projectId),
-            params=self.get_page_params(page=page, offset=offset, limit=limit),
+            params=params,
         )
 
     def add_screenshot(
@@ -56,6 +62,10 @@ class ScreenshotsResource(BaseResource):
         name: str,
         projectId: Optional[int] = None,
         autoTag: Optional[bool] = None,
+        fileId: Optional[int] = None,
+        branchId: Optional[int] = None,
+        directoryId: Optional[int] = None,
+        labelIds: Optional[Iterable[int]] = None,
     ):
         """
         Add Screenshot.
@@ -73,6 +83,10 @@ class ScreenshotsResource(BaseResource):
                 "storageId": storageId,
                 "name": name,
                 "autoTag": autoTag,
+                "fileId": fileId,
+                "branchId": branchId,
+                "directoryId": directoryId,
+                "labelIds": labelIds,
             },
         )
 
