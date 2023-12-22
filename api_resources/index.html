@@ -188,6 +188,14 @@
 <p>Link to documentation for enterprise:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.delete</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.ApplicationResource.delete_application_installation"><code class="name flex">
+<span>def <span class="ident">delete_application_installation</span></span>(<span>self, identifier: str, force: Optional[bool] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete Applcation Installation</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.applications.installations.delete">https://developer.crowdin.com/api/v2/#operation/api.applications.installations.delete</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.ApplicationResource.edit_application_data"><code class="name flex">
 <span>def <span class="ident">edit_application_data</span></span>(<span>self, applicationIdentifier: str, path: str, data: dict)</span>
 </code></dt>
@@ -197,6 +205,12 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.applications.api.patch">https://developer.crowdin.com/api/v2/#operation/api.applications.api.patch</a></p>
 <p>Link to documentation for enterprise:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ApplicationResource.edit_applicatoin_installation"><code class="name flex">
+<span>def <span class="ident">edit_applicatoin_installation</span></span>(<span>self, identifier: str, data: Iterable[<a title="crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest" href="application/types.html#crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest">ApplicationInstallationPatchRequest</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit Application Installation</p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ApplicationResource.get_application_data"><code class="name flex">
 <span>def <span class="ident">get_application_data</span></span>(<span>self, applicationIdentifier: str, path: str)</span>
@@ -208,11 +222,41 @@
 <p>Link to documentation for enterprise:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.get</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.ApplicationResource.get_application_installation"><code class="name flex">
+<span>def <span class="ident">get_application_installation</span></span>(<span>self, identifier: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Application Installation</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.applications.installations.get">https://developer.crowdin.com/api/v2/#operation/api.applications.installations.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ApplicationResource.get_application_installations_path"><code class="name flex">
+<span>def <span class="ident">get_application_installations_path</span></span>(<span>self, identifier: Optional[str] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ApplicationResource.get_application_path"><code class="name flex">
 <span>def <span class="ident">get_application_path</span></span>(<span>self, applicationIdentifier: str, path: str)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ApplicationResource.install_application"><code class="name flex">
+<span>def <span class="ident">install_application</span></span>(<span>self, url: str, permissions: Optional[<a title="crowdin_api.api_resources.application.types.ApplicationPermissions" href="application/types.html#crowdin_api.api_resources.application.types.ApplicationPermissions">ApplicationPermissions</a>] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Install Application</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.applications.installations.post">https://developer.crowdin.com/api/v2/#operation/api.applications.installations.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ApplicationResource.list_application_installations"><code class="name flex">
+<span>def <span class="ident">list_application_installations</span></span>(<span>self, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Application Installations</p>
+<p>Link to documentaion:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.applications.installations.getMany">https://developer.crowdin.com/api/v2/#operation/api.applications.installations.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ApplicationResource.update_application_data"><code class="name flex">
 <span>def <span class="ident">update_application_data</span></span>(<span>self, applicationIdentifier: str, path: str, data: dict)</span>
@@ -1490,7 +1534,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.ScreenshotsResource.add_screenshot"><code class="name flex">
-<span>def <span class="ident">add_screenshot</span></span>(<span>self, storageId: int, name: str, projectId: Optional[int] = None, autoTag: Optional[bool] = None)</span>
+<span>def <span class="ident">add_screenshot</span></span>(<span>self, storageId: int, name: str, projectId: Optional[int] = None, autoTag: Optional[bool] = None, fileId: Optional[int] = None, branchId: Optional[int] = None, directoryId: Optional[int] = None, labelIds: Optional[Iterable[int]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Screenshot.</p>
@@ -1582,7 +1626,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.ScreenshotsResource.list_screenshots"><code class="name flex">
-<span>def <span class="ident">list_screenshots</span></span>(<span>self, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_screenshots</span></span>(<span>self, projectId: Optional[int] = None, stringId: Optional[int] = None, labelIds: Optional[Iterable[int]] = None, excludeLabelIds: Optional[Iterable[int]] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Screenshots.</p>
@@ -3131,9 +3175,15 @@ the details of a specific template.</p>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.ApplicationResource.add_application_data" href="#crowdin_api.api_resources.ApplicationResource.add_application_data">add_application_data</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ApplicationResource.delete_application_data" href="#crowdin_api.api_resources.ApplicationResource.delete_application_data">delete_application_data</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ApplicationResource.delete_application_installation" href="#crowdin_api.api_resources.ApplicationResource.delete_application_installation">delete_application_installation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ApplicationResource.edit_application_data" href="#crowdin_api.api_resources.ApplicationResource.edit_application_data">edit_application_data</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ApplicationResource.edit_applicatoin_installation" href="#crowdin_api.api_resources.ApplicationResource.edit_applicatoin_installation">edit_applicatoin_installation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ApplicationResource.get_application_data" href="#crowdin_api.api_resources.ApplicationResource.get_application_data">get_application_data</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ApplicationResource.get_application_installation" href="#crowdin_api.api_resources.ApplicationResource.get_application_installation">get_application_installation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ApplicationResource.get_application_installations_path" href="#crowdin_api.api_resources.ApplicationResource.get_application_installations_path">get_application_installations_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ApplicationResource.get_application_path" href="#crowdin_api.api_resources.ApplicationResource.get_application_path">get_application_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ApplicationResource.install_application" href="#crowdin_api.api_resources.ApplicationResource.install_application">install_application</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ApplicationResource.list_application_installations" href="#crowdin_api.api_resources.ApplicationResource.list_application_installations">list_application_installations</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ApplicationResource.update_application_data" href="#crowdin_api.api_resources.ApplicationResource.update_application_data">update_application_data</a></code></li>
 </ul>
 </li>

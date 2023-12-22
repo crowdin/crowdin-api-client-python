@@ -50,7 +50,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.add_screenshot"><code class="name flex">
-<span>def <span class="ident">add_screenshot</span></span>(<span>self, storageId: int, name: str, projectId: Optional[int] = None, autoTag: Optional[bool] = None)</span>
+<span>def <span class="ident">add_screenshot</span></span>(<span>self, storageId: int, name: str, projectId: Optional[int] = None, autoTag: Optional[bool] = None, fileId: Optional[int] = None, branchId: Optional[int] = None, directoryId: Optional[int] = None, labelIds: Optional[Iterable[int]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Screenshot.</p>
@@ -142,7 +142,7 @@ Screenshot tags allow specifying which source strings are displayed on each scre
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.screenshots.resource.ScreenshotsResource.list_screenshots"><code class="name flex">
-<span>def <span class="ident">list_screenshots</span></span>(<span>self, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_screenshots</span></span>(<span>self, projectId: Optional[int] = None, stringId: Optional[int] = None, labelIds: Optional[Iterable[int]] = None, excludeLabelIds: Optional[Iterable[int]] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Screenshots.</p>
