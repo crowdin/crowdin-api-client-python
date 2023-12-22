@@ -1,7 +1,7 @@
 from unittest import mock
 import pytest
-from crowdin_api.api_resources.applications.resource import ApplicationResource
-from crowdin_api.api_resources.applications.enums import (
+from crowdin_api.api_resources.application.resource import ApplicationResource
+from crowdin_api.api_resources.application.enums import (
     UserPermissions,
     ProjectPermissions,
 )

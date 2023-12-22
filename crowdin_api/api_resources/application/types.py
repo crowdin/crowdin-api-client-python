@@ -1,6 +1,6 @@
 from typing import Iterable
 from crowdin_api.typing import TypedDict
-from crowdin_api.api_resources.applications.enums import (
+from crowdin_api.api_resources.application.enums import (
     UserPermissions,
     ProjectPermissions,
 )

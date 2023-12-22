@@ -1,6 +1,6 @@
 from typing import Optional, Iterable
 from crowdin_api.parser import dumps
-from crowdin_api.api_resources.applications.types import (
+from crowdin_api.api_resources.application.types import (
     ApplicationPermissions,
     ApplicationInstallationPatchRequest,
 )
