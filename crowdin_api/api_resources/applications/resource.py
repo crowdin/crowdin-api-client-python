@@ -1,8 +1,8 @@
 from typing import Optional, Iterable
 from crowdin_api.parser import dumps
-from crowdin_api.api_resources.application.types import (
+from crowdin_api.api_resources.applications.types import (
     ApplicationPermissions,
-    ApplicationInstallionPatchRequest,
+    ApplicationInstallationPatchRequest,
 )
 from crowdin_api.api_resources.abstract.resources import BaseResource
 
@@ -23,7 +23,7 @@ class ApplicationResource(BaseResource):
     def get_application_path(self, applicationIdentifier: str, path: str):
         return f"applications/{applicationIdentifier}/api/{path}"
 
-    def get_application_installtions_path(self, identifier: Optional[str] = None):
+    def get_application_installations_path(self, identifier: Optional[str] = None):
         if identifier:
             return f"applications/installations/{identifier}"
         return "applications/installations"
@@ -41,7 +41,7 @@ class ApplicationResource(BaseResource):
         """
         return self.requester.request(
             method="get",
-            path=self.get_application_installtions_path(),
+            path=self.get_application_installations_path(),
             params=self.get_page_params(offset=offset, limit=limit),
         )
 
@@ -57,7 +57,7 @@ class ApplicationResource(BaseResource):
         request_data = {"url": url, "permissions": permissions}
         return self.requester.request(
             method="post",
-            path=self.get_application_installtions_path(),
+            path=self.get_application_installations_path(),
             request_data=request_data,
         )
 
@@ -70,7 +70,7 @@ class ApplicationResource(BaseResource):
         """
         return self.requester.request(
             method="get",
-            path=self.get_application_installtions_path(identifier=identifier),
+            path=self.get_application_installations_path(identifier=identifier),
         )
 
     def delete_application_installation(
@@ -86,19 +86,19 @@ class ApplicationResource(BaseResource):
 
         return self.requester.request(
             method="delete",
-            path=self.get_application_installtions_path(identifier=identifier),
+            path=self.get_application_installations_path(identifier=identifier),
             params=params,
         )
 
     def edit_applicatoin_installation(
-        self, identifier: str, data: Iterable[ApplicationInstallionPatchRequest]
+        self, identifier: str, data: Iterable[ApplicationInstallationPatchRequest]
     ):
         """
         Edit Application Installation
         """
         return self.requester.request(
             method="patch",
-            path=self.get_application_installtions_path(identifier=identifier),
+            path=self.get_application_installations_path(identifier=identifier),
             request_data=data,
         )
 

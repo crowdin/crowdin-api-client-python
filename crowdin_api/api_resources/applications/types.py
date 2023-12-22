@@ -1,18 +1,18 @@
 from typing import Iterable
 from crowdin_api.typing import TypedDict
-from crowdin_api.api_resources.application.enums import (
-    UserPermission,
-    ProjectPermission,
+from crowdin_api.api_resources.applications.enums import (
+    UserPermissions,
+    ProjectPermissions,
 )
 
 
 class ApplicationUser(TypedDict):
-    value: UserPermission
+    value: UserPermissions
     ids: Iterable[int]
 
 
 class ApplicationProject(TypedDict):
-    value: ProjectPermission
+    value: ProjectPermissions
     ids: Iterable[int]
 
 
@@ -21,7 +21,7 @@ class ApplicationPermissions(TypedDict):
     project: ApplicationProject
 
 
-class ApplicationInstallionPatchRequest(TypedDict):
+class ApplicationInstallationPatchRequest(TypedDict):
     op: str
     path: str
     value: str

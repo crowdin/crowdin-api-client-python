@@ -1,4 +1,4 @@
-from .application.resource import ApplicationResource
+from .applications.resource import ApplicationResource
 from .bundles.resource import BundlesResource
 from .dictionaries.resource import DictionariesResource
 from .distributions.resource import DistributionsResource

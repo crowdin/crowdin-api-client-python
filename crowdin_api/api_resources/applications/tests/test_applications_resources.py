@@ -1,9 +1,9 @@
 from unittest import mock
 import pytest
-from crowdin_api.api_resources.application.resource import ApplicationResource
-from crowdin_api.api_resources.application.enums import (
-    UserPermission,
-    ProjectPermission,
+from crowdin_api.api_resources.applications.resource import ApplicationResource
+from crowdin_api.api_resources.applications.enums import (
+    UserPermissions,
+    ProjectPermissions,
 )
 from crowdin_api.requester import APIRequester
 
@@ -33,7 +33,7 @@ class TestApplicationResource:
     )
     def test_get_application_installation_path(self, in_params, path, base_absolut_url):
         resource = self.get_resource(base_absolut_url)
-        assert resource.get_application_installtions_path(in_params) == path
+        assert resource.get_application_installations_path(in_params) == path
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_list_application_installations(self, m_request, base_absolut_url):
@@ -43,7 +43,7 @@ class TestApplicationResource:
         assert resource.list_application_installations() == "response"
         m_request.assert_called_once_with(
             method="get",
-            path=resource.get_application_installtions_path(),
+            path=resource.get_application_installations_path(),
             params=resource.get_page_params()
         )
 
@@ -64,11 +64,11 @@ class TestApplicationResource:
                     "url": "https://localhost.dev/crowdin.json",
                     "permissions": {
                         "user": {
-                            "value": UserPermission.OWNER,
+                            "value": UserPermissions.OWNER,
                             "ids": [1, 2, 3]
                         },
                         "project": {
-                            "value": ProjectPermission.OWN,
+                            "value": ProjectPermissions.OWN,
                             "ids": [4, 5, 6]
                         }
                     }
@@ -77,11 +77,11 @@ class TestApplicationResource:
                     "url": "https://localhost.dev/crowdin.json",
                     "permissions": {
                         "user": {
-                            "value": UserPermission.OWNER,
+                            "value": UserPermissions.OWNER,
                             "ids": [1, 2, 3]
                         },
                         "project": {
-                            "value": ProjectPermission.OWN,
+                            "value": ProjectPermissions.OWN,
                             "ids": [4, 5, 6]
                         }
                     }
@@ -97,7 +97,7 @@ class TestApplicationResource:
         assert resource.install_application(**in_params) == "response"
         m_request.assert_called_once_with(
             method="post",
-            path=resource.get_application_installtions_path(),
+            path=resource.get_application_installations_path(),
             request_data=request_data
         )
 
@@ -110,7 +110,7 @@ class TestApplicationResource:
         assert resource.get_application_installation(identifier) == "response"
         m_request.assert_called_once_with(
             method="get",
-            path=resource.get_application_installtions_path(identifier),
+            path=resource.get_application_installations_path(identifier),
         )
 
     @pytest.mark.parametrize(
@@ -135,7 +135,7 @@ class TestApplicationResource:
         )
         m_request.assert_called_once_with(
             method="delete",
-            path=resource.get_application_installtions_path(identifier="example-app"),
+            path=resource.get_application_installations_path(identifier="example-app"),
             params=request_param
         )
 
@@ -145,7 +145,7 @@ class TestApplicationResource:
     ):
         m_request.return_value = "response"
 
-        identifier = "exmaple-applcation"
+        identifier = "exmaple-application"
         data = [{"op": "replace", "path": "/permissions", "value": "test"}]
         resource = self.get_resource(base_absolut_url)
         assert resource.edit_applicatoin_installation(
@@ -154,7 +154,7 @@ class TestApplicationResource:
         )
         m_request.assert_called_once_with(
             method="patch",
-            path=resource.get_application_installtions_path(identifier=identifier),
+            path=resource.get_application_installations_path(identifier=identifier),
             request_data=data,
         )
 

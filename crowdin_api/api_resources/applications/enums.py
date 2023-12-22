@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class UserPermission(Enum):
+class UserPermissions(Enum):
     OWNER = "owner"
     MANAGERS = "managers"
     ALL = "all"
@@ -9,6 +9,6 @@ class UserPermission(Enum):
     RESTRICTED = "restricted"
 
 
-class ProjectPermission(Enum):
+class ProjectPermissions(Enum):
     OWN = "own"
     RESTRICTED = "restricted"
