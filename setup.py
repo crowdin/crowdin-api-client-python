@@ -52,7 +52,7 @@ setup(
     python_requires=">=3.8",
     license="MIT",
     install_requires=[
-        "requests>=2.25.1",
+        "requests>=2.31.0",
         "typing-extensions; python_version < '3.8.0'",
         "deprecated"
     ],
