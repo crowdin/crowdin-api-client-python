@@ -117,6 +117,8 @@ class StringTranslationsResource(BaseResource):
         stringIds: Optional[Iterable[int]] = None,
         labelIds: Optional[Iterable[int]] = None,
         fileId: Optional[int] = None,
+        branchId: Optional[int] = None,
+        directoryId: Optional[int] = None,
         croql: Optional[str] = None,
         denormalizePlaceholders: Optional[DenormalizePlaceholders] = None,
         page: Optional[int] = None,
@@ -139,6 +141,8 @@ class StringTranslationsResource(BaseResource):
             if labelIds is None
             else ",".join(str(labelId) for labelId in labelIds),
             "fileId": fileId,
+            "branchId": branchId,
+            "directoryId": directoryId,
             "croql": croql,
             "denormalizePlaceholders": denormalizePlaceholders,
         }
