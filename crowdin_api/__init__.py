@@ -2,7 +2,7 @@ from crowdin_api.client import CrowdinClient
 
 __all__ = ["CrowdinClient"]
 __author__ = "Crowdin"
-__version__ = "1.14.0"
+__version__ = "1.14.1"
 
 __pdoc__ = {
     "tests": False,
