@@ -240,6 +240,24 @@ class CrowdinClient:
         )
 
     @property
+    def security_logs(self) -> Union[api_resources.SecurityLogsResource, api_resources.EnterpriseSecurityLogsResource]:
+        if self._is_enterprise_platform:
+            security_logs_class = api_resources.EnterpriseSecurityLogsResource
+        else:
+            security_logs_class = api_resources.SecurityLogsResource
+
+        if self.PROJECT_ID:
+            return security_logs_class(
+                requester=self.get_api_requestor(),
+                page_size=self.PAGE_SIZE,
+                project_id=self.PROJECT_ID,
+            )
+
+        return security_logs_class(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE,
+        )
+
+    @property
     def source_files(self) -> api_resources.SourceFilesResource:
         if self.PROJECT_ID:
             return api_resources.SourceFilesResource(
