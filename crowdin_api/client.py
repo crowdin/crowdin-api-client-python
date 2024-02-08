@@ -240,6 +240,19 @@ class CrowdinClient:
         )
 
     @property
+    def security_logs(self) -> api_resources.SecurityLogsResource:
+        if self.PROJECT_ID:
+            return api_resources.SecurityLogsResource(
+                requester=self.get_api_requestor(),
+                page_size=self.PAGE_SIZE,
+                project_id=self.PROJECT_ID,
+            )
+
+        return api_resources.SecurityLogsResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE,
+        )
+
+    @property
     def source_files(self) -> api_resources.SourceFilesResource:
         if self.PROJECT_ID:
             return api_resources.SourceFilesResource(

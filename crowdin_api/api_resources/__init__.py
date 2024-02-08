@@ -10,6 +10,7 @@ from .machine_translation_engines.resource import MachineTranslationEnginesResou
 from .projects.resource import ProjectsResource
 from .reports.resource import ReportsResource, EnterpriseReportsResource
 from .screenshots.resource import ScreenshotsResource
+from .security_logs.resource import SecurityLogsResource
 from .source_files.resource import SourceFilesResource
 from .source_strings.resource import SourceStringsResource
 from .storages.resource import StoragesResource
@@ -39,6 +40,7 @@ __all__ = [
     "ReportsResource",
     "EnterpriseReportsResource",
     "ScreenshotsResource",
+    "SecurityLogsResource",
     "SourceFilesResource",
     "SourceStringsResource",
     "StoragesResource",

@@ -1,0 +1,26 @@
+from enum import Enum
+
+
+class SecurityLogEvent(Enum):
+    LOGIN = "login"
+    PASSWORD_SET = "password.set"
+    PASSWORD_CHANGE = "password.change"
+    EMAIL_CHANGE = "email.change"
+    LOGIN_CHANGE = "login.change"
+    PERSONAL_TOKEN_ISSUED = "personal_token.issued"
+    PERSONAL_TOKEN_REVOKED = "personal_token.revoked"
+    MFA_ENABLED = "mfa.enabled"
+    MFA_DISABLED = "mfa.disabled"
+    SESSION_REVOKE = "session.revoke"
+    SESSION_REVOKE_ALL = "session.revoke_all"
+    SSO_CONNECT = "sso.connect"
+    SSO_DISCONNECT = "sso.disconnect"
+    USER_REMOVE = "user.remove"
+    APPLICATION_CONNECTED = "application.connected"
+    APPLICATION_DISCONNECTED = "application.disconnected"
+    WEBAUTHN_CREATED = "webauthn.created"
+    WEBAUTHN_DELETED = "webauthn.deleted"
+    TRUSTED_DEVICE_REMOVE = "trusted_device.remove"
+    TRUSTED_DEVICE_REMOVE_ALL = "trusted_device.remove_all"
+    DEVICE_VERIFICATION_ENABLED = "device_verification.enabled"
+    DEVICE_VERIFICATION_DISABLED = "device_verification.disabled"
