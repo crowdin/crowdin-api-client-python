@@ -1,10 +1,25 @@
+from datetime import datetime
 from typing import Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.security_logs.enums import SecurityLogEvent
 
 
-class BaseSecurityLogsResource(BaseResource):
+class SecurityLogsResource(BaseResource):
+    """
+    Resource for Security Logs
+
+    Link to documentaion:
+    https://developer.crowdin.com/api/v2/#tag/Security-Logs
+
+    -----------
+
+    Resource for Enterprise Security Logs
+
+    Link to documentation:
+    https://developer.crowdin.com/enterprise/api/v2/#tag/Security-Logs
+    """
+
     def get_user_security_logs_path(
         self, userId: int, securityLogId: Optional[int] = None
     ):
@@ -19,6 +34,8 @@ class BaseSecurityLogsResource(BaseResource):
         offset: Optional[int] = None,
         page: Optional[int] = None,
         event: Optional[SecurityLogEvent] = None,
+        createdAfter: Optional[datetime] = None,
+        createdBefore: Optional[datetime] = None,
         ipAddress: Optional[str] = None,
     ):
         """
@@ -28,7 +45,12 @@ class BaseSecurityLogsResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.users.security-logs.getMany
         """
 
-        params = {"event": event, "ipAddress": ipAddress}
+        params = {
+            "event": event,
+            "createdAfter": createdAfter,
+            "createdBefore": createdBefore,
+            "ipAddress": ipAddress,
+        }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(
@@ -52,24 +74,6 @@ class BaseSecurityLogsResource(BaseResource):
             ),
         )
 
-
-class SecurityLogsResource(BaseSecurityLogsResource):
-    """
-    Resource for Security Logs
-
-    Link to documentaion:
-    https://developer.crowdin.com/api/v2/#tag/Security-Logs
-    """
-
-
-class EnterpriseSecurityLogsResource(BaseSecurityLogsResource):
-    """
-    Resource for Enterprise Security Logs
-
-    Link to documentation:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Security-Logs
-    """
-
     def get_organization_security_logs_path(self, securityLogId: Optional[int] = None):
         if securityLogId is not None:
             return f"/security-logs/{securityLogId}"
@@ -81,6 +85,8 @@ class EnterpriseSecurityLogsResource(BaseSecurityLogsResource):
         offset: Optional[int] = None,
         page: Optional[int] = None,
         event: Optional[SecurityLogEvent] = None,
+        createdAfter: Optional[datetime] = None,
+        createdBefore: Optional[datetime] = None,
         ipAddress: Optional[str] = None,
         userId: Optional[int] = None,
     ):
@@ -91,7 +97,13 @@ class EnterpriseSecurityLogsResource(BaseSecurityLogsResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.security-logs.getMany
         """
 
-        params = {"event": event, "ipAddress": ipAddress, "userId": userId}
+        params = {
+            "event": event,
+            "createdAfter": createdAfter,
+            "createdBefore": createdBefore,
+            "ipAddress": ipAddress,
+            "userId": userId,
+        }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(

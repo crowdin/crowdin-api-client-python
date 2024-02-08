@@ -1,11 +1,9 @@
+from datetime import datetime
 from unittest import mock
 
 import pytest
 from crowdin_api.api_resources.security_logs.enums import SecurityLogEvent
-from crowdin_api.api_resources.security_logs.resource import (
-    EnterpriseSecurityLogsResource,
-    SecurityLogsResource,
-)
+from crowdin_api.api_resources.security_logs.resource import SecurityLogsResource
 from crowdin_api.requester import APIRequester
 
 
@@ -32,12 +30,16 @@ class TestSecurityLogsResource:
             (
                 {
                     "event": SecurityLogEvent.LOGIN,
+                    "createdAfter": datetime(year=2024, month=1, day=1, hour=12),
+                    "createdBefore": datetime(year=2024, month=1, day=30, hour=12),
                     "ipAddress": "127.0.0.1",
                     "offset": 0,
                     "limit": 10,
                 },
                 {
                     "event": SecurityLogEvent.LOGIN,
+                    "createdAfter": datetime(year=2024, month=1, day=1, hour=12),
+                    "createdBefore": datetime(year=2024, month=1, day=30, hour=12),
                     "ipAddress": "127.0.0.1",
                     "offset": 0,
                     "limit": 10,
@@ -50,6 +52,8 @@ class TestSecurityLogsResource:
                 },
                 {
                     "event": None,
+                    "createdAfter": None,
+                    "createdBefore": None,
                     "ipAddress": None,
                     "offset": 0,
                     "limit": 10,
@@ -82,14 +86,6 @@ class TestSecurityLogsResource:
             path=resource.get_user_security_logs_path(userId=1, securityLogId=2),
         )
 
-
-class TestEnterpriseSecurityLogsResource:
-
-    resource_class = EnterpriseSecurityLogsResource
-
-    def get_resource(self, base_absolut_url):
-        return self.resource_class(requester=APIRequester(base_url=base_absolut_url))
-
     @pytest.mark.parametrize(
         "incoming_data, path",
         (
@@ -109,6 +105,8 @@ class TestEnterpriseSecurityLogsResource:
             (
                 {
                     "event": SecurityLogEvent.LOGIN,
+                    "createdAfter": datetime(year=2024, month=1, day=1, hour=12),
+                    "createdBefore": datetime(year=2024, month=1, day=30, hour=12),
                     "ipAddress": "127.0.0.1",
                     "userId": 1,
                     "offset": 0,
@@ -116,6 +114,8 @@ class TestEnterpriseSecurityLogsResource:
                 },
                 {
                     "event": SecurityLogEvent.LOGIN,
+                    "createdAfter": datetime(year=2024, month=1, day=1, hour=12),
+                    "createdBefore": datetime(year=2024, month=1, day=30, hour=12),
                     "ipAddress": "127.0.0.1",
                     "userId": 1,
                     "offset": 0,
@@ -129,6 +129,8 @@ class TestEnterpriseSecurityLogsResource:
                 },
                 {
                     "event": None,
+                    "createdAfter": None,
+                    "createdBefore": None,
                     "ipAddress": None,
                     "userId": None,
                     "offset": 0,

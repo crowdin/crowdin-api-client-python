@@ -201,7 +201,7 @@ class TestCrowdinClientEnterprise:
             ("projects", "ProjectsResource"),
             ("reports", "EnterpriseReportsResource"),
             ("screenshots", "ScreenshotsResource"),
-            ("security_logs", "EnterpriseSecurityLogsResource"),
+            ("security_logs", "SecurityLogsResource"),
             ("source_files", "SourceFilesResource"),
             ("source_strings", "SourceStringsResource"),
             ("storages", "StoragesResource"),
