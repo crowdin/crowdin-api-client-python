@@ -12,11 +12,7 @@ class SecurityLogsResource(BaseResource):
     Link to documentaion:
     https://developer.crowdin.com/api/v2/#tag/Security-Logs
 
-    -----------
-
-    Resource for Enterprise Security Logs
-
-    Link to documentation:
+    Link to documentation for enterprise:
     https://developer.crowdin.com/enterprise/api/v2/#tag/Security-Logs
     """
 
@@ -30,13 +26,13 @@ class SecurityLogsResource(BaseResource):
     def list_user_security_logs(
         self,
         userId: int,
-        limit: Optional[int] = None,
-        offset: Optional[int] = None,
-        page: Optional[int] = None,
         event: Optional[SecurityLogEvent] = None,
         createdAfter: Optional[datetime] = None,
         createdBefore: Optional[datetime] = None,
         ipAddress: Optional[str] = None,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+        page: Optional[int] = None,
     ):
         """
         List User Security Logs
@@ -81,14 +77,14 @@ class SecurityLogsResource(BaseResource):
 
     def list_organization_security_logs(
         self,
-        limit: Optional[int] = None,
-        offset: Optional[int] = None,
-        page: Optional[int] = None,
         event: Optional[SecurityLogEvent] = None,
         createdAfter: Optional[datetime] = None,
         createdBefore: Optional[datetime] = None,
         ipAddress: Optional[str] = None,
         userId: Optional[int] = None,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+        page: Optional[int] = None,
     ):
         """
         List Organization Security Logs
