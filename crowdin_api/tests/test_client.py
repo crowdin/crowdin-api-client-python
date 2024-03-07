@@ -193,6 +193,7 @@ class TestCrowdinClientEnterprise:
             ("bundles", "BundlesResource"),
             ("dictionaries", "DictionariesResource"),
             ("distributions", "DistributionsResource"),
+            ("fields", "FieldsResource"),
             ("glossaries", "GlossariesResource"),
             ("groups", "GroupsResource"),
             ("labels", "LabelsResource"),

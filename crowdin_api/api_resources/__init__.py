@@ -2,6 +2,7 @@ from .application.resource import ApplicationResource
 from .bundles.resource import BundlesResource
 from .dictionaries.resource import DictionariesResource
 from .distributions.resource import DistributionsResource
+from .fields.resource import FieldsResource
 from .glossaries.resource import GlossariesResource
 from .groups.resource import GroupsResource
 from .labels.resource import LabelsResource
@@ -31,6 +32,7 @@ __all__ = [
     "BundlesResource",
     "DictionariesResource",
     "DistributionsResource",
+    "FieldsResource",
     "GlossariesResource",
     "GroupsResource",
     "LabelsResource",
