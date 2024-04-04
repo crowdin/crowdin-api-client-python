@@ -112,6 +112,53 @@ print(client.projects.with_fetch_all().list_projects())
 print(client.projects.with_fetch_all(1000).list_projects())
 ```
 
+### Extended request parameters
+
+The `EXTENDED_REQUEST_PARAMS` parameter allows you to set additional parameters for requests. For example, you can configure proxies or certificates.
+
+The Client uses the [requests](https://pypi.org/project/requests/) library to make HTTP requests. You can pass any parameters that `requests` supports:
+
+```python
+def request(
+    self,
+    method,
+    url,
+    params=None,
+    data=None,
+    headers=None,
+    cookies=None,
+    files=None,
+    auth=None,
+    timeout=None,
+    allow_redirects=True,
+    proxies=None,
+    hooks=None,
+    stream=None,
+    verify=None,
+    cert=None,
+    json=None,
+):
+```
+
+For example, you can set a [proxy](https://requests.readthedocs.io/en/latest/api/#requests.Session.proxies):
+
+```python
+from crowdin_api import CrowdinClient
+
+http_proxy = "http://10.10.1.10:3128"
+https_proxy = "https://10.10.1.11:1080"
+ftp_proxy = "ftp://10.10.1.10:3128"
+
+proxies = {
+  "http": http_proxy,
+  "https": https_proxy,
+  "ftp": ftp_proxy
+}
+
+class FirstCrowdinClient(CrowdinClient):
+    EXTENDED_REQUEST_PARAMS = {"proxies": proxies}
+```
+
 ## Seeking Assistance
 
 If you find any problems or would like to suggest a feature, please read the [How can I contribute](https://github.com/crowdin/crowdin-api-client-python/blob/main/CONTRIBUTING.md#how-can-i-contribute) section in our contributing guidelines.
