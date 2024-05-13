@@ -157,6 +157,47 @@ class TestEnterpriseUsersResource:
         "in_params, request_params",
         (
             (
+                {},
+                {
+                    "search": None,
+                    "workflowStepId": None,
+                    "languageId": None,
+                    "offset": 0,
+                    "limit": 25,
+                },
+            ),
+            (
+                {
+                    "search": "search",
+                    "workflowStepId": 72,
+                    "languageId": "ua",
+                    "offset": 0,
+                    "limit": 25,
+                },
+                {
+                    "search": "search",
+                    "workflowStepId": 72,
+                    "languageId": "ua",
+                    "offset": 0,
+                    "limit": 25,
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_project_members(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_project_members(projectId=1, **in_params) == "response"
+        m_request.assert_called_once_with(
+            method="get", params=request_params, path="projects/1/members"
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            (
                 {"email": ""},
                 {
                     "email": "",
