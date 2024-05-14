@@ -72,7 +72,6 @@ class TestUsersResource:
         assert resource.get_member_info(projectId=1, memberId=2) == "response"
         m_request.assert_called_once_with(method="get", path="projects/1/members/2")
 
-
     @pytest.mark.parametrize(
         "in_params, request_params",
         (
@@ -113,7 +112,6 @@ class TestUsersResource:
         m_request.assert_called_once_with(
             method="get", params=request_params, path="projects/1/members"
         )
-
 
 
 class TestEnterpriseUsersResource:
