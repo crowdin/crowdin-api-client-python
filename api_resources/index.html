@@ -745,6 +745,14 @@ authenticated user.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.EnterpriseUsersResource.list_project_members"><code class="name flex">
+<span>def <span class="ident">list_project_members</span></span>(<span>self, projectId: Optional[int] = None, search: Optional[str] = None, workflowStepId: Optional[int] = None, languageId: Optional[str] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Project Members.</p>
+<p>Link to documentation for enterprise:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.getMany</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.EnterpriseUsersResource.replace_project_member_permissions"><code class="name flex">
 <span>def <span class="ident">replace_project_member_permissions</span></span>(<span>self, memberId: int, projectId: Optional[int] = None, accessToAllWorkflowSteps: Optional[bool] = None, managerAccess: Optional[bool] = None, permissions: Optional[Dict[~KT, ~VT]] = None, roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.types.ProjectMemberRole" href="users/types.html#crowdin_api.api_resources.users.types.ProjectMemberRole">ProjectMemberRole</a>]] = None)</span>
 </code></dt>
@@ -754,14 +762,6 @@ authenticated user.</p>
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.put">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.put</a></p></div>
 </dd>
 </dl>
-<h3>Inherited members</h3>
-<ul class="hlist">
-<li><code><b><a title="crowdin_api.api_resources.users.resource.BaseUsersResource" href="users/resource.html#crowdin_api.api_resources.users.resource.BaseUsersResource">BaseUsersResource</a></b></code>:
-<ul class="hlist">
-<li><code><a title="crowdin_api.api_resources.users.resource.BaseUsersResource.list_project_members" href="users/resource.html#crowdin_api.api_resources.users.resource.BaseUsersResource.list_project_members">list_project_members</a></code></li>
-</ul>
-</li>
-</ul>
 </dd>
 <dt id="crowdin_api.api_resources.FieldsResource"><code class="flex name class">
 <span>class <span class="ident">FieldsResource</span></span>
@@ -3070,15 +3070,15 @@ authenticated user.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.members.get">https://developer.crowdin.com/api/v2/#operation/api.projects.members.get</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.UsersResource.list_project_members"><code class="name flex">
+<span>def <span class="ident">list_project_members</span></span>(<span>self, projectId: Optional[int] = None, search: Optional[str] = None, role: Optional[<a title="crowdin_api.api_resources.users.enums.UserRole" href="users/enums.html#crowdin_api.api_resources.users.enums.UserRole">UserRole</a>] = None, languageId: Optional[str] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Project Members.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.members.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.members.getMany</a></p></div>
+</dd>
 </dl>
-<h3>Inherited members</h3>
-<ul class="hlist">
-<li><code><b><a title="crowdin_api.api_resources.users.resource.BaseUsersResource" href="users/resource.html#crowdin_api.api_resources.users.resource.BaseUsersResource">BaseUsersResource</a></b></code>:
-<ul class="hlist">
-<li><code><a title="crowdin_api.api_resources.users.resource.BaseUsersResource.list_project_members" href="users/resource.html#crowdin_api.api_resources.users.resource.BaseUsersResource.list_project_members">list_project_members</a></code></li>
-</ul>
-</li>
-</ul>
 </dd>
 <dt id="crowdin_api.api_resources.VendorsResource"><code class="flex name class">
 <span>class <span class="ident">VendorsResource</span></span>
@@ -3386,6 +3386,7 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.edit_user" href="#crowdin_api.api_resources.EnterpriseUsersResource.edit_user">edit_user</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.get_users_path" href="#crowdin_api.api_resources.EnterpriseUsersResource.get_users_path">get_users_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.invite_user" href="#crowdin_api.api_resources.EnterpriseUsersResource.invite_user">invite_user</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.list_project_members" href="#crowdin_api.api_resources.EnterpriseUsersResource.list_project_members">list_project_members</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.replace_project_member_permissions" href="#crowdin_api.api_resources.EnterpriseUsersResource.replace_project_member_permissions">replace_project_member_permissions</a></code></li>
 </ul>
 </li>
@@ -3734,6 +3735,7 @@ the details of a specific template.</p>
 <h4><code><a title="crowdin_api.api_resources.UsersResource" href="#crowdin_api.api_resources.UsersResource">UsersResource</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.UsersResource.get_member_info" href="#crowdin_api.api_resources.UsersResource.get_member_info">get_member_info</a></code></li>
+<li><code><a title="crowdin_api.api_resources.UsersResource.list_project_members" href="#crowdin_api.api_resources.UsersResource.list_project_members">list_project_members</a></code></li>
 </ul>
 </li>
 <li>
