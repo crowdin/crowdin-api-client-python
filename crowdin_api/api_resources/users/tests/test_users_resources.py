@@ -45,6 +45,33 @@ class TestBaseUsersResource:
         assert resource.get_authenticated_user() == "response"
         m_request.assert_called_once_with(method="get", path="user")
 
+
+class TestUsersResource:
+    resource_class = UsersResource
+
+    def get_resource(self, base_absolut_url):
+        return self.resource_class(requester=APIRequester(base_url=base_absolut_url))
+
+    @pytest.mark.parametrize(
+        "name_method",
+        [
+            "get_authenticated_user",
+            "get_members_path",
+            "list_project_members",
+            "get_member_info",
+        ]
+    )
+    def test_present_methods(self, name_method):
+        assert hasattr(self.resource_class, name_method)
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_member_info(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_member_info(projectId=1, memberId=2) == "response"
+        m_request.assert_called_once_with(method="get", path="projects/1/members/2")
+
     @pytest.mark.parametrize(
         "in_params, request_params",
         (
@@ -87,33 +114,6 @@ class TestBaseUsersResource:
         )
 
 
-class TestUsersResource:
-    resource_class = UsersResource
-
-    def get_resource(self, base_absolut_url):
-        return self.resource_class(requester=APIRequester(base_url=base_absolut_url))
-
-    @pytest.mark.parametrize(
-        "name_method",
-        [
-            "get_authenticated_user",
-            "get_members_path",
-            "list_project_members",
-            "get_member_info",
-        ]
-    )
-    def test_present_methods(self, name_method):
-        assert hasattr(self.resource_class, name_method)
-
-    @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_get_member_info(self, m_request, base_absolut_url):
-        m_request.return_value = "response"
-
-        resource = self.get_resource(base_absolut_url)
-        assert resource.get_member_info(projectId=1, memberId=2) == "response"
-        m_request.assert_called_once_with(method="get", path="projects/1/members/2")
-
-
 class TestEnterpriseUsersResource:
     resource_class = EnterpriseUsersResource
 
@@ -152,6 +152,47 @@ class TestEnterpriseUsersResource:
 
         resource = self.get_resource(base_absolut_url)
         assert resource.get_users_path(userId=userId) == path
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            (
+                {},
+                {
+                    "search": None,
+                    "workflowStepId": None,
+                    "languageId": None,
+                    "offset": 0,
+                    "limit": 25,
+                },
+            ),
+            (
+                {
+                    "search": "search",
+                    "workflowStepId": 72,
+                    "languageId": "ua",
+                    "offset": 0,
+                    "limit": 25,
+                },
+                {
+                    "search": "search",
+                    "workflowStepId": 72,
+                    "languageId": "ua",
+                    "offset": 0,
+                    "limit": 25,
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_project_members(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_project_members(projectId=1, **in_params) == "response"
+        m_request.assert_called_once_with(
+            method="get", params=request_params, path="projects/1/members"
+        )
 
     @pytest.mark.parametrize(
         "in_params, request_params",
