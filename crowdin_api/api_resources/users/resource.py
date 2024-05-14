@@ -16,15 +16,15 @@ class BaseUsersResource(BaseResource):
 
         return f"projects/{projectId}/members"
 
-    def list_project_members(
+    def _list_project_members(
         self,
         projectId: Optional[int] = None,
         search: Optional[str] = None,
-        role: Optional[UserRole] = None,
         languageId: Optional[str] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        extraParams: Optional[dict] = None
     ):
         """
         List Project Members.
@@ -34,7 +34,10 @@ class BaseUsersResource(BaseResource):
         """
 
         projectId = projectId or self.get_project_id()
-        params = {"search": search, "role": role, "languageId": languageId}
+        params = {"search": search, "languageId": languageId}
+        if extraParams:
+            params.update(extraParams)
+
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(
@@ -54,6 +57,32 @@ class UsersResource(BaseUsersResource):
     Link to documentation:
     https://developer.crowdin.com/api/v2/#tag/Users
     """
+
+    def list_project_members(
+        self,
+        projectId: Optional[int] = None,
+        search: Optional[str] = None,
+        role: Optional[UserRole] = None,
+        languageId: Optional[str] = None,
+        page: Optional[int] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        List Project Members.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.members.getMany
+        """
+        return self._list_project_members(
+            projectId=projectId,
+            search=search,
+            languageId=languageId,
+            page=page,
+            offset=offset,
+            limit=limit,
+            extraParams={"role": role}
+        )
 
     def get_member_info(self, memberId: int, projectId: Optional[int] = None):
         """
@@ -104,14 +133,14 @@ class EnterpriseUsersResource(BaseUsersResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.getMany
         """
 
-        projectId = projectId or self.get_project_id()
-        params = {"search": search, "workflowStepId": workflowStepId, "languageId": languageId}
-        params.update(self.get_page_params(page=page, offset=offset, limit=limit))
-
-        return self._get_entire_data(
-            method="get",
-            path=self.get_members_path(projectId=projectId),
-            params=params,
+        return self._list_project_members(
+            projectId=projectId,
+            search=search,
+            languageId=languageId,
+            page=page,
+            offset=offset,
+            limit=limit,
+            extraParams={"workflowStepId": workflowStepId}
         )
 
     def add_project_member(
