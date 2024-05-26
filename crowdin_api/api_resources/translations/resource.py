@@ -2,6 +2,7 @@ from typing import Dict, Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.enums import ExportProjectTranslationFormat
+from crowdin_api.api_resources.translations.types import FallbackLanguages
 from crowdin_api.api_resources.translations.enums import (
     CharTransformation,
     PreTranslationApplyMethod,
@@ -54,10 +55,13 @@ class TranslationsResource(BaseResource):
         projectId: Optional[int] = None,
         method: Optional[PreTranslationApplyMethod] = None,
         engineId: Optional[int] = None,
+        aiPromptId: Optional[int] = None,
         autoApproveOption: Optional[PreTranslationAutoApproveOption] = None,
         duplicateTranslations: Optional[bool] = None,
+        skipApprovedTranslations: Optional[bool] = None,
         translateUntranslatedOnly: Optional[bool] = None,
         translateWithPerfectMatchOnly: Optional[bool] = None,
+        fallbackLanguages: Optional[Iterable[FallbackLanguages]] = None,
         labelIds: Optional[Iterable[int]] = None,
         excludeLabelIds: Optional[Iterable[int]] = None,
     ):
@@ -67,6 +71,9 @@ class TranslationsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.pre-translations.post
         """
+        if fallbackLanguages is None:
+            fallbackLanguages = []
+
         if labelIds is None:
             labelIds = []
 
@@ -83,10 +90,13 @@ class TranslationsResource(BaseResource):
                 "fileIds": fileIds,
                 "method": method,
                 "engineId": engineId,
+                "aiPromptId": aiPromptId,
                 "autoApproveOption": autoApproveOption,
                 "duplicateTranslations": duplicateTranslations,
+                "skipApprovedTranslations": skipApprovedTranslations,
                 "translateUntranslatedOnly": translateUntranslatedOnly,
                 "translateWithPerfectMatchOnly": translateWithPerfectMatchOnly,
+                "fallbackLanguages": fallbackLanguages,
                 "labelIds": labelIds,
                 "excludeLabelIds": excludeLabelIds,
             },
