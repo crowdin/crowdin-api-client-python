@@ -4,6 +4,7 @@ from enum import Enum
 class PreTranslationApplyMethod(Enum):
     TM = "tm"
     MT = "mt"
+    AI = "ai"
 
 
 class PreTranslationAutoApproveOption(Enum):
