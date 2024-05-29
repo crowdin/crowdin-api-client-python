@@ -6,6 +6,7 @@ import pytest
 
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.reports.enums import (
+    ExportFormat,
     ContributionMode,
     Currency,
     Format,
@@ -45,6 +46,187 @@ class TestReportsResource:
             requester=APIRequester(base_url=base_absolut_url), project_id=project_id
         )
         assert resource.get_project_id() == project_id
+
+    @pytest.mark.parametrize(
+        "incoming_data, path",
+        (
+            ({"userId": 1}, "users/1/reports/archives"),
+            ({"userId": 1, "archiveId": 1}, "users/1/reports/archives/1"),
+        ),
+    )
+    def test_get_report_archive_path(self, incoming_data, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_report_archive_path(**incoming_data) == path
+
+    @pytest.mark.parametrize(
+        "incoming_data, path",
+        (
+            ({"userId": 1, "archiveId": 1}, "users/1/reports/archives/1/exports"),
+            (
+                {"userId": 1, "archiveId": 1, "exportId": "exportId"},
+                "users/1/reports/archives/1/exports/exportId",
+            ),
+        ),
+    )
+    def test_get_report_archive_export_path(self, incoming_data, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_report_archive_export_path(**incoming_data) == path
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_params",
+        (
+            (
+                {},
+                {
+                    "scopeType": None,
+                    "scopeId": None,
+                    "limit": 25,
+                    "offset": 0,
+                },
+            ),
+            (
+                {
+                    "scopeType": "project",
+                    "scopeId": 1,
+                    "limit": 10,
+                    "offset": 2,
+                },
+                {
+                    "scopeType": "project",
+                    "scopeId": 1,
+                    "limit": 10,
+                    "offset": 2,
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_report_archives(
+        self, m_request, incoming_data, request_params, base_absolut_url
+    ):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        userId = 1
+        assert resource.list_report_archives(userId=userId, **incoming_data) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_report_archive_path(userId=userId),
+            params=request_params,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_report_archive(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        userId = 1
+        archiveId = 2
+        assert (
+            resource.get_report_archive(userId=userId, archiveId=archiveId)
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_report_archive_path(userId=userId, archiveId=archiveId),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_report_archive(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        userId = 1
+        archiveId = 2
+        assert (
+            resource.delete_report_archive(userId=userId, archiveId=archiveId)
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="delete",
+            path=resource.get_report_archive_path(userId=userId, archiveId=archiveId),
+        )
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {},
+                {"format": ExportFormat.XLSX},
+            ),
+            (
+                {"format": ExportFormat.CSV},
+                {"format": ExportFormat.CSV},
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_export_report_archive(
+        self, m_request, incoming_data, request_data, base_absolut_url
+    ):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        userId = 1
+        archiveId = 2
+        assert (
+            resource.export_report_archive(
+                userId=userId, archiveId=archiveId, **incoming_data
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_report_archive_export_path(
+                userId=userId, archiveId=archiveId
+            ),
+            request_data=request_data
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_check_report_archive_export_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        userId = 1
+        archiveId = 2
+        exportId = "exportId"
+        assert (
+            resource.check_report_archive_export_status(
+                userId=userId, archiveId=archiveId, exportId=exportId
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_report_archive_export_path(
+                userId=userId, archiveId=archiveId, exportId=exportId
+            ),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_download_report_archive(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        userId = 1
+        archiveId = 2
+        exportId = "exportId"
+        assert (
+            resource.download_report_archive(
+                userId=userId, archiveId=archiveId, exportId=exportId
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="get",
+            path=str(
+                resource.get_report_archive_export_path(
+                    userId=userId, archiveId=archiveId, exportId=exportId
+                )
+                + "/download"
+            ),
+        )
 
     @pytest.mark.parametrize(
         "incoming_data, path",
