@@ -1,6 +1,18 @@
 from enum import Enum
 
 
+class ExportFormat(Enum):
+    XLSX = "xlsx"
+    CSV = "csv"
+    JSON = "json"
+
+
+class ScopeType(Enum):
+    ORGANIZATION = "organization"
+    GRPOUP = "group"
+    PROJECT = "project"
+
+
 class ReportName(Enum):
     COSTS_ESTIMATION = "costs-estimation"
     TRANSLATION_COSTS = "translation-costs"

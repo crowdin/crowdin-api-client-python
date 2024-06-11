@@ -5,6 +5,8 @@ from deprecated import deprecated
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.reports.enums import (
+    ExportFormat,
+    ScopeType,
     ContributionMode,
     Currency,
     Format,
@@ -552,6 +554,124 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
     https://developer.crowdin.com/api/v2/#tag/Reports
     """
 
+    def get_report_archive_path(self, userId: int, archiveId: Optional[int] = None):
+        if archiveId is not None:
+            return f"users/{userId}/reports/archives/{archiveId}"
+
+        return f"users/{userId}/reports/archives"
+
+    def get_report_archive_export_path(
+        self,
+        userId: int,
+        archiveId: int,
+        exportId: Optional[str] = None,
+    ):
+        if exportId is not None:
+            return f"users/{userId}/reports/archives/{archiveId}/exports/{exportId}"
+
+        return f"users/{userId}/reports/archives/{archiveId}/exports"
+
+    def list_report_archives(
+        self,
+        userId: int,
+        scopeType: Optional[str] = None,
+        scopeId: Optional[int] = None,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+    ):
+        """
+        List Report Archives
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.reports.archives.getMany
+        """
+        params = {"scopeType": scopeType, "scopeId": scopeId}
+        params.update(self.get_page_params(limit=limit, offset=offset))
+
+        return self.requester.request(
+            method="get",
+            path=self.get_report_archive_path(userId=userId),
+            params=params,
+        )
+
+    def get_report_archive(self, userId: int, archiveId: int):
+        """
+        Get Report Archive
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.get
+        """
+        return self.requester.request(
+            method="get",
+            path=self.get_report_archive_path(userId=userId, archiveId=archiveId),
+        )
+
+    def delete_report_archive(self, userId: int, archiveId: int):
+        """
+        Delete Report Archive
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.delete
+        """
+        return self.requester.request(
+            method="delete",
+            path=self.get_report_archive_path(userId=userId, archiveId=archiveId),
+        )
+
+    def export_report_archive(
+        self, userId: int, archiveId: int, format: Optional[ExportFormat] = None
+    ):
+        """
+        Export Report Archive
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.reports.archives.exports.post
+        """
+        format = format or ExportFormat.XLSX
+        return self.requester.request(
+            method="post",
+            path=self.get_report_archive_export_path(
+                userId=userId, archiveId=archiveId
+            ),
+            request_data={"format": format},
+        )
+
+    def check_report_archive_export_status(
+        self, userId: int, archiveId: int, exportId: str
+    ):
+        """
+        Check Report Archive Status
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.exports.get
+        """
+        return self.requester.request(
+            method="get",
+            path=self.get_report_archive_export_path(
+                userId=userId, archiveId=archiveId, exportId=exportId
+            ),
+        )
+
+    def download_report_archive(
+        self, userId: int, archiveId: int, exportId: str
+    ):
+        """
+        Download Report Archive
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.exports.download.get
+        """
+        path = str(
+            self.get_report_archive_export_path(
+                userId=userId, archiveId=archiveId, exportId=exportId
+            )
+            + "/download"
+        )
+        return self.requester.request(
+            method="get",
+            path=path,
+        )
+
     @deprecated("Use other methods instead")
     def generate_simple_cost_estimate_report(
         self,
@@ -913,6 +1033,114 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
                     "dateTo": dateTo,
                 },
             },
+        )
+
+    def get_report_archive_path(self, archiveId: Optional[int] = None):
+        if archiveId is not None:
+            return f"reports/archives/{archiveId}"
+
+        return "reports/archives"
+
+    def get_report_archive_export_path(
+        self,
+        archiveId: int,
+        exportId: Optional[str] = None,
+    ):
+        if exportId is not None:
+            return f"reports/archives/{archiveId}/exports/{exportId}"
+
+        return f"reports/archives/{archiveId}/exports"
+
+    def list_report_archives(
+        self,
+        scopeType: Optional[ScopeType] = None,
+        scopeId: Optional[int] = None,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+    ):
+        """
+        List Report Archives
+
+        Link to documentation:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.getMany
+        """
+        params = {"scopeType": scopeType, "scopeId": scopeId}
+        params.update(self.get_page_params(limit=limit, offset=offset))
+
+        return self.requester.request(
+            method="get",
+            path=self.get_report_archive_path(),
+            params=params,
+        )
+
+    def get_report_archive(self, archiveId: int):
+        """
+        Get Report Archive
+
+        Link to documentation:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.get
+        """
+        return self.requester.request(
+            method="get",
+            path=self.get_report_archive_path(archiveId=archiveId),
+        )
+
+    def delete_report_archive(self, archiveId: int):
+        """
+        Delete Report Archive
+
+        Link to documentation:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.delete
+        """
+        return self.requester.request(
+            method="delete",
+            path=self.get_report_archive_path(archiveId=archiveId),
+        )
+
+    def export_report_archive(
+        self, archiveId: int, format: Optional[ExportFormat] = None
+    ):
+        """
+        Export Report Archive
+
+        Link to documentation:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.exports.post
+        """
+        format = format or ExportFormat.XLSX
+        return self.requester.request(
+            method="post",
+            path=self.get_report_archive_export_path(archiveId=archiveId),
+            request_data={"format": format},
+        )
+
+    def check_report_archive_export_status(self, archiveId: int, exportId: str):
+        """
+        Check Report Archive Status
+
+        Link to documentation:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.exports.get
+        """
+        return self.requester.request(
+            method="get",
+            path=self.get_report_archive_export_path(
+                archiveId=archiveId, exportId=exportId
+            ),
+        )
+
+    def download_report_archive(self, archiveId: int, exportId: str):
+        """
+        Download Report Archive
+
+        Link to documentation:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.exports.download.get
+        """
+        path = str(
+            self.get_report_archive_export_path(archiveId=archiveId, exportId=exportId)
+            + "/download"
+        )
+        return self.requester.request(
+            method="get",
+            path=path,
         )
 
     @staticmethod
