@@ -79,6 +79,7 @@ class SourceStringsResource(BaseResource):
         isHidden: Optional[bool] = None,
         maxLength: Optional[int] = None,
         labelIds: Optional[Iterable[int]] = None,
+        branchId: Optional[int] = None
     ):
         """
         Add String.
@@ -100,6 +101,7 @@ class SourceStringsResource(BaseResource):
                 "isHidden": isHidden,
                 "maxLength": maxLength,
                 "labelIds": labelIds,
+                "branchId": branchId
             },
         )
 
