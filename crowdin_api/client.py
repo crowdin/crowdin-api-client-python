@@ -86,6 +86,8 @@ class CrowdinClient:
             self._api_requestor = self.API_REQUESTER_CLASS(
                 base_url=self.url,
                 timeout=self.TIMEOUT,
+                retry_delay=self.RETRY_DELAY,
+                max_retries=self.MAX_RETRIES,
                 default_headers=self.get_default_headers(),
                 extended_params=self.EXTENDED_REQUEST_PARAMS
             )

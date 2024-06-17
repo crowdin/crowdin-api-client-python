@@ -77,9 +77,7 @@ class TestCrowdinClient:
     )
     def test_url_with_instance(self, http_protocol, organization, base_url, result):
         client = CrowdinClient(
-            http_protocol=http_protocol,
-            base_url=base_url,
-            organization=organization
+            http_protocol=http_protocol, base_url=base_url, organization=organization
         )
 
         assert client.url == result
@@ -129,8 +127,34 @@ class TestCrowdinClient:
         m_APIRequester.assert_called_once_with(
             base_url=client.url,
             timeout=client.TIMEOUT,
+            retry_delay=client.RETRY_DELAY,
+            max_retries=client.MAX_RETRIES,
             default_headers=client.get_default_headers(),
-            extended_params=client.EXTENDED_REQUEST_PARAMS
+            extended_params=client.EXTENDED_REQUEST_PARAMS,
+        )
+
+    @mock.patch("crowdin_api.client.CrowdinClient.API_REQUESTER_CLASS")
+    def test_api_requestor_custom_values(self, m_APIRequester):
+        custom_timeout = 1000
+        retry_delay = 100
+        max_retries = 99
+
+        client = CrowdinClient(
+            timeout=custom_timeout, retry_delay=retry_delay, max_retries=max_retries
+        )
+
+        assert client._api_requestor is None
+        first_api_requestor = client.get_api_requestor()
+        assert client._api_requestor is not None
+        second_api_requestor = client.get_api_requestor()
+        assert first_api_requestor is second_api_requestor
+        m_APIRequester.assert_called_once_with(
+            base_url=client.url,
+            timeout=custom_timeout,
+            retry_delay=retry_delay,
+            max_retries=max_retries,
+            default_headers=client.get_default_headers(),
+            extended_params=client.EXTENDED_REQUEST_PARAMS,
         )
 
     @pytest.mark.parametrize(
@@ -223,7 +247,9 @@ class TestCrowdinClientEnterprise:
         "crowdin_api.client.CrowdinClient.get_api_requestor",
         return_value="api_requestor",
     )
-    def test_storages_with_organization(self, _m_api_requestor, property_name, class_name):
+    def test_storages_with_organization(
+        self, _m_api_requestor, property_name, class_name
+    ):
         # Without `project_id`
         with mock.patch(
             f"crowdin_api.api_resources.{class_name}",
