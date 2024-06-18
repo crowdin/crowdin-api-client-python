@@ -106,6 +106,7 @@ class TestSourceFilesResource:
                     "isHidden": None,
                     "maxLength": None,
                     "labelIds": None,
+                    "branchId": None
                 },
             ),
             (
@@ -117,6 +118,7 @@ class TestSourceFilesResource:
                     "isHidden": True,
                     "maxLength": 2,
                     "labelIds": [1, 2, 3],
+                    "branchId": None
                 },
                 {
                     "text": "text",
@@ -126,6 +128,7 @@ class TestSourceFilesResource:
                     "isHidden": True,
                     "maxLength": 2,
                     "labelIds": [1, 2, 3],
+                    "branchId": None
                 },
             ),
         ),
