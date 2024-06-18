@@ -545,6 +545,38 @@ and shall be completed with a sequence of API methods.</p>
 </dl>
 <h3>Methods</h3>
 <dl>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.check_report_archive_export_status"><code class="name flex">
+<span>def <span class="ident">check_report_archive_export_status</span></span>(<span>self, archiveId: int, exportId: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check Report Archive Status</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.exports.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.exports.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.delete_report_archive"><code class="name flex">
+<span>def <span class="ident">delete_report_archive</span></span>(<span>self, archiveId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete Report Archive</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.download_report_archive"><code class="name flex">
+<span>def <span class="ident">download_report_archive</span></span>(<span>self, archiveId: int, exportId: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Download Report Archive</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.exports.download.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.exports.download.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.export_report_archive"><code class="name flex">
+<span>def <span class="ident">export_report_archive</span></span>(<span>self, archiveId: int, format: Optional[<a title="crowdin_api.api_resources.reports.enums.ExportFormat" href="reports/enums.html#crowdin_api.api_resources.reports.enums.ExportFormat">ExportFormat</a>] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Export Report Archive</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.exports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.exports.post</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.EnterpriseReportsResource.generate_fuzzy_cost_estimate_report"><code class="name flex">
 <span>def <span class="ident">generate_fuzzy_cost_estimate_report</span></span>(<span>self, projectId: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, languageId: Optional[str] = None, fileIds: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, stepTypes: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.StepTypes" href="reports/types.html#crowdin_api.api_resources.reports.types.StepTypes">StepTypes</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
 </code></dt>
@@ -600,6 +632,34 @@ and shall be completed with a sequence of API methods.</p>
 <div class="desc"><p>Generate Report(Translation Cost).</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.get_report_archive"><code class="name flex">
+<span>def <span class="ident">get_report_archive</span></span>(<span>self, archiveId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Report Archive</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.get_report_archive_export_path"><code class="name flex">
+<span>def <span class="ident">get_report_archive_export_path</span></span>(<span>self, archiveId: int, exportId: Optional[str] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.get_report_archive_path"><code class="name flex">
+<span>def <span class="ident">get_report_archive_path</span></span>(<span>self, archiveId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.list_report_archives"><code class="name flex">
+<span>def <span class="ident">list_report_archives</span></span>(<span>self, scopeType: Optional[<a title="crowdin_api.api_resources.reports.enums.ScopeType" href="reports/enums.html#crowdin_api.api_resources.reports.enums.ScopeType">ScopeType</a>] = None, scopeId: Optional[int] = None, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Report Archives</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.getMany</a></p></div>
 </dd>
 </dl>
 <h3>Inherited members</h3>
@@ -1527,6 +1587,38 @@ and shall be completed with a sequence of API methods.</p>
 </ul>
 <h3>Methods</h3>
 <dl>
+<dt id="crowdin_api.api_resources.ReportsResource.check_report_archive_export_status"><code class="name flex">
+<span>def <span class="ident">check_report_archive_export_status</span></span>(<span>self, userId: int, archiveId: int, exportId: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check Report Archive Status</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.exports.get">https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.exports.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ReportsResource.delete_report_archive"><code class="name flex">
+<span>def <span class="ident">delete_report_archive</span></span>(<span>self, userId: int, archiveId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete Report Archive</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.delete">https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ReportsResource.download_report_archive"><code class="name flex">
+<span>def <span class="ident">download_report_archive</span></span>(<span>self, userId: int, archiveId: int, exportId: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Download Report Archive</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.exports.download.get">https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.exports.download.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ReportsResource.export_report_archive"><code class="name flex">
+<span>def <span class="ident">export_report_archive</span></span>(<span>self, userId: int, archiveId: int, format: Optional[<a title="crowdin_api.api_resources.reports.enums.ExportFormat" href="reports/enums.html#crowdin_api.api_resources.reports.enums.ExportFormat">ExportFormat</a>] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Export Report Archive</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.reports.archives.exports.post">https://developer.crowdin.com/api/v2/#operation/api.reports.archives.exports.post</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.ReportsResource.generate_fuzzy_cost_estimate_report"><code class="name flex">
 <span>def <span class="ident">generate_fuzzy_cost_estimate_report</span></span>(<span>self, projectId: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, currency: Optional[<a title="crowdin_api.api_resources.reports.enums.Currency" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Currency">Currency</a>] = None, languageId: Optional[str] = None, fileIds: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, calculateInternalFuzzyMatches: Optional[bool] = None, regularRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.FuzzyRegularRate" href="reports/types.html#crowdin_api.api_resources.reports.types.FuzzyRegularRate">FuzzyRegularRate</a>]] = None, individualRates: Optional[Iterable[<a title="crowdin_api.api_resources.reports.types.FuzzyIndividualRate" href="reports/types.html#crowdin_api.api_resources.reports.types.FuzzyIndividualRate">FuzzyIndividualRate</a>]] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
 </code></dt>
@@ -1558,6 +1650,34 @@ and shall be completed with a sequence of API methods.</p>
 <div class="desc"><p>Generate Report(Translation Cost).</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ReportsResource.get_report_archive"><code class="name flex">
+<span>def <span class="ident">get_report_archive</span></span>(<span>self, userId: int, archiveId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Report Archive</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.get">https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ReportsResource.get_report_archive_export_path"><code class="name flex">
+<span>def <span class="ident">get_report_archive_export_path</span></span>(<span>self, userId: int, archiveId: int, exportId: Optional[str] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ReportsResource.get_report_archive_path"><code class="name flex">
+<span>def <span class="ident">get_report_archive_path</span></span>(<span>self, userId: int, archiveId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ReportsResource.list_report_archives"><code class="name flex">
+<span>def <span class="ident">list_report_archives</span></span>(<span>self, userId: int, scopeType: Optional[str] = None, scopeId: Optional[int] = None, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Report Archives</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.reports.archives.getMany">https://developer.crowdin.com/api/v2/#operation/api.reports.archives.getMany</a></p></div>
 </dd>
 </dl>
 <h3>Inherited members</h3>
@@ -2025,7 +2145,7 @@ iOS strings, PROPERTIES, XLIFF).</p>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.SourceStringsResource.add_string"><code class="name flex">
-<span>def <span class="ident">add_string</span></span>(<span>self, text: str, projectId: Optional[int] = None, identifier: Optional[str] = None, fileId: Optional[int] = None, context: Optional[str] = None, isHidden: Optional[bool] = None, maxLength: Optional[int] = None, labelIds: Optional[Iterable[int]] = None)</span>
+<span>def <span class="ident">add_string</span></span>(<span>self, text: str, projectId: Optional[int] = None, identifier: Optional[str] = None, fileId: Optional[int] = None, context: Optional[str] = None, isHidden: Optional[bool] = None, maxLength: Optional[int] = None, labelIds: Optional[Iterable[int]] = None, branchId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add String.</p>
@@ -3360,6 +3480,10 @@ the details of a specific template.</p>
 <li>
 <h4><code><a title="crowdin_api.api_resources.EnterpriseReportsResource" href="#crowdin_api.api_resources.EnterpriseReportsResource">EnterpriseReportsResource</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.check_report_archive_export_status" href="#crowdin_api.api_resources.EnterpriseReportsResource.check_report_archive_export_status">check_report_archive_export_status</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.delete_report_archive" href="#crowdin_api.api_resources.EnterpriseReportsResource.delete_report_archive">delete_report_archive</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.download_report_archive" href="#crowdin_api.api_resources.EnterpriseReportsResource.download_report_archive">download_report_archive</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.export_report_archive" href="#crowdin_api.api_resources.EnterpriseReportsResource.export_report_archive">export_report_archive</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_fuzzy_cost_estimate_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_fuzzy_cost_estimate_report">generate_fuzzy_cost_estimate_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_fuzzy_translation_cost_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_fuzzy_translation_cost_report">generate_fuzzy_translation_cost_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_group_report">generate_group_report</a></code></li>
@@ -3369,6 +3493,10 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_simple_translation_cost_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_simple_translation_cost_report">generate_simple_translation_cost_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.get_group_reports_path" href="#crowdin_api.api_resources.EnterpriseReportsResource.get_group_reports_path">get_group_reports_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.get_organization_reports_path" href="#crowdin_api.api_resources.EnterpriseReportsResource.get_organization_reports_path">get_organization_reports_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.get_report_archive" href="#crowdin_api.api_resources.EnterpriseReportsResource.get_report_archive">get_report_archive</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.get_report_archive_export_path" href="#crowdin_api.api_resources.EnterpriseReportsResource.get_report_archive_export_path">get_report_archive_export_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.get_report_archive_path" href="#crowdin_api.api_resources.EnterpriseReportsResource.get_report_archive_path">get_report_archive_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.list_report_archives" href="#crowdin_api.api_resources.EnterpriseReportsResource.list_report_archives">list_report_archives</a></code></li>
 </ul>
 </li>
 <li>
@@ -3508,10 +3636,18 @@ the details of a specific template.</p>
 <li>
 <h4><code><a title="crowdin_api.api_resources.ReportsResource" href="#crowdin_api.api_resources.ReportsResource">ReportsResource</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.ReportsResource.check_report_archive_export_status" href="#crowdin_api.api_resources.ReportsResource.check_report_archive_export_status">check_report_archive_export_status</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ReportsResource.delete_report_archive" href="#crowdin_api.api_resources.ReportsResource.delete_report_archive">delete_report_archive</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ReportsResource.download_report_archive" href="#crowdin_api.api_resources.ReportsResource.download_report_archive">download_report_archive</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ReportsResource.export_report_archive" href="#crowdin_api.api_resources.ReportsResource.export_report_archive">export_report_archive</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ReportsResource.generate_fuzzy_cost_estimate_report" href="#crowdin_api.api_resources.ReportsResource.generate_fuzzy_cost_estimate_report">generate_fuzzy_cost_estimate_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ReportsResource.generate_fuzzy_translation_cost_report" href="#crowdin_api.api_resources.ReportsResource.generate_fuzzy_translation_cost_report">generate_fuzzy_translation_cost_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ReportsResource.generate_simple_cost_estimate_report" href="#crowdin_api.api_resources.ReportsResource.generate_simple_cost_estimate_report">generate_simple_cost_estimate_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ReportsResource.generate_simple_translation_cost_report" href="#crowdin_api.api_resources.ReportsResource.generate_simple_translation_cost_report">generate_simple_translation_cost_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ReportsResource.get_report_archive" href="#crowdin_api.api_resources.ReportsResource.get_report_archive">get_report_archive</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ReportsResource.get_report_archive_export_path" href="#crowdin_api.api_resources.ReportsResource.get_report_archive_export_path">get_report_archive_export_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ReportsResource.get_report_archive_path" href="#crowdin_api.api_resources.ReportsResource.get_report_archive_path">get_report_archive_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ReportsResource.list_report_archives" href="#crowdin_api.api_resources.ReportsResource.list_report_archives">list_report_archives</a></code></li>
 </ul>
 </li>
 <li>
