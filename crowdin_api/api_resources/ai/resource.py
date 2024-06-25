@@ -4,9 +4,9 @@ from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.ai.enums import AIPromptAction
 from crowdin_api.api_resources.ai.types import (
     AddAIPromptRequestScheme,
+    AddAIProviderReqeustScheme,
     EditAIPromptScheme,
     EditAIProviderRequestScheme,
-    AddAIProviderReqeustScheme,
     GoogleGeminiChatProxy,
     OtherChatProxy,
 )

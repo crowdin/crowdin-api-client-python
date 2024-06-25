@@ -1,11 +1,11 @@
-from typing import Any, Iterable, Optional, Union, Dict
+from typing import Any, Dict, Iterable, Optional, Union
 
 from crowdin_api.api_resources.ai.enums import (
     AIPromptAction,
     AIPromptOperation,
+    AIProviderType,
     EditAIPromptPath,
     EditAIProviderPath,
-    AIProviderType,
 )
 from crowdin_api.typing import TypedDict
 
