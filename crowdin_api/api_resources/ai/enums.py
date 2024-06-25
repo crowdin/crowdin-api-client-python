@@ -6,7 +6,7 @@ class AIPromptAction(Enum):
     PRE_TRANSLATE = "pre_translate"
 
 
-class EditAIPromptOperation(Enum):
+class AIPromptOperation(Enum):
     REPLACE = "replace"
     TEST = "test"
 
@@ -19,3 +19,21 @@ class EditAIPromptPath(Enum):
     IS_ENABLED = "/isEnabled"
     ENABLED_PROJECT_IDS = "/enabledProjectIds"
     CONFIG = "/config"
+
+
+class AIProviderType(Enum):
+    OPEN_AI = "open_ai"
+    AZUER_OPEN_AI = "azure_open_ai"
+    GOOGLE_GEMINI = "google_gemini"
+    MISTRAL_AI = "mistral_ai"
+    ANTHROPIC = "anthropic"
+    CUSTOM_AI = "custom_ai"
+
+
+class EditAIProviderPath(Enum):
+    NAME = "/name"
+    TYPE = "/type"
+    CREDENTIALS = "/credentials"
+    CONFIG = "/config"
+    IS_ENABLED = "/isEnabled"
+    USE_SYSTEM_CREDENTIALS = "/useSystemCredentials"

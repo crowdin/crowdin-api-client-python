@@ -1,9 +1,11 @@
-from typing import Any, Iterable, Optional, Union
+from typing import Any, Iterable, Optional, Union, Dict
 
 from crowdin_api.api_resources.ai.enums import (
     AIPromptAction,
-    EditAIPromptOperation,
+    AIPromptOperation,
     EditAIPromptPath,
+    EditAIProviderPath,
+    AIProviderType,
 )
 from crowdin_api.typing import TypedDict
 
@@ -60,6 +62,78 @@ class AddAIPromptRequestScheme(TypedDict):
 
 
 class EditAIPromptScheme(TypedDict):
-    op: EditAIPromptOperation
+    op: AIPromptOperation
     path: EditAIPromptPath
     value: Any
+
+
+class OpenAICredential(TypedDict):
+    apiKey: str
+
+
+class AzureOpenAICredential(TypedDict):
+    resourceName: str
+    apiKey: str
+    deploymentName: str
+    apiVersion: str
+
+
+class GoogleGeminiCredential(TypedDict):
+    project: str
+    region: str
+    serviceAccountKey: Dict
+
+
+class MistralAICredential(TypedDict):
+    apiKey: str
+
+
+class AnthropicCredential(TypedDict):
+    apiKey: str
+
+
+class CustomAICredential(TypedDict):
+    identifier: str
+    key: str
+
+
+class ActionRule(TypedDict):
+    action: AIPromptAction
+    availableAiModelIds: Iterable[int]
+
+
+class ActionRules(TypedDict):
+    actionRules: Iterable[ActionRule]
+
+
+class AddAIProviderReqeustScheme(TypedDict):
+    name: str
+    type: AIProviderType
+    credentials: Optional[
+        Union[
+            OpenAICredential,
+            AzureOpenAICredential,
+            GoogleGeminiCredential,
+            MistralAICredential,
+            AnthropicCredential,
+            CustomAICredential,
+        ]
+    ]
+    config: Optional[ActionRules]
+    isEnabled: Optional[bool]
+    useSystemCredentials: Optional[bool]
+
+
+class EditAIProviderRequestScheme(TypedDict):
+    op: AIPromptOperation
+    path: EditAIProviderPath
+    value: Union[str, Dict, bool]
+
+
+class GoogleGeminiChatProxy(TypedDict):
+    model: str
+    stream: Optional[bool]
+
+
+class OtherChatProxy(TypedDict):
+    stream: Optional[bool]
