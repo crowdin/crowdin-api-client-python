@@ -245,7 +245,6 @@ class TestAIResources:
                     "credentials": {"apiKey": "test-api-key"},
                     "aiProviderId": 1,
                     "aiModelId": "gpt-3.5-turbo-instruct",
-                    "isEnabled": False,
                     "enabledProjectIds": [1, 2, 3],
                     "config": {
                         "actionRules": [
@@ -264,7 +263,6 @@ class TestAIResources:
                     "credentials": {"apiKey": "test-api-key"},
                     "aiProviderId": 1,
                     "aiModelId": "gpt-3.5-turbo-instruct",
-                    "isEnabled": False,
                     "enabledProjectIds": [1, 2, 3],
                     "config": {
                         "actionRules": [
