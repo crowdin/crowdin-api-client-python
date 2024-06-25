@@ -95,6 +95,12 @@ class CrowdinClient:
         return self._api_requestor
 
     @property
+    def ai(self) -> api_resources.AIResource:
+        return api_resources.AIResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
     def applications(self) -> api_resources.ApplicationResource:
         return api_resources.ApplicationResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE

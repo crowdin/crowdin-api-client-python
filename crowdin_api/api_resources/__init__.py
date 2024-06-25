@@ -1,3 +1,4 @@
+from .ai.resource import AIResource
 from .application.resource import ApplicationResource
 from .bundles.resource import BundlesResource
 from .dictionaries.resource import DictionariesResource
@@ -28,6 +29,7 @@ from .webhooks.resource import WebhooksResource
 from .workflows.resource import WorkflowsResource
 
 __all__ = [
+    "AIResource",
     "ApplicationResource",
     "BundlesResource",
     "DictionariesResource",
