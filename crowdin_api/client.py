@@ -95,16 +95,19 @@ class CrowdinClient:
         return self._api_requestor
 
     @property
-    def ai(self) -> api_resources.AIResource:
+    def ai(self) -> Union[api_resources.AIResource, api_resources.EnterpriseAIResource]:
+        if self._is_enterprise_platform:
+            ai_class = api_resources.EnterpriseAIResource
+        else:
+            ai_class = api_resources.AIResource
+
         if self.PROJECT_ID:
-            return api_resources.AIResource(
+            return ai_class(
                 requester=self.get_api_requestor(),
                 project_id=self.PROJECT_ID,
                 page_size=self.PAGE_SIZE,
             )
-        return api_resources.AIResource(
-            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
-        )
+        return ai_class(requester=self.get_api_requestor(), page_size=self.PAGE_SIZE)
 
     @property
     def applications(self) -> api_resources.ApplicationResource:

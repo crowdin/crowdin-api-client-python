@@ -1,4 +1,4 @@
-from .ai.resource import AIResource
+from .ai.resource import AIResource, EnterpriseAIResource
 from .application.resource import ApplicationResource
 from .bundles.resource import BundlesResource
 from .dictionaries.resource import DictionariesResource
@@ -30,6 +30,7 @@ from .workflows.resource import WorkflowsResource
 
 __all__ = [
     "AIResource",
+    "EnterpriseAIResource",
     "ApplicationResource",
     "BundlesResource",
     "DictionariesResource",

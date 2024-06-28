@@ -25,6 +25,7 @@ class BasicModePreTranslateActionCondfig(TypedDict):
     tmSuggestions: Optional[bool]
     fileContent: Optional[bool]
     fileContext: Optional[bool]
+    screenshots: Optional[bool]
     publicProjectDescription: Optional[bool]
 
 
@@ -37,6 +38,7 @@ class BasicModeAssistActionCondfig(TypedDict):
     glossaryTerms: Optional[bool]
     tmSuggestions: Optional[bool]
     fileContext: Optional[bool]
+    screenshots: Optional[bool]
     publicProjectDescription: Optional[bool]
     siblingsStrings: Optional[bool]
     filteredStrings: Optional[bool]
@@ -44,7 +46,15 @@ class BasicModeAssistActionCondfig(TypedDict):
 
 class AdvancedModeConfig(TypedDict):
     mode: str
+    screenshots: Optional[bool]
     prompt: str
+
+
+class ExternalMode(TypedDict):
+    name: str
+    identifier: str
+    key: str
+    options: Dict
 
 
 class AddAIPromptRequestScheme(TypedDict):
@@ -58,6 +68,7 @@ class AddAIPromptRequestScheme(TypedDict):
         BasicModePreTranslateActionCondfig,
         BasicModeAssistActionCondfig,
         AdvancedModeConfig,
+        ExternalMode,
     ]
 
 

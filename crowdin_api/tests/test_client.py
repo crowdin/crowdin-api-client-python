@@ -160,6 +160,7 @@ class TestCrowdinClient:
     @pytest.mark.parametrize(
         "property_name, class_name",
         (
+            ("ai", "AIResource"),
             ("bundles", "BundlesResource"),
             ("dictionaries", "DictionariesResource"),
             ("distributions", "DistributionsResource"),
@@ -214,6 +215,7 @@ class TestCrowdinClientEnterprise:
     @pytest.mark.parametrize(
         "property_name, class_name",
         (
+            ("ai", "EnterpriseAIResource"),
             ("bundles", "BundlesResource"),
             ("dictionaries", "DictionariesResource"),
             ("distributions", "DistributionsResource"),
