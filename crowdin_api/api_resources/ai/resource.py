@@ -223,12 +223,12 @@ class EnterpriseAIResource(BaseResource):
     def get_ai_path(self, aiPromptId: Optional[int] = None):
         if aiPromptId is not None:
             return f"ai/prompts/{aiPromptId}"
-        return f"ai/prompts"
+        return "ai/prompts"
 
     def get_ai_provider_path(self, aiProviderId: Optional[int] = None):
         if aiProviderId is not None:
             return f"ai/providers/{aiProviderId}"
-        return f"ai/providers"
+        return "ai/providers"
 
     def list_ai_prompts(
         self,
