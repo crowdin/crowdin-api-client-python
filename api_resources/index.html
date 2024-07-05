@@ -30,6 +30,10 @@
 <dd>
 <div class="desc"></div>
 </dd>
+<dt><code class="name"><a title="crowdin_api.api_resources.ai" href="ai/index.html">crowdin_api.api_resources.ai</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt><code class="name"><a title="crowdin_api.api_resources.application" href="application/index.html">crowdin_api.api_resources.application</a></code></dt>
 <dd>
 <div class="desc"></div>
@@ -159,6 +163,132 @@
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
+<dt id="crowdin_api.api_resources.AIResource"><code class="flex name class">
+<span>class <span class="ident">AIResource</span></span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Resource for AI.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#tag/AI">https://developer.crowdin.com/api/v2/#tag/AI</a></p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="crowdin_api.api_resources.AIResource.add_ai_prompt"><code class="name flex">
+<span>def <span class="ident">add_ai_prompt</span></span>(<span>self, userId: int, request_data: <a title="crowdin_api.api_resources.ai.types.AddAIPromptRequestScheme" href="ai/types.html#crowdin_api.api_resources.ai.types.AddAIPromptRequestScheme">AddAIPromptRequestScheme</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add AI Prompt</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.post">https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.add_ai_provider"><code class="name flex">
+<span>def <span class="ident">add_ai_provider</span></span>(<span>self, userId: int, request_data: <a title="crowdin_api.api_resources.ai.types.AddAIProviderReqeustScheme" href="ai/types.html#crowdin_api.api_resources.ai.types.AddAIProviderReqeustScheme">AddAIProviderReqeustScheme</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add AI Provider</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.post">https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.create_ai_proxy_chat_completion"><code class="name flex">
+<span>def <span class="ident">create_ai_proxy_chat_completion</span></span>(<span>self, userId: int, aiProviderId: int, request_data: Union[<a title="crowdin_api.api_resources.ai.types.GoogleGeminiChatProxy" href="ai/types.html#crowdin_api.api_resources.ai.types.GoogleGeminiChatProxy">GoogleGeminiChatProxy</a>, <a title="crowdin_api.api_resources.ai.types.OtherChatProxy" href="ai/types.html#crowdin_api.api_resources.ai.types.OtherChatProxy">OtherChatProxy</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create AI Proxy Chat Completion</p>
+<p>This API method serves as an intermediary, forwarding your requests directly to the selected provider.
+Please refer to the documentation for the specific provider you use to determine the required payload format.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.chat.completions.post">https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.chat.completions.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.delete_ai_prompt"><code class="name flex">
+<span>def <span class="ident">delete_ai_prompt</span></span>(<span>self, userId: int, aiPromptId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete AI Prompt</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.delete">https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.delete_ai_provider"><code class="name flex">
+<span>def <span class="ident">delete_ai_provider</span></span>(<span>self, userId: int, aiProviderId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete AI Provider</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.delete">https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.edit_ai_prompt"><code class="name flex">
+<span>def <span class="ident">edit_ai_prompt</span></span>(<span>self, userId: int, aiPromptId: int, request_data: Iterable[<a title="crowdin_api.api_resources.ai.types.EditAIPromptScheme" href="ai/types.html#crowdin_api.api_resources.ai.types.EditAIPromptScheme">EditAIPromptScheme</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit AI Prompt</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.patch">https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.edit_ai_provider"><code class="name flex">
+<span>def <span class="ident">edit_ai_provider</span></span>(<span>self, userId: int, aiProviderId: int, request_data: <a title="crowdin_api.api_resources.ai.types.EditAIProviderRequestScheme" href="ai/types.html#crowdin_api.api_resources.ai.types.EditAIProviderRequestScheme">EditAIProviderRequestScheme</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit AI Provider</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.patch">https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.get_ai_path"><code class="name flex">
+<span>def <span class="ident">get_ai_path</span></span>(<span>self, userId: int, aiPromptId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.get_ai_prompt"><code class="name flex">
+<span>def <span class="ident">get_ai_prompt</span></span>(<span>self, userId: int, aiPromptId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get AI Prompt</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.get">https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.get_ai_provider"><code class="name flex">
+<span>def <span class="ident">get_ai_provider</span></span>(<span>self, userId: int, aiProviderId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get AI Provider</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.get">https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.get_ai_provider_path"><code class="name flex">
+<span>def <span class="ident">get_ai_provider_path</span></span>(<span>self, userId: int, aiProviderId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.list_ai_prompts"><code class="name flex">
+<span>def <span class="ident">list_ai_prompts</span></span>(<span>self, userId: int, projectId: Optional[int] = None, action: Optional[<a title="crowdin_api.api_resources.ai.enums.AIPromptAction" href="ai/enums.html#crowdin_api.api_resources.ai.enums.AIPromptAction">AIPromptAction</a>] = None, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List AI Prompts</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.ai.prompts.getMany">https://developer.crowdin.com/api/v2/#operation/api.ai.prompts.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.list_ai_provider_models"><code class="name flex">
+<span>def <span class="ident">list_ai_provider_models</span></span>(<span>self, userId: int, aiProviderId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List AI Provider Models</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.ai.providers.models.getMany">https://developer.crowdin.com/api/v2/#operation/api.ai.providers.models.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.list_ai_providers"><code class="name flex">
+<span>def <span class="ident">list_ai_providers</span></span>(<span>self, userId: int, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List AI Providers</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.ai.providers.getMany">https://developer.crowdin.com/api/v2/#operation/api.ai.providers.getMany</a></p></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.ApplicationResource"><code class="flex name class">
 <span>class <span class="ident">ApplicationResource</span></span>
 <span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
@@ -507,6 +637,132 @@
 <div class="desc"><p>Release Distribution.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.release.post">https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.release.post</a></p></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource"><code class="flex name class">
+<span>class <span class="ident">EnterpriseAIResource</span></span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enterprise Resource for AI.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#tag/AI">https://developer.crowdin.com/enterprise/api/v2/#tag/AI</a></p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.add_ai_prompt"><code class="name flex">
+<span>def <span class="ident">add_ai_prompt</span></span>(<span>self, request_data: <a title="crowdin_api.api_resources.ai.types.AddAIPromptRequestScheme" href="ai/types.html#crowdin_api.api_resources.ai.types.AddAIPromptRequestScheme">AddAIPromptRequestScheme</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add AI Prompt</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.add_ai_provider"><code class="name flex">
+<span>def <span class="ident">add_ai_provider</span></span>(<span>self, request_data: <a title="crowdin_api.api_resources.ai.types.AddAIProviderReqeustScheme" href="ai/types.html#crowdin_api.api_resources.ai.types.AddAIProviderReqeustScheme">AddAIProviderReqeustScheme</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add AI Provider</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.create_ai_proxy_chat_completion"><code class="name flex">
+<span>def <span class="ident">create_ai_proxy_chat_completion</span></span>(<span>self, aiProviderId: int, request_data: Union[<a title="crowdin_api.api_resources.ai.types.GoogleGeminiChatProxy" href="ai/types.html#crowdin_api.api_resources.ai.types.GoogleGeminiChatProxy">GoogleGeminiChatProxy</a>, <a title="crowdin_api.api_resources.ai.types.OtherChatProxy" href="ai/types.html#crowdin_api.api_resources.ai.types.OtherChatProxy">OtherChatProxy</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create AI Proxy Chat Completion</p>
+<p>This API method serves as an intermediary, forwarding your requests directly to the selected provider.
+Please refer to the documentation for the specific provider you use to determine the required payload format.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.chat.completions.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.chat.completions.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.delete_ai_prompt"><code class="name flex">
+<span>def <span class="ident">delete_ai_prompt</span></span>(<span>self, aiPromptId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete AI Prompt</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.delete_ai_provider"><code class="name flex">
+<span>def <span class="ident">delete_ai_provider</span></span>(<span>self, aiProviderId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete AI Provider</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.edit_ai_prompt"><code class="name flex">
+<span>def <span class="ident">edit_ai_prompt</span></span>(<span>self, aiPromptId: int, request_data: Iterable[<a title="crowdin_api.api_resources.ai.types.EditAIPromptScheme" href="ai/types.html#crowdin_api.api_resources.ai.types.EditAIPromptScheme">EditAIPromptScheme</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit AI Prompt</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.edit_ai_provider"><code class="name flex">
+<span>def <span class="ident">edit_ai_provider</span></span>(<span>self, aiProviderId: int, request_data: <a title="crowdin_api.api_resources.ai.types.EditAIProviderRequestScheme" href="ai/types.html#crowdin_api.api_resources.ai.types.EditAIProviderRequestScheme">EditAIProviderRequestScheme</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit AI Provider</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.get_ai_path"><code class="name flex">
+<span>def <span class="ident">get_ai_path</span></span>(<span>self, aiPromptId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.get_ai_prompt"><code class="name flex">
+<span>def <span class="ident">get_ai_prompt</span></span>(<span>self, aiPromptId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get AI Prompt</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider"><code class="name flex">
+<span>def <span class="ident">get_ai_provider</span></span>(<span>self, aiProviderId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get AI Provider</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider_path"><code class="name flex">
+<span>def <span class="ident">get_ai_provider_path</span></span>(<span>self, aiProviderId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.list_ai_prompts"><code class="name flex">
+<span>def <span class="ident">list_ai_prompts</span></span>(<span>self, projectId: Optional[int] = None, action: Optional[<a title="crowdin_api.api_resources.ai.enums.AIPromptAction" href="ai/enums.html#crowdin_api.api_resources.ai.enums.AIPromptAction">AIPromptAction</a>] = None, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List AI Prompts</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.list_ai_provider_models"><code class="name flex">
+<span>def <span class="ident">list_ai_provider_models</span></span>(<span>self, aiProviderId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List AI Provider Models</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.ai.providers.models.getMany">https://developer.crowdin.com/api/v2/#operation/api.ai.providers.models.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.list_ai_providers"><code class="name flex">
+<span>def <span class="ident">list_ai_providers</span></span>(<span>self, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List AI Providers</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.getMany</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -3390,6 +3646,7 @@ the details of a specific template.</p>
 <li><h3><a href="#header-submodules">Sub-modules</a></h3>
 <ul>
 <li><code><a title="crowdin_api.api_resources.abstract" href="abstract/index.html">crowdin_api.api_resources.abstract</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai" href="ai/index.html">crowdin_api.api_resources.ai</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application" href="application/index.html">crowdin_api.api_resources.application</a></code></li>
 <li><code><a title="crowdin_api.api_resources.bundles" href="bundles/index.html">crowdin_api.api_resources.bundles</a></code></li>
 <li><code><a title="crowdin_api.api_resources.dictionaries" href="dictionaries/index.html">crowdin_api.api_resources.dictionaries</a></code></li>
@@ -3424,6 +3681,25 @@ the details of a specific template.</p>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
+<li>
+<h4><code><a title="crowdin_api.api_resources.AIResource" href="#crowdin_api.api_resources.AIResource">AIResource</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.AIResource.add_ai_prompt" href="#crowdin_api.api_resources.AIResource.add_ai_prompt">add_ai_prompt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.add_ai_provider" href="#crowdin_api.api_resources.AIResource.add_ai_provider">add_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.create_ai_proxy_chat_completion" href="#crowdin_api.api_resources.AIResource.create_ai_proxy_chat_completion">create_ai_proxy_chat_completion</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.delete_ai_prompt" href="#crowdin_api.api_resources.AIResource.delete_ai_prompt">delete_ai_prompt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.delete_ai_provider" href="#crowdin_api.api_resources.AIResource.delete_ai_provider">delete_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.edit_ai_prompt" href="#crowdin_api.api_resources.AIResource.edit_ai_prompt">edit_ai_prompt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.edit_ai_provider" href="#crowdin_api.api_resources.AIResource.edit_ai_provider">edit_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.get_ai_path" href="#crowdin_api.api_resources.AIResource.get_ai_path">get_ai_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.get_ai_prompt" href="#crowdin_api.api_resources.AIResource.get_ai_prompt">get_ai_prompt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.get_ai_provider" href="#crowdin_api.api_resources.AIResource.get_ai_provider">get_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.get_ai_provider_path" href="#crowdin_api.api_resources.AIResource.get_ai_provider_path">get_ai_provider_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.list_ai_prompts" href="#crowdin_api.api_resources.AIResource.list_ai_prompts">list_ai_prompts</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.list_ai_provider_models" href="#crowdin_api.api_resources.AIResource.list_ai_provider_models">list_ai_provider_models</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.list_ai_providers" href="#crowdin_api.api_resources.AIResource.list_ai_providers">list_ai_providers</a></code></li>
+</ul>
+</li>
 <li>
 <h4><code><a title="crowdin_api.api_resources.ApplicationResource" href="#crowdin_api.api_resources.ApplicationResource">ApplicationResource</a></code></h4>
 <ul class="">
@@ -3475,6 +3751,25 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.DistributionsResource.get_distributions_path" href="#crowdin_api.api_resources.DistributionsResource.get_distributions_path">get_distributions_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.DistributionsResource.list_distributions" href="#crowdin_api.api_resources.DistributionsResource.list_distributions">list_distributions</a></code></li>
 <li><code><a title="crowdin_api.api_resources.DistributionsResource.release_distribution" href="#crowdin_api.api_resources.DistributionsResource.release_distribution">release_distribution</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.EnterpriseAIResource" href="#crowdin_api.api_resources.EnterpriseAIResource">EnterpriseAIResource</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.add_ai_prompt" href="#crowdin_api.api_resources.EnterpriseAIResource.add_ai_prompt">add_ai_prompt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.add_ai_provider" href="#crowdin_api.api_resources.EnterpriseAIResource.add_ai_provider">add_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.create_ai_proxy_chat_completion" href="#crowdin_api.api_resources.EnterpriseAIResource.create_ai_proxy_chat_completion">create_ai_proxy_chat_completion</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.delete_ai_prompt" href="#crowdin_api.api_resources.EnterpriseAIResource.delete_ai_prompt">delete_ai_prompt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.delete_ai_provider" href="#crowdin_api.api_resources.EnterpriseAIResource.delete_ai_provider">delete_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.edit_ai_prompt" href="#crowdin_api.api_resources.EnterpriseAIResource.edit_ai_prompt">edit_ai_prompt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.edit_ai_provider" href="#crowdin_api.api_resources.EnterpriseAIResource.edit_ai_provider">edit_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_path" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_path">get_ai_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_prompt" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_prompt">get_ai_prompt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider">get_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider_path" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider_path">get_ai_provider_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.list_ai_prompts" href="#crowdin_api.api_resources.EnterpriseAIResource.list_ai_prompts">list_ai_prompts</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.list_ai_provider_models" href="#crowdin_api.api_resources.EnterpriseAIResource.list_ai_provider_models">list_ai_provider_models</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.list_ai_providers" href="#crowdin_api.api_resources.EnterpriseAIResource.list_ai_providers">list_ai_providers</a></code></li>
 </ul>
 </li>
 <li>
