@@ -37,6 +37,8 @@ class ProjectPatchPath(Enum):
     AUTO_TRANSLATE_DIALECTS = "/autoTranslateDialects"
     PUBLIC_DOWNLOADS = "/publicDownloads"
     USE_GLOBAL_TM = "/useGlobalTm"
+    DEFAULT_TM_ID = "/defaultTmId"
+    DEFAULT_GLOSSARY_ID = "/defaultGlossaryId"
     NORMALIZE_PLACEHOLDER = "normalizePlaceholder"
     SAVE_META_INFO_IN_SOURCE = "saveMetaInfoInSource"
     IN_CONTEXT = "/inContext"
