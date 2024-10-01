@@ -1,5 +1,6 @@
 from typing import Iterable, Optional
 
+import warnings
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.screenshots.types import (
     AddTagRequest,
@@ -30,8 +31,10 @@ class ScreenshotsResource(BaseResource):
 
     def list_screenshots(
         self,
+        orderBy: Optional[str] = None,
         projectId: Optional[int] = None,
         stringId: Optional[int] = None,
+        stringIds: Optional[Iterable[int]] = None,
         labelIds: Optional[Iterable[int]] = None,
         excludeLabelIds: Optional[Iterable[int]] = None,
         page: Optional[int] = None,
@@ -47,7 +50,11 @@ class ScreenshotsResource(BaseResource):
 
         projectId = projectId or self.get_project_id()
 
-        params = {"stringId": stringId, "labelIds": labelIds, "excludeLabelIds": excludeLabelIds}
+        if stringId:
+            warnings.warn("`stringId` is deprecated, use `stringIds` instead", category=DeprecationWarning)
+            stringIds = [stringId]
+
+        params = {"orderBy": orderBy, "stringIds": stringIds, "labelIds": labelIds, "excludeLabelIds": excludeLabelIds}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(

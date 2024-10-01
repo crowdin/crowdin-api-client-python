@@ -36,11 +36,21 @@ class TestSourceFilesResource:
     def test_list_screenshots(self, m_request, base_absolut_url):
         m_request.return_value = "response"
         resource = self.get_resource(base_absolut_url)
-        assert resource.list_screenshots(projectId=1, **{"offset": 0, "limit": 10}) == "response"
+        assert (
+            resource.list_screenshots(projectId=1, **{"offset": 0, "limit": 10})
+            == "response"
+        )
         m_request.assert_called_once_with(
             method="get",
             path=resource.get_screenshots_path(projectId=1),
-            params={'stringId': None, 'labelIds': None, 'excludeLabelIds': None, 'offset': 0, 'limit': 10},
+            params={
+                "orderBy": None,
+                "stringIds": None,
+                "labelIds": None,
+                "excludeLabelIds": None,
+                "offset": 0,
+                "limit": 10,
+            },
         )
 
     @pytest.mark.parametrize(
