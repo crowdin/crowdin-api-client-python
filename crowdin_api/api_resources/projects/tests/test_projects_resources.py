@@ -128,6 +128,8 @@ class TestProjectsResource:
                     "autoSubstitution": None,
                     "autoTranslateDialects": None,
                     "notificationSettings": None,
+                    "defaultTmId": None,
+                    "defaultGlossaryId": None,
                 },
             ),
             (
@@ -155,6 +157,8 @@ class TestProjectsResource:
                         managerNewStrings=True,
                         managerLanguageCompleted=True,
                     ),
+                    "defaultTmId": 1,
+                    "defaultGlossaryId": 1,
                 },
                 {
                     "name": "name",
@@ -180,6 +184,8 @@ class TestProjectsResource:
                         managerNewStrings=True,
                         managerLanguageCompleted=True,
                     ),
+                    "defaultTmId": 1,
+                    "defaultGlossaryId": 1,
                 },
             ),
         ),
@@ -228,6 +234,8 @@ class TestProjectsResource:
                     "languageMapping": None,
                     "glossaryAccess": None,
                     "notificationSettings": None,
+                    "defaultTmId": None,
+                    "defaultGlossaryId": None,
                 },
             ),
             (
@@ -293,6 +301,8 @@ class TestProjectsResource:
                         managerNewStrings=True,
                         managerLanguageCompleted=True,
                     ),
+                    "defaultTmId": 1,
+                    "defaultGlossaryId": 1,
                 },
                 {
                     "name": "name",
@@ -356,6 +366,8 @@ class TestProjectsResource:
                         managerNewStrings=True,
                         managerLanguageCompleted=True,
                     ),
+                    "defaultTmId": 1,
+                    "defaultGlossaryId": 1,
                 },
             ),
         ),

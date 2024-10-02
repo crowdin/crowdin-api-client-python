@@ -99,6 +99,8 @@ class ProjectsResource(BaseResource):
         skipUntranslatedStrings: Optional[bool] = None,
         skipUntranslatedFiles: Optional[bool] = None,
         exportApprovedOnly: Optional[bool] = None,
+        defaultTmId: Optional[int] = None,
+        defaultGlossaryId: Optional[None] = None,
     ):
         """
         Add Project(Files Based Project Form).
@@ -128,6 +130,8 @@ class ProjectsResource(BaseResource):
                 "isMtAllowed": isMtAllowed,
                 "autoSubstitution": autoSubstitution,
                 "autoTranslateDialects": autoTranslateDialects,
+                "defaultTmId": defaultTmId,
+                "defaultGlossaryId": defaultGlossaryId,
             },
         )
 
@@ -160,6 +164,8 @@ class ProjectsResource(BaseResource):
         languageMapping: Optional[Dict] = None,
         glossaryAccess: Optional[bool] = None,
         notificationSettings: Optional[NotificationSettings] = None,
+        defaultTmId: Optional[int] = None,
+        defaultGlossaryId: Optional[None] = None,
     ):
         """
         Add Project(Strings Based Project Form).
@@ -197,6 +203,8 @@ class ProjectsResource(BaseResource):
                 "languageMapping": languageMapping,
                 "glossaryAccess": glossaryAccess,
                 "notificationSettings": notificationSettings,
+                "defaultTmId": defaultTmId,
+                "defaultGlossaryId": defaultGlossaryId,
             },
         )
 

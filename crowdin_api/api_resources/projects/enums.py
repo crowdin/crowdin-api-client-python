@@ -49,6 +49,8 @@ class ProjectPatchPath(Enum):
     LANGUAGE_MAPPING = "/languageMapping"
     LANGUAGE_MAPPING_ID = "/languageMapping/{languageId}"
     LANGUAGE_MAPPING_KEY = "/languageMapping/{languageId}/{mappingKey}"
+    DEFAULT_TM_ID = "/defaultTmId"
+    DEFAULT_GLOSSARY_ID = "/defaultGlossaryId"
 
 
 class ProjectTranslateDuplicates(Enum):
