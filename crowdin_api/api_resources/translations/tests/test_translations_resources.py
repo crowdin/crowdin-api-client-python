@@ -6,6 +6,7 @@ from crowdin_api.api_resources.translations.enums import (
     CharTransformation,
     PreTranslationApplyMethod,
     PreTranslationAutoApproveOption,
+    PreTranslationEditOperation,
 )
 from crowdin_api.api_resources.translations.resource import TranslationsResource
 from crowdin_api.requester import APIRequester
@@ -33,6 +34,19 @@ class TestTranslationsResource:
         m_request.assert_called_once_with(
             method="get",
             path="projects/1/pre-translations/2",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_pre_translations(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        params = resource.get_page_params()
+        assert resource.list_pre_translations(projectId=1) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/1/pre-translations",
+            params=params,
         )
 
     @pytest.mark.parametrize(
@@ -103,6 +117,26 @@ class TestTranslationsResource:
             method="post",
             request_data=request_data,
             path="projects/1/pre-translations",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_bundle(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        data = [
+            {
+                "value": "value",
+                "op": PreTranslationEditOperation.REPLACE,
+                "path": "/status",
+            }
+        ]
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_pre_translation(projectId=1, preTranslationId="pre-id", data=data) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path="projects/1/pre-translations/pre-id",
+            request_data=data,
         )
 
     @pytest.mark.parametrize(

@@ -19,3 +19,8 @@ class CharTransformation(Enum):
     EUROPEAN = "european"
     ARABIC = "arabic"
     CYRILLIC = "cyrillic"
+
+
+class PreTranslationEditOperation(Enum):
+    REPLACE = "replace"
+    TEST = "test"
