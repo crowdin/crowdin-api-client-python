@@ -2,7 +2,10 @@ from typing import Dict, Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.enums import ExportProjectTranslationFormat
-from crowdin_api.api_resources.translations.types import FallbackLanguages
+from crowdin_api.api_resources.translations.types import (
+    FallbackLanguages,
+    EditPreTranslationScheme,
+)
 from crowdin_api.api_resources.translations.enums import (
     CharTransformation,
     PreTranslationApplyMethod,
@@ -46,6 +49,29 @@ class TranslationsResource(BaseResource):
         return self.requester.request(
             method="get",
             path=f"projects/{projectId}/pre-translations/{preTranslationId}",
+        )
+
+    def list_pre_translations(
+        self,
+        projectId: Optional[int] = None,
+        page: Optional[int] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        List Pre-Translations
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.pre-translations.getMany
+        """
+        projectId = projectId or self.get_project_id()
+
+        params = self.get_page_params(page=page, offset=offset, limit=limit)
+
+        return self.requester.request(
+            method="get",
+            path=f"projects/{projectId}/pre-translations",
+            params=params,
         )
 
     def apply_pre_translation(
@@ -100,6 +126,26 @@ class TranslationsResource(BaseResource):
                 "labelIds": labelIds,
                 "excludeLabelIds": excludeLabelIds,
             },
+        )
+
+    def edit_pre_translation(
+        self,
+        preTranslationId: str,
+        data: Iterable[EditPreTranslationScheme],
+        projectId: Optional[int] = None,
+    ):
+        """
+        Edit Pre-Translation
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.pre-translations.patch
+        """
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="patch",
+            path=f"projects/{projectId}/pre-translations/{preTranslationId}",
+            request_data=data,
         )
 
     def build_project_directory_translation(
