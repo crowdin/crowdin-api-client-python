@@ -79,6 +79,22 @@ class StringTranslationsResource(BaseResource):
             request_data={"translationId": translationId},
         )
 
+    def remove_string_approvals(self, stringId: int, projectId: Optional[int] = None):
+        """
+        Remove String Approvals
+
+        Link to documentaion:
+        https://support.crowdin.com/developer/api/v2/#tag/String-Translations/operation/api.projects.approvals.deleteMany
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        params = {"stringId": stringId}
+
+        return self.requester.request(
+            method="delete", path=self.get_approvals_path(projectId=projectId), params=params
+        )
+
     def get_approval(self, approvalId: int, projectId: Optional[int] = None):
         """
         Get Approval.
