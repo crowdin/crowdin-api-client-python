@@ -264,7 +264,10 @@ class StringTranslationsResource(BaseResource):
         )
 
     def delete_string_translations(
-        self, stringId: int, languageId: str, projectId: Optional[int] = None
+        self,
+        stringId: int,
+        languageId: Optional[str] = None,
+        projectId: Optional[int] = None,
     ):
         """
         Delete String Translations.
