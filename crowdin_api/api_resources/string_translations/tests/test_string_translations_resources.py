@@ -99,6 +99,23 @@ class TestStringTranslationsResource:
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_remove_string_approvals(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        stringId = 1
+        projectId = 2
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.remove_string_approvals(stringId=stringId, projectId=projectId)
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="delete",
+            path=resource.get_approvals_path(projectId=projectId),
+            params={"stringId": stringId},
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_get_approval(self, m_request, base_absolut_url):
         m_request.return_value = "response"
 
