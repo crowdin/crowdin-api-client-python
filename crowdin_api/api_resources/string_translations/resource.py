@@ -210,6 +210,7 @@ class StringTranslationsResource(BaseResource):
         stringId: Optional[int] = None,
         languageId: Optional[str] = None,
         denormalizePlaceholders: Optional[DenormalizePlaceholders] = None,
+        taskId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -226,6 +227,7 @@ class StringTranslationsResource(BaseResource):
             "stringId": stringId,
             "languageId": languageId,
             "denormalizePlaceholders": denormalizePlaceholders,
+            "taskId": taskId,
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
