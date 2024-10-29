@@ -284,6 +284,7 @@ class TestStringTranslationsResource:
                     "languageId": "ua",
                     "text": "text",
                     "pluralCategoryName": None,
+                    "taskId": None,
                 },
             ),
             (
@@ -292,12 +293,14 @@ class TestStringTranslationsResource:
                     "languageId": "ua",
                     "text": "text",
                     "pluralCategoryName": "some name",
+                    "taskId": 12,
                 },
                 {
                     "stringId": 1,
                     "languageId": "ua",
                     "text": "text",
                     "pluralCategoryName": "some name",
+                    "taskId": 13,
                 },
             ),
         ),
