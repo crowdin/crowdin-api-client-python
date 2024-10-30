@@ -106,6 +106,7 @@ class TestSourceFilesResource:
                     "isHidden": None,
                     "maxLength": None,
                     "labelIds": None,
+                    "taskId": None,
                     "branchId": None
                 },
             ),
@@ -118,6 +119,7 @@ class TestSourceFilesResource:
                     "isHidden": True,
                     "maxLength": 2,
                     "labelIds": [1, 2, 3],
+                    "taskId": None,
                     "branchId": None
                 },
                 {
@@ -128,6 +130,7 @@ class TestSourceFilesResource:
                     "isHidden": True,
                     "maxLength": 2,
                     "labelIds": [1, 2, 3],
+                    "taskId": None,
                     "branchId": None
                 },
             ),
