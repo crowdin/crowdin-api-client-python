@@ -51,6 +51,7 @@ class TestSourceFilesResource:
                     "filter": None,
                     "scope": None,
                     "branchId": None,
+                    "taskId": None,
                 },
             ),
             (
@@ -64,6 +65,7 @@ class TestSourceFilesResource:
                     "filter": "some",
                     "scope": ScopeFilter.CONTEXT,
                     "branchId": 2,
+                    "taskId": 5,
                 },
                 {
                     "offset": 0,
@@ -75,6 +77,7 @@ class TestSourceFilesResource:
                     "filter": "some",
                     "scope": ScopeFilter.CONTEXT,
                     "branchId": 2,
+                    "taskId": 5,
                 },
             ),
         ),
@@ -106,7 +109,6 @@ class TestSourceFilesResource:
                     "isHidden": None,
                     "maxLength": None,
                     "labelIds": None,
-                    "taskId": None,
                     "branchId": None
                 },
             ),
@@ -119,7 +121,6 @@ class TestSourceFilesResource:
                     "isHidden": True,
                     "maxLength": 2,
                     "labelIds": [1, 2, 3],
-                    "taskId": None,
                     "branchId": None
                 },
                 {
@@ -130,7 +131,6 @@ class TestSourceFilesResource:
                     "isHidden": True,
                     "maxLength": 2,
                     "labelIds": [1, 2, 3],
-                    "taskId": None,
                     "branchId": None
                 },
             ),
