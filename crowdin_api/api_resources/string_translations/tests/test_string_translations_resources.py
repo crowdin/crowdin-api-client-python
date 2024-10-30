@@ -262,6 +262,9 @@ class TestStringTranslationsResource:
     def test_list_string_translations(self, m_request, in_params, request_params, base_absolut_url):
         m_request.return_value = "response"
 
+        in_params.setdefault("taskId", None)
+        request_params.setdefault("taskId", None)
+
         resource = self.get_resource(base_absolut_url)
         assert resource.list_string_translations(projectId=1, **in_params) == "response"
         m_request.assert_called_once_with(
@@ -278,6 +281,7 @@ class TestStringTranslationsResource:
                     "stringId": 1,
                     "languageId": "ua",
                     "text": "text",
+                    "taskId": None,
                 },
                 {
                     "stringId": 1,
@@ -300,7 +304,7 @@ class TestStringTranslationsResource:
                     "languageId": "ua",
                     "text": "text",
                     "pluralCategoryName": "some name",
-                    "taskId": 13,
+                    "taskId": 12,
                 },
             ),
         ),
@@ -310,7 +314,7 @@ class TestStringTranslationsResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_translation(projectId=1, **request_data) == "response"
+        assert resource.add_translation(projectId=1, **in_params) == "response"
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_translations_path(projectId=1),
