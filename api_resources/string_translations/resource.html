@@ -80,7 +80,7 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.votes.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.votes.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.delete_string_translations"><code class="name flex">
-<span>def <span class="ident">delete_string_translations</span></span>(<span>self, stringId: int, languageId: str, projectId: Optional[int] = None)</span>
+<span>def <span class="ident">delete_string_translations</span></span>(<span>self, stringId: int, languageId: Optional[str] = None, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete String Translations.</p>
@@ -177,6 +177,14 @@
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.delete</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.remove_string_approvals"><code class="name flex">
+<span>def <span class="ident">remove_string_approvals</span></span>(<span>self, stringId: int, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Remove String Approvals</p>
+<p>Link to documentaion:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/String-Translations/operation/api.projects.approvals.deleteMany">https://support.crowdin.com/developer/api/v2/#tag/String-Translations/operation/api.projects.approvals.deleteMany</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.restore_translation"><code class="name flex">
 <span>def <span class="ident">restore_translation</span></span>(<span>self, translationId: int, projectId: Optional[int] = None)</span>
 </code></dt>
@@ -231,6 +239,7 @@
 <li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.list_translation_approvals" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.list_translation_approvals">list_translation_approvals</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.list_translation_votes" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.list_translation_votes">list_translation_votes</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.remove_approval" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.remove_approval">remove_approval</a></code></li>
+<li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.remove_string_approvals" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.remove_string_approvals">remove_string_approvals</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.restore_translation" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.restore_translation">restore_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.translation_alignment" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.translation_alignment">translation_alignment</a></code></li>
 </ul>
