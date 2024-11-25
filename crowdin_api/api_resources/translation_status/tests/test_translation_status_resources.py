@@ -121,5 +121,5 @@ class TestTranslationStatusResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.list_qa_check_issues(projectId=1, **in_params) == "response"
         m_request.assert_called_once_with(
-            method="get", path="projects/1/languages/progress", params=request_params
+            method="get", path="projects/1/qa-checks", params=request_params
         )
