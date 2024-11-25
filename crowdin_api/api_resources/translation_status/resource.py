@@ -161,6 +161,6 @@ class TranslationStatusResource(BaseResource):
 
         return self._get_entire_data(
             method="get",
-            path=f"projects/{projectId}/languages/progress",
+            path=f"projects/{projectId}/qa-checks",
             params=params,
         )
