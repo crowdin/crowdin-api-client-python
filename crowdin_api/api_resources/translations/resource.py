@@ -5,6 +5,7 @@ from crowdin_api.api_resources.enums import ExportProjectTranslationFormat
 from crowdin_api.api_resources.translations.types import (
     FallbackLanguages,
     EditPreTranslationScheme,
+    UploadTranslationRequest,
 )
 from crowdin_api.api_resources.translations.enums import (
     CharTransformation,
@@ -317,34 +318,61 @@ class TranslationsResource(BaseResource):
         )
 
     def upload_translation(
-        self,
-        languageId: str,
-        storageId: int,
-        fileId: int,
-        projectId: Optional[int] = None,
-        importEqSuggestions: Optional[bool] = None,
-        autoApproveImported: Optional[bool] = None,
-        translateHidden: Optional[bool] = None,
-    ):
+    self,
+    languageId: str,
+    storageId: int,
+    fileId: int,
+    projectId: Optional[int] = None,
+    importEqSuggestions: Optional[bool] = None,
+    autoApproveImported: Optional[bool] = None,
+    translateHidden: Optional[bool] = None,
+    addToTm: Optional[bool] = None,
+) -> dict:
         """
         Upload Translations.
+
+        Parameters
+        ----------
+        languageId: str
+            Language ID.
+        storageId: int
+            Storage ID.
+        fileId: int
+            File ID for import.
+        projectId: Optional[int]
+            Project ID.
+        importEqSuggestions: Optional[bool]
+            Define whether to add equal translations.
+        autoApproveImported: Optional[bool]
+            Mark uploaded translations as approved.
+        translateHidden: Optional[bool]
+            Allow translations upload to hidden source strings.
+        addToTm: Optional[bool]
+            Define whether to add translation to TM. Default: true
+
+        Returns
+        -------
+        dict
+            Upload Translation response from the API
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.postOnLanguage
         """
-
         projectId = projectId or self.get_project_id()
+
+        request_data: UploadTranslationRequest = {
+            "storageId": storageId,
+            "fileId": fileId,
+            "importEqSuggestions": importEqSuggestions,
+            "autoApproveImported": autoApproveImported,
+            "translateHidden": translateHidden,
+            "addToTm": addToTm,
+        }
 
         return self.requester.request(
             method="post",
             path=f"projects/{projectId}/translations/{languageId}",
-            request_data={
-                "storageId": storageId,
-                "fileId": fileId,
-                "importEqSuggestions": importEqSuggestions,
-                "autoApproveImported": autoApproveImported,
-                "translateHidden": translateHidden,
-            },
+            request_data=request_data,
         )
 
     def download_project_translations(
