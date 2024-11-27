@@ -318,16 +318,16 @@ class TranslationsResource(BaseResource):
         )
 
     def upload_translation(
-    self,
-    languageId: str,
-    storageId: int,
-    fileId: int,
-    projectId: Optional[int] = None,
-    importEqSuggestions: Optional[bool] = None,
-    autoApproveImported: Optional[bool] = None,
-    translateHidden: Optional[bool] = None,
-    addToTm: Optional[bool] = None,
-) -> dict:
+        self,
+        languageId: str, 
+        storageId: int,
+        fileId: int,
+        projectId: Optional[int] = None,
+        importEqSuggestions: Optional[bool] = None,
+        autoApproveImported: Optional[bool] = None,
+        translateHidden: Optional[bool] = None,
+        addToTm: Optional[bool] = None,
+    ) -> dict:
         """
         Upload Translations.
 
