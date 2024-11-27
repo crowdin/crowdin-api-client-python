@@ -327,33 +327,9 @@ class TranslationsResource(BaseResource):
         autoApproveImported: Optional[bool] = None,
         translateHidden: Optional[bool] = None,
         addToTm: Optional[bool] = None,
-    ) -> dict:
+    ):
         """
         Upload Translations.
-
-        Parameters
-        ----------
-        languageId: str
-            Language ID.
-        storageId: int
-            Storage ID.
-        fileId: int
-            File ID for import.
-        projectId: Optional[int]
-            Project ID.
-        importEqSuggestions: Optional[bool]
-            Define whether to add equal translations.
-        autoApproveImported: Optional[bool]
-            Mark uploaded translations as approved.
-        translateHidden: Optional[bool]
-            Allow translations upload to hidden source strings.
-        addToTm: Optional[bool]
-            Define whether to add translation to TM. Default: true
-
-        Returns
-        -------
-        dict
-            Upload Translation response from the API
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.postOnLanguage
