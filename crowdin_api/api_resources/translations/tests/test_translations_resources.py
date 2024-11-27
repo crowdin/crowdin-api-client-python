@@ -309,89 +309,89 @@ class TestTranslationsResource:
         m_build_project_translation.assert_called_once_with(projectId=1, request_data=request_data)
 
     @pytest.mark.parametrize(
-       "in_params, request_data",
-       (
-           (
-               {
-                   "storageId": 1,
-                   "fileId": 2,
-               },
-               {
-                   "storageId": 1,
-                   "fileId": 2,
-                   "importEqSuggestions": None,
-                   "autoApproveImported": None,
-                   "translateHidden": None, 
-                   "addToTm": None,
-               },
-           ),
-           (
-               {
-                   "storageId": 1,
-                   "fileId": 2,
-                   "importEqSuggestions": False,
-                   "autoApproveImported": False,
-                   "translateHidden": False,
-                   "addToTm": False,
-               },
-               {
-                   "storageId": 1,
-                   "fileId": 2,
-                   "importEqSuggestions": False,
-                   "autoApproveImported": False,
-                   "translateHidden": False,
-                   "addToTm": False,
-               },
-           ),
-           (
-               {
-                   "storageId": 1,
-                   "fileId": 2,
-                   "importEqSuggestions": True,
-                   "autoApproveImported": True,
-                   "translateHidden": True,
-                   "addToTm": True,
-               },
-               {
-                   "storageId": 1,
-                   "fileId": 2,
-                   "importEqSuggestions": True,
-                   "autoApproveImported": True,
-                   "translateHidden": True,
-                   "addToTm": True,
-               },
-           ),
-           (
-               {
-                   "storageId": 1,
-                   "fileId": 2,
-                   "addToTm": False,
-               },
-               {
-                   "storageId": 1,
-                   "fileId": 2,
-                   "importEqSuggestions": None,
-                   "autoApproveImported": None,
-                   "translateHidden": None,
-                   "addToTm": False,
-               },
-           ),
-           (
-               {
-                   "storageId": 1,
-                   "fileId": 2,
-                   "addToTm": True,
-               },
-               {
-                   "storageId": 1,
-                   "fileId": 2,
-                   "importEqSuggestions": None,
-                   "autoApproveImported": None,
-                   "translateHidden": None,
-                   "addToTm": True,
-               },
-           ),
-       ),
+        "in_params, request_data",
+        (
+            (
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                },
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "importEqSuggestions": None,
+                    "autoApproveImported": None,
+                    "translateHidden": None,
+                    "addToTm": None,
+                },
+            ),
+            (
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "importEqSuggestions": False,
+                    "autoApproveImported": False,
+                    "translateHidden": False,
+                    "addToTm": False,
+                },
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "importEqSuggestions": False,
+                    "autoApproveImported": False,
+                    "translateHidden": False,
+                    "addToTm": False,
+                },
+            ),
+            (
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "importEqSuggestions": True,
+                    "autoApproveImported": True,
+                    "translateHidden": True,
+                    "addToTm": True,
+                },
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "importEqSuggestions": True,
+                    "autoApproveImported": True,
+                    "translateHidden": True,
+                    "addToTm": True,
+                },
+            ),
+            (
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "addToTm": False,
+                },
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "importEqSuggestions": None,
+                    "autoApproveImported": None,
+                    "translateHidden": None,
+                    "addToTm": False,
+                },
+            ),
+            (
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "addToTm": True,
+                },
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "importEqSuggestions": None,
+                    "autoApproveImported": None,
+                    "translateHidden": None,
+                    "addToTm": True,
+                },
+            ),
+        ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_upload_translation(self, m_request, in_params, request_data, base_absolut_url):

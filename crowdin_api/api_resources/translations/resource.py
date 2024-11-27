@@ -319,7 +319,7 @@ class TranslationsResource(BaseResource):
 
     def upload_translation(
         self,
-        languageId: str, 
+        languageId: str,
         storageId: int,
         fileId: int,
         projectId: Optional[int] = None,

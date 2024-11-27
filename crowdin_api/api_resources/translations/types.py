@@ -1,7 +1,5 @@
-from typing import Iterable, Optional 
-
+from typing import Iterable, Optional
 from crowdin_api.typing import TypedDict
-
 from crowdin_api.api_resources.translations.enums import PreTranslationEditOperation
 
 
