@@ -37,7 +37,6 @@ class WorkflowsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.workflow-steps.getMany
         """
-        
         projectId = projectId or self.get_project_id()
 
         return self._get_entire_data(
@@ -71,7 +70,6 @@ class WorkflowsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.workflow-templates.getMany
         """
-        
         params = {"groupId": groupId}
         params.update(self.get_page_params(offset=offset, limit=limit))
 
@@ -88,7 +86,6 @@ class WorkflowsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.workflow-templates.get
         """
-        
         return self.requester.request(
             method="get",
             path=self.get_workflow_templates_path(templateId=templateId),
