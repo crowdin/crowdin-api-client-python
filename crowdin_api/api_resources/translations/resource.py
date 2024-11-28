@@ -5,6 +5,7 @@ from crowdin_api.api_resources.enums import ExportProjectTranslationFormat
 from crowdin_api.api_resources.translations.types import (
     FallbackLanguages,
     EditPreTranslationScheme,
+    UploadTranslationRequest,
 )
 from crowdin_api.api_resources.translations.enums import (
     CharTransformation,
@@ -325,6 +326,7 @@ class TranslationsResource(BaseResource):
         importEqSuggestions: Optional[bool] = None,
         autoApproveImported: Optional[bool] = None,
         translateHidden: Optional[bool] = None,
+        addToTm: Optional[bool] = None,
     ):
         """
         Upload Translations.
@@ -332,19 +334,21 @@ class TranslationsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.postOnLanguage
         """
-
         projectId = projectId or self.get_project_id()
+
+        request_data: UploadTranslationRequest = {
+            "storageId": storageId,
+            "fileId": fileId,
+            "importEqSuggestions": importEqSuggestions,
+            "autoApproveImported": autoApproveImported,
+            "translateHidden": translateHidden,
+            "addToTm": addToTm,
+        }
 
         return self.requester.request(
             method="post",
             path=f"projects/{projectId}/translations/{languageId}",
-            request_data={
-                "storageId": storageId,
-                "fileId": fileId,
-                "importEqSuggestions": importEqSuggestions,
-                "autoApproveImported": autoApproveImported,
-                "translateHidden": translateHidden,
-            },
+            request_data=request_data,
         )
 
     def download_project_translations(

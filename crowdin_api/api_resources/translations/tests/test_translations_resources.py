@@ -322,6 +322,7 @@ class TestTranslationsResource:
                     "importEqSuggestions": None,
                     "autoApproveImported": None,
                     "translateHidden": None,
+                    "addToTm": None,
                 },
             ),
             (
@@ -331,6 +332,7 @@ class TestTranslationsResource:
                     "importEqSuggestions": False,
                     "autoApproveImported": False,
                     "translateHidden": False,
+                    "addToTm": False,
                 },
                 {
                     "storageId": 1,
@@ -338,6 +340,55 @@ class TestTranslationsResource:
                     "importEqSuggestions": False,
                     "autoApproveImported": False,
                     "translateHidden": False,
+                    "addToTm": False,
+                },
+            ),
+            (
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "importEqSuggestions": True,
+                    "autoApproveImported": True,
+                    "translateHidden": True,
+                    "addToTm": True,
+                },
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "importEqSuggestions": True,
+                    "autoApproveImported": True,
+                    "translateHidden": True,
+                    "addToTm": True,
+                },
+            ),
+            (
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "addToTm": False,
+                },
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "importEqSuggestions": None,
+                    "autoApproveImported": None,
+                    "translateHidden": None,
+                    "addToTm": False,
+                },
+            ),
+            (
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "addToTm": True,
+                },
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "importEqSuggestions": None,
+                    "autoApproveImported": None,
+                    "translateHidden": None,
+                    "addToTm": True,
                 },
             ),
         ),
