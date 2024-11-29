@@ -242,6 +242,7 @@ class GlossariesResource(BaseResource):
         userId: Optional[int] = None,
         languageId: Optional[str] = None,
         conceptId: Optional[int] = None,
+        croql: Optional[str] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
     ):
@@ -256,6 +257,7 @@ class GlossariesResource(BaseResource):
             "userId": userId,
             "languageId": languageId,
             "conceptId": conceptId,
+            "croql": croql,
         }
 
         params.update(self.get_page_params(offset=offset, limit=limit))
