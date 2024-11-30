@@ -272,6 +272,7 @@ class TestGlossariesResource:
                     "userId": None,
                     "languageId": None,
                     "conceptId": None,
+                    "croql": None,
                     "offset": 0,
                     "limit": 25,
                 },
@@ -281,11 +282,13 @@ class TestGlossariesResource:
                     "userId": 1,
                     "languageId": "ua",
                     "conceptId": 2,
+                    "croql": "status = 'preferred'",
                 },
                 {
                     "userId": 1,
                     "languageId": "ua",
                     "conceptId": 2,
+                    "croql": "status = 'preferred'",
                     "offset": 0,
                     "limit": 25,
                 },
@@ -295,7 +298,6 @@ class TestGlossariesResource:
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_list_terms(self, m_request, incoming_data, request_params, base_absolut_url):
         m_request.return_value = "response"
-
         resource = self.get_resource(base_absolut_url)
         assert resource.list_terms(glossaryId=1, **incoming_data) == "response"
         m_request.assert_called_once_with(
