@@ -6,6 +6,7 @@ from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.tasks.enums import (
     CrowdinGeneralTaskType,
     CrowdinTaskStatus,
+    CrowdinTaskType,
     GengoCrowdinTaskExpertise,
     GengoCrowdinTaskPurpose,
     GengoCrowdinTaskTone,
@@ -648,6 +649,147 @@ class TestTasksResource:
 
         resource = self.get_resource(base_absolut_url)
         assert resource.add_vendor_manual_task(projectId=1, **incoming_data) == "response"
+        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                },
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                    "type": CrowdinTaskType.PROOFREAD,
+                    "description": None,
+                    "assignees": None,
+                    "deadline": None,
+                },
+            ),
+            (
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                    "description": "description",
+                    "assignees": [{"id": 1, "wordsCount": 2}],
+                    "deadline": datetime(year=1988, month=9, day=26),
+                },
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                    "description": "description",
+                    "assignees": [{"id": 1, "wordsCount": 2}],
+                    "deadline": datetime(year=1988, month=9, day=26),
+                    "type": CrowdinTaskType.PROOFREAD,
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
+    def test_add_pending_task(
+        self, m_add_task, incoming_data, request_data, base_absolut_url
+    ):
+        m_add_task.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_pending_task(projectId=1, **incoming_data) == "response"
+        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                },
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                    "type": LanguageServiceTaskType.PROOFREAD_BY_VENDOR,
+                    "vendor": "crowdin_language_service",
+                    "description": None,
+                    "deadline": None,
+                },
+            ),
+            (
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                    "description": "description",
+                    "deadline": datetime(year=1988, month=9, day=26),
+                },
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                    "description": "description",
+                    "deadline": datetime(year=1988, month=9, day=26),
+                    "type": LanguageServiceTaskType.PROOFREAD_BY_VENDOR,
+                    "vendor": "crowdin_language_service",
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
+    def test_add_language_service_pending_task(
+        self, m_add_task, incoming_data, request_data, base_absolut_url
+    ):
+        m_add_task.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_language_service_pending_task(projectId=1, **incoming_data) == "response"
+        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                    "vendor": ManualCrowdinVendors.ACCLARO,
+                },
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                    "type": ManualCrowdinTaskType.PROOFREAD_BY_VENDOR,
+                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "description": None,
+                    "assignees": None,
+                    "deadline": None,
+                },
+            ),
+            (
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                    "description": "description",
+                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "assignees": [{"id": 1, "wordsCount": 2}],
+                    "deadline": datetime(year=1988, month=9, day=26),
+                },
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                    "description": "description",
+                    "deadline": datetime(year=1988, month=9, day=26),
+                    "type": ManualCrowdinTaskType.PROOFREAD_BY_VENDOR,
+                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "assignees": [{"id": 1, "wordsCount": 2}],
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
+    def test_add_vendor_manual_pending_task(
+        self, m_add_task, incoming_data, request_data, base_absolut_url
+    ):
+        m_add_task.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_vendor_manual_pending_task(projectId=1, **incoming_data) == "response"
         m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
 
     @mock.patch("crowdin_api.requester.APIRequester.request")

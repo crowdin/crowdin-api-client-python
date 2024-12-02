@@ -5,6 +5,7 @@ from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.tasks.enums import (
     CrowdinGeneralTaskType,
     CrowdinTaskStatus,
+    CrowdinTaskType,
     LanguageServiceTaskType,
     GengoCrowdinTaskExpertise,
     GengoCrowdinTaskPurpose,
@@ -509,6 +510,88 @@ class TasksResource(BaseResource):
                 "startedAt": startedAt,
                 "dateFrom": dateFrom,
                 "dateTo": dateTo,
+            },
+        )
+
+    def add_pending_task(
+        self,
+        title: str,
+        precedingTaskId: int,
+        projectId: Optional[int] = None,
+        description: Optional[str] = None,
+        assignees: Optional[Iterable[CrowdinTaskAssignee]] = None,
+        deadline: Optional[datetime] = None,
+    ):
+        """
+        Add Task(Crowdin Pending Task Create Form).
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.add_task(
+            projectId=projectId,
+            request_data={
+                "precedingTaskId": precedingTaskId,
+                "type": CrowdinTaskType.PROOFREAD,
+                "title": title,
+                "description": description,
+                "assignees": assignees,
+                "deadline": deadline,
+            },
+        )
+
+    def add_language_service_pending_task(
+        self,
+        title: str,
+        precedingTaskId: int,
+        projectId: Optional[int] = None,
+        description: Optional[str] = None,
+        deadline: Optional[datetime] = None,
+    ):
+        """
+        Add Task(Crowdin Language Service Pending Task Create Form).
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.add_task(
+            projectId=projectId,
+            request_data={
+                "precedingTaskId": precedingTaskId,
+                "type": LanguageServiceTaskType.PROOFREAD_BY_VENDOR,
+                "vendor": "crowdin_language_service",
+                "title": title,
+                "description": description,
+                "deadline": deadline,
+            },
+        )
+
+    def add_vendor_manual_pending_task(
+        self,
+        title: str,
+        precedingTaskId: int,
+        vendor: ManualCrowdinVendors,
+        projectId: Optional[int] = None,
+        description: Optional[str] = None,
+        assignees: Optional[Iterable[CrowdinTaskAssignee]] = None,
+        deadline: Optional[datetime] = None,
+    ):
+        """
+        Add Task(Crowdin Vendor Manual Pending Task Create Form).
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.add_task(
+            projectId=projectId,
+            request_data={
+                "precedingTaskId": precedingTaskId,
+                "type": ManualCrowdinTaskType.PROOFREAD_BY_VENDOR,
+                "vendor": vendor,
+                "title": title,
+                "description": description,
+                "assignees": assignees,
+                "deadline": deadline,
             },
         )
 
