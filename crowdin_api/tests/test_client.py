@@ -210,6 +210,25 @@ class TestCrowdinClient:
                 requester="api_requestor", project_id=1, page_size=25
             )
 
+    @mock.patch("crowdin_api.client.CrowdinClient.get_api_requestor")
+    def test_graphql(self, mock_get_requestor):
+        """Test GraphQL functionality with basic request validation."""
+        client = CrowdinClient()
+        assert isinstance(client, CrowdinClient)
+
+        mock_requestor = mock.Mock()
+        mock_get_requestor.return_value = mock_requestor
+        mock_requestor.request.return_value = {"data": {"test": True}}
+
+        query = "query { test }"
+        client.graphql(query=query)
+
+        mock_requestor.request.assert_called_once()
+        call_args = mock_requestor.request.call_args[1]
+        assert call_args["method"] == "post"
+        assert call_args["path"] == "graphql"
+        assert call_args["request_data"]["query"] == query
+
 
 class TestCrowdinClientEnterprise:
     @pytest.mark.parametrize(
