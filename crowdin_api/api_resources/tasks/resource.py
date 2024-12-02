@@ -21,6 +21,7 @@ from crowdin_api.api_resources.tasks.enums import (
 )
 from crowdin_api.api_resources.tasks.types import (
     CrowdinTaskAssignee,
+    EnterpriseTaskAssignedTeams,
     TaskPatchRequest,
     VendorPatchRequest,
     ConfigPatchRequest,
@@ -737,4 +738,228 @@ class EnterpriseTasksResource(TasksResource):
             method="post",
             path=self.get_task_settings_templates_path(projectId=projectId),
             request_data={"name": name, "config": config},
+        )
+
+    def add_general_task(
+        self,
+        title: str,
+        languageId: str,
+        fileIds: Iterable[int],
+        type: Optional[CrowdinGeneralTaskType] = None,
+        workflowStepId: Optional[int] = None,
+        projectId: Optional[int] = None,
+        status: Optional[CrowdinTaskStatus] = None,
+        description: Optional[str] = None,
+        splitContent: Optional[bool] = None,
+        skipAssignedStrings: Optional[bool] = None,
+        skipUntranslatedStrings: Optional[bool] = None,
+        includePreTranslatedStringsOnly: Optional[bool] = None,
+        labelIds: Optional[Iterable[int]] = None,
+        excludeLabelIds: Optional[Iterable[int]] = None,
+        assignees: Optional[Iterable[CrowdinTaskAssignee]] = None,
+        assignedTeams: Optional[Iterable[EnterpriseTaskAssignedTeams]] = None,
+        deadline: Optional[datetime] = None,
+        startedAt: Optional[datetime] = None,
+        dateFrom: Optional[datetime] = None,
+        dateTo: Optional[datetime] = None,
+    ):
+        """
+        Add Task(Enterprise Task Create Form).
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.add_task(
+            projectId=projectId,
+            request_data={
+                "title": title,
+                "languageId": languageId,
+                "fileIds": fileIds,
+                "type": type,
+                "workflowStepId": workflowStepId,
+                "status": status,
+                "description": description,
+                "splitContent": splitContent,
+                "skipAssignedStrings": skipAssignedStrings,
+                "skipUntranslatedStrings": skipUntranslatedStrings,
+                "includePreTranslatedStringsOnly": includePreTranslatedStringsOnly,
+                "labelIds": labelIds,
+                "excludeLabelIds": excludeLabelIds,
+                "assignees": assignees,
+                "assignedTeams": assignedTeams,
+                "deadline": deadline,
+                "startedAt": startedAt,
+                "dateFrom": dateFrom,
+                "dateTo": dateTo,
+            },
+        )
+
+    def add_general_by_string_ids_task(
+        self,
+        title: str,
+        languageId: str,
+        stringIds: Iterable[int],
+        type: Optional[CrowdinGeneralTaskType] = None,
+        workflowStepId: Optional[int] = None,
+        projectId: Optional[int] = None,
+        status: Optional[CrowdinTaskStatus] = None,
+        description: Optional[str] = None,
+        splitContent: Optional[bool] = None,
+        skipAssignedStrings: Optional[bool] = None,
+        skipUntranslatedStrings: Optional[bool] = None,
+        includePreTranslatedStringsOnly: Optional[bool] = None,
+        assignees: Optional[Iterable[CrowdinTaskAssignee]] = None,
+        assignedTeams: Optional[Iterable[EnterpriseTaskAssignedTeams]] = None,
+        deadline: Optional[datetime] = None,
+        startedAt: Optional[datetime] = None,
+        dateFrom: Optional[datetime] = None,
+        dateTo: Optional[datetime] = None,
+    ):
+        """
+        Add Task(Enterprise Task Create Form).
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.add_task(
+            projectId=projectId,
+            request_data={
+                "title": title,
+                "languageId": languageId,
+                "stringIds": stringIds,
+                "type": type,
+                "workflowStepId": workflowStepId,
+                "status": status,
+                "description": description,
+                "splitContent": splitContent,
+                "skipAssignedStrings": skipAssignedStrings,
+                "skipUntranslatedStrings": skipUntranslatedStrings,
+                "includePreTranslatedStringsOnly": includePreTranslatedStringsOnly,
+                "assignees": assignees,
+                "assignedTeams": assignedTeams,
+                "deadline": deadline,
+                "startedAt": startedAt,
+                "dateFrom": dateFrom,
+                "dateTo": dateTo,
+            },
+        )
+
+    def add_vendor_task(
+        self,
+        title: str,
+        languageId: str,
+        workflowStepId: int,
+        fileIds: Iterable[int],
+        projectId: Optional[int] = None,
+        description: Optional[str] = None,
+        skipAssignedStrings: Optional[bool] = None,
+        includePreTranslatedStringsOnly: Optional[bool] = None,
+        labelIds: Optional[Iterable[int]] = None,
+        excludeLabelIds: Optional[Iterable[int]] = None,
+        deadline: Optional[datetime] = None,
+        startedAt: Optional[datetime] = None,
+        dateTo: Optional[datetime] = None,
+    ):
+        """
+        Add Task(Enterprise Vendor Task Create Form).
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.add_task(
+            projectId=projectId,
+            request_data={
+                "title": title,
+                "languageId": languageId,
+                "fileIds": fileIds,
+                "workflowStepId": workflowStepId,
+                "description": description,
+                "skipAssignedStrings": skipAssignedStrings,
+                "includePreTranslatedStringsOnly": includePreTranslatedStringsOnly,
+                "labelIds": labelIds,
+                "excludeLabelIds": excludeLabelIds,
+                "deadline": deadline,
+                "startedAt": startedAt,
+                "dateTo": dateTo,
+            },
+        )
+
+    def add_vendor_by_string_ids_task(
+        self,
+        title: str,
+        languageId: str,
+        workflowStepId: int,
+        stringIds: Iterable[int],
+        projectId: Optional[int] = None,
+        description: Optional[str] = None,
+        skipAssignedStrings: Optional[bool] = None,
+        includePreTranslatedStringsOnly: Optional[bool] = None,
+        deadline: Optional[datetime] = None,
+        startedAt: Optional[datetime] = None,
+        dateTo: Optional[datetime] = None,
+    ):
+        """
+        Add Task(Enterprise Vendor Task Create Form).
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.add_task(
+            projectId=projectId,
+            request_data={
+                "title": title,
+                "languageId": languageId,
+                "stringIds": stringIds,
+                "workflowStepId": workflowStepId,
+                "description": description,
+                "skipAssignedStrings": skipAssignedStrings,
+                "includePreTranslatedStringsOnly": includePreTranslatedStringsOnly,
+                "deadline": deadline,
+                "startedAt": startedAt,
+                "dateTo": dateTo,
+            },
+        )
+
+    def add_pending_task(
+        self,
+        title: str,
+        precedingTaskId: int,
+        projectId: Optional[int] = None,
+        description: Optional[str] = None,
+        assignees: Optional[Iterable[CrowdinTaskAssignee]] = None,
+        assignedTeams: Optional[Iterable[EnterpriseTaskAssignedTeams]] = None,
+        deadline: Optional[datetime] = None,
+    ):
+        """
+        Add Task(Enterprise Pending Task Create Form).
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.add_task(
+            projectId=projectId,
+            request_data={
+                "precedingTaskId": precedingTaskId,
+                "type": CrowdinTaskType.PROOFREAD,
+                "title": title,
+                "description": description,
+                "assignees": assignees,
+                "assignedTeams": assignedTeams,
+                "deadline": deadline,
+            },
         )

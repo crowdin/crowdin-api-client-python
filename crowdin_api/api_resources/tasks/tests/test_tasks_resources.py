@@ -916,3 +916,364 @@ class TestEnterpriseTasksResource:
             path=resource.get_task_settings_templates_path(projectId=1),
             request_data={"name": input_name, "config": input_config_data},
         )
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "fileIds": [1, 2, 3],
+                    "type": CrowdinGeneralTaskType.TRANSLATE,
+                },
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "fileIds": [1, 2, 3],
+                    "type": CrowdinGeneralTaskType.TRANSLATE,
+                    "workflowStepId": None,
+                    "status": None,
+                    "description": None,
+                    "splitContent": None,
+                    "skipAssignedStrings": None,
+                    "skipUntranslatedStrings": None,
+                    "includePreTranslatedStringsOnly": None,
+                    "labelIds": None,
+                    "excludeLabelIds": None,
+                    "assignees": None,
+                    "assignedTeams": None,
+                    "deadline": None,
+                    "startedAt": None,
+                    "dateFrom": None,
+                    "dateTo": None,
+                },
+            ),
+            (
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "fileIds": [1, 2, 3],
+                    "workflowStepId": 1,
+                    "status": CrowdinTaskStatus.TODO,
+                    "description": "description",
+                    "splitContent": True,
+                    "skipAssignedStrings": True,
+                    "skipUntranslatedStrings": True,
+                    "includePreTranslatedStringsOnly": True,
+                    "labelIds": [1, 2, 3],
+                    "excludeLabelIds": [4, 5, 6],
+                    "assignees": [{"id": 1, "wordsCount": 2}],
+                    "assignedTeams": [{"id": 1, "wordsCount": 2}],
+                    "deadline": datetime(year=1988, month=9, day=26),
+                    "startedAt": datetime(year=1966, month=2, day=1),
+                    "dateFrom": datetime(year=1988, month=1, day=4),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "fileIds": [1, 2, 3],
+                    "type": None,
+                    "workflowStepId": 1,
+                    "status": CrowdinTaskStatus.TODO,
+                    "description": "description",
+                    "splitContent": True,
+                    "skipAssignedStrings": True,
+                    "skipUntranslatedStrings": True,
+                    "includePreTranslatedStringsOnly": True,
+                    "labelIds": [1, 2, 3],
+                    "excludeLabelIds": [4, 5, 6],
+                    "assignees": [{"id": 1, "wordsCount": 2}],
+                    "assignedTeams": [{"id": 1, "wordsCount": 2}],
+                    "deadline": datetime(year=1988, month=9, day=26),
+                    "startedAt": datetime(year=1966, month=2, day=1),
+                    "dateFrom": datetime(year=1988, month=1, day=4),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+            ),
+        ),
+    )
+    @mock.patch(
+        "crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_task"
+    )
+    def test_add_general_task(
+        self, m_add_task, incoming_data, request_data, base_absolut_url
+    ):
+        m_add_task.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_general_task(projectId=1, **incoming_data) == "response"
+        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "stringIds": [1, 2, 3],
+                    "type": CrowdinGeneralTaskType.TRANSLATE,
+                },
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "stringIds": [1, 2, 3],
+                    "type": CrowdinGeneralTaskType.TRANSLATE,
+                    "workflowStepId": None,
+                    "status": None,
+                    "description": None,
+                    "splitContent": None,
+                    "skipAssignedStrings": None,
+                    "skipUntranslatedStrings": None,
+                    "includePreTranslatedStringsOnly": None,
+                    "assignees": None,
+                    "assignedTeams": None,
+                    "deadline": None,
+                    "startedAt": None,
+                    "dateFrom": None,
+                    "dateTo": None,
+                },
+            ),
+            (
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "stringIds": [1, 2, 3],
+                    "workflowStepId": 1,
+                    "status": CrowdinTaskStatus.TODO,
+                    "description": "description",
+                    "splitContent": True,
+                    "skipAssignedStrings": True,
+                    "skipUntranslatedStrings": True,
+                    "includePreTranslatedStringsOnly": True,
+                    "assignees": [{"id": 1, "wordsCount": 2}],
+                    "assignedTeams": [{"id": 1, "wordsCount": 2}],
+                    "deadline": datetime(year=1988, month=9, day=26),
+                    "startedAt": datetime(year=1966, month=2, day=1),
+                    "dateFrom": datetime(year=1988, month=1, day=4),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "stringIds": [1, 2, 3],
+                    "workflowStepId": 1,
+                    "type": None,
+                    "status": CrowdinTaskStatus.TODO,
+                    "description": "description",
+                    "splitContent": True,
+                    "skipAssignedStrings": True,
+                    "skipUntranslatedStrings": True,
+                    "includePreTranslatedStringsOnly": True,
+                    "assignees": [{"id": 1, "wordsCount": 2}],
+                    "assignedTeams": [{"id": 1, "wordsCount": 2}],
+                    "deadline": datetime(year=1988, month=9, day=26),
+                    "startedAt": datetime(year=1966, month=2, day=1),
+                    "dateFrom": datetime(year=1988, month=1, day=4),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+            ),
+        ),
+    )
+    @mock.patch(
+        "crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_task"
+    )
+    def test_add_general_by_string_ids_task(
+        self, m_add_task, incoming_data, request_data, base_absolut_url
+    ):
+        m_add_task.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.add_general_by_string_ids_task(projectId=1, **incoming_data)
+            == "response"
+        )
+        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "workflowStepId": 1,
+                    "fileIds": [1, 2, 3],
+                },
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "workflowStepId": 1,
+                    "fileIds": [1, 2, 3],
+                    "description": None,
+                    "skipAssignedStrings": None,
+                    "includePreTranslatedStringsOnly": None,
+                    "labelIds": None,
+                    "excludeLabelIds": None,
+                    "deadline": None,
+                    "startedAt": None,
+                    "dateTo": None,
+                },
+            ),
+            (
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "workflowStepId": 1,
+                    "fileIds": [1, 2, 3],
+                    "description": "description",
+                    "skipAssignedStrings": True,
+                    "includePreTranslatedStringsOnly": True,
+                    "labelIds": [1, 2, 3],
+                    "excludeLabelIds": [4, 5, 6],
+                    "deadline": datetime(year=1988, month=9, day=26),
+                    "startedAt": datetime(year=1966, month=2, day=1),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "workflowStepId": 1,
+                    "fileIds": [1, 2, 3],
+                    "description": "description",
+                    "skipAssignedStrings": True,
+                    "includePreTranslatedStringsOnly": True,
+                    "labelIds": [1, 2, 3],
+                    "excludeLabelIds": [4, 5, 6],
+                    "deadline": datetime(year=1988, month=9, day=26),
+                    "startedAt": datetime(year=1966, month=2, day=1),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+            ),
+        ),
+    )
+    @mock.patch(
+        "crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_task"
+    )
+    def test_add_vendor_task(
+        self, m_add_task, incoming_data, request_data, base_absolut_url
+    ):
+        m_add_task.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_vendor_task(projectId=1, **incoming_data) == "response"
+        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "workflowStepId": 1,
+                    "stringIds": [1, 2, 3],
+                },
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "workflowStepId": 1,
+                    "stringIds": [1, 2, 3],
+                    "description": None,
+                    "skipAssignedStrings": None,
+                    "includePreTranslatedStringsOnly": None,
+                    "deadline": None,
+                    "startedAt": None,
+                    "dateTo": None,
+                },
+            ),
+            (
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "workflowStepId": 1,
+                    "stringIds": [1, 2, 3],
+                    "description": "description",
+                    "skipAssignedStrings": True,
+                    "includePreTranslatedStringsOnly": True,
+                    "deadline": datetime(year=1988, month=9, day=26),
+                    "startedAt": datetime(year=1966, month=2, day=1),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+                {
+                    "title": "title",
+                    "languageId": "ua",
+                    "workflowStepId": 1,
+                    "stringIds": [1, 2, 3],
+                    "description": "description",
+                    "skipAssignedStrings": True,
+                    "includePreTranslatedStringsOnly": True,
+                    "deadline": datetime(year=1988, month=9, day=26),
+                    "startedAt": datetime(year=1966, month=2, day=1),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+            ),
+        ),
+    )
+    @mock.patch(
+        "crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_task"
+    )
+    def test_add_vendor_by_string_ids_task(
+        self, m_add_task, incoming_data, request_data, base_absolut_url
+    ):
+        m_add_task.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.add_vendor_by_string_ids_task(projectId=1, **incoming_data)
+            == "response"
+        )
+        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                },
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                    "type": CrowdinTaskType.PROOFREAD,
+                    "description": None,
+                    "assignees": None,
+                    "assignedTeams": None,
+                    "deadline": None,
+                },
+            ),
+            (
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                    "description": "description",
+                    "assignees": [{"id": 1, "wordsCount": 2}],
+                    "assignedTeams": [{"id": 1, "wordsCount": 2}],
+                    "deadline": datetime(year=1988, month=9, day=26),
+                },
+                {
+                    "title": "title",
+                    "precedingTaskId": 1,
+                    "type": CrowdinTaskType.PROOFREAD,
+                    "description": "description",
+                    "assignees": [{"id": 1, "wordsCount": 2}],
+                    "assignedTeams": [{"id": 1, "wordsCount": 2}],
+                    "deadline": datetime(year=1988, month=9, day=26),
+                },
+            ),
+        ),
+    )
+    @mock.patch(
+        "crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_task"
+    )
+    def test_add_pending_task(
+        self, m_add_task, incoming_data, request_data, base_absolut_url
+    ):
+        m_add_task.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_pending_task(projectId=1, **incoming_data) == "response"
+        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
