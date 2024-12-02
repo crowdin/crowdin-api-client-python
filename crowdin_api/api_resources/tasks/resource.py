@@ -275,7 +275,7 @@ class TasksResource(BaseResource):
         self,
         title: str,
         languageId: str,
-        fileIds: Iterable[str],
+        fileIds: Iterable[int],
         type: LanguageServiceTaskType,
         projectId: Optional[int] = None,
         status: Optional[CrowdinTaskStatus] = None,
