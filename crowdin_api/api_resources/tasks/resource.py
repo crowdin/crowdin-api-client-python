@@ -455,7 +455,7 @@ class TasksResource(BaseResource):
                 "excludeLabelIds": excludeLabelIds,
                 "dateFrom": dateFrom,
                 "dateTo": dateTo,
-                "vender": "translated",
+                "vendor": "translated",
             },
         )
 

@@ -509,7 +509,7 @@ class TestTasksResource:
                     "type": TranslatedCrowdinTaskType.TRANSLATE_BY_VENDOR,
                 },
                 {
-                    "vender": "translated",
+                    "vendor": "translated",
                     "title": "title",
                     "languageId": "ua",
                     "fileIds": [1, 2, 3],
@@ -540,7 +540,7 @@ class TestTasksResource:
                     "dateTo": datetime(year=2015, month=10, day=13),
                 },
                 {
-                    "vender": "translated",
+                    "vendor": "translated",
                     "title": "title",
                     "languageId": "ua",
                     "fileIds": [1, 2, 3],
