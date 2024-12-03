@@ -160,7 +160,8 @@ class FirstCrowdinClient(CrowdinClient):
 ```
 
 ### GraphQL API
-This library also provides possibility to use [GraphQL API](https://developer.crowdin.com/graphql-api/) (only for Crowdin Enterprise).
+
+This library also provides the possibility to use [GraphQL API](https://developer.crowdin.com/graphql-api/):
 
 ```python
 from crowdin_api import CrowdinClient
