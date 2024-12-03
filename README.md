@@ -159,6 +159,30 @@ class FirstCrowdinClient(CrowdinClient):
     EXTENDED_REQUEST_PARAMS = {"proxies": proxies}
 ```
 
+### GraphQL API
+This library also provides possibility to use [GraphQL API](https://developer.crowdin.com/graphql-api/) (only for Crowdin Enterprise).
+
+```python
+from crowdin_api import CrowdinClient
+
+client = CrowdinClient(
+    token='{token}',
+    organization='{organization}'
+)
+
+query = """
+query {
+  viewer {
+    id
+    name
+  }
+}
+"""
+
+# Execute the GraphQL query
+response = client.graphql(query=query)
+```
+
 ## Seeking Assistance
 
 If you find any problems or would like to suggest a feature, please read the [How can I contribute](https://github.com/crowdin/crowdin-api-client-python/blob/main/CONTRIBUTING.md#how-can-i-contribute) section in our contributing guidelines.
