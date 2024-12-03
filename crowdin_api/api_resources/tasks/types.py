@@ -41,6 +41,11 @@ class TaskSettingsTemplateLanguages(TypedDict):
     languages: Iterable[TaskSettingsTemplateConfigLanguage]
 
 
+class EnterpriseTaskAssignedTeams(TypedDict, total=False):
+    id: int
+    wordsCount: int
+
+
 class EnterpriseTaskSettingsTemplateConfigLanguage(TypedDict):
     languageId: str
     userIds: Optional[Iterable[int]]

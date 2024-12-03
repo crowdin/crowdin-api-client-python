@@ -79,10 +79,6 @@ class OhtCrowdinTaskExpertise(Enum):
 
 
 # Gengo
-class GengoCrowdinTaskType(Enum):
-    TRANSLATE_BY_VENDOR = 2
-
-
 class GengoCrowdinTaskExpertise(Enum):
     STANDARD = "standard"
     PRO = "pro"
@@ -109,10 +105,6 @@ class GengoCrowdinTaskPurpose(Enum):
 
 
 # Translated
-class TranslatedCrowdinTaskType(Enum):
-    TRANSLATE_BY_VENDOR = 2
-
-
 class TranslatedCrowdinTaskExpertise(Enum):
     ECONOMY = "P"
     PROFESSIONAL = "T"
