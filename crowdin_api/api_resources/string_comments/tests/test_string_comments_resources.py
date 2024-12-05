@@ -3,6 +3,7 @@ from unittest import mock
 import pytest
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.string_comments.enums import (
+    ListStringCommentsOrderBy,
     StringCommentIssueStatus,
     StringCommentIssueType,
     StringCommentPatchPath,
@@ -10,6 +11,7 @@ from crowdin_api.api_resources.string_comments.enums import (
 )
 from crowdin_api.api_resources.string_comments.resource import StringCommentsResource
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestSourceFilesResource:
@@ -42,6 +44,7 @@ class TestSourceFilesResource:
             (
                 {"offset": 0, "limit": 10},
                 {
+                    "orderBy": None,
                     "offset": 0,
                     "limit": 10,
                     "stringId": None,
@@ -52,6 +55,9 @@ class TestSourceFilesResource:
             ),
             (
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListStringCommentsOrderBy.ID, SortingOrder.DESC)]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "stringId": 1,
@@ -63,6 +69,9 @@ class TestSourceFilesResource:
                     "issueStatus": StringCommentIssueStatus.UNRESOLVED,
                 },
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListStringCommentsOrderBy.ID, SortingOrder.DESC)]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "stringId": 1,

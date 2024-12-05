@@ -1,12 +1,32 @@
 import datetime
+from enum import Enum
 
 import pytest
 from crowdin_api.parser import dumps, loads
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
+
+
+class TestEnum(Enum):
+    ONE = "one"
+    TWO = "two"
 
 
 @pytest.mark.parametrize(
     "in_value, out_value",
     (
+        (
+            '{"orderBy": "one desc,two"}',
+            {
+                "orderBy": str(
+                    Sorting(
+                        [
+                            SortingRule(TestEnum.ONE, SortingOrder.DESC),
+                            SortingRule(TestEnum.TWO),
+                        ]
+                    )
+                )
+            },
+        ),
         ('{"int": 1}', {"int": 1}),
         ('{"float": 3.14}', {"float": 3.14}),
         ('{"string": "some string"}', {"string": "some string"}),

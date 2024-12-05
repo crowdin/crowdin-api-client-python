@@ -2,6 +2,7 @@ from typing import Optional, Iterable
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.teams.types import Permissions, TeamPatchRequest, TeamByProjectRole
+from crowdin_api.sorting import Sorting
 
 
 class TeamsResource(BaseResource):
@@ -58,7 +59,12 @@ class TeamsResource(BaseResource):
             },
         )
 
-    def list_teams(self, offset: Optional[int] = None, limit: Optional[int] = None):
+    def list_teams(
+        self,
+        orderBy: Optional[Sorting] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None
+    ):
         """
         List Teams.
 
@@ -66,10 +72,13 @@ class TeamsResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.getMany
         """
 
+        params = {"orderBy": orderBy}
+        params.update(self.get_page_params(offset=offset, limit=limit))
+
         return self._get_entire_data(
             method="get",
             path=self.get_teams_path(),
-            params=self.get_page_params(offset=offset, limit=limit),
+            params=params,
         )
 
     def add_team(self, name: str):

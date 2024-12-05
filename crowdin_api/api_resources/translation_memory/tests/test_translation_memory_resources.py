@@ -3,6 +3,8 @@ from unittest import mock
 import pytest
 from crowdin_api.api_resources.enums import ExportFormat, PatchOperation
 from crowdin_api.api_resources.translation_memory.enums import (
+    ListTmSegmentsOrderBy,
+    ListTmsOrderBy,
     TranslationMemoryPatchPath,
     TranslationMemorySegmentRecordOperation,
     TranslationMemorySegmentRecordOperationPath,
@@ -11,6 +13,7 @@ from crowdin_api.api_resources.translation_memory.resource import (
     TranslationMemoryResource,
 )
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestTranslationMemoryResource:
@@ -38,15 +41,46 @@ class TestTranslationMemoryResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.get_tms_path(**in_params) == path
 
+    @pytest.mark.parametrize(
+        "incoming_data, request_params",
+        (
+            (
+                {},
+                {
+                    "orderBy": None,
+                    "limit": 25,
+                    "offset": 0,
+                },
+            ),
+            (
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListTmsOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "limit": 25,
+                    "offset": 0,
+                },
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListTmsOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "limit": 25,
+                    "offset": 0,
+                },
+            ),
+        ),
+    )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_tms(self, m_request, base_absolut_url):
+    def test_list_tms(
+        self, m_request, incoming_data, request_params, base_absolut_url
+    ):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.list_tms() == "response"
+        assert resource.list_tms(**incoming_data) == "response"
         m_request.assert_called_once_with(
             method="get",
-            params={"offset": 0, "limit": 25},
+            params=request_params,
             path=resource.get_tms_path(),
         )
 
@@ -125,16 +159,47 @@ class TestTranslationMemoryResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.get_tm_segments_path(**in_params) == path
 
+    @pytest.mark.parametrize(
+        "incoming_data, request_params",
+        (
+            (
+                {},
+                {
+                    "orderBy": None,
+                    "limit": 25,
+                    "offset": 0,
+                },
+            ),
+            (
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListTmSegmentsOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "limit": 25,
+                    "offset": 0,
+                },
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListTmSegmentsOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "limit": 25,
+                    "offset": 0,
+                },
+            ),
+        ),
+    )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_tm_segments(self, m_request, base_absolut_url):
+    def test_list_tm_segments(
+        self, m_request, incoming_data, request_params, base_absolut_url
+    ):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.list_tm_segments(1) == "response"
+        assert resource.list_tm_segments(tmId=1, **incoming_data) == "response"
         m_request.assert_called_once_with(
             method="get",
             path=resource.get_tm_segments_path(1),
-            params={"offset": 0, "limit": 25},
+            params=request_params,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")

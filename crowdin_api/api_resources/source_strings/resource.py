@@ -7,6 +7,7 @@ from crowdin_api.api_resources.source_strings.types import (
     SourceStringsPatchRequest,
     StringBatchOperationPatchRequest,
 )
+from crowdin_api.sorting import Sorting
 
 
 class SourceStringsResource(BaseResource):
@@ -33,6 +34,7 @@ class SourceStringsResource(BaseResource):
     def list_strings(
         self,
         projectId: Optional[int] = None,
+        orderBy: Optional[Sorting] = None,
         fileId: Optional[int] = None,
         branchId: Optional[int] = None,
         denormalizePlaceholders: Optional[DenormalizePlaceholders] = None,
@@ -54,6 +56,7 @@ class SourceStringsResource(BaseResource):
 
         projectId = projectId or self.get_project_id()
         params = {
+            "orderBy": orderBy,
             "branchId": branchId,
             "fileId": fileId,
             "denormalizePlaceholders": denormalizePlaceholders,

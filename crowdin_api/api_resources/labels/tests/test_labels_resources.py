@@ -2,9 +2,10 @@ from unittest import mock
 
 import pytest
 from crowdin_api.api_resources.enums import PatchOperation
-from crowdin_api.api_resources.labels.enums import LabelsPatchPath
+from crowdin_api.api_resources.labels.enums import LabelsPatchPath, ListLabelsOrderBy
 from crowdin_api.api_resources.labels.resource import LabelsResource
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestLabelsResource:
@@ -31,15 +32,46 @@ class TestLabelsResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.get_labels_path(**in_params) == path
 
+    @pytest.mark.parametrize(
+        "incoming_data, request_params",
+        (
+            (
+                {},
+                {
+                    "orderBy": None,
+                    "limit": 25,
+                    "offset": 0,
+                },
+            ),
+            (
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListLabelsOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "limit": 25,
+                    "offset": 0,
+                },
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListLabelsOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "limit": 25,
+                    "offset": 0,
+                },
+            ),
+        ),
+    )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_translation_approvals(self, m_request, base_absolut_url):
+    def test_list_translation_approvals(
+        self, m_request, incoming_data, request_params, base_absolut_url
+    ):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.list_labels(projectId=1) == "response"
+        assert resource.list_labels(projectId=1, **incoming_data) == "response"
         m_request.assert_called_once_with(
             method="get",
-            params={"limit": 25, "offset": 0},
+            params=request_params,
             path=resource.get_labels_path(projectId=1),
         )
 

@@ -13,6 +13,7 @@ from crowdin_api.api_resources.glossaries.types import (
     LanguagesDetails,
     GlossarySchemaRequest,
 )
+from crowdin_api.sorting import Sorting
 
 
 class GlossariesResource(BaseResource):
@@ -38,6 +39,7 @@ class GlossariesResource(BaseResource):
 
     def list_glossaries(
         self,
+        orderBy: Optional[Sorting] = None,
         groupId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
@@ -50,7 +52,7 @@ class GlossariesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.glossaries.getMany
         """
 
-        params = {"groupId": groupId}
+        params = {"orderBy": orderBy, "groupId": groupId}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(
@@ -239,6 +241,7 @@ class GlossariesResource(BaseResource):
     def list_terms(
         self,
         glossaryId: int,
+        orderBy: Optional[Sorting] = None,
         userId: Optional[int] = None,
         languageId: Optional[str] = None,
         conceptId: Optional[int] = None,
@@ -254,6 +257,7 @@ class GlossariesResource(BaseResource):
         """
 
         params = {
+            "orderBy": orderBy,
             "userId": userId,
             "languageId": languageId,
             "conceptId": conceptId,
@@ -302,7 +306,7 @@ class GlossariesResource(BaseResource):
                 "gender": gender,
                 "note": note,
                 "url": url,
-                "conceptId": conceptId
+                "conceptId": conceptId,
             },
         )
 
@@ -377,8 +381,9 @@ class GlossariesResource(BaseResource):
     def list_concepts(
         self,
         glossaryId: int,
+        orderBy: Optional[Sorting] = None,
         offset: Optional[int] = None,
-        limit: Optional[int] = None
+        limit: Optional[int] = None,
     ):
         """
         List Concepts.
@@ -387,10 +392,13 @@ class GlossariesResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.getMany
         """
 
+        params = {"orderBy": orderBy}
+        params.update(self.get_page_params(offset=offset, limit=limit))
+
         return self._get_entire_data(
             method="get",
             path=self.get_concepts_path(glossaryId=glossaryId),
-            params=self.get_page_params(offset=offset, limit=limit),
+            params=params,
         )
 
     def get_concept(self, glossaryId: int, conceptId: int):

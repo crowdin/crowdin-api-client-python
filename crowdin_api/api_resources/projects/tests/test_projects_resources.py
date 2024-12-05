@@ -5,6 +5,7 @@ from crowdin_api.api_resources import ProjectsResource
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.projects.enums import (
     HasManagerAccess,
+    ListProjectsOrderBy,
     ProjectLanguageAccessPolicy,
     ProjectPatchPath,
     ProjectTranslateDuplicates,
@@ -18,6 +19,7 @@ from crowdin_api.api_resources.projects.types import (
     QAChecksIgnorableCategories
 )
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestProjectsResource:
@@ -50,6 +52,9 @@ class TestProjectsResource:
         (
             (
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListProjectsOrderBy.ID, SortingOrder.DESC)]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "userId": 1,
@@ -57,6 +62,9 @@ class TestProjectsResource:
                     "hasManagerAccess": HasManagerAccess.TRUE,
                 },
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListProjectsOrderBy.ID, SortingOrder.DESC)]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "userId": 1,
@@ -67,6 +75,7 @@ class TestProjectsResource:
             (
                 {"offset": 0, "limit": 10},
                 {
+                    "orderBy": None,
                     "offset": 0,
                     "limit": 10,
                     "userId": None,
