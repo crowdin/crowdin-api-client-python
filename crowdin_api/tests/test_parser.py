@@ -95,3 +95,18 @@ def test_sorting_serialization():
     expected = '{"orderBy": "id desc,createdAt asc"}'
 
     assert result == expected
+
+
+def test_enum_serialization():
+    enum_value = TestEnum.ID
+    result = dumps(enum_value)
+    expected = '"id"'
+    assert result == expected
+
+
+def test_parser_default_fallback():
+    class UnserializableObject:
+        pass
+
+    with pytest.raises(TypeError):
+        dumps({"test": UnserializableObject()})
