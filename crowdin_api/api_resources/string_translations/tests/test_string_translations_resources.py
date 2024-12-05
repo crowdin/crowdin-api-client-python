@@ -2,7 +2,12 @@ from unittest import mock
 
 import pytest
 from crowdin_api.api_resources.enums import DenormalizePlaceholders
-from crowdin_api.api_resources.string_translations.enums import ListLanguageTranslationsOrderBy, ListStringTranslationsOrderBy, ListTranslationApprovalsOrderBy, VoteMark
+from crowdin_api.api_resources.string_translations.enums import (
+    ListLanguageTranslationsOrderBy,
+    ListStringTranslationsOrderBy,
+    ListTranslationApprovalsOrderBy,
+    VoteMark,
+)
 from crowdin_api.api_resources.string_translations.resource import StringTranslationsResource
 from crowdin_api.requester import APIRequester
 from crowdin_api.sorting import Sorting, SortingOrder, SortingRule

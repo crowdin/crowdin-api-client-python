@@ -58,7 +58,7 @@ class TestSourceFilesResource:
                     "limit": 10,
                     "name": "test",
                 },
-                                {
+                {
                     "orderBy": Sorting(
                         [SortingRule(ListProjectBranchesOrderBy.ID, SortingOrder.DESC)]
                     ),

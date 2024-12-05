@@ -3,7 +3,12 @@ from unittest import mock
 import pytest
 
 from crowdin_api.api_resources.enums import PatchOperation
-from crowdin_api.api_resources.users.enums import ListProjectMembersCrowdinOrderBy, ListProjectMembersEnterpriseOrderBy, UserRole, UserPatchPath
+from crowdin_api.api_resources.users.enums import (
+    ListProjectMembersCrowdinOrderBy,
+    ListProjectMembersEnterpriseOrderBy,
+    UserRole,
+    UserPatchPath,
+)
 from crowdin_api.api_resources.users.resource import (
     UsersResource,
     BaseUsersResource,
