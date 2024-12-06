@@ -2,9 +2,15 @@ from unittest import mock
 
 import pytest
 from crowdin_api.api_resources.enums import DenormalizePlaceholders
-from crowdin_api.api_resources.string_translations.enums import VoteMark
+from crowdin_api.api_resources.string_translations.enums import (
+    ListLanguageTranslationsOrderBy,
+    ListStringTranslationsOrderBy,
+    ListTranslationApprovalsOrderBy,
+    VoteMark,
+)
 from crowdin_api.api_resources.string_translations.resource import StringTranslationsResource
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestStringTranslationsResource:
@@ -38,6 +44,7 @@ class TestStringTranslationsResource:
             (
                 {"offset": 0, "limit": 10},
                 {
+                    "orderBy": None,
                     "offset": 0,
                     "limit": 10,
                     "fileId": None,
@@ -50,6 +57,13 @@ class TestStringTranslationsResource:
             ),
             (
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListTranslationApprovalsOrderBy.ID, SortingOrder.DESC
+                            )
+                        ]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "fileId": 1,
@@ -60,6 +74,13 @@ class TestStringTranslationsResource:
                     "translationId": 3,
                 },
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListTranslationApprovalsOrderBy.ID, SortingOrder.DESC
+                            )
+                        ]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "fileId": 1,
@@ -142,6 +163,7 @@ class TestStringTranslationsResource:
             (
                 {"offset": 0, "limit": 10},
                 {
+                    "orderBy": None,
                     "offset": 0,
                     "limit": 10,
                     "stringIds": None,
@@ -155,6 +177,14 @@ class TestStringTranslationsResource:
             ),
             (
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListLanguageTranslationsOrderBy.TRANSLATION_ID,
+                                SortingOrder.DESC,
+                            )
+                        ]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "stringIds": [1, 2, 3],
@@ -166,6 +196,14 @@ class TestStringTranslationsResource:
                     "denormalizePlaceholders": DenormalizePlaceholders.ENABLE,
                 },
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListLanguageTranslationsOrderBy.TRANSLATION_ID,
+                                SortingOrder.DESC,
+                            )
+                        ]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "stringIds": "1,2,3",
@@ -233,6 +271,7 @@ class TestStringTranslationsResource:
             (
                 {"offset": 0, "limit": 10},
                 {
+                    "orderBy": None,
                     "offset": 0,
                     "limit": 10,
                     "stringId": None,
@@ -242,6 +281,14 @@ class TestStringTranslationsResource:
             ),
             (
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListStringTranslationsOrderBy.ID,
+                                SortingOrder.DESC,
+                            )
+                        ]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "stringId": 1,
@@ -249,6 +296,14 @@ class TestStringTranslationsResource:
                     "denormalizePlaceholders": DenormalizePlaceholders.ENABLE,
                 },
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListStringTranslationsOrderBy.ID,
+                                SortingOrder.DESC,
+                            )
+                        ]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "stringId": 1,

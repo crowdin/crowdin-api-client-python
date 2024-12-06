@@ -4,6 +4,9 @@ import pytest
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.glossaries.enums import (
     GlossaryPatchPath,
+    ListConceptsOrderBy,
+    ListGlossariesEnterpriseOrderBy,
+    ListTermsOrderBy,
     TermPartOfSpeech,
     TermPatchPath,
     TermStatus,
@@ -11,9 +14,11 @@ from crowdin_api.api_resources.glossaries.enums import (
     TermGender,
     GlossaryFormat,
     GlossaryExportFields,
+    ListGlossariesCrowdinOrderBy,
 )
 from crowdin_api.api_resources.glossaries.resource import GlossariesResource
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestGlossariesResource:
@@ -47,6 +52,7 @@ class TestGlossariesResource:
             (
                 {},
                 {
+                    "orderBy": None,
                     "groupId": None,
                     "offset": 0,
                     "limit": 25,
@@ -54,14 +60,52 @@ class TestGlossariesResource:
             ),
             (
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListGlossariesCrowdinOrderBy.NAME, SortingOrder.DESC
+                            )
+                        ]
+                    ),
                     "groupId": 1,
                 },
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListGlossariesCrowdinOrderBy.NAME, SortingOrder.DESC
+                            )
+                        ]
+                    ),
                     "groupId": 1,
                     "offset": 0,
                     "limit": 25,
                 },
             ),
+            (
+                {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListGlossariesEnterpriseOrderBy.NAME, SortingOrder.DESC
+                            )
+                        ]
+                    ),
+                    "groupId": 1,
+                },
+                {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListGlossariesEnterpriseOrderBy.NAME, SortingOrder.DESC
+                            )
+                        ]
+                    ),
+                    "groupId": 1,
+                    "offset": 0,
+                    "limit": 25,
+                },
+            )
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -72,8 +116,8 @@ class TestGlossariesResource:
         assert resource.list_glossaries(**incoming_data) == "response"
         m_request.assert_called_once_with(
             method="get",
-            params=request_params,
             path=resource.get_glossaries_path(),
+            params=request_params,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -269,6 +313,7 @@ class TestGlossariesResource:
             (
                 {},
                 {
+                    "orderBy": None,
                     "userId": None,
                     "languageId": None,
                     "conceptId": None,
@@ -279,12 +324,18 @@ class TestGlossariesResource:
             ),
             (
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListTermsOrderBy.ID, SortingOrder.DESC)]
+                    ),
                     "userId": 1,
                     "languageId": "ua",
                     "conceptId": 2,
                     "croql": "status = 'preferred'",
                 },
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListTermsOrderBy.ID, SortingOrder.DESC)]
+                    ),
                     "userId": 1,
                     "languageId": "ua",
                     "conceptId": 2,
@@ -447,8 +498,25 @@ class TestGlossariesResource:
             (
                 {},
                 {
+                    "orderBy": None,
                     "offset": 0,
                     "limit": 25,
+                },
+            ),
+            (
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListConceptsOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "offset": 10,
+                    "limit": 50,
+                },
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListConceptsOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "offset": 10,
+                    "limit": 50,
                 },
             ),
         ),

@@ -2,6 +2,7 @@ from typing import Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.labels.types import LabelsPatchRequest
+from crowdin_api.sorting import Sorting
 
 
 class LabelsResource(BaseResource):
@@ -21,6 +22,7 @@ class LabelsResource(BaseResource):
     def list_labels(
         self,
         projectId: Optional[int] = None,
+        orderBy: Optional[Sorting] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -33,11 +35,13 @@ class LabelsResource(BaseResource):
         """
 
         projectId = projectId or self.get_project_id()
+        params = {"orderBy": orderBy}
+        params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(
             method="get",
             path=self.get_labels_path(projectId=projectId),
-            params=self.get_page_params(page=page, offset=offset, limit=limit),
+            params=params,
         )
 
     def add_label(self, title: str, projectId: Optional[int] = None):

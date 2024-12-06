@@ -73,3 +73,41 @@ class TermGender(Enum):
     FEMININE = "feminine"
     NEUTER = "neuter"
     OTHER = "other"
+
+
+class ListConceptsOrderBy(Enum):
+    ID = "id"
+    SUBJECT = "subject"
+    DEFINITION = "definition"
+    NOTE = "note"
+    CREATED_AT = "createdAt"
+    UPDATED_AT = "updatedAt"
+
+
+class ListGlossariesCrowdinOrderBy(Enum):
+    ID = "id"
+    NAME = "name"
+    USER_ID = "userId"
+    CREATED_AT = "createdAt"
+
+
+class ListGlossariesEnterpriseOrderBy(Enum):
+    ID = "id"
+    NAME = "name"
+    GROUP_ID = "groupId"
+    USER_ID = "userId"
+    CREATED_AT = "createdAt"
+
+
+class ListTermsOrderBy(Enum):
+    ID = "id"
+    TEXT = "text"
+    DESCRIPTION = "description"
+    PART_OF_SPEECH = "partOfSpeech"
+    STATUS = "status"
+    TYPE = "type"
+    GENDER = "gender"
+    NOTE = "note"
+    LEMMA = "lemma"
+    CREATED_AT = "createdAt"
+    UPDATED_AT = "updatedAt"

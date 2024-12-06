@@ -2,9 +2,10 @@ from unittest import mock
 
 import pytest
 from crowdin_api.api_resources.enums import PatchOperation
-from crowdin_api.api_resources.screenshots.enums import ScreenshotPatchPath, TagPatchPath
+from crowdin_api.api_resources.screenshots.enums import ListScreenshotsOrderBy, ScreenshotPatchPath, TagPatchPath
 from crowdin_api.api_resources.screenshots.resource import ScreenshotsResource
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestSourceFilesResource:
@@ -32,25 +33,58 @@ class TestSourceFilesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.get_screenshots_path(**in_params) == path
 
+    @pytest.mark.parametrize(
+        "incoming_data, request_params",
+        (
+            (
+                {},
+                {
+                    "orderBy": None,
+                    "stringIds": None,
+                    "labelIds": None,
+                    "excludeLabelIds": None,
+                    "offset": 0,
+                    "limit": 25,
+                },
+            ),
+            (
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListScreenshotsOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "stringIds": [1, 2, 3],
+                    "labelIds": [4, 5, 6],
+                    "excludeLabelIds": [7, 8, 9],
+                    "limit": 10,
+                    "offset": 0,
+                },
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListScreenshotsOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "stringIds": [1, 2, 3],
+                    "labelIds": [4, 5, 6],
+                    "excludeLabelIds": [7, 8, 9],
+                    "limit": 10,
+                    "offset": 0,
+                },
+            ),
+        ),
+    )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_screenshots(self, m_request, base_absolut_url):
+    def test_list_screenshots(
+        self, m_request, incoming_data, request_params, base_absolut_url
+    ):
         m_request.return_value = "response"
         resource = self.get_resource(base_absolut_url)
         assert (
-            resource.list_screenshots(projectId=1, **{"offset": 0, "limit": 10})
+            resource.list_screenshots(projectId=1, **incoming_data)
             == "response"
         )
         m_request.assert_called_once_with(
             method="get",
             path=resource.get_screenshots_path(projectId=1),
-            params={
-                "orderBy": None,
-                "stringIds": None,
-                "labelIds": None,
-                "excludeLabelIds": None,
-                "offset": 0,
-                "limit": 10,
-            },
+            params=request_params,
         )
 
     @pytest.mark.parametrize(

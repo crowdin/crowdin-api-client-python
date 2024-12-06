@@ -9,6 +9,7 @@ from crowdin_api.api_resources.translation_memory.types import (
     TranslationMemorySegmentRecordOperationReplace,
     TranslationMemorySegmentRecordOperationRemove,
 )
+from crowdin_api.sorting import Sorting
 
 
 class TranslationMemoryResource(BaseResource):
@@ -34,6 +35,7 @@ class TranslationMemoryResource(BaseResource):
 
     def list_tms(
         self,
+        orderBy: Optional[Sorting] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -45,10 +47,13 @@ class TranslationMemoryResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.tms.getMany
         """
 
+        params = {"orderBy": orderBy}
+        params.update(self.get_page_params(page=page, offset=offset, limit=limit))
+
         return self._get_entire_data(
             method="get",
             path=self.get_tms_path(),
-            params=self.get_page_params(page=page, offset=offset, limit=limit),
+            params=params,
         )
 
     def add_tm(self, name: str, languageId: str):
@@ -118,6 +123,7 @@ class TranslationMemoryResource(BaseResource):
     def list_tm_segments(
         self,
         tmId: int,
+        orderBy: Optional[Sorting] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -128,10 +134,13 @@ class TranslationMemoryResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.tms.segments.getMany
         """
+        params = {"orderBy": orderBy}
+        params.update(self.get_page_params(page=page, offset=offset, limit=limit))
+
         return self._get_entire_data(
             method="get",
             path=self.get_tm_segments_path(tmId=tmId),
-            params=self.get_page_params(page=page, offset=offset, limit=limit),
+            params=params,
         )
 
     def create_tm_segment(

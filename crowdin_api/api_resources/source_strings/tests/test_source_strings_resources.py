@@ -3,6 +3,7 @@ from unittest import mock
 import pytest
 from crowdin_api.api_resources.enums import DenormalizePlaceholders, PatchOperation
 from crowdin_api.api_resources.source_strings.enums import (
+    ListStringsOrderBy,
     ScopeFilter,
     SourceStringsPatchPath,
     StringBatchOperationsPath,
@@ -10,6 +11,7 @@ from crowdin_api.api_resources.source_strings.enums import (
 )
 from crowdin_api.api_resources.source_strings.resource import SourceStringsResource
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestSourceFilesResource:
@@ -42,6 +44,7 @@ class TestSourceFilesResource:
             (
                 {"offset": 0, "limit": 10},
                 {
+                    "orderBy": None,
                     "offset": 0,
                     "limit": 10,
                     "fileId": None,
@@ -56,6 +59,9 @@ class TestSourceFilesResource:
             ),
             (
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListStringsOrderBy.ID, SortingOrder.DESC)]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "fileId": 1,
@@ -68,6 +74,9 @@ class TestSourceFilesResource:
                     "taskId": 5,
                 },
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListStringsOrderBy.ID, SortingOrder.DESC)]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "fileId": 1,

@@ -173,3 +173,27 @@ class ManualCrowdinVendors(Enum):
     GTE_LOCALIZE = "gte_localize"
     KETTU_SOLUTIONS = "kettu_solutions"
     LANGUAGELINE_TRANSLATION_SOLUTIONS = "languageline_solutions"
+
+
+class ListTasksOrderBy(Enum):
+    ID = "id"
+    TYPE = "type"
+    TITLE = "title"
+    STATUS = "status"
+    DESCRIPTION = "description"
+    CREATED_AT = "createdAt"
+    UPDATED_AT = "updatedAt"
+    DEADLINE = "deadline"
+    STARTED_AT = "startedAt"
+    RESOLVED_AT = "resolvedAt"
+
+
+class ListUserTasksOrderBy(Enum):
+    ID = "id"
+    TITLE = "title"
+    DESCRIPTION = "description"
+    CREATED_AT = "createdAt"
+    UPDATED_AT = "updatedAt"
+    DEADLINE = "deadline"
+    STARTED_AT = "startedAt"
+    RESOLVED_AT = "resolvedAt"

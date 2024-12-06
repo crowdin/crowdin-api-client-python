@@ -26,6 +26,7 @@ from crowdin_api.api_resources.tasks.types import (
     EnterpriseTaskSettingsTemplateLanguages,
     TaskSettingsTemplateLanguages,
 )
+from crowdin_api.sorting import Sorting
 
 
 class TasksResource(BaseResource):
@@ -177,6 +178,7 @@ class TasksResource(BaseResource):
     def list_tasks(
         self,
         projectId: Optional[int] = None,
+        orderBy: Optional[Sorting] = None,
         assigneeId: Optional[int] = None,
         status: Optional[CrowdinTaskStatus] = None,
         page: Optional[int] = None,
@@ -191,7 +193,7 @@ class TasksResource(BaseResource):
         """
 
         projectId = projectId or self.get_project_id()
-        params = {"assigneeId": assigneeId, "status": status}
+        params = {"orderBy": orderBy, "assigneeId": assigneeId, "status": status}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(
@@ -909,6 +911,7 @@ class TasksResource(BaseResource):
 
     def list_user_tasks(
         self,
+        orderBy: Optional[Sorting] = None,
         status: Optional[CrowdinTaskStatus] = None,
         isArchived: Optional[bool] = None,
         page: Optional[int] = None,
@@ -922,7 +925,7 @@ class TasksResource(BaseResource):
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.getMany
         """
 
-        params = {"status": status}
+        params = {"orderBy": orderBy, "status": status}
 
         if isArchived is not None:
             params["isArchived"] = 1 if isArchived else 0

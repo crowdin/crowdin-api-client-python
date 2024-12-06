@@ -1,6 +1,7 @@
 from typing import Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
+from crowdin_api.sorting import Sorting
 
 
 class WorkflowsResource(BaseResource):
@@ -99,7 +100,7 @@ class WorkflowsResource(BaseResource):
         projectId: Optional[int],
         stepId: int,
         languageIds: Optional[str] = None,
-        orderBy: Optional[str] = None,
+        orderBy: Optional[Sorting] = None,
         status: Optional[str] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None

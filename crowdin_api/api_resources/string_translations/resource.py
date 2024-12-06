@@ -3,6 +3,7 @@ from typing import Iterable, Optional
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.enums import DenormalizePlaceholders, PluralCategoryName
 from crowdin_api.api_resources.string_translations.enums import VoteMark
+from crowdin_api.sorting import Sorting
 
 
 class StringTranslationsResource(BaseResource):
@@ -25,6 +26,7 @@ class StringTranslationsResource(BaseResource):
     def list_translation_approvals(
         self,
         projectId: Optional[int] = None,
+        orderBy: Optional[Sorting] = None,
         fileId: Optional[int] = None,
         labelIds: Optional[str] = None,
         excludeLabelIds: Optional[str] = None,
@@ -44,6 +46,7 @@ class StringTranslationsResource(BaseResource):
 
         projectId = projectId or self.get_project_id()
         params = {
+            "orderBy": orderBy,
             "fileId": fileId,
             "labelIds": labelIds,
             "excludeLabelIds": excludeLabelIds,
@@ -130,6 +133,7 @@ class StringTranslationsResource(BaseResource):
         self,
         languageId: str,
         projectId: Optional[int] = None,
+        orderBy: Optional[Sorting] = None,
         stringIds: Optional[Iterable[int]] = None,
         labelIds: Optional[Iterable[int]] = None,
         fileId: Optional[int] = None,
@@ -150,6 +154,7 @@ class StringTranslationsResource(BaseResource):
 
         projectId = projectId or self.get_project_id()
         params = {
+            "orderBy": orderBy,
             "stringIds": None
             if stringIds is None
             else ",".join(str(stringId) for stringId in stringIds),
@@ -207,6 +212,7 @@ class StringTranslationsResource(BaseResource):
     def list_string_translations(
         self,
         projectId: Optional[int] = None,
+        orderBy: Optional[Sorting] = None,
         stringId: Optional[int] = None,
         languageId: Optional[str] = None,
         denormalizePlaceholders: Optional[DenormalizePlaceholders] = None,
@@ -223,6 +229,7 @@ class StringTranslationsResource(BaseResource):
 
         projectId = projectId or self.get_project_id()
         params = {
+            "orderBy": orderBy,
             "stringId": stringId,
             "languageId": languageId,
             "denormalizePlaceholders": denormalizePlaceholders,

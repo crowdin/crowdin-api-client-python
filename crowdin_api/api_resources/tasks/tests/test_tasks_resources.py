@@ -10,6 +10,8 @@ from crowdin_api.api_resources.tasks.enums import (
     GengoCrowdinTaskExpertise,
     GengoCrowdinTaskPurpose,
     GengoCrowdinTaskTone,
+    ListTasksOrderBy,
+    ListUserTasksOrderBy,
     OhtCrowdinTaskExpertise,
     OhtCrowdinTaskType,
     TaskOperationPatchPath,
@@ -22,6 +24,7 @@ from crowdin_api.api_resources.tasks.enums import (
 )
 from crowdin_api.api_resources.tasks.resource import TasksResource, EnterpriseTasksResource
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestTasksResource:
@@ -158,19 +161,56 @@ class TestTasksResource:
     @pytest.mark.parametrize(
         "incoming_data, request_params",
         (
-            ({}, {"assigneeId": None, "status": None, "offset": 0, "limit": 25}),
             (
-                {"assigneeId": 1},
-                {"assigneeId": 1, "status": None, "offset": 0, "limit": 25},
+                {},
+                {
+                    "orderBy": None,
+                    "assigneeId": None,
+                    "status": None,
+                    "offset": 0,
+                    "limit": 25,
+                },
             ),
             (
-                {"status": CrowdinTaskStatus.DONE},
-                {"assigneeId": None, "status": CrowdinTaskStatus.DONE, "offset": 0, "limit": 25},
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListTasksOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "assigneeId": 1,
+                },
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListTasksOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "assigneeId": 1,
+                    "status": None,
+                    "offset": 0,
+                    "limit": 25,
+                },
+            ),
+            (
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListTasksOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "status": CrowdinTaskStatus.DONE,
+                },
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListTasksOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "assigneeId": None,
+                    "status": CrowdinTaskStatus.DONE,
+                    "offset": 0,
+                    "limit": 25,
+                },
             ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_tasks(self, m_request, incoming_data, request_params, base_absolut_url):
+    def test_list_tasks(
+        self, m_request, incoming_data, request_params, base_absolut_url
+    ):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
@@ -1226,10 +1266,29 @@ class TestTasksResource:
     @pytest.mark.parametrize(
         "incoming_data, request_params",
         (
-            ({}, {"status": None, "offset": 0, "limit": 25}),
+            ({}, {"orderBy": None, "status": None, "offset": 0, "limit": 25}),
             (
-                {"status": CrowdinTaskStatus.TODO, "isArchived": False},
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListUserTasksOrderBy.ID,
+                                SortingOrder.DESC,
+                            )
+                        ]
+                    ),
+                    "status": CrowdinTaskStatus.TODO,
+                    "isArchived": False,
+                },
+                {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListUserTasksOrderBy.ID,
+                                SortingOrder.DESC,
+                            )
+                        ]
+                    ),
                     "status": CrowdinTaskStatus.TODO,
                     "isArchived": False,
                     "offset": 0,
@@ -1239,7 +1298,9 @@ class TestTasksResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_user_tasks(self, m_request, incoming_data, request_params, base_absolut_url):
+    def test_list_user_tasks(
+        self, m_request, incoming_data, request_params, base_absolut_url
+    ):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)

@@ -1,7 +1,9 @@
 import datetime
+from enum import Enum
 
 import pytest
 from crowdin_api.parser import dumps, loads
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 @pytest.mark.parametrize(
@@ -74,3 +76,37 @@ def test_parser(in_value, out_value):
 
     dumps_result = dumps(load_result)
     assert dumps_result == in_value
+
+
+class TestEnum(Enum):
+    ID = "id"
+    CREATED_AT = "createdAt"
+
+
+def test_sorting_serialization():
+    sorting = Sorting(
+        [
+            SortingRule(TestEnum.ID, SortingOrder.DESC),
+            SortingRule(TestEnum.CREATED_AT, SortingOrder.ASC),
+        ]
+    )
+
+    result = dumps({"orderBy": sorting})
+    expected = '{"orderBy": "id desc,createdAt asc"}'
+
+    assert result == expected
+
+
+def test_enum_serialization():
+    enum_value = TestEnum.ID
+    result = dumps(enum_value)
+    expected = '"id"'
+    assert result == expected
+
+
+def test_parser_default_fallback():
+    class UnserializableObject:
+        pass
+
+    with pytest.raises(TypeError):
+        dumps({"test": UnserializableObject()})

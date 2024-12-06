@@ -22,6 +22,7 @@ from crowdin_api.api_resources.source_files.types import (
     XmlImportOptions,
     DocxFileImportOptions,
 )
+from crowdin_api.sorting import Sorting
 
 
 class SourceFilesResource(BaseResource):
@@ -51,6 +52,7 @@ class SourceFilesResource(BaseResource):
     def list_project_branches(
         self,
         projectId: Optional[int] = None,
+        orderBy: Optional[Sorting] = None,
         name: Optional[str] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
@@ -64,7 +66,7 @@ class SourceFilesResource(BaseResource):
         """
 
         projectId = projectId or self.get_project_id()
-        params = {"name": name}
+        params = {"orderBy": orderBy, "name": name}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(
@@ -160,6 +162,7 @@ class SourceFilesResource(BaseResource):
     def list_directories(
         self,
         projectId: Optional[int] = None,
+        orderBy: Optional[Sorting] = None,
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
         filter: Optional[str] = None,
@@ -177,6 +180,7 @@ class SourceFilesResource(BaseResource):
 
         projectId = projectId or self.get_project_id()
         params = {
+            "orderBy": orderBy,
             "branchId": branchId,
             "directoryId": directoryId,
             "filter": filter,
@@ -283,6 +287,7 @@ class SourceFilesResource(BaseResource):
     def list_files(
         self,
         projectId: Optional[int] = None,
+        orderBy: Optional[Sorting] = None,
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
         filter: Optional[str] = None,
@@ -300,6 +305,7 @@ class SourceFilesResource(BaseResource):
 
         projectId = projectId or self.get_project_id()
         params = {
+            "orderBy": orderBy,
             "branchId": branchId,
             "directoryId": directoryId,
             "filter": filter,

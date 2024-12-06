@@ -3,6 +3,7 @@ from typing import Dict, Iterable, Optional
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.users.enums import UserRole
 from crowdin_api.api_resources.users.types import UserPatchRequest, ProjectMemberRole
+from crowdin_api.sorting import Sorting
 
 
 class BaseUsersResource(BaseResource):
@@ -19,6 +20,7 @@ class BaseUsersResource(BaseResource):
     def _list_project_members(
         self,
         projectId: Optional[int] = None,
+        orderBy: Optional[Sorting] = None,
         search: Optional[str] = None,
         languageId: Optional[str] = None,
         page: Optional[int] = None,
@@ -34,7 +36,7 @@ class BaseUsersResource(BaseResource):
         """
 
         projectId = projectId or self.get_project_id()
-        params = {"search": search, "languageId": languageId}
+        params = {"orderBy": orderBy, "search": search, "languageId": languageId}
         if extraParams:
             params.update(extraParams)
 
@@ -61,6 +63,7 @@ class UsersResource(BaseUsersResource):
     def list_project_members(
         self,
         projectId: Optional[int] = None,
+        orderBy: Optional[Sorting] = None,
         search: Optional[str] = None,
         role: Optional[UserRole] = None,
         languageId: Optional[str] = None,
@@ -76,6 +79,7 @@ class UsersResource(BaseUsersResource):
         """
         return self._list_project_members(
             projectId=projectId,
+            orderBy=orderBy,
             search=search,
             languageId=languageId,
             page=page,
@@ -119,6 +123,7 @@ class EnterpriseUsersResource(BaseUsersResource):
     def list_project_members(
         self,
         projectId: Optional[int] = None,
+        orderBy: Optional[Sorting] = None,
         search: Optional[str] = None,
         workflowStepId: Optional[int] = None,
         languageId: Optional[str] = None,
@@ -135,6 +140,7 @@ class EnterpriseUsersResource(BaseUsersResource):
 
         return self._list_project_members(
             projectId=projectId,
+            orderBy=orderBy,
             search=search,
             languageId=languageId,
             page=page,

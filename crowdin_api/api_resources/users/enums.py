@@ -19,3 +19,16 @@ class UserPatchPath(Enum):
 class ProjectRole(Enum):
     TRANSLATOR = "translator"
     PROOFREADER = "proofreader"
+
+
+class ListProjectMembersCrowdinOrderBy(Enum):
+    ID = "id"
+    USERNAME = "username"
+    FULL_NAME = "fullName"
+
+
+class ListProjectMembersEnterpriseOrderBy(Enum):
+    ID = "id"
+    USERNAME = "username"
+    FIRST_NAME = "firstName"
+    LAST_NAME = "lastName"
