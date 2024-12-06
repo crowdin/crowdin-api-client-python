@@ -197,7 +197,7 @@ Crowdin.</p>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.list_directories"><code class="name flex">
-<span>def <span class="ident">list_directories</span></span>(<span>self, projectId: Optional[int] = None, branchId: Optional[int] = None, directoryId: Optional[int] = None, filter: Optional[str] = None, recursion=None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_directories</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, branchId: Optional[int] = None, directoryId: Optional[int] = None, filter: Optional[str] = None, recursion=None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Directories.</p>
@@ -213,7 +213,7 @@ Crowdin.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.revisions.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.files.revisions.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.list_files"><code class="name flex">
-<span>def <span class="ident">list_files</span></span>(<span>self, projectId: Optional[int] = None, branchId: Optional[int] = None, directoryId: Optional[int] = None, filter: Optional[str] = None, recursion: Any = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_files</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, branchId: Optional[int] = None, directoryId: Optional[int] = None, filter: Optional[str] = None, recursion: Any = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Files.</p>
@@ -221,7 +221,7 @@ Crowdin.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.files.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.list_project_branches"><code class="name flex">
-<span>def <span class="ident">list_project_branches</span></span>(<span>self, projectId: Optional[int] = None, name: Optional[str] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_project_branches</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, name: Optional[str] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Branches.</p>

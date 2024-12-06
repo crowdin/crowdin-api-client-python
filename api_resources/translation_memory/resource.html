@@ -190,7 +190,7 @@ are asynchronous operations and shall be completed with sequence of API methods.
 <a href="https://developer.crowdin.com/api/v2/#operation/api.tms.imports.post">https://developer.crowdin.com/api/v2/#operation/api.tms.imports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.list_tm_segments"><code class="name flex">
-<span>def <span class="ident">list_tm_segments</span></span>(<span>self, tmId: int, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_tm_segments</span></span>(<span>self, tmId: int, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List TM Segments.</p>
@@ -198,7 +198,7 @@ are asynchronous operations and shall be completed with sequence of API methods.
 <a href="https://developer.crowdin.com/api/v2/#operation/api.tms.segments.getMany">https://developer.crowdin.com/api/v2/#operation/api.tms.segments.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_memory.resource.TranslationMemoryResource.list_tms"><code class="name flex">
-<span>def <span class="ident">list_tms</span></span>(<span>self, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_tms</span></span>(<span>self, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List TMs.</p>

@@ -211,7 +211,7 @@ operations and shall be completed with sequence of API methods.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.imports.post">https://developer.crowdin.com/api/v2/#operation/api.glossaries.imports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.list_concepts"><code class="name flex">
-<span>def <span class="ident">list_concepts</span></span>(<span>self, glossaryId: int, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_concepts</span></span>(<span>self, glossaryId: int, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Concepts.</p>
@@ -219,7 +219,7 @@ operations and shall be completed with sequence of API methods.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.getMany">https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.list_glossaries"><code class="name flex">
-<span>def <span class="ident">list_glossaries</span></span>(<span>self, groupId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_glossaries</span></span>(<span>self, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, groupId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Glossaries.</p>
@@ -227,7 +227,7 @@ operations and shall be completed with sequence of API methods.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.glossaries.getMany">https://developer.crowdin.com/api/v2/#operation/api.glossaries.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.glossaries.resource.GlossariesResource.list_terms"><code class="name flex">
-<span>def <span class="ident">list_terms</span></span>(<span>self, glossaryId: int, userId: Optional[int] = None, languageId: Optional[str] = None, conceptId: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_terms</span></span>(<span>self, glossaryId: int, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, userId: Optional[int] = None, languageId: Optional[str] = None, conceptId: Optional[int] = None, croql: Optional[str] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Terms.</p>

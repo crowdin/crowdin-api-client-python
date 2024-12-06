@@ -59,6 +59,12 @@ the details of a specific template.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.workflow-steps.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.workflow-steps.get</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.workflows.resource.WorkflowsResource.get_workflow_step_strings_path"><code class="name flex">
+<span>def <span class="ident">get_workflow_step_strings_path</span></span>(<span>self, projectId: int, stepId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.workflows.resource.WorkflowsResource.get_workflow_steps_path"><code class="name flex">
 <span>def <span class="ident">get_workflow_steps_path</span></span>(<span>self, projectId: int, stepId: Optional[int] = None)</span>
 </code></dt>
@@ -78,6 +84,14 @@ the details of a specific template.</p>
 </code></dt>
 <dd>
 <div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.workflows.resource.WorkflowsResource.list_workflow_step_strings"><code class="name flex">
+<span>def <span class="ident">list_workflow_step_strings</span></span>(<span>self, projectId: Optional[int], stepId: int, languageIds: Optional[str] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, status: Optional[str] = None, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Strings on the Workflow Step.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.workflow-steps.strings.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.workflow-steps.strings.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.workflows.resource.WorkflowsResource.list_workflow_steps"><code class="name flex">
 <span>def <span class="ident">list_workflow_steps</span></span>(<span>self, projectId: Optional[int] = None)</span>
@@ -117,9 +131,11 @@ the details of a specific template.</p>
 <h4><code><a title="crowdin_api.api_resources.workflows.resource.WorkflowsResource" href="#crowdin_api.api_resources.workflows.resource.WorkflowsResource">WorkflowsResource</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.workflows.resource.WorkflowsResource.get_workflow_step" href="#crowdin_api.api_resources.workflows.resource.WorkflowsResource.get_workflow_step">get_workflow_step</a></code></li>
+<li><code><a title="crowdin_api.api_resources.workflows.resource.WorkflowsResource.get_workflow_step_strings_path" href="#crowdin_api.api_resources.workflows.resource.WorkflowsResource.get_workflow_step_strings_path">get_workflow_step_strings_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.workflows.resource.WorkflowsResource.get_workflow_steps_path" href="#crowdin_api.api_resources.workflows.resource.WorkflowsResource.get_workflow_steps_path">get_workflow_steps_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.workflows.resource.WorkflowsResource.get_workflow_template" href="#crowdin_api.api_resources.workflows.resource.WorkflowsResource.get_workflow_template">get_workflow_template</a></code></li>
 <li><code><a title="crowdin_api.api_resources.workflows.resource.WorkflowsResource.get_workflow_templates_path" href="#crowdin_api.api_resources.workflows.resource.WorkflowsResource.get_workflow_templates_path">get_workflow_templates_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.workflows.resource.WorkflowsResource.list_workflow_step_strings" href="#crowdin_api.api_resources.workflows.resource.WorkflowsResource.list_workflow_step_strings">list_workflow_step_strings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.workflows.resource.WorkflowsResource.list_workflow_steps" href="#crowdin_api.api_resources.workflows.resource.WorkflowsResource.list_workflow_steps">list_workflow_steps</a></code></li>
 <li><code><a title="crowdin_api.api_resources.workflows.resource.WorkflowsResource.list_workflow_templates" href="#crowdin_api.api_resources.workflows.resource.WorkflowsResource.list_workflow_templates">list_workflow_templates</a></code></li>
 </ul>
