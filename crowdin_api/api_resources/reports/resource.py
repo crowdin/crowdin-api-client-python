@@ -160,6 +160,76 @@ class BaseReportsResource(BaseResource):
             },
         )
 
+    def generate_pre_translate_accuracy_general_report(
+        self,
+        projectId: Optional[int] = None,
+        unit: Optional[Unit] = None,
+        format: Optional[Format] = None,
+        postEditingCategories: Optional[Iterable[str]] = None,
+        languageId: Optional[str] = None,
+        dateFrom: Optional[datetime] = None,
+        dateTo: Optional[datetime] = None,
+    ):
+        """
+        Generate Report.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.generate_report(
+            projectId=projectId,
+            request_data={
+                "name": "pre-translate-accuracy",
+                "schema": {
+                    "unit": unit,
+                    "format": format,
+                    "postEditingCategories": postEditingCategories,
+                    "languageId": languageId,
+                    "dateFrom": dateFrom,
+                    "dateTo": dateTo,
+                },
+            },
+        )
+
+    def generate_pre_translate_accuracy_by_task_report(
+        self,
+        projectId: Optional[int] = None,
+        unit: Optional[Unit] = None,
+        format: Optional[Format] = None,
+        postEditingCategories: Optional[Iterable[str]] = None,
+        taskId: Optional[int] = None,
+    ):
+        """
+        Generate Report.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.generate_report(
+            projectId=projectId,
+            request_data={
+                "name": "pre-translate-accuracy",
+                "schema": {
+                    "unit": unit,
+                    "format": format,
+                    "postEditingCategories": postEditingCategories,
+                    "taskId": taskId,
+                },
+            },
+        )
+
     def generate_costs_estimation_post_editing_general_report(
         self,
         base_rates: BaseRates,
