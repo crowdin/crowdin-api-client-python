@@ -674,14 +674,14 @@ class TestReportsResource:
         ],
     )
     @mock.patch("crowdin_api.api_resources.reports.resource.ReportsResource.generate_report")
-    def test_generate_pre_translate_efficiency_general_report(
+    def test_generate_pre_translate_accuracy_general_report(
         self, m_generate_report, in_params, schema, base_absolut_url
     ):
         m_generate_report.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
         assert (
-            resource.generate_pre_translate_efficiency_general_report(
+            resource.generate_pre_translate_accuracy_general_report(
                 projectId=1,
                 **in_params
             ) == "response"
@@ -689,7 +689,7 @@ class TestReportsResource:
         m_generate_report.assert_called_once_with(
             projectId=1,
             request_data={
-                "name": "pre-translate-efficiency",
+                "name": "pre-translate-accuracy",
                 "schema": schema
             }
         )
@@ -729,14 +729,14 @@ class TestReportsResource:
     @mock.patch(
         "crowdin_api.api_resources.reports.resource.ReportsResource.generate_report"
     )
-    def test_generate_pre_translate_efficiency_by_task_report(
+    def test_generate_pre_translate_accuracy_by_task_report(
         self, m_generate_report, in_params, schema, base_absolut_url
     ):
         m_generate_report.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
         assert (
-            resource.generate_pre_translate_efficiency_by_task_report(
+            resource.generate_pre_translate_accuracy_by_task_report(
                 projectId=1,
                 **in_params
             ) == "response"
@@ -744,7 +744,7 @@ class TestReportsResource:
         m_generate_report.assert_called_once_with(
             projectId=1,
             request_data={
-                "name": "pre-translate-efficiency",
+                "name": "pre-translate-accuracy",
                 "schema": schema
             }
         )

@@ -14,7 +14,7 @@ class ScopeType(Enum):
 
 
 class ReportName(Enum):
-    PRE_TRANSLATE_EFFICIENCY = "pre-translate-efficiency"
+    PRE_TRANSLATE_ACCURACY = "pre-translate-accuracy"
     COSTS_ESTIMATION = "costs-estimation"
     TRANSLATION_COSTS = "translation-costs"
     TOP_MEMBERS = "top-members"

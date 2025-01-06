@@ -160,7 +160,7 @@ class BaseReportsResource(BaseResource):
             },
         )
 
-    def generate_pre_translate_efficiency_general_report(
+    def generate_pre_translate_accuracy_general_report(
         self,
         projectId: Optional[int] = None,
         unit: Optional[Unit] = None,
@@ -185,7 +185,7 @@ class BaseReportsResource(BaseResource):
         return self.generate_report(
             projectId=projectId,
             request_data={
-                "name": "pre-translate-efficiency",
+                "name": "pre-translate-accuracy",
                 "schema": {
                     "unit": unit,
                     "format": format,
@@ -197,7 +197,7 @@ class BaseReportsResource(BaseResource):
             },
         )
 
-    def generate_pre_translate_efficiency_by_task_report(
+    def generate_pre_translate_accuracy_by_task_report(
         self,
         projectId: Optional[int] = None,
         unit: Optional[Unit] = None,
@@ -220,7 +220,7 @@ class BaseReportsResource(BaseResource):
         return self.generate_report(
             projectId=projectId,
             request_data={
-                "name": "pre-translate-efficiency",
+                "name": "pre-translate-accuracy",
                 "schema": {
                     "unit": unit,
                     "format": format,
