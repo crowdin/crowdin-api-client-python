@@ -28,3 +28,13 @@ class StringBatchOperationsPath(Enum):
     IS_HIDDEN = "/{stringId}/isHidden"
     MAX_LENGTH = "/{stringId}/maxLength"
     LABEL_IDS = "/{stringId}/labelIds"
+
+
+class ListStringsOrderBy(Enum):
+    ID = "id"
+    TEXT = "text"
+    IDENTIFIER = "identifier"
+    CONTEXT = "context"
+    CREATED_AT = "createdAt"
+    UPDATED_AT = "updatedAt"
+    TYPE = "type"

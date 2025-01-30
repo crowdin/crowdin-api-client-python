@@ -116,3 +116,34 @@ class FilePatchPath(Enum):
     EXCLUDED_TARGET_LANGUAGES = "/excludedTargetLanguages"
     ATTACH_LABEL_IDS = "/attachLabelIds"
     DETACH_LABEL_IDS = "/detachLabelIds"
+
+
+class ListProjectBranchesOrderBy(Enum):
+    ID = "id"
+    NAME = "name"
+    TITLE = "title"
+    CREATED_AT = "createdAt"
+    UPDATED_AT = "updatedAt"
+    EXPORT_PATTERN = "exportPattern"
+    PRIORITY = "priority"
+
+
+class ListDirectoriesOrderBy(Enum):
+    ID = "id"
+    NAME = "name"
+    TITLE = "title"
+    CREATED_AT = "createdAt"
+    UPDATED_AT = "updatedAt"
+    EXPORT_PATTERN = "exportPattern"
+    PRIORITY = "priority"
+
+
+class ListFilesOrderBy(Enum):
+    ID = "id"
+    NAME = "name"
+    TITLE = "title"
+    STATUS = "status"
+    CREATED_AT = "createdAt"
+    UPDATED_AT = "updatedAt"
+    EXPORT_PATTERN = "exportPattern"
+    PRIORITY = "priority"

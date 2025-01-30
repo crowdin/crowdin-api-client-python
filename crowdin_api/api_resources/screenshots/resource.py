@@ -7,6 +7,7 @@ from crowdin_api.api_resources.screenshots.types import (
     ScreenshotPatchRequest,
     TagPatchRequest,
 )
+from crowdin_api.sorting import Sorting
 
 
 class ScreenshotsResource(BaseResource):
@@ -31,7 +32,7 @@ class ScreenshotsResource(BaseResource):
 
     def list_screenshots(
         self,
-        orderBy: Optional[str] = None,
+        orderBy: Optional[Sorting] = None,
         projectId: Optional[int] = None,
         stringId: Optional[int] = None,
         stringIds: Optional[Iterable[int]] = None,

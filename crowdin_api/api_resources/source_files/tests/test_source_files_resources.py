@@ -7,10 +7,14 @@ from crowdin_api.api_resources.source_files.enums import (
     DirectoryPatchPath,
     FilePatchPath,
     FileType,
+    ListDirectoriesOrderBy,
+    ListFilesOrderBy,
+    ListProjectBranchesOrderBy,
     Priority,
 )
 from crowdin_api.api_resources.source_files.resource import SourceFilesResource
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestSourceFilesResource:
@@ -43,11 +47,25 @@ class TestSourceFilesResource:
         (
             (
                 {"offset": 0, "limit": 10},
-                {"offset": 0, "limit": 10, "name": None},
+                {"orderBy": None, "offset": 0, "limit": 10, "name": None},
             ),
             (
-                {"offset": 0, "limit": 10, "name": "test"},
-                {"offset": 0, "limit": 10, "name": "test"},
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListProjectBranchesOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "offset": 0,
+                    "limit": 10,
+                    "name": "test",
+                },
+                {
+                    "orderBy": Sorting(
+                        [SortingRule(ListProjectBranchesOrderBy.ID, SortingOrder.DESC)]
+                    ),
+                    "offset": 0,
+                    "limit": 10,
+                    "name": "test",
+                },
             ),
         ),
     )
@@ -167,6 +185,7 @@ class TestSourceFilesResource:
                     "limit": 10,
                 },
                 {
+                    "orderBy": None,
                     "offset": 0,
                     "limit": 10,
                     "branchId": None,
@@ -177,6 +196,9 @@ class TestSourceFilesResource:
             ),
             (
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListDirectoriesOrderBy.ID, SortingOrder.DESC)]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "branchId": 1,
@@ -185,6 +207,9 @@ class TestSourceFilesResource:
                     "recursion": "recursion",
                 },
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListDirectoriesOrderBy.ID, SortingOrder.DESC)]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "branchId": 1,
@@ -314,6 +339,7 @@ class TestSourceFilesResource:
             (
                 {"offset": 0, "limit": 10},
                 {
+                    "orderBy": None,
                     "offset": 0,
                     "limit": 10,
                     "branchId": None,
@@ -324,6 +350,9 @@ class TestSourceFilesResource:
             ),
             (
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListFilesOrderBy.ID, SortingOrder.DESC)]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "branchId": 1,
@@ -332,6 +361,9 @@ class TestSourceFilesResource:
                     "recursion": "recursion",
                 },
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListFilesOrderBy.ID, SortingOrder.DESC)]
+                    ),
                     "offset": 0,
                     "limit": 10,
                     "branchId": 1,

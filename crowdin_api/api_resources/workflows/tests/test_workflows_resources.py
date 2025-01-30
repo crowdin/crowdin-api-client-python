@@ -3,7 +3,9 @@ from unittest import mock
 import pytest
 
 from crowdin_api.api_resources import WorkflowsResource
+from crowdin_api.api_resources.workflows.enums import ListWorkflowStepStringsOrderBy
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestWorkflowsResource:
@@ -123,27 +125,39 @@ class TestWorkflowsResource:
                     "status": None,
                     "offset": 0,
                     "limit": 25,
-                }
+                },
             ),
             (
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListWorkflowStepStringsOrderBy.ID, SortingOrder.DESC
+                            )
+                        ]
+                    ),
                     "projectId": 1,
                     "stepId": 2,
                     "languageIds": "es,fr",
-                    "orderBy": "createdAt",
                     "status": "done",
                     "offset": 10,
-                    "limit": 50
+                    "limit": 50,
                 },
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListWorkflowStepStringsOrderBy.ID, SortingOrder.DESC
+                            )
+                        ]
+                    ),
                     "languageIds": "es,fr",
-                    "orderBy": "createdAt",
                     "status": "done",
                     "offset": 10,
-                    "limit": 50
-                }
+                    "limit": 50,
+                },
             ),
-        )
+        ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_list_workflow_step_strings(self, m_request, in_params, request_params, base_absolut_url):

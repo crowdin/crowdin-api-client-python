@@ -3,13 +3,19 @@ from unittest import mock
 import pytest
 
 from crowdin_api.api_resources.enums import PatchOperation
-from crowdin_api.api_resources.users.enums import UserRole, UserPatchPath
+from crowdin_api.api_resources.users.enums import (
+    ListProjectMembersCrowdinOrderBy,
+    ListProjectMembersEnterpriseOrderBy,
+    UserRole,
+    UserPatchPath,
+)
 from crowdin_api.api_resources.users.resource import (
     UsersResource,
     BaseUsersResource,
     EnterpriseUsersResource,
 )
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestBaseUsersResource:
@@ -78,6 +84,7 @@ class TestUsersResource:
             (
                 {},
                 {
+                    "orderBy": None,
                     "search": None,
                     "role": None,
                     "languageId": None,
@@ -87,6 +94,13 @@ class TestUsersResource:
             ),
             (
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListProjectMembersCrowdinOrderBy.ID, SortingOrder.DESC
+                            )
+                        ]
+                    ),
                     "search": "search",
                     "role": UserRole.BLOCKED,
                     "languageId": "ua",
@@ -94,6 +108,13 @@ class TestUsersResource:
                     "limit": 25,
                 },
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListProjectMembersCrowdinOrderBy.ID, SortingOrder.DESC
+                            )
+                        ]
+                    ),
                     "search": "search",
                     "role": UserRole.BLOCKED,
                     "languageId": "ua",
@@ -159,6 +180,7 @@ class TestEnterpriseUsersResource:
             (
                 {},
                 {
+                    "orderBy": None,
                     "search": None,
                     "workflowStepId": None,
                     "languageId": None,
@@ -168,6 +190,14 @@ class TestEnterpriseUsersResource:
             ),
             (
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListProjectMembersEnterpriseOrderBy.ID,
+                                SortingOrder.DESC,
+                            )
+                        ]
+                    ),
                     "search": "search",
                     "workflowStepId": 72,
                     "languageId": "ua",
@@ -175,6 +205,14 @@ class TestEnterpriseUsersResource:
                     "limit": 25,
                 },
                 {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListProjectMembersEnterpriseOrderBy.ID,
+                                SortingOrder.DESC,
+                            )
+                        ]
+                    ),
                     "search": "search",
                     "workflowStepId": 72,
                     "languageId": "ua",

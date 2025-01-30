@@ -4,8 +4,9 @@ import pytest
 
 from crowdin_api.api_resources import GroupsResource
 from crowdin_api.api_resources.enums import PatchOperation
-from crowdin_api.api_resources.groups.enums import GroupPatchPath
+from crowdin_api.api_resources.groups.enums import GroupPatchPath, ListGroupsOrderBy
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestGroupsResource:
@@ -51,6 +52,7 @@ class TestGroupsResource:
             (
                 {},
                 {
+                    "orderBy": None,
                     "parentId": None,
                     "limit": 25,
                     "offset": 0,
@@ -58,11 +60,17 @@ class TestGroupsResource:
             ),
             (
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListGroupsOrderBy.NAME, SortingOrder.DESC)]
+                    ),
                     "parentId": "test",
                     "limit": 10,
                     "offset": 2,
                 },
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListGroupsOrderBy.NAME, SortingOrder.DESC)]
+                    ),
                     "parentId": "test",
                     "limit": 10,
                     "offset": 2,

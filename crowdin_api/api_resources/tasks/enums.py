@@ -79,10 +79,6 @@ class OhtCrowdinTaskExpertise(Enum):
 
 
 # Gengo
-class GengoCrowdinTaskType(Enum):
-    TRANSLATE_BY_VENDOR = 2
-
-
 class GengoCrowdinTaskExpertise(Enum):
     STANDARD = "standard"
     PRO = "pro"
@@ -109,10 +105,6 @@ class GengoCrowdinTaskPurpose(Enum):
 
 
 # Translated
-class TranslatedCrowdinTaskType(Enum):
-    TRANSLATE_BY_VENDOR = 2
-
-
 class TranslatedCrowdinTaskExpertise(Enum):
     ECONOMY = "P"
     PROFESSIONAL = "T"
@@ -181,3 +173,27 @@ class ManualCrowdinVendors(Enum):
     GTE_LOCALIZE = "gte_localize"
     KETTU_SOLUTIONS = "kettu_solutions"
     LANGUAGELINE_TRANSLATION_SOLUTIONS = "languageline_solutions"
+
+
+class ListTasksOrderBy(Enum):
+    ID = "id"
+    TYPE = "type"
+    TITLE = "title"
+    STATUS = "status"
+    DESCRIPTION = "description"
+    CREATED_AT = "createdAt"
+    UPDATED_AT = "updatedAt"
+    DEADLINE = "deadline"
+    STARTED_AT = "startedAt"
+    RESOLVED_AT = "resolvedAt"
+
+
+class ListUserTasksOrderBy(Enum):
+    ID = "id"
+    TITLE = "title"
+    DESCRIPTION = "description"
+    CREATED_AT = "createdAt"
+    UPDATED_AT = "updatedAt"
+    DEADLINE = "deadline"
+    STARTED_AT = "startedAt"
+    RESOLVED_AT = "resolvedAt"

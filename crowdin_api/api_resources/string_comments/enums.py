@@ -21,3 +21,13 @@ class StringCommentIssueStatus(Enum):
 class StringCommentPatchPath(Enum):
     TEXT = "/text"
     ISSUE_STATUS = "/issueStatus"
+
+
+class ListStringCommentsOrderBy(Enum):
+    ID = "id"
+    TEXT = "text"
+    TYPE = "type"
+    CREATED_AT = "createdAt"
+    RESOLVED_AT = "resolvedAt"
+    ISSUE_STATUS = "issueStatus"
+    ISSUE_TYPE = "issueType"

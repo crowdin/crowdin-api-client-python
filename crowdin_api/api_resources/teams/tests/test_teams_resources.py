@@ -4,8 +4,9 @@ import pytest
 
 from crowdin_api.api_resources import TeamsResource
 from crowdin_api.api_resources.enums import PatchOperation
-from crowdin_api.api_resources.teams.enums import TeamPatchPath
+from crowdin_api.api_resources.teams.enums import ListTeamsOrderBy, TeamPatchPath
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestTeamsResources:
@@ -187,16 +188,23 @@ class TestTeamsResources:
             (
                 {},
                 {
+                    "orderBy": None,
                     "limit": 25,
                     "offset": 0,
                 },
             ),
             (
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListTeamsOrderBy.ID, SortingOrder.DESC)]
+                    ),
                     "limit": 10,
                     "offset": 2,
                 },
                 {
+                    "orderBy": Sorting(
+                        [SortingRule(ListTeamsOrderBy.ID, SortingOrder.DESC)]
+                    ),
                     "limit": 10,
                     "offset": 2,
                 },

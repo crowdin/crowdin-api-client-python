@@ -3,6 +3,8 @@ import json
 import re
 from enum import Enum
 
+from crowdin_api.sorting import Sorting
+
 
 class CrowdinJSONEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -30,6 +32,9 @@ class CrowdinJSONEncoder(json.JSONEncoder):
                 return super().default(obj.value)
             except TypeError:
                 return obj.value
+
+        if isinstance(obj, Sorting):
+            return str(obj)
 
         return super().default(obj)
 

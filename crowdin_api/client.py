@@ -91,8 +91,18 @@ class CrowdinClient:
                 default_headers=self.get_default_headers(),
                 extended_params=self.EXTENDED_REQUEST_PARAMS
             )
-
         return self._api_requestor
+
+    def graphql(self, query: str, variables: Optional[Dict] = None) -> Dict:
+        data = {
+            "query": query,
+            "variables": variables or {}
+        }
+        return self.get_api_requestor().request(
+            method="post",
+            path="graphql",
+            request_data=data
+        )
 
     @property
     def ai(self) -> Union[api_resources.AIResource, api_resources.EnterpriseAIResource]:

@@ -2,6 +2,7 @@ from typing import Optional, Iterable
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.groups.types import GroupPatchRequest
+from crowdin_api.sorting import Sorting
 
 
 class GroupsResource(BaseResource):
@@ -63,6 +64,7 @@ class GroupsResource(BaseResource):
 
     def list_groups(
         self,
+        orderBy: Optional[Sorting] = None,
         parentId: Optional[int] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None
@@ -74,7 +76,7 @@ class GroupsResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.getMany
         """
 
-        params = {"parentId": parentId}
+        params = {"orderBy": orderBy, "parentId": parentId}
         params.update(self.get_page_params(offset=offset, limit=limit))
 
         return self._get_entire_data(

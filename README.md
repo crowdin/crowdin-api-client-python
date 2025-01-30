@@ -112,6 +112,30 @@ print(client.projects.with_fetch_all().list_projects())
 print(client.projects.with_fetch_all(1000).list_projects())
 ```
 
+### Sorting
+
+An optional `orderBy` parameter is used to apply sorting.
+
+```python
+from crowdin_api import CrowdinClient
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
+from crowdin_api.api_resources.projects.enums import ListProjectsOrderBy
+
+client = CrowdinClient(token='__token__')
+
+sorting = Sorting(
+    [
+        SortingRule(ListProjectsOrderBy.ID, SortingOrder.ASC),
+        SortingRule(ListProjectsOrderBy.NAME),
+        SortingRule(ListProjectsOrderBy.CREATED_AT, SortingOrder.DESC),
+    ]
+)
+
+print(client.projects.list_projects(orderBy=sorting))
+```
+
+Enum `SortingOrder` is also optional (ascending order applied by default).
+
 ### Extended request parameters
 
 The `EXTENDED_REQUEST_PARAMS` parameter allows you to set additional parameters for requests. For example, you can configure proxies or certificates.
@@ -157,6 +181,31 @@ proxies = {
 
 class FirstCrowdinClient(CrowdinClient):
     EXTENDED_REQUEST_PARAMS = {"proxies": proxies}
+```
+
+### GraphQL API
+
+This library also provides the possibility to use [GraphQL API](https://developer.crowdin.com/graphql-api/):
+
+```python
+from crowdin_api import CrowdinClient
+
+client = CrowdinClient(
+    token='{token}',
+    organization='{organization}'
+)
+
+query = """
+query {
+  viewer {
+    id
+    name
+  }
+}
+"""
+
+# Execute the GraphQL query
+response = client.graphql(query=query)
 ```
 
 ## Seeking Assistance

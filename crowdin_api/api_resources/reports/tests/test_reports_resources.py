@@ -639,6 +639,122 @@ class TestReportsResource:
             (
                 {
                     "unit": Unit.WORDS,
+                    "format": Format.XLSX,
+                    "postEditingCategories": ["0-20", "20-50"],
+                    "languageId": "uk",
+                    "dateFrom": datetime(year=1988, month=1, day=4),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+                {
+                    "unit": Unit.WORDS,
+                    "format": Format.XLSX,
+                    "postEditingCategories": ["0-20", "20-50"],
+                    "languageId": "uk",
+                    "dateFrom": datetime(year=1988, month=1, day=4),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+            ),
+            (
+                {
+                    "unit": Unit.WORDS,
+                    "format": Format.XLSX,
+                    "languageId": "uk",
+                    "dateFrom": datetime(year=1988, month=1, day=4),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+                {
+                    "unit": Unit.WORDS,
+                    "format": Format.XLSX,
+                    "postEditingCategories": None,
+                    "languageId": "uk",
+                    "dateFrom": datetime(year=1988, month=1, day=4),
+                    "dateTo": datetime(year=2015, month=10, day=13),
+                },
+            )
+        ],
+    )
+    @mock.patch("crowdin_api.api_resources.reports.resource.ReportsResource.generate_report")
+    def test_generate_pre_translate_accuracy_general_report(
+        self, m_generate_report, in_params, schema, base_absolut_url
+    ):
+        m_generate_report.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.generate_pre_translate_accuracy_general_report(
+                projectId=1,
+                **in_params
+            ) == "response"
+        )
+        m_generate_report.assert_called_once_with(
+            projectId=1,
+            request_data={
+                "name": "pre-translate-accuracy",
+                "schema": schema
+            }
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, schema",
+        [
+            (
+                {
+                    "unit": Unit.WORDS,
+                    "format": Format.XLSX,
+                    "postEditingCategories": ["0-20", "20-50"],
+                    "taskId": 1
+                },
+                {
+                    "unit": Unit.WORDS,
+                    "format": Format.XLSX,
+                    "postEditingCategories": ["0-20", "20-50"],
+                    "taskId": 1
+                }
+            ),
+            (
+                {
+                    "unit": Unit.WORDS,
+                    "format": Format.XLSX,
+                    "taskId": 1
+                },
+                {
+                    "unit": Unit.WORDS,
+                    "format": Format.XLSX,
+                    "postEditingCategories": None,
+                    "taskId": 1
+                }
+            )
+        ]
+    )
+    @mock.patch(
+        "crowdin_api.api_resources.reports.resource.ReportsResource.generate_report"
+    )
+    def test_generate_pre_translate_accuracy_by_task_report(
+        self, m_generate_report, in_params, schema, base_absolut_url
+    ):
+        m_generate_report.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.generate_pre_translate_accuracy_by_task_report(
+                projectId=1,
+                **in_params
+            ) == "response"
+        )
+        m_generate_report.assert_called_once_with(
+            projectId=1,
+            request_data={
+                "name": "pre-translate-accuracy",
+                "schema": schema
+            }
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, schema",
+        [
+            (
+                {
+                    "unit": Unit.WORDS,
                     "currency": Currency.UAH,
                     "format": Format.XLSX,
                     "base_rates": BaseRates(fullTranslation=0, proofread=0),

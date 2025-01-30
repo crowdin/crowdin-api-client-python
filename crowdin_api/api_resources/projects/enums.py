@@ -93,3 +93,13 @@ class EscapeSpecialCharacters(Enum):
 class ProjectFilePatchPath(Enum):
     FORMAT = "/format"
     SETTINGS = "/settings"
+
+
+class ListProjectsOrderBy(Enum):
+    ID = "id"
+    NAME = "name"
+    IDENTIFIER = "identifier"
+    DESCRIPTION = "description"
+    CREATED_AT = "createdAt"
+    UPDATED_AT = "updatedAt"
+    LAST_ACTIVITY = "lastActivity"

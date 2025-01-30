@@ -7,6 +7,7 @@ from crowdin_api.api_resources.string_comments.enums import (
     StringCommentType,
 )
 from crowdin_api.api_resources.string_comments.types import StringCommentPatchRequest
+from crowdin_api.sorting import Sorting
 
 
 class StringCommentsResource(BaseResource):
@@ -28,6 +29,7 @@ class StringCommentsResource(BaseResource):
     def list_string_comments(
         self,
         projectId: Optional[int] = None,
+        orderBy: Optional[Sorting] = None,
         stringId: Optional[int] = None,
         type: Optional[StringCommentType] = None,
         issueType: Optional[Iterable[StringCommentIssueType]] = None,
@@ -45,6 +47,7 @@ class StringCommentsResource(BaseResource):
 
         projectId = projectId or self.get_project_id()
         params = {
+            "orderBy": orderBy,
             "stringId": stringId,
             "type": type,
             "issueType": None if issueType is None else ",".join(item.value for item in issueType),
