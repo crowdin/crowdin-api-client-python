@@ -33,9 +33,6 @@ from crowdin_api.api_resources.reports.types import (
     BaseRates
 )
 
-from crowdin_api.api_resources.reports.enums import Currency, Unit
-from crowdin_api.api_resources.reports.types import Config, ReportSettingsTemplatesPatchRequest
-
 
 class BaseReportsResource(BaseResource):
     def get_reports_path(self, projectId: int, reportId: Optional[str] = None):
@@ -1328,12 +1325,12 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
             },
         )
 
+
 class UserReportSettingsTemplatesResource(BaseReportSettingsTemplatesResource):
     """
     Resource for User Report Settings Templates API.
 
     Supporting the endpoints for managing user report settings templates.
-    
     Link to documentation:
     https://developer.crowdin.com/api/v2/#tag/User-Report-Settings-Templates
     """

@@ -35,8 +35,6 @@ from crowdin_api.api_resources.reports.types import BaseRates, Match
 from crowdin_api.requester import APIRequester
 
 from crowdin_api.api_resources.reports.resource import UserReportSettingsTemplatesResource
-from crowdin_api.api_resources.enums import PatchOperation
-from crowdin_api.api_resources.reports.enums import Currency, Unit, ReportSettingsTemplatesPatchPath
 
 
 class TestReportsResource:
@@ -2167,6 +2165,7 @@ class TestBaseReportSettingsTemplatesResource:
                 reportSettingsTemplateId=1
             )
         )
+
 
 class TestUserReportSettingsTemplatesResource:
     resource_class = UserReportSettingsTemplatesResource
