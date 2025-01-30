@@ -1324,3 +1324,128 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
                 },
             },
         )
+
+
+class UserReportSettingsTemplatesResource(BaseReportSettingsTemplatesResource):
+    """
+    Resource for User Report Settings Templates API.
+
+    Supporting the endpoints for managing user report settings templates.
+    Link to documentation:
+    https://developer.crowdin.com/api/v2/#tag/User-Report-Settings-Templates
+    """
+
+    def get_user_report_settings_templates_path(
+        self,
+        userId: int,
+        reportSettingsTemplateId: Optional[int] = None
+    ):
+        if reportSettingsTemplateId is not None:
+            return f"users/{userId}/reports/settings-templates/{reportSettingsTemplateId}"
+
+        return f"users/{userId}/reports/settings-templates"
+
+    def list_user_report_settings_template(
+        self,
+        userId: int,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None
+    ):
+        """
+        List User Report Settings Templates.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.users.reports.settings-templates.getMany
+        """
+        return self._get_entire_data(
+            method="get",
+            path=self.get_user_report_settings_templates_path(userId=userId),
+            params=self.get_page_params(offset=offset, limit=limit),
+        )
+
+    def add_user_report_settings_template(
+        self,
+        userId: int,
+        name: str,
+        currency: Currency,
+        unit: Unit,
+        config: Config,
+    ):
+        """
+        Add User Report Settings Template.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.users.reports.settings-templates.post
+        """
+        return self.requester.request(
+            method="post",
+            path=self.get_user_report_settings_templates_path(
+                userId=userId,
+            ),
+            request_data={
+                "name": name,
+                "currency": currency,
+                "unit": unit,
+                "mode": "simple",
+                "config": config,
+            }
+        )
+
+    def get_user_report_settings_template(
+        self,
+        userId: int,
+        reportSettingsTemplateId: int,
+    ):
+        """
+        Get User Report Settings Template.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.users.reports.settings-templates.get
+        """
+        return self.requester.request(
+            method="get",
+            path=self.get_user_report_settings_templates_path(
+                userId=userId,
+                reportSettingsTemplateId=reportSettingsTemplateId
+            ),
+        )
+
+    def edit_user_report_settings_template(
+        self,
+        userId: int,
+        reportSettingsTemplateId: int,
+        data: Iterable[ReportSettingsTemplatesPatchRequest],
+    ):
+        """
+        Edit User Report Settings Template.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.users.reports.settings-templates.patch
+        """
+        return self.requester.request(
+            method="patch",
+            path=self.get_user_report_settings_templates_path(
+                userId=userId,
+                reportSettingsTemplateId=reportSettingsTemplateId
+            ),
+            request_data=data,
+        )
+
+    def delete_user_report_settings_template(
+        self,
+        userId: int,
+        reportSettingsTemplateId: int,
+    ):
+        """
+        Delete User Report Settings Template.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.users.reports.settings-templates.delete
+        """
+        return self.requester.request(
+            method="delete",
+            path=self.get_user_report_settings_templates_path(
+                userId=userId,
+                reportSettingsTemplateId=reportSettingsTemplateId
+            ),
+        )
