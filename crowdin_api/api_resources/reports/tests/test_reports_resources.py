@@ -34,6 +34,10 @@ from crowdin_api.api_resources.reports.resource import (
 from crowdin_api.api_resources.reports.types import BaseRates, Match
 from crowdin_api.requester import APIRequester
 
+from crowdin_api.api_resources.reports.resource import UserReportSettingsTemplatesResource
+from crowdin_api.api_resources.enums import PatchOperation
+from crowdin_api.api_resources.reports.enums import Currency, Unit, ReportSettingsTemplatesPatchPath
+
 
 class TestReportsResource:
     resource_class = ReportsResource
@@ -2162,4 +2166,203 @@ class TestBaseReportSettingsTemplatesResource:
                 projectId=1,
                 reportSettingsTemplateId=1
             )
+        )
+
+class TestUserReportSettingsTemplatesResource:
+    resource_class = UserReportSettingsTemplatesResource
+
+    def get_resource(self, base_absolut_url):
+        return self.resource_class(requester=APIRequester(base_url=base_absolut_url))
+
+    @pytest.mark.parametrize(
+        "incoming_data, path",
+        (
+            ({"userId": 1}, "users/1/reports/settings-templates"),
+            (
+                {"userId": 1, "reportSettingsTemplateId": 1},
+                "users/1/reports/settings-templates/1"
+            ),
+        ),
+    )
+    def test_get_user_report_settings_templates_path(
+        self, incoming_data, path, base_absolut_url
+    ):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_user_report_settings_templates_path(**incoming_data) == path
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_params",
+        (
+            (
+                {},
+                {
+                    "limit": 25,
+                    "offset": 0,
+                },
+            ),
+            (
+                {
+                    "limit": 10,
+                    "offset": 2,
+                },
+                {
+                    "limit": 10,
+                    "offset": 2,
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_user_report_settings_template(
+        self,
+        m_request,
+        incoming_data,
+        request_params,
+        base_absolut_url
+    ):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_user_report_settings_template(userId=1, **incoming_data) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_user_report_settings_templates_path(userId=1),
+            params=request_params,
+        )
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {
+                    "name": "test_name",
+                    "currency": Currency.UAH,
+                    "unit": Unit.WORDS,
+                    "config": {
+                        "regularRates": [
+                            {
+                                "mode": "tm_match",
+                                "value": 0.1
+                            }
+                        ],
+                        "individualRates": [
+                            {
+                                "languageIds": ["uk"],
+                                "userIds": [1],
+                                "rates": [
+                                    {
+                                        "mode": "tm_match",
+                                        "value": 0.1
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "test_name",
+                    "currency": Currency.UAH,
+                    "unit": Unit.WORDS,
+                    "mode": "simple",
+                    "config": {
+                        "regularRates": [
+                            {
+                                "mode": "tm_match",
+                                "value": 0.1
+                            }
+                        ],
+                        "individualRates": [
+                            {
+                                "languageIds": ["uk"],
+                                "userIds": [1],
+                                "rates": [
+                                    {
+                                        "mode": "tm_match",
+                                        "value": 0.1
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_user_report_settings_template(
+        self,
+        m_request,
+        incoming_data,
+        request_data,
+        base_absolut_url
+    ):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_user_report_settings_template(userId=1, **incoming_data) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_user_report_settings_templates_path(userId=1),
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_user_report_settings_template(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_user_report_settings_template(
+            userId=1,
+            reportSettingsTemplateId=1
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_user_report_settings_templates_path(
+                userId=1,
+                reportSettingsTemplateId=1
+            ),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_user_report_settings_template(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        data = [
+            {
+                "value": "test",
+                "op": PatchOperation.REPLACE,
+                "path": ReportSettingsTemplatesPatchPath.NAME,
+            }
+        ]
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_user_report_settings_template(
+            userId=1,
+            reportSettingsTemplateId=1,
+            data=data
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path=resource.get_user_report_settings_templates_path(
+                userId=1,
+                reportSettingsTemplateId=1
+            ),
+            request_data=data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_user_report_settings_template(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_user_report_settings_template(
+            userId=1,
+            reportSettingsTemplateId=1
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="delete",
+            path=resource.get_user_report_settings_templates_path(
+                userId=1,
+                reportSettingsTemplateId=1
+            ),
         )
