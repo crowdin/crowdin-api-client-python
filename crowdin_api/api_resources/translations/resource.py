@@ -351,6 +351,35 @@ class TranslationsResource(BaseResource):
             request_data=request_data,
         )
 
+    def add_translation(
+        self,
+        stringId: int,
+        languageId: str,
+        text: str,
+        projectId: Optional[int] = None,
+        pluralCategoryName: Optional[str] = None,
+        addToTm: Optional[bool] = None,
+    ):
+        """
+        Add String Translation.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.post
+        """
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="post",
+            path=f"projects/{projectId}/translations",
+            request_data={
+                "stringId": stringId,
+                "languageId": languageId,
+                "text": text,
+                "pluralCategoryName": pluralCategoryName,
+                "addToTm": addToTm,
+            },
+        )
+
     def download_project_translations(
         self, buildId: int, projectId: Optional[int] = None
     ):
