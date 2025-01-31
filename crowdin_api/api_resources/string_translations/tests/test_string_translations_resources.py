@@ -339,6 +339,7 @@ class TestStringTranslationsResource:
                     "languageId": "ua",
                     "text": "text",
                     "pluralCategoryName": None,
+                    "addToTm": None,
                 },
             ),
             (
@@ -353,6 +354,37 @@ class TestStringTranslationsResource:
                     "languageId": "ua",
                     "text": "text",
                     "pluralCategoryName": "some name",
+                    "addToTm": None,
+                },
+            ),
+            (
+                {
+                    "stringId": 1,
+                    "languageId": "ua",
+                    "text": "text",
+                    "addToTm": True,
+                },
+                {
+                    "stringId": 1,
+                    "languageId": "ua",
+                    "text": "text",
+                    "pluralCategoryName": None,
+                    "addToTm": True,
+                },
+            ),
+            (
+                {
+                    "stringId": 1,
+                    "languageId": "ua",
+                    "text": "text",
+                    "addToTm": False,
+                },
+                {
+                    "stringId": 1,
+                    "languageId": "ua",
+                    "text": "text",
+                    "pluralCategoryName": None,
+                    "addToTm": False,
                 },
             ),
         ),
