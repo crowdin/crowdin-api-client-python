@@ -322,7 +322,7 @@ class TestTranslationsResource:
                     "importEqSuggestions": None,
                     "autoApproveImported": None,
                     "translateHidden": None,
-                    "addToTm": None,
+                    "addToTm": True,
                 },
             ),
             (
@@ -341,54 +341,6 @@ class TestTranslationsResource:
                     "autoApproveImported": False,
                     "translateHidden": False,
                     "addToTm": False,
-                },
-            ),
-            (
-                {
-                    "storageId": 1,
-                    "fileId": 2,
-                    "importEqSuggestions": True,
-                    "autoApproveImported": True,
-                    "translateHidden": True,
-                    "addToTm": True,
-                },
-                {
-                    "storageId": 1,
-                    "fileId": 2,
-                    "importEqSuggestions": True,
-                    "autoApproveImported": True,
-                    "translateHidden": True,
-                    "addToTm": True,
-                },
-            ),
-            (
-                {
-                    "storageId": 1,
-                    "fileId": 2,
-                    "addToTm": False,
-                },
-                {
-                    "storageId": 1,
-                    "fileId": 2,
-                    "importEqSuggestions": None,
-                    "autoApproveImported": None,
-                    "translateHidden": None,
-                    "addToTm": False,
-                },
-            ),
-            (
-                {
-                    "storageId": 1,
-                    "fileId": 2,
-                    "addToTm": True,
-                },
-                {
-                    "storageId": 1,
-                    "fileId": 2,
-                    "importEqSuggestions": None,
-                    "autoApproveImported": None,
-                    "translateHidden": None,
-                    "addToTm": True,
                 },
             ),
         ),
@@ -401,8 +353,8 @@ class TestTranslationsResource:
         assert resource.upload_translation(projectId=1, languageId="2", **in_params) == "response"
         m_request.assert_called_once_with(
             method="post",
-            request_data=request_data,
             path="projects/1/translations/2",
+            request_data=request_data,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
