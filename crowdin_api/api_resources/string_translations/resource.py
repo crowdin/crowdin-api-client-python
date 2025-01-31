@@ -249,6 +249,7 @@ class StringTranslationsResource(BaseResource):
         text: str,
         projectId: Optional[int] = None,
         pluralCategoryName: Optional[PluralCategoryName] = None,
+        addToTm: Optional[bool] = None,
     ):
         """
         Add Translation.
@@ -256,7 +257,6 @@ class StringTranslationsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.translations.post
         """
-
         projectId = projectId or self.get_project_id()
 
         return self.requester.request(
@@ -267,6 +267,7 @@ class StringTranslationsResource(BaseResource):
                 "languageId": languageId,
                 "text": text,
                 "pluralCategoryName": pluralCategoryName,
+                "addToTm": addToTm,
             },
         )
 
