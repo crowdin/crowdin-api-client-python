@@ -326,7 +326,7 @@ class TranslationsResource(BaseResource):
         importEqSuggestions: Optional[bool] = None,
         autoApproveImported: Optional[bool] = None,
         translateHidden: Optional[bool] = None,
-        addToTm: Optional[bool] = True,
+        addToTm: Optional[bool] = None,
     ):
         """
         Upload Translations.
