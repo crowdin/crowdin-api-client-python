@@ -339,6 +339,7 @@ class TestStringTranslationsResource:
                     "languageId": "ua",
                     "text": "text",
                     "pluralCategoryName": None,
+                    "addToTm": None,
                 },
             ),
             (
@@ -353,6 +354,7 @@ class TestStringTranslationsResource:
                     "languageId": "ua",
                     "text": "text",
                     "pluralCategoryName": "some name",
+                    "addToTm": None,
                 },
             ),
         ),
@@ -362,7 +364,7 @@ class TestStringTranslationsResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_translation(projectId=1, **request_data) == "response"
+        assert resource.add_translation(projectId=1, **in_params) == "response"
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_translations_path(projectId=1),
