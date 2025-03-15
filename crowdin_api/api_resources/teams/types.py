@@ -44,4 +44,3 @@ class GroupTeamPatchRequest(TypedDict):
     op: PatchOperation
     path: str
     value: Any
-
