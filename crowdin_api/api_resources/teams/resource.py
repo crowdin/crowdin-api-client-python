@@ -1,7 +1,8 @@
 from typing import Optional, Iterable
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
-from crowdin_api.api_resources.teams.types import Permissions, TeamPatchRequest, TeamByProjectRole
+from crowdin_api.api_resources.teams.types \
+    import Permissions, TeamPatchRequest, TeamByProjectRole, GroupTeamPatchRequest
 from crowdin_api.sorting import Sorting
 
 
@@ -28,6 +29,69 @@ class TeamsResource(BaseResource):
             return f"teams/{teamId}/members/{memberId}"
 
         return f"teams/{teamId}/members"
+
+    def get_group_teams_path(self, group_id: int, team_id: Optional[int] = None):
+        if team_id is not None:
+            return f"groups/{group_id}/teams/{team_id}"
+
+        return f"groups/{group_id}/teams"
+
+    def list_group_teams(
+        self,
+        group_id: int,
+        order_by: Optional[Sorting] = None
+    ):
+        """
+        List Group Teams
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams/operation/api.groups.teams.getMany
+        """
+
+        params = {
+            "orderBy": order_by
+        }
+
+        return self.requester.request(
+            method="get",
+            path=self.get_group_teams_path(group_id),
+            params=params
+        )
+
+    def update_group_teams(
+        self,
+        group_id: int,
+        request_data: Iterable[GroupTeamPatchRequest]
+    ):
+        """
+        Update Group Teams
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams/operation/api.groups.teams.patch
+        """
+
+        return self.requester.request(
+            method="patch",
+            path=self.get_group_teams_path(group_id),
+            request_data=request_data
+        )
+
+    def get_group_team(
+        self,
+        group_id: int,
+        team_id: int
+    ):
+        """
+        Get Group Team
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams/operation/api.groups.teams.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_group_teams_path(group_id, team_id)
+        )
 
     def add_team_to_project(
         self,

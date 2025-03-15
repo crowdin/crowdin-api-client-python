@@ -8,6 +8,7 @@ from crowdin_api.api_resources.users.enums import (
     ListProjectMembersEnterpriseOrderBy,
     UserRole,
     UserPatchPath,
+    ListGroupManagersOrderBy
 )
 from crowdin_api.api_resources.users.resource import (
     UsersResource,
@@ -173,6 +174,121 @@ class TestEnterpriseUsersResource:
 
         resource = self.get_resource(base_absolut_url)
         assert resource.get_users_path(userId=userId) == path
+
+    @pytest.mark.parametrize(
+        "group_id, user_id, path",
+        (
+            (1, None, "groups/1/managers"),
+            (1, 2000, "groups/1/managers/2000")
+        )
+    )
+    def test_get_group_managers_path(self, group_id, user_id, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_group_managers_path(group_id, user_id) == path
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            (
+                {},
+                {
+                    "team_ids": None,
+                    "order_by": None
+                },
+            ),
+            (
+                {
+                    "team_ids": [1, 2, 3],
+                    "order_by": Sorting(
+                        [
+                            SortingRule(
+                                ListGroupManagersOrderBy.ID,
+                                SortingOrder.DESC,
+                            )
+                        ]
+                    ),
+                },
+                {
+                    "team_ids": "1,2,3",
+                    "order_by": Sorting(
+                        [
+                            SortingRule(
+                                ListGroupManagersOrderBy.ID,
+                                SortingOrder.DESC,
+                            )
+                        ]
+                    ),
+                }
+            )
+        )
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_group_managers(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_group_managers(group_id=1, **in_params) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="groups/1/managers",
+            params=request_params
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            (
+                [
+                    {
+                        "op": "add",
+                        "path": "/-",
+                        "value": {
+                            "userId": 18
+                        }
+                    },
+                    {
+                        "op": "remove",
+                        "path": "/24"
+                    }
+                ],
+                [
+                    {
+                        "op": "add",
+                        "path": "/-",
+                        "value": {
+                            "userId": 18
+                        }
+                    },
+                    {
+                        "op": "remove",
+                        "path": "/24"
+                    }
+                ],
+            ),
+        )
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_update_group_managers(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.update_group_managers(group_id=1, request_data=in_params) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path="groups/1/managers",
+            request_data=request_params
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_group_manager(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_group_manager(group_id=1, user_id=2) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="groups/1/managers/2"
+        )
 
     @pytest.mark.parametrize(
         "in_params, request_params",

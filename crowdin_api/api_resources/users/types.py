@@ -29,3 +29,9 @@ class RolePermission(TypedDict):
 class ProjectMemberRole(TypedDict):
     name: ProjectRole
     permissions: RolePermission
+
+
+class GroupManagerPatchRequest(TypedDict):
+    op: PatchOperation
+    path: str
+    value: Any

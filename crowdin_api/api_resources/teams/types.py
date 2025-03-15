@@ -38,3 +38,10 @@ class RolePermission(TypedDict):
 class TeamByProjectRole(TypedDict):
     name: TeamRole
     permissions: RolePermission
+
+
+class GroupTeamPatchRequest(TypedDict):
+    op: PatchOperation
+    path: str
+    value: Any
+
