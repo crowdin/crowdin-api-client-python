@@ -2,7 +2,7 @@ from typing import Dict, Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.users.enums import UserRole
-from crowdin_api.api_resources.users.types import UserPatchRequest, ProjectMemberRole
+from crowdin_api.api_resources.users.types import UserPatchRequest, ProjectMemberRole, GroupManagerPatchRequest
 from crowdin_api.sorting import Sorting
 
 
@@ -119,6 +119,71 @@ class EnterpriseUsersResource(BaseUsersResource):
             return f"users/{userId}"
 
         return "users"
+
+    def get_group_managers_path(self, group_id: int, user_id: Optional[int] = None):
+        if user_id is not None:
+            return f"groups/{group_id}/managers/{user_id}"
+
+        return f"groups/{group_id}/managers"
+
+    def list_group_managers(
+        self,
+        group_id: int,
+        team_ids: Optional[Iterable[int]] = None,
+        order_by: Optional[Sorting] = None
+    ):
+        """
+        List Group Managers
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.groups.managers.getMany
+        """
+
+        params = {
+            "team_ids": ",".join(str(teamId) for teamId in team_ids) if team_ids is not None else None,
+            "order_by": order_by
+        }
+
+        return self.requester.request(
+            method="get",
+            path=self.get_group_managers_path(group_id),
+            params=params
+        )
+
+    def update_group_managers(
+        self,
+        group_id: int,
+        request_data: Iterable[GroupManagerPatchRequest]
+    ):
+        """
+        Update Group Managers
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.groups.managers.patch
+        """
+
+        return self.requester.request(
+            method="patch",
+            path=self.get_group_managers_path(group_id),
+            request_data=request_data
+        )
+
+    def get_group_manager(
+        self,
+        group_id: int,
+        user_id: int
+    ):
+        """
+        Get Group Manager
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.groups.managers.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_group_managers_path(group_id, user_id)
+        )
 
     def list_project_members(
         self,

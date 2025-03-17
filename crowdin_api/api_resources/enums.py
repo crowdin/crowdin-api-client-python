@@ -2,6 +2,7 @@ from enum import Enum
 
 
 class PatchOperation(Enum):
+    ADD = "add"
     TEST = "test"
     REPLACE = "replace"
     REMOVE = "remove"

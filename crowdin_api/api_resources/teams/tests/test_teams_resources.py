@@ -5,6 +5,7 @@ import pytest
 from crowdin_api.api_resources import TeamsResource
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.teams.enums import ListTeamsOrderBy, TeamPatchPath
+from crowdin_api.api_resources.users.enums import ListGroupTeamsOrderBy
 from crowdin_api.requester import APIRequester
 from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
@@ -45,6 +46,118 @@ class TestTeamsResources:
 
         resource = self.get_resource(base_absolut_url)
         assert resource.get_members_path(**incoming_data) == path
+
+    @pytest.mark.parametrize(
+        "group_id, team_id, path",
+        (
+            (1, None, "groups/1/teams"),
+            (1, 2000, "groups/1/teams/2000")
+        )
+    )
+    def test_get_group_teams_path(self, group_id, team_id, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_group_teams_path(group_id, team_id) == path
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            (
+                {},
+                {
+                    "orderBy": None
+                }
+            ),
+            (
+                {
+                    "order_by": Sorting(
+                        [
+                            SortingRule(
+                                ListGroupTeamsOrderBy.ID,
+                                SortingOrder.DESC,
+                            )
+                        ]
+                    ),
+                },
+                {
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListGroupTeamsOrderBy.ID,
+                                SortingOrder.DESC,
+                            )
+                        ]
+                    ),
+                }
+            )
+        )
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_group_teams(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_group_teams(group_id=1, **in_params) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="groups/1/teams",
+            params=request_params
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            (
+                [
+                    {
+                        "op": "add",
+                        "path": "/-",
+                        "value": {
+                            "teamId": 18
+                        }
+                    },
+                    {
+                        "op": "remove",
+                        "path": "/24"
+                    }
+                ],
+                [
+                    {
+                        "op": "add",
+                        "path": "/-",
+                        "value": {
+                            "teamId": 18
+                        }
+                    },
+                    {
+                        "op": "remove",
+                        "path": "/24"
+                    }
+                ],
+            ),
+        )
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_update_group_teams(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.update_group_teams(group_id=1, request_data=in_params) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path="groups/1/teams",
+            request_data=request_params
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_group_team(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_group_team(group_id=1, team_id=2) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="groups/1/teams/2"
+        )
 
     @pytest.mark.parametrize(
         "incoming_data, request_data",
