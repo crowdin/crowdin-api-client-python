@@ -5,7 +5,7 @@ import pytest
 from crowdin_api.api_resources import TeamsResource
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.teams.enums import ListTeamsOrderBy, TeamPatchPath
-from crowdin_api.api_resources.users.enums import ListGroupTeamsOrderBy
+from crowdin_api.api_resources.users.enums import ListGroupTeamsOrderBy, ProjectRole
 from crowdin_api.requester import APIRequester
 from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
@@ -302,15 +302,29 @@ class TestTeamsResources:
                 {},
                 {
                     "orderBy": None,
+                    "search": None,
+                    "projectIds": None,
+                    "projectRoles": None,
+                    "languageIds": None,
+                    "groupIds": None,
                     "limit": 25,
                     "offset": 0,
                 },
             ),
             (
                 {
-                    "orderBy": Sorting(
+                    "order_by": Sorting(
                         [SortingRule(ListTeamsOrderBy.ID, SortingOrder.DESC)]
                     ),
+                    "search": "Alex",
+                    "project_ids": [1, 2, 3],
+                    "project_roles": [
+                        ProjectRole.MEMBER,
+                        ProjectRole.TRANSLATOR,
+                        ProjectRole.PROOFREADER
+                    ],
+                    "language_ids": ["uk", "es", "it"],
+                    "group_ids": [10, 11, 12],
                     "limit": 10,
                     "offset": 2,
                 },
@@ -318,6 +332,11 @@ class TestTeamsResources:
                     "orderBy": Sorting(
                         [SortingRule(ListTeamsOrderBy.ID, SortingOrder.DESC)]
                     ),
+                    "search": "Alex",
+                    "projectIds": "1,2,3",
+                    "projectRoles": "member,translator,proofreader",
+                    "languageIds": "uk,es,it",
+                    "groupIds": "10,11,12",
                     "limit": 10,
                     "offset": 2,
                 },
