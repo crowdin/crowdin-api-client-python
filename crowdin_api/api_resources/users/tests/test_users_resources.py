@@ -1,3 +1,4 @@
+from datetime import timezone, datetime
 from unittest import mock
 
 import pytest
@@ -8,7 +9,12 @@ from crowdin_api.api_resources.users.enums import (
     ListProjectMembersEnterpriseOrderBy,
     UserRole,
     UserPatchPath,
-    ListGroupManagersOrderBy
+    ListGroupManagersOrderBy,
+    ListUsersOrderBy,
+    UserStatus,
+    UserTwoFactorAuthStatus,
+    OrganizationRole,
+    ProjectRole
 )
 from crowdin_api.api_resources.users.resource import (
     UsersResource,
@@ -612,3 +618,72 @@ class TestEnterpriseUsersResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.delete_user(userId=1) == "response"
         m_request.assert_called_once_with(method="delete", path="users/1")
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            (
+                {
+                    "limit": 10,
+                    "offset": 2,
+                    "order_by": Sorting(
+                        [
+                            SortingRule(ListUsersOrderBy.CREATED_AT, SortingOrder.DESC),
+                            SortingRule(ListUsersOrderBy.USERNAME)
+                        ]
+                    ),
+                    "status": UserStatus.ACTIVE,
+                    "search": "Alex",
+                    "two_factor": UserTwoFactorAuthStatus.ENABLED,
+                    "organization_roles": [
+                        OrganizationRole.MANAGER,
+                        OrganizationRole.VENDOR,
+                        OrganizationRole.CLIENT
+                    ],
+                    "team_id": 123,
+                    "project_ids": [11, 22, 33],
+                    "project_roles": [
+                        ProjectRole.MANAGER,
+                        ProjectRole.DEVELOPER,
+                        ProjectRole.LANGUAGE_COORDINATOR
+                    ],
+                    "language_ids": ["uk", "es", "it"],
+                    "group_ids": [4, 5, 6],
+                    "last_seen_from": datetime(2024, 1, 10, 10, 41, 33, tzinfo=timezone.utc),
+                    "last_seen_to": datetime(2024, 1, 11, 10, 41, 33, tzinfo=timezone.utc)
+                },
+                {
+                    "limit": 10,
+                    "offset": 2,
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(ListUsersOrderBy.CREATED_AT, SortingOrder.DESC),
+                            SortingRule(ListUsersOrderBy.USERNAME)
+                        ]
+                    ),
+                    "status": "active",
+                    "search": "Alex",
+                    "twoFactor": "enabled",
+                    "organizationRoles": "manager,vendor,client",
+                    "teamId": 123,
+                    "projectIds": "11,22,33",
+                    "projectRoles": "manager,developer,language_coordinator",
+                    "languageIds": "uk,es,it",
+                    "groupIds": "4,5,6",
+                    "lastSeenFrom": "2024-01-10T10:41:33+00:00",
+                    "lastSeenTo": "2024-01-11T10:41:33+00:00"
+                }
+            ),
+        )
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_users(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_users(**in_params)
+        m_request.assert_called_once_with(
+            method="get",
+            path="users",
+            params=request_params
+        )

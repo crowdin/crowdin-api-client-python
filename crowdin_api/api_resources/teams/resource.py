@@ -3,7 +3,9 @@ from typing import Optional, Iterable
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.teams.types \
     import Permissions, TeamPatchRequest, TeamByProjectRole, GroupTeamPatchRequest
+from crowdin_api.api_resources.users.enums import ProjectRole
 from crowdin_api.sorting import Sorting
+from crowdin_api.utils import convert_to_query_string, convert_enum_to_string_if_exists
 
 
 class TeamsResource(BaseResource):
@@ -125,9 +127,14 @@ class TeamsResource(BaseResource):
 
     def list_teams(
         self,
-        orderBy: Optional[Sorting] = None,
+        order_by: Optional[Sorting] = None,
         offset: Optional[int] = None,
-        limit: Optional[int] = None
+        limit: Optional[int] = None,
+        search: Optional[str] = None,
+        project_ids: Optional[Iterable[int]] = None,
+        project_roles: Optional[Iterable[ProjectRole]] = None,
+        language_ids: Optional[Iterable[str]] = None,
+        group_ids: Optional[Iterable[int]] = None,
     ):
         """
         List Teams.
@@ -136,7 +143,14 @@ class TeamsResource(BaseResource):
         https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.getMany
         """
 
-        params = {"orderBy": orderBy}
+        params = {
+            "orderBy": order_by,
+            "search": search,
+            "projectIds": convert_to_query_string(project_ids, lambda project_id: str(project_id)),
+            "projectRoles": convert_to_query_string(project_roles, lambda role: convert_enum_to_string_if_exists(role)),
+            "languageIds": convert_to_query_string(language_ids, lambda language_id: str(language_id)),
+            "groupIds": convert_to_query_string(group_ids, lambda group_id: str(group_id))
+        }
         params.update(self.get_page_params(offset=offset, limit=limit))
 
         return self._get_entire_data(

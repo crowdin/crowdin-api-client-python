@@ -1,9 +1,11 @@
+from datetime import datetime
 from typing import Dict, Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
-from crowdin_api.api_resources.users.enums import UserRole
+from crowdin_api.api_resources.users.enums import UserRole, OrganizationRole, UserStatus
 from crowdin_api.api_resources.users.types import UserPatchRequest, ProjectMemberRole, GroupManagerPatchRequest
 from crowdin_api.sorting import Sorting
+from crowdin_api.utils import convert_to_query_string, convert_enum_to_string_if_exists
 
 
 class BaseUsersResource(BaseResource):
@@ -340,4 +342,58 @@ class EnterpriseUsersResource(BaseUsersResource):
         return self.requester.request(
             method="delete",
             path=self.get_users_path(userId=userId)
+        )
+
+    def list_users(
+        self,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+        order_by: Optional[Sorting] = None,
+        status: Optional[UserStatus] = None,
+        search: Optional[str] = None,
+        two_factor: Optional[str] = None,
+        organization_roles: Optional[Iterable[OrganizationRole]] = None,
+        team_id: Optional[int] = None,
+        project_ids: Optional[Iterable[int]] = None,
+        project_roles: Optional[Iterable[str]] = None,
+        language_ids: Optional[Iterable[str]] = None,
+        group_ids: Optional[Iterable[int]] = None,
+        last_seen_from: Optional[datetime] = None,
+        last_seen_to: Optional[datetime] = None
+    ):
+        """
+        List Users
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.users.getMany
+        """
+
+        params = {
+            "limit": limit,
+            "offset": offset,
+            "orderBy": order_by,
+            "status": convert_enum_to_string_if_exists(status),
+            "search": search,
+            "twoFactor": convert_enum_to_string_if_exists(two_factor),
+            "organizationRoles": convert_to_query_string(
+                organization_roles,
+                lambda role: convert_enum_to_string_if_exists(role)
+            ),
+            "teamId": team_id,
+            "projectIds": convert_to_query_string(project_ids, lambda project_id: str(project_id)),
+            "projectRoles": convert_to_query_string(
+                project_roles,
+                lambda role: convert_enum_to_string_if_exists(role)
+            ),
+            "languageIds": convert_to_query_string(language_ids),
+            "groupIds": convert_to_query_string(group_ids),
+            "lastSeenFrom": last_seen_from.isoformat() if last_seen_from is not None else None,
+            "lastSeenTo": last_seen_to.isoformat() if last_seen_to is not None else None
+        }
+        params.update(self.get_page_params(offset=offset, limit=limit))
+
+        return self.requester.request(
+            method="get",
+            path=self.get_users_path(),
+            params=params
         )
