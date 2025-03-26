@@ -81,4 +81,3 @@ class UserStatus(Enum):
 class UserTwoFactorAuthStatus(Enum):
     ENABLED = "enabled"
     DISABLED = "disabled"
-
