@@ -317,14 +317,14 @@ class TestTeamsResources:
                         [SortingRule(ListTeamsOrderBy.ID, SortingOrder.DESC)]
                     ),
                     "search": "Alex",
-                    "project_ids": [1,2,3],
+                    "project_ids": [1, 2, 3],
                     "project_roles": [
                         ProjectRole.MEMBER,
                         ProjectRole.TRANSLATOR,
                         ProjectRole.PROOFREADER
                     ],
                     "language_ids": ["uk", "es", "it"],
-                    "group_ids": [10,11,12],
+                    "group_ids": [10, 11, 12],
                     "limit": 10,
                     "offset": 2,
                 },
