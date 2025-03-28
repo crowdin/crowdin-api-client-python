@@ -1095,6 +1095,20 @@ authenticated user.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.patch</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.EnterpriseUsersResource.get_group_manager"><code class="name flex">
+<span>def <span class="ident">get_group_manager</span></span>(<span>self, group_id: int, user_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Group Manager</p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.groups.managers.get">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.groups.managers.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseUsersResource.get_group_managers_path"><code class="name flex">
+<span>def <span class="ident">get_group_managers_path</span></span>(<span>self, group_id: int, user_id: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.EnterpriseUsersResource.get_users_path"><code class="name flex">
 <span>def <span class="ident">get_users_path</span></span>(<span>self, userId: Optional[int] = None)</span>
 </code></dt>
@@ -1109,6 +1123,14 @@ authenticated user.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.EnterpriseUsersResource.list_group_managers"><code class="name flex">
+<span>def <span class="ident">list_group_managers</span></span>(<span>self, group_id: int, team_ids: Optional[Iterable[int]] = None, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Group Managers</p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.groups.managers.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.groups.managers.getMany</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.EnterpriseUsersResource.list_project_members"><code class="name flex">
 <span>def <span class="ident">list_project_members</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, search: Optional[str] = None, workflowStepId: Optional[int] = None, languageId: Optional[str] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
@@ -1117,6 +1139,14 @@ authenticated user.</p>
 <p>Link to documentation for enterprise:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.getMany</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.EnterpriseUsersResource.list_users"><code class="name flex">
+<span>def <span class="ident">list_users</span></span>(<span>self, limit: Optional[int] = None, offset: Optional[int] = None, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, status: Optional[<a title="crowdin_api.api_resources.users.enums.UserStatus" href="users/enums.html#crowdin_api.api_resources.users.enums.UserStatus">UserStatus</a>] = None, search: Optional[str] = None, two_factor: Optional[str] = None, organization_roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.enums.OrganizationRole" href="users/enums.html#crowdin_api.api_resources.users.enums.OrganizationRole">OrganizationRole</a>]] = None, team_id: Optional[int] = None, project_ids: Optional[Iterable[int]] = None, project_roles: Optional[Iterable[str]] = None, language_ids: Optional[Iterable[str]] = None, group_ids: Optional[Iterable[int]] = None, last_seen_from: Optional[datetime.datetime] = None, last_seen_to: Optional[datetime.datetime] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Users</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.users.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.users.getMany</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.EnterpriseUsersResource.replace_project_member_permissions"><code class="name flex">
 <span>def <span class="ident">replace_project_member_permissions</span></span>(<span>self, memberId: int, projectId: Optional[int] = None, accessToAllWorkflowSteps: Optional[bool] = None, managerAccess: Optional[bool] = None, permissions: Optional[Dict[~KT, ~VT]] = None, roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.types.ProjectMemberRole" href="users/types.html#crowdin_api.api_resources.users.types.ProjectMemberRole">ProjectMemberRole</a>]] = None)</span>
 </code></dt>
@@ -1124,6 +1154,14 @@ authenticated user.</p>
 <div class="desc"><p>Replace Project Member Permissions.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.put">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.put</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseUsersResource.update_group_managers"><code class="name flex">
+<span>def <span class="ident">update_group_managers</span></span>(<span>self, group_id: int, request_data: Iterable[<a title="crowdin_api.api_resources.users.types.GroupManagerPatchRequest" href="users/types.html#crowdin_api.api_resources.users.types.GroupManagerPatchRequest">GroupManagerPatchRequest</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update Group Managers</p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.groups.managers.patch">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.groups.managers.patch</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -3132,6 +3170,20 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.patch</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.TeamsResource.get_group_team"><code class="name flex">
+<span>def <span class="ident">get_group_team</span></span>(<span>self, group_id: int, team_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Group Team</p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams/operation/api.groups.teams.get">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams/operation/api.groups.teams.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.TeamsResource.get_group_teams_path"><code class="name flex">
+<span>def <span class="ident">get_group_teams_path</span></span>(<span>self, group_id: int, team_id: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.TeamsResource.get_members_path"><code class="name flex">
 <span>def <span class="ident">get_members_path</span></span>(<span>self, teamId: int, memberId: Optional[int] = None)</span>
 </code></dt>
@@ -3152,8 +3204,16 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.TeamsResource.list_group_teams"><code class="name flex">
+<span>def <span class="ident">list_group_teams</span></span>(<span>self, group_id: int, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Group Teams</p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams/operation/api.groups.teams.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams/operation/api.groups.teams.getMany</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.TeamsResource.list_teams"><code class="name flex">
-<span>def <span class="ident">list_teams</span></span>(<span>self, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_teams</span></span>(<span>self, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, offset: Optional[int] = None, limit: Optional[int] = None, search: Optional[str] = None, project_ids: Optional[Iterable[int]] = None, project_roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.enums.ProjectRole" href="users/enums.html#crowdin_api.api_resources.users.enums.ProjectRole">ProjectRole</a>]] = None, language_ids: Optional[Iterable[str]] = None, group_ids: Optional[Iterable[int]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Teams.</p>
@@ -3167,6 +3227,14 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <div class="desc"><p>Team Members List.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.TeamsResource.update_group_teams"><code class="name flex">
+<span>def <span class="ident">update_group_teams</span></span>(<span>self, group_id: int, request_data: Iterable[<a title="crowdin_api.api_resources.teams.types.GroupTeamPatchRequest" href="teams/types.html#crowdin_api.api_resources.teams.types.GroupTeamPatchRequest">GroupTeamPatchRequest</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update Group Teams</p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams/operation/api.groups.teams.patch">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams/operation/api.groups.teams.patch</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -3964,10 +4032,15 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.delete_member_from_project" href="#crowdin_api.api_resources.EnterpriseUsersResource.delete_member_from_project">delete_member_from_project</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.delete_user" href="#crowdin_api.api_resources.EnterpriseUsersResource.delete_user">delete_user</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.edit_user" href="#crowdin_api.api_resources.EnterpriseUsersResource.edit_user">edit_user</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.get_group_manager" href="#crowdin_api.api_resources.EnterpriseUsersResource.get_group_manager">get_group_manager</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.get_group_managers_path" href="#crowdin_api.api_resources.EnterpriseUsersResource.get_group_managers_path">get_group_managers_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.get_users_path" href="#crowdin_api.api_resources.EnterpriseUsersResource.get_users_path">get_users_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.invite_user" href="#crowdin_api.api_resources.EnterpriseUsersResource.invite_user">invite_user</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.list_group_managers" href="#crowdin_api.api_resources.EnterpriseUsersResource.list_group_managers">list_group_managers</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.list_project_members" href="#crowdin_api.api_resources.EnterpriseUsersResource.list_project_members">list_project_members</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.list_users" href="#crowdin_api.api_resources.EnterpriseUsersResource.list_users">list_users</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.replace_project_member_permissions" href="#crowdin_api.api_resources.EnterpriseUsersResource.replace_project_member_permissions">replace_project_member_permissions</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseUsersResource.update_group_managers" href="#crowdin_api.api_resources.EnterpriseUsersResource.update_group_managers">update_group_managers</a></code></li>
 </ul>
 </li>
 <li>
@@ -4267,11 +4340,15 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.TeamsResource.delete_team" href="#crowdin_api.api_resources.TeamsResource.delete_team">delete_team</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TeamsResource.delete_team_member" href="#crowdin_api.api_resources.TeamsResource.delete_team_member">delete_team_member</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TeamsResource.edit_team" href="#crowdin_api.api_resources.TeamsResource.edit_team">edit_team</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TeamsResource.get_group_team" href="#crowdin_api.api_resources.TeamsResource.get_group_team">get_group_team</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TeamsResource.get_group_teams_path" href="#crowdin_api.api_resources.TeamsResource.get_group_teams_path">get_group_teams_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TeamsResource.get_members_path" href="#crowdin_api.api_resources.TeamsResource.get_members_path">get_members_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TeamsResource.get_team" href="#crowdin_api.api_resources.TeamsResource.get_team">get_team</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TeamsResource.get_teams_path" href="#crowdin_api.api_resources.TeamsResource.get_teams_path">get_teams_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TeamsResource.list_group_teams" href="#crowdin_api.api_resources.TeamsResource.list_group_teams">list_group_teams</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TeamsResource.list_teams" href="#crowdin_api.api_resources.TeamsResource.list_teams">list_teams</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TeamsResource.teams_member_list" href="#crowdin_api.api_resources.TeamsResource.teams_member_list">teams_member_list</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TeamsResource.update_group_teams" href="#crowdin_api.api_resources.TeamsResource.update_group_teams">update_group_teams</a></code></li>
 </ul>
 </li>
 <li>
