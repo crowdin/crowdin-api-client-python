@@ -187,7 +187,6 @@ class ValidationOptions(TypedDict):
     maxExamplesCount: Optional[int]
 
 
-
 class CreateAIPromptFineTuningJobRequest(TypedDict):
     dryRun: Optional[bool]
     hyperparameters: Optional[HyperParameters]
