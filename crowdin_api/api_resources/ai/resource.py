@@ -9,6 +9,8 @@ from crowdin_api.api_resources.ai.types import (
     EditAIProviderRequestScheme,
     GoogleGeminiChatProxy,
     OtherChatProxy,
+    GenerateAIPromptFineTuningDatasetRequest,
+    CreateAIPromptFineTuningJobRequest,
 )
 
 
@@ -209,6 +211,118 @@ class AIResource(BaseResource):
             path=self.get_ai_provider_path(userId=userId, aiProviderId=aiProviderId)
             + "/chat/completions",
             request_data=request_data,
+        )
+
+    def get_ai_prompt_fine_tuning_datasets_path(
+        self,
+        user_id: int,
+        ai_prompt_id: Optional[int] = None,
+        job_identifier: Optional[str] = None
+    ):
+        if job_identifier is not None:
+            return f"users/{user_id}/ai/prompts/{ai_prompt_id}/fine-tuning/datasets/{job_identifier}"
+        return f"users/{user_id}/ai/prompts/{ai_prompt_id}/fine-tuning/datasets"
+
+    def get_ai_prompt_fine_tuning_jobs_path(
+        self,
+        user_id: int,
+        ai_prompt_id: Optional[int] = None,
+        job_identifier: Optional[str] = None
+    ):
+        if job_identifier is not None:
+            return f"users/{user_id}/ai/prompts/{ai_prompt_id}/fine-tuning/jobs/{job_identifier}"
+        return f"users/{user_id}/ai/prompts/{ai_prompt_id}/fine-tuning/jobs"
+
+    def generate_ai_prompt_fine_tuning_dataset(
+        self,
+        user_id: int,
+        ai_prompt_id: int,
+        request_data: GenerateAIPromptFineTuningDatasetRequest,
+    ):
+        """
+        Generate AI Prompt Fine-Tuning Dataset
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.ai.prompts.fine-tuning.datasets.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=self.get_ai_prompt_fine_tuning_datasets_path(user_id, ai_prompt_id),
+            request_data=request_data,
+        )
+
+    def get_ai_prompt_fine_tuning_dataset_generation_status(
+        self,
+        user_id: int,
+        ai_prompt_id: int,
+        job_identifier: str
+    ):
+        """
+        Get AI Prompt Fine-Tuning Dataset Generation Status
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.prompts.fine-tuning.datasets.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_ai_prompt_fine_tuning_datasets_path(user_id, ai_prompt_id, job_identifier),
+        )
+
+    def create_ai_prompt_fine_tuning_job(
+        self,
+        user_id: int,
+        ai_prompt_id: int,
+        request_data: CreateAIPromptFineTuningJobRequest
+    ):
+        """
+        Create AI Prompt Fine-Tuning Job
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.ai.prompts.fine-tuning.jobs.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=self.get_ai_prompt_fine_tuning_jobs_path(user_id, ai_prompt_id),
+            request_data=request_data,
+        )
+
+    def get_ai_prompt_fine_tuning_job_status(
+        self,
+        user_id: int,
+        ai_prompt_id: int,
+        job_identifier: str
+    ):
+        """
+        Get AI Prompt Fine-Tuning Job Status
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.prompts.fine-tuning.jobs.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_ai_prompt_fine_tuning_jobs_path(user_id, ai_prompt_id, job_identifier),
+        )
+
+    def download_ai_prompt_fine_tuning_dataset(
+        self,
+        user_id: int,
+        ai_prompt_id: int,
+        job_identifier: str
+    ):
+        """
+        Download AI Prompt Fine-Tuning Dataset
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.prompts.fine-tuning.datasets.download.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_ai_prompt_fine_tuning_datasets_path(user_id, ai_prompt_id, job_identifier) + "/download",
         )
 
 

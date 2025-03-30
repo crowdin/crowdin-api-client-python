@@ -1,9 +1,16 @@
+from datetime import datetime, timezone
 from unittest import mock
 
 import pytest
-from crowdin_api.api_resources.ai.enums import AIPromptAction, AIProviderType
+from crowdin_api.api_resources.ai.enums import AIPromptAction, AIProviderType, DatasetPurpose
 from crowdin_api.api_resources.ai.resource import AIResource, EnterpriseAIResource
-from crowdin_api.api_resources.ai.types import AIPromptOperation, EditAIPromptPath
+from crowdin_api.api_resources.ai.types import (
+    AIPromptOperation,
+    EditAIPromptPath,
+    CreateAIPromptFineTuningJobRequest,
+    HyperParameters,
+    TrainingOptions, GenerateAIPromptFineTuningDatasetRequest
+)
 from crowdin_api.requester import APIRequester
 
 
@@ -403,6 +410,176 @@ class TestAIResources:
             path=resource.get_ai_provider_path(userId=userId, aiProviderId=aiProviderId)
             + "/chat/completions",
             request_data=request_data,
+        )
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                GenerateAIPromptFineTuningDatasetRequest(
+                    projectIds=[1],
+                    tmIds=[2, 3],
+                    purpose=DatasetPurpose.TRAINING.value,
+                    dateFrom=datetime(2019, 9, 23, 11, 26, 54,
+                                      tzinfo=timezone.utc).isoformat(),
+                    dateTo=datetime(2019, 9, 23, 11, 26, 54,
+                                    tzinfo=timezone.utc).isoformat(),
+                    maxFileSize=20,
+                    minExamplesCount=2,
+                    maxExamplesCount=10
+                ),
+                {
+                    "projectIds": [
+                        1
+                    ],
+                    "tmIds": [
+                        2, 3
+                    ],
+                    "purpose": "training",
+                    "dateFrom": "2019-09-23T11:26:54+00:00",
+                    "dateTo": "2019-09-23T11:26:54+00:00",
+                    "maxFileSize": 20,
+                    "minExamplesCount": 2,
+                    "maxExamplesCount": 10
+                }
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_generate_ai_prompt_fine_tuning_dataset(self, m_request, incoming_data, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        ai_prompt_id = 2
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.generate_ai_prompt_fine_tuning_dataset(user_id, ai_prompt_id, request_data=incoming_data)
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="post",
+            path=f"users/{user_id}/ai/prompts/{ai_prompt_id}/fine-tuning/datasets",
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_ai_prompt_fine_tuning_dataset_generation_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        ai_prompt_id = 2
+        job_identifier = "id"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.get_ai_prompt_fine_tuning_dataset_generation_status(user_id, ai_prompt_id, job_identifier)
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="get",
+            path=f"users/{user_id}/ai/prompts/{ai_prompt_id}/fine-tuning/datasets/{job_identifier}",
+        )
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                CreateAIPromptFineTuningJobRequest(
+                    dryRun=False,
+                    hyperparameters=HyperParameters(
+                        batchSize=1,
+                        learningRateMultiplier=2.0,
+                        nEpochs=100,
+                    ),
+                    trainingOptions=TrainingOptions(
+                        projectIds=[1],
+                        tmIds=[2],
+                        dateFrom=datetime(2019, 9, 23, 11, 26, 54,
+                                          tzinfo=timezone.utc).isoformat(),
+                        dateTo=datetime(2019, 9, 23, 11, 26, 54,
+                                        tzinfo=timezone.utc).isoformat(),
+                        maxFileSize=10,
+                        minExamplesCount=200,
+                        maxExamplesCount=300
+                    )
+                ),
+                {
+                    "dryRun": False,
+                    "hyperparameters": {
+                        "batchSize": 1,
+                        "learningRateMultiplier": 2.0,
+                        "nEpochs": 100,
+                    },
+                    "trainingOptions": {
+                        "projectIds": [1],
+                        "tmIds": [2],
+                        "dateFrom": "2019-09-23T11:26:54+00:00",
+                        "dateTo": "2019-09-23T11:26:54+00:00",
+                        "maxFileSize": 10,
+                        "minExamplesCount": 200,
+                        "maxExamplesCount": 300
+                    }
+                }
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_create_ai_prompt_fine_tuning_job(self, m_request, incoming_data, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        ai_prompt_id = 2
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.create_ai_prompt_fine_tuning_job(user_id, ai_prompt_id, request_data=incoming_data)
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="post",
+            path=f"users/{user_id}/ai/prompts/{ai_prompt_id}/fine-tuning/jobs",
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_ai_prompt_fine_tuning_job_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        ai_prompt_id = 2
+        job_identifier = "id"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.get_ai_prompt_fine_tuning_job_status(user_id, ai_prompt_id, job_identifier)
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="get",
+            path=f"users/{user_id}/ai/prompts/{ai_prompt_id}/fine-tuning/jobs/{job_identifier}",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_download_ai_prompt_fine_tuning_dataset(
+        self,
+        m_request,
+        base_absolut_url
+    ):
+        m_request.return_value = "response"
+
+        user_id = 1
+        ai_prompt_id = 2
+        job_identifier = "id"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.download_ai_prompt_fine_tuning_dataset(user_id, ai_prompt_id, job_identifier)
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="get",
+            path=f"users/{user_id}/ai/prompts/{ai_prompt_id}/fine-tuning/datasets/{job_identifier}/download",
         )
 
 

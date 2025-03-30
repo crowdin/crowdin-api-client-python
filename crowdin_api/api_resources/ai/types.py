@@ -148,3 +148,48 @@ class GoogleGeminiChatProxy(TypedDict):
 
 class OtherChatProxy(TypedDict):
     stream: Optional[bool]
+
+
+class GenerateAIPromptFineTuningDatasetRequest(TypedDict):
+    projectIds: Optional[Iterable[int]]
+    tmIds: Optional[Iterable[int]]
+    purpose: Optional[str]
+    dateFrom: str
+    dateTo: str
+    maxFileSize: Optional[int]
+    minExamplesCount: Optional[int]
+    maxExamplesCount: Optional[int]
+
+
+class HyperParameters(TypedDict):
+    batchSize: int
+    learningRateMultiplier: float
+    nEpochs: int
+
+
+class TrainingOptions(TypedDict):
+    projectIds: Optional[Iterable[int]]
+    tmIds: Optional[Iterable[int]]
+    dateFrom: Optional[str]
+    dateTo: Optional[str]
+    maxFileSize: Optional[int]
+    minExamplesCount: Optional[int]
+    maxExamplesCount: Optional[int]
+
+
+class ValidationOptions(TypedDict):
+    projectIds: Optional[Iterable[int]]
+    tmIds: Optional[Iterable[int]]
+    dateFrom: Optional[str]
+    dateTo: Optional[str]
+    maxFileSize: Optional[int]
+    minExamplesCount: Optional[int]
+    maxExamplesCount: Optional[int]
+
+
+
+class CreateAIPromptFineTuningJobRequest(TypedDict):
+    dryRun: Optional[bool]
+    hyperparameters: Optional[HyperParameters]
+    trainingOptions: TrainingOptions
+    validationOptions: Optional[ValidationOptions]
