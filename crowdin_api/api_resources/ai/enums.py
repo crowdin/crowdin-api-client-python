@@ -37,3 +37,8 @@ class EditAIProviderPath(Enum):
     CONFIG = "/config"
     IS_ENABLED = "/isEnabled"
     USE_SYSTEM_CREDENTIALS = "/useSystemCredentials"
+
+
+class DatasetPurpose(Enum):
+    TRAINING = "training"
+    VALIDATION = "validation"
