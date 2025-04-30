@@ -2,9 +2,10 @@ from unittest import mock
 
 import pytest
 
-from crowdin_api.api_resources.branches.enums import ListBranchesOrderBy
+from crowdin_api.api_resources.branches.enums import ListBranchesOrderBy, EditBranchPatchPath
 from crowdin_api.api_resources.branches.resource import BranchesResource
-from crowdin_api.api_resources.branches.types import CloneBranchRequest, AddBranchRequest
+from crowdin_api.api_resources.branches.types import CloneBranchRequest, AddBranchRequest, EditBranchPatch
+from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.requester import APIRequester
 from crowdin_api.sorting import SortingRule, Sorting, SortingOrder
 
@@ -169,6 +170,27 @@ class TestBranchesResource:
             path=f"projects/{project_id}/branches/{branch_id}",
         )
 
+    @pytest.mark.parametrize(
+        "in_body, request_body",
+        (
+            (
+                [
+                    EditBranchPatch(
+                        op=PatchOperation.REPLACE.value,
+                        path=EditBranchPatchPath.NAME.value,
+                        value="New name"
+                    )
+                ],
+                [
+                    {
+                        "op": "replace",
+                        "path": "/name",
+                        "value": "New name"
+                    }
+                ]
+            ),
+        ),
+    )
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_edit_branch(self, m_request, in_body, request_body, base_absolut_url):
         m_request.return_value = "response"
@@ -179,7 +201,7 @@ class TestBranchesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.edit_branch(project_id, branch_id, in_body) == "response"
         m_request.assert_called_once_with(
-            method="delete",
+            method="patch",
             path=f"projects/{project_id}/branches/{branch_id}",
-            request_params=request_body
+            request_data=request_body
         )
