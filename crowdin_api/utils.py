@@ -18,6 +18,7 @@ def convert_to_query_string(
 def convert_enum_to_string_if_exists(value: Optional[Enum]) -> Optional[str]:
     return value.value if value is not None else None
 
+
 def convert_enum_collection_to_string_if_exists(value: Optional[Iterable[Enum]]) -> Optional[str]:
     if value is None:
         return None
