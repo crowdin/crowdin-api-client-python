@@ -441,10 +441,8 @@ class TestAIResources:
                     projectIds=[1],
                     tmIds=[2, 3],
                     purpose=DatasetPurpose.TRAINING.value,
-                    dateFrom=datetime(2019, 9, 23, 11, 26, 54,
-                                      tzinfo=timezone.utc).isoformat(),
-                    dateTo=datetime(2019, 9, 23, 11, 26, 54,
-                                    tzinfo=timezone.utc).isoformat(),
+                    dateFrom=datetime(2019, 9, 23, 11, 26, 54, tzinfo=timezone.utc).isoformat(),
+                    dateTo=datetime(2019, 9, 23, 11, 26, 54, tzinfo=timezone.utc).isoformat(),
                     maxFileSize=20,
                     minExamplesCount=2,
                     maxExamplesCount=10
@@ -516,10 +514,8 @@ class TestAIResources:
                     trainingOptions=TrainingOptions(
                         projectIds=[1],
                         tmIds=[2],
-                        dateFrom=datetime(2019, 9, 23, 11, 26, 54,
-                                          tzinfo=timezone.utc).isoformat(),
-                        dateTo=datetime(2019, 9, 23, 11, 26, 54,
-                                        tzinfo=timezone.utc).isoformat(),
+                        dateFrom=datetime(2019, 9, 23, 11, 26, 54, tzinfo=timezone.utc).isoformat(),
+                        dateTo=datetime(2019, 9, 23, 11, 26, 54, tzinfo=timezone.utc).isoformat(),
                         maxFileSize=10,
                         minExamplesCount=200,
                         maxExamplesCount=300
@@ -825,7 +821,7 @@ class TestAIResources:
                         projectId=1,
                         sourceLanguageId="en",
                         targetLanguageId="uk",
-                        stringIds=[1, 2,3 ],
+                        stringIds=[1, 2, 3],
                         overridePromptValues={
                             "property1": "string"
                         }
@@ -1443,10 +1439,8 @@ class TestEnterpriseAIResources:
                     projectIds=[1],
                     tmIds=[2, 3],
                     purpose=DatasetPurpose.TRAINING.value,
-                    dateFrom=datetime(2019, 9, 23, 11, 26, 54,
-                        tzinfo=timezone.utc).isoformat(),
-                    dateTo=datetime(2019, 9, 23, 11, 26, 54,
-                        tzinfo=timezone.utc).isoformat(),
+                    dateFrom=datetime(2019, 9, 23, 11, 26, 54, tzinfo=timezone.utc).isoformat(),
+                    dateTo=datetime(2019, 9, 23, 11, 26, 54, tzinfo=timezone.utc).isoformat(),
                     maxFileSize=20,
                     minExamplesCount=2,
                     maxExamplesCount=10
@@ -1512,10 +1506,8 @@ class TestEnterpriseAIResources:
                     trainingOptions=TrainingOptions(
                         projectIds=[1],
                         tmIds=[2],
-                        dateFrom=datetime(2019, 9, 23, 11, 26, 54,
-                            tzinfo=timezone.utc).isoformat(),
-                        dateTo=datetime(2019, 9, 23, 11, 26, 54,
-                            tzinfo=timezone.utc).isoformat(),
+                        dateFrom=datetime(2019, 9, 23, 11, 26, 54, tzinfo=timezone.utc).isoformat(),
+                        dateTo=datetime(2019, 9, 23, 11, 26, 54, tzinfo=timezone.utc).isoformat(),
                         maxFileSize=10,
                         minExamplesCount=200,
                         maxExamplesCount=300
@@ -1549,8 +1541,8 @@ class TestEnterpriseAIResources:
 
         resource = self.get_resource(base_absolut_url)
         assert (
-                resource.create_ai_prompt_fine_tuning_job(ai_prompt_id, request_data=incoming_data)
-                == "response"
+            resource.create_ai_prompt_fine_tuning_job(ai_prompt_id, request_data=incoming_data)
+            == "response"
         )
         m_request.assert_called_once_with(
             method="post",
@@ -1567,8 +1559,8 @@ class TestEnterpriseAIResources:
 
         resource = self.get_resource(base_absolut_url)
         assert (
-                resource.get_ai_prompt_fine_tuning_job_status(ai_prompt_id, job_identifier)
-                == "response"
+            resource.get_ai_prompt_fine_tuning_job_status(ai_prompt_id, job_identifier)
+            == "response"
         )
         m_request.assert_called_once_with(
             method="get",
@@ -1588,8 +1580,8 @@ class TestEnterpriseAIResources:
 
         resource = self.get_resource(base_absolut_url)
         assert (
-                resource.download_ai_prompt_fine_tuning_dataset(ai_prompt_id, job_identifier)
-                == "response"
+            resource.download_ai_prompt_fine_tuning_dataset(ai_prompt_id, job_identifier)
+            == "response"
         )
         m_request.assert_called_once_with(
             method="get",
@@ -1605,8 +1597,8 @@ class TestEnterpriseAIResources:
 
         resource = self.get_resource(base_absolut_url)
         assert (
-                resource.list_ai_prompt_fine_tuning_events(ai_prompt_id, job_identifier)
-                == "response"
+            resource.list_ai_prompt_fine_tuning_events(ai_prompt_id, job_identifier)
+            == "response"
         )
         m_request.assert_called_once_with(
             method="get",
@@ -1616,39 +1608,39 @@ class TestEnterpriseAIResources:
     @pytest.mark.parametrize(
         "incoming_data, request_params",
         (
-                (
-                        {},
-                        {
-                            "statuses": None,
-                            "orderBy": None,
-                            "limit": None,
-                            "offset": None,
-                        },
-                ),
-                (
-                        {
-                            "statuses": [
-                                AiPromptFineTuningJobStatus.CREATED,
-                                AiPromptFineTuningJobStatus.IN_PROGRESS,
-                                AiPromptFineTuningJobStatus.FINISHED
-                            ],
-                            "order_by": Sorting([
-                                SortingRule(ListAiPromptFineTuningJobsOrderBy.UPDATED_AT, SortingOrder.DESC),
-                                SortingRule(ListAiPromptFineTuningJobsOrderBy.STARTED_AT, SortingOrder.DESC)
-                            ]),
-                            "limit": 10,
-                            "offset": 2
-                        },
-                        {
-                            "statuses": "created,in_progress,finished",
-                            "orderBy": Sorting([
-                                SortingRule(ListAiPromptFineTuningJobsOrderBy.UPDATED_AT, SortingOrder.DESC),
-                                SortingRule(ListAiPromptFineTuningJobsOrderBy.STARTED_AT, SortingOrder.DESC)
-                            ]),
-                            "limit": 10,
-                            "offset": 2
-                        },
-                ),
+            (
+                {},
+                {
+                    "statuses": None,
+                    "orderBy": None,
+                    "limit": None,
+                    "offset": None,
+                },
+            ),
+            (
+                {
+                    "statuses": [
+                        AiPromptFineTuningJobStatus.CREATED,
+                        AiPromptFineTuningJobStatus.IN_PROGRESS,
+                        AiPromptFineTuningJobStatus.FINISHED
+                    ],
+                    "order_by": Sorting([
+                        SortingRule(ListAiPromptFineTuningJobsOrderBy.UPDATED_AT, SortingOrder.DESC),
+                        SortingRule(ListAiPromptFineTuningJobsOrderBy.STARTED_AT, SortingOrder.DESC)
+                    ]),
+                    "limit": 10,
+                    "offset": 2
+                },
+                {
+                    "statuses": "created,in_progress,finished",
+                    "orderBy": Sorting([
+                        SortingRule(ListAiPromptFineTuningJobsOrderBy.UPDATED_AT, SortingOrder.DESC),
+                        SortingRule(ListAiPromptFineTuningJobsOrderBy.STARTED_AT, SortingOrder.DESC)
+                    ]),
+                    "limit": 10,
+                    "offset": 2
+                },
+            ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -1679,18 +1671,18 @@ class TestEnterpriseAIResources:
     @pytest.mark.parametrize(
         "incoming_data, request_params",
         (
-                (
-                        {
-                            "description": "Product description",
-                            "placeholder": "%custom:productDescription%",
-                            "value": "The product is the professional consulting service that transform challenges into opportunities."
-                        },
-                        {
-                            "description": "Product description",
-                            "placeholder": "%custom:productDescription%",
-                            "value": "The product is the professional consulting service that transform challenges into opportunities."
-                        },
-                ),
+            (
+                {
+                    "description": "Product description",
+                    "placeholder": "%custom:productDescription%",
+                    "value": "The product is the professional consulting service"
+                },
+                {
+                    "description": "Product description",
+                    "placeholder": "%custom:productDescription%",
+                    "value": "The product is the professional consulting service"
+                },
+            ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -1737,32 +1729,32 @@ class TestEnterpriseAIResources:
     @pytest.mark.parametrize(
         "incoming_data, request_params",
         (
-                (
-                        [
-                            {
-                                "op": PatchOperation.REPLACE.value,
-                                "path": EditAiCustomPlaceholderPatchPath.DESCRIPTION.value,
-                                "value": "New description"
-                            },
-                            {
-                                "op": PatchOperation.REPLACE.value,
-                                "path": EditAiCustomPlaceholderPatchPath.VALUE.value,
-                                "value": "The product is the professional consulting service"
-                            }
-                        ],
-                        [
-                            {
-                                "op": "replace",
-                                "path": "/description",
-                                "value": "New description"
-                            },
-                            {
-                                "op": "replace",
-                                "path": "/value",
-                                "value": "The product is the professional consulting service"
-                            }
-                        ],
-                ),
+            (
+                [
+                    {
+                        "op": PatchOperation.REPLACE.value,
+                        "path": EditAiCustomPlaceholderPatchPath.DESCRIPTION.value,
+                        "value": "New description"
+                    },
+                    {
+                        "op": PatchOperation.REPLACE.value,
+                        "path": EditAiCustomPlaceholderPatchPath.VALUE.value,
+                        "value": "The product is the professional consulting service"
+                    }
+                ],
+                [
+                    {
+                        "op": "replace",
+                        "path": "/description",
+                        "value": "New description"
+                    },
+                    {
+                        "op": "replace",
+                        "path": "/value",
+                        "value": "The product is the professional consulting service"
+                    }
+                ],
+            ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -1801,56 +1793,56 @@ class TestEnterpriseAIResources:
     @pytest.mark.parametrize(
         "incoming_data, request_params",
         (
-                (
-                        GenerateAiPromptCompletionRequest(
-                            resources=PreTranslateActionAiPromptContextResources(
-                                projectId=1,
-                                sourceLanguageId="en",
-                                targetLanguageId="uk",
-                                stringIds=[1, 2, 3],
-                                overridePromptValues={
-                                    "property1": "string"
-                                }
-                            ),
-                            tools=[
-                                AiToolObject(
-                                    tool=AiTool(
-                                        type=AiToolType.FUNCTION.value,
-                                        function=AiToolFunction(
-                                            name="Name",
-                                            description="Description",
-                                            parameters={}
-                                        )
-                                    )
+            (
+                GenerateAiPromptCompletionRequest(
+                    resources=PreTranslateActionAiPromptContextResources(
+                        projectId=1,
+                        sourceLanguageId="en",
+                        targetLanguageId="uk",
+                        stringIds=[1, 2, 3],
+                        overridePromptValues={
+                            "property1": "string"
+                        }
+                    ),
+                    tools=[
+                        AiToolObject(
+                            tool=AiTool(
+                                type=AiToolType.FUNCTION.value,
+                                function=AiToolFunction(
+                                    name="Name",
+                                    description="Description",
+                                    parameters={}
                                 )
-                            ],
-                            tool_choice="string"
-                        ),
-                        {
-                            "resources": {
-                                "projectId": 1,
-                                "sourceLanguageId": "en",
-                                "targetLanguageId": "uk",
-                                "stringIds": [1, 2, 3],
-                                "overridePromptValues": {
-                                    "property1": "string"
-                                }
-                            },
-                            "tools": [
-                                {
-                                    "tool": {
-                                        "type": "function",
-                                        "function": {
-                                            "name": "Name",
-                                            "description": "Description",
-                                            "parameters": {}
-                                        }
-                                    }
-                                }
-                            ],
-                            "tool_choice": "string"
-                        },
+                            )
+                        )
+                    ],
+                    tool_choice="string"
                 ),
+                {
+                    "resources": {
+                        "projectId": 1,
+                        "sourceLanguageId": "en",
+                        "targetLanguageId": "uk",
+                        "stringIds": [1, 2, 3],
+                        "overridePromptValues": {
+                            "property1": "string"
+                        }
+                    },
+                    "tools": [
+                        {
+                            "tool": {
+                                "type": "function",
+                                "function": {
+                                    "name": "Name",
+                                    "description": "Description",
+                                    "parameters": {}
+                                }
+                            }
+                        }
+                    ],
+                    "tool_choice": "string"
+                },
+            ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -1916,30 +1908,30 @@ class TestEnterpriseAIResources:
     @pytest.mark.parametrize(
         "incoming_data, request_params",
         (
-                (
-                        GenerateAiReportRequest(
-                            type="tokens-usage-raw-data",
-                            schema=GeneralReportSchema(
-                                dateFrom=datetime(2024, 1, 23, 7, 0, 14, tzinfo=timezone.utc).isoformat(),
-                                dateTo=datetime(2024, 9, 27, 7, 0, 14, tzinfo=timezone.utc).isoformat(),
-                                format=AiReportFormat.JSON.value,
-                                projectIds=[1, 2, 3],
-                                promptIds=[4, 5, 6],
-                                userIds=[7, 8, 9]
-                            )
-                        ),
-                        {
-                            "type": "tokens-usage-raw-data",
-                            "schema": {
-                                "dateFrom": "2024-01-23T07:00:14+00:00",
-                                "dateTo": "2024-09-27T07:00:14+00:00",
-                                "format": "json",
-                                "projectIds": [1, 2, 3],
-                                "promptIds": [4, 5, 6],
-                                "userIds": [7, 8, 9]
-                            }
-                        },
+            (
+                GenerateAiReportRequest(
+                    type="tokens-usage-raw-data",
+                    schema=GeneralReportSchema(
+                        dateFrom=datetime(2024, 1, 23, 7, 0, 14, tzinfo=timezone.utc).isoformat(),
+                        dateTo=datetime(2024, 9, 27, 7, 0, 14, tzinfo=timezone.utc).isoformat(),
+                        format=AiReportFormat.JSON.value,
+                        projectIds=[1, 2, 3],
+                        promptIds=[4, 5, 6],
+                        userIds=[7, 8, 9]
+                    )
                 ),
+                {
+                    "type": "tokens-usage-raw-data",
+                    "schema": {
+                        "dateFrom": "2024-01-23T07:00:14+00:00",
+                        "dateTo": "2024-09-27T07:00:14+00:00",
+                        "format": "json",
+                        "projectIds": [1, 2, 3],
+                        "promptIds": [4, 5, 6],
+                        "userIds": [7, 8, 9]
+                    }
+                },
+            ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -1998,32 +1990,32 @@ class TestEnterpriseAIResources:
     @pytest.mark.parametrize(
         "incoming_data, request_params",
         (
-                (
-                        [
-                            {
-                                "op": PatchOperation.REPLACE.value,
-                                "path": EditAiSettingsPatchPath.ASSIST_ACTION_AI_PROMPT_ID.value,
-                                "value": 1
-                            },
-                            {
-                                "op": PatchOperation.REPLACE.value,
-                                "path": EditAiSettingsPatchPath.EDITOR_SUGGESTION_AI_PROMPT_ID.value,
-                                "value": 2
-                            }
-                        ],
-                        [
-                            {
-                                "op": "replace",
-                                "path": "/assistActionAiPromptId",
-                                "value": 1
-                            },
-                            {
-                                "op": "replace",
-                                "path": "/editorSuggestionAiPromptId",
-                                "value": 2
-                            }
-                        ],
-                ),
+            (
+                [
+                    {
+                        "op": PatchOperation.REPLACE.value,
+                        "path": EditAiSettingsPatchPath.ASSIST_ACTION_AI_PROMPT_ID.value,
+                        "value": 1
+                    },
+                    {
+                        "op": PatchOperation.REPLACE.value,
+                        "path": EditAiSettingsPatchPath.EDITOR_SUGGESTION_AI_PROMPT_ID.value,
+                        "value": 2
+                    }
+                ],
+                [
+                    {
+                        "op": "replace",
+                        "path": "/assistActionAiPromptId",
+                        "value": 1
+                    },
+                    {
+                        "op": "replace",
+                        "path": "/editorSuggestionAiPromptId",
+                        "value": 2
+                    }
+                ],
+            ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
