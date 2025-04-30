@@ -1010,7 +1010,7 @@ class EnterpriseAIResource(BaseResource):
 
         return self.requester.request(
             method="get",
-            path=f"ai/prompts/fine-tuning/jobs",
+            path="ai/prompts/fine-tuning/jobs",
             params=params
         )
 

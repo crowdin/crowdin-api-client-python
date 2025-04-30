@@ -695,12 +695,12 @@ class TestAIResources:
                 {
                     "description": "Product description",
                     "placeholder": "%custom:productDescription%",
-                    "value": "The product is the professional consulting service that transform challenges into opportunities."
+                    "value": "The product is the professional consulting service"
                 },
                 {
                     "description": "Product description",
                     "placeholder": "%custom:productDescription%",
-                    "value": "The product is the professional consulting service that transform challenges into opportunities."
+                    "value": "The product is the professional consulting service"
                 },
             ),
         ),
@@ -825,7 +825,7 @@ class TestAIResources:
                         projectId=1,
                         sourceLanguageId="en",
                         targetLanguageId="uk",
-                        stringIds=[1,2,3],
+                        stringIds=[1, 2,3 ],
                         overridePromptValues={
                             "property1": "string"
                         }
@@ -849,7 +849,7 @@ class TestAIResources:
                         "projectId": 1,
                         "sourceLanguageId": "en",
                         "targetLanguageId": "uk",
-                        "stringIds": [1,2,3],
+                        "stringIds": [1, 2, 3],
                         "overridePromptValues": {
                             "property1": "string"
                         }
@@ -945,9 +945,9 @@ class TestAIResources:
                         dateFrom=datetime(2024, 1, 23, 7, 0, 14, tzinfo=timezone.utc).isoformat(),
                         dateTo=datetime(2024, 9, 27, 7, 0, 14, tzinfo=timezone.utc).isoformat(),
                         format=AiReportFormat.JSON.value,
-                        projectIds=[1,2,3],
-                        promptIds=[4,5,6],
-                        userIds=[7,8,9]
+                        projectIds=[1, 2, 3],
+                        promptIds=[4, 5, 6],
+                        userIds=[7, 8, 9]
                     )
                 ),
                 {
@@ -956,9 +956,9 @@ class TestAIResources:
                         "dateFrom": "2024-01-23T07:00:14+00:00",
                         "dateTo": "2024-09-27T07:00:14+00:00",
                         "format": "json",
-                        "projectIds": [1,2,3],
-                        "promptIds": [4,5,6],
-                        "userIds": [7,8,9]
+                        "projectIds": [1, 2, 3],
+                        "promptIds": [4, 5, 6],
+                        "userIds": [7, 8, 9]
                     }
                 },
             ),
@@ -1444,9 +1444,9 @@ class TestEnterpriseAIResources:
                     tmIds=[2, 3],
                     purpose=DatasetPurpose.TRAINING.value,
                     dateFrom=datetime(2019, 9, 23, 11, 26, 54,
-                                              tzinfo=timezone.utc).isoformat(),
+                        tzinfo=timezone.utc).isoformat(),
                     dateTo=datetime(2019, 9, 23, 11, 26, 54,
-                                            tzinfo=timezone.utc).isoformat(),
+                        tzinfo=timezone.utc).isoformat(),
                     maxFileSize=20,
                     minExamplesCount=2,
                     maxExamplesCount=10
@@ -1490,8 +1490,8 @@ class TestEnterpriseAIResources:
 
         resource = self.get_resource(base_absolut_url)
         assert (
-                resource.get_ai_prompt_fine_tuning_dataset_generation_status(ai_prompt_id, job_identifier)
-                == "response"
+            resource.get_ai_prompt_fine_tuning_dataset_generation_status(ai_prompt_id, job_identifier)
+            == "response"
         )
         m_request.assert_called_once_with(
             method="get",
@@ -1501,44 +1501,44 @@ class TestEnterpriseAIResources:
     @pytest.mark.parametrize(
         "incoming_data, request_data",
         (
-                (
-                        CreateAIPromptFineTuningJobRequest(
-                            dryRun=False,
-                            hyperparameters=HyperParameters(
-                                batchSize=1,
-                                learningRateMultiplier=2.0,
-                                nEpochs=100,
-                            ),
-                            trainingOptions=TrainingOptions(
-                                projectIds=[1],
-                                tmIds=[2],
-                                dateFrom=datetime(2019, 9, 23, 11, 26, 54,
-                                                  tzinfo=timezone.utc).isoformat(),
-                                dateTo=datetime(2019, 9, 23, 11, 26, 54,
-                                                tzinfo=timezone.utc).isoformat(),
-                                maxFileSize=10,
-                                minExamplesCount=200,
-                                maxExamplesCount=300
-                            )
-                        ),
-                        {
-                            "dryRun": False,
-                            "hyperparameters": {
-                                "batchSize": 1,
-                                "learningRateMultiplier": 2.0,
-                                "nEpochs": 100,
-                            },
-                            "trainingOptions": {
-                                "projectIds": [1],
-                                "tmIds": [2],
-                                "dateFrom": "2019-09-23T11:26:54+00:00",
-                                "dateTo": "2019-09-23T11:26:54+00:00",
-                                "maxFileSize": 10,
-                                "minExamplesCount": 200,
-                                "maxExamplesCount": 300
-                            }
-                        }
+            (
+                CreateAIPromptFineTuningJobRequest(
+                    dryRun=False,
+                    hyperparameters=HyperParameters(
+                        batchSize=1,
+                        learningRateMultiplier=2.0,
+                        nEpochs=100,
+                    ),
+                    trainingOptions=TrainingOptions(
+                        projectIds=[1],
+                        tmIds=[2],
+                        dateFrom=datetime(2019, 9, 23, 11, 26, 54,
+                            tzinfo=timezone.utc).isoformat(),
+                        dateTo=datetime(2019, 9, 23, 11, 26, 54,
+                            tzinfo=timezone.utc).isoformat(),
+                        maxFileSize=10,
+                        minExamplesCount=200,
+                        maxExamplesCount=300
+                    )
                 ),
+                {
+                    "dryRun": False,
+                    "hyperparameters": {
+                        "batchSize": 1,
+                        "learningRateMultiplier": 2.0,
+                        "nEpochs": 100,
+                    },
+                    "trainingOptions": {
+                        "projectIds": [1],
+                        "tmIds": [2],
+                        "dateFrom": "2019-09-23T11:26:54+00:00",
+                        "dateTo": "2019-09-23T11:26:54+00:00",
+                        "maxFileSize": 10,
+                        "minExamplesCount": 200,
+                        "maxExamplesCount": 300
+                    }
+                }
+            ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
