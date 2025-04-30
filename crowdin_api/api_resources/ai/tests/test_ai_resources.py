@@ -1652,7 +1652,7 @@ class TestEnterpriseAIResources:
 
         m_request.assert_called_once_with(
             method="get",
-            path=f"ai/prompts/fine-tuning/jobs",
+            path="ai/prompts/fine-tuning/jobs",
             params=request_params,
         )
 
@@ -1665,7 +1665,7 @@ class TestEnterpriseAIResources:
 
         m_request.assert_called_once_with(
             method="get",
-            path=f"ai/settings/custom-placeholders",
+            path="ai/settings/custom-placeholders",
         )
 
     @pytest.mark.parametrize(
@@ -1694,7 +1694,7 @@ class TestEnterpriseAIResources:
 
         m_request.assert_called_once_with(
             method="post",
-            path=f"ai/settings/custom-placeholders",
+            path="ai/settings/custom-placeholders",
             request_data=request_params,
         )
 
@@ -1943,7 +1943,7 @@ class TestEnterpriseAIResources:
 
         m_request.assert_called_once_with(
             method="post",
-            path=f"ai/reports",
+            path="ai/reports",
             request_data=request_params,
         )
 
@@ -1984,7 +1984,7 @@ class TestEnterpriseAIResources:
 
         m_request.assert_called_once_with(
             method="get",
-            path=f"ai/settings",
+            path="ai/settings",
         )
 
     @pytest.mark.parametrize(
@@ -2027,6 +2027,6 @@ class TestEnterpriseAIResources:
 
         m_request.assert_called_once_with(
             method="patch",
-            path=f"ai/settings",
+            path="ai/settings",
             request_data=request_params,
         )
