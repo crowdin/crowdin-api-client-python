@@ -60,6 +60,7 @@ class TestProjectsResource:
                     "userId": 1,
                     "groupId": 1,
                     "hasManagerAccess": HasManagerAccess.TRUE,
+                    "type": ProjectType.STRING_BASED
                 },
                 {
                     "orderBy": Sorting(
@@ -70,6 +71,7 @@ class TestProjectsResource:
                     "userId": 1,
                     "groupId": 1,
                     "hasManagerAccess": HasManagerAccess.TRUE,
+                    "type": 1
                 },
             ),
             (
@@ -81,6 +83,7 @@ class TestProjectsResource:
                     "userId": None,
                     "groupId": None,
                     "hasManagerAccess": None,
+                    "type": None
                 },
             ),
         ),
