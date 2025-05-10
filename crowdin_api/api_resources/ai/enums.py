@@ -42,3 +42,43 @@ class EditAIProviderPath(Enum):
 class DatasetPurpose(Enum):
     TRAINING = "training"
     VALIDATION = "validation"
+
+
+class EditAiCustomPlaceholderPatchPath(Enum):
+    DESCRIPTION = "/description"
+    PLACEHOLDER = "/placeholder"
+    VALUE = "/value"
+
+
+class AiPromptFineTuningJobStatus(Enum):
+    CREATED = "created"
+    IN_PROGRESS = "in_progress"
+    CANCELED = "canceled"
+    FAILED = "failed"
+    FINISHED = "finished"
+
+
+class AiToolType(Enum):
+    FUNCTION = "function"
+
+
+class AiReportType(Enum):
+    TOKENS_USAGE_RAW_DATA = "tokens-usage-raw-data"
+
+
+class EditAiSettingsPatchPath(Enum):
+    ASSIST_ACTION_AI_PROMPT_ID = "/assistActionAiPromptId"
+    EDITOR_SUGGESTION_AI_PROMPT_ID = "/editorSuggestionAiPromptId"
+    SHORTCUTS = "/shortcuts"
+
+
+class ListAiPromptFineTuningJobsOrderBy(Enum):
+    CREATED_AT = "createdAt"
+    UPDATED_AT = "updatedAt"
+    STARTED_AT = "startedAt"
+    FINISHED_AT = "finishedAt"
+
+
+class AiReportFormat(Enum):
+    CSV = "csv"
+    JSON = "json"

@@ -6,7 +6,11 @@ from crowdin_api.api_resources.ai.enums import (
     AIProviderType,
     EditAIPromptPath,
     EditAIProviderPath,
+    EditAiCustomPlaceholderPatchPath,
+    AiToolType,
+    EditAiSettingsPatchPath,
 )
+from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.typing import TypedDict
 
 
@@ -192,3 +196,94 @@ class CreateAIPromptFineTuningJobRequest(TypedDict):
     hyperparameters: Optional[HyperParameters]
     trainingOptions: TrainingOptions
     validationOptions: Optional[ValidationOptions]
+
+
+class AddAiCustomPlaceholderRequest(TypedDict):
+    description: str
+    placeholder: str
+    value: str
+
+
+class EditAiCustomPlaceholderPatch(TypedDict):
+    op: PatchOperation
+    path: EditAiCustomPlaceholderPatchPath
+    value: Any
+
+
+class AiToolFunction(TypedDict):
+    description: Optional[str]
+    name: str
+    parameters: Any
+
+
+class AiTool(TypedDict):
+    type: AiToolType
+    function: AiToolFunction
+
+
+class AiToolObject(TypedDict):
+    tool: AiTool
+
+
+class AiPromptContextResources(TypedDict):
+    pass
+
+
+class PreTranslateActionAiPromptContextResources(AiPromptContextResources):
+    projectId: int
+    sourceLanguageId: Optional[str]
+    targetLanguageId: Optional[str]
+    stringIds: Optional[Iterable[int]]
+    overridePromptValues: Optional[Dict[str, str]]
+
+
+class AssistActionAiPromptContextResources(AiPromptContextResources):
+    projectId: int
+    sourceLanguageId: Optional[str]
+    targetLanguageId: Optional[str]
+    stringIds: Optional[Iterable[int]]
+    filteredStringIds: Optional[Iterable[int]]
+    overridePromptValues: Optional[Dict[str, str]]
+
+
+class QaCheckActionAiPromptContextResources(AiPromptContextResources):
+    projectId: int
+    sourceLanguageId: Optional[str]
+    targetLanguageId: Optional[str]
+    stringIds: Optional[Iterable[int]]
+    overridePromptValues: Optional[Dict[str, str]]
+
+
+class CustomActionAiPromptContextResources(AiPromptContextResources):
+    projectId: int
+    sourceLanguageId: Optional[str]
+    targetLanguageId: Optional[str]
+    stringIds: Optional[Iterable[int]]
+    overridePromptValues: Optional[Dict[str, str]]
+    customInstruction: Optional[str]
+
+
+class GenerateAiPromptCompletionRequest(TypedDict):
+    resources: AiPromptContextResources
+    tools: Optional[Iterable[AiToolObject]]
+    tool_choice: Any
+
+
+class GeneralReportSchema(TypedDict):
+    dateFrom: str
+    dateTo: str
+    format: Optional[str]
+    projectIds: Optional[Iterable[int]]
+    promptIds: Optional[Iterable[int]]
+    userIds: Optional[Iterable[int]]
+
+
+class GenerateAiReportRequest(TypedDict):
+    type: str
+    schema: GeneralReportSchema
+
+
+class EditAiSettingsPatch(TypedDict):
+    op: PatchOperation
+    path: EditAiSettingsPatchPath
+    value: Any
