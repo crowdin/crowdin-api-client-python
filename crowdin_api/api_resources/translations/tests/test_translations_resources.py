@@ -120,6 +120,17 @@ class TestTranslationsResource:
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_pre_translation_report(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.pre_translation_report(projectId=1, preTranslationId="2") == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/1/pre-translations/2/report",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_edit_bundle(self, m_request, base_absolut_url):
         m_request.return_value = "response"
 
