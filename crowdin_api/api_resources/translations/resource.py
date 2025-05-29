@@ -129,6 +129,24 @@ class TranslationsResource(BaseResource):
             },
         )
 
+    def pre_translation_report(
+        self,
+        preTranslationId: str,
+        projectId: Optional[int] = None,
+    ):
+        """
+        Pre-Translation Report
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.pre-translations.report.getReport
+        """
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="get",
+            path=f"projects/{projectId}/pre-translations/{preTranslationId}/report",
+        )
+
     def edit_pre_translation(
         self,
         preTranslationId: str,
