@@ -6,7 +6,7 @@ from crowdin_api.api_resources.string_comments.enums import (
     StringCommentIssueType,
     StringCommentType,
 )
-from crowdin_api.api_resources.string_comments.types import StringCommentPatchRequest
+from crowdin_api.api_resources.string_comments.types import StringCommentPatchRequest, StringCommentBatchOpPatchRequest
 from crowdin_api.sorting import Sorting
 
 
@@ -148,4 +148,25 @@ class StringCommentsResource(BaseResource):
             path=self.get_string_comments_path(
                 projectId=projectId, stringCommentId=stringCommentId
             ),
+        )
+
+    def string_comment_batch_operations(
+        self,
+        project_id: int,
+        data: Iterable[StringCommentBatchOpPatchRequest]
+    ):
+        """
+        String Comment Batch Operations.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/String-Comments/operation/api.projects.comments.batchPatch
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/String-Comments/operation/api.projects.comments.batchPatch
+        """
+
+        return self.requester.request(
+            method="patch",
+            path=f"projects/{project_id}/comments",
+            request_data=data,
         )

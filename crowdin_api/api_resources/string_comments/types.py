@@ -9,3 +9,9 @@ class StringCommentPatchRequest(TypedDict):
     value: Any
     op: PatchOperation
     path: StringCommentPatchPath
+
+
+class StringCommentBatchOpPatchRequest(TypedDict):
+    op: PatchOperation
+    path: str
+    value: Any

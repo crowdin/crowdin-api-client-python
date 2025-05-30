@@ -1,7 +1,7 @@
 from unittest import mock
 
 import pytest
-from crowdin_api.api_resources.enums import DenormalizePlaceholders
+from crowdin_api.api_resources.enums import DenormalizePlaceholders, PatchOperation
 from crowdin_api.api_resources.string_translations.enums import (
     ListLanguageTranslationsOrderBy,
     ListStringTranslationsOrderBy,
@@ -521,4 +521,106 @@ class TestStringTranslationsResource:
         m_request.assert_called_once_with(
             method="delete",
             path=resource.get_translation_votes_path(projectId=1, voteId=2),
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            (
+                [
+                    {
+                        "op": PatchOperation.ADD.value,
+                        "path": "/-",
+                        "value": {
+                            "translationId": 200
+                        }
+                    },
+                    {
+                        "op": PatchOperation.REMOVE.value,
+                        "path": "/2815"
+                    }
+                ],
+                [
+                    {
+                        "op": "add",
+                        "path": "/-",
+                        "value": {
+                            "translationId": 200
+                        }
+                    },
+                    {
+                        "op": "remove",
+                        "path": "/2815"
+                    }
+                ]
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_approvals_batch_operations(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        project_id = 1
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.approval_batch_operations(project_id, in_params) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path=f"projects/{project_id}/approvals",
+            request_data=request_params,
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            (
+                [
+                    {
+                        "op": PatchOperation.ADD.value,
+                        "path": "/-",
+                        "value": {
+                            "stringId": 35434,
+                            "languageId": "fr",
+                            "text": "Цю стрічку перекладено",
+                            "pluralCategoryName": "few",
+                            "addToTm": False
+                        }
+                    },
+                    {
+                        "op": PatchOperation.REMOVE.value,
+                        "path": "/2815"
+                    }
+                ],
+                [
+                    {
+                        "op": "add",
+                        "path": "/-",
+                        "value": {
+                            "stringId": 35434,
+                            "languageId": "fr",
+                            "text": "Цю стрічку перекладено",
+                            "pluralCategoryName": "few",
+                            "addToTm": False
+                        }
+                    },
+                    {
+                        "op": "remove",
+                        "path": "/2815"
+                    }
+                ]
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_translation_batch_operations(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        project_id = 1
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.translation_batch_operations(project_id, in_params) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path=f"projects/{project_id}/translations",
+            request_data=request_params,
         )

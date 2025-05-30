@@ -183,3 +183,78 @@ class TestSourceFilesResource:
             request_data=data,
             path=resource.get_string_comments_path(projectId=1, stringCommentId=2),
         )
+
+    @pytest.mark.parametrize(
+        "in_params, request_data",
+        (
+            (
+                [
+                    {
+                        "op": PatchOperation.REPLACE.value,
+                        "path": "/2814/text",
+                        "value": "some issue edited"
+                    },
+                    {
+                        "op": PatchOperation.REPLACE.value,
+                        "path": "/2814/issueStatus",
+                        "value": "resolved"
+                    },
+                    {
+                        "op": PatchOperation.ADD.value,
+                        "path": "/-",
+                        "value": {
+                            "text": "some issue",
+                            "stringId": 1,
+                            "type": "issue",
+                            "targetLanguageId": "en",
+                            "issueType": "translation_mistake"
+                        }
+                    },
+                    {
+                        "op": PatchOperation.REMOVE.value,
+                        "path": "/2815"
+                    }
+                ],
+                [
+                    {
+                        "op": "replace",
+                        "path": "/2814/text",
+                        "value": "some issue edited"
+                    },
+                    {
+                        "op": "replace",
+                        "path": "/2814/issueStatus",
+                        "value": "resolved"
+                    },
+                    {
+                        "op": "add",
+                        "path": "/-",
+                        "value": {
+                            "text": "some issue",
+                            "stringId": 1,
+                            "type": "issue",
+                            "targetLanguageId": "en",
+                            "issueType": "translation_mistake"
+                        }
+                    },
+                    {
+                        "op": "remove",
+                        "path": "/2815"
+                    }
+                ],
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_string_comment_batch_operations(self, m_request, in_params, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        project_id = 1
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.string_comment_batch_operations(project_id, in_params) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path=f"projects/{project_id}/comments",
+            request_data=request_data,
+        )
