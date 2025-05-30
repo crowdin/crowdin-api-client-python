@@ -3,6 +3,10 @@ from typing import Iterable, Optional
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.enums import DenormalizePlaceholders, PluralCategoryName
 from crowdin_api.api_resources.string_translations.enums import VoteMark
+from crowdin_api.api_resources.string_translations.types import (
+    ApprovalBatchOpPatchRequest,
+    TranslationBatchOpPatchRequest
+)
 from crowdin_api.sorting import Sorting
 
 
@@ -428,4 +432,46 @@ class StringTranslationsResource(BaseResource):
         return self.requester.request(
             method="delete",
             path=self.get_translation_votes_path(projectId=projectId, voteId=voteId),
+        )
+
+    def approval_batch_operations(
+        self,
+        project_id: int,
+        data: Iterable[ApprovalBatchOpPatchRequest]
+    ):
+        """
+        Approval Batch Operations
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/String-Translations/operation/api.projects.approvals.patch
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/String-Translations/operation/api.projects.approvals.patch
+        """
+
+        return self.requester.request(
+            method="patch",
+            path=f"projects/{project_id}/approvals",
+            request_data=data,
+        )
+
+    def translation_batch_operations(
+        self,
+        project_id: int,
+        data: Iterable[TranslationBatchOpPatchRequest]
+    ):
+        """
+        Translation Batch Operations
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/String-Translations/operation/api.projects.translations.patch
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/String-Translations/operation/api.projects.translations.patch
+        """
+
+        return self.requester.request(
+            method="patch",
+            path=f"projects/{project_id}/translations",
+            request_data=data,
         )
