@@ -3089,6 +3089,16 @@ be removed from storage and will remain in your account.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.comments.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.comments.getMany</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.StringCommentsResource.string_comment_batch_operations"><code class="name flex">
+<span>def <span class="ident">string_comment_batch_operations</span></span>(<span>self, project_id: int, data: Iterable[<a title="crowdin_api.api_resources.string_comments.types.StringCommentBatchOpPatchRequest" href="string_comments/types.html#crowdin_api.api_resources.string_comments.types.StringCommentBatchOpPatchRequest">StringCommentBatchOpPatchRequest</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>String Comment Batch Operations.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/String-Comments/operation/api.projects.comments.batchPatch">https://support.crowdin.com/developer/api/v2/#tag/String-Comments/operation/api.projects.comments.batchPatch</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/String-Comments/operation/api.projects.comments.batchPatch">https://support.crowdin.com/developer/enterprise/api/v2/#tag/String-Comments/operation/api.projects.comments.batchPatch</a></p></div>
+</dd>
 </dl>
 </dd>
 <dt id="crowdin_api.api_resources.StringTranslationsResource"><code class="flex name class">
@@ -3129,6 +3139,16 @@ be removed from storage and will remain in your account.</p>
 <div class="desc"><p>Add Vote.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.votes.pos">https://developer.crowdin.com/api/v2/#operation/api.projects.votes.pos</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.StringTranslationsResource.approval_batch_operations"><code class="name flex">
+<span>def <span class="ident">approval_batch_operations</span></span>(<span>self, project_id: int, data: Iterable[<a title="crowdin_api.api_resources.string_translations.types.ApprovalBatchOpPatchRequest" href="string_translations/types.html#crowdin_api.api_resources.string_translations.types.ApprovalBatchOpPatchRequest">ApprovalBatchOpPatchRequest</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Approval Batch Operations</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/String-Translations/operation/api.projects.approvals.patch">https://support.crowdin.com/developer/api/v2/#tag/String-Translations/operation/api.projects.approvals.patch</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/String-Translations/operation/api.projects.approvals.patch">https://support.crowdin.com/developer/enterprise/api/v2/#tag/String-Translations/operation/api.projects.approvals.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.StringTranslationsResource.cancel_vote"><code class="name flex">
 <span>def <span class="ident">cancel_vote</span></span>(<span>self, voteId: int, projectId: Optional[int] = None)</span>
@@ -3259,6 +3279,16 @@ be removed from storage and will remain in your account.</p>
 <div class="desc"><p>Translation Alignment</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.alignment.post">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.alignment.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.StringTranslationsResource.translation_batch_operations"><code class="name flex">
+<span>def <span class="ident">translation_batch_operations</span></span>(<span>self, project_id: int, data: Iterable[<a title="crowdin_api.api_resources.string_translations.types.TranslationBatchOpPatchRequest" href="string_translations/types.html#crowdin_api.api_resources.string_translations.types.TranslationBatchOpPatchRequest">TranslationBatchOpPatchRequest</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Translation Batch Operations</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/String-Translations/operation/api.projects.translations.patch">https://support.crowdin.com/developer/api/v2/#tag/String-Translations/operation/api.projects.translations.patch</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/String-Translations/operation/api.projects.translations.patch">https://support.crowdin.com/developer/enterprise/api/v2/#tag/String-Translations/operation/api.projects.translations.patch</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -4035,6 +4065,14 @@ are asynchronous operations and shall be completed with sequence of API methods.
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.getMany</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.TranslationsResource.pre_translation_report"><code class="name flex">
+<span>def <span class="ident">pre_translation_report</span></span>(<span>self, preTranslationId: str, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Pre-Translation Report</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.pre-translations.report.getReport">https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.pre-translations.report.getReport</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.TranslationsResource.pre_translation_status"><code class="name flex">
 <span>def <span class="ident">pre_translation_status</span></span>(<span>self, preTranslationId: str, projectId: Optional[int] = None)</span>
 </code></dt>
@@ -4751,6 +4789,7 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.StringCommentsResource.get_string_comment" href="#crowdin_api.api_resources.StringCommentsResource.get_string_comment">get_string_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringCommentsResource.get_string_comments_path" href="#crowdin_api.api_resources.StringCommentsResource.get_string_comments_path">get_string_comments_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringCommentsResource.list_string_comments" href="#crowdin_api.api_resources.StringCommentsResource.list_string_comments">list_string_comments</a></code></li>
+<li><code><a title="crowdin_api.api_resources.StringCommentsResource.string_comment_batch_operations" href="#crowdin_api.api_resources.StringCommentsResource.string_comment_batch_operations">string_comment_batch_operations</a></code></li>
 </ul>
 </li>
 <li>
@@ -4759,6 +4798,7 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.StringTranslationsResource.add_approval" href="#crowdin_api.api_resources.StringTranslationsResource.add_approval">add_approval</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringTranslationsResource.add_translation" href="#crowdin_api.api_resources.StringTranslationsResource.add_translation">add_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringTranslationsResource.add_vote" href="#crowdin_api.api_resources.StringTranslationsResource.add_vote">add_vote</a></code></li>
+<li><code><a title="crowdin_api.api_resources.StringTranslationsResource.approval_batch_operations" href="#crowdin_api.api_resources.StringTranslationsResource.approval_batch_operations">approval_batch_operations</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringTranslationsResource.cancel_vote" href="#crowdin_api.api_resources.StringTranslationsResource.cancel_vote">cancel_vote</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringTranslationsResource.delete_string_translations" href="#crowdin_api.api_resources.StringTranslationsResource.delete_string_translations">delete_string_translations</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringTranslationsResource.delete_translation" href="#crowdin_api.api_resources.StringTranslationsResource.delete_translation">delete_translation</a></code></li>
@@ -4776,6 +4816,7 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.StringTranslationsResource.remove_string_approvals" href="#crowdin_api.api_resources.StringTranslationsResource.remove_string_approvals">remove_string_approvals</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringTranslationsResource.restore_translation" href="#crowdin_api.api_resources.StringTranslationsResource.restore_translation">restore_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringTranslationsResource.translation_alignment" href="#crowdin_api.api_resources.StringTranslationsResource.translation_alignment">translation_alignment</a></code></li>
+<li><code><a title="crowdin_api.api_resources.StringTranslationsResource.translation_batch_operations" href="#crowdin_api.api_resources.StringTranslationsResource.translation_batch_operations">translation_batch_operations</a></code></li>
 </ul>
 </li>
 <li>
@@ -4887,6 +4928,7 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.TranslationsResource.get_builds_path" href="#crowdin_api.api_resources.TranslationsResource.get_builds_path">get_builds_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationsResource.list_pre_translations" href="#crowdin_api.api_resources.TranslationsResource.list_pre_translations">list_pre_translations</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationsResource.list_project_builds" href="#crowdin_api.api_resources.TranslationsResource.list_project_builds">list_project_builds</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TranslationsResource.pre_translation_report" href="#crowdin_api.api_resources.TranslationsResource.pre_translation_report">pre_translation_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationsResource.pre_translation_status" href="#crowdin_api.api_resources.TranslationsResource.pre_translation_status">pre_translation_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationsResource.upload_translation" href="#crowdin_api.api_resources.TranslationsResource.upload_translation">upload_translation</a></code></li>
 </ul>
