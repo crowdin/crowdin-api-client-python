@@ -71,6 +71,7 @@ class TestTranslationsResource:
                     "fallbackLanguages": [],
                     "labelIds": [],
                     "excludeLabelIds": [],
+                    "branchIds": [],
                 },
             ),
             (
@@ -103,6 +104,7 @@ class TestTranslationsResource:
                     "fallbackLanguages": ["lang"],
                     "labelIds": [1],
                     "excludeLabelIds": [1],
+                    "branchIds": [],
                 },
             ),
         ),
