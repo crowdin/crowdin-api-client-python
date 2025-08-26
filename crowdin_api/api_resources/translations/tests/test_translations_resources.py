@@ -71,6 +71,7 @@ class TestTranslationsResource:
                     "fallbackLanguages": [],
                     "labelIds": [],
                     "excludeLabelIds": [],
+                    "branchIds": [],
                 },
             ),
             (
@@ -103,6 +104,7 @@ class TestTranslationsResource:
                     "fallbackLanguages": ["lang"],
                     "labelIds": [1],
                     "excludeLabelIds": [1],
+                    "branchIds": [],
                 },
             ),
         ),
@@ -116,6 +118,131 @@ class TestTranslationsResource:
         m_request.assert_called_once_with(
             method="post",
             request_data=request_data,
+            path="projects/1/pre-translations",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_apply_pre_translation_with_branchids(self, m_request, base_absolut_url):
+        """Test that branchIds parameter is properly handled."""
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        response = resource.apply_pre_translation(
+            projectId=1,
+            languageIds=["en", "es"],
+            fileIds=[1, 2],
+            branchIds=[10, 20, 30]
+        )
+
+        assert response == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            request_data={
+                "languageIds": ["en", "es"],
+                "fileIds": [1, 2],
+                "method": None,
+                "engineId": None,
+                "aiPromptId": None,
+                "autoApproveOption": None,
+                "duplicateTranslations": None,
+                "skipApprovedTranslations": None,
+                "translateUntranslatedOnly": None,
+                "translateWithPerfectMatchOnly": None,
+                "fallbackLanguages": [],
+                "labelIds": [],
+                "excludeLabelIds": [],
+                "branchIds": [10, 20, 30],
+            },
+            path="projects/1/pre-translations",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_apply_pre_translation_edge_cases(self, m_request, base_absolut_url):
+        """Test edge cases and parameter handling."""
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+
+        # Test with empty lists
+        response = resource.apply_pre_translation(
+            projectId=1,
+            languageIds=[],
+            fileIds=[],
+            branchIds=[],
+            labelIds=[],
+            excludeLabelIds=[]
+        )
+
+        assert response == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            request_data={
+                "languageIds": [],
+                "fileIds": [],
+                "method": None,
+                "engineId": None,
+                "aiPromptId": None,
+                "autoApproveOption": None,
+                "duplicateTranslations": None,
+                "skipApprovedTranslations": None,
+                "translateUntranslatedOnly": None,
+                "translateWithPerfectMatchOnly": None,
+                "fallbackLanguages": [],
+                "labelIds": [],
+                "excludeLabelIds": [],
+                "branchIds": [],
+            },
+            path="projects/1/pre-translations",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_apply_pre_translation_with_all_optional_params(self, m_request, base_absolut_url):
+        """Test with all optional parameters set."""
+        from crowdin_api.api_resources.translations.enums import (
+            PreTranslationApplyMethod,
+            PreTranslationAutoApproveOption,
+        )
+
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        response = resource.apply_pre_translation(
+            projectId=1,
+            languageIds=["en"],
+            fileIds=[1],
+            method=PreTranslationApplyMethod.MT,
+            engineId=123,
+            aiPromptId=456,
+            autoApproveOption=PreTranslationAutoApproveOption.ALL,
+            duplicateTranslations=True,
+            skipApprovedTranslations=False,
+            translateUntranslatedOnly=True,
+            translateWithPerfectMatchOnly=False,
+            fallbackLanguages=[{"languageId": "fr", "userId": 789}],
+            labelIds=[1, 2, 3],
+            excludeLabelIds=[4, 5],
+            branchIds=[10, 20]
+        )
+
+        assert response == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            request_data={
+                "languageIds": ["en"],
+                "fileIds": [1],
+                "method": PreTranslationApplyMethod.MT,
+                "engineId": 123,
+                "aiPromptId": 456,
+                "autoApproveOption": PreTranslationAutoApproveOption.ALL,
+                "duplicateTranslations": True,
+                "skipApprovedTranslations": False,
+                "translateUntranslatedOnly": True,
+                "translateWithPerfectMatchOnly": False,
+                "fallbackLanguages": [{"languageId": "fr", "userId": 789}],
+                "labelIds": [1, 2, 3],
+                "excludeLabelIds": [4, 5],
+                "branchIds": [10, 20],
+            },
             path="projects/1/pre-translations",
         )
 

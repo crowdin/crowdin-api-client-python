@@ -91,6 +91,7 @@ class TranslationsResource(BaseResource):
         fallbackLanguages: Optional[Iterable[FallbackLanguages]] = None,
         labelIds: Optional[Iterable[int]] = None,
         excludeLabelIds: Optional[Iterable[int]] = None,
+        branchIds: Optional[Iterable[int]] = None,
     ):
         """
         Apply Pre-Translation.
@@ -106,6 +107,9 @@ class TranslationsResource(BaseResource):
 
         if excludeLabelIds is None:
             excludeLabelIds = []
+
+        if branchIds is None:
+            branchIds = []
 
         projectId = projectId or self.get_project_id()
 
@@ -126,6 +130,7 @@ class TranslationsResource(BaseResource):
                 "fallbackLanguages": fallbackLanguages,
                 "labelIds": labelIds,
                 "excludeLabelIds": excludeLabelIds,
+                "branchIds": branchIds,
             },
         )
 
