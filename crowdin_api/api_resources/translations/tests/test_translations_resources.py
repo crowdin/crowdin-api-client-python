@@ -133,7 +133,7 @@ class TestTranslationsResource:
             fileIds=[1, 2],
             branchIds=[10, 20, 30]
         )
-        
+
         assert response == "response"
         m_request.assert_called_once_with(
             method="post",
@@ -162,7 +162,7 @@ class TestTranslationsResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        
+
         # Test with empty lists
         response = resource.apply_pre_translation(
             projectId=1,
@@ -172,7 +172,7 @@ class TestTranslationsResource:
             labelIds=[],
             excludeLabelIds=[]
         )
-        
+
         assert response == "response"
         m_request.assert_called_once_with(
             method="post",
@@ -198,8 +198,11 @@ class TestTranslationsResource:
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_apply_pre_translation_with_all_optional_params(self, m_request, base_absolut_url):
         """Test with all optional parameters set."""
-        from crowdin_api.api_resources.translations.enums import PreTranslationApplyMethod, PreTranslationAutoApproveOption
-        
+        from crowdin_api.api_resources.translations.enums import (
+            PreTranslationApplyMethod,
+            PreTranslationAutoApproveOption,
+        )
+
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
@@ -220,7 +223,7 @@ class TestTranslationsResource:
             excludeLabelIds=[4, 5],
             branchIds=[10, 20]
         )
-        
+
         assert response == "response"
         m_request.assert_called_once_with(
             method="post",
