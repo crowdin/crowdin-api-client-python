@@ -639,30 +639,30 @@ class TestReportsResource:
         "in_params, expected_schema",
         [
             (
-                    {
-                        "unit": Unit.WORDS,
-                        "format": Format.XLSX,
-                    },
-                    {
-                        "unit": Unit.WORDS,
-                        "format": Format.XLSX,
-                        "dateFrom": None,
-                        "dateTo": None,
-                    },
+                {
+                    "unit": Unit.WORDS,
+                    "format": Format.XLSX,
+                },
+                {
+                    "unit": Unit.WORDS,
+                    "format": Format.XLSX,
+                    "dateFrom": None,
+                    "dateTo": None,
+                },
             ),
             (
-                    {
-                        "unit": Unit.WORDS,
-                        "format": Format.XLSX,
-                        "date_from": datetime(2023, 1, 1),
-                        "date_to": datetime(2023, 12, 31),
-                    },
-                    {
-                        "unit": Unit.WORDS,
-                        "format": Format.XLSX,
-                        "dateFrom": datetime(2023, 1, 1),
-                        "dateTo": datetime(2023, 12, 31),
-                    },
+                {
+                    "unit": Unit.WORDS,
+                    "format": Format.XLSX,
+                    "date_from": datetime(2023, 1, 1),
+                    "date_to": datetime(2023, 12, 31),
+                },
+                {
+                    "unit": Unit.WORDS,
+                    "format": Format.XLSX,
+                    "dateFrom": datetime(2023, 1, 1),
+                    "dateTo": datetime(2023, 12, 31),
+                },
             ),
         ]
     )
