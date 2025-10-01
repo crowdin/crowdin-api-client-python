@@ -2101,48 +2101,48 @@ class TestEnterpriseReportsResource:
         "in_params, expected_schema",
         [
             (
-                    {
-                        "format": Format.XLSX,
-                        "type": "all"
-                    },
-                    {
-                        "projectIds": None,
-                        "format": Format.XLSX,
-                        "type": "all",
-                        "dateFrom": None,
-                        "dateTo": None,
-                        "groupBy": None,
-                        "typeTask": None,
-                        "languageId": None,
-                        "creatorId": None,
-                        "assigneeId": None,
-                    },
+                {
+                    "format": Format.XLSX,
+                    "type": "all"
+                },
+                {
+                    "projectIds": None,
+                    "format": Format.XLSX,
+                    "type": "all",
+                    "dateFrom": None,
+                    "dateTo": None,
+                    "groupBy": None,
+                    "typeTask": None,
+                    "languageId": None,
+                    "creatorId": None,
+                    "assigneeId": None,
+                },
             ),
             (
-                    {
-                        "project_ids": [1],
-                        "format": Format.XLSX,
-                        "type": "translate",
-                        "date_from": datetime(2023, 1, 1),
-                        "date_to": datetime(2023, 12, 31),
-                        "group_by": GroupBy.USER,
-                        "type_task": 2,
-                        "language_id": "uk",
-                        "creator_id": 10,
-                        "assignee_id": 20,
-                    },
-                    {
-                        "projectIds": [1],
-                        "format": Format.XLSX,
-                        "type": "translate",
-                        "dateFrom": datetime(2023, 1, 1),
-                        "dateTo": datetime(2023, 12, 31),
-                        "groupBy": GroupBy.USER,
-                        "typeTask": 2,
-                        "languageId": "uk",
-                        "creatorId": 10,
-                        "assigneeId": 20,
-                    },
+                {
+                    "project_ids": [1],
+                    "format": Format.XLSX,
+                    "type": "translate",
+                    "date_from": datetime(2023, 1, 1),
+                    "date_to": datetime(2023, 12, 31),
+                    "group_by": GroupBy.USER,
+                    "type_task": 2,
+                    "language_id": "uk",
+                    "creator_id": 10,
+                    "assignee_id": 20,
+                },
+                {
+                    "projectIds": [1],
+                    "format": Format.XLSX,
+                    "type": "translate",
+                    "dateFrom": datetime(2023, 1, 1),
+                    "dateTo": datetime(2023, 12, 31),
+                    "groupBy": GroupBy.USER,
+                    "typeTask": 2,
+                    "languageId": "uk",
+                    "creatorId": 10,
+                    "assigneeId": 20,
+                },
             ),
         ]
     )
@@ -2166,27 +2166,27 @@ class TestEnterpriseReportsResource:
         "in_params, expected_schema",
         [
             (
-                    {},
-                    {
-                        "projectIds": None,
-                        "format": None,
-                        "dateFrom": None,
-                        "dateTo": None
-                    },
+                {},
+                {
+                    "projectIds": None,
+                    "format": None,
+                    "dateFrom": None,
+                    "dateTo": None
+                },
             ),
             (
-                    {
-                        "project_ids": [1],
-                        "format": Format.XLSX,
-                        "date_from": datetime(2022, 5, 1),
-                        "date_to": datetime(2022, 6, 1),
-                    },
-                    {
-                        "projectIds": [1],
-                        "format": Format.XLSX,
-                        "dateFrom": datetime(2022, 5, 1),
-                        "dateTo": datetime(2022, 6, 1),
-                    },
+                {
+                    "project_ids": [1],
+                    "format": Format.XLSX,
+                    "date_from": datetime(2022, 5, 1),
+                    "date_to": datetime(2022, 6, 1),
+                },
+                {
+                    "projectIds": [1],
+                    "format": Format.XLSX,
+                    "dateFrom": datetime(2022, 5, 1),
+                    "dateTo": datetime(2022, 6, 1),
+                },
             ),
         ]
     )
@@ -2210,32 +2210,32 @@ class TestEnterpriseReportsResource:
         "in_params, expected_schema",
         [
             (
-                    {
-                        "unit": Unit.WORDS
-                    },
-                    {
-                        "unit": Unit.WORDS,
-                        "projectIds": None,
-                        "format": None,
-                        "dateFrom": None,
-                        "dateTo": None,
-                    },
+                {
+                    "unit": Unit.WORDS
+                },
+                {
+                    "unit": Unit.WORDS,
+                    "projectIds": None,
+                    "format": None,
+                    "dateFrom": None,
+                    "dateTo": None,
+                },
             ),
             (
-                    {
-                        "unit": Unit.WORDS,
-                        "project_ids": [1, 2, 3],
-                        "format": Format.XLSX,
-                        "date_from": datetime(2024, 1, 1),
-                        "date_to": datetime(2024, 1, 31),
-                    },
-                    {
-                        "unit": Unit.WORDS,
-                        "projectIds": [1, 2, 3],
-                        "format": Format.XLSX,
-                        "dateFrom": datetime(2024, 1, 1),
-                        "dateTo": datetime(2024, 1, 31),
-                    },
+                {
+                    "unit": Unit.WORDS,
+                    "project_ids": [1, 2, 3],
+                    "format": Format.XLSX,
+                    "date_from": datetime(2024, 1, 1),
+                    "date_to": datetime(2024, 1, 31),
+                },
+                {
+                    "unit": Unit.WORDS,
+                    "projectIds": [1, 2, 3],
+                    "format": Format.XLSX,
+                    "dateFrom": datetime(2024, 1, 1),
+                    "dateTo": datetime(2024, 1, 31),
+                },
             ),
         ]
     )
