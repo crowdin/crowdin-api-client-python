@@ -689,24 +689,24 @@ class TestReportsResource:
         "in_params, expected_schema",
         [
             (
-                    {"format": Format.XLSX},
-                    {
-                        "format": Format.XLSX,
-                        "dateFrom": None,
-                        "dateTo": None
-                    },
+                {"format": Format.XLSX},
+                {
+                    "format": Format.XLSX,
+                    "dateFrom": None,
+                    "dateTo": None
+                },
             ),
             (
-                    {
-                        "format": Format.XLSX,
-                        "date_from": datetime(2023, 1, 1),
-                        "date_to": datetime(2023, 12, 31),
-                    },
-                    {
-                        "format": Format.XLSX,
-                        "dateFrom": datetime(2023, 1, 1),
-                        "dateTo": datetime(2023, 12, 31),
-                    },
+                {
+                    "format": Format.XLSX,
+                    "date_from": datetime(2023, 1, 1),
+                    "date_to": datetime(2023, 12, 31),
+                },
+                {
+                    "format": Format.XLSX,
+                    "dateFrom": datetime(2023, 1, 1),
+                    "dateTo": datetime(2023, 12, 31),
+                },
             ),
         ]
     )
@@ -730,27 +730,27 @@ class TestReportsResource:
         "in_params, expected_schema",
         [
             (
-                    {},
-                    {
-                        "dateFrom": None,
-                        "dateTo": None,
-                        "format": Format.XLSX,
-                        "issueType": None
-                    },
+                {},
+                {
+                    "dateFrom": None,
+                    "dateTo": None,
+                    "format": Format.XLSX,
+                    "issueType": None
+                },
             ),
             (
-                    {
-                        "date_from": datetime(2022, 5, 1),
-                        "date_to": datetime(2022, 6, 1),
-                        "format": Format.XLSX,
-                        "issue_type": "uncategorized",
-                    },
-                    {
-                        "dateFrom": datetime(2022, 5, 1),
-                        "dateTo": datetime(2022, 6, 1),
-                        "format": Format.XLSX,
-                        "issueType": "uncategorized",
-                    },
+                {
+                    "date_from": datetime(2022, 5, 1),
+                    "date_to": datetime(2022, 6, 1),
+                    "format": Format.XLSX,
+                    "issue_type": "uncategorized",
+                },
+                {
+                    "dateFrom": datetime(2022, 5, 1),
+                    "dateTo": datetime(2022, 6, 1),
+                    "format": Format.XLSX,
+                    "issueType": "uncategorized",
+                },
             ),
         ]
     )
@@ -772,24 +772,24 @@ class TestReportsResource:
         "in_params, expected_schema",
         [
             (
-                    {},
-                    {
-                        "format": Format.XLSX,
-                        "dateFrom": None,
-                        "dateTo": None
-                    },
+                {},
+                {
+                    "format": Format.XLSX,
+                    "dateFrom": None,
+                    "dateTo": None
+                },
             ),
             (
-                    {
-                        "format": Format.XLSX,
-                        "date_from": datetime(2023, 4, 1),
-                        "date_to": datetime(2023, 4, 30),
-                    },
-                    {
-                        "format": Format.XLSX,
-                        "dateFrom": datetime(2023, 4, 1),
-                        "dateTo": datetime(2023, 4, 30),
-                    },
+                {
+                    "format": Format.XLSX,
+                    "date_from": datetime(2023, 4, 1),
+                    "date_to": datetime(2023, 4, 30),
+                },
+                {
+                    "format": Format.XLSX,
+                    "dateFrom": datetime(2023, 4, 1),
+                    "dateTo": datetime(2023, 4, 30),
+                },
             ),
         ]
     )
@@ -813,33 +813,33 @@ class TestReportsResource:
         "in_params, expected_schema",
         [
             (
-                    {
-                        "unit": Unit.WORDS,
-                        "language_id": "uk"
-                    },
-                    {
-                        "unit": Unit.WORDS,
-                        "languageId": "uk",
-                        "format": Format.XLSX,
-                        "dateFrom": None,
-                        "dateTo": None,
-                    },
+                {
+                    "unit": Unit.WORDS,
+                    "language_id": "uk"
+                },
+                {
+                    "unit": Unit.WORDS,
+                    "languageId": "uk",
+                    "format": Format.XLSX,
+                    "dateFrom": None,
+                    "dateTo": None,
+                },
             ),
             (
-                    {
-                        "unit": Unit.WORDS,
-                        "language_id": "de",
-                        "format": Format.XLSX,
-                        "date_from": datetime(2023, 2, 1),
-                        "date_to": datetime(2023, 2, 28),
-                    },
-                    {
-                        "unit": Unit.WORDS,
-                        "languageId": "de",
-                        "format": Format.XLSX,
-                        "dateFrom": datetime(2023, 2, 1),
-                        "dateTo": datetime(2023, 2, 28),
-                    },
+                {
+                    "unit": Unit.WORDS,
+                    "language_id": "de",
+                    "format": Format.XLSX,
+                    "date_from": datetime(2023, 2, 1),
+                    "date_to": datetime(2023, 2, 28),
+                },
+                {
+                    "unit": Unit.WORDS,
+                    "languageId": "de",
+                    "format": Format.XLSX,
+                    "dateFrom": datetime(2023, 2, 1),
+                    "dateTo": datetime(2023, 2, 28),
+                },
             ),
         ]
     )
