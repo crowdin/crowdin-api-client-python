@@ -636,6 +636,230 @@ class TestReportsResource:
         )
 
     @pytest.mark.parametrize(
+        "in_params, expected_schema",
+        [
+            (
+                    {
+                        "unit": Unit.WORDS,
+                        "format": Format.XLSX,
+                    },
+                    {
+                        "unit": Unit.WORDS,
+                        "format": Format.XLSX,
+                        "dateFrom": None,
+                        "dateTo": None,
+                    },
+            ),
+            (
+                    {
+                        "unit": Unit.WORDS,
+                        "format": Format.XLSX,
+                        "date_from": datetime(2023, 1, 1),
+                        "date_to": datetime(2023, 12, 31),
+                    },
+                    {
+                        "unit": Unit.WORDS,
+                        "format": Format.XLSX,
+                        "dateFrom": datetime(2023, 1, 1),
+                        "dateTo": datetime(2023, 12, 31),
+                    },
+            ),
+        ]
+    )
+
+    @mock.patch("crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report")
+    def test_generate_source_content_updates_report(
+            self, m_generate_report, in_params, expected_schema, base_absolut_url
+    ):
+        m_generate_report.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        result = resource.generate_source_content_updates_report(project_id=1, **in_params)
+        assert result == "response"
+
+        m_generate_report.assert_called_once_with(
+            projectId=1,
+            request_data={
+                "name": "source-content-updates",
+                "schema": expected_schema,
+            },
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, expected_schema",
+        [
+            (
+                    {"format": Format.XLSX},
+                    {
+                        "format": Format.XLSX,
+                        "dateFrom": None,
+                        "dateTo": None
+                    },
+            ),
+            (
+                    {
+                        "format": Format.XLSX,
+                        "date_from": datetime(2023, 1, 1),
+                        "date_to": datetime(2023, 12, 31),
+                    },
+                    {
+                        "format": Format.XLSX,
+                        "dateFrom": datetime(2023, 1, 1),
+                        "dateTo": datetime(2023, 12, 31),
+                    },
+            ),
+        ]
+    )
+
+    @mock.patch("crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report")
+    def test_generate_project_members_report(
+            self, m_generate_report, in_params, expected_schema, base_absolut_url
+    ):
+        m_generate_report.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        result = resource.generate_project_members_report(project_id=1, **in_params)
+        assert result == "response"
+
+        m_generate_report.assert_called_once_with(
+            projectId=1,
+            request_data={"name": "project-members", "schema": expected_schema},
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, expected_schema",
+        [
+            (
+                    {},
+                    {
+                        "dateFrom": None,
+                        "dateTo": None,
+                        "format": Format.XLSX,
+                        "issueType": None
+                    },
+            ),
+            (
+                    {
+                        "date_from": datetime(2022, 5, 1),
+                        "date_to": datetime(2022, 6, 1),
+                        "format": Format.XLSX,
+                        "issue_type": "uncategorized",
+                    },
+                    {
+                        "dateFrom": datetime(2022, 5, 1),
+                        "dateTo": datetime(2022, 6, 1),
+                        "format": Format.XLSX,
+                        "issueType": "uncategorized",
+                    },
+            ),
+        ]
+    )
+
+    @mock.patch("crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report")
+    def test_generate_editor_issues_report(
+            self, m_generate_report, in_params, expected_schema, base_absolut_url
+    ):
+        m_generate_report.return_value = "response"
+        resource = self.get_resource(base_absolut_url)
+        result = resource.generate_editor_issues_report(project_id=1, **in_params)
+        assert result == "response"
+        m_generate_report.assert_called_once_with(
+            projectId=1,
+            request_data={"name": "editor-issues", "schema": expected_schema},
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, expected_schema",
+        [
+            (
+                    {},
+                    {
+                        "format": Format.XLSX,
+                        "dateFrom": None,
+                        "dateTo": None
+                    },
+            ),
+            (
+                    {
+                        "format": Format.XLSX,
+                        "date_from": datetime(2023, 4, 1),
+                        "date_to": datetime(2023, 4, 30),
+                    },
+                    {
+                        "format": Format.XLSX,
+                        "dateFrom": datetime(2023, 4, 1),
+                        "dateTo": datetime(2023, 4, 30),
+                    },
+            ),
+        ]
+    )
+
+    @mock.patch("crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report")
+    def test_generate_qa_check_issues_report(
+            self, m_generate_report, in_params, expected_schema, base_absolut_url
+    ):
+        m_generate_report.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        result = resource.generate_qa_check_issues_report(project_id=1, **in_params)
+        assert result == "response"
+
+        m_generate_report.assert_called_once_with(
+            projectId=1,
+            request_data={"name": "qa-check-issues", "schema": expected_schema},
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, expected_schema",
+        [
+            (
+                    {
+                        "unit": Unit.WORDS,
+                        "language_id": "uk"
+                    },
+                    {
+                        "unit": Unit.WORDS,
+                        "languageId": "uk",
+                        "format": Format.XLSX,
+                        "dateFrom": None,
+                        "dateTo": None,
+                    },
+            ),
+            (
+                    {
+                        "unit": Unit.WORDS,
+                        "language_id": "de",
+                        "format": Format.XLSX,
+                        "date_from": datetime(2023, 2, 1),
+                        "date_to": datetime(2023, 2, 28),
+                    },
+                    {
+                        "unit": Unit.WORDS,
+                        "languageId": "de",
+                        "format": Format.XLSX,
+                        "dateFrom": datetime(2023, 2, 1),
+                        "dateTo": datetime(2023, 2, 28),
+                    },
+            ),
+        ]
+    )
+
+    @mock.patch("crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report")
+    def test_generate_saving_activity_report(
+            self, m_generate_report, in_params, expected_schema, base_absolut_url
+    ):
+        m_generate_report.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        result = resource.generate_saving_activity_report(project_id=1, **in_params)
+        assert result == "response"
+
+        m_generate_report.assert_called_once_with(
+            projectId=1,
+            request_data={"name": "saving-activity", "schema": expected_schema},
+        )
+
+    @pytest.mark.parametrize(
         "in_params, schema",
         [
             (
@@ -1871,6 +2095,163 @@ class TestEnterpriseReportsResource:
             method="post",
             path="reports",
             request_data={"name": "group-translation-costs-pe", "schema": schema},
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, expected_schema",
+        [
+            (
+                    {
+                        "format": Format.XLSX,
+                        "type": "all"
+                    },
+                    {
+                        "projectIds": None,
+                        "format": Format.XLSX,
+                        "type": "all",
+                        "dateFrom": None,
+                        "dateTo": None,
+                        "groupBy": None,
+                        "typeTask": None,
+                        "languageId": None,
+                        "creatorId": None,
+                        "assigneeId": None,
+                    },
+            ),
+            (
+                    {
+                        "project_ids": [1],
+                        "format": Format.XLSX,
+                        "type": "translate",
+                        "date_from": datetime(2023, 1, 1),
+                        "date_to": datetime(2023, 12, 31),
+                        "group_by": GroupBy.USER,
+                        "type_task": 2,
+                        "language_id": "uk",
+                        "creator_id": 10,
+                        "assignee_id": 20,
+                    },
+                    {
+                        "projectIds": [1],
+                        "format": Format.XLSX,
+                        "type": "translate",
+                        "dateFrom": datetime(2023, 1, 1),
+                        "dateTo": datetime(2023, 12, 31),
+                        "groupBy": GroupBy.USER,
+                        "typeTask": 2,
+                        "languageId": "uk",
+                        "creatorId": 10,
+                        "assigneeId": 20,
+                    },
+            ),
+        ]
+    )
+
+    @mock.patch("crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_report")
+    def test_generate_group_task_usage_report(
+            self,m_generate_report, in_params, expected_schema, base_absolut_url
+    ):
+        m_generate_report.return_value = "response"
+
+        resource = EnterpriseReportsResource(base_absolut_url)
+        result = resource.generate_group_task_usage_report(group_id=1, **in_params)
+        assert result == "response"
+
+        m_generate_report.assert_called_once_with(
+            group_id=1,
+            request_data={"name": "group-task-usage", "schema": expected_schema},
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, expected_schema",
+        [
+            (
+                    {},
+                    {
+                        "projectIds": None,
+                        "format": None,
+                        "dateFrom": None,
+                        "dateTo": None
+                    },
+            ),
+            (
+                    {
+                        "project_ids": [1],
+                        "format": Format.XLSX,
+                        "date_from": datetime(2022, 5, 1),
+                        "date_to": datetime(2022, 6, 1),
+                    },
+                    {
+                        "projectIds": [1],
+                        "format": Format.XLSX,
+                        "dateFrom": datetime(2022, 5, 1),
+                        "dateTo": datetime(2022, 6, 1),
+                    },
+            ),
+        ]
+    )
+
+    @mock.patch("crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_report")
+    def test_generate_group_qa_check_issues_report(
+            self,m_generate_report, in_params, expected_schema, base_absolut_url
+    ):
+        m_generate_report.return_value = "response"
+
+        resource = EnterpriseReportsResource(base_absolut_url)
+        result = resource.generate_group_qa_check_issues_report(group_id=1, **in_params)
+        assert result == "response"
+
+        m_generate_report.assert_called_once_with(
+            group_id=1,
+            request_data={"name": "group-qa-check-issues", "schema": expected_schema},
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, expected_schema",
+        [
+            (
+                    {
+                        "unit": Unit.WORDS
+                    },
+                    {
+                        "unit": Unit.WORDS,
+                        "projectIds": None,
+                        "format": None,
+                        "dateFrom": None,
+                        "dateTo": None,
+                    },
+            ),
+            (
+                    {
+                        "unit": Unit.WORDS,
+                        "project_ids": [1, 2, 3],
+                        "format": Format.XLSX,
+                        "date_from": datetime(2024, 1, 1),
+                        "date_to": datetime(2024, 1, 31),
+                    },
+                    {
+                        "unit": Unit.WORDS,
+                        "projectIds": [1, 2, 3],
+                        "format": Format.XLSX,
+                        "dateFrom": datetime(2024, 1, 1),
+                        "dateTo": datetime(2024, 1, 31),
+                    },
+            ),
+        ]
+    )
+
+    @mock.patch("crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_report")
+    def test_generate_group_translation_activity_report(
+            self, m_generate_report, in_params, expected_schema,base_absolut_url
+    ):
+        m_generate_report.return_value = "response"
+
+        resource = EnterpriseReportsResource(base_absolut_url)
+        result = resource.generate_group_translation_activity_report(group_id=1, **in_params)
+        assert result == "response"
+        m_generate_report.assert_called_once_with(
+            group_id=1,
+            request_data={"name": "group-translation-activity", "schema": expected_schema},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
