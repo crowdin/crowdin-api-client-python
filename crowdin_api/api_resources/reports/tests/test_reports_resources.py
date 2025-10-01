@@ -2149,7 +2149,7 @@ class TestEnterpriseReportsResource:
 
     @mock.patch("crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_report")
     def test_generate_group_task_usage_report(
-            self,m_generate_report, in_params, expected_schema, base_absolut_url
+            self, m_generate_report, in_params, expected_schema, base_absolut_url
     ):
         m_generate_report.return_value = "response"
 
@@ -2193,7 +2193,7 @@ class TestEnterpriseReportsResource:
 
     @mock.patch("crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_report")
     def test_generate_group_qa_check_issues_report(
-            self,m_generate_report, in_params, expected_schema, base_absolut_url
+            self, m_generate_report, in_params, expected_schema, base_absolut_url
     ):
         m_generate_report.return_value = "response"
 
@@ -2242,7 +2242,7 @@ class TestEnterpriseReportsResource:
 
     @mock.patch("crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_report")
     def test_generate_group_translation_activity_report(
-            self, m_generate_report, in_params, expected_schema,base_absolut_url
+            self, m_generate_report, in_params, expected_schema, base_absolut_url
     ):
         m_generate_report.return_value = "response"
 
