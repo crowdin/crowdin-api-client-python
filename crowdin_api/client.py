@@ -361,6 +361,19 @@ class CrowdinClient:
         )
 
     @property
+    def task_comments(self) -> api_resources.TaskCommentsResource:
+        if self.PROJECT_ID:
+            return api_resources.TaskCommentsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
+        return api_resources.TaskCommentsResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
     def tasks(self) -> Union[api_resources.TasksResource, api_resources.EnterpriseTasksResource]:
         if self._is_enterprise_platform:
             report_class = api_resources.EnterpriseTasksResource
