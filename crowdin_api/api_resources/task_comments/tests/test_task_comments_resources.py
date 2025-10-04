@@ -53,7 +53,6 @@ class TestTaskCommentsResource:
             params=request_params,
             path=resource.get_task_comments_path(projectId=1, taskId=2),
         )
-
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_add_task_comment(self, m_request, base_absolut_url):
         m_request.return_value = "response"

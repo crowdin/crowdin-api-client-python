@@ -123,4 +123,3 @@ class TaskCommentsResource(BaseResource):
             ),
             request_data=data,
         )
-

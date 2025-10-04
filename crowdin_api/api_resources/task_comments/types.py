@@ -9,4 +9,3 @@ class TaskCommentPatchRequest(TypedDict):
     value: Any
     op: PatchOperation
     path: TaskCommentPatchPath
-
