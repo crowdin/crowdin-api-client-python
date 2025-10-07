@@ -53,6 +53,7 @@ class TestTaskCommentsResource:
             params=request_params,
             path=resource.get_task_comments_path(projectId=1, taskId=2),
         )
+
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_add_task_comment(self, m_request, base_absolut_url):
         m_request.return_value = "response"
@@ -76,7 +77,6 @@ class TestTaskCommentsResource:
             path=resource.get_task_comments_path(projectId=1, taskId=2, taskCommentId=3),
         )
 
-
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_delete_task_comment(self, m_request, base_absolut_url):
         m_request.return_value = "response"
@@ -87,7 +87,6 @@ class TestTaskCommentsResource:
             method="delete",
             path=resource.get_task_comments_path(projectId=1, taskId=2, taskCommentId=3),
         )
-
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_edit_task_comment(self, m_request, base_absolut_url):
@@ -111,4 +110,3 @@ class TestTaskCommentsResource:
             path=resource.get_task_comments_path(projectId=1, taskId=2, taskCommentId=3),
             request_data=data,
         )
-
