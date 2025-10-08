@@ -3,13 +3,13 @@ from unittest import mock
 import pytest
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.task_comments.enums import TaskCommentPatchPath
-from crowdin_api.api_resources.task_comments.resource import TaskCommentsResource
+from crowdin_api.api_resources.tasks.resource import TasksResource
 from crowdin_api.requester import APIRequester
 from crowdin_api.sorting import Sorting
 
 
-class TestTaskCommentsResource:
-    resource_class = TaskCommentsResource
+class TestTaskCommentsViaTasksResource:
+    resource_class = TasksResource
 
     def get_resource(self, base_absolut_url):
         return self.resource_class(requester=APIRequester(base_url=base_absolut_url))

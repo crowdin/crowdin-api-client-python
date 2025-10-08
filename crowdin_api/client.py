@@ -361,15 +361,16 @@ class CrowdinClient:
         )
 
     @property
-    def task_comments(self) -> api_resources.TaskCommentsResource:
+    def task_comments(self) -> api_resources.TasksResource:
+        # Backward-compatible accessor: comments now live under TasksResource
         if self.PROJECT_ID:
-            return api_resources.TaskCommentsResource(
+            return api_resources.TasksResource(
                 requester=self.get_api_requestor(),
                 project_id=self.PROJECT_ID,
                 page_size=self.PAGE_SIZE,
             )
 
-        return api_resources.TaskCommentsResource(
+        return api_resources.TasksResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
