@@ -27,7 +27,7 @@ from crowdin_api.api_resources.tasks.types import (
     TaskSettingsTemplateLanguages,
 )
 from crowdin_api.sorting import Sorting
-from crowdin_api.api_resources.task_comments.types import TaskCommentPatchRequest
+from crowdin_api.api_resources.tasks.types import TaskCommentPatchRequest
 
 
 class TasksResource(BaseResource):

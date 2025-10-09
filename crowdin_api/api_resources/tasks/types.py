@@ -54,3 +54,11 @@ class EnterpriseTaskSettingsTemplateConfigLanguage(TypedDict):
 
 class EnterpriseTaskSettingsTemplateLanguages(TypedDict):
     languages: Iterable[EnterpriseTaskSettingsTemplateConfigLanguage]
+
+
+# Task comments patch request (moved from removed task_comments package)
+class TaskCommentPatchRequest(TypedDict):
+    value: Any
+    op: PatchOperation
+    # For now only /text is supported in edit operations
+    path: str
