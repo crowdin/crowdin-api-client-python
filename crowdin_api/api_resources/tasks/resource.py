@@ -958,6 +958,9 @@ class TasksResource(BaseResource):
     ):
         """
         List Task Comments.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -978,6 +981,9 @@ class TasksResource(BaseResource):
     ):
         """
         Add Task Comment.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -996,6 +1002,9 @@ class TasksResource(BaseResource):
     ):
         """
         Get Task Comment.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -1015,6 +1024,9 @@ class TasksResource(BaseResource):
     ):
         """
         Delete Task Comment.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -1035,6 +1047,9 @@ class TasksResource(BaseResource):
     ):
         """
         Edit Task Comment.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.patch
         """
 
         projectId = projectId or self.get_project_id()
