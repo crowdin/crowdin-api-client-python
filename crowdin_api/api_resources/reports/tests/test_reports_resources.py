@@ -666,7 +666,6 @@ class TestReportsResource:
             ),
         ]
     )
-
     @mock.patch("crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report")
     def test_generate_source_content_updates_report(
             self, m_generate_report, in_params, expected_schema, base_absolut_url
@@ -710,7 +709,6 @@ class TestReportsResource:
             ),
         ]
     )
-
     @mock.patch("crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report")
     def test_generate_project_members_report(
             self, m_generate_report, in_params, expected_schema, base_absolut_url
@@ -754,7 +752,6 @@ class TestReportsResource:
             ),
         ]
     )
-
     @mock.patch("crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report")
     def test_generate_editor_issues_report(
             self, m_generate_report, in_params, expected_schema, base_absolut_url
@@ -793,7 +790,6 @@ class TestReportsResource:
             ),
         ]
     )
-
     @mock.patch("crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report")
     def test_generate_qa_check_issues_report(
             self, m_generate_report, in_params, expected_schema, base_absolut_url
@@ -843,8 +839,9 @@ class TestReportsResource:
             ),
         ]
     )
-
-    @mock.patch("crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report")
+    @mock.patch(
+        "crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report"
+    )
     def test_generate_saving_activity_report(
             self, m_generate_report, in_params, expected_schema, base_absolut_url
     ):
@@ -2146,7 +2143,6 @@ class TestEnterpriseReportsResource:
             ),
         ]
     )
-
     @mock.patch("crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_report")
     def test_generate_group_task_usage_report(
             self, m_generate_report, in_params, expected_schema, base_absolut_url
@@ -2190,7 +2186,6 @@ class TestEnterpriseReportsResource:
             ),
         ]
     )
-
     @mock.patch("crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_report")
     def test_generate_group_qa_check_issues_report(
             self, m_generate_report, in_params, expected_schema, base_absolut_url
@@ -2239,7 +2234,6 @@ class TestEnterpriseReportsResource:
             ),
         ]
     )
-
     @mock.patch("crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_report")
     def test_generate_group_translation_activity_report(
             self, m_generate_report, in_params, expected_schema, base_absolut_url
