@@ -160,6 +160,204 @@ class BaseReportsResource(BaseResource):
             },
         )
 
+    def generate_source_content_updates_report(
+        self,
+        project_id: Optional[int] = None,
+        unit: Optional[Unit] = None,
+        format: Optional[Format] = Format.XLSX,
+        date_from: Optional[datetime] = None,
+        date_to: Optional[datetime] = None,
+    ):
+        """
+        Generate Report(Contribution Raw Data).
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        """
+
+        project_id = project_id or self.get_project_id()
+
+        return self.generate_report(
+            projectId=project_id,
+            request_data={
+                "name": "source-content-updates",
+                "schema": {
+                    "unit": unit,
+                    "format": format,
+                    "dateFrom": date_from,
+                    "dateTo": date_to,
+                },
+            },
+        )
+
+    def generate_project_members_report(
+        self,
+        project_id: Optional[int] = None,
+        format: Optional[Format] = Format.XLSX,
+        date_from: Optional[datetime] = None,
+        date_to: Optional[datetime] = None,
+    ):
+        """
+        Generate Report(Project Members).
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        """
+
+        project_id = project_id or self.get_project_id()
+
+        return self.generate_report(
+            projectId=project_id,
+            request_data={
+                "name": "project-members",
+                "schema": {
+                    "format": format,
+                    "dateFrom": date_from,
+                    "dateTo": date_to,
+                },
+            },
+        )
+
+    def generate_editor_issues_report(
+        self,
+        project_id: Optional[int] = None,
+        date_from: Optional[datetime] = None,
+        date_to: Optional[datetime] = None,
+        format: Optional[Format] = Format.XLSX,
+        issue_type: Optional[str] = None,
+    ):
+        """
+        Generate Report(Editor Issues).
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        """
+
+        project_id = project_id or self.get_project_id()
+
+        return self.generate_report(
+            projectId=project_id,
+            request_data={
+                "name": "editor-issues",
+                "schema": {
+                    "dateFrom": date_from,
+                    "dateTo": date_to,
+                    "format": format,
+                    "issueType": issue_type
+                },
+            },
+        )
+
+    def generate_qa_check_issues_report(
+        self,
+        project_id: Optional[int] = None,
+        format: Optional[Format] = Format.XLSX,
+        date_from: Optional[datetime] = None,
+        date_to: Optional[datetime] = None,
+    ):
+        """
+        Generate Report(Qa Check Issues).
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        """
+
+        project_id = project_id or self.get_project_id()
+
+        return self.generate_report(
+            projectId=project_id,
+            request_data={
+                "name": "qa-check-issues",
+                "schema": {
+                    "format": format,
+                    "dateFrom": date_from,
+                    "dateTo": date_to,
+                },
+            },
+        )
+
+    def generate_saving_activity_report(
+        self,
+        project_id: Optional[int] = None,
+        unit: Optional[Unit] = None,
+        language_id: Optional[str] = None,
+        format: Optional[Format] = Format.XLSX,
+        date_from: Optional[datetime] = None,
+        date_to: Optional[datetime] = None,
+    ):
+        """
+        Generate Report(Saving Activity).
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        """
+
+        project_id = project_id or self.get_project_id()
+
+        return self.generate_report(
+            projectId=project_id,
+            request_data={
+                "name": "saving-activity",
+                "schema": {
+                    "unit": unit,
+                    "languageId": language_id,
+                    "format": format,
+                    "dateFrom": date_from,
+                    "dateTo": date_to,
+                },
+            },
+        )
+
+    def generate_translation_activity_report(
+        self,
+        project_id: Optional[int] = None,
+        unit: Optional[Unit] = None,
+        language_id: Optional[str] = None,
+        format: Optional[Format] = Format.XLSX,
+        date_from: Optional[datetime] = None,
+        date_to: Optional[datetime] = None,
+    ):
+        """
+        Generate Report(Translation Activity).
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        """
+
+        project_id = project_id or self.get_project_id()
+
+        return self.generate_report(
+            projectId=project_id,
+            request_data={
+                "name": "translation-activity",
+                "schema": {
+                    "unit": unit,
+                    "languageId": language_id,
+                    "format": format,
+                    "dateFrom": date_from,
+                    "dateTo": date_to,
+                },
+            },
+        )
+
     def generate_pre_translate_accuracy_general_report(
         self,
         projectId: Optional[int] = None,
@@ -1272,6 +1470,104 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
                     "dateFrom": date_from,
                     "dateTo": date_to,
                     "userIds": user_ids
+                },
+            },
+        )
+
+    def generate_group_task_usage_report(
+            self,
+            group_id: int,
+            format: Optional[Format] = None,
+            type: Optional[str] = None,
+            project_ids: Optional[Iterable[int]] = None,
+            date_from: Optional[datetime] = None,
+            date_to: Optional[datetime] = None,
+            group_by: Optional[GroupBy] = None,
+            type_task: Optional[int] = None,
+            language_id: Optional[str] = None,
+            creator_id: Optional[int] = None,
+            assignee_id: Optional[int] = None,
+    ):
+        """
+        Generate Group Report (Task Usage Report).
+
+        Link to documentation:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post
+        """
+
+        return self.generate_group_report(
+            group_id=group_id,
+            request_data={
+                "name": "group-task-usage",
+                "schema": {
+                    "projectIds": project_ids,
+                    "format": format,
+                    "type": type,
+                    "dateFrom": date_from,
+                    "dateTo": date_to,
+                    "groupBy": group_by,
+                    "typeTask": type_task,
+                    "languageId": language_id,
+                    "creatorId": creator_id,
+                    "assigneeId": assignee_id,
+                },
+            },
+        )
+
+    def generate_group_qa_check_issues_report(
+            self,
+            group_id: int,
+            project_ids: Optional[Iterable[int]] = None,
+            format: Optional[Format] = None,
+            date_from: Optional[datetime] = None,
+            date_to: Optional[datetime] = None,
+    ):
+        """
+        Generate Group Report (Group Qa Check Issues Report).
+
+        Link to documentation:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post
+        """
+
+        return self.generate_group_report(
+            group_id=group_id,
+            request_data={
+                "name": "group-qa-check-issues",
+                "schema": {
+                    "projectIds": project_ids,
+                    "format": format,
+                    "dateFrom": date_from,
+                    "dateTo": date_to,
+                },
+            },
+        )
+
+    def generate_group_translation_activity_report(
+            self,
+            group_id: int,
+            unit: Optional[Unit] = None,
+            project_ids: Optional[Iterable[int]] = None,
+            format: Optional[Format] = None,
+            date_from: Optional[datetime] = None,
+            date_to: Optional[datetime] = None,
+    ):
+        """
+        Generate Group Report (Group translation consumption).
+
+        Link to documentation:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post
+        """
+
+        return self.generate_group_report(
+            group_id=group_id,
+            request_data={
+                "name": "group-translation-activity",
+                "schema": {
+                    "unit": unit,
+                    "projectIds": project_ids,
+                    "format": format,
+                    "dateFrom": date_from,
+                    "dateTo": date_to,
                 },
             },
         )
