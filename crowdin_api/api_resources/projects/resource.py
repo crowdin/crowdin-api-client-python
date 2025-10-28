@@ -110,6 +110,7 @@ class ProjectsResource(BaseResource):
         exportApprovedOnly: Optional[bool] = None,
         defaultTmId: Optional[int] = None,
         defaultGlossaryId: Optional[None] = None,
+        tmApprovedSuggestionsOnly: Optional[bool] = None,
     ):
         """
         Add Project(Files Based Project Form).
@@ -141,6 +142,7 @@ class ProjectsResource(BaseResource):
                 "autoTranslateDialects": autoTranslateDialects,
                 "defaultTmId": defaultTmId,
                 "defaultGlossaryId": defaultGlossaryId,
+                "tmApprovedSuggestionsOnly": tmApprovedSuggestionsOnly,
             },
         )
 
@@ -175,6 +177,7 @@ class ProjectsResource(BaseResource):
         notificationSettings: Optional[NotificationSettings] = None,
         defaultTmId: Optional[int] = None,
         defaultGlossaryId: Optional[None] = None,
+        tmApprovedSuggestionsOnly: Optional[bool] = None,
     ):
         """
         Add Project(Strings Based Project Form).
@@ -214,6 +217,7 @@ class ProjectsResource(BaseResource):
                 "notificationSettings": notificationSettings,
                 "defaultTmId": defaultTmId,
                 "defaultGlossaryId": defaultGlossaryId,
+                "tmApprovedSuggestionsOnly": tmApprovedSuggestionsOnly,
             },
         )
 

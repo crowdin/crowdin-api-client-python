@@ -142,6 +142,7 @@ class TestProjectsResource:
                     "notificationSettings": None,
                     "defaultTmId": None,
                     "defaultGlossaryId": None,
+                    "tmApprovedSuggestionsOnly": None,
                 },
             ),
             (
@@ -171,6 +172,7 @@ class TestProjectsResource:
                     ),
                     "defaultTmId": 1,
                     "defaultGlossaryId": 1,
+                    "tmApprovedSuggestionsOnly": True,
                 },
                 {
                     "name": "name",
@@ -198,6 +200,7 @@ class TestProjectsResource:
                     ),
                     "defaultTmId": 1,
                     "defaultGlossaryId": 1,
+                    "tmApprovedSuggestionsOnly": True,
                 },
             ),
         ),
@@ -248,6 +251,7 @@ class TestProjectsResource:
                     "notificationSettings": None,
                     "defaultTmId": None,
                     "defaultGlossaryId": None,
+                    "tmApprovedSuggestionsOnly": None,
                 },
             ),
             (
@@ -315,6 +319,7 @@ class TestProjectsResource:
                     ),
                     "defaultTmId": 1,
                     "defaultGlossaryId": 1,
+                    "tmApprovedSuggestionsOnly": True,
                 },
                 {
                     "name": "name",
@@ -380,6 +385,7 @@ class TestProjectsResource:
                     ),
                     "defaultTmId": 1,
                     "defaultGlossaryId": 1,
+                    "tmApprovedSuggestionsOnly": True,
                 },
             ),
         ),
