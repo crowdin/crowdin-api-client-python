@@ -24,3 +24,4 @@ class MergeBranchRequest(TypedDict):
     deleteAfterMerge: Optional[bool]
     sourceBranchId: int
     dryRun: Optional[bool]
+    acceptSourceChanges: bool
