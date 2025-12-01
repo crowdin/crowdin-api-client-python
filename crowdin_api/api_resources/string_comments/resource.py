@@ -143,7 +143,10 @@ class StringCommentsResource(BaseResource):
 
         return self.requester.request(
             method="delete",
-            path=f"{self.get_string_comments_path(projectId=projectId, stringCommentId=stringCommentId)}/attachments/{attachmentId}",
+            path=(
+                f"{self.get_string_comments_path(projectId=projectId, stringCommentId=stringCommentId)}"
+                f"/attachments/{attachmentId}"
+            ),
         )
 
     def edit_string_comment(
