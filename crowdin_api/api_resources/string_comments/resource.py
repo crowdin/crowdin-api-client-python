@@ -69,6 +69,7 @@ class StringCommentsResource(BaseResource):
         type: StringCommentType,
         projectId: Optional[int] = None,
         issueType: Optional[StringCommentIssueType] = None,
+        attachments: Optional[Iterable[int]] = None,
     ):
         """
         Add String Comment.
@@ -88,6 +89,7 @@ class StringCommentsResource(BaseResource):
                 "targetLanguageId": targetLanguageId,
                 "type": type,
                 "issueType": issueType,
+                "attachments": attachments,
             },
         )
 
@@ -125,6 +127,23 @@ class StringCommentsResource(BaseResource):
             path=self.get_string_comments_path(
                 projectId=projectId, stringCommentId=stringCommentId
             ),
+        )
+
+    def delete_string_comment_attachment(
+        self, stringCommentId: int, attachmentId: int, projectId: Optional[int] = None
+    ):
+        """
+        Delete String Comment Attachment.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.attachments.delete
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="delete",
+            path=f"{self.get_string_comments_path(projectId=projectId, stringCommentId=stringCommentId)}/attachments/{attachmentId}",
         )
 
     def edit_string_comment(
