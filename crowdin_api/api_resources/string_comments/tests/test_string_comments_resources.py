@@ -110,6 +110,7 @@ class TestSourceFilesResource:
                     "targetLanguageId": "ua",
                     "type": StringCommentType.COMMENT,
                     "issueType": None,
+                    "attachments": None,
                 },
             ),
             (
@@ -119,6 +120,7 @@ class TestSourceFilesResource:
                     "targetLanguageId": "ua",
                     "type": StringCommentType.COMMENT,
                     "issueType": StringCommentIssueType.CONTEXT_REQUEST,
+                    "attachments": [1, 2, 3],
                 },
                 {
                     "text": "text",
@@ -126,6 +128,7 @@ class TestSourceFilesResource:
                     "targetLanguageId": "ua",
                     "type": StringCommentType.COMMENT,
                     "issueType": StringCommentIssueType.CONTEXT_REQUEST,
+                    "attachments": [1, 2, 3],
                 },
             ),
         ),
@@ -140,6 +143,17 @@ class TestSourceFilesResource:
             method="post",
             path=resource.get_string_comments_path(projectId=1),
             request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_string_comment_attachment(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_string_comment_attachment(projectId=1, stringCommentId=2, attachmentId=3) == "response"
+        m_request.assert_called_once_with(
+            method="delete",
+            path=resource.get_string_comments_path(projectId=1, stringCommentId=2) + "/attachments/3",
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
