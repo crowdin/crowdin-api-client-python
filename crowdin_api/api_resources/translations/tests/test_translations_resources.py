@@ -632,3 +632,90 @@ class TestTranslationsResource:
             request_data=request_data,
             path="projects/1/translations/exports",
         )
+
+    @pytest.mark.parametrize(
+        "in_params, request_data",
+        (
+            (
+                {"storageId": 1},
+                {
+                    "storageId": 1,
+                    "fileId": None,
+                    "importEqSuggestions": None,
+                    "autoApproveImported": None,
+                    "translateHidden": None,
+                },
+            ),
+            (
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "importEqSuggestions": True,
+                    "autoApproveImported": True,
+                    "translateHidden": True,
+                },
+                {
+                    "storageId": 1,
+                    "fileId": 2,
+                    "importEqSuggestions": True,
+                    "autoApproveImported": True,
+                    "translateHidden": True,
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_import_translations(self, m_request, in_params, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.import_translations(projectId=1, languageId="en", **in_params) == "response"
+        )
+        m_request.assert_called_once_with(
+            method="post",
+            request_data=request_data,
+            path="projects/1/languages/en/imports",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_check_translation_import_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.check_translation_import_status(
+                projectId=1, languageId="en", importId="importId"
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/1/languages/en/imports/importId",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_download_translation_import_report(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.download_translation_import_report(
+                projectId=1, languageId="en", importId="importId"
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/1/languages/en/imports/importId/report",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_upload_translation_deprecated(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+        resource = self.get_resource(base_absolut_url)
+
+        with pytest.warns(DeprecationWarning):
+            resource.upload_translation(
+                projectId=1, languageId="en", storageId=1, fileId=1
+            )
