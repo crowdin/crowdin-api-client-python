@@ -1275,12 +1275,36 @@ and shall be completed with a sequence of API methods.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_qa_check_issues_report"><code class="name flex">
+<span>def <span class="ident">generate_group_qa_check_issues_report</span></span>(<span>self, group_id: int, project_ids: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Group Report (Group Qa Check Issues Report).</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_report"><code class="name flex">
 <span>def <span class="ident">generate_group_report</span></span>(<span>self, group_id: int, request_data: Dict[~KT, ~VT])</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Group Report.</p>
 <p>Link to documentation for enterprise:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_task_usage_report"><code class="name flex">
+<span>def <span class="ident">generate_group_task_usage_report</span></span>(<span>self, group_id: int, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, type: Optional[str] = None, project_ids: Optional[Iterable[int]] = None, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None, group_by: Optional[<a title="crowdin_api.api_resources.reports.enums.GroupBy" href="reports/enums.html#crowdin_api.api_resources.reports.enums.GroupBy">GroupBy</a>] = None, type_task: Optional[int] = None, language_id: Optional[str] = None, creator_id: Optional[int] = None, assignee_id: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Group Report (Task Usage Report).</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_translation_activity_report"><code class="name flex">
+<span>def <span class="ident">generate_group_translation_activity_report</span></span>(<span>self, group_id: int, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, project_ids: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="reports/enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Group Report (Group translation consumption).</p>
+<p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_translation_costs_post_editing_general_report"><code class="name flex">
@@ -1353,10 +1377,16 @@ and shall be completed with a sequence of API methods.</p>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report">generate_contribution_raw_data_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report">generate_costs_estimation_post_editing_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report">generate_costs_estimation_post_editing_general_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_editor_issues_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_editor_issues_report">generate_editor_issues_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_by_task_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_by_task_report">generate_pre_translate_accuracy_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_general_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_general_report">generate_pre_translate_accuracy_general_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_project_members_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_project_members_report">generate_project_members_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_qa_check_issues_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_qa_check_issues_report">generate_qa_check_issues_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report">generate_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_saving_activity_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_saving_activity_report">generate_saving_activity_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_source_content_updates_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_source_content_updates_report">generate_source_content_updates_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report">generate_top_members_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_activity_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_activity_report">generate_translation_activity_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report">generate_translation_costs_post_editing_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report">generate_translation_costs_post_editing_general_report</a></code></li>
 </ul>
@@ -1448,6 +1478,7 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.add_language_service_pending_task" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.add_language_service_pending_task">add_language_service_pending_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.add_language_service_task" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.add_language_service_task">add_language_service_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.add_task" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.add_task">add_task</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.add_task_comment" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.add_task_comment">add_task_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.add_vendor_gengo_by_string_ids_task" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.add_vendor_gengo_by_string_ids_task">add_vendor_gengo_by_string_ids_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.add_vendor_gengo_task" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.add_vendor_gengo_task">add_vendor_gengo_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.add_vendor_manual_by_string_ids_task" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.add_vendor_manual_by_string_ids_task">add_vendor_manual_by_string_ids_task</a></code></li>
@@ -1458,13 +1489,17 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.add_vendor_translated_by_string_ids_task" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.add_vendor_translated_by_string_ids_task">add_vendor_translated_by_string_ids_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.add_vendor_translated_task" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.add_vendor_translated_task">add_vendor_translated_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.delete_task" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.delete_task">delete_task</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.delete_task_comment" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.delete_task_comment">delete_task_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.delete_task_settings_template" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.delete_task_settings_template">delete_task_settings_template</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.edit_task" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.edit_task">edit_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_archived_status" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_archived_status">edit_task_archived_status</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_comment" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_comment">edit_task_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_settings_template" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_settings_template">edit_task_settings_template</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.export_task_strings" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.export_task_strings">export_task_strings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.get_task" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.get_task">get_task</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.get_task_comment" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.get_task_comment">get_task_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.get_task_settings_template" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.get_task_settings_template">get_task_settings_template</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.list_task_comments" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.list_task_comments">list_task_comments</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.list_task_settings_templates" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.list_task_settings_templates">list_task_settings_templates</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.list_tasks" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.list_tasks">list_tasks</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.list_user_tasks" href="tasks/resource.html#crowdin_api.api_resources.tasks.resource.TasksResource.list_user_tasks">list_user_tasks</a></code></li>
@@ -2162,7 +2197,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.ProjectsResource.add_file_based_project"><code class="name flex">
-<span>def <span class="ident">add_file_based_project</span></span>(<span>self, name: str, sourceLanguageId: str, type: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectType" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectType">ProjectType</a>] = None, normalizePlaceholder: Optional[bool] = None, saveMetaInfoInSource: Optional[bool] = None, notificationSettings: Optional[<a title="crowdin_api.api_resources.projects.types.NotificationSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.NotificationSettings">NotificationSettings</a>] = None, identifier: Optional[str] = None, targetLanguageIds: Optional[Iterable[str]] = None, visibility: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectVisibility" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectVisibility">ProjectVisibility</a>] = None, languageAccessPolicy: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy">ProjectLanguageAccessPolicy</a>] = None, cname: Optional[str] = None, description: Optional[str] = None, translateDuplicates: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates">ProjectTranslateDuplicates</a>] = None, isMtAllowed: Optional[bool] = None, autoSubstitution: Optional[bool] = None, autoTranslateDialects: Optional[bool] = None, skipUntranslatedStrings: Optional[bool] = None, skipUntranslatedFiles: Optional[bool] = None, exportApprovedOnly: Optional[bool] = None, defaultTmId: Optional[int] = None, defaultGlossaryId: None = None)</span>
+<span>def <span class="ident">add_file_based_project</span></span>(<span>self, name: str, sourceLanguageId: str, type: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectType" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectType">ProjectType</a>] = None, normalizePlaceholder: Optional[bool] = None, saveMetaInfoInSource: Optional[bool] = None, notificationSettings: Optional[<a title="crowdin_api.api_resources.projects.types.NotificationSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.NotificationSettings">NotificationSettings</a>] = None, identifier: Optional[str] = None, targetLanguageIds: Optional[Iterable[str]] = None, visibility: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectVisibility" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectVisibility">ProjectVisibility</a>] = None, languageAccessPolicy: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy">ProjectLanguageAccessPolicy</a>] = None, cname: Optional[str] = None, description: Optional[str] = None, translateDuplicates: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates">ProjectTranslateDuplicates</a>] = None, isMtAllowed: Optional[bool] = None, autoSubstitution: Optional[bool] = None, autoTranslateDialects: Optional[bool] = None, skipUntranslatedStrings: Optional[bool] = None, skipUntranslatedFiles: Optional[bool] = None, exportApprovedOnly: Optional[bool] = None, defaultTmId: Optional[int] = None, defaultGlossaryId: None = None, tmApprovedSuggestionsOnly: Optional[bool] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Project(Files Based Project Form).</p>
@@ -2194,7 +2229,7 @@ Use API to manage projects, change their settings, or remove them if required.</
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.post">https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ProjectsResource.add_strings_based_project"><code class="name flex">
-<span>def <span class="ident">add_strings_based_project</span></span>(<span>self, name: str, sourceLanguageId: str, identifier: Optional[str] = None, type: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectType" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectType">ProjectType</a>] = None, targetLanguageIds: Optional[Iterable[str]] = None, visibility: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectVisibility" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectVisibility">ProjectVisibility</a>] = None, languageAccessPolicy: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy">ProjectLanguageAccessPolicy</a>] = None, cname: Optional[str] = None, description: Optional[str] = None, translateDuplicates: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates">ProjectTranslateDuplicates</a>] = None, isMtAllowed: Optional[bool] = None, autoSubstitution: Optional[bool] = None, autoTranslateDialects: Optional[bool] = None, publicDownloads: Optional[bool] = None, hiddenStringsProofreadersAccess: Optional[bool] = None, useGlobalTm: Optional[bool] = None, skipUntranslatedStrings: Optional[bool] = None, skipUntranslatedFiles: Optional[bool] = None, exportApprovedOnly: Optional[bool] = None, inContextProcessHiddenStrings: Optional[bool] = None, inContextPseudoLanguageId: Optional[str] = None, qaCheckIsActive: Optional[bool] = None, qaCheckCategories: Optional[<a title="crowdin_api.api_resources.projects.types.QACheckCategories" href="projects/types.html#crowdin_api.api_resources.projects.types.QACheckCategories">QACheckCategories</a>] = None, qaChecksIgnorableCategories: Optional[<a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories" href="projects/types.html#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories">QAChecksIgnorableCategories</a>] = None, languageMapping: Optional[Dict[~KT, ~VT]] = None, glossaryAccess: Optional[bool] = None, notificationSettings: Optional[<a title="crowdin_api.api_resources.projects.types.NotificationSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.NotificationSettings">NotificationSettings</a>] = None, defaultTmId: Optional[int] = None, defaultGlossaryId: None = None)</span>
+<span>def <span class="ident">add_strings_based_project</span></span>(<span>self, name: str, sourceLanguageId: str, identifier: Optional[str] = None, type: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectType" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectType">ProjectType</a>] = None, targetLanguageIds: Optional[Iterable[str]] = None, visibility: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectVisibility" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectVisibility">ProjectVisibility</a>] = None, languageAccessPolicy: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy">ProjectLanguageAccessPolicy</a>] = None, cname: Optional[str] = None, description: Optional[str] = None, translateDuplicates: Optional[<a title="crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates" href="projects/enums.html#crowdin_api.api_resources.projects.enums.ProjectTranslateDuplicates">ProjectTranslateDuplicates</a>] = None, isMtAllowed: Optional[bool] = None, autoSubstitution: Optional[bool] = None, autoTranslateDialects: Optional[bool] = None, publicDownloads: Optional[bool] = None, hiddenStringsProofreadersAccess: Optional[bool] = None, useGlobalTm: Optional[bool] = None, skipUntranslatedStrings: Optional[bool] = None, skipUntranslatedFiles: Optional[bool] = None, exportApprovedOnly: Optional[bool] = None, inContextProcessHiddenStrings: Optional[bool] = None, inContextPseudoLanguageId: Optional[str] = None, qaCheckIsActive: Optional[bool] = None, qaCheckCategories: Optional[<a title="crowdin_api.api_resources.projects.types.QACheckCategories" href="projects/types.html#crowdin_api.api_resources.projects.types.QACheckCategories">QACheckCategories</a>] = None, qaChecksIgnorableCategories: Optional[<a title="crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories" href="projects/types.html#crowdin_api.api_resources.projects.types.QAChecksIgnorableCategories">QAChecksIgnorableCategories</a>] = None, languageMapping: Optional[Dict[~KT, ~VT]] = None, glossaryAccess: Optional[bool] = None, notificationSettings: Optional[<a title="crowdin_api.api_resources.projects.types.NotificationSettings" href="projects/types.html#crowdin_api.api_resources.projects.types.NotificationSettings">NotificationSettings</a>] = None, defaultTmId: Optional[int] = None, defaultGlossaryId: None = None, tmApprovedSuggestionsOnly: Optional[bool] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Project(Strings Based Project Form).</p>
@@ -2455,10 +2490,16 @@ and shall be completed with a sequence of API methods.</p>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report">generate_contribution_raw_data_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report">generate_costs_estimation_post_editing_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report">generate_costs_estimation_post_editing_general_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_editor_issues_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_editor_issues_report">generate_editor_issues_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_by_task_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_by_task_report">generate_pre_translate_accuracy_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_general_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_general_report">generate_pre_translate_accuracy_general_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_project_members_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_project_members_report">generate_project_members_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_qa_check_issues_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_qa_check_issues_report">generate_qa_check_issues_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report">generate_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_saving_activity_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_saving_activity_report">generate_saving_activity_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_source_content_updates_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_source_content_updates_report">generate_source_content_updates_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report">generate_top_members_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_activity_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_activity_report">generate_translation_activity_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report">generate_translation_costs_post_editing_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report" href="reports/resource.html#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report">generate_translation_costs_post_editing_general_report</a></code></li>
 </ul>
@@ -3044,7 +3085,7 @@ be removed from storage and will remain in your account.</p>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.StringCommentsResource.add_string_comment"><code class="name flex">
-<span>def <span class="ident">add_string_comment</span></span>(<span>self, text: str, stringId: int, targetLanguageId: str, type: <a title="crowdin_api.api_resources.string_comments.enums.StringCommentType" href="string_comments/enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentType">StringCommentType</a>, projectId: Optional[int] = None, issueType: Optional[<a title="crowdin_api.api_resources.string_comments.enums.StringCommentIssueType" href="string_comments/enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentIssueType">StringCommentIssueType</a>] = None)</span>
+<span>def <span class="ident">add_string_comment</span></span>(<span>self, text: str, stringId: int, targetLanguageId: str, type: <a title="crowdin_api.api_resources.string_comments.enums.StringCommentType" href="string_comments/enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentType">StringCommentType</a>, projectId: Optional[int] = None, issueType: Optional[<a title="crowdin_api.api_resources.string_comments.enums.StringCommentIssueType" href="string_comments/enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentIssueType">StringCommentIssueType</a>] = None, attachments: Optional[Iterable[int]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add String Comment.</p>
@@ -3058,6 +3099,14 @@ be removed from storage and will remain in your account.</p>
 <div class="desc"><p>Delete String Comment.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.comments.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.comments.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.StringCommentsResource.delete_string_comment_attachment"><code class="name flex">
+<span>def <span class="ident">delete_string_comment_attachment</span></span>(<span>self, stringCommentId: int, attachmentId: int, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete String Comment Attachment.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.comments.attachments.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.comments.attachments.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.StringCommentsResource.edit_string_comment"><code class="name flex">
 <span>def <span class="ident">edit_string_comment</span></span>(<span>self, stringCommentId: int, data: Iterable[<a title="crowdin_api.api_resources.string_comments.types.StringCommentPatchRequest" href="string_comments/types.html#crowdin_api.api_resources.string_comments.types.StringCommentPatchRequest">StringCommentPatchRequest</a>], projectId: Optional[int] = None)</span>
@@ -3366,6 +3415,14 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.TasksResource.add_task_comment"><code class="name flex">
+<span>def <span class="ident">add_task_comment</span></span>(<span>self, text: str, taskId: int, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add Task Comment.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.post">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.post</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.TasksResource.add_task_settings_template"><code class="name flex">
 <span>def <span class="ident">add_task_settings_template</span></span>(<span>self, name: str, config: <a title="crowdin_api.api_resources.tasks.types.TaskSettingsTemplateLanguages" href="tasks/types.html#crowdin_api.api_resources.tasks.types.TaskSettingsTemplateLanguages">TaskSettingsTemplateLanguages</a>, projectId: Optional[int] = None)</span>
 </code></dt>
@@ -3452,6 +3509,14 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.delete</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.TasksResource.delete_task_comment"><code class="name flex">
+<span>def <span class="ident">delete_task_comment</span></span>(<span>self, taskCommentId: int, taskId: int, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete Task Comment.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.delete</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.TasksResource.delete_task_settings_template"><code class="name flex">
 <span>def <span class="ident">delete_task_settings_template</span></span>(<span>self, taskSettingsTemplateId: int, projectId: Optional[int] = None)</span>
 </code></dt>
@@ -3477,6 +3542,14 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <div class="desc"><p>Edit Task Archived Status.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.user.tasks.patch">https://developer.crowdin.com/api/v2/#operation/api.user.tasks.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.TasksResource.edit_task_comment"><code class="name flex">
+<span>def <span class="ident">edit_task_comment</span></span>(<span>self, taskCommentId: int, data: Iterable[<a title="crowdin_api.api_resources.tasks.types.TaskCommentPatchRequest" href="tasks/types.html#crowdin_api.api_resources.tasks.types.TaskCommentPatchRequest">TaskCommentPatchRequest</a>], taskId: int, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit Task Comment.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.TasksResource.edit_task_settings_template"><code class="name flex">
 <span>def <span class="ident">edit_task_settings_template</span></span>(<span>self, taskSettingsTemplateId: int, data: Iterable[<a title="crowdin_api.api_resources.tasks.types.ConfigPatchRequest" href="tasks/types.html#crowdin_api.api_resources.tasks.types.ConfigPatchRequest">ConfigPatchRequest</a>], projectId: Optional[int] = None)</span>
@@ -3504,6 +3577,20 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.get">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.get</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.TasksResource.get_task_comment"><code class="name flex">
+<span>def <span class="ident">get_task_comment</span></span>(<span>self, taskCommentId: int, taskId: int, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Task Comment.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.get">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.TasksResource.get_task_comments_path"><code class="name flex">
+<span>def <span class="ident">get_task_comments_path</span></span>(<span>self, projectId: int, taskId: int, taskCommentId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.TasksResource.get_task_settings_template"><code class="name flex">
 <span>def <span class="ident">get_task_settings_template</span></span>(<span>self, taskSettingsTemplateId: int, projectId: Optional[int] = None)</span>
 </code></dt>
@@ -3525,6 +3612,14 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 </code></dt>
 <dd>
 <div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.TasksResource.list_task_comments"><code class="name flex">
+<span>def <span class="ident">list_task_comments</span></span>(<span>self, taskId: int, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Task Comments.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.TasksResource.list_task_settings_templates"><code class="name flex">
 <span>def <span class="ident">list_task_settings_templates</span></span>(<span>self, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -4522,7 +4617,10 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.export_report_archive" href="#crowdin_api.api_resources.EnterpriseReportsResource.export_report_archive">export_report_archive</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_fuzzy_cost_estimate_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_fuzzy_cost_estimate_report">generate_fuzzy_cost_estimate_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_fuzzy_translation_cost_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_fuzzy_translation_cost_report">generate_fuzzy_translation_cost_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_qa_check_issues_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_group_qa_check_issues_report">generate_group_qa_check_issues_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_group_report">generate_group_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_task_usage_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_group_task_usage_report">generate_group_task_usage_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_translation_activity_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_group_translation_activity_report">generate_group_translation_activity_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_group_translation_costs_post_editing_general_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_group_translation_costs_post_editing_general_report">generate_group_translation_costs_post_editing_general_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_organization_translation_costs_post_editing_general_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_organization_translation_costs_post_editing_general_report">generate_organization_translation_costs_post_editing_general_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseReportsResource.generate_simple_cost_estimate_report" href="#crowdin_api.api_resources.EnterpriseReportsResource.generate_simple_cost_estimate_report">generate_simple_cost_estimate_report</a></code></li>
@@ -4785,6 +4883,7 @@ the details of a specific template.</p>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.StringCommentsResource.add_string_comment" href="#crowdin_api.api_resources.StringCommentsResource.add_string_comment">add_string_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringCommentsResource.delete_string_comment" href="#crowdin_api.api_resources.StringCommentsResource.delete_string_comment">delete_string_comment</a></code></li>
+<li><code><a title="crowdin_api.api_resources.StringCommentsResource.delete_string_comment_attachment" href="#crowdin_api.api_resources.StringCommentsResource.delete_string_comment_attachment">delete_string_comment_attachment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringCommentsResource.edit_string_comment" href="#crowdin_api.api_resources.StringCommentsResource.edit_string_comment">edit_string_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringCommentsResource.get_string_comment" href="#crowdin_api.api_resources.StringCommentsResource.get_string_comment">get_string_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringCommentsResource.get_string_comments_path" href="#crowdin_api.api_resources.StringCommentsResource.get_string_comments_path">get_string_comments_path</a></code></li>
@@ -4829,6 +4928,7 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.TasksResource.add_language_service_task" href="#crowdin_api.api_resources.TasksResource.add_language_service_task">add_language_service_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.add_pending_task" href="#crowdin_api.api_resources.TasksResource.add_pending_task">add_pending_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.add_task" href="#crowdin_api.api_resources.TasksResource.add_task">add_task</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TasksResource.add_task_comment" href="#crowdin_api.api_resources.TasksResource.add_task_comment">add_task_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.add_task_settings_template" href="#crowdin_api.api_resources.TasksResource.add_task_settings_template">add_task_settings_template</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.add_vendor_gengo_by_string_ids_task" href="#crowdin_api.api_resources.TasksResource.add_vendor_gengo_by_string_ids_task">add_vendor_gengo_by_string_ids_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.add_vendor_gengo_task" href="#crowdin_api.api_resources.TasksResource.add_vendor_gengo_task">add_vendor_gengo_task</a></code></li>
@@ -4840,15 +4940,20 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.TasksResource.add_vendor_translated_by_string_ids_task" href="#crowdin_api.api_resources.TasksResource.add_vendor_translated_by_string_ids_task">add_vendor_translated_by_string_ids_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.add_vendor_translated_task" href="#crowdin_api.api_resources.TasksResource.add_vendor_translated_task">add_vendor_translated_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.delete_task" href="#crowdin_api.api_resources.TasksResource.delete_task">delete_task</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TasksResource.delete_task_comment" href="#crowdin_api.api_resources.TasksResource.delete_task_comment">delete_task_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.delete_task_settings_template" href="#crowdin_api.api_resources.TasksResource.delete_task_settings_template">delete_task_settings_template</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.edit_task" href="#crowdin_api.api_resources.TasksResource.edit_task">edit_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.edit_task_archived_status" href="#crowdin_api.api_resources.TasksResource.edit_task_archived_status">edit_task_archived_status</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TasksResource.edit_task_comment" href="#crowdin_api.api_resources.TasksResource.edit_task_comment">edit_task_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.edit_task_settings_template" href="#crowdin_api.api_resources.TasksResource.edit_task_settings_template">edit_task_settings_template</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.export_task_strings" href="#crowdin_api.api_resources.TasksResource.export_task_strings">export_task_strings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.get_task" href="#crowdin_api.api_resources.TasksResource.get_task">get_task</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TasksResource.get_task_comment" href="#crowdin_api.api_resources.TasksResource.get_task_comment">get_task_comment</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TasksResource.get_task_comments_path" href="#crowdin_api.api_resources.TasksResource.get_task_comments_path">get_task_comments_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.get_task_settings_template" href="#crowdin_api.api_resources.TasksResource.get_task_settings_template">get_task_settings_template</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.get_task_settings_templates_path" href="#crowdin_api.api_resources.TasksResource.get_task_settings_templates_path">get_task_settings_templates_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.get_tasks_path" href="#crowdin_api.api_resources.TasksResource.get_tasks_path">get_tasks_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TasksResource.list_task_comments" href="#crowdin_api.api_resources.TasksResource.list_task_comments">list_task_comments</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.list_task_settings_templates" href="#crowdin_api.api_resources.TasksResource.list_task_settings_templates">list_task_settings_templates</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.list_tasks" href="#crowdin_api.api_resources.TasksResource.list_tasks">list_tasks</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TasksResource.list_user_tasks" href="#crowdin_api.api_resources.TasksResource.list_user_tasks">list_user_tasks</a></code></li>

@@ -175,6 +175,16 @@
 <p>Link to documentation for enterprise:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_editor_issues_report"><code class="name flex">
+<span>def <span class="ident">generate_editor_issues_report</span></span>(<span>self, project_id: Optional[int] = None, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, issue_type: Optional[str] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Report(Editor Issues).</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_fuzzy_cost_estimate_report"><code class="name flex">
 <span>def <span class="ident">generate_fuzzy_cost_estimate_report</span></span>(<span>self, projectId: Optional[int] = None, **kwargs)</span>
 </code></dt>
@@ -207,6 +217,26 @@
 <p>Link to documentation for enterprise:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_project_members_report"><code class="name flex">
+<span>def <span class="ident">generate_project_members_report</span></span>(<span>self, project_id: Optional[int] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Report(Project Members).</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_qa_check_issues_report"><code class="name flex">
+<span>def <span class="ident">generate_qa_check_issues_report</span></span>(<span>self, project_id: Optional[int] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Report(Qa Check Issues).</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report"><code class="name flex">
 <span>def <span class="ident">generate_report</span></span>(<span>self, request_data: Dict[~KT, ~VT], projectId: Optional[int] = None)</span>
 </code></dt>
@@ -216,6 +246,16 @@
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post</a></p>
 <p>Link to documentation for enterprise:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.download.download">https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.download.download</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_saving_activity_report"><code class="name flex">
+<span>def <span class="ident">generate_saving_activity_report</span></span>(<span>self, project_id: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, language_id: Optional[str] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Report(Saving Activity).</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_simple_cost_estimate_report"><code class="name flex">
 <span>def <span class="ident">generate_simple_cost_estimate_report</span></span>(<span>self, projectId: Optional[int] = None, **kwargs)</span>
@@ -229,11 +269,31 @@
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_source_content_updates_report"><code class="name flex">
+<span>def <span class="ident">generate_source_content_updates_report</span></span>(<span>self, project_id: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Report(Contribution Raw Data).</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report"><code class="name flex">
 <span>def <span class="ident">generate_top_members_report</span></span>(<span>self, projectId: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, languageId: Optional[str] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Report(Top Members).</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_activity_report"><code class="name flex">
+<span>def <span class="ident">generate_translation_activity_report</span></span>(<span>self, project_id: Optional[int] = None, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, language_id: Optional[str] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = Format.XLSX, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Report(Translation Activity).</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post</a></p>
 <p>Link to documentation for enterprise:
@@ -350,12 +410,36 @@ and shall be completed with a sequence of API methods.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_qa_check_issues_report"><code class="name flex">
+<span>def <span class="ident">generate_group_qa_check_issues_report</span></span>(<span>self, group_id: int, project_ids: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Group Report (Group Qa Check Issues Report).</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_report"><code class="name flex">
 <span>def <span class="ident">generate_group_report</span></span>(<span>self, group_id: int, request_data: Dict[~KT, ~VT])</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generate Group Report.</p>
 <p>Link to documentation for enterprise:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_task_usage_report"><code class="name flex">
+<span>def <span class="ident">generate_group_task_usage_report</span></span>(<span>self, group_id: int, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, type: Optional[str] = None, project_ids: Optional[Iterable[int]] = None, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None, group_by: Optional[<a title="crowdin_api.api_resources.reports.enums.GroupBy" href="enums.html#crowdin_api.api_resources.reports.enums.GroupBy">GroupBy</a>] = None, type_task: Optional[int] = None, language_id: Optional[str] = None, creator_id: Optional[int] = None, assignee_id: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Group Report (Task Usage Report).</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_translation_activity_report"><code class="name flex">
+<span>def <span class="ident">generate_group_translation_activity_report</span></span>(<span>self, group_id: int, unit: Optional[<a title="crowdin_api.api_resources.reports.enums.Unit" href="enums.html#crowdin_api.api_resources.reports.enums.Unit">Unit</a>] = None, project_ids: Optional[Iterable[int]] = None, format: Optional[<a title="crowdin_api.api_resources.reports.enums.Format" href="enums.html#crowdin_api.api_resources.reports.enums.Format">Format</a>] = None, date_from: Optional[datetime.datetime] = None, date_to: Optional[datetime.datetime] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate Group Report (Group translation consumption).</p>
+<p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_translation_costs_post_editing_general_report"><code class="name flex">
@@ -428,10 +512,16 @@ and shall be completed with a sequence of API methods.</p>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report">generate_contribution_raw_data_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report">generate_costs_estimation_post_editing_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report">generate_costs_estimation_post_editing_general_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_editor_issues_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_editor_issues_report">generate_editor_issues_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_by_task_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_by_task_report">generate_pre_translate_accuracy_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_general_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_general_report">generate_pre_translate_accuracy_general_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_project_members_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_project_members_report">generate_project_members_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_qa_check_issues_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_qa_check_issues_report">generate_qa_check_issues_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report">generate_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_saving_activity_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_saving_activity_report">generate_saving_activity_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_source_content_updates_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_source_content_updates_report">generate_source_content_updates_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report">generate_top_members_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_activity_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_activity_report">generate_translation_activity_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report">generate_translation_costs_post_editing_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report">generate_translation_costs_post_editing_general_report</a></code></li>
 </ul>
@@ -569,10 +659,16 @@ and shall be completed with a sequence of API methods.</p>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report">generate_contribution_raw_data_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report">generate_costs_estimation_post_editing_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report">generate_costs_estimation_post_editing_general_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_editor_issues_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_editor_issues_report">generate_editor_issues_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_by_task_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_by_task_report">generate_pre_translate_accuracy_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_general_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_general_report">generate_pre_translate_accuracy_general_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_project_members_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_project_members_report">generate_project_members_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_qa_check_issues_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_qa_check_issues_report">generate_qa_check_issues_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report">generate_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_saving_activity_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_saving_activity_report">generate_saving_activity_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_source_content_updates_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_source_content_updates_report">generate_source_content_updates_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report">generate_top_members_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_activity_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_activity_report">generate_translation_activity_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report">generate_translation_costs_post_editing_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report">generate_translation_costs_post_editing_general_report</a></code></li>
 </ul>
@@ -699,14 +795,20 @@ Link to documentation:
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_contribution_raw_data_report">generate_contribution_raw_data_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_by_task_report">generate_costs_estimation_post_editing_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_costs_estimation_post_editing_general_report">generate_costs_estimation_post_editing_general_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_editor_issues_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_editor_issues_report">generate_editor_issues_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_fuzzy_cost_estimate_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_fuzzy_cost_estimate_report">generate_fuzzy_cost_estimate_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_fuzzy_translation_cost_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_fuzzy_translation_cost_report">generate_fuzzy_translation_cost_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_by_task_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_by_task_report">generate_pre_translate_accuracy_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_general_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_pre_translate_accuracy_general_report">generate_pre_translate_accuracy_general_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_project_members_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_project_members_report">generate_project_members_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_qa_check_issues_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_qa_check_issues_report">generate_qa_check_issues_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_report">generate_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_saving_activity_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_saving_activity_report">generate_saving_activity_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_simple_cost_estimate_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_simple_cost_estimate_report">generate_simple_cost_estimate_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_simple_translation_cost_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_simple_translation_cost_report">generate_simple_translation_cost_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_source_content_updates_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_source_content_updates_report">generate_source_content_updates_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_top_members_report">generate_top_members_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_activity_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_activity_report">generate_translation_activity_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_by_task_report">generate_translation_costs_post_editing_by_task_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.generate_translation_costs_post_editing_general_report">generate_translation_costs_post_editing_general_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.BaseReportsResource.get_reports_path" href="#crowdin_api.api_resources.reports.resource.BaseReportsResource.get_reports_path">get_reports_path</a></code></li>
@@ -721,7 +823,10 @@ Link to documentation:
 <li><code><a title="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.export_report_archive" href="#crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.export_report_archive">export_report_archive</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_fuzzy_cost_estimate_report" href="#crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_fuzzy_cost_estimate_report">generate_fuzzy_cost_estimate_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_fuzzy_translation_cost_report" href="#crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_fuzzy_translation_cost_report">generate_fuzzy_translation_cost_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_qa_check_issues_report" href="#crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_qa_check_issues_report">generate_group_qa_check_issues_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_report" href="#crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_report">generate_group_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_task_usage_report" href="#crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_task_usage_report">generate_group_task_usage_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_translation_activity_report" href="#crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_translation_activity_report">generate_group_translation_activity_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_translation_costs_post_editing_general_report" href="#crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_group_translation_costs_post_editing_general_report">generate_group_translation_costs_post_editing_general_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_organization_translation_costs_post_editing_general_report" href="#crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_organization_translation_costs_post_editing_general_report">generate_organization_translation_costs_post_editing_general_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_simple_cost_estimate_report" href="#crowdin_api.api_resources.reports.resource.EnterpriseReportsResource.generate_simple_cost_estimate_report">generate_simple_cost_estimate_report</a></code></li>

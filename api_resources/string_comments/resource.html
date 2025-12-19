@@ -48,7 +48,7 @@
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.string_comments.resource.StringCommentsResource.add_string_comment"><code class="name flex">
-<span>def <span class="ident">add_string_comment</span></span>(<span>self, text: str, stringId: int, targetLanguageId: str, type: <a title="crowdin_api.api_resources.string_comments.enums.StringCommentType" href="enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentType">StringCommentType</a>, projectId: Optional[int] = None, issueType: Optional[<a title="crowdin_api.api_resources.string_comments.enums.StringCommentIssueType" href="enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentIssueType">StringCommentIssueType</a>] = None)</span>
+<span>def <span class="ident">add_string_comment</span></span>(<span>self, text: str, stringId: int, targetLanguageId: str, type: <a title="crowdin_api.api_resources.string_comments.enums.StringCommentType" href="enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentType">StringCommentType</a>, projectId: Optional[int] = None, issueType: Optional[<a title="crowdin_api.api_resources.string_comments.enums.StringCommentIssueType" href="enums.html#crowdin_api.api_resources.string_comments.enums.StringCommentIssueType">StringCommentIssueType</a>] = None, attachments: Optional[Iterable[int]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add String Comment.</p>
@@ -62,6 +62,14 @@
 <div class="desc"><p>Delete String Comment.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.comments.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.comments.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.string_comments.resource.StringCommentsResource.delete_string_comment_attachment"><code class="name flex">
+<span>def <span class="ident">delete_string_comment_attachment</span></span>(<span>self, stringCommentId: int, attachmentId: int, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete String Comment Attachment.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.comments.attachments.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.comments.attachments.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_comments.resource.StringCommentsResource.edit_string_comment"><code class="name flex">
 <span>def <span class="ident">edit_string_comment</span></span>(<span>self, stringCommentId: int, data: Iterable[<a title="crowdin_api.api_resources.string_comments.types.StringCommentPatchRequest" href="types.html#crowdin_api.api_resources.string_comments.types.StringCommentPatchRequest">StringCommentPatchRequest</a>], projectId: Optional[int] = None)</span>
@@ -126,6 +134,7 @@
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.string_comments.resource.StringCommentsResource.add_string_comment" href="#crowdin_api.api_resources.string_comments.resource.StringCommentsResource.add_string_comment">add_string_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_comments.resource.StringCommentsResource.delete_string_comment" href="#crowdin_api.api_resources.string_comments.resource.StringCommentsResource.delete_string_comment">delete_string_comment</a></code></li>
+<li><code><a title="crowdin_api.api_resources.string_comments.resource.StringCommentsResource.delete_string_comment_attachment" href="#crowdin_api.api_resources.string_comments.resource.StringCommentsResource.delete_string_comment_attachment">delete_string_comment_attachment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_comments.resource.StringCommentsResource.edit_string_comment" href="#crowdin_api.api_resources.string_comments.resource.StringCommentsResource.edit_string_comment">edit_string_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_comments.resource.StringCommentsResource.get_string_comment" href="#crowdin_api.api_resources.string_comments.resource.StringCommentsResource.get_string_comment">get_string_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_comments.resource.StringCommentsResource.get_string_comments_path" href="#crowdin_api.api_resources.string_comments.resource.StringCommentsResource.get_string_comments_path">get_string_comments_path</a></code></li>
