@@ -34,11 +34,13 @@ class APIException(CrowdinException):
         context=None,
         http_status=None,
         headers=None,
+        source_headers=None,
         should_retry=None,
     ):
         super().__init__(detail=detail)
         self.context = context
         self.headers = headers or {}
+        self.source_headers = source_headers or {}
         self.http_status = http_status or self.default_http_status
 
         if should_retry is None:
