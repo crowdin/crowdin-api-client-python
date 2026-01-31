@@ -568,3 +568,98 @@ class SourceFilesResource(BaseResource):
                 projectId=projectId, fileId=fileId, revisionId=revisionId
             ),
         )
+
+    def get_asset_references_path(
+        self,
+        project_id: int,
+        file_id: int,
+        reference_id: Optional[int] = None,
+    ):
+        if reference_id is not None:
+            return f"projects/{project_id}/files/{file_id}/references/{reference_id}"
+
+        return f"projects/{project_id}/files/{file_id}/references"
+
+    def list_asset_references(
+        self,
+        project_id: int,
+        file_id: int,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+    ):
+        """
+        List Asset References.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/Source-Files/operation/api.projects.files.references.getMany
+        """
+
+        params = {
+            "limit": limit,
+            "offset": offset,
+        }
+
+        return self.requester.request(
+            method="get",
+            path=self.get_asset_references_path(project_id, file_id),
+            params=params
+        )
+
+    def add_asset_reference(
+        self,
+        project_id: int,
+        file_id: int,
+        storage_id: int,
+        name: str
+    ):
+        """
+        Add Asset Reference.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/Source-Files/operation/api.projects.files.references.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=self.get_asset_references_path(project_id, file_id),
+            request_data={
+                "storageId": storage_id,
+                "name": name
+            }
+        )
+
+    def get_asset_reference(
+        self,
+        project_id: int,
+        file_id: int,
+        reference_id: int
+    ):
+        """
+        Get Asset Reference.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/Source-Files/operation/api.projects.files.references.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_asset_references_path(project_id, file_id, reference_id),
+        )
+
+    def delete_asset_reference(
+        self,
+        project_id: int,
+        file_id: int,
+        reference_id: int
+    ):
+        """
+        Delete Asset Reference.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/Source-Files/operation/api.projects.files.references.delete
+        """
+
+        return self.requester.request(
+            method="delete",
+            path=self.get_asset_references_path(project_id, file_id, reference_id),
+        )
