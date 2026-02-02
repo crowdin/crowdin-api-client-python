@@ -2102,6 +2102,6 @@ class TestEnterpriseAIResources:
 
         m_request.assert_called_once_with(
             method="get",
-            path=f"ai/providers/supported-models",
+            path="ai/providers/supported-models",
             params=request_params
         )
