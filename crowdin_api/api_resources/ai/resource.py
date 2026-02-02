@@ -670,7 +670,7 @@ class AIResource(BaseResource):
         https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.ai.providers.supported-models.crowdin.getMany
         """
 
-        params={
+        params = {
             "limit": limit,
             "offset": offset,
             "providerType": convert_enum_to_string_if_exists(provider_type),
