@@ -12,7 +12,7 @@ from crowdin_api.api_resources.ai.enums import (
     EditAiCustomPlaceholderPatchPath,
     AiToolType,
     AiReportFormat,
-    EditAiSettingsPatchPath
+    EditAiSettingsPatchPath, ListSupportedAiModelsOrderBy
 )
 from crowdin_api.api_resources.ai.resource import AIResource, EnterpriseAIResource
 from crowdin_api.api_resources.ai.types import (
@@ -1065,6 +1065,44 @@ class TestAIResources:
             request_data=request_params,
         )
 
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            (
+                {
+                    "limit": 25,
+                    "offset": 0,
+                    "provider_type": AIProviderType.OPEN_AI,
+                    "enabled": True,
+                    "order_by": Sorting([
+                        SortingRule(ListSupportedAiModelsOrderBy.KNOWLEDGE_CUTOFF, SortingOrder.DESC)
+                    ])
+                },
+                {
+                    "limit": 25,
+                    "offset": 0,
+                    "providerType": "open_ai",
+                    "enabled": True,
+                    "orderBy": "knowledgeCutoff desc",
+                }
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_supported_ai_provider_models(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_supported_ai_provider_models(user_id, **in_params) == "response"
+
+        m_request.assert_called_once_with(
+            method="get",
+            path=f"users/{user_id}/ai/providers/supported-models",
+            params=request_params
+        )
+
 
 class TestEnterpriseAIResources:
     resource_class = EnterpriseAIResource
@@ -2029,4 +2067,40 @@ class TestEnterpriseAIResources:
             method="patch",
             path="ai/settings",
             request_data=request_params,
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            (
+                {
+                    "limit": 25,
+                    "offset": 0,
+                    "provider_type": AIProviderType.OPEN_AI,
+                    "enabled": True,
+                    "order_by": Sorting([
+                        SortingRule(ListSupportedAiModelsOrderBy.KNOWLEDGE_CUTOFF, SortingOrder.DESC)
+                    ])
+                },
+                {
+                    "limit": 25,
+                    "offset": 0,
+                    "providerType": "open_ai",
+                    "enabled": True,
+                    "orderBy": "knowledgeCutoff desc",
+                }
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_supported_ai_provider_models(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_supported_ai_provider_models(**in_params) == "response"
+
+        m_request.assert_called_once_with(
+            method="get",
+            path="ai/providers/supported-models",
+            params=request_params
         )
