@@ -1,6 +1,7 @@
 from unittest import mock
 
 import pytest
+
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.source_files.enums import (
     BranchPatchPath,
@@ -660,4 +661,103 @@ class TestSourceFilesResource:
         m_request.assert_called_once_with(
             method="get",
             path=resource.get_file_revisions_path(projectId=1, fileId=2, revisionId=3),
+        )
+
+    # Asset References
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            (
+                {},
+                {
+                    "limit": None,
+                    "offset": None
+                }
+            ),
+            (
+                {
+                    "limit": 25,
+                    "offset": 10
+                },
+                {
+                    "limit": 25,
+                    "offset": 10
+                }
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_asset_references(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        project_id = 1
+        file_id = 2
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_asset_references(project_id, file_id, **in_params) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path=f"projects/{project_id}/files/{file_id}/references",
+            params=request_params,
+        )
+
+    @pytest.mark.parametrize(
+        "in_data, request_data",
+        (
+            (
+                {
+                    "storage_id": 1,
+                    "name": "name"
+                },
+                {
+                    "storageId": 1,
+                    "name": "name"
+                }
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_asset_reference(self, m_request, in_data, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        project_id = 1
+        file_id = 2
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_asset_reference(project_id, file_id, **in_data) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path=f"projects/{project_id}/files/{file_id}/references",
+            request_data=request_data
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_asset_reference(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        project_id = 1
+        file_id = 2
+        reference_id = 3
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_asset_reference(project_id, file_id, reference_id) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path=f"projects/{project_id}/files/{file_id}/references/{reference_id}"
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_asset_reference(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        project_id = 1
+        file_id = 2
+        reference_id = 3
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_asset_reference(project_id, file_id, reference_id) == "response"
+
+        m_request.assert_called_once_with(
+            method="delete",
+            path=f"projects/{project_id}/files/{file_id}/references/{reference_id}"
         )
