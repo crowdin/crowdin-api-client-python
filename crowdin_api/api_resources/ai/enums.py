@@ -23,7 +23,7 @@ class EditAIPromptPath(Enum):
 
 class AIProviderType(Enum):
     OPEN_AI = "open_ai"
-    AZUER_OPEN_AI = "azure_open_ai"
+    AZURE_OPEN_AI = "azure_open_ai"
     GOOGLE_GEMINI = "google_gemini"
     MISTRAL_AI = "mistral_ai"
     ANTHROPIC = "anthropic"
@@ -82,3 +82,8 @@ class ListAiPromptFineTuningJobsOrderBy(Enum):
 class AiReportFormat(Enum):
     CSV = "csv"
     JSON = "json"
+
+
+class ListSupportedAiModelsOrderBy(Enum):
+    KNOWLEDGE_CUTOFF = "knowledgeCutoff"
+    RELEASE_DATE = "releaseDate"

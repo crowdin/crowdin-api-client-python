@@ -1,7 +1,7 @@
 from typing import Iterable, Optional, Union
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
-from crowdin_api.api_resources.ai.enums import AIPromptAction, AiPromptFineTuningJobStatus
+from crowdin_api.api_resources.ai.enums import AIPromptAction, AiPromptFineTuningJobStatus, AIProviderType
 from crowdin_api.api_resources.ai.types import (
     AddAIPromptRequestScheme,
     AddAIProviderReqeustScheme,
@@ -18,7 +18,7 @@ from crowdin_api.api_resources.ai.types import (
     EditAiSettingsPatch,
 )
 from crowdin_api.sorting import Sorting
-from crowdin_api.utils import convert_enum_collection_to_string_if_exists
+from crowdin_api.utils import convert_enum_collection_to_string_if_exists, convert_enum_to_string_if_exists
 
 
 class AIResource(BaseResource):
@@ -654,6 +654,36 @@ class AIResource(BaseResource):
             request_data=patches,
         )
 
+    def list_supported_ai_provider_models(
+        self,
+        user_id: int,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+        provider_type: Optional[AIProviderType] = None,
+        enabled: Optional[bool] = None,
+        order_by: Optional[Sorting] = None,
+    ):
+        """
+        List Supported AI Provider Models
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.ai.providers.supported-models.crowdin.getMany
+        """
+
+        params={
+            "limit": limit,
+            "offset": offset,
+            "providerType": convert_enum_to_string_if_exists(provider_type),
+            "enabled": enabled,
+            "orderBy": str(order_by) if order_by is not None else None,
+        }
+
+        return self.requester.request(
+            method="get",
+            path=f"users/{user_id}/ai/providers/supported-models",
+            params=params
+        )
+
 
 class EnterpriseAIResource(BaseResource):
     """
@@ -1255,4 +1285,33 @@ class EnterpriseAIResource(BaseResource):
             method="patch",
             path="ai/settings",
             request_data=patches,
+        )
+
+    def list_supported_ai_provider_models(
+        self,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+        provider_type: Optional[AIProviderType] = None,
+        enabled: Optional[bool] = None,
+        order_by: Optional[Sorting] = None,
+    ):
+        """
+        List Supported AI Provider Models
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.providers.supported-models.enterprise.getMany
+        """
+
+        params={
+            "limit": limit,
+            "offset": offset,
+            "providerType": convert_enum_to_string_if_exists(provider_type),
+            "enabled": enabled,
+            "orderBy": str(order_by) if order_by is not None else None,
+        }
+
+        return self.requester.request(
+            method="get",
+            path="ai/providers/supported-models",
+            params=params
         )
