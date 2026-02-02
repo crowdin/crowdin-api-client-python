@@ -1302,7 +1302,7 @@ class EnterpriseAIResource(BaseResource):
         https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.providers.supported-models.enterprise.getMany
         """
 
-        params={
+        params = {
             "limit": limit,
             "offset": offset,
             "providerType": convert_enum_to_string_if_exists(provider_type),
