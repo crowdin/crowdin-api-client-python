@@ -4,7 +4,8 @@ import pytest
 
 from crowdin_api.api_resources.branches.enums import ListBranchesOrderBy, EditBranchPatchPath
 from crowdin_api.api_resources.branches.resource import BranchesResource
-from crowdin_api.api_resources.branches.types import CloneBranchRequest, AddBranchRequest, EditBranchPatch
+from crowdin_api.api_resources.branches.types import CloneBranchRequest, AddBranchRequest, EditBranchPatch, \
+    MergeBranchRequest
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.requester import APIRequester
 from crowdin_api.sorting import SortingRule, Sorting, SortingOrder
@@ -204,4 +205,39 @@ class TestBranchesResource:
             method="patch",
             path=f"projects/{project_id}/branches/{branch_id}",
             request_data=request_body
+        )
+
+    @pytest.mark.parametrize(
+        "in_data, request_data",
+        (
+            (
+                MergeBranchRequest(
+                    sourceBranchId=1,
+                    deleteAfterMerge=True,
+                    dryRun=True,
+                    acceptSourceChanges=True
+                ),
+                {
+                    "sourceBranchId": 1,
+                    "deleteAfterMerge": True,
+                    "dryRun": True,
+                    "acceptSourceChanges": True
+                }
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_merge_branches(self, m_request, in_data, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        project_id = 1
+        branch_id = 2
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.merge_branch(project_id, branch_id, in_data) == "response"
+
+        m_request.assert_called_once_with(
+            method="post",
+            path=f"projects/{project_id}/branches/{branch_id}/merges",
+            request_data=request_data,
         )
