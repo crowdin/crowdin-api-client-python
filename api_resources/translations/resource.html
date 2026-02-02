@@ -145,6 +145,30 @@ are asynchronous operations and shall be completed with sequence of API methods.
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.translations.resource.TranslationsResource.import_translations"><code class="name flex">
+<span>def <span class="ident">import_translations</span></span>(<span>self, project_id: int, storage_id: int, language_ids: Optional[Iterable[int]] = None, file_id: Optional[int] = None, import_eq_suggestions: Optional[bool] = None, auto_approve_imported: Optional[bool] = None, translate_hidden: Optional[bool] = None, add_to_tm: Optional[bool] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Import Translations</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.translations.imports">https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.translations.imports</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.translations.resource.TranslationsResource.import_translations_report"><code class="name flex">
+<span>def <span class="ident">import_translations_report</span></span>(<span>self, project_id: int, import_translation_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Import Translations Report</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.translations.imports.report.get">https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.translations.imports.report.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.translations.resource.TranslationsResource.import_translations_status"><code class="name flex">
+<span>def <span class="ident">import_translations_status</span></span>(<span>self, project_id: int, import_translation_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Import Translations Status</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.translations.imports.get">https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.translations.imports.get</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.translations.resource.TranslationsResource.list_pre_translations"><code class="name flex">
 <span>def <span class="ident">list_pre_translations</span></span>(<span>self, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
@@ -218,6 +242,9 @@ are asynchronous operations and shall be completed with sequence of API methods.
 <li><code><a title="crowdin_api.api_resources.translations.resource.TranslationsResource.edit_pre_translation" href="#crowdin_api.api_resources.translations.resource.TranslationsResource.edit_pre_translation">edit_pre_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translations.resource.TranslationsResource.export_project_translation" href="#crowdin_api.api_resources.translations.resource.TranslationsResource.export_project_translation">export_project_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translations.resource.TranslationsResource.get_builds_path" href="#crowdin_api.api_resources.translations.resource.TranslationsResource.get_builds_path">get_builds_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.translations.resource.TranslationsResource.import_translations" href="#crowdin_api.api_resources.translations.resource.TranslationsResource.import_translations">import_translations</a></code></li>
+<li><code><a title="crowdin_api.api_resources.translations.resource.TranslationsResource.import_translations_report" href="#crowdin_api.api_resources.translations.resource.TranslationsResource.import_translations_report">import_translations_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.translations.resource.TranslationsResource.import_translations_status" href="#crowdin_api.api_resources.translations.resource.TranslationsResource.import_translations_status">import_translations_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translations.resource.TranslationsResource.list_pre_translations" href="#crowdin_api.api_resources.translations.resource.TranslationsResource.list_pre_translations">list_pre_translations</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translations.resource.TranslationsResource.list_project_builds" href="#crowdin_api.api_resources.translations.resource.TranslationsResource.list_project_builds">list_project_builds</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translations.resource.TranslationsResource.pre_translation_report" href="#crowdin_api.api_resources.translations.resource.TranslationsResource.pre_translation_report">pre_translation_report</a></code></li>
