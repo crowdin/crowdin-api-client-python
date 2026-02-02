@@ -1104,7 +1104,6 @@ class TestAIResources:
         )
 
 
-
 class TestEnterpriseAIResources:
     resource_class = EnterpriseAIResource
 
