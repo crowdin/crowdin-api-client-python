@@ -5,7 +5,7 @@ import os
 import time
 from copy import copy
 from typing import Dict, IO, List, Optional, Union
-from urllib.parse import urljoin
+from urllib.parse import urljoin, quote
 
 import requests
 from crowdin_api import status
@@ -113,7 +113,7 @@ class APIRequester:
             request_data = file
             file_mime_type = mimetypes.MimeTypes().guess_type(file.name)[0]
             headers["Content-Type"] = file_mime_type or self.default_file_content_type
-            headers["Crowdin-API-FileName"] = os.path.basename(file.name)
+            headers["Crowdin-API-FileName"] = quote(os.path.basename(file.name))
         elif request_data is not None:
             request_data = dumps(self._clear_data(request_data))
 
