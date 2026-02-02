@@ -474,7 +474,7 @@ class TranslationsResource(BaseResource):
         Import Translations
 
         Link to documentation:
-        https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.translations.exports.post
+        https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.translations.imports
         """
 
         return self.requester.request(
