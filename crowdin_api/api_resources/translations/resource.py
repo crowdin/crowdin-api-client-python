@@ -458,3 +458,69 @@ class TranslationsResource(BaseResource):
                 "exportApprovedOnly": exportApprovedOnly,
             },
         )
+
+    def import_translations(
+        self,
+        project_id: int,
+        storage_id: int,
+        language_ids: Optional[Iterable[int]] = None,
+        file_id: Optional[int] = None,
+        import_eq_suggestions: Optional[bool] = None,
+        auto_approve_imported: Optional[bool] = None,
+        translate_hidden: Optional[bool] = None,
+        add_to_tm: Optional[bool] = None,
+    ):
+        """
+        Import Translations
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.translations.imports
+        """
+
+        return self.requester.request(
+            method="post",
+            path=f"projects/{project_id}/translations/imports",
+            request_data={
+                "storageId": storage_id,
+                "languageIds": language_ids,
+                "fileId": file_id,
+                "importEqSuggestions": import_eq_suggestions,
+                "autoApproveImported": auto_approve_imported,
+                "translateHidden": translate_hidden,
+                "addToTm": add_to_tm,
+            }
+        )
+
+    def import_translations_status(
+        self,
+        project_id: int,
+        import_translation_id: int
+    ):
+        """
+        Import Translations Status
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.translations.imports.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=f"projects/{project_id}/translations/imports/{import_translation_id}",
+        )
+
+    def import_translations_report(
+        self,
+        project_id: int,
+        import_translation_id: int,
+    ):
+        """
+        Import Translations Report
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.translations.imports.report.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=f"projects/{project_id}/translations/imports/{import_translation_id}/report",
+        )

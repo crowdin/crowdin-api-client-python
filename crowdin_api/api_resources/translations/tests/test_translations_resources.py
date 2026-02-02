@@ -632,3 +632,73 @@ class TestTranslationsResource:
             request_data=request_data,
             path="projects/1/translations/exports",
         )
+
+    @pytest.mark.parametrize(
+        "in_data, request_data",
+        (
+            (
+                {
+                    "storage_id": 1,
+                    "language_ids": [1, 2, 3],
+                    "file_id": 1,
+                    "import_eq_suggestions": True,
+                    "auto_approve_imported": True,
+                    "translate_hidden": True,
+                    "add_to_tm": True
+                },
+                {
+                    "storageId": 1,
+                    "languageIds": [1, 2, 3],
+                    "fileId": 1,
+                    "importEqSuggestions": True,
+                    "autoApproveImported": True,
+                    "translateHidden": True,
+                    "addToTm": True
+                },
+            ),
+        )
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_import_translations(self, m_request, in_data, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        project_id = 1
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.import_translations(project_id, **in_data) == "response"
+
+        m_request.assert_called_once_with(
+            method="post",
+            path=f"projects/{project_id}/translations/imports",
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_import_translations_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        project_id = 1
+        import_translation_id = 2
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.import_translations_status(project_id, import_translation_id) == "response"
+
+        m_request.assert_called_once_with(
+            method="get",
+            path=f"projects/{project_id}/translations/imports/{import_translation_id}",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_import_translations_report(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        project_id = 1
+        import_translation_id = 2
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.import_translations_report(project_id, import_translation_id) == "response"
+
+        m_request.assert_called_once_with(
+            method="get",
+            path=f"projects/{project_id}/translations/imports/{import_translation_id}/report",
+        )
