@@ -134,6 +134,67 @@ class TranslationStatusResource(BaseResource):
             params=params,
         )
 
+    def start_qa_checks_revalidation(
+        self,
+        projectId: Optional[int] = None,
+    ):
+        """
+        Start QA Checks Revalidation.
+
+        Triggers a new QA checks revalidation job for the project.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.post
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="post",
+            path=f"projects/{projectId}/qa-checks/revalidate",
+        )
+
+    def get_qa_checks_revalidation_status(
+        self,
+        projectId: Optional[int] = None,
+    ):
+        """
+        Get QA Checks Revalidation Status.
+
+        Returns the status of the currently running or last completed QA checks
+        revalidation job.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.get
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="get",
+            path=f"projects/{projectId}/qa-checks/revalidate",
+        )
+
+    def cancel_qa_checks_revalidation(
+        self,
+        projectId: Optional[int] = None,
+    ):
+        """
+        Cancel QA Checks Revalidation.
+
+        Cancels the currently running QA checks revalidation job.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.delete
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="delete",
+            path=f"projects/{projectId}/qa-checks/revalidate",
+        )
+
     def list_qa_check_issues(
         self,
         projectId: Optional[int] = None,

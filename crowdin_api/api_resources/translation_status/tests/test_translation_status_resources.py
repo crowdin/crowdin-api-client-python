@@ -85,6 +85,39 @@ class TestTranslationStatusResource:
             path="projects/1/languages/progress",
         )
 
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_start_qa_checks_revalidation(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.start_qa_checks_revalidation(projectId=1) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path="projects/1/qa-checks/revalidate",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_qa_checks_revalidation_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_qa_checks_revalidation_status(projectId=1) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/1/qa-checks/revalidate",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_cancel_qa_checks_revalidation(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.cancel_qa_checks_revalidation(projectId=1) == "response"
+        m_request.assert_called_once_with(
+            method="delete",
+            path="projects/1/qa-checks/revalidate",
+        )
+
     @pytest.mark.parametrize(
         "in_params,request_params",
         (
