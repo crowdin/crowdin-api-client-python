@@ -1320,25 +1320,25 @@ class EnterpriseAIResource(BaseResource):
         self,
         aiId: int,
         projectId: int,
-        targetLanguageIds: Iterable[str],
-        stringIds: Optional[Iterable[int]] = None,
-        # add other params per the API docs
+        targetLanguageIds,
+        stringIds=None,
     ):
         """
         AI Translate Strings.
-    
+
         Link to API docs:
         https://developer.crowdin.com/api/v2/#tag/AI/operation/api.ai.translations.generate
         """
-        params = {
-        "projectId": projectId,
-        "targetLanguageIds": targetLanguageIds,
+        post_data = {
+            "projectId": projectId,
+            "targetLanguageIds": targetLanguageIds,
         }
         if stringIds is not None:
-            params["stringIds"] = stringIds
+            post_data["stringIds"] = stringIds
 
         return self.requester.request(
             method="post",
             path=f"ai/{aiId}/translate-strings",
-            post_data=params,
+            post_data=post_data,
         )
+    
