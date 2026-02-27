@@ -1317,12 +1317,12 @@ class EnterpriseAIResource(BaseResource):
         )
 
     def ai_translate_strings(
-    self,
-    aiId: int,
-    projectId: int,
-    targetLanguageIds: Iterable[str],
-    stringIds: Optional[Iterable[int]] = None,
-    # add other params per the API docs
+        self,
+        aiId: int,
+        projectId: int,
+        targetLanguageIds: Iterable[str],
+        stringIds: Optional[Iterable[int]] = None,
+        # add other params per the API docs
     ):
         """
         AI Translate Strings.
