@@ -2104,3 +2104,25 @@ class TestEnterpriseAIResources:
             path="ai/providers/supported-models",
             params=request_params
         )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_ai_translate_strings(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.ai_translate_strings(
+            aiId=1,
+            projectId=42,
+            targetLanguageIds=["uk", "fr"],
+            stringIds=[101, 102],
+        ) == "response"
+
+        m_request.assert_called_once_with(
+            method="post",
+            path="ai/1/translate-strings",
+            post_data={
+                "projectId": 42,
+                "targetLanguageIds": ["uk", "fr"],
+                "stringIds": [101, 102],
+            },
+        )

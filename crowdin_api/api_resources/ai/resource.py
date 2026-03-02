@@ -1315,3 +1315,29 @@ class EnterpriseAIResource(BaseResource):
             path="ai/providers/supported-models",
             params=params
         )
+
+    def ai_translate_strings(
+        self,
+        aiId: int,
+        projectId: int,
+        targetLanguageIds,
+        stringIds=None,
+    ):
+        """
+        AI Translate Strings.
+
+        Link to API docs:
+        https://developer.crowdin.com/api/v2/#tag/AI/operation/api.ai.translations.generate
+        """
+        post_data = {
+            "projectId": projectId,
+            "targetLanguageIds": targetLanguageIds,
+        }
+        if stringIds is not None:
+            post_data["stringIds"] = stringIds
+
+        return self.requester.request(
+            method="post",
+            path=f"ai/{aiId}/translate-strings",
+            post_data=post_data,
+        )
