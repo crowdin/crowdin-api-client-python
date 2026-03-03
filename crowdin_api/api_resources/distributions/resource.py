@@ -1,3 +1,4 @@
+import warnings
 from typing import Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
@@ -46,7 +47,7 @@ class DistributionsResource(BaseResource):
         projectId: Optional[int] = None,
         fileIds: Optional[Iterable[int]] = None,
         bundleIds: Optional[Iterable[int]] = None,
-        exportMode: Optional[ExportMode] = ExportMode.DEFAULT,
+        exportMode: Optional[ExportMode] = None,
     ):
         """
         Add Distribution.
@@ -56,6 +57,18 @@ class DistributionsResource(BaseResource):
         """
 
         projectId = projectId or self.get_project_id()
+
+        if exportMode is not None:
+            warnings.warn(
+                "`exportMode` is deprecated, omit this parameter to use the API default behavior",
+                DeprecationWarning,
+            )
+
+        if fileIds is not None:
+            warnings.warn(
+                "`fileIds` is deprecated, use `bundleIds` instead",
+                DeprecationWarning,
+            )
 
         return self.requester.request(
             method="post",

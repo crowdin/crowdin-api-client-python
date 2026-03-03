@@ -56,7 +56,7 @@ class TestLanguagesResource:
                     "name": "test",
                     "fileIds": [1, 2, 3],
                     "bundleIds": None,
-                    "exportMode": ExportMode.DEFAULT
+                    "exportMode": None
                 },
             ),
             (
@@ -79,11 +79,28 @@ class TestLanguagesResource:
     def test_add_distribution(self, m_request, incoming_data, request_data, base_absolut_url):
         m_request.return_value = "response"
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_distribution(projectId=1, **incoming_data) == "response"
+        with pytest.warns(DeprecationWarning):
+            assert resource.add_distribution(projectId=1, **incoming_data) == "response"
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_distributions_path(projectId=1),
             request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_distribution_no_deprecated_params(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_distribution(projectId=1, name="test", bundleIds=[1]) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_distributions_path(projectId=1),
+            request_data={
+                "exportMode": None,
+                "name": "test",
+                "fileIds": None,
+                "bundleIds": [1],
+            },
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
