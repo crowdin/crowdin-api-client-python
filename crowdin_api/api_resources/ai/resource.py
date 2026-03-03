@@ -16,6 +16,7 @@ from crowdin_api.api_resources.ai.types import (
     GenerateAiPromptCompletionRequest,
     GenerateAiReportRequest,
     EditAiSettingsPatch,
+    AiFileTranslationRequest,
 )
 from crowdin_api.sorting import Sorting
 from crowdin_api.utils import convert_enum_collection_to_string_if_exists, convert_enum_to_string_if_exists
@@ -684,6 +685,99 @@ class AIResource(BaseResource):
             params=params
         )
 
+    def get_ai_file_translations_path(
+        self, user_id: int, job_identifier: Optional[str] = None
+    ):
+        if job_identifier is not None:
+            return f"users/{user_id}/ai/file-translations/{job_identifier}"
+        return f"users/{user_id}/ai/file-translations"
+
+    def create_ai_file_translation(
+        self,
+        user_id: int,
+        request_data: AiFileTranslationRequest,
+    ):
+        """
+        AI File Translations
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=self.get_ai_file_translations_path(user_id),
+            request_data=request_data,
+        )
+
+    def get_ai_file_translation_status(
+        self,
+        user_id: int,
+        job_identifier: str,
+    ):
+        """
+        Get File Translations Status
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_ai_file_translations_path(user_id, job_identifier),
+        )
+
+    def cancel_ai_file_translation(
+        self,
+        user_id: int,
+        job_identifier: str,
+    ):
+        """
+        Cancel File Translations
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.delete
+        """
+
+        return self.requester.request(
+            method="delete",
+            path=self.get_ai_file_translations_path(user_id, job_identifier),
+        )
+
+    def download_ai_file_translation(
+        self,
+        user_id: int,
+        job_identifier: str,
+    ):
+        """
+        Download Translated File
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.download
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_ai_file_translations_path(user_id, job_identifier) + "/download",
+        )
+
+    def download_ai_file_translation_strings(
+        self,
+        user_id: int,
+        job_identifier: str,
+    ):
+        """
+        Download Translated File Strings
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.download-strings
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_ai_file_translations_path(user_id, job_identifier) + "/translations",
+        )
+
 
 class EnterpriseAIResource(BaseResource):
     """
@@ -1314,4 +1408,92 @@ class EnterpriseAIResource(BaseResource):
             method="get",
             path="ai/providers/supported-models",
             params=params
+        )
+
+    def get_ai_file_translations_path(
+        self, job_identifier: Optional[str] = None
+    ):
+        if job_identifier is not None:
+            return f"ai/file-translations/{job_identifier}"
+        return "ai/file-translations"
+
+    def create_ai_file_translation(
+        self,
+        request_data: AiFileTranslationRequest,
+    ):
+        """
+        AI File Translations
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=self.get_ai_file_translations_path(),
+            request_data=request_data,
+        )
+
+    def get_ai_file_translation_status(
+        self,
+        job_identifier: str,
+    ):
+        """
+        Get File Translations Status
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.get
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_ai_file_translations_path(job_identifier),
+        )
+
+    def cancel_ai_file_translation(
+        self,
+        job_identifier: str,
+    ):
+        """
+        Cancel File Translations
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.delete
+        """
+
+        return self.requester.request(
+            method="delete",
+            path=self.get_ai_file_translations_path(job_identifier),
+        )
+
+    def download_ai_file_translation(
+        self,
+        job_identifier: str,
+    ):
+        """
+        Download Translated File
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.download
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_ai_file_translations_path(job_identifier) + "/download",
+        )
+
+    def download_ai_file_translation_strings(
+        self,
+        job_identifier: str,
+    ):
+        """
+        Download File Strings
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.download-strings
+        """
+
+        return self.requester.request(
+            method="get",
+            path=self.get_ai_file_translations_path(job_identifier) + "/translations",
         )
