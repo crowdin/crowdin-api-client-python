@@ -28,7 +28,8 @@ from crowdin_api.api_resources.ai.types import (
     AiToolObject,
     AiToolFunction,
     GenerateAiReportRequest,
-    GeneralReportSchema
+    GeneralReportSchema,
+    AiFileTranslationRequest,
 )
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.requester import APIRequester
@@ -1103,6 +1104,107 @@ class TestAIResources:
             params=request_params
         )
 
+    @pytest.mark.parametrize(
+        "in_params, path",
+        (
+            ({"user_id": 1}, "users/1/ai/file-translations"),
+            ({"user_id": 1, "job_identifier": "job-id"}, "users/1/ai/file-translations/job-id"),
+        ),
+    )
+    def test_get_ai_file_translations_path(self, in_params, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_file_translations_path(**in_params) == path
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                AiFileTranslationRequest(
+                    storageId=1,
+                    targetLanguageId="uk",
+                ),
+                {
+                    "storageId": 1,
+                    "targetLanguageId": "uk",
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_create_ai_file_translation(self, m_request, incoming_data, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.create_ai_file_translation(user_id, incoming_data) == "response"
+
+        m_request.assert_called_once_with(
+            method="post",
+            path=f"users/{user_id}/ai/file-translations",
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_ai_file_translation_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        job_identifier = "job-id"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_file_translation_status(user_id, job_identifier) == "response"
+
+        m_request.assert_called_once_with(
+            method="get",
+            path=f"users/{user_id}/ai/file-translations/{job_identifier}",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_cancel_ai_file_translation(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        job_identifier = "job-id"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.cancel_ai_file_translation(user_id, job_identifier) == "response"
+
+        m_request.assert_called_once_with(
+            method="delete",
+            path=f"users/{user_id}/ai/file-translations/{job_identifier}",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_download_ai_file_translation(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        job_identifier = "job-id"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.download_ai_file_translation(user_id, job_identifier) == "response"
+
+        m_request.assert_called_once_with(
+            method="get",
+            path=f"users/{user_id}/ai/file-translations/{job_identifier}/download",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_download_ai_file_translation_strings(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        job_identifier = "job-id"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.download_ai_file_translation_strings(user_id, job_identifier) == "response"
+
+        m_request.assert_called_once_with(
+            method="get",
+            path=f"users/{user_id}/ai/file-translations/{job_identifier}/translations",
+        )
+
 
 class TestEnterpriseAIResources:
     resource_class = EnterpriseAIResource
@@ -2103,4 +2205,99 @@ class TestEnterpriseAIResources:
             method="get",
             path="ai/providers/supported-models",
             params=request_params
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, path",
+        (
+            ({}, "ai/file-translations"),
+            ({"job_identifier": "job-id"}, "ai/file-translations/job-id"),
+        ),
+    )
+    def test_get_ai_file_translations_path(self, in_params, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_file_translations_path(**in_params) == path
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                AiFileTranslationRequest(
+                    storageId=1,
+                    targetLanguageId="uk",
+                ),
+                {
+                    "storageId": 1,
+                    "targetLanguageId": "uk",
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_create_ai_file_translation(self, m_request, incoming_data, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.create_ai_file_translation(incoming_data) == "response"
+
+        m_request.assert_called_once_with(
+            method="post",
+            path="ai/file-translations",
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_ai_file_translation_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        job_identifier = "job-id"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_file_translation_status(job_identifier) == "response"
+
+        m_request.assert_called_once_with(
+            method="get",
+            path=f"ai/file-translations/{job_identifier}",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_cancel_ai_file_translation(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        job_identifier = "job-id"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.cancel_ai_file_translation(job_identifier) == "response"
+
+        m_request.assert_called_once_with(
+            method="delete",
+            path=f"ai/file-translations/{job_identifier}",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_download_ai_file_translation(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        job_identifier = "job-id"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.download_ai_file_translation(job_identifier) == "response"
+
+        m_request.assert_called_once_with(
+            method="get",
+            path=f"ai/file-translations/{job_identifier}/download",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_download_ai_file_translation_strings(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        job_identifier = "job-id"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.download_ai_file_translation_strings(job_identifier) == "response"
+
+        m_request.assert_called_once_with(
+            method="get",
+            path=f"ai/file-translations/{job_identifier}/translations",
         )
