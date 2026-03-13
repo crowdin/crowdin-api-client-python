@@ -172,6 +172,25 @@ class TranslationsResource(BaseResource):
             request_data=data,
         )
 
+    def pre_translation_batch_operations(
+        self,
+        data: Iterable[EditPreTranslationScheme],
+        projectId: Optional[int] = None,
+    ):
+        """
+        Pre-Translation Batch Operations.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.pre-translations.patchBatch
+        """
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="patch",
+            path=f"projects/{projectId}/pre-translations",
+            request_data=data,
+        )
+
     def build_project_directory_translation(
         self,
         directoryId: int,

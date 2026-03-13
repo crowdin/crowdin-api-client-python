@@ -277,6 +277,31 @@ class TestTranslationsResource:
             request_data=data,
         )
 
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_pre_translation_batch_operations(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        data = [
+            {
+                "op": PreTranslationEditOperation.REPLACE,
+                "path": "/9e7de270-4f83-41cb-b606-2f90631f26e2/status",
+                "value": "canceled",
+            },
+            {
+                "op": PreTranslationEditOperation.REPLACE,
+                "path": "/9e7de270-4f83-41cb-b606-2f90631f26e2/priority",
+                "value": "high",
+            },
+        ]
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.pre_translation_batch_operations(projectId=1, data=data) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path="projects/1/pre-translations",
+            request_data=data,
+        )
+
     @pytest.mark.parametrize(
         "in_params, request_data, headers",
         (
