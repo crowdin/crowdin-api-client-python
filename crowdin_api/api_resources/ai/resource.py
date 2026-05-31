@@ -1,25 +1,33 @@
 from typing import Iterable, Optional, Union
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
-from crowdin_api.api_resources.ai.enums import AIPromptAction, AiPromptFineTuningJobStatus, AIProviderType
+from crowdin_api.api_resources.ai.enums import (
+    AIPromptAction,
+    AiPromptFineTuningJobStatus,
+    AIProviderType,
+)
 from crowdin_api.api_resources.ai.types import (
+    AddAiCustomPlaceholderRequest,
     AddAIPromptRequestScheme,
     AddAIProviderReqeustScheme,
+    AiFileTranslationRequest,
+    AiTranslateStringsRequest,
+    CreateAIPromptFineTuningJobRequest,
+    EditAiCustomPlaceholderPatch,
     EditAIPromptScheme,
     EditAIProviderRequestScheme,
+    EditAiSettingsPatch,
+    GenerateAiPromptCompletionRequest,
+    GenerateAIPromptFineTuningDatasetRequest,
+    GenerateAiReportRequest,
     GoogleGeminiChatProxy,
     OtherChatProxy,
-    GenerateAIPromptFineTuningDatasetRequest,
-    CreateAIPromptFineTuningJobRequest,
-    AddAiCustomPlaceholderRequest,
-    EditAiCustomPlaceholderPatch,
-    GenerateAiPromptCompletionRequest,
-    GenerateAiReportRequest,
-    EditAiSettingsPatch,
-    AiFileTranslationRequest,
 )
 from crowdin_api.sorting import Sorting
-from crowdin_api.utils import convert_enum_collection_to_string_if_exists, convert_enum_to_string_if_exists
+from crowdin_api.utils import (
+    convert_enum_collection_to_string_if_exists,
+    convert_enum_to_string_if_exists,
+)
 
 
 class AIResource(BaseResource):
@@ -778,6 +786,24 @@ class AIResource(BaseResource):
             path=self.get_ai_file_translations_path(user_id, job_identifier) + "/translations",
         )
 
+    def translate_ai_strings(
+        self,
+        user_id: int,
+        request_data: AiTranslateStringsRequest,
+    ):
+        """
+        AI Translate Strings
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.translate.strings.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path=f"users/{user_id}/ai/translate",
+            request_data=request_data,
+        )
+
 
 class EnterpriseAIResource(BaseResource):
     """
@@ -1496,4 +1522,21 @@ class EnterpriseAIResource(BaseResource):
         return self.requester.request(
             method="get",
             path=self.get_ai_file_translations_path(job_identifier) + "/translations",
+        )
+
+    def translate_ai_strings(
+        self,
+        request_data: AiTranslateStringsRequest,
+    ):
+        """
+        AI Translate Strings
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.translate-strings.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path="ai/translate",
+            request_data=request_data,
         )

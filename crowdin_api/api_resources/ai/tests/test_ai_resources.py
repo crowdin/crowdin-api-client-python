@@ -2,38 +2,39 @@ from datetime import datetime, timezone
 from unittest import mock
 
 import pytest
-
 from crowdin_api.api_resources.ai.enums import (
     AIPromptAction,
-    AIProviderType,
-    DatasetPurpose,
     AiPromptFineTuningJobStatus,
-    ListAiPromptFineTuningJobsOrderBy,
-    EditAiCustomPlaceholderPatchPath,
-    AiToolType,
+    AIProviderType,
     AiReportFormat,
-    EditAiSettingsPatchPath, ListSupportedAiModelsOrderBy
+    AiToolType,
+    DatasetPurpose,
+    EditAiCustomPlaceholderPatchPath,
+    EditAiSettingsPatchPath,
+    ListAiPromptFineTuningJobsOrderBy,
+    ListSupportedAiModelsOrderBy,
 )
 from crowdin_api.api_resources.ai.resource import AIResource, EnterpriseAIResource
 from crowdin_api.api_resources.ai.types import (
-    AIPromptOperation,
-    EditAIPromptPath,
-    CreateAIPromptFineTuningJobRequest,
-    HyperParameters,
-    TrainingOptions,
-    GenerateAIPromptFineTuningDatasetRequest,
-    GenerateAiPromptCompletionRequest,
-    PreTranslateActionAiPromptContextResources,
-    AiTool,
-    AiToolObject,
-    AiToolFunction,
-    GenerateAiReportRequest,
-    GeneralReportSchema,
     AiFileTranslationRequest,
+    AIPromptOperation,
+    AiTool,
+    AiToolFunction,
+    AiToolObject,
+    AiTranslateStringsRequest,
+    CreateAIPromptFineTuningJobRequest,
+    EditAIPromptPath,
+    GeneralReportSchema,
+    GenerateAiPromptCompletionRequest,
+    GenerateAIPromptFineTuningDatasetRequest,
+    GenerateAiReportRequest,
+    HyperParameters,
+    PreTranslateActionAiPromptContextResources,
+    TrainingOptions,
 )
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.requester import APIRequester
-from crowdin_api.sorting import Sorting, SortingRule, SortingOrder
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestAIResources:
@@ -1205,6 +1206,64 @@ class TestAIResources:
             path=f"users/{user_id}/ai/file-translations/{job_identifier}/translations",
         )
 
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                AiTranslateStringsRequest(
+                    strings=["Some text to translate!"],
+                    targetLanguageId="uk",
+                ),
+                {
+                    "strings": ["Some text to translate!"],
+                    "targetLanguageId": "uk",
+                },
+            ),
+            (
+                AiTranslateStringsRequest(
+                    strings=["Some text to translate!"],
+                    targetLanguageId="uk",
+                    sourceLanguageId="en",
+                    tmIds=[123],
+                    glossaryIds=[456],
+                    styleGuideIds=[654],
+                    aiPromptId=789,
+                    aiProviderId=12,
+                    aiModelId="gpt-4.1",
+                    instructions=["Keep a formal tone"],
+                    attachmentIds=[123],
+                ),
+                {
+                    "strings": ["Some text to translate!"],
+                    "targetLanguageId": "uk",
+                    "sourceLanguageId": "en",
+                    "tmIds": [123],
+                    "glossaryIds": [456],
+                    "styleGuideIds": [654],
+                    "aiPromptId": 789,
+                    "aiProviderId": 12,
+                    "aiModelId": "gpt-4.1",
+                    "instructions": ["Keep a formal tone"],
+                    "attachmentIds": [123],
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_translate_ai_strings(self, m_request, incoming_data, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.translate_ai_strings(user_id, incoming_data) == "response"
+
+        m_request.assert_called_once_with(
+            method="post",
+            path=f"users/{user_id}/ai/translate",
+            request_data=request_data,
+        )
+
 
 class TestEnterpriseAIResources:
     resource_class = EnterpriseAIResource
@@ -2300,4 +2359,60 @@ class TestEnterpriseAIResources:
         m_request.assert_called_once_with(
             method="get",
             path=f"ai/file-translations/{job_identifier}/translations",
+        )
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                AiTranslateStringsRequest(
+                    strings=["Some text to translate!"],
+                    targetLanguageId="uk",
+                ),
+                {
+                    "strings": ["Some text to translate!"],
+                    "targetLanguageId": "uk",
+                },
+            ),
+            (
+                AiTranslateStringsRequest(
+                    strings=["Some text to translate!"],
+                    targetLanguageId="uk",
+                    sourceLanguageId="en",
+                    tmIds=[123],
+                    glossaryIds=[456],
+                    styleGuideIds=[654],
+                    aiPromptId=789,
+                    aiProviderId=12,
+                    aiModelId="gpt-4.1",
+                    instructions=["Keep a formal tone"],
+                    attachmentIds=[123],
+                ),
+                {
+                    "strings": ["Some text to translate!"],
+                    "targetLanguageId": "uk",
+                    "sourceLanguageId": "en",
+                    "tmIds": [123],
+                    "glossaryIds": [456],
+                    "styleGuideIds": [654],
+                    "aiPromptId": 789,
+                    "aiProviderId": 12,
+                    "aiModelId": "gpt-4.1",
+                    "instructions": ["Keep a formal tone"],
+                    "attachmentIds": [123],
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_translate_ai_strings(self, m_request, incoming_data, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.translate_ai_strings(incoming_data) == "response"
+
+        m_request.assert_called_once_with(
+            method="post",
+            path="ai/translate",
+            request_data=request_data,
         )
