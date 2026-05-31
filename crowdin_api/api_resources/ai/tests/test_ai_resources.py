@@ -1264,6 +1264,165 @@ class TestAIResources:
             request_data=request_data,
         )
 
+    @pytest.mark.parametrize(
+        "in_params, path",
+        (
+            (
+                {"user_id": 1, "ai_provider_id": 2, "path": "v1/chat/completions"},
+                "users/1/ai/providers/2/gateway/v1/chat/completions",
+            ),
+        ),
+    )
+    def test_get_ai_provider_gateway_path(self, in_params, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_provider_gateway_path(**in_params) == path
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_ai_provider_gateway(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_provider_gateway(
+            user_id=user_id, ai_provider_id=ai_provider_id, path=path
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_ai_provider_gateway_path(user_id, ai_provider_id, path),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_create_ai_provider_gateway(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        request_data = {"model": "gpt-4o", "messages": [{"role": "user", "content": "Hello"}]}
+        resource = self.get_resource(base_absolut_url)
+        assert resource.create_ai_provider_gateway(
+            user_id=user_id,
+            ai_provider_id=ai_provider_id,
+            path=path,
+            request_data=request_data,
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_ai_provider_gateway_path(user_id, ai_provider_id, path),
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_replace_ai_provider_gateway(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        request_data = {"model": "gpt-4o", "messages": [{"role": "user", "content": "Hello"}]}
+        resource = self.get_resource(base_absolut_url)
+        assert resource.replace_ai_provider_gateway(
+            user_id=user_id,
+            ai_provider_id=ai_provider_id,
+            path=path,
+            request_data=request_data,
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="put",
+            path=resource.get_ai_provider_gateway_path(user_id, ai_provider_id, path),
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_ai_provider_gateway(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        request_data = {"model": "gpt-4o", "messages": [{"role": "user", "content": "Hello"}]}
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_ai_provider_gateway(
+            user_id=user_id,
+            ai_provider_id=ai_provider_id,
+            path=path,
+            request_data=request_data,
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path=resource.get_ai_provider_gateway_path(user_id, ai_provider_id, path),
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_ai_provider_gateway(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_ai_provider_gateway(
+            user_id=user_id, ai_provider_id=ai_provider_id, path=path
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="delete",
+            path=resource.get_ai_provider_gateway_path(user_id, ai_provider_id, path),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_create_ai_provider_gateway_no_body(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        resource = self.get_resource(base_absolut_url)
+        assert resource.create_ai_provider_gateway(
+            user_id=user_id, ai_provider_id=ai_provider_id, path=path
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_ai_provider_gateway_path(user_id, ai_provider_id, path),
+            request_data=None,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_replace_ai_provider_gateway_no_body(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        resource = self.get_resource(base_absolut_url)
+        assert resource.replace_ai_provider_gateway(
+            user_id=user_id, ai_provider_id=ai_provider_id, path=path
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="put",
+            path=resource.get_ai_provider_gateway_path(user_id, ai_provider_id, path),
+            request_data=None,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_ai_provider_gateway_no_body(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        user_id = 1
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_ai_provider_gateway(
+            user_id=user_id, ai_provider_id=ai_provider_id, path=path
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path=resource.get_ai_provider_gateway_path(user_id, ai_provider_id, path),
+            request_data=None,
+        )
+
 
 class TestEnterpriseAIResources:
     resource_class = EnterpriseAIResource
@@ -2415,4 +2574,152 @@ class TestEnterpriseAIResources:
             method="post",
             path="ai/translate",
             request_data=request_data,
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, path",
+        (
+            (
+                {"ai_provider_id": 2, "path": "v1/chat/completions"},
+                "ai/providers/2/gateway/v1/chat/completions",
+            ),
+        ),
+    )
+    def test_get_ai_provider_gateway_path(self, in_params, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_provider_gateway_path(**in_params) == path
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_ai_provider_gateway(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_provider_gateway(
+            ai_provider_id=ai_provider_id, path=path
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_ai_provider_gateway_path(ai_provider_id, path),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_create_ai_provider_gateway(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        request_data = {"model": "gpt-4o", "messages": [{"role": "user", "content": "Hello"}]}
+        resource = self.get_resource(base_absolut_url)
+        assert resource.create_ai_provider_gateway(
+            ai_provider_id=ai_provider_id,
+            path=path,
+            request_data=request_data,
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_ai_provider_gateway_path(ai_provider_id, path),
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_replace_ai_provider_gateway(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        request_data = {"model": "gpt-4o", "messages": [{"role": "user", "content": "Hello"}]}
+        resource = self.get_resource(base_absolut_url)
+        assert resource.replace_ai_provider_gateway(
+            ai_provider_id=ai_provider_id,
+            path=path,
+            request_data=request_data,
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="put",
+            path=resource.get_ai_provider_gateway_path(ai_provider_id, path),
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_ai_provider_gateway(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        request_data = {"model": "gpt-4o", "messages": [{"role": "user", "content": "Hello"}]}
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_ai_provider_gateway(
+            ai_provider_id=ai_provider_id,
+            path=path,
+            request_data=request_data,
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path=resource.get_ai_provider_gateway_path(ai_provider_id, path),
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_ai_provider_gateway(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_ai_provider_gateway(
+            ai_provider_id=ai_provider_id, path=path
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="delete",
+            path=resource.get_ai_provider_gateway_path(ai_provider_id, path),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_create_ai_provider_gateway_no_body(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        resource = self.get_resource(base_absolut_url)
+        assert resource.create_ai_provider_gateway(
+            ai_provider_id=ai_provider_id, path=path
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_ai_provider_gateway_path(ai_provider_id, path),
+            request_data=None,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_replace_ai_provider_gateway_no_body(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        resource = self.get_resource(base_absolut_url)
+        assert resource.replace_ai_provider_gateway(
+            ai_provider_id=ai_provider_id, path=path
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="put",
+            path=resource.get_ai_provider_gateway_path(ai_provider_id, path),
+            request_data=None,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_ai_provider_gateway_no_body(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        ai_provider_id = 2
+        path = "v1/chat/completions"
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_ai_provider_gateway(
+            ai_provider_id=ai_provider_id, path=path
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path=resource.get_ai_provider_gateway_path(ai_provider_id, path),
+            request_data=None,
         )
