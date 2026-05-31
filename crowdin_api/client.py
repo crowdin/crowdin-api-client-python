@@ -361,6 +361,12 @@ class CrowdinClient:
         )
 
     @property
+    def style_guides(self) -> api_resources.StyleGuidesResource:
+        return api_resources.StyleGuidesResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
     def tasks(self) -> Union[api_resources.TasksResource, api_resources.EnterpriseTasksResource]:
         if self._is_enterprise_platform:
             report_class = api_resources.EnterpriseTasksResource
