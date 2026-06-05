@@ -40,7 +40,7 @@ class StyleGuidesResource(BaseResource):
         }
         params.update(self.get_page_params(limit=limit, offset=offset))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_style_guides_path(),
             params=params,

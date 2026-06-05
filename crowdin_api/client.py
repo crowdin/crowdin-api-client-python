@@ -362,6 +362,13 @@ class CrowdinClient:
 
     @property
     def style_guides(self) -> api_resources.StyleGuidesResource:
+        if self.PROJECT_ID:
+            return api_resources.StyleGuidesResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
         return api_resources.StyleGuidesResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
