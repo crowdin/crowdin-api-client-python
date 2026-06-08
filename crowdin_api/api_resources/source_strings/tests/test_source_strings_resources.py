@@ -208,17 +208,25 @@ class TestSourceFilesResource:
                 "value": "test",
                 "op": PatchOperation.REPLACE,
                 "path": SourceStringsPatchPath.TEXT,
-            }
+            },
         ]
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.edit_string(projectId=1, stringId=2, data=data, updateOption=StringUpdateOption.KEEP_TRANSLATIONS) == "response"
+        assert (
+            resource.edit_string(
+                projectId=1,
+                stringId=2,
+                data=data,
+                updateOption=StringUpdateOption.KEEP_TRANSLATIONS,
+            )
+            == "response"
+        )
 
         m_request.assert_called_once_with(
             method="patch",
             request_data=data,
             params={
-                "updateOption": "keep_translations"
+                "updateOption": "keep_translations",
             },
             path=resource.get_source_strings_path(
                 projectId=1,
@@ -259,16 +267,24 @@ class TestSourceFilesResource:
                 "op": StringBatchOperations.REPLACE,
                 "path": StringBatchOperationsPath.IS_HIDDEN,
                 "value": True,
-            }
+            },
         ]
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.string_batch_operation(projectId=1, data=data, updateOption=StringUpdateOption.KEEP_TRANSLATIONS) == "response"
+        assert (
+            resource.string_batch_operation(
+                projectId=1,
+                data=data,
+                updateOption=StringUpdateOption.KEEP_TRANSLATIONS,
+            )
+            == "response"
+        )
+
         m_request.assert_called_once_with(
             method="patch",
             path=resource.get_source_strings_path(1),
             request_data=data,
             params={
-                "updateOption": "keep_translations"
+                "updateOption": "keep_translations",
             },
         )

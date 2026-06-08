@@ -148,8 +148,8 @@ class SourceStringsResource(BaseResource):
         self,
         stringId: int,
         data: Iterable[SourceStringsPatchRequest],
-        updateOption: Optional[StringUpdateOption] = None,
         projectId: Optional[int] = None,
+        updateOption: Optional[StringUpdateOption] = None,
     ):
         """
         Edit String.
@@ -167,7 +167,7 @@ class SourceStringsResource(BaseResource):
         request_kwargs = {
             "method": "patch",
             "path": self.get_source_strings_path(projectId=projectId, stringId=stringId),
-            "request_data": data
+            "request_data": data,
         }
 
         if params:
@@ -178,8 +178,8 @@ class SourceStringsResource(BaseResource):
     def string_batch_operation(
         self,
         data: Iterable[StringBatchOperationPatchRequest],
-        updateOption: Optional[StringUpdateOption] = None,
         projectId: Optional[int] = None,
+        updateOption: Optional[StringUpdateOption] = None,
     ):
         """
         String Batch Operations.
