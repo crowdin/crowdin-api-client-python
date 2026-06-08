@@ -130,6 +130,10 @@
 <dd>
 <div class="desc"></div>
 </dd>
+<dt><code class="name"><a title="crowdin_api.api_resources.style_guides" href="style_guides/index.html">crowdin_api.api_resources.style_guides</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt><code class="name"><a title="crowdin_api.api_resources.tasks" href="tasks/index.html">crowdin_api.api_resources.tasks</a></code></dt>
 <dd>
 <div class="desc"></div>
@@ -213,6 +217,14 @@
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.post">https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.AIResource.cancel_ai_file_translation"><code class="name flex">
+<span>def <span class="ident">cancel_ai_file_translation</span></span>(<span>self, user_id: int, job_identifier: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Cancel File Translations</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.delete">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.delete</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.AIResource.cancel_ai_prompt_completion"><code class="name flex">
 <span>def <span class="ident">cancel_ai_prompt_completion</span></span>(<span>self, user_id: int, ai_prompt_id: int, completion_id: str)</span>
 </code></dt>
@@ -237,6 +249,14 @@
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.prompts.clones.post">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.prompts.clones.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.AIResource.create_ai_file_translation"><code class="name flex">
+<span>def <span class="ident">create_ai_file_translation</span></span>(<span>self, user_id: int, request_data: <a title="crowdin_api.api_resources.ai.types.AiFileTranslationRequest" href="ai/types.html#crowdin_api.api_resources.ai.types.AiFileTranslationRequest">AiFileTranslationRequest</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>AI File Translations</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.post">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.post</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.AIResource.create_ai_prompt_fine_tuning_job"><code class="name flex">
 <span>def <span class="ident">create_ai_prompt_fine_tuning_job</span></span>(<span>self, user_id: int, ai_prompt_id: int, request_data: <a title="crowdin_api.api_resources.ai.types.CreateAIPromptFineTuningJobRequest" href="ai/types.html#crowdin_api.api_resources.ai.types.CreateAIPromptFineTuningJobRequest">CreateAIPromptFineTuningJobRequest</a>)</span>
 </code></dt>
@@ -244,6 +264,14 @@
 <div class="desc"><p>Create AI Prompt Fine-Tuning Job</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.ai.prompts.fine-tuning.jobs.post">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.ai.prompts.fine-tuning.jobs.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.create_ai_provider_gateway"><code class="name flex">
+<span>def <span class="ident">create_ai_provider_gateway</span></span>(<span>self, user_id: int, ai_provider_id: int, path: str, request_data: Optional[Dict[~KT, ~VT]] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>AI Provider Gateway POST Request</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.post">https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.AIResource.create_ai_proxy_chat_completion"><code class="name flex">
 <span>def <span class="ident">create_ai_proxy_chat_completion</span></span>(<span>self, userId: int, aiProviderId: int, request_data: Union[<a title="crowdin_api.api_resources.ai.types.GoogleGeminiChatProxy" href="ai/types.html#crowdin_api.api_resources.ai.types.GoogleGeminiChatProxy">GoogleGeminiChatProxy</a>, <a title="crowdin_api.api_resources.ai.types.OtherChatProxy" href="ai/types.html#crowdin_api.api_resources.ai.types.OtherChatProxy">OtherChatProxy</a>])</span>
@@ -278,6 +306,30 @@ Please refer to the documentation for the specific provider you use to determine
 <div class="desc"><p>Delete AI Provider</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.delete">https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.delete_ai_provider_gateway"><code class="name flex">
+<span>def <span class="ident">delete_ai_provider_gateway</span></span>(<span>self, user_id: int, ai_provider_id: int, path: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>AI Provider Gateway DELETE Request</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.delete">https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.download_ai_file_translation"><code class="name flex">
+<span>def <span class="ident">download_ai_file_translation</span></span>(<span>self, user_id: int, job_identifier: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Download Translated File</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.download">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.download</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.download_ai_file_translation_strings"><code class="name flex">
+<span>def <span class="ident">download_ai_file_translation_strings</span></span>(<span>self, user_id: int, job_identifier: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Download Translated File Strings</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.download-strings">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.download-strings</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.AIResource.download_ai_prompt_completion"><code class="name flex">
 <span>def <span class="ident">download_ai_prompt_completion</span></span>(<span>self, user_id: int, ai_prompt_id: int, completion_id: str)</span>
@@ -327,6 +379,14 @@ Please refer to the documentation for the specific provider you use to determine
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.patch">https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.patch</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.AIResource.edit_ai_provider_gateway"><code class="name flex">
+<span>def <span class="ident">edit_ai_provider_gateway</span></span>(<span>self, user_id: int, ai_provider_id: int, path: str, request_data: Optional[Dict[~KT, ~VT]] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>AI Provider Gateway PATCH Request</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.patch">https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.patch</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.AIResource.edit_ai_settings"><code class="name flex">
 <span>def <span class="ident">edit_ai_settings</span></span>(<span>self, user_id: int, patches: Iterable[<a title="crowdin_api.api_resources.ai.types.EditAiSettingsPatch" href="ai/types.html#crowdin_api.api_resources.ai.types.EditAiSettingsPatch">EditAiSettingsPatch</a>])</span>
 </code></dt>
@@ -369,6 +429,20 @@ Please refer to the documentation for the specific provider you use to determine
 </dd>
 <dt id="crowdin_api.api_resources.AIResource.get_ai_custom_placeholders_path"><code class="name flex">
 <span>def <span class="ident">get_ai_custom_placeholders_path</span></span>(<span>self, user_id: int, custom_placeholder_id: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.get_ai_file_translation_status"><code class="name flex">
+<span>def <span class="ident">get_ai_file_translation_status</span></span>(<span>self, user_id: int, job_identifier: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get File Translations Status</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.get">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.file-translations.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.get_ai_file_translations_path"><code class="name flex">
+<span>def <span class="ident">get_ai_file_translations_path</span></span>(<span>self, user_id: int, job_identifier: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -436,6 +510,20 @@ Please refer to the documentation for the specific provider you use to determine
 <div class="desc"><p>Get AI Provider</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.get">https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.get_ai_provider_gateway"><code class="name flex">
+<span>def <span class="ident">get_ai_provider_gateway</span></span>(<span>self, user_id: int, ai_provider_id: int, path: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>AI Provider Gateway GET Request</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.get">https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.get_ai_provider_gateway_path"><code class="name flex">
+<span>def <span class="ident">get_ai_provider_gateway_path</span></span>(<span>self, user_id: int, ai_provider_id: int, path: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.AIResource.get_ai_provider_path"><code class="name flex">
 <span>def <span class="ident">get_ai_provider_path</span></span>(<span>self, userId: int, aiProviderId: Optional[int] = None)</span>
@@ -518,6 +606,22 @@ Please refer to the documentation for the specific provider you use to determine
 <div class="desc"><p>List Supported AI Provider Models</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.ai.providers.supported-models.crowdin.getMany">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.ai.providers.supported-models.crowdin.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.replace_ai_provider_gateway"><code class="name flex">
+<span>def <span class="ident">replace_ai_provider_gateway</span></span>(<span>self, user_id: int, ai_provider_id: int, path: str, request_data: Optional[Dict[~KT, ~VT]] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>AI Provider Gateway PUT Request</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.put">https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.put</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.AIResource.translate_ai_strings"><code class="name flex">
+<span>def <span class="ident">translate_ai_strings</span></span>(<span>self, user_id: int, request_data: <a title="crowdin_api.api_resources.ai.types.AiTranslateStringsRequest" href="ai/types.html#crowdin_api.api_resources.ai.types.AiTranslateStringsRequest">AiTranslateStringsRequest</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>AI Translate Strings</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.translate.strings.post">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.translate.strings.post</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -809,7 +913,7 @@ Please refer to the documentation for the specific provider you use to determine
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.DistributionsResource.add_distribution"><code class="name flex">
-<span>def <span class="ident">add_distribution</span></span>(<span>self, name: str, projectId: Optional[int] = None, fileIds: Optional[Iterable[int]] = None, bundleIds: Optional[Iterable[int]] = None, exportMode: Optional[<a title="crowdin_api.api_resources.distributions.enums.ExportMode" href="distributions/enums.html#crowdin_api.api_resources.distributions.enums.ExportMode">ExportMode</a>] = ExportMode.DEFAULT)</span>
+<span>def <span class="ident">add_distribution</span></span>(<span>self, name: str, projectId: Optional[int] = None, fileIds: Optional[Iterable[int]] = None, bundleIds: Optional[Iterable[int]] = None, exportMode: Optional[<a title="crowdin_api.api_resources.distributions.enums.ExportMode" href="distributions/enums.html#crowdin_api.api_resources.distributions.enums.ExportMode">ExportMode</a>] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Distribution.</p>
@@ -910,6 +1014,14 @@ Please refer to the documentation for the specific provider you use to determine
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.cancel_ai_file_translation"><code class="name flex">
+<span>def <span class="ident">cancel_ai_file_translation</span></span>(<span>self, job_identifier: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Cancel File Translations</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.delete">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.delete</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.EnterpriseAIResource.cancel_ai_prompt_completion"><code class="name flex">
 <span>def <span class="ident">cancel_ai_prompt_completion</span></span>(<span>self, ai_prompt_id: int, completion_id: str)</span>
 </code></dt>
@@ -934,6 +1046,14 @@ Please refer to the documentation for the specific provider you use to determine
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.prompts.clones.post">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.prompts.clones.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.create_ai_file_translation"><code class="name flex">
+<span>def <span class="ident">create_ai_file_translation</span></span>(<span>self, request_data: <a title="crowdin_api.api_resources.ai.types.AiFileTranslationRequest" href="ai/types.html#crowdin_api.api_resources.ai.types.AiFileTranslationRequest">AiFileTranslationRequest</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>AI File Translations</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.post">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.post</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.EnterpriseAIResource.create_ai_prompt_fine_tuning_job"><code class="name flex">
 <span>def <span class="ident">create_ai_prompt_fine_tuning_job</span></span>(<span>self, ai_prompt_id: int, request_data: <a title="crowdin_api.api_resources.ai.types.CreateAIPromptFineTuningJobRequest" href="ai/types.html#crowdin_api.api_resources.ai.types.CreateAIPromptFineTuningJobRequest">CreateAIPromptFineTuningJobRequest</a>)</span>
 </code></dt>
@@ -941,6 +1061,14 @@ Please refer to the documentation for the specific provider you use to determine
 <div class="desc"><p>Create AI Prompt Fine-Tuning Job</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.prompts.fine-tuning.jobs.post">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.prompts.fine-tuning.jobs.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.create_ai_provider_gateway"><code class="name flex">
+<span>def <span class="ident">create_ai_provider_gateway</span></span>(<span>self, ai_provider_id: int, path: str, request_data: Optional[Dict[~KT, ~VT]] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>AI Provider Gateway POST Request</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.post">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.EnterpriseAIResource.create_ai_proxy_chat_completion"><code class="name flex">
 <span>def <span class="ident">create_ai_proxy_chat_completion</span></span>(<span>self, aiProviderId: int, request_data: Union[<a title="crowdin_api.api_resources.ai.types.GoogleGeminiChatProxy" href="ai/types.html#crowdin_api.api_resources.ai.types.GoogleGeminiChatProxy">GoogleGeminiChatProxy</a>, <a title="crowdin_api.api_resources.ai.types.OtherChatProxy" href="ai/types.html#crowdin_api.api_resources.ai.types.OtherChatProxy">OtherChatProxy</a>])</span>
@@ -975,6 +1103,30 @@ Please refer to the documentation for the specific provider you use to determine
 <div class="desc"><p>Delete AI Provider</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.delete_ai_provider_gateway"><code class="name flex">
+<span>def <span class="ident">delete_ai_provider_gateway</span></span>(<span>self, ai_provider_id: int, path: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>AI Provider Gateway DELETE Request</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.delete">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.download_ai_file_translation"><code class="name flex">
+<span>def <span class="ident">download_ai_file_translation</span></span>(<span>self, job_identifier: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Download Translated File</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.download">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.download</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.download_ai_file_translation_strings"><code class="name flex">
+<span>def <span class="ident">download_ai_file_translation_strings</span></span>(<span>self, job_identifier: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Download File Strings</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.download-strings">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.download-strings</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.EnterpriseAIResource.download_ai_prompt_completion"><code class="name flex">
 <span>def <span class="ident">download_ai_prompt_completion</span></span>(<span>self, ai_prompt_id: int, completion_id: str)</span>
@@ -1024,6 +1176,14 @@ Please refer to the documentation for the specific provider you use to determine
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.patch</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.edit_ai_provider_gateway"><code class="name flex">
+<span>def <span class="ident">edit_ai_provider_gateway</span></span>(<span>self, ai_provider_id: int, path: str, request_data: Optional[Dict[~KT, ~VT]] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>AI Provider Gateway PATCH Request</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.patch">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.patch</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.EnterpriseAIResource.edit_ai_settings"><code class="name flex">
 <span>def <span class="ident">edit_ai_settings</span></span>(<span>self, patches: Iterable[<a title="crowdin_api.api_resources.ai.types.EditAiSettingsPatch" href="ai/types.html#crowdin_api.api_resources.ai.types.EditAiSettingsPatch">EditAiSettingsPatch</a>])</span>
 </code></dt>
@@ -1066,6 +1226,20 @@ Please refer to the documentation for the specific provider you use to determine
 </dd>
 <dt id="crowdin_api.api_resources.EnterpriseAIResource.get_ai_custom_placeholders_path"><code class="name flex">
 <span>def <span class="ident">get_ai_custom_placeholders_path</span></span>(<span>self, ai_custom_placeholder_id: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.get_ai_file_translation_status"><code class="name flex">
+<span>def <span class="ident">get_ai_file_translation_status</span></span>(<span>self, job_identifier: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get File Translations Status</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.get">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.file-translations.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.get_ai_file_translations_path"><code class="name flex">
+<span>def <span class="ident">get_ai_file_translations_path</span></span>(<span>self, job_identifier: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -1133,6 +1307,20 @@ Please refer to the documentation for the specific provider you use to determine
 <div class="desc"><p>Get AI Provider</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider_gateway"><code class="name flex">
+<span>def <span class="ident">get_ai_provider_gateway</span></span>(<span>self, ai_provider_id: int, path: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>AI Provider Gateway GET Request</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.get">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider_gateway_path"><code class="name flex">
+<span>def <span class="ident">get_ai_provider_gateway_path</span></span>(<span>self, ai_provider_id: int, path: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider_path"><code class="name flex">
 <span>def <span class="ident">get_ai_provider_path</span></span>(<span>self, aiProviderId: Optional[int] = None)</span>
@@ -1209,6 +1397,22 @@ Please refer to the documentation for the specific provider you use to determine
 <div class="desc"><p>List Supported AI Provider Models</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.providers.supported-models.enterprise.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.providers.supported-models.enterprise.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.replace_ai_provider_gateway"><code class="name flex">
+<span>def <span class="ident">replace_ai_provider_gateway</span></span>(<span>self, ai_provider_id: int, path: str, request_data: Optional[Dict[~KT, ~VT]] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>AI Provider Gateway PUT Request</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.put">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.put</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.EnterpriseAIResource.translate_ai_strings"><code class="name flex">
+<span>def <span class="ident">translate_ai_strings</span></span>(<span>self, request_data: <a title="crowdin_api.api_resources.ai.types.AiTranslateStringsRequest" href="ai/types.html#crowdin_api.api_resources.ai.types.AiTranslateStringsRequest">AiTranslateStringsRequest</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>AI Translate Strings</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.translate-strings.post">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.translate-strings.post</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -3399,6 +3603,68 @@ be removed from storage and will remain in your account.</p>
 </dd>
 </dl>
 </dd>
+<dt id="crowdin_api.api_resources.StyleGuidesResource"><code class="flex name class">
+<span>class <span class="ident">StyleGuidesResource</span></span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Resource for Style Guides.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Style-Guides">https://support.crowdin.com/developer/api/v2/#tag/Style-Guides</a></p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="crowdin_api.api_resources.StyleGuidesResource.add_style_guide"><code class="name flex">
+<span>def <span class="ident">add_style_guide</span></span>(<span>self, request_data: <a title="crowdin_api.api_resources.style_guides.types.AddStyleGuideRequest" href="style_guides/types.html#crowdin_api.api_resources.style_guides.types.AddStyleGuideRequest">AddStyleGuideRequest</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create Style Guide</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.style-guides.post">https://support.crowdin.com/developer/api/v2/#operation/api.style-guides.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.StyleGuidesResource.delete_style_guide"><code class="name flex">
+<span>def <span class="ident">delete_style_guide</span></span>(<span>self, style_guide_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete Style Guide</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.style-guides.delete">https://support.crowdin.com/developer/api/v2/#operation/api.style-guides.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.StyleGuidesResource.edit_style_guide"><code class="name flex">
+<span>def <span class="ident">edit_style_guide</span></span>(<span>self, style_guide_id: int, request_data: Iterable[<a title="crowdin_api.api_resources.style_guides.types.StyleGuidePatchRequest" href="style_guides/types.html#crowdin_api.api_resources.style_guides.types.StyleGuidePatchRequest">StyleGuidePatchRequest</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit Style Guide</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.style-guides.patch">https://support.crowdin.com/developer/api/v2/#operation/api.style-guides.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.StyleGuidesResource.get_style_guide"><code class="name flex">
+<span>def <span class="ident">get_style_guide</span></span>(<span>self, style_guide_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Style Guide</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.style-guides.get">https://support.crowdin.com/developer/api/v2/#operation/api.style-guides.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.StyleGuidesResource.get_style_guides_path"><code class="name flex">
+<span>def <span class="ident">get_style_guides_path</span></span>(<span>self, style_guide_id: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.StyleGuidesResource.list_style_guides"><code class="name flex">
+<span>def <span class="ident">list_style_guides</span></span>(<span>self, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, user_id: Optional[int] = None, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Style Guides</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.style-guides.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.style-guides.getMany</a></p></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.TasksResource"><code class="flex name class">
 <span>class <span class="ident">TasksResource</span></span>
 <span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
@@ -4039,6 +4305,15 @@ file, language, branch, directory.</p>
 </ul>
 <h3>Methods</h3>
 <dl>
+<dt id="crowdin_api.api_resources.TranslationStatusResource.cancel_qa_checks_revalidation"><code class="name flex">
+<span>def <span class="ident">cancel_qa_checks_revalidation</span></span>(<span>self, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Cancel QA Checks Revalidation.</p>
+<p>Cancels the currently running QA checks revalidation job.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.delete">https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.delete</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.TranslationStatusResource.get_branch_progress"><code class="name flex">
 <span>def <span class="ident">get_branch_progress</span></span>(<span>self, branchId: int, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
@@ -4079,6 +4354,16 @@ file, language, branch, directory.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.languages.progress.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.languages.progress.getMany</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.TranslationStatusResource.get_qa_checks_revalidation_status"><code class="name flex">
+<span>def <span class="ident">get_qa_checks_revalidation_status</span></span>(<span>self, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get QA Checks Revalidation Status.</p>
+<p>Returns the status of the currently running or last completed QA checks
+revalidation job.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.get">https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.get</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.TranslationStatusResource.list_qa_check_issues"><code class="name flex">
 <span>def <span class="ident">list_qa_check_issues</span></span>(<span>self, projectId: Optional[int] = None, category: Optional[Iterable[<a title="crowdin_api.api_resources.translation_status.enums.Category" href="translation_status/enums.html#crowdin_api.api_resources.translation_status.enums.Category">Category</a>]] = None, validation: Optional[Iterable[<a title="crowdin_api.api_resources.translation_status.enums.Validation" href="translation_status/enums.html#crowdin_api.api_resources.translation_status.enums.Validation">Validation</a>]] = None, languageIds: Optional[Iterable[str]] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
@@ -4086,6 +4371,15 @@ file, language, branch, directory.</p>
 <div class="desc"><p>List QA Check Issues.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.qa-checks.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.qa-checks.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.TranslationStatusResource.start_qa_checks_revalidation"><code class="name flex">
+<span>def <span class="ident">start_qa_checks_revalidation</span></span>(<span>self, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Start QA Checks Revalidation.</p>
+<p>Triggers a new QA checks revalidation job for the project.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.post">https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.post</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -4241,6 +4535,14 @@ are asynchronous operations and shall be completed with sequence of API methods.
 <div class="desc"><p>List Project Builds.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.TranslationsResource.pre_translation_batch_operations"><code class="name flex">
+<span>def <span class="ident">pre_translation_batch_operations</span></span>(<span>self, data: Iterable[<a title="crowdin_api.api_resources.translations.types.EditPreTranslationScheme" href="translations/types.html#crowdin_api.api_resources.translations.types.EditPreTranslationScheme">EditPreTranslationScheme</a>], projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Pre-Translation Batch Operations.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.pre-translations.patchBatch">https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.pre-translations.patchBatch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.TranslationsResource.pre_translation_report"><code class="name flex">
 <span>def <span class="ident">pre_translation_report</span></span>(<span>self, preTranslationId: str, projectId: Optional[int] = None)</span>
@@ -4532,6 +4834,7 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.string_comments" href="string_comments/index.html">crowdin_api.api_resources.string_comments</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_corrections" href="string_corrections/index.html">crowdin_api.api_resources.string_corrections</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_translations" href="string_translations/index.html">crowdin_api.api_resources.string_translations</a></code></li>
+<li><code><a title="crowdin_api.api_resources.style_guides" href="style_guides/index.html">crowdin_api.api_resources.style_guides</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks" href="tasks/index.html">crowdin_api.api_resources.tasks</a></code></li>
 <li><code><a title="crowdin_api.api_resources.teams" href="teams/index.html">crowdin_api.api_resources.teams</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_memory" href="translation_memory/index.html">crowdin_api.api_resources.translation_memory</a></code></li>
@@ -4551,26 +4854,35 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.AIResource.add_ai_custom_placeholder" href="#crowdin_api.api_resources.AIResource.add_ai_custom_placeholder">add_ai_custom_placeholder</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.add_ai_prompt" href="#crowdin_api.api_resources.AIResource.add_ai_prompt">add_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.add_ai_provider" href="#crowdin_api.api_resources.AIResource.add_ai_provider">add_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.cancel_ai_file_translation" href="#crowdin_api.api_resources.AIResource.cancel_ai_file_translation">cancel_ai_file_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.cancel_ai_prompt_completion" href="#crowdin_api.api_resources.AIResource.cancel_ai_prompt_completion">cancel_ai_prompt_completion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.check_ai_report_generation_status" href="#crowdin_api.api_resources.AIResource.check_ai_report_generation_status">check_ai_report_generation_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.clone_ai_prompt" href="#crowdin_api.api_resources.AIResource.clone_ai_prompt">clone_ai_prompt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.create_ai_file_translation" href="#crowdin_api.api_resources.AIResource.create_ai_file_translation">create_ai_file_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.create_ai_prompt_fine_tuning_job" href="#crowdin_api.api_resources.AIResource.create_ai_prompt_fine_tuning_job">create_ai_prompt_fine_tuning_job</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.create_ai_provider_gateway" href="#crowdin_api.api_resources.AIResource.create_ai_provider_gateway">create_ai_provider_gateway</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.create_ai_proxy_chat_completion" href="#crowdin_api.api_resources.AIResource.create_ai_proxy_chat_completion">create_ai_proxy_chat_completion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.delete_ai_custom_placeholder" href="#crowdin_api.api_resources.AIResource.delete_ai_custom_placeholder">delete_ai_custom_placeholder</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.delete_ai_prompt" href="#crowdin_api.api_resources.AIResource.delete_ai_prompt">delete_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.delete_ai_provider" href="#crowdin_api.api_resources.AIResource.delete_ai_provider">delete_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.delete_ai_provider_gateway" href="#crowdin_api.api_resources.AIResource.delete_ai_provider_gateway">delete_ai_provider_gateway</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.download_ai_file_translation" href="#crowdin_api.api_resources.AIResource.download_ai_file_translation">download_ai_file_translation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.download_ai_file_translation_strings" href="#crowdin_api.api_resources.AIResource.download_ai_file_translation_strings">download_ai_file_translation_strings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.download_ai_prompt_completion" href="#crowdin_api.api_resources.AIResource.download_ai_prompt_completion">download_ai_prompt_completion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.download_ai_prompt_fine_tuning_dataset" href="#crowdin_api.api_resources.AIResource.download_ai_prompt_fine_tuning_dataset">download_ai_prompt_fine_tuning_dataset</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.download_ai_report" href="#crowdin_api.api_resources.AIResource.download_ai_report">download_ai_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.edit_ai_custom_placeholder" href="#crowdin_api.api_resources.AIResource.edit_ai_custom_placeholder">edit_ai_custom_placeholder</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.edit_ai_prompt" href="#crowdin_api.api_resources.AIResource.edit_ai_prompt">edit_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.edit_ai_provider" href="#crowdin_api.api_resources.AIResource.edit_ai_provider">edit_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.edit_ai_provider_gateway" href="#crowdin_api.api_resources.AIResource.edit_ai_provider_gateway">edit_ai_provider_gateway</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.edit_ai_settings" href="#crowdin_api.api_resources.AIResource.edit_ai_settings">edit_ai_settings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.generate_ai_prompt_completion" href="#crowdin_api.api_resources.AIResource.generate_ai_prompt_completion">generate_ai_prompt_completion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.generate_ai_prompt_fine_tuning_dataset" href="#crowdin_api.api_resources.AIResource.generate_ai_prompt_fine_tuning_dataset">generate_ai_prompt_fine_tuning_dataset</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.generate_ai_report" href="#crowdin_api.api_resources.AIResource.generate_ai_report">generate_ai_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.get_ai_custom_placeholder" href="#crowdin_api.api_resources.AIResource.get_ai_custom_placeholder">get_ai_custom_placeholder</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.get_ai_custom_placeholders_path" href="#crowdin_api.api_resources.AIResource.get_ai_custom_placeholders_path">get_ai_custom_placeholders_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.get_ai_file_translation_status" href="#crowdin_api.api_resources.AIResource.get_ai_file_translation_status">get_ai_file_translation_status</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.get_ai_file_translations_path" href="#crowdin_api.api_resources.AIResource.get_ai_file_translations_path">get_ai_file_translations_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.get_ai_path" href="#crowdin_api.api_resources.AIResource.get_ai_path">get_ai_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.get_ai_prompt" href="#crowdin_api.api_resources.AIResource.get_ai_prompt">get_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.get_ai_prompt_completion_status" href="#crowdin_api.api_resources.AIResource.get_ai_prompt_completion_status">get_ai_prompt_completion_status</a></code></li>
@@ -4580,6 +4892,8 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.AIResource.get_ai_prompt_fine_tuning_job_status" href="#crowdin_api.api_resources.AIResource.get_ai_prompt_fine_tuning_job_status">get_ai_prompt_fine_tuning_job_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.get_ai_prompt_fine_tuning_jobs_path" href="#crowdin_api.api_resources.AIResource.get_ai_prompt_fine_tuning_jobs_path">get_ai_prompt_fine_tuning_jobs_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.get_ai_provider" href="#crowdin_api.api_resources.AIResource.get_ai_provider">get_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.get_ai_provider_gateway" href="#crowdin_api.api_resources.AIResource.get_ai_provider_gateway">get_ai_provider_gateway</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.get_ai_provider_gateway_path" href="#crowdin_api.api_resources.AIResource.get_ai_provider_gateway_path">get_ai_provider_gateway_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.get_ai_provider_path" href="#crowdin_api.api_resources.AIResource.get_ai_provider_path">get_ai_provider_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.get_ai_reports_path" href="#crowdin_api.api_resources.AIResource.get_ai_reports_path">get_ai_reports_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.get_ai_settings" href="#crowdin_api.api_resources.AIResource.get_ai_settings">get_ai_settings</a></code></li>
@@ -4591,6 +4905,8 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.AIResource.list_ai_provider_models" href="#crowdin_api.api_resources.AIResource.list_ai_provider_models">list_ai_provider_models</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.list_ai_providers" href="#crowdin_api.api_resources.AIResource.list_ai_providers">list_ai_providers</a></code></li>
 <li><code><a title="crowdin_api.api_resources.AIResource.list_supported_ai_provider_models" href="#crowdin_api.api_resources.AIResource.list_supported_ai_provider_models">list_supported_ai_provider_models</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.replace_ai_provider_gateway" href="#crowdin_api.api_resources.AIResource.replace_ai_provider_gateway">replace_ai_provider_gateway</a></code></li>
+<li><code><a title="crowdin_api.api_resources.AIResource.translate_ai_strings" href="#crowdin_api.api_resources.AIResource.translate_ai_strings">translate_ai_strings</a></code></li>
 </ul>
 </li>
 <li>
@@ -4652,26 +4968,35 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.add_ai_custom_placeholder" href="#crowdin_api.api_resources.EnterpriseAIResource.add_ai_custom_placeholder">add_ai_custom_placeholder</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.add_ai_prompt" href="#crowdin_api.api_resources.EnterpriseAIResource.add_ai_prompt">add_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.add_ai_provider" href="#crowdin_api.api_resources.EnterpriseAIResource.add_ai_provider">add_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.cancel_ai_file_translation" href="#crowdin_api.api_resources.EnterpriseAIResource.cancel_ai_file_translation">cancel_ai_file_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.cancel_ai_prompt_completion" href="#crowdin_api.api_resources.EnterpriseAIResource.cancel_ai_prompt_completion">cancel_ai_prompt_completion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.check_ai_report_generation_status" href="#crowdin_api.api_resources.EnterpriseAIResource.check_ai_report_generation_status">check_ai_report_generation_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.clone_ai_prompt" href="#crowdin_api.api_resources.EnterpriseAIResource.clone_ai_prompt">clone_ai_prompt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.create_ai_file_translation" href="#crowdin_api.api_resources.EnterpriseAIResource.create_ai_file_translation">create_ai_file_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.create_ai_prompt_fine_tuning_job" href="#crowdin_api.api_resources.EnterpriseAIResource.create_ai_prompt_fine_tuning_job">create_ai_prompt_fine_tuning_job</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.create_ai_provider_gateway" href="#crowdin_api.api_resources.EnterpriseAIResource.create_ai_provider_gateway">create_ai_provider_gateway</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.create_ai_proxy_chat_completion" href="#crowdin_api.api_resources.EnterpriseAIResource.create_ai_proxy_chat_completion">create_ai_proxy_chat_completion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.delete_ai_custom_placeholder" href="#crowdin_api.api_resources.EnterpriseAIResource.delete_ai_custom_placeholder">delete_ai_custom_placeholder</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.delete_ai_prompt" href="#crowdin_api.api_resources.EnterpriseAIResource.delete_ai_prompt">delete_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.delete_ai_provider" href="#crowdin_api.api_resources.EnterpriseAIResource.delete_ai_provider">delete_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.delete_ai_provider_gateway" href="#crowdin_api.api_resources.EnterpriseAIResource.delete_ai_provider_gateway">delete_ai_provider_gateway</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.download_ai_file_translation" href="#crowdin_api.api_resources.EnterpriseAIResource.download_ai_file_translation">download_ai_file_translation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.download_ai_file_translation_strings" href="#crowdin_api.api_resources.EnterpriseAIResource.download_ai_file_translation_strings">download_ai_file_translation_strings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.download_ai_prompt_completion" href="#crowdin_api.api_resources.EnterpriseAIResource.download_ai_prompt_completion">download_ai_prompt_completion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.download_ai_prompt_fine_tuning_dataset" href="#crowdin_api.api_resources.EnterpriseAIResource.download_ai_prompt_fine_tuning_dataset">download_ai_prompt_fine_tuning_dataset</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.download_ai_report" href="#crowdin_api.api_resources.EnterpriseAIResource.download_ai_report">download_ai_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.edit_ai_custom_placeholder" href="#crowdin_api.api_resources.EnterpriseAIResource.edit_ai_custom_placeholder">edit_ai_custom_placeholder</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.edit_ai_prompt" href="#crowdin_api.api_resources.EnterpriseAIResource.edit_ai_prompt">edit_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.edit_ai_provider" href="#crowdin_api.api_resources.EnterpriseAIResource.edit_ai_provider">edit_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.edit_ai_provider_gateway" href="#crowdin_api.api_resources.EnterpriseAIResource.edit_ai_provider_gateway">edit_ai_provider_gateway</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.edit_ai_settings" href="#crowdin_api.api_resources.EnterpriseAIResource.edit_ai_settings">edit_ai_settings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.generate_ai_prompt_completion" href="#crowdin_api.api_resources.EnterpriseAIResource.generate_ai_prompt_completion">generate_ai_prompt_completion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.generate_ai_prompt_fine_tuning_dataset" href="#crowdin_api.api_resources.EnterpriseAIResource.generate_ai_prompt_fine_tuning_dataset">generate_ai_prompt_fine_tuning_dataset</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.generate_ai_report" href="#crowdin_api.api_resources.EnterpriseAIResource.generate_ai_report">generate_ai_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_custom_placeholder" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_custom_placeholder">get_ai_custom_placeholder</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_custom_placeholders_path" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_custom_placeholders_path">get_ai_custom_placeholders_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_file_translation_status" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_file_translation_status">get_ai_file_translation_status</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_file_translations_path" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_file_translations_path">get_ai_file_translations_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_path" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_path">get_ai_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_prompt" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_prompt">get_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_prompt_completion_status" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_prompt_completion_status">get_ai_prompt_completion_status</a></code></li>
@@ -4681,6 +5006,8 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_prompt_fine_tuning_job_status" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_prompt_fine_tuning_job_status">get_ai_prompt_fine_tuning_job_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_prompt_fine_tuning_jobs_path" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_prompt_fine_tuning_jobs_path">get_ai_prompt_fine_tuning_jobs_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider">get_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider_gateway" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider_gateway">get_ai_provider_gateway</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider_gateway_path" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider_gateway_path">get_ai_provider_gateway_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider_path" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_provider_path">get_ai_provider_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_reports_path" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_reports_path">get_ai_reports_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.get_ai_settings" href="#crowdin_api.api_resources.EnterpriseAIResource.get_ai_settings">get_ai_settings</a></code></li>
@@ -4691,6 +5018,8 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.list_ai_provider_models" href="#crowdin_api.api_resources.EnterpriseAIResource.list_ai_provider_models">list_ai_provider_models</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.list_ai_providers" href="#crowdin_api.api_resources.EnterpriseAIResource.list_ai_providers">list_ai_providers</a></code></li>
 <li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.list_supported_ai_provider_models" href="#crowdin_api.api_resources.EnterpriseAIResource.list_supported_ai_provider_models">list_supported_ai_provider_models</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.replace_ai_provider_gateway" href="#crowdin_api.api_resources.EnterpriseAIResource.replace_ai_provider_gateway">replace_ai_provider_gateway</a></code></li>
+<li><code><a title="crowdin_api.api_resources.EnterpriseAIResource.translate_ai_strings" href="#crowdin_api.api_resources.EnterpriseAIResource.translate_ai_strings">translate_ai_strings</a></code></li>
 </ul>
 </li>
 <li>
@@ -5009,6 +5338,17 @@ the details of a specific template.</p>
 </ul>
 </li>
 <li>
+<h4><code><a title="crowdin_api.api_resources.StyleGuidesResource" href="#crowdin_api.api_resources.StyleGuidesResource">StyleGuidesResource</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.StyleGuidesResource.add_style_guide" href="#crowdin_api.api_resources.StyleGuidesResource.add_style_guide">add_style_guide</a></code></li>
+<li><code><a title="crowdin_api.api_resources.StyleGuidesResource.delete_style_guide" href="#crowdin_api.api_resources.StyleGuidesResource.delete_style_guide">delete_style_guide</a></code></li>
+<li><code><a title="crowdin_api.api_resources.StyleGuidesResource.edit_style_guide" href="#crowdin_api.api_resources.StyleGuidesResource.edit_style_guide">edit_style_guide</a></code></li>
+<li><code><a title="crowdin_api.api_resources.StyleGuidesResource.get_style_guide" href="#crowdin_api.api_resources.StyleGuidesResource.get_style_guide">get_style_guide</a></code></li>
+<li><code><a title="crowdin_api.api_resources.StyleGuidesResource.get_style_guides_path" href="#crowdin_api.api_resources.StyleGuidesResource.get_style_guides_path">get_style_guides_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.StyleGuidesResource.list_style_guides" href="#crowdin_api.api_resources.StyleGuidesResource.list_style_guides">list_style_guides</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="crowdin_api.api_resources.TasksResource" href="#crowdin_api.api_resources.TasksResource">TasksResource</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.TasksResource.add_general_by_string_ids_task" href="#crowdin_api.api_resources.TasksResource.add_general_by_string_ids_task">add_general_by_string_ids_task</a></code></li>
@@ -5098,12 +5438,15 @@ the details of a specific template.</p>
 <li>
 <h4><code><a title="crowdin_api.api_resources.TranslationStatusResource" href="#crowdin_api.api_resources.TranslationStatusResource">TranslationStatusResource</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.TranslationStatusResource.cancel_qa_checks_revalidation" href="#crowdin_api.api_resources.TranslationStatusResource.cancel_qa_checks_revalidation">cancel_qa_checks_revalidation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationStatusResource.get_branch_progress" href="#crowdin_api.api_resources.TranslationStatusResource.get_branch_progress">get_branch_progress</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationStatusResource.get_directory_progress" href="#crowdin_api.api_resources.TranslationStatusResource.get_directory_progress">get_directory_progress</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationStatusResource.get_file_progress" href="#crowdin_api.api_resources.TranslationStatusResource.get_file_progress">get_file_progress</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationStatusResource.get_language_progress" href="#crowdin_api.api_resources.TranslationStatusResource.get_language_progress">get_language_progress</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationStatusResource.get_project_progress" href="#crowdin_api.api_resources.TranslationStatusResource.get_project_progress">get_project_progress</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TranslationStatusResource.get_qa_checks_revalidation_status" href="#crowdin_api.api_resources.TranslationStatusResource.get_qa_checks_revalidation_status">get_qa_checks_revalidation_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationStatusResource.list_qa_check_issues" href="#crowdin_api.api_resources.TranslationStatusResource.list_qa_check_issues">list_qa_check_issues</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TranslationStatusResource.start_qa_checks_revalidation" href="#crowdin_api.api_resources.TranslationStatusResource.start_qa_checks_revalidation">start_qa_checks_revalidation</a></code></li>
 </ul>
 </li>
 <li>
@@ -5126,6 +5469,7 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.TranslationsResource.import_translations_status" href="#crowdin_api.api_resources.TranslationsResource.import_translations_status">import_translations_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationsResource.list_pre_translations" href="#crowdin_api.api_resources.TranslationsResource.list_pre_translations">list_pre_translations</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationsResource.list_project_builds" href="#crowdin_api.api_resources.TranslationsResource.list_project_builds">list_project_builds</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TranslationsResource.pre_translation_batch_operations" href="#crowdin_api.api_resources.TranslationsResource.pre_translation_batch_operations">pre_translation_batch_operations</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationsResource.pre_translation_report" href="#crowdin_api.api_resources.TranslationsResource.pre_translation_report">pre_translation_report</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationsResource.pre_translation_status" href="#crowdin_api.api_resources.TranslationsResource.pre_translation_status">pre_translation_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationsResource.upload_translation" href="#crowdin_api.api_resources.TranslationsResource.upload_translation">upload_translation</a></code></li>
