@@ -8,6 +8,7 @@ from crowdin_api.api_resources.source_strings.enums import (
     SourceStringsPatchPath,
     StringBatchOperationsPath,
     StringBatchOperations,
+    StringUpdateOption,
 )
 from crowdin_api.api_resources.source_strings.resource import SourceStringsResource
 from crowdin_api.requester import APIRequester
@@ -199,6 +200,41 @@ class TestSourceFilesResource:
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_string_with_update_option(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        data = [
+            {
+                "value": "test",
+                "op": PatchOperation.REPLACE,
+                "path": SourceStringsPatchPath.TEXT,
+            },
+        ]
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.edit_string(
+                projectId=1,
+                stringId=2,
+                data=data,
+                updateOption=StringUpdateOption.KEEP_TRANSLATIONS,
+            )
+            == "response"
+        )
+
+        m_request.assert_called_once_with(
+            method="patch",
+            request_data=data,
+            params={
+                "updateOption": "keep_translations",
+            },
+            path=resource.get_source_strings_path(
+                projectId=1,
+                stringId=2,
+            ),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_string_batch_operation(self, m_request, base_absolut_url):
         m_request.return_value = "response"
 
@@ -220,4 +256,35 @@ class TestSourceFilesResource:
             method="patch",
             path=resource.get_source_strings_path(1),
             request_data=data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_string_batch_operation_with_update_option(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        data = [
+            {
+                "op": StringBatchOperations.REPLACE,
+                "path": StringBatchOperationsPath.IS_HIDDEN,
+                "value": True,
+            },
+        ]
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.string_batch_operation(
+                projectId=1,
+                data=data,
+                updateOption=StringUpdateOption.KEEP_TRANSLATIONS,
+            )
+            == "response"
+        )
+
+        m_request.assert_called_once_with(
+            method="patch",
+            path=resource.get_source_strings_path(1),
+            request_data=data,
+            params={
+                "updateOption": "keep_translations",
+            },
         )
