@@ -1,4 +1,4 @@
-from typing import Iterable, Optional, Union
+from typing import Dict, Iterable, Optional, Union
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.ai.enums import (
@@ -804,6 +804,96 @@ class AIResource(BaseResource):
             request_data=request_data,
         )
 
+    def get_ai_provider_gateway_path(
+        self, user_id: int, ai_provider_id: int, path: str
+    ) -> str:
+        return f"users/{user_id}/ai/providers/{ai_provider_id}/gateway/{path}"
+
+    def get_ai_provider_gateway(
+        self, user_id: int, ai_provider_id: int, path: str
+    ):
+        """
+        AI Provider Gateway GET Request
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.get
+        """
+        return self.requester.request(
+            method="get",
+            path=self.get_ai_provider_gateway_path(user_id, ai_provider_id, path),
+        )
+
+    def create_ai_provider_gateway(
+        self,
+        user_id: int,
+        ai_provider_id: int,
+        path: str,
+        request_data: Optional[Dict] = None,
+    ):
+        """
+        AI Provider Gateway POST Request
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.post
+        """
+        return self.requester.request(
+            method="post",
+            path=self.get_ai_provider_gateway_path(user_id, ai_provider_id, path),
+            request_data=request_data,
+        )
+
+    def replace_ai_provider_gateway(
+        self,
+        user_id: int,
+        ai_provider_id: int,
+        path: str,
+        request_data: Optional[Dict] = None,
+    ):
+        """
+        AI Provider Gateway PUT Request
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.put
+        """
+        return self.requester.request(
+            method="put",
+            path=self.get_ai_provider_gateway_path(user_id, ai_provider_id, path),
+            request_data=request_data,
+        )
+
+    def edit_ai_provider_gateway(
+        self,
+        user_id: int,
+        ai_provider_id: int,
+        path: str,
+        request_data: Optional[Dict] = None,
+    ):
+        """
+        AI Provider Gateway PATCH Request
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.patch
+        """
+        return self.requester.request(
+            method="patch",
+            path=self.get_ai_provider_gateway_path(user_id, ai_provider_id, path),
+            request_data=request_data,
+        )
+
+    def delete_ai_provider_gateway(
+        self, user_id: int, ai_provider_id: int, path: str
+    ):
+        """
+        AI Provider Gateway DELETE Request
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.delete
+        """
+        return self.requester.request(
+            method="delete",
+            path=self.get_ai_provider_gateway_path(user_id, ai_provider_id, path),
+        )
+
 
 class EnterpriseAIResource(BaseResource):
     """
@@ -1539,4 +1629,85 @@ class EnterpriseAIResource(BaseResource):
             method="post",
             path="ai/translate",
             request_data=request_data,
+        )
+
+    def get_ai_provider_gateway_path(self, ai_provider_id: int, path: str) -> str:
+        return f"ai/providers/{ai_provider_id}/gateway/{path}"
+
+    def get_ai_provider_gateway(self, ai_provider_id: int, path: str):
+        """
+        AI Provider Gateway GET Request
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.get
+        """
+        return self.requester.request(
+            method="get",
+            path=self.get_ai_provider_gateway_path(ai_provider_id, path),
+        )
+
+    def create_ai_provider_gateway(
+        self,
+        ai_provider_id: int,
+        path: str,
+        request_data: Optional[Dict] = None,
+    ):
+        """
+        AI Provider Gateway POST Request
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.post
+        """
+        return self.requester.request(
+            method="post",
+            path=self.get_ai_provider_gateway_path(ai_provider_id, path),
+            request_data=request_data,
+        )
+
+    def replace_ai_provider_gateway(
+        self,
+        ai_provider_id: int,
+        path: str,
+        request_data: Optional[Dict] = None,
+    ):
+        """
+        AI Provider Gateway PUT Request
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.put
+        """
+        return self.requester.request(
+            method="put",
+            path=self.get_ai_provider_gateway_path(ai_provider_id, path),
+            request_data=request_data,
+        )
+
+    def edit_ai_provider_gateway(
+        self,
+        ai_provider_id: int,
+        path: str,
+        request_data: Optional[Dict] = None,
+    ):
+        """
+        AI Provider Gateway PATCH Request
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.patch
+        """
+        return self.requester.request(
+            method="patch",
+            path=self.get_ai_provider_gateway_path(ai_provider_id, path),
+            request_data=request_data,
+        )
+
+    def delete_ai_provider_gateway(self, ai_provider_id: int, path: str):
+        """
+        AI Provider Gateway DELETE Request
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.delete
+        """
+        return self.requester.request(
+            method="delete",
+            path=self.get_ai_provider_gateway_path(ai_provider_id, path),
         )
