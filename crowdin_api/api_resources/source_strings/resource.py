@@ -2,12 +2,16 @@ from typing import Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.enums import DenormalizePlaceholders
-from crowdin_api.api_resources.source_strings.enums import ScopeFilter
+from crowdin_api.api_resources.source_strings.enums import (
+    ScopeFilter,
+    StringUpdateOption,
+)
 from crowdin_api.api_resources.source_strings.types import (
     SourceStringsPatchRequest,
     StringBatchOperationPatchRequest,
 )
 from crowdin_api.sorting import Sorting
+from crowdin_api.utils import convert_enum_to_string_if_exists
 
 
 class SourceStringsResource(BaseResource):
@@ -144,6 +148,7 @@ class SourceStringsResource(BaseResource):
         self,
         stringId: int,
         data: Iterable[SourceStringsPatchRequest],
+        updateOption: Optional[StringUpdateOption] = None,
         projectId: Optional[int] = None,
     ):
         """
@@ -154,16 +159,26 @@ class SourceStringsResource(BaseResource):
         """
 
         projectId = projectId or self.get_project_id()
+        params = {}
 
-        return self.requester.request(
-            method="patch",
-            path=self.get_source_strings_path(projectId=projectId, stringId=stringId),
-            request_data=data,
-        )
+        if updateOption is not None:
+            params["updateOption"] = convert_enum_to_string_if_exists(updateOption)
+
+        request_kwargs = {
+            "method": "patch",
+            "path": self.get_source_strings_path(projectId=projectId, stringId=stringId),
+            "request_data": data
+        }
+
+        if params:
+            request_kwargs["params"] = params
+
+        return self.requester.request(**request_kwargs)
 
     def string_batch_operation(
         self,
         data: Iterable[StringBatchOperationPatchRequest],
+        updateOption: Optional[StringUpdateOption] = None,
         projectId: Optional[int] = None,
     ):
         """
@@ -174,9 +189,18 @@ class SourceStringsResource(BaseResource):
         """
 
         projectId = projectId or self.get_project_id()
+        params = {}
 
-        return self.requester.request(
-            method="patch",
-            path=self.get_source_strings_path(projectId=projectId),
-            request_data=data,
-        )
+        if updateOption is not None:
+            params["updateOption"] = convert_enum_to_string_if_exists(updateOption)
+
+        request_kwargs = {
+            "method": "patch",
+            "path": self.get_source_strings_path(projectId=projectId),
+            "request_data": data,
+        }
+
+        if params:
+            request_kwargs["params"] = params
+
+        return self.requester.request(**request_kwargs)

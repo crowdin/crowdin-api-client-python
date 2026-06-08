@@ -38,3 +38,9 @@ class ListStringsOrderBy(Enum):
     CREATED_AT = "createdAt"
     UPDATED_AT = "updatedAt"
     TYPE = "type"
+
+
+class StringUpdateOption(Enum):
+    CLEAR_TRANSLATIONS_AND_APPROVALS = "clear_translations_and_approvals"
+    KEEP_TRANSLATIONS = "keep_translations"
+    KEEP_TRANSLATIONS_AND_APPROVALS = "keep_translations_and_approvals"
