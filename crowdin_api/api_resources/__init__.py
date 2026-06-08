@@ -10,7 +10,7 @@ from .labels.resource import LabelsResource
 from .languages.resource import LanguagesResource
 from .machine_translation_engines.resource import MachineTranslationEnginesResource
 from .projects.resource import ProjectsResource
-from .reports.resource import ReportsResource, EnterpriseReportsResource
+from .reports.resource import EnterpriseReportsResource, ReportsResource
 from .screenshots.resource import ScreenshotsResource
 from .security_logs.resource import SecurityLogsResource
 from .source_files.resource import SourceFilesResource
@@ -18,12 +18,13 @@ from .source_strings.resource import SourceStringsResource
 from .storages.resource import StoragesResource
 from .string_comments.resource import StringCommentsResource
 from .string_translations.resource import StringTranslationsResource
-from .tasks.resource import TasksResource, EnterpriseTasksResource
+from .style_guides.resource import StyleGuidesResource
+from .tasks.resource import EnterpriseTasksResource, TasksResource
 from .teams.resource import TeamsResource
 from .translation_memory.resource import TranslationMemoryResource
 from .translation_status.resource import TranslationStatusResource
 from .translations.resource import TranslationsResource
-from .users.resource import UsersResource, EnterpriseUsersResource
+from .users.resource import EnterpriseUsersResource, UsersResource
 from .vendors.resource import VendorsResource
 from .webhooks.resource import WebhooksResource
 from .workflows.resource import WorkflowsResource
@@ -51,6 +52,7 @@ __all__ = [
     "StoragesResource",
     "StringCommentsResource",
     "StringTranslationsResource",
+    "StyleGuidesResource",
     "TasksResource",
     "EnterpriseTasksResource",
     "TeamsResource",
