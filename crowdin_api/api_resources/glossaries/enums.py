@@ -23,6 +23,55 @@ class GlossaryExportFields(Enum):
     URL = "url"
 
 
+class GlossaryExportType(Enum):
+    CONCEPTS = "concepts"
+    TERMS = "terms"
+
+
+class GlossaryExportStatus(Enum):
+    PREFERRED = "PREFERRED"
+    ADMITTED = "ADMITTED"
+    NOT_RECOMMENDED = "NOT_RECOMMENDED"
+    OBSOLETE = "OBSOLETE"
+    DRAFT = "DRAFT"
+
+
+class GlossaryExportPartOfSpeech(Enum):
+    NOUN = "NOUN"
+    VERB = "VERB"
+    ADJECTIVE = "ADJ"
+    PRONOUN = "PRON"
+    PROPER_NOUN = "PROPN"
+    DETERMINER = "DET"
+    ADVERB = "ADV"
+    ADPOSITION = "ADP"
+    COORDINATING_CONJUNCTION = "CCONJ"
+    SUBORDINATING_CONJUNCTION = "SCONJ"
+    NUMERAL = "NUM"
+    INTERJECTION = "INTJ"
+    AUXILIARY = "AUX"
+    PARTICLE = "PRT"
+    SYMBOL = "SYM"
+    OTHER = "X"
+
+
+class GlossaryExportTermType(Enum):
+    FULL_FORM = "FULL_FORM"
+    ACRONYM = "ACRONYM"
+    ABBREVIATION = "ABBREVIATION"
+    SHORT_FORM = "SHORT_FORM"
+    PHRASE = "PHRASE"
+    VARIANT = "VARIANT"
+
+
+class GlossaryExportGender(Enum):
+    MASCULINE = "MASCULINE"
+    FEMININE = "FEMININE"
+    NEUTER = "NEUTER"
+    COMMON = "COMMON"
+    OTHER = "OTHER"
+
+
 class TermPatchPath(Enum):
     TEXT = "/text"
     DESCRIPTION = "/description"
