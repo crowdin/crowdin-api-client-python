@@ -7,6 +7,8 @@ from crowdin_api.api_resources.translations.enums import (
     PreTranslationApplyMethod,
     PreTranslationAutoApproveOption,
     PreTranslationEditOperation,
+    PreTranslationReplaceTranslationsOption,
+    PreTranslationScope,
 )
 from crowdin_api.api_resources.translations.resource import TranslationsResource
 from crowdin_api.requester import APIRequester
@@ -67,6 +69,10 @@ class TestTranslationsResource:
                     "duplicateTranslations": None,
                     "skipApprovedTranslations": None,
                     "translateUntranslatedOnly": None,
+                    "scope": None,
+                    "translationModifiedBefore": None,
+                    "replaceTranslationsOption": None,
+                    "resetApprovalStatus": None,
                     "translateWithPerfectMatchOnly": None,
                     "fallbackLanguages": [],
                     "labelIds": [],
@@ -85,6 +91,10 @@ class TestTranslationsResource:
                     "duplicateTranslations": False,
                     "skipApprovedTranslations": False,
                     "translateUntranslatedOnly": False,
+                    "scope": PreTranslationScope.TRANSLATED,
+                    "translationModifiedBefore": "2026-01-01T00:00:00+00:00",
+                    "replaceTranslationsOption": PreTranslationReplaceTranslationsOption.AUTO_TRANSLATED,
+                    "resetApprovalStatus": True,
                     "translateWithPerfectMatchOnly": False,
                     "fallbackLanguages": ["lang"],
                     "labelIds": [1],
@@ -100,6 +110,10 @@ class TestTranslationsResource:
                     "duplicateTranslations": False,
                     "skipApprovedTranslations": False,
                     "translateUntranslatedOnly": False,
+                    "scope": PreTranslationScope.TRANSLATED,
+                    "translationModifiedBefore": "2026-01-01T00:00:00+00:00",
+                    "replaceTranslationsOption": PreTranslationReplaceTranslationsOption.AUTO_TRANSLATED,
+                    "resetApprovalStatus": True,
                     "translateWithPerfectMatchOnly": False,
                     "fallbackLanguages": ["lang"],
                     "labelIds": [1],
@@ -147,6 +161,10 @@ class TestTranslationsResource:
                 "duplicateTranslations": None,
                 "skipApprovedTranslations": None,
                 "translateUntranslatedOnly": None,
+                "scope": None,
+                "translationModifiedBefore": None,
+                "replaceTranslationsOption": None,
+                "resetApprovalStatus": None,
                 "translateWithPerfectMatchOnly": None,
                 "fallbackLanguages": [],
                 "labelIds": [],
@@ -186,6 +204,10 @@ class TestTranslationsResource:
                 "duplicateTranslations": None,
                 "skipApprovedTranslations": None,
                 "translateUntranslatedOnly": None,
+                "scope": None,
+                "translationModifiedBefore": None,
+                "replaceTranslationsOption": None,
+                "resetApprovalStatus": None,
                 "translateWithPerfectMatchOnly": None,
                 "fallbackLanguages": [],
                 "labelIds": [],
@@ -237,11 +259,60 @@ class TestTranslationsResource:
                 "duplicateTranslations": True,
                 "skipApprovedTranslations": False,
                 "translateUntranslatedOnly": True,
+                "scope": None,
+                "translationModifiedBefore": None,
+                "replaceTranslationsOption": None,
+                "resetApprovalStatus": None,
                 "translateWithPerfectMatchOnly": False,
                 "fallbackLanguages": [{"languageId": "fr", "userId": 789}],
                 "labelIds": [1, 2, 3],
                 "excludeLabelIds": [4, 5],
                 "branchIds": [10, 20],
+            },
+            path="projects/1/pre-translations",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_apply_pre_translation_with_scope_and_retranslation_options(
+        self, m_request, base_absolut_url
+    ):
+        """Test that scope, translationModifiedBefore, replaceTranslationsOption
+        and resetApprovalStatus are properly handled."""
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        response = resource.apply_pre_translation(
+            projectId=1,
+            languageIds=["en"],
+            fileIds=[1],
+            scope=PreTranslationScope.ALL,
+            translationModifiedBefore="2026-01-01T00:00:00+00:00",
+            replaceTranslationsOption=PreTranslationReplaceTranslationsOption.ALL,
+            resetApprovalStatus=True,
+        )
+
+        assert response == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            request_data={
+                "languageIds": ["en"],
+                "fileIds": [1],
+                "method": None,
+                "engineId": None,
+                "aiPromptId": None,
+                "autoApproveOption": None,
+                "duplicateTranslations": None,
+                "skipApprovedTranslations": None,
+                "translateUntranslatedOnly": None,
+                "scope": PreTranslationScope.ALL,
+                "translationModifiedBefore": "2026-01-01T00:00:00+00:00",
+                "replaceTranslationsOption": PreTranslationReplaceTranslationsOption.ALL,
+                "resetApprovalStatus": True,
+                "translateWithPerfectMatchOnly": None,
+                "fallbackLanguages": [],
+                "labelIds": [],
+                "excludeLabelIds": [],
+                "branchIds": [],
             },
             path="projects/1/pre-translations",
         )

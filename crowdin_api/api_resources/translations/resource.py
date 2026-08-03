@@ -11,6 +11,8 @@ from crowdin_api.api_resources.translations.enums import (
     CharTransformation,
     PreTranslationApplyMethod,
     PreTranslationAutoApproveOption,
+    PreTranslationReplaceTranslationsOption,
+    PreTranslationScope,
 )
 
 
@@ -87,6 +89,10 @@ class TranslationsResource(BaseResource):
         duplicateTranslations: Optional[bool] = None,
         skipApprovedTranslations: Optional[bool] = None,
         translateUntranslatedOnly: Optional[bool] = None,
+        scope: Optional[PreTranslationScope] = None,
+        translationModifiedBefore: Optional[str] = None,
+        replaceTranslationsOption: Optional[PreTranslationReplaceTranslationsOption] = None,
+        resetApprovalStatus: Optional[bool] = None,
         translateWithPerfectMatchOnly: Optional[bool] = None,
         fallbackLanguages: Optional[Iterable[FallbackLanguages]] = None,
         labelIds: Optional[Iterable[int]] = None,
@@ -95,6 +101,9 @@ class TranslationsResource(BaseResource):
     ):
         """
         Apply Pre-Translation.
+
+        `translateUntranslatedOnly` is deprecated in favor of `scope` and cannot be
+        combined with it in the same request.
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.pre-translations.post
@@ -126,6 +135,10 @@ class TranslationsResource(BaseResource):
                 "duplicateTranslations": duplicateTranslations,
                 "skipApprovedTranslations": skipApprovedTranslations,
                 "translateUntranslatedOnly": translateUntranslatedOnly,
+                "scope": scope,
+                "translationModifiedBefore": translationModifiedBefore,
+                "replaceTranslationsOption": replaceTranslationsOption,
+                "resetApprovalStatus": resetApprovalStatus,
                 "translateWithPerfectMatchOnly": translateWithPerfectMatchOnly,
                 "fallbackLanguages": fallbackLanguages,
                 "labelIds": labelIds,

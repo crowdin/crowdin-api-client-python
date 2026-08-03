@@ -14,6 +14,18 @@ class PreTranslationAutoApproveOption(Enum):
     NONE = "none"
 
 
+class PreTranslationScope(Enum):
+    UNTRANSLATED = "untranslated"
+    TRANSLATED = "translated"
+    ALL = "all"
+
+
+class PreTranslationReplaceTranslationsOption(Enum):
+    NONE = "none"
+    AUTO_TRANSLATED = "autoTranslated"
+    ALL = "all"
+
+
 class CharTransformation(Enum):
     ASIAN = "asian"
     EUROPEAN = "european"
