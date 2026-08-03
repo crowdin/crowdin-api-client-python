@@ -297,6 +297,7 @@ class AiFileTranslationRequest(TypedDict):
     parserVersion: Optional[int]
     tmIds: Optional[Iterable[int]]
     glossaryIds: Optional[Iterable[int]]
+    styleGuideIds: Optional[Iterable[int]]
     aiPromptId: Optional[int]
     aiProviderId: Optional[int]
     aiModelId: Optional[str]
