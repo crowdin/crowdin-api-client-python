@@ -2,8 +2,9 @@ from enum import Enum
 
 
 class AIPromptAction(Enum):
-    ASSIST = "assist"
     PRE_TRANSLATE = "pre_translate"
+    ALIGNMENT = "alignment"
+    QA_CHECK = "qa_check"
 
 
 class AIPromptOperation(Enum):
@@ -67,7 +68,6 @@ class AiReportType(Enum):
 
 
 class EditAiSettingsPatchPath(Enum):
-    ASSIST_ACTION_AI_PROMPT_ID = "/assistActionAiPromptId"
     EDITOR_SUGGESTION_AI_PROMPT_ID = "/editorSuggestionAiPromptId"
     SHORTCUTS = "/shortcuts"
 

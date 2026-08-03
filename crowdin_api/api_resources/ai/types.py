@@ -30,22 +30,32 @@ class BasicModePreTranslateActionCondfig(TypedDict):
     fileContent: Optional[bool]
     fileContext: Optional[bool]
     screenshots: Optional[bool]
+    # Deprecated: use `projectContext` instead.
     publicProjectDescription: Optional[bool]
+    projectContext: Optional[bool]
+    organizationContext: Optional[bool]
 
 
-class BasicModeAssistActionCondfig(TypedDict):
+class BasicModeAlignmentActionConfig(TypedDict):
     mode: str
-    companyDescription: Optional[bool]
-    projectDescription: Optional[bool]
-    audienceDescription: Optional[bool]
-    otherLanguageTranslation: Optional[OtherLanguageTranslation]
+    customPlaceholders: Optional[Iterable[str]]
+    # Deprecated: use `projectContext` instead.
+    publicProjectDescription: Optional[bool]
+    projectContext: Optional[bool]
+    organizationContext: Optional[bool]
+
+
+class BasicModeQaCheckActionConfig(TypedDict):
+    mode: str
+    evaluationSteps: Iterable[str]
     glossaryTerms: Optional[bool]
     tmSuggestions: Optional[bool]
     fileContext: Optional[bool]
     screenshots: Optional[bool]
+    # Deprecated: use `projectContext` instead.
     publicProjectDescription: Optional[bool]
-    siblingsStrings: Optional[bool]
-    filteredStrings: Optional[bool]
+    projectContext: Optional[bool]
+    organizationContext: Optional[bool]
 
 
 class AdvancedModeConfig(TypedDict):
@@ -70,7 +80,8 @@ class AddAIPromptRequestScheme(TypedDict):
     enabledProjectIds: Optional[Iterable[int]]
     config: Union[
         BasicModePreTranslateActionCondfig,
-        BasicModeAssistActionCondfig,
+        BasicModeAlignmentActionConfig,
+        BasicModeQaCheckActionConfig,
         AdvancedModeConfig,
         ExternalMode,
     ]
@@ -235,15 +246,16 @@ class PreTranslateActionAiPromptContextResources(AiPromptContextResources):
     targetLanguageId: Optional[str]
     stringIds: Optional[Iterable[int]]
     overridePromptValues: Optional[Dict[str, str]]
+    projectDescription: Optional[str]
 
 
-class AssistActionAiPromptContextResources(AiPromptContextResources):
+class AlignmentActionAiPromptContextResources(AiPromptContextResources):
     projectId: int
     sourceLanguageId: Optional[str]
     targetLanguageId: Optional[str]
     stringIds: Optional[Iterable[int]]
-    filteredStringIds: Optional[Iterable[int]]
     overridePromptValues: Optional[Dict[str, str]]
+    projectDescription: Optional[str]
 
 
 class QaCheckActionAiPromptContextResources(AiPromptContextResources):
@@ -252,6 +264,7 @@ class QaCheckActionAiPromptContextResources(AiPromptContextResources):
     targetLanguageId: Optional[str]
     stringIds: Optional[Iterable[int]]
     overridePromptValues: Optional[Dict[str, str]]
+    projectDescription: Optional[str]
 
 
 class CustomActionAiPromptContextResources(AiPromptContextResources):
@@ -261,6 +274,7 @@ class CustomActionAiPromptContextResources(AiPromptContextResources):
     stringIds: Optional[Iterable[int]]
     overridePromptValues: Optional[Dict[str, str]]
     customInstruction: Optional[str]
+    projectDescription: Optional[str]
 
 
 class GenerateAiPromptCompletionRequest(TypedDict):
