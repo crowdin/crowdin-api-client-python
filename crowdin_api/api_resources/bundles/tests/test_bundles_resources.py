@@ -195,14 +195,50 @@ class TestBundlesResource:
             method="get", path=f"{resource.get_bundles_exports_path(projectId=1, bundleId=1, exportId='1')}/download"
         )
 
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {},
+                {
+                    "targetLanguageIds": None,
+                    "skipUntranslatedStrings": None,
+                    "skipUntranslatedFiles": None,
+                    "exportApprovedOnly": None,
+                    "exportWithMinApprovalsCount": None,
+                    "exportStringsThatPassedWorkflow": None,
+                },
+            ),
+            (
+                {
+                    "targetLanguageIds": ["uk", "de"],
+                    "skipUntranslatedStrings": True,
+                    "skipUntranslatedFiles": False,
+                    "exportApprovedOnly": True,
+                    "exportWithMinApprovalsCount": 2,
+                    "exportStringsThatPassedWorkflow": True,
+                },
+                {
+                    "targetLanguageIds": ["uk", "de"],
+                    "skipUntranslatedStrings": True,
+                    "skipUntranslatedFiles": False,
+                    "exportApprovedOnly": True,
+                    "exportWithMinApprovalsCount": 2,
+                    "exportStringsThatPassedWorkflow": True,
+                },
+            ),
+        ),
+    )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_export_bundle(self, m_request, base_absolut_url):
+    def test_export_bundle(self, m_request, incoming_data, request_data, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.export_bundle(projectId=1, bundleId=1) == "response"
+        assert resource.export_bundle(projectId=1, bundleId=1, **incoming_data) == "response"
         m_request.assert_called_once_with(
-            method="post", path=resource.get_bundles_exports_path(projectId=1, bundleId=1)
+            method="post",
+            path=resource.get_bundles_exports_path(projectId=1, bundleId=1),
+            request_data=request_data,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")

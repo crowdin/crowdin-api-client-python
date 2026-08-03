@@ -172,7 +172,17 @@ class BundlesResource(BaseResource):
             path=f"{self.get_bundles_exports_path(projectId=projectId, bundleId=bundleId, exportId=exportId)}/download",
         )
 
-    def export_bundle(self, bundleId: int, projectId: Optional[int] = None):
+    def export_bundle(
+        self,
+        bundleId: int,
+        projectId: Optional[int] = None,
+        targetLanguageIds: Optional[Iterable[str]] = None,
+        skipUntranslatedStrings: Optional[bool] = None,
+        skipUntranslatedFiles: Optional[bool] = None,
+        exportApprovedOnly: Optional[bool] = None,
+        exportWithMinApprovalsCount: Optional[int] = None,
+        exportStringsThatPassedWorkflow: Optional[bool] = None,
+    ):
         """
         Export bundle.
 
@@ -188,6 +198,14 @@ class BundlesResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_bundles_exports_path(projectId=projectId, bundleId=bundleId),
+            request_data={
+                "targetLanguageIds": targetLanguageIds,
+                "skipUntranslatedStrings": skipUntranslatedStrings,
+                "skipUntranslatedFiles": skipUntranslatedFiles,
+                "exportApprovedOnly": exportApprovedOnly,
+                "exportWithMinApprovalsCount": exportWithMinApprovalsCount,
+                "exportStringsThatPassedWorkflow": exportStringsThatPassedWorkflow,
+            },
         )
 
     def check_bundle_export_status(
