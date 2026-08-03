@@ -7,20 +7,10 @@ from crowdin_api.api_resources.tasks.enums import (
     CrowdinGeneralTaskType,
     CrowdinTaskStatus,
     CrowdinTaskType,
-    GengoCrowdinTaskExpertise,
-    GengoCrowdinTaskPurpose,
-    GengoCrowdinTaskTone,
     ListTasksOrderBy,
     ListUserTasksOrderBy,
-    OhtCrowdinTaskExpertise,
-    OhtCrowdinTaskType,
     TaskOperationPatchPath,
-    TranslatedCrowdinTaskExpertise,
-    TranslatedCrowdinTaskSubjects,
     ConfigTaskOperationPatchPath,
-    LanguageServiceTaskType,
-    ManualCrowdinTaskType,
-    ManualCrowdinVendors,
 )
 from crowdin_api.api_resources.tasks.resource import TasksResource, EnterpriseTasksResource
 from crowdin_api.requester import APIRequester
@@ -167,6 +157,7 @@ class TestTasksResource:
                     "orderBy": None,
                     "assigneeId": None,
                     "status": None,
+                    "batchId": None,
                     "offset": 0,
                     "limit": 25,
                 },
@@ -184,6 +175,7 @@ class TestTasksResource:
                     ),
                     "assigneeId": 1,
                     "status": None,
+                    "batchId": None,
                     "offset": 0,
                     "limit": 25,
                 },
@@ -201,6 +193,18 @@ class TestTasksResource:
                     ),
                     "assigneeId": None,
                     "status": CrowdinTaskStatus.DONE,
+                    "batchId": None,
+                    "offset": 0,
+                    "limit": 25,
+                },
+            ),
+            (
+                {"batchId": 5},
+                {
+                    "orderBy": None,
+                    "assigneeId": None,
+                    "status": None,
+                    "batchId": 5,
                     "offset": 0,
                     "limit": 25,
                 },
@@ -260,6 +264,7 @@ class TestTasksResource:
                     "startedAt": None,
                     "dateFrom": None,
                     "dateTo": None,
+                    "batchId": None,
                 },
             ),
             (
@@ -280,6 +285,7 @@ class TestTasksResource:
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
+                    "batchId": 5,
                 },
                 {
                     "title": "title",
@@ -298,6 +304,7 @@ class TestTasksResource:
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
+                    "batchId": 5,
                 },
             ),
         ),
@@ -335,6 +342,7 @@ class TestTasksResource:
                     "startedAt": None,
                     "dateFrom": None,
                     "dateTo": None,
+                    "batchId": None,
                 },
             ),
             (
@@ -353,6 +361,7 @@ class TestTasksResource:
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
+                    "batchId": 5,
                 },
                 {
                     "title": "title",
@@ -369,6 +378,7 @@ class TestTasksResource:
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
+                    "batchId": 5,
                 },
             ),
         ),
@@ -389,560 +399,22 @@ class TestTasksResource:
                     "title": "title",
                     "languageId": "ua",
                     "fileIds": [1, 2, 3],
-                    "type": LanguageServiceTaskType.TRANSLATE_BY_VENDOR,
-                },
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                    "type": LanguageServiceTaskType.TRANSLATE_BY_VENDOR,
-                    "vendor": "crowdin_language_service",
-                    "status": None,
-                    "description": None,
-                    "labelIds": None,
-                    "excludeLabelIds": None,
-                    "includePreTranslatedStringsOnly": None,
-                    "dateFrom": None,
-                    "dateTo": None,
-                },
-            ),
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                    "type": LanguageServiceTaskType.TRANSLATE_BY_VENDOR,
-                    "status": CrowdinTaskStatus.TODO,
-                    "description": "description",
-                    "labelIds": [4, 5, 6],
-                    "excludeLabelIds": [7, 8, 9],
-                    "includePreTranslatedStringsOnly": False,
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                    "type": LanguageServiceTaskType.TRANSLATE_BY_VENDOR,
-                    "vendor": "crowdin_language_service",
-                    "status": CrowdinTaskStatus.TODO,
-                    "description": "description",
-                    "labelIds": [4, 5, 6],
-                    "excludeLabelIds": [7, 8, 9],
-                    "includePreTranslatedStringsOnly": False,
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-            ),
-        ),
-    )
-    @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
-    def test_add_language_service_task(
-        self, m_add_task, incoming_data, request_data, base_absolut_url
-    ):
-        m_add_task.return_value = "response"
-
-        resource = self.get_resource(base_absolut_url)
-        assert resource.add_language_service_task(projectId=1, **incoming_data) == "response"
-        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
-
-    @pytest.mark.parametrize(
-        "incoming_data, request_data",
-        (
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                    "type": LanguageServiceTaskType.TRANSLATE_BY_VENDOR,
-                },
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                    "type": LanguageServiceTaskType.TRANSLATE_BY_VENDOR,
-                    "vendor": "crowdin_language_service",
-                    "status": None,
-                    "description": None,
-                    "includePreTranslatedStringsOnly": None,
-                    "dateFrom": None,
-                    "dateTo": None,
-                },
-            ),
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                    "type": LanguageServiceTaskType.TRANSLATE_BY_VENDOR,
-                    "status": CrowdinTaskStatus.TODO,
-                    "description": "description",
-                    "includePreTranslatedStringsOnly": False,
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                    "type": LanguageServiceTaskType.TRANSLATE_BY_VENDOR,
-                    "vendor": "crowdin_language_service",
-                    "status": CrowdinTaskStatus.TODO,
-                    "description": "description",
-                    "includePreTranslatedStringsOnly": False,
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-            ),
-        ),
-    )
-    @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
-    def test_add_language_service_by_string_ids_task(
-        self, m_add_task, incoming_data, request_data, base_absolut_url
-    ):
-        m_add_task.return_value = "response"
-
-        resource = self.get_resource(base_absolut_url)
-        assert resource.add_language_service_by_string_ids_task(projectId=1, **incoming_data) == "response"
-        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
-
-    @pytest.mark.parametrize(
-        "incoming_data, request_data",
-        (
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                    "type": OhtCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                },
-                {
-                    "vendor": "oht",
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                    "type": OhtCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "status": None,
-                    "description": None,
-                    "expertise": None,
-                    "editService": None,
-                    "labelIds": None,
-                    "excludeLabelIds": None,
-                    "includePreTranslatedStringsOnly": None,
-                    "dateFrom": None,
-                    "dateTo": None,
-                },
-            ),
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                    "type": OhtCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "status": CrowdinTaskStatus.TODO,
-                    "description": "description",
-                    "expertise": OhtCrowdinTaskExpertise.AD_WORDS_BANNERS,
-                    "editService": True,
-                    "labelIds": [4, 5, 6],
-                    "excludeLabelIds": [7, 8, 9],
-                    "includePreTranslatedStringsOnly": False,
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-                {
-                    "vendor": "oht",
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                    "type": OhtCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "status": CrowdinTaskStatus.TODO,
-                    "description": "description",
-                    "expertise": OhtCrowdinTaskExpertise.AD_WORDS_BANNERS,
-                    "editService": True,
-                    "labelIds": [4, 5, 6],
-                    "excludeLabelIds": [7, 8, 9],
-                    "includePreTranslatedStringsOnly": False,
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-            ),
-        ),
-    )
-    @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
-    def test_add_vendor_oht_task(self, m_add_task, incoming_data, request_data, base_absolut_url):
-        m_add_task.return_value = "response"
-
-        resource = self.get_resource(base_absolut_url)
-        assert resource.add_vendor_oht_task(projectId=1, **incoming_data) == "response"
-        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
-
-    @pytest.mark.parametrize(
-        "incoming_data, request_data",
-        (
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                    "type": OhtCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                },
-                {
-                    "vendor": "oht",
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                    "type": OhtCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "status": None,
-                    "description": None,
-                    "editService": None,
-                    "expertise": None,
-                    "includePreTranslatedStringsOnly": None,
-                    "dateFrom": None,
-                    "dateTo": None,
-                },
-            ),
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                    "type": OhtCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "status": CrowdinTaskStatus.TODO,
-                    "description": "description",
-                    "expertise": OhtCrowdinTaskExpertise.AD_WORDS_BANNERS,
-                    "editService": True,
-                    "includePreTranslatedStringsOnly": False,
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-                {
-                    "vendor": "oht",
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                    "type": OhtCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "status": CrowdinTaskStatus.TODO,
-                    "description": "description",
-                    "expertise": OhtCrowdinTaskExpertise.AD_WORDS_BANNERS,
-                    "editService": True,
-                    "includePreTranslatedStringsOnly": False,
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-            ),
-        ),
-    )
-    @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
-    def test_add_vendor_oht_by_string_ids_task(self, m_add_task, incoming_data, request_data, base_absolut_url):
-        m_add_task.return_value = "response"
-
-        resource = self.get_resource(base_absolut_url)
-        assert resource.add_vendor_oht_by_string_ids_task(projectId=1, **incoming_data) == "response"
-        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
-
-    @pytest.mark.parametrize(
-        "incoming_data, request_data",
-        (
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                },
-                {
+                    "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
                     "vendor": "gengo",
+                },
+                {
                     "title": "title",
                     "languageId": "ua",
                     "fileIds": [1, 2, 3],
                     "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "status": None,
-                    "description": None,
-                    "expertise": None,
-                    "tone": None,
-                    "purpose": None,
-                    "customerMessage": None,
-                    "usePreferred": None,
-                    "editService": None,
-                    "labelIds": None,
-                    "excludeLabelIds": None,
-                    "dateFrom": None,
-                    "dateTo": None,
-                },
-            ),
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                    "status": CrowdinTaskStatus.IN_PROGRESS,
-                    "description": "description",
-                    "expertise": GengoCrowdinTaskExpertise.PRO,
-                    "tone": GengoCrowdinTaskTone.FRIENDLY,
-                    "purpose": GengoCrowdinTaskPurpose.APP_OR_WEB_LOCALIZATION,
-                    "customerMessage": "customer message",
-                    "usePreferred": True,
-                    "editService": True,
-                    "labelIds": [4, 5, 6],
-                    "excludeLabelIds": [7, 8, 9],
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-                {
                     "vendor": "gengo",
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                    "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "status": CrowdinTaskStatus.IN_PROGRESS,
-                    "description": "description",
-                    "expertise": GengoCrowdinTaskExpertise.PRO,
-                    "tone": GengoCrowdinTaskTone.FRIENDLY,
-                    "purpose": GengoCrowdinTaskPurpose.APP_OR_WEB_LOCALIZATION,
-                    "customerMessage": "customer message",
-                    "usePreferred": True,
-                    "editService": True,
-                    "labelIds": [4, 5, 6],
-                    "excludeLabelIds": [7, 8, 9],
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-            ),
-        ),
-    )
-    @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
-    def test_add_vendor_gengo_task(self, m_add_task, incoming_data, request_data, base_absolut_url):
-        m_add_task.return_value = "response"
-
-        resource = self.get_resource(base_absolut_url)
-        assert resource.add_vendor_gengo_task(projectId=1, **incoming_data) == "response"
-        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
-
-    @pytest.mark.parametrize(
-        "incoming_data, request_data",
-        (
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                },
-                {
-                    "vendor": "gengo",
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                    "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "status": None,
-                    "description": None,
-                    "expertise": None,
-                    "editService": None,
-                    "tone": None,
-                    "purpose": None,
-                    "customerMessage": None,
-                    "usePreferred": None,
-                    "dateFrom": None,
-                    "dateTo": None,
-                },
-            ),
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                    "status": CrowdinTaskStatus.IN_PROGRESS,
-                    "description": "description",
-                    "expertise": GengoCrowdinTaskExpertise.PRO,
-                    "tone": GengoCrowdinTaskTone.FRIENDLY,
-                    "purpose": GengoCrowdinTaskPurpose.APP_OR_WEB_LOCALIZATION,
-                    "customerMessage": "customer message",
-                    "usePreferred": True,
-                    "editService": True,
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-                {
-                    "vendor": "gengo",
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                    "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "status": CrowdinTaskStatus.IN_PROGRESS,
-                    "description": "description",
-                    "expertise": GengoCrowdinTaskExpertise.PRO,
-                    "tone": GengoCrowdinTaskTone.FRIENDLY,
-                    "purpose": GengoCrowdinTaskPurpose.APP_OR_WEB_LOCALIZATION,
-                    "customerMessage": "customer message",
-                    "usePreferred": True,
-                    "editService": True,
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-            ),
-        ),
-    )
-    @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
-    def test_add_vendor_gengo_by_string_ids_task(self, m_add_task, incoming_data, request_data, base_absolut_url):
-        m_add_task.return_value = "response"
-
-        resource = self.get_resource(base_absolut_url)
-        assert resource.add_vendor_gengo_by_string_ids_task(projectId=1, **incoming_data) == "response"
-        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
-
-    @pytest.mark.parametrize(
-        "incoming_data, request_data",
-        (
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                },
-                {
-                    "vendor": "translated",
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                    "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "status": None,
-                    "description": None,
-                    "expertise": None,
-                    "subject": None,
-                    "labelIds": None,
-                    "excludeLabelIds": None,
-                    "dateFrom": None,
-                    "dateTo": None,
-                },
-            ),
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                    "status": CrowdinTaskStatus.IN_PROGRESS,
-                    "description": "description",
-                    "expertise": TranslatedCrowdinTaskExpertise.ECONOMY,
-                    "subject": TranslatedCrowdinTaskSubjects.ART,
-                    "labelIds": [4, 5, 6],
-                    "excludeLabelIds": [7, 8, 9],
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-                {
-                    "vendor": "translated",
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                    "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "status": CrowdinTaskStatus.IN_PROGRESS,
-                    "description": "description",
-                    "expertise": TranslatedCrowdinTaskExpertise.ECONOMY,
-                    "subject": TranslatedCrowdinTaskSubjects.ART,
-                    "labelIds": [4, 5, 6],
-                    "excludeLabelIds": [7, 8, 9],
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-            ),
-        ),
-    )
-    @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
-    def test_add_vendor_translated_task(
-        self, m_add_task, incoming_data, request_data, base_absolut_url
-    ):
-        m_add_task.return_value = "response"
-
-        resource = self.get_resource(base_absolut_url)
-        assert resource.add_vendor_translated_task(projectId=1, **incoming_data) == "response"
-        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
-
-    @pytest.mark.parametrize(
-        "incoming_data, request_data",
-        (
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                },
-                {
-                    "vendor": "translated",
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                    "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "status": None,
-                    "description": None,
-                    "expertise": None,
-                    "subject": None,
-                    "dateFrom": None,
-                    "dateTo": None,
-                },
-            ),
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                    "status": CrowdinTaskStatus.IN_PROGRESS,
-                    "description": "description",
-                    "expertise": TranslatedCrowdinTaskExpertise.ECONOMY,
-                    "subject": TranslatedCrowdinTaskSubjects.ART,
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-                {
-                    "vendor": "translated",
-                    "title": "title",
-                    "languageId": "ua",
-                    "stringIds": [1, 2, 3],
-                    "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "status": CrowdinTaskStatus.IN_PROGRESS,
-                    "description": "description",
-                    "expertise": TranslatedCrowdinTaskExpertise.ECONOMY,
-                    "subject": TranslatedCrowdinTaskSubjects.ART,
-                    "dateFrom": datetime(year=1988, month=1, day=4),
-                    "dateTo": datetime(year=2015, month=10, day=13),
-                },
-            ),
-        ),
-    )
-    @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
-    def test_add_vendor_translated_by_string_ids_task(
-        self, m_add_task, incoming_data, request_data, base_absolut_url
-    ):
-        m_add_task.return_value = "response"
-
-        resource = self.get_resource(base_absolut_url)
-        assert resource.add_vendor_translated_by_string_ids_task(projectId=1, **incoming_data) == "response"
-        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
-
-    @pytest.mark.parametrize(
-        "incoming_data, request_data",
-        (
-            (
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                    "type": ManualCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "vendor": ManualCrowdinVendors.ACCLARO,
-                },
-                {
-                    "title": "title",
-                    "languageId": "ua",
-                    "fileIds": [1, 2, 3],
-                    "type": ManualCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "vendor": ManualCrowdinVendors.ACCLARO,
                     "status": None,
                     "description": None,
                     "skipAssignedStrings": None,
                     "includePreTranslatedStringsOnly": None,
                     "labelIds": None,
                     "excludeLabelIds": None,
-                    "assignees": None,
                     "deadline": None,
-                    "startedAt": None,
                     "dateFrom": None,
                     "dateTo": None,
                 },
@@ -952,17 +424,15 @@ class TestTasksResource:
                     "title": "title",
                     "languageId": "ua",
                     "fileIds": [1, 2, 3],
-                    "type": ManualCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "type": CrowdinTaskType.PROOFREAD_BY_VENDOR,
+                    "vendor": "oht",
                     "status": CrowdinTaskStatus.TODO,
                     "description": "description",
                     "skipAssignedStrings": False,
                     "includePreTranslatedStringsOnly": False,
-                    "labelIds": [1, 2, 3],
-                    "excludeLabelIds": [4, 5, 6],
-                    "assignees": [{"id": 1, "wordsCount": 2}],
+                    "labelIds": [4, 5, 6],
+                    "excludeLabelIds": [7, 8, 9],
                     "deadline": datetime(year=1988, month=9, day=26),
-                    "startedAt": datetime(year=1966, month=2, day=1),
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
                 },
@@ -970,17 +440,15 @@ class TestTasksResource:
                     "title": "title",
                     "languageId": "ua",
                     "fileIds": [1, 2, 3],
-                    "type": ManualCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "type": CrowdinTaskType.PROOFREAD_BY_VENDOR,
+                    "vendor": "oht",
                     "status": CrowdinTaskStatus.TODO,
                     "description": "description",
                     "skipAssignedStrings": False,
                     "includePreTranslatedStringsOnly": False,
-                    "labelIds": [1, 2, 3],
-                    "excludeLabelIds": [4, 5, 6],
-                    "assignees": [{"id": 1, "wordsCount": 2}],
+                    "labelIds": [4, 5, 6],
+                    "excludeLabelIds": [7, 8, 9],
                     "deadline": datetime(year=1988, month=9, day=26),
-                    "startedAt": datetime(year=1966, month=2, day=1),
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
                 },
@@ -988,13 +456,11 @@ class TestTasksResource:
         ),
     )
     @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
-    def test_add_vendor_manual_task(
-        self, m_add_task, incoming_data, request_data, base_absolut_url
-    ):
+    def test_add_vendor_task(self, m_add_task, incoming_data, request_data, base_absolut_url):
         m_add_task.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_vendor_manual_task(projectId=1, **incoming_data) == "response"
+        assert resource.add_vendor_task(projectId=1, **incoming_data) == "response"
         m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
 
     @pytest.mark.parametrize(
@@ -1005,22 +471,20 @@ class TestTasksResource:
                     "title": "title",
                     "languageId": "ua",
                     "stringIds": [1, 2, 3],
-                    "type": ManualCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
+                    "vendor": "gengo",
                 },
                 {
                     "title": "title",
                     "languageId": "ua",
                     "stringIds": [1, 2, 3],
-                    "type": ManualCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
+                    "vendor": "gengo",
                     "status": None,
                     "description": None,
                     "skipAssignedStrings": None,
                     "includePreTranslatedStringsOnly": None,
-                    "assignees": None,
                     "deadline": None,
-                    "startedAt": None,
                     "dateFrom": None,
                     "dateTo": None,
                 },
@@ -1030,15 +494,13 @@ class TestTasksResource:
                     "title": "title",
                     "languageId": "ua",
                     "stringIds": [1, 2, 3],
-                    "type": ManualCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "type": CrowdinTaskType.PROOFREAD_BY_VENDOR,
+                    "vendor": "oht",
                     "status": CrowdinTaskStatus.TODO,
                     "description": "description",
                     "skipAssignedStrings": False,
                     "includePreTranslatedStringsOnly": False,
-                    "assignees": [{"id": 1, "wordsCount": 2}],
                     "deadline": datetime(year=1988, month=9, day=26),
-                    "startedAt": datetime(year=1966, month=2, day=1),
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
                 },
@@ -1046,15 +508,13 @@ class TestTasksResource:
                     "title": "title",
                     "languageId": "ua",
                     "stringIds": [1, 2, 3],
-                    "type": ManualCrowdinTaskType.TRANSLATE_BY_VENDOR,
-                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "type": CrowdinTaskType.PROOFREAD_BY_VENDOR,
+                    "vendor": "oht",
                     "status": CrowdinTaskStatus.TODO,
                     "description": "description",
                     "skipAssignedStrings": False,
                     "includePreTranslatedStringsOnly": False,
-                    "assignees": [{"id": 1, "wordsCount": 2}],
                     "deadline": datetime(year=1988, month=9, day=26),
-                    "startedAt": datetime(year=1966, month=2, day=1),
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
                 },
@@ -1062,13 +522,13 @@ class TestTasksResource:
         ),
     )
     @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
-    def test_add_vendor_manual_by_string_ids_task(
+    def test_add_vendor_by_string_ids_task(
         self, m_add_task, incoming_data, request_data, base_absolut_url
     ):
         m_add_task.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_vendor_manual_by_string_ids_task(projectId=1, **incoming_data) == "response"
+        assert resource.add_vendor_by_string_ids_task(projectId=1, **incoming_data) == "response"
         m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
 
     @pytest.mark.parametrize(
@@ -1124,58 +584,13 @@ class TestTasksResource:
                 {
                     "title": "title",
                     "precedingTaskId": 1,
-                },
-                {
-                    "title": "title",
-                    "precedingTaskId": 1,
-                    "type": LanguageServiceTaskType.PROOFREAD_BY_VENDOR,
-                    "vendor": "crowdin_language_service",
-                    "description": None,
-                    "deadline": None,
-                },
-            ),
-            (
-                {
-                    "title": "title",
-                    "precedingTaskId": 1,
-                    "description": "description",
-                    "deadline": datetime(year=1988, month=9, day=26),
-                },
-                {
-                    "title": "title",
-                    "precedingTaskId": 1,
-                    "description": "description",
-                    "deadline": datetime(year=1988, month=9, day=26),
-                    "type": LanguageServiceTaskType.PROOFREAD_BY_VENDOR,
                     "vendor": "crowdin_language_service",
                 },
-            ),
-        ),
-    )
-    @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
-    def test_add_language_service_pending_task(
-        self, m_add_task, incoming_data, request_data, base_absolut_url
-    ):
-        m_add_task.return_value = "response"
-
-        resource = self.get_resource(base_absolut_url)
-        assert resource.add_language_service_pending_task(projectId=1, **incoming_data) == "response"
-        m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
-
-    @pytest.mark.parametrize(
-        "incoming_data, request_data",
-        (
-            (
                 {
                     "title": "title",
                     "precedingTaskId": 1,
-                    "vendor": ManualCrowdinVendors.ACCLARO,
-                },
-                {
-                    "title": "title",
-                    "precedingTaskId": 1,
-                    "type": ManualCrowdinTaskType.PROOFREAD_BY_VENDOR,
-                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "type": CrowdinTaskType.PROOFREAD_BY_VENDOR,
+                    "vendor": "crowdin_language_service",
                     "description": None,
                     "assignees": None,
                     "deadline": None,
@@ -1186,7 +601,7 @@ class TestTasksResource:
                     "title": "title",
                     "precedingTaskId": 1,
                     "description": "description",
-                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "vendor": "acclaro",
                     "assignees": [{"id": 1, "wordsCount": 2}],
                     "deadline": datetime(year=1988, month=9, day=26),
                 },
@@ -1195,21 +610,21 @@ class TestTasksResource:
                     "precedingTaskId": 1,
                     "description": "description",
                     "deadline": datetime(year=1988, month=9, day=26),
-                    "type": ManualCrowdinTaskType.PROOFREAD_BY_VENDOR,
-                    "vendor": ManualCrowdinVendors.ACCLARO,
+                    "type": CrowdinTaskType.PROOFREAD_BY_VENDOR,
+                    "vendor": "acclaro",
                     "assignees": [{"id": 1, "wordsCount": 2}],
                 },
             ),
         ),
     )
     @mock.patch("crowdin_api.api_resources.tasks.resource.TasksResource.add_task")
-    def test_add_vendor_manual_pending_task(
+    def test_add_vendor_pending_task(
         self, m_add_task, incoming_data, request_data, base_absolut_url
     ):
         m_add_task.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_vendor_manual_pending_task(projectId=1, **incoming_data) == "response"
+        assert resource.add_vendor_pending_task(projectId=1, **incoming_data) == "response"
         m_add_task.assert_called_once_with(projectId=1, request_data=request_data)
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -1243,17 +658,35 @@ class TestTasksResource:
             method="delete", path=resource.get_tasks_path(projectId=1, taskId=2)
         )
 
+    @pytest.mark.parametrize(
+        "data",
+        (
+            [
+                {
+                    "value": "value",
+                    "op": PatchOperation.REPLACE,
+                    "path": TaskOperationPatchPath.TITLE,
+                }
+            ],
+            [
+                {
+                    "value": 5,
+                    "op": PatchOperation.REPLACE,
+                    "path": TaskOperationPatchPath.BATCH_ID,
+                }
+            ],
+            [
+                {
+                    "value": True,
+                    "op": PatchOperation.REPLACE,
+                    "path": TaskOperationPatchPath.RESET_SCOPE,
+                }
+            ],
+        ),
+    )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_edit_task(self, m_request, base_absolut_url):
+    def test_edit_task(self, m_request, data, base_absolut_url):
         m_request.return_value = "response"
-
-        data = [
-            {
-                "value": "value",
-                "op": PatchOperation.REPLACE,
-                "path": TaskOperationPatchPath.TITLE,
-            }
-        ]
 
         resource = self.get_resource(base_absolut_url)
         assert resource.edit_task(projectId=1, taskId=2, data=data) == "response"
@@ -1478,6 +911,7 @@ class TestEnterpriseTasksResource:
                     "startedAt": None,
                     "dateFrom": None,
                     "dateTo": None,
+                    "batchId": None,
                 },
             ),
             (
@@ -1500,6 +934,7 @@ class TestEnterpriseTasksResource:
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
+                    "batchId": 5,
                 },
                 {
                     "title": "title",
@@ -1520,6 +955,7 @@ class TestEnterpriseTasksResource:
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
+                    "batchId": 5,
                 },
             ),
         ),
@@ -1563,6 +999,7 @@ class TestEnterpriseTasksResource:
                     "startedAt": None,
                     "dateFrom": None,
                     "dateTo": None,
+                    "batchId": None,
                 },
             ),
             (
@@ -1582,6 +1019,7 @@ class TestEnterpriseTasksResource:
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
+                    "batchId": 5,
                 },
                 {
                     "title": "title",
@@ -1600,6 +1038,7 @@ class TestEnterpriseTasksResource:
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateFrom": datetime(year=1988, month=1, day=4),
                     "dateTo": datetime(year=2015, month=10, day=13),
+                    "batchId": 5,
                 },
             ),
         ),
@@ -1642,6 +1081,7 @@ class TestEnterpriseTasksResource:
                     "deadline": None,
                     "startedAt": None,
                     "dateTo": None,
+                    "batchId": None,
                 },
             ),
             (
@@ -1658,6 +1098,7 @@ class TestEnterpriseTasksResource:
                     "deadline": datetime(year=1988, month=9, day=26),
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateTo": datetime(year=2015, month=10, day=13),
+                    "batchId": 5,
                 },
                 {
                     "title": "title",
@@ -1672,6 +1113,7 @@ class TestEnterpriseTasksResource:
                     "deadline": datetime(year=1988, month=9, day=26),
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateTo": datetime(year=2015, month=10, day=13),
+                    "batchId": 5,
                 },
             ),
         ),
@@ -1709,6 +1151,7 @@ class TestEnterpriseTasksResource:
                     "deadline": None,
                     "startedAt": None,
                     "dateTo": None,
+                    "batchId": None,
                 },
             ),
             (
@@ -1723,6 +1166,7 @@ class TestEnterpriseTasksResource:
                     "deadline": datetime(year=1988, month=9, day=26),
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateTo": datetime(year=2015, month=10, day=13),
+                    "batchId": 5,
                 },
                 {
                     "title": "title",
@@ -1735,6 +1179,7 @@ class TestEnterpriseTasksResource:
                     "deadline": datetime(year=1988, month=9, day=26),
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateTo": datetime(year=2015, month=10, day=13),
+                    "batchId": 5,
                 },
             ),
         ),
