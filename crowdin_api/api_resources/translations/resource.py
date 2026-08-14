@@ -108,6 +108,12 @@ class TranslationsResource(BaseResource):
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.pre-translations.post
         """
+        if translateUntranslatedOnly is not None and scope is not None:
+            raise ValueError(
+                "translateUntranslatedOnly is deprecated in favor of scope and "
+                "cannot be combined with it in the same request."
+            )
+
         if fallbackLanguages is None:
             fallbackLanguages = []
 

@@ -90,7 +90,6 @@ class TestTranslationsResource:
                     "autoApproveOption": PreTranslationAutoApproveOption.ALL,
                     "duplicateTranslations": False,
                     "skipApprovedTranslations": False,
-                    "translateUntranslatedOnly": False,
                     "scope": PreTranslationScope.TRANSLATED,
                     "translationModifiedBefore": "2026-01-01T00:00:00+00:00",
                     "replaceTranslationsOption": PreTranslationReplaceTranslationsOption.AUTO_TRANSLATED,
@@ -109,7 +108,7 @@ class TestTranslationsResource:
                     "autoApproveOption": PreTranslationAutoApproveOption.ALL,
                     "duplicateTranslations": False,
                     "skipApprovedTranslations": False,
-                    "translateUntranslatedOnly": False,
+                    "translateUntranslatedOnly": None,
                     "scope": PreTranslationScope.TRANSLATED,
                     "translationModifiedBefore": "2026-01-01T00:00:00+00:00",
                     "replaceTranslationsOption": PreTranslationReplaceTranslationsOption.AUTO_TRANSLATED,
@@ -316,6 +315,25 @@ class TestTranslationsResource:
             },
             path="projects/1/pre-translations",
         )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_apply_pre_translation_with_scope_and_translate_untranslated_only_raises(
+        self, m_request, base_absolut_url
+    ):
+        """Test that combining the deprecated translateUntranslatedOnly with scope
+        raises a ValueError instead of being sent to the API."""
+        resource = self.get_resource(base_absolut_url)
+
+        with pytest.raises(ValueError):
+            resource.apply_pre_translation(
+                projectId=1,
+                languageIds=["en"],
+                fileIds=[1],
+                translateUntranslatedOnly=True,
+                scope=PreTranslationScope.ALL,
+            )
+
+        m_request.assert_not_called()
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_pre_translation_report(self, m_request, base_absolut_url):
