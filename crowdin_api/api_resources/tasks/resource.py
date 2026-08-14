@@ -863,7 +863,6 @@ class EnterpriseTasksResource(TasksResource):
         deadline: Optional[datetime] = None,
         startedAt: Optional[datetime] = None,
         dateTo: Optional[datetime] = None,
-        batchId: Optional[int] = None,
     ):
         """
         Add Task(Enterprise Vendor Task Create Form).
@@ -889,7 +888,6 @@ class EnterpriseTasksResource(TasksResource):
                 "deadline": deadline,
                 "startedAt": startedAt,
                 "dateTo": dateTo,
-                "batchId": batchId,
             },
         )
 
@@ -906,7 +904,6 @@ class EnterpriseTasksResource(TasksResource):
         deadline: Optional[datetime] = None,
         startedAt: Optional[datetime] = None,
         dateTo: Optional[datetime] = None,
-        batchId: Optional[int] = None,
     ):
         """
         Add Task(Enterprise Vendor Task Create Form).
@@ -930,7 +927,6 @@ class EnterpriseTasksResource(TasksResource):
                 "deadline": deadline,
                 "startedAt": startedAt,
                 "dateTo": dateTo,
-                "batchId": batchId,
             },
         )
 

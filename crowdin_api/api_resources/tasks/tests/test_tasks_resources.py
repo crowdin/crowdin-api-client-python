@@ -1081,7 +1081,6 @@ class TestEnterpriseTasksResource:
                     "deadline": None,
                     "startedAt": None,
                     "dateTo": None,
-                    "batchId": None,
                 },
             ),
             (
@@ -1098,7 +1097,6 @@ class TestEnterpriseTasksResource:
                     "deadline": datetime(year=1988, month=9, day=26),
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateTo": datetime(year=2015, month=10, day=13),
-                    "batchId": 5,
                 },
                 {
                     "title": "title",
@@ -1113,7 +1111,6 @@ class TestEnterpriseTasksResource:
                     "deadline": datetime(year=1988, month=9, day=26),
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateTo": datetime(year=2015, month=10, day=13),
-                    "batchId": 5,
                 },
             ),
         ),
@@ -1151,7 +1148,6 @@ class TestEnterpriseTasksResource:
                     "deadline": None,
                     "startedAt": None,
                     "dateTo": None,
-                    "batchId": None,
                 },
             ),
             (
@@ -1166,7 +1162,6 @@ class TestEnterpriseTasksResource:
                     "deadline": datetime(year=1988, month=9, day=26),
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateTo": datetime(year=2015, month=10, day=13),
-                    "batchId": 5,
                 },
                 {
                     "title": "title",
@@ -1179,7 +1174,6 @@ class TestEnterpriseTasksResource:
                     "deadline": datetime(year=1988, month=9, day=26),
                     "startedAt": datetime(year=1966, month=2, day=1),
                     "dateTo": datetime(year=2015, month=10, day=13),
-                    "batchId": 5,
                 },
             ),
         ),
