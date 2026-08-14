@@ -242,6 +242,22 @@ class TestGlossariesResource:
                     "languageIds": ["uk", "de"],
                 },
             ),
+            (
+                {
+                    "status": GlossaryExportStatus.PREFERRED,
+                    "partOfSpeech": GlossaryExportPartOfSpeech.NOUN,
+                    "type": GlossaryExportTermType.ACRONYM,
+                    "gender": GlossaryExportGender.MASCULINE,
+                    "authorId": 12,
+                },
+                {
+                    "status": GlossaryExportStatus.PREFERRED,
+                    "partOfSpeech": GlossaryExportPartOfSpeech.NOUN,
+                    "type": GlossaryExportTermType.ACRONYM,
+                    "gender": GlossaryExportGender.MASCULINE,
+                    "authorId": 12,
+                },
+            ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")

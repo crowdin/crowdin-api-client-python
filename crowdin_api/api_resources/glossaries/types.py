@@ -31,6 +31,13 @@ class GlossarySchemaRequest(TypedDict):
     genders: Optional[Iterable[GlossaryExportGender]]
     authorIds: Optional[Iterable[int]]
     languageIds: Optional[Iterable[str]]
+    # Deprecated in favor of the plural filters above; the API rejects requests combining a
+    # singular filter with its plural counterpart.
+    status: Optional[GlossaryExportStatus]
+    partOfSpeech: Optional[GlossaryExportPartOfSpeech]
+    type: Optional[GlossaryExportTermType]
+    gender: Optional[GlossaryExportGender]
+    authorId: Optional[int]
 
 
 class TermPatchRequest(TypedDict):
