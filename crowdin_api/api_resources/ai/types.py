@@ -19,7 +19,7 @@ class OtherLanguageTranslation(TypedDict):
     languageIds: Optional[Iterable[int]]
 
 
-class BasicModePreTranslateActionCondfig(TypedDict):
+class BasicModePreTranslateActionConfig(TypedDict):
     mode: str
     companyDescription: Optional[bool]
     projectDescription: Optional[bool]
@@ -79,7 +79,7 @@ class AddAIPromptRequestScheme(TypedDict):
     isEnabled: Optional[bool]
     enabledProjectIds: Optional[Iterable[int]]
     config: Union[
-        BasicModePreTranslateActionCondfig,
+        BasicModePreTranslateActionConfig,
         BasicModeAlignmentActionConfig,
         BasicModeQaCheckActionConfig,
         AdvancedModeConfig,
