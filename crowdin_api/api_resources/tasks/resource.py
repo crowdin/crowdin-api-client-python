@@ -6,16 +6,6 @@ from crowdin_api.api_resources.tasks.enums import (
     CrowdinGeneralTaskType,
     CrowdinTaskStatus,
     CrowdinTaskType,
-    LanguageServiceTaskType,
-    GengoCrowdinTaskExpertise,
-    GengoCrowdinTaskPurpose,
-    GengoCrowdinTaskTone,
-    OhtCrowdinTaskExpertise,
-    OhtCrowdinTaskType,
-    TranslatedCrowdinTaskExpertise,
-    TranslatedCrowdinTaskSubjects,
-    ManualCrowdinTaskType,
-    ManualCrowdinVendors,
 )
 from crowdin_api.api_resources.tasks.types import (
     CrowdinTaskAssignee,
@@ -182,6 +172,7 @@ class TasksResource(BaseResource):
         orderBy: Optional[Sorting] = None,
         assigneeId: Optional[int] = None,
         status: Optional[CrowdinTaskStatus] = None,
+        batchId: Optional[int] = None,
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
@@ -191,10 +182,18 @@ class TasksResource(BaseResource):
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.getMany
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.getMany
         """
 
         projectId = projectId or self.get_project_id()
-        params = {"orderBy": orderBy, "assigneeId": assigneeId, "status": status}
+        params = {
+            "orderBy": orderBy,
+            "assigneeId": assigneeId,
+            "status": status,
+            "batchId": batchId,
+        }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(
@@ -238,6 +237,7 @@ class TasksResource(BaseResource):
         startedAt: Optional[datetime] = None,
         dateFrom: Optional[datetime] = None,
         dateTo: Optional[datetime] = None,
+        batchId: Optional[int] = None,
     ):
         """
         Add Task(Crowdin Task Create Form).
@@ -267,6 +267,7 @@ class TasksResource(BaseResource):
                 "startedAt": startedAt,
                 "dateFrom": dateFrom,
                 "dateTo": dateTo,
+                "batchId": batchId,
             },
         )
 
@@ -287,6 +288,7 @@ class TasksResource(BaseResource):
         startedAt: Optional[datetime] = None,
         dateFrom: Optional[datetime] = None,
         dateTo: Optional[datetime] = None,
+        batchId: Optional[int] = None,
     ):
         """
         Add Task(Crowdin Task Create Form).
@@ -314,364 +316,17 @@ class TasksResource(BaseResource):
                 "startedAt": startedAt,
                 "dateFrom": dateFrom,
                 "dateTo": dateTo,
+                "batchId": batchId,
             },
         )
 
-    def add_language_service_task(
+    def add_vendor_task(
         self,
         title: str,
         languageId: str,
         fileIds: Iterable[int],
-        type: LanguageServiceTaskType,
-        projectId: Optional[int] = None,
-        status: Optional[CrowdinTaskStatus] = None,
-        description: Optional[str] = None,
-        labelIds: Optional[Iterable[int]] = None,
-        excludeLabelIds: Optional[Iterable[int]] = None,
-        includePreTranslatedStringsOnly: Optional[bool] = None,
-        dateFrom: Optional[datetime] = None,
-        dateTo: Optional[datetime] = None,
-    ):
-        """
-        Add Task(Crowdin Language Service Task Create Form).
-
-        Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
-        """
-
-        projectId = projectId or self.get_project_id()
-
-        return self.add_task(
-            projectId=projectId,
-            request_data={
-                "title": title,
-                "languageId": languageId,
-                "fileIds": fileIds,
-                "type": type,
-                "vendor": "crowdin_language_service",
-                "status": status,
-                "description": description,
-                "labelIds": labelIds,
-                "excludeLabelIds": excludeLabelIds,
-                "includePreTranslatedStringsOnly": includePreTranslatedStringsOnly,
-                "dateFrom": dateFrom,
-                "dateTo": dateTo,
-            }
-        )
-
-    def add_language_service_by_string_ids_task(
-        self,
-        title: str,
-        languageId: str,
-        stringIds: Iterable[int],
-        type: LanguageServiceTaskType,
-        projectId: Optional[int] = None,
-        status: Optional[CrowdinTaskStatus] = None,
-        description: Optional[str] = None,
-        includePreTranslatedStringsOnly: Optional[bool] = None,
-        dateFrom: Optional[datetime] = None,
-        dateTo: Optional[datetime] = None,
-    ):
-        """
-        Add Task(Crowdin Language Service Task Create Form).
-
-        Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
-        """
-
-        projectId = projectId or self.get_project_id()
-
-        return self.add_task(
-            projectId=projectId,
-            request_data={
-                "title": title,
-                "languageId": languageId,
-                "stringIds": stringIds,
-                "type": type,
-                "vendor": "crowdin_language_service",
-                "status": status,
-                "description": description,
-                "includePreTranslatedStringsOnly": includePreTranslatedStringsOnly,
-                "dateFrom": dateFrom,
-                "dateTo": dateTo,
-            }
-        )
-
-    def add_vendor_oht_task(
-        self,
-        title: str,
-        languageId: str,
-        fileIds: Iterable[int],
-        type: OhtCrowdinTaskType,
-        projectId: Optional[int] = None,
-        status: Optional[CrowdinTaskStatus] = None,
-        description: Optional[str] = None,
-        expertise: Optional[OhtCrowdinTaskExpertise] = None,
-        editService: Optional[bool] = None,
-        labelIds: Optional[Iterable[int]] = None,
-        excludeLabelIds: Optional[Iterable[int]] = None,
-        includePreTranslatedStringsOnly: Optional[bool] = None,
-        dateFrom: Optional[datetime] = None,
-        dateTo: Optional[datetime] = None,
-    ):
-        """
-        Add Task(Crowdin Vendor Oht Task Create Form).
-
-        Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
-        """
-
-        projectId = projectId or self.get_project_id()
-
-        return self.add_task(
-            projectId=projectId,
-            request_data={
-                "title": title,
-                "languageId": languageId,
-                "fileIds": fileIds,
-                "type": type,
-                "status": status,
-                "description": description,
-                "expertise": expertise,
-                "editService": editService,
-                "labelIds": labelIds,
-                "excludeLabelIds": excludeLabelIds,
-                "includePreTranslatedStringsOnly": includePreTranslatedStringsOnly,
-                "dateFrom": dateFrom,
-                "dateTo": dateTo,
-                "vendor": "oht",
-            },
-        )
-
-    def add_vendor_oht_by_string_ids_task(
-        self,
-        title: str,
-        languageId: str,
-        stringIds: Iterable[int],
-        type: OhtCrowdinTaskType,
-        projectId: Optional[int] = None,
-        status: Optional[CrowdinTaskStatus] = None,
-        description: Optional[str] = None,
-        expertise: Optional[OhtCrowdinTaskExpertise] = None,
-        editService: Optional[bool] = None,
-        includePreTranslatedStringsOnly: Optional[bool] = None,
-        dateFrom: Optional[datetime] = None,
-        dateTo: Optional[datetime] = None,
-    ):
-        """
-        Add Task(Crowdin Vendor Oht Task Create Form).
-
-        Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
-        """
-
-        projectId = projectId or self.get_project_id()
-
-        return self.add_task(
-            projectId=projectId,
-            request_data={
-                "title": title,
-                "languageId": languageId,
-                "stringIds": stringIds,
-                "type": type,
-                "status": status,
-                "description": description,
-                "expertise": expertise,
-                "editService": editService,
-                "includePreTranslatedStringsOnly": includePreTranslatedStringsOnly,
-                "dateFrom": dateFrom,
-                "dateTo": dateTo,
-                "vendor": "oht",
-            },
-        )
-
-    def add_vendor_gengo_task(
-        self,
-        title: str,
-        languageId: str,
-        fileIds: Iterable[int],
-        projectId: Optional[int] = None,
-        status: Optional[CrowdinTaskStatus] = None,
-        description: Optional[str] = None,
-        expertise: Optional[GengoCrowdinTaskExpertise] = None,
-        tone: Optional[GengoCrowdinTaskTone] = None,
-        purpose: Optional[GengoCrowdinTaskPurpose] = None,
-        customerMessage: Optional[str] = None,
-        usePreferred: Optional[bool] = None,
-        editService: Optional[bool] = None,
-        labelIds: Optional[Iterable[int]] = None,
-        excludeLabelIds: Optional[Iterable[int]] = None,
-        dateFrom: Optional[datetime] = None,
-        dateTo: Optional[datetime] = None,
-    ):
-        """
-        Add Task(Crowdin Vendor Gengo Task Create Form).
-
-        Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
-        """
-
-        projectId = projectId or self.get_project_id()
-
-        return self.add_task(
-            projectId=projectId,
-            request_data={
-                "title": title,
-                "languageId": languageId,
-                "fileIds": fileIds,
-                "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
-                "status": status,
-                "description": description,
-                "expertise": expertise,
-                "tone": tone,
-                "purpose": purpose,
-                "customerMessage": customerMessage,
-                "usePreferred": usePreferred,
-                "editService": editService,
-                "labelIds": labelIds,
-                "excludeLabelIds": excludeLabelIds,
-                "dateFrom": dateFrom,
-                "dateTo": dateTo,
-                "vendor": "gengo",
-            },
-        )
-
-    def add_vendor_gengo_by_string_ids_task(
-        self,
-        title: str,
-        languageId: str,
-        stringIds: Iterable[int],
-        projectId: Optional[int] = None,
-        status: Optional[CrowdinTaskStatus] = None,
-        description: Optional[str] = None,
-        expertise: Optional[GengoCrowdinTaskExpertise] = None,
-        tone: Optional[GengoCrowdinTaskTone] = None,
-        purpose: Optional[GengoCrowdinTaskPurpose] = None,
-        customerMessage: Optional[str] = None,
-        usePreferred: Optional[bool] = None,
-        editService: Optional[bool] = None,
-        dateFrom: Optional[datetime] = None,
-        dateTo: Optional[datetime] = None,
-    ):
-        """
-        Add Task(Crowdin Vendor Gengo Task Create Form).
-
-        Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
-        """
-
-        projectId = projectId or self.get_project_id()
-
-        return self.add_task(
-            projectId=projectId,
-            request_data={
-                "title": title,
-                "languageId": languageId,
-                "stringIds": stringIds,
-                "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
-                "status": status,
-                "description": description,
-                "expertise": expertise,
-                "tone": tone,
-                "purpose": purpose,
-                "customerMessage": customerMessage,
-                "usePreferred": usePreferred,
-                "editService": editService,
-                "dateFrom": dateFrom,
-                "dateTo": dateTo,
-                "vendor": "gengo",
-            },
-        )
-
-    def add_vendor_translated_task(
-        self,
-        title: str,
-        languageId: str,
-        fileIds: Iterable[int],
-        projectId: Optional[int] = None,
-        status: Optional[CrowdinTaskStatus] = None,
-        description: Optional[str] = None,
-        expertise: Optional[TranslatedCrowdinTaskExpertise] = None,
-        subject: Optional[TranslatedCrowdinTaskSubjects] = None,
-        labelIds: Optional[Iterable[int]] = None,
-        excludeLabelIds: Optional[Iterable[int]] = None,
-        dateFrom: Optional[datetime] = None,
-        dateTo: Optional[datetime] = None,
-    ):
-        """
-        Add Task(Crowdin Vendor Translated Task Create Form).
-
-        Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
-        """
-
-        projectId = projectId or self.get_project_id()
-
-        return self.add_task(
-            projectId=projectId,
-            request_data={
-                "title": title,
-                "languageId": languageId,
-                "fileIds": fileIds,
-                "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
-                "status": status,
-                "description": description,
-                "expertise": expertise,
-                "subject": subject,
-                "labelIds": labelIds,
-                "excludeLabelIds": excludeLabelIds,
-                "dateFrom": dateFrom,
-                "dateTo": dateTo,
-                "vendor": "translated",
-            },
-        )
-
-    def add_vendor_translated_by_string_ids_task(
-        self,
-        title: str,
-        languageId: str,
-        stringIds: Iterable[int],
-        projectId: Optional[int] = None,
-        status: Optional[CrowdinTaskStatus] = None,
-        description: Optional[str] = None,
-        expertise: Optional[TranslatedCrowdinTaskExpertise] = None,
-        subject: Optional[TranslatedCrowdinTaskSubjects] = None,
-        dateFrom: Optional[datetime] = None,
-        dateTo: Optional[datetime] = None,
-    ):
-        """
-        Add Task(Crowdin Vendor Translated Task Create Form).
-
-        Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
-        """
-
-        projectId = projectId or self.get_project_id()
-
-        return self.add_task(
-            projectId=projectId,
-            request_data={
-                "title": title,
-                "languageId": languageId,
-                "stringIds": stringIds,
-                "type": CrowdinTaskType.TRANSLATE_BY_VENDOR,
-                "status": status,
-                "description": description,
-                "expertise": expertise,
-                "subject": subject,
-                "dateFrom": dateFrom,
-                "dateTo": dateTo,
-                "vendor": "translated",
-            },
-        )
-
-    def add_vendor_manual_task(
-        self,
-        title: str,
-        languageId: str,
-        fileIds: Iterable[int],
-        type: ManualCrowdinTaskType,
-        vendor: ManualCrowdinVendors,
+        type: CrowdinTaskType,
+        vendor: str,
         projectId: Optional[int] = None,
         status: Optional[CrowdinTaskStatus] = None,
         description: Optional[str] = None,
@@ -679,14 +334,12 @@ class TasksResource(BaseResource):
         includePreTranslatedStringsOnly: Optional[bool] = None,
         labelIds: Optional[Iterable[int]] = None,
         excludeLabelIds: Optional[Iterable[int]] = None,
-        assignees: Optional[Iterable[CrowdinTaskAssignee]] = None,
         deadline: Optional[datetime] = None,
-        startedAt: Optional[datetime] = None,
         dateFrom: Optional[datetime] = None,
         dateTo: Optional[datetime] = None,
     ):
         """
-        Add Task(Crowdin Vendor Manual Task Create Form).
+        Add Task(Crowdin Vendor Task Create Form).
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
@@ -708,34 +361,30 @@ class TasksResource(BaseResource):
                 "includePreTranslatedStringsOnly": includePreTranslatedStringsOnly,
                 "labelIds": labelIds,
                 "excludeLabelIds": excludeLabelIds,
-                "assignees": assignees,
                 "deadline": deadline,
-                "startedAt": startedAt,
                 "dateFrom": dateFrom,
                 "dateTo": dateTo,
             },
         )
 
-    def add_vendor_manual_by_string_ids_task(
+    def add_vendor_by_string_ids_task(
         self,
         title: str,
         languageId: str,
         stringIds: Iterable[int],
-        type: ManualCrowdinTaskType,
-        vendor: ManualCrowdinVendors,
+        type: CrowdinTaskType,
+        vendor: str,
         projectId: Optional[int] = None,
         status: Optional[CrowdinTaskStatus] = None,
         description: Optional[str] = None,
         skipAssignedStrings: Optional[bool] = None,
         includePreTranslatedStringsOnly: Optional[bool] = None,
-        assignees: Optional[Iterable[CrowdinTaskAssignee]] = None,
         deadline: Optional[datetime] = None,
-        startedAt: Optional[datetime] = None,
         dateFrom: Optional[datetime] = None,
         dateTo: Optional[datetime] = None,
     ):
         """
-        Add Task(Crowdin Vendor Manual Task Create Form).
+        Add Task(Crowdin Vendor Task Create Form).
 
         Link to documentation:
         https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
@@ -755,9 +404,7 @@ class TasksResource(BaseResource):
                 "description": description,
                 "skipAssignedStrings": skipAssignedStrings,
                 "includePreTranslatedStringsOnly": includePreTranslatedStringsOnly,
-                "assignees": assignees,
                 "deadline": deadline,
-                "startedAt": startedAt,
                 "dateFrom": dateFrom,
                 "dateTo": dateTo,
             },
@@ -790,44 +437,18 @@ class TasksResource(BaseResource):
             },
         )
 
-    def add_language_service_pending_task(
+    def add_vendor_pending_task(
         self,
         title: str,
         precedingTaskId: int,
-        projectId: Optional[int] = None,
-        description: Optional[str] = None,
-        deadline: Optional[datetime] = None,
-    ):
-        """
-        Add Task(Crowdin Language Service Pending Task Create Form).
-        """
-
-        projectId = projectId or self.get_project_id()
-
-        return self.add_task(
-            projectId=projectId,
-            request_data={
-                "precedingTaskId": precedingTaskId,
-                "type": LanguageServiceTaskType.PROOFREAD_BY_VENDOR,
-                "vendor": "crowdin_language_service",
-                "title": title,
-                "description": description,
-                "deadline": deadline,
-            },
-        )
-
-    def add_vendor_manual_pending_task(
-        self,
-        title: str,
-        precedingTaskId: int,
-        vendor: ManualCrowdinVendors,
+        vendor: str,
         projectId: Optional[int] = None,
         description: Optional[str] = None,
         assignees: Optional[Iterable[CrowdinTaskAssignee]] = None,
         deadline: Optional[datetime] = None,
     ):
         """
-        Add Task(Crowdin Vendor Manual Pending Task Create Form).
+        Add Task(Crowdin Vendor Pending Task Create Form).
         """
 
         projectId = projectId or self.get_project_id()
@@ -836,7 +457,7 @@ class TasksResource(BaseResource):
             projectId=projectId,
             request_data={
                 "precedingTaskId": precedingTaskId,
-                "type": ManualCrowdinTaskType.PROOFREAD_BY_VENDOR,
+                "type": CrowdinTaskType.PROOFREAD_BY_VENDOR,
                 "vendor": vendor,
                 "title": title,
                 "description": description,
@@ -1138,6 +759,7 @@ class EnterpriseTasksResource(TasksResource):
         startedAt: Optional[datetime] = None,
         dateFrom: Optional[datetime] = None,
         dateTo: Optional[datetime] = None,
+        batchId: Optional[int] = None,
     ):
         """
         Add Task(Enterprise Task Create Form).
@@ -1169,6 +791,7 @@ class EnterpriseTasksResource(TasksResource):
                 "startedAt": startedAt,
                 "dateFrom": dateFrom,
                 "dateTo": dateTo,
+                "batchId": batchId,
             },
         )
 
@@ -1191,6 +814,7 @@ class EnterpriseTasksResource(TasksResource):
         startedAt: Optional[datetime] = None,
         dateFrom: Optional[datetime] = None,
         dateTo: Optional[datetime] = None,
+        batchId: Optional[int] = None,
     ):
         """
         Add Task(Enterprise Task Create Form).
@@ -1220,6 +844,7 @@ class EnterpriseTasksResource(TasksResource):
                 "startedAt": startedAt,
                 "dateFrom": dateFrom,
                 "dateTo": dateTo,
+                "batchId": batchId,
             },
         )
 
