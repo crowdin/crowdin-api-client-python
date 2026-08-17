@@ -14,6 +14,11 @@ from crowdin_api.api_resources.glossaries.enums import (
     TermGender,
     GlossaryFormat,
     GlossaryExportFields,
+    GlossaryExportType,
+    GlossaryExportStatus,
+    GlossaryExportPartOfSpeech,
+    GlossaryExportTermType,
+    GlossaryExportGender,
     ListGlossariesCrowdinOrderBy,
 )
 from crowdin_api.api_resources.glossaries.resource import GlossariesResource
@@ -197,6 +202,60 @@ class TestGlossariesResource:
                 {
                     "format": GlossaryFormat.CSV,
                     "exportFields": [GlossaryExportFields.TERM, GlossaryExportFields.STATUS]
+                },
+            ),
+            (
+                {
+                    "exportType": GlossaryExportType.TERMS,
+                    "statuses": [GlossaryExportStatus.PREFERRED, GlossaryExportStatus.ADMITTED],
+                    "partsOfSpeech": [
+                        GlossaryExportPartOfSpeech.NOUN,
+                        GlossaryExportPartOfSpeech.VERB,
+                    ],
+                    "types": [
+                        GlossaryExportTermType.ACRONYM,
+                        GlossaryExportTermType.ABBREVIATION,
+                    ],
+                    "genders": [
+                        GlossaryExportGender.MASCULINE,
+                        GlossaryExportGender.FEMININE,
+                    ],
+                    "authorIds": [12, 34],
+                    "languageIds": ["uk", "de"],
+                },
+                {
+                    "exportType": GlossaryExportType.TERMS,
+                    "statuses": [GlossaryExportStatus.PREFERRED, GlossaryExportStatus.ADMITTED],
+                    "partsOfSpeech": [
+                        GlossaryExportPartOfSpeech.NOUN,
+                        GlossaryExportPartOfSpeech.VERB,
+                    ],
+                    "types": [
+                        GlossaryExportTermType.ACRONYM,
+                        GlossaryExportTermType.ABBREVIATION,
+                    ],
+                    "genders": [
+                        GlossaryExportGender.MASCULINE,
+                        GlossaryExportGender.FEMININE,
+                    ],
+                    "authorIds": [12, 34],
+                    "languageIds": ["uk", "de"],
+                },
+            ),
+            (
+                {
+                    "status": GlossaryExportStatus.PREFERRED,
+                    "partOfSpeech": GlossaryExportPartOfSpeech.NOUN,
+                    "type": GlossaryExportTermType.ACRONYM,
+                    "gender": GlossaryExportGender.MASCULINE,
+                    "authorId": 12,
+                },
+                {
+                    "status": GlossaryExportStatus.PREFERRED,
+                    "partOfSpeech": GlossaryExportPartOfSpeech.NOUN,
+                    "type": GlossaryExportTermType.ACRONYM,
+                    "gender": GlossaryExportGender.MASCULINE,
+                    "authorId": 12,
                 },
             ),
         ),
