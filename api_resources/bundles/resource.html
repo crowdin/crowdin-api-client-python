@@ -99,7 +99,7 @@
 <a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.export_bundle"><code class="name flex">
-<span>def <span class="ident">export_bundle</span></span>(<span>self, bundleId: int, projectId: Optional[int] = None)</span>
+<span>def <span class="ident">export_bundle</span></span>(<span>self, bundleId: int, projectId: Optional[int] = None, targetLanguageIds: Optional[Iterable[str]] = None, skipUntranslatedStrings: Optional[bool] = None, skipUntranslatedFiles: Optional[bool] = None, exportApprovedOnly: Optional[bool] = None, exportWithMinApprovalsCount: Optional[int] = None, exportStringsThatPassedWorkflow: Optional[bool] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Export bundle.</p>

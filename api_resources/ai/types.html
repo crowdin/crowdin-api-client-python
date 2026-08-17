@@ -126,7 +126,7 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.AddAIPromptRequestScheme.config"><code class="name">var <span class="ident">config</span> : Union[<a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig">BasicModePreTranslateActionCondfig</a>, <a title="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig" href="#crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig">BasicModeAssistActionCondfig</a>, <a title="crowdin_api.api_resources.ai.types.AdvancedModeConfig" href="#crowdin_api.api_resources.ai.types.AdvancedModeConfig">AdvancedModeConfig</a>, <a title="crowdin_api.api_resources.ai.types.ExternalMode" href="#crowdin_api.api_resources.ai.types.ExternalMode">ExternalMode</a>]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.AddAIPromptRequestScheme.config"><code class="name">var <span class="ident">config</span> : Union[<a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig">BasicModePreTranslateActionConfig</a>, <a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig">BasicModeAlignmentActionConfig</a>, <a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig">BasicModeQaCheckActionConfig</a>, <a title="crowdin_api.api_resources.ai.types.AdvancedModeConfig" href="#crowdin_api.api_resources.ai.types.AdvancedModeConfig">AdvancedModeConfig</a>, <a title="crowdin_api.api_resources.ai.types.ExternalMode" href="#crowdin_api.api_resources.ai.types.ExternalMode">ExternalMode</a>]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -319,6 +319,10 @@ dict(one=1, two=2)</p></div>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.types.AiFileTranslationRequest.storageId"><code class="name">var <span class="ident">storageId</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.AiFileTranslationRequest.styleGuideIds"><code class="name">var <span class="ident">styleGuideIds</span> : Optional[Iterable[int]]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -521,6 +525,54 @@ dict(one=1, two=2)</p></div>
 </dd>
 </dl>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources"><code class="flex name class">
+<span>class <span class="ident">AlignmentActionAiPromptContextResources</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.overridePromptValues"><code class="name">var <span class="ident">overridePromptValues</span> : Optional[Dict[str, str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.projectDescription"><code class="name">var <span class="ident">projectDescription</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.projectId"><code class="name">var <span class="ident">projectId</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.sourceLanguageId"><code class="name">var <span class="ident">sourceLanguageId</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.stringIds"><code class="name">var <span class="ident">stringIds</span> : Optional[Iterable[int]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.targetLanguageId"><code class="name">var <span class="ident">targetLanguageId</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.AnthropicCredential"><code class="flex name class">
 <span>class <span class="ident">AnthropicCredential</span></span>
 <span>(</span><span>*args, **kwargs)</span>
@@ -544,54 +596,6 @@ dict(one=1, two=2)</p></div>
 <h3>Class variables</h3>
 <dl>
 <dt id="crowdin_api.api_resources.ai.types.AnthropicCredential.apiKey"><code class="name">var <span class="ident">apiKey</span> : str</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-</dl>
-</dd>
-<dt id="crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources"><code class="flex name class">
-<span>class <span class="ident">AssistActionAiPromptContextResources</span></span>
-<span>(</span><span>*args, **kwargs)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>dict() -&gt; new empty dictionary
-dict(mapping) -&gt; new dictionary initialized from a mapping object's
-(key, value) pairs
-dict(iterable) -&gt; new dictionary initialized as if via:
-d = {}
-for k, v in iterable:
-d[k] = v
-dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
-in the keyword argument list.
-For example:
-dict(one=1, two=2)</p></div>
-<h3>Ancestors</h3>
-<ul class="hlist">
-<li>builtins.dict</li>
-</ul>
-<h3>Class variables</h3>
-<dl>
-<dt id="crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.filteredStringIds"><code class="name">var <span class="ident">filteredStringIds</span> : Optional[Iterable[int]]</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.overridePromptValues"><code class="name">var <span class="ident">overridePromptValues</span> : Optional[Dict[str, str]]</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.projectId"><code class="name">var <span class="ident">projectId</span> : int</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.sourceLanguageId"><code class="name">var <span class="ident">sourceLanguageId</span> : Optional[str]</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.stringIds"><code class="name">var <span class="ident">stringIds</span> : Optional[Iterable[int]]</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.targetLanguageId"><code class="name">var <span class="ident">targetLanguageId</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -637,8 +641,8 @@ dict(one=1, two=2)</p></div>
 </dd>
 </dl>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig"><code class="flex name class">
-<span>class <span class="ident">BasicModeAssistActionCondfig</span></span>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig"><code class="flex name class">
+<span>class <span class="ident">BasicModeAlignmentActionConfig</span></span>
 <span>(</span><span>*args, **kwargs)</span>
 </code></dt>
 <dd>
@@ -659,58 +663,30 @@ dict(one=1, two=2)</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
-<dt id="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.audienceDescription"><code class="name">var <span class="ident">audienceDescription</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.customPlaceholders"><code class="name">var <span class="ident">customPlaceholders</span> : Optional[Iterable[str]]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.companyDescription"><code class="name">var <span class="ident">companyDescription</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.mode"><code class="name">var <span class="ident">mode</span> : str</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.fileContext"><code class="name">var <span class="ident">fileContext</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.organizationContext"><code class="name">var <span class="ident">organizationContext</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.filteredStrings"><code class="name">var <span class="ident">filteredStrings</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.projectContext"><code class="name">var <span class="ident">projectContext</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.glossaryTerms"><code class="name">var <span class="ident">glossaryTerms</span> : Optional[bool]</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.mode"><code class="name">var <span class="ident">mode</span> : str</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.otherLanguageTranslation"><code class="name">var <span class="ident">otherLanguageTranslation</span> : Optional[<a title="crowdin_api.api_resources.ai.types.OtherLanguageTranslation" href="#crowdin_api.api_resources.ai.types.OtherLanguageTranslation">OtherLanguageTranslation</a>]</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.projectDescription"><code class="name">var <span class="ident">projectDescription</span> : Optional[bool]</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.publicProjectDescription"><code class="name">var <span class="ident">publicProjectDescription</span> : Optional[bool]</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.screenshots"><code class="name">var <span class="ident">screenshots</span> : Optional[bool]</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.siblingsStrings"><code class="name">var <span class="ident">siblingsStrings</span> : Optional[bool]</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.tmSuggestions"><code class="name">var <span class="ident">tmSuggestions</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.publicProjectDescription"><code class="name">var <span class="ident">publicProjectDescription</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
 </dl>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig"><code class="flex name class">
-<span>class <span class="ident">BasicModePreTranslateActionCondfig</span></span>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig"><code class="flex name class">
+<span>class <span class="ident">BasicModePreTranslateActionConfig</span></span>
 <span>(</span><span>*args, **kwargs)</span>
 </code></dt>
 <dd>
@@ -731,47 +707,115 @@ dict(one=1, two=2)</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.audienceDescription"><code class="name">var <span class="ident">audienceDescription</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.audienceDescription"><code class="name">var <span class="ident">audienceDescription</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.companyDescription"><code class="name">var <span class="ident">companyDescription</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.companyDescription"><code class="name">var <span class="ident">companyDescription</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.fileContent"><code class="name">var <span class="ident">fileContent</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.fileContent"><code class="name">var <span class="ident">fileContent</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.fileContext"><code class="name">var <span class="ident">fileContext</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.fileContext"><code class="name">var <span class="ident">fileContext</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.glossaryTerms"><code class="name">var <span class="ident">glossaryTerms</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.glossaryTerms"><code class="name">var <span class="ident">glossaryTerms</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.mode"><code class="name">var <span class="ident">mode</span> : str</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.mode"><code class="name">var <span class="ident">mode</span> : str</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.otherLanguageTranslation"><code class="name">var <span class="ident">otherLanguageTranslation</span> : Optional[<a title="crowdin_api.api_resources.ai.types.OtherLanguageTranslation" href="#crowdin_api.api_resources.ai.types.OtherLanguageTranslation">OtherLanguageTranslation</a>]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.organizationContext"><code class="name">var <span class="ident">organizationContext</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.projectDescription"><code class="name">var <span class="ident">projectDescription</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.otherLanguageTranslation"><code class="name">var <span class="ident">otherLanguageTranslation</span> : Optional[<a title="crowdin_api.api_resources.ai.types.OtherLanguageTranslation" href="#crowdin_api.api_resources.ai.types.OtherLanguageTranslation">OtherLanguageTranslation</a>]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.publicProjectDescription"><code class="name">var <span class="ident">publicProjectDescription</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.projectContext"><code class="name">var <span class="ident">projectContext</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.screenshots"><code class="name">var <span class="ident">screenshots</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.projectDescription"><code class="name">var <span class="ident">projectDescription</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.tmSuggestions"><code class="name">var <span class="ident">tmSuggestions</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.publicProjectDescription"><code class="name">var <span class="ident">publicProjectDescription</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.screenshots"><code class="name">var <span class="ident">screenshots</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.tmSuggestions"><code class="name">var <span class="ident">tmSuggestions</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig"><code class="flex name class">
+<span>class <span class="ident">BasicModeQaCheckActionConfig</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.evaluationSteps"><code class="name">var <span class="ident">evaluationSteps</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.fileContext"><code class="name">var <span class="ident">fileContext</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.glossaryTerms"><code class="name">var <span class="ident">glossaryTerms</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.mode"><code class="name">var <span class="ident">mode</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.organizationContext"><code class="name">var <span class="ident">organizationContext</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.projectContext"><code class="name">var <span class="ident">projectContext</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.publicProjectDescription"><code class="name">var <span class="ident">publicProjectDescription</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.screenshots"><code class="name">var <span class="ident">screenshots</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.tmSuggestions"><code class="name">var <span class="ident">tmSuggestions</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -876,6 +920,10 @@ dict(one=1, two=2)</p></div>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.overridePromptValues"><code class="name">var <span class="ident">overridePromptValues</span> : Optional[Dict[str, str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.projectDescription"><code class="name">var <span class="ident">projectDescription</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -1499,6 +1547,10 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.PreTranslateActionAiPromptContextResources.projectDescription"><code class="name">var <span class="ident">projectDescription</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.PreTranslateActionAiPromptContextResources.projectId"><code class="name">var <span class="ident">projectId</span> : int</code></dt>
 <dd>
 <div class="desc"></div>
@@ -1540,6 +1592,10 @@ dict(one=1, two=2)</p></div>
 <h3>Class variables</h3>
 <dl>
 <dt id="crowdin_api.api_resources.ai.types.QaCheckActionAiPromptContextResources.overridePromptValues"><code class="name">var <span class="ident">overridePromptValues</span> : Optional[Dict[str, str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.QaCheckActionAiPromptContextResources.projectDescription"><code class="name">var <span class="ident">projectDescription</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -1745,6 +1801,7 @@ dict(one=1, two=2)</p></div>
 <li><code><a title="crowdin_api.api_resources.ai.types.AiFileTranslationRequest.parserVersion" href="#crowdin_api.api_resources.ai.types.AiFileTranslationRequest.parserVersion">parserVersion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.AiFileTranslationRequest.sourceLanguageId" href="#crowdin_api.api_resources.ai.types.AiFileTranslationRequest.sourceLanguageId">sourceLanguageId</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.AiFileTranslationRequest.storageId" href="#crowdin_api.api_resources.ai.types.AiFileTranslationRequest.storageId">storageId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AiFileTranslationRequest.styleGuideIds" href="#crowdin_api.api_resources.ai.types.AiFileTranslationRequest.styleGuideIds">styleGuideIds</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.AiFileTranslationRequest.targetLanguageId" href="#crowdin_api.api_resources.ai.types.AiFileTranslationRequest.targetLanguageId">targetLanguageId</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.AiFileTranslationRequest.tmIds" href="#crowdin_api.api_resources.ai.types.AiFileTranslationRequest.tmIds">tmIds</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.AiFileTranslationRequest.type" href="#crowdin_api.api_resources.ai.types.AiFileTranslationRequest.type">type</a></code></li>
@@ -1791,20 +1848,20 @@ dict(one=1, two=2)</p></div>
 </ul>
 </li>
 <li>
-<h4><code><a title="crowdin_api.api_resources.ai.types.AnthropicCredential" href="#crowdin_api.api_resources.ai.types.AnthropicCredential">AnthropicCredential</a></code></h4>
+<h4><code><a title="crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources" href="#crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources">AlignmentActionAiPromptContextResources</a></code></h4>
 <ul class="">
-<li><code><a title="crowdin_api.api_resources.ai.types.AnthropicCredential.apiKey" href="#crowdin_api.api_resources.ai.types.AnthropicCredential.apiKey">apiKey</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.overridePromptValues" href="#crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.overridePromptValues">overridePromptValues</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.projectDescription" href="#crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.projectDescription">projectDescription</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.projectId" href="#crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.projectId">projectId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.sourceLanguageId" href="#crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.sourceLanguageId">sourceLanguageId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.stringIds" href="#crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.stringIds">stringIds</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.targetLanguageId" href="#crowdin_api.api_resources.ai.types.AlignmentActionAiPromptContextResources.targetLanguageId">targetLanguageId</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources" href="#crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources">AssistActionAiPromptContextResources</a></code></h4>
+<h4><code><a title="crowdin_api.api_resources.ai.types.AnthropicCredential" href="#crowdin_api.api_resources.ai.types.AnthropicCredential">AnthropicCredential</a></code></h4>
 <ul class="">
-<li><code><a title="crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.filteredStringIds" href="#crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.filteredStringIds">filteredStringIds</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.overridePromptValues" href="#crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.overridePromptValues">overridePromptValues</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.projectId" href="#crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.projectId">projectId</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.sourceLanguageId" href="#crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.sourceLanguageId">sourceLanguageId</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.stringIds" href="#crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.stringIds">stringIds</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.targetLanguageId" href="#crowdin_api.api_resources.ai.types.AssistActionAiPromptContextResources.targetLanguageId">targetLanguageId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AnthropicCredential.apiKey" href="#crowdin_api.api_resources.ai.types.AnthropicCredential.apiKey">apiKey</a></code></li>
 </ul>
 </li>
 <li>
@@ -1817,36 +1874,45 @@ dict(one=1, two=2)</p></div>
 </ul>
 </li>
 <li>
-<h4><code><a title="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig" href="#crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig">BasicModeAssistActionCondfig</a></code></h4>
+<h4><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig">BasicModeAlignmentActionConfig</a></code></h4>
 <ul class="">
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.audienceDescription" href="#crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.audienceDescription">audienceDescription</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.companyDescription" href="#crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.companyDescription">companyDescription</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.fileContext" href="#crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.fileContext">fileContext</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.filteredStrings" href="#crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.filteredStrings">filteredStrings</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.glossaryTerms" href="#crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.glossaryTerms">glossaryTerms</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.mode" href="#crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.mode">mode</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.otherLanguageTranslation" href="#crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.otherLanguageTranslation">otherLanguageTranslation</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.projectDescription" href="#crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.projectDescription">projectDescription</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.publicProjectDescription" href="#crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.publicProjectDescription">publicProjectDescription</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.screenshots" href="#crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.screenshots">screenshots</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.siblingsStrings" href="#crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.siblingsStrings">siblingsStrings</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.tmSuggestions" href="#crowdin_api.api_resources.ai.types.BasicModeAssistActionCondfig.tmSuggestions">tmSuggestions</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.customPlaceholders" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.customPlaceholders">customPlaceholders</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.mode" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.mode">mode</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.organizationContext" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.organizationContext">organizationContext</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.projectContext" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.projectContext">projectContext</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.publicProjectDescription" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.publicProjectDescription">publicProjectDescription</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig">BasicModePreTranslateActionCondfig</a></code></h4>
+<h4><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig">BasicModePreTranslateActionConfig</a></code></h4>
 <ul class="">
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.audienceDescription" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.audienceDescription">audienceDescription</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.companyDescription" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.companyDescription">companyDescription</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.fileContent" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.fileContent">fileContent</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.fileContext" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.fileContext">fileContext</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.glossaryTerms" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.glossaryTerms">glossaryTerms</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.mode" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.mode">mode</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.otherLanguageTranslation" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.otherLanguageTranslation">otherLanguageTranslation</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.projectDescription" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.projectDescription">projectDescription</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.publicProjectDescription" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.publicProjectDescription">publicProjectDescription</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.screenshots" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.screenshots">screenshots</a></code></li>
-<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.tmSuggestions" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionCondfig.tmSuggestions">tmSuggestions</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.audienceDescription" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.audienceDescription">audienceDescription</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.companyDescription" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.companyDescription">companyDescription</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.fileContent" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.fileContent">fileContent</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.fileContext" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.fileContext">fileContext</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.glossaryTerms" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.glossaryTerms">glossaryTerms</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.mode" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.mode">mode</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.organizationContext" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.organizationContext">organizationContext</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.otherLanguageTranslation" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.otherLanguageTranslation">otherLanguageTranslation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.projectContext" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.projectContext">projectContext</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.projectDescription" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.projectDescription">projectDescription</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.publicProjectDescription" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.publicProjectDescription">publicProjectDescription</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.screenshots" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.screenshots">screenshots</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.tmSuggestions" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.tmSuggestions">tmSuggestions</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig">BasicModeQaCheckActionConfig</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.evaluationSteps" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.evaluationSteps">evaluationSteps</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.fileContext" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.fileContext">fileContext</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.glossaryTerms" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.glossaryTerms">glossaryTerms</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.mode" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.mode">mode</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.organizationContext" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.organizationContext">organizationContext</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.projectContext" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.projectContext">projectContext</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.publicProjectDescription" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.publicProjectDescription">publicProjectDescription</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.screenshots" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.screenshots">screenshots</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.tmSuggestions" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.tmSuggestions">tmSuggestions</a></code></li>
 </ul>
 </li>
 <li>
@@ -1870,6 +1936,7 @@ dict(one=1, two=2)</p></div>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.customInstruction" href="#crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.customInstruction">customInstruction</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.overridePromptValues" href="#crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.overridePromptValues">overridePromptValues</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.projectDescription" href="#crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.projectDescription">projectDescription</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.projectId" href="#crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.projectId">projectId</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.sourceLanguageId" href="#crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.sourceLanguageId">sourceLanguageId</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.stringIds" href="#crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.stringIds">stringIds</a></code></li>
@@ -2008,6 +2075,7 @@ dict(one=1, two=2)</p></div>
 <h4><code><a title="crowdin_api.api_resources.ai.types.PreTranslateActionAiPromptContextResources" href="#crowdin_api.api_resources.ai.types.PreTranslateActionAiPromptContextResources">PreTranslateActionAiPromptContextResources</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.ai.types.PreTranslateActionAiPromptContextResources.overridePromptValues" href="#crowdin_api.api_resources.ai.types.PreTranslateActionAiPromptContextResources.overridePromptValues">overridePromptValues</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.PreTranslateActionAiPromptContextResources.projectDescription" href="#crowdin_api.api_resources.ai.types.PreTranslateActionAiPromptContextResources.projectDescription">projectDescription</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.PreTranslateActionAiPromptContextResources.projectId" href="#crowdin_api.api_resources.ai.types.PreTranslateActionAiPromptContextResources.projectId">projectId</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.PreTranslateActionAiPromptContextResources.sourceLanguageId" href="#crowdin_api.api_resources.ai.types.PreTranslateActionAiPromptContextResources.sourceLanguageId">sourceLanguageId</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.PreTranslateActionAiPromptContextResources.stringIds" href="#crowdin_api.api_resources.ai.types.PreTranslateActionAiPromptContextResources.stringIds">stringIds</a></code></li>
@@ -2018,6 +2086,7 @@ dict(one=1, two=2)</p></div>
 <h4><code><a title="crowdin_api.api_resources.ai.types.QaCheckActionAiPromptContextResources" href="#crowdin_api.api_resources.ai.types.QaCheckActionAiPromptContextResources">QaCheckActionAiPromptContextResources</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.ai.types.QaCheckActionAiPromptContextResources.overridePromptValues" href="#crowdin_api.api_resources.ai.types.QaCheckActionAiPromptContextResources.overridePromptValues">overridePromptValues</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.QaCheckActionAiPromptContextResources.projectDescription" href="#crowdin_api.api_resources.ai.types.QaCheckActionAiPromptContextResources.projectDescription">projectDescription</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.QaCheckActionAiPromptContextResources.projectId" href="#crowdin_api.api_resources.ai.types.QaCheckActionAiPromptContextResources.projectId">projectId</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.QaCheckActionAiPromptContextResources.sourceLanguageId" href="#crowdin_api.api_resources.ai.types.QaCheckActionAiPromptContextResources.sourceLanguageId">sourceLanguageId</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.QaCheckActionAiPromptContextResources.stringIds" href="#crowdin_api.api_resources.ai.types.QaCheckActionAiPromptContextResources.stringIds">stringIds</a></code></li>

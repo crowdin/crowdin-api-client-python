@@ -90,11 +90,59 @@ dict(one=1, two=2)</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
+<dt id="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.authorId"><code class="name">var <span class="ident">authorId</span> : Optional[int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.authorIds"><code class="name">var <span class="ident">authorIds</span> : Optional[Iterable[int]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.exportFields"><code class="name">var <span class="ident">exportFields</span> : Optional[Iterable[<a title="crowdin_api.api_resources.glossaries.enums.GlossaryExportFields" href="enums.html#crowdin_api.api_resources.glossaries.enums.GlossaryExportFields">GlossaryExportFields</a>]]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.exportType"><code class="name">var <span class="ident">exportType</span> : Optional[<a title="crowdin_api.api_resources.glossaries.enums.GlossaryExportType" href="enums.html#crowdin_api.api_resources.glossaries.enums.GlossaryExportType">GlossaryExportType</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.format"><code class="name">var <span class="ident">format</span> : Optional[<a title="crowdin_api.api_resources.glossaries.enums.GlossaryFormat" href="enums.html#crowdin_api.api_resources.glossaries.enums.GlossaryFormat">GlossaryFormat</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.gender"><code class="name">var <span class="ident">gender</span> : Optional[<a title="crowdin_api.api_resources.glossaries.enums.GlossaryExportGender" href="enums.html#crowdin_api.api_resources.glossaries.enums.GlossaryExportGender">GlossaryExportGender</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.genders"><code class="name">var <span class="ident">genders</span> : Optional[Iterable[<a title="crowdin_api.api_resources.glossaries.enums.GlossaryExportGender" href="enums.html#crowdin_api.api_resources.glossaries.enums.GlossaryExportGender">GlossaryExportGender</a>]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.languageIds"><code class="name">var <span class="ident">languageIds</span> : Optional[Iterable[str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.partOfSpeech"><code class="name">var <span class="ident">partOfSpeech</span> : Optional[<a title="crowdin_api.api_resources.glossaries.enums.GlossaryExportPartOfSpeech" href="enums.html#crowdin_api.api_resources.glossaries.enums.GlossaryExportPartOfSpeech">GlossaryExportPartOfSpeech</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.partsOfSpeech"><code class="name">var <span class="ident">partsOfSpeech</span> : Optional[Iterable[<a title="crowdin_api.api_resources.glossaries.enums.GlossaryExportPartOfSpeech" href="enums.html#crowdin_api.api_resources.glossaries.enums.GlossaryExportPartOfSpeech">GlossaryExportPartOfSpeech</a>]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.status"><code class="name">var <span class="ident">status</span> : Optional[<a title="crowdin_api.api_resources.glossaries.enums.GlossaryExportStatus" href="enums.html#crowdin_api.api_resources.glossaries.enums.GlossaryExportStatus">GlossaryExportStatus</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.statuses"><code class="name">var <span class="ident">statuses</span> : Optional[Iterable[<a title="crowdin_api.api_resources.glossaries.enums.GlossaryExportStatus" href="enums.html#crowdin_api.api_resources.glossaries.enums.GlossaryExportStatus">GlossaryExportStatus</a>]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.type"><code class="name">var <span class="ident">type</span> : Optional[<a title="crowdin_api.api_resources.glossaries.enums.GlossaryExportTermType" href="enums.html#crowdin_api.api_resources.glossaries.enums.GlossaryExportTermType">GlossaryExportTermType</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.types"><code class="name">var <span class="ident">types</span> : Optional[Iterable[<a title="crowdin_api.api_resources.glossaries.enums.GlossaryExportTermType" href="enums.html#crowdin_api.api_resources.glossaries.enums.GlossaryExportTermType">GlossaryExportTermType</a>]]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -198,9 +246,21 @@ dict(one=1, two=2)</p></div>
 </li>
 <li>
 <h4><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest">GlossarySchemaRequest</a></code></h4>
-<ul class="">
+<ul class="two-column">
+<li><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.authorId" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.authorId">authorId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.authorIds" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.authorIds">authorIds</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.exportFields" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.exportFields">exportFields</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.exportType" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.exportType">exportType</a></code></li>
 <li><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.format" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.format">format</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.gender" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.gender">gender</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.genders" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.genders">genders</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.languageIds" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.languageIds">languageIds</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.partOfSpeech" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.partOfSpeech">partOfSpeech</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.partsOfSpeech" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.partsOfSpeech">partsOfSpeech</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.status" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.status">status</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.statuses" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.statuses">statuses</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.type" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.type">type</a></code></li>
+<li><code><a title="crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.types" href="#crowdin_api.api_resources.glossaries.types.GlossarySchemaRequest.types">types</a></code></li>
 </ul>
 </li>
 <li>
