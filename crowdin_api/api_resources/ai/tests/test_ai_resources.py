@@ -22,7 +22,9 @@ from crowdin_api.api_resources.ai.types import (
     AiToolFunction,
     AiToolObject,
     AiTranslateStringsRequest,
+    AlignmentActionAiPromptContextResources,
     CreateAIPromptFineTuningJobRequest,
+    CustomActionAiPromptContextResources,
     EditAIPromptPath,
     GeneralReportSchema,
     GenerateAiPromptCompletionRequest,
@@ -30,6 +32,7 @@ from crowdin_api.api_resources.ai.types import (
     GenerateAiReportRequest,
     HyperParameters,
     PreTranslateActionAiPromptContextResources,
+    QaCheckActionAiPromptContextResources,
     TrainingOptions,
 )
 from crowdin_api.api_resources.enums import PatchOperation
@@ -87,13 +90,13 @@ class TestAIResources:
             (
                 {
                     "projectId": 1,
-                    "action": AIPromptAction.ASSIST,
+                    "action": AIPromptAction.ALIGNMENT,
                     "limit": 20,
                     "offset": 2,
                 },
                 {
                     "projectId": 1,
-                    "action": AIPromptAction.ASSIST,
+                    "action": AIPromptAction.ALIGNMENT,
                     "limit": 20,
                     "offset": 2,
                 },
@@ -121,14 +124,14 @@ class TestAIResources:
             (
                 {
                     "name": "basic",
-                    "action": AIPromptAction.ASSIST,
+                    "action": AIPromptAction.PRE_TRANSLATE,
                     "aiProviderId": 1,
                     "aiModelId": "gpt-3.5-turbo-instruct",
                     "config": {"mode": "advanced", "prompt": "test prompt"},
                 },
                 {
                     "name": "basic",
-                    "action": AIPromptAction.ASSIST,
+                    "action": AIPromptAction.PRE_TRANSLATE,
                     "aiProviderId": 1,
                     "aiModelId": "gpt-3.5-turbo-instruct",
                     "config": {"mode": "advanced", "prompt": "test prompt"},
@@ -137,21 +140,79 @@ class TestAIResources:
             (
                 {
                     "name": "basic",
-                    "action": AIPromptAction.ASSIST,
+                    "action": AIPromptAction.PRE_TRANSLATE,
                     "aiProviderId": 1,
                     "aiModelId": "gpt-3.5-turbo-instruct",
                     "isEnabled": False,
                     "enabledProjectIds": [1, 2, 3],
-                    "config": {"mode": "advanced", "prompt": "test prompt"},
+                    "config": {
+                        "mode": "basic",
+                        "projectContext": True,
+                        "organizationContext": True,
+                    },
                 },
                 {
                     "name": "basic",
-                    "action": AIPromptAction.ASSIST,
+                    "action": AIPromptAction.PRE_TRANSLATE,
                     "aiProviderId": 1,
                     "aiModelId": "gpt-3.5-turbo-instruct",
                     "isEnabled": False,
                     "enabledProjectIds": [1, 2, 3],
-                    "config": {"mode": "advanced", "prompt": "test prompt"},
+                    "config": {
+                        "mode": "basic",
+                        "projectContext": True,
+                        "organizationContext": True,
+                    },
+                },
+            ),
+            (
+                {
+                    "name": "alignment",
+                    "action": AIPromptAction.ALIGNMENT,
+                    "aiProviderId": 1,
+                    "aiModelId": "gpt-3.5-turbo-instruct",
+                    "config": {
+                        "mode": "basic",
+                        "projectContext": True,
+                        "organizationContext": True,
+                    },
+                },
+                {
+                    "name": "alignment",
+                    "action": AIPromptAction.ALIGNMENT,
+                    "aiProviderId": 1,
+                    "aiModelId": "gpt-3.5-turbo-instruct",
+                    "config": {
+                        "mode": "basic",
+                        "projectContext": True,
+                        "organizationContext": True,
+                    },
+                },
+            ),
+            (
+                {
+                    "name": "qa check",
+                    "action": AIPromptAction.QA_CHECK,
+                    "aiProviderId": 1,
+                    "aiModelId": "gpt-3.5-turbo-instruct",
+                    "config": {
+                        "mode": "basic",
+                        "evaluationSteps": ["Check terminology consistency"],
+                        "projectContext": True,
+                        "organizationContext": True,
+                    },
+                },
+                {
+                    "name": "qa check",
+                    "action": AIPromptAction.QA_CHECK,
+                    "aiProviderId": 1,
+                    "aiModelId": "gpt-3.5-turbo-instruct",
+                    "config": {
+                        "mode": "basic",
+                        "evaluationSteps": ["Check terminology consistency"],
+                        "projectContext": True,
+                        "organizationContext": True,
+                    },
                 },
             ),
         ),
@@ -826,7 +887,8 @@ class TestAIResources:
                         stringIds=[1, 2, 3],
                         overridePromptValues={
                             "property1": "string"
-                        }
+                        },
+                        projectDescription="Mobile app project"
                     ),
                     tools=[
                         AiToolObject(
@@ -850,7 +912,8 @@ class TestAIResources:
                         "stringIds": [1, 2, 3],
                         "overridePromptValues": {
                             "property1": "string"
-                        }
+                        },
+                        "projectDescription": "Mobile app project"
                     },
                     "tools": [
                         {
@@ -865,6 +928,68 @@ class TestAIResources:
                         }
                     ],
                     "tool_choice": "string"
+                },
+            ),
+            (
+                GenerateAiPromptCompletionRequest(
+                    resources=AlignmentActionAiPromptContextResources(
+                        projectId=1,
+                        sourceLanguageId="en",
+                        targetLanguageId="uk",
+                        stringIds=[1, 2, 3],
+                        projectDescription="Mobile app project"
+                    ),
+                ),
+                {
+                    "resources": {
+                        "projectId": 1,
+                        "sourceLanguageId": "en",
+                        "targetLanguageId": "uk",
+                        "stringIds": [1, 2, 3],
+                        "projectDescription": "Mobile app project"
+                    },
+                },
+            ),
+            (
+                GenerateAiPromptCompletionRequest(
+                    resources=QaCheckActionAiPromptContextResources(
+                        projectId=1,
+                        sourceLanguageId="en",
+                        targetLanguageId="uk",
+                        stringIds=[1, 2, 3],
+                        projectDescription="Mobile app project"
+                    ),
+                ),
+                {
+                    "resources": {
+                        "projectId": 1,
+                        "sourceLanguageId": "en",
+                        "targetLanguageId": "uk",
+                        "stringIds": [1, 2, 3],
+                        "projectDescription": "Mobile app project"
+                    },
+                },
+            ),
+            (
+                GenerateAiPromptCompletionRequest(
+                    resources=CustomActionAiPromptContextResources(
+                        projectId=1,
+                        sourceLanguageId="en",
+                        targetLanguageId="uk",
+                        stringIds=[1, 2, 3],
+                        customInstruction="Translate using a formal tone",
+                        projectDescription="Mobile app project"
+                    ),
+                ),
+                {
+                    "resources": {
+                        "projectId": 1,
+                        "sourceLanguageId": "en",
+                        "targetLanguageId": "uk",
+                        "stringIds": [1, 2, 3],
+                        "customInstruction": "Translate using a formal tone",
+                        "projectDescription": "Mobile app project"
+                    },
                 },
             ),
         ),
@@ -1028,21 +1153,11 @@ class TestAIResources:
                 [
                     {
                         "op": PatchOperation.REPLACE.value,
-                        "path": EditAiSettingsPatchPath.ASSIST_ACTION_AI_PROMPT_ID.value,
-                        "value": 1
-                    },
-                    {
-                        "op": PatchOperation.REPLACE.value,
                         "path": EditAiSettingsPatchPath.EDITOR_SUGGESTION_AI_PROMPT_ID.value,
                         "value": 2
                     }
                 ],
                 [
-                    {
-                        "op": "replace",
-                        "path": "/assistActionAiPromptId",
-                        "value": 1
-                    },
                     {
                         "op": "replace",
                         "path": "/editorSuggestionAiPromptId",
@@ -1506,13 +1621,13 @@ class TestEnterpriseAIResources:
             (
                 {
                     "projectId": 1,
-                    "action": AIPromptAction.ASSIST,
+                    "action": AIPromptAction.QA_CHECK,
                     "limit": 20,
                     "offset": 2,
                 },
                 {
                     "projectId": 1,
-                    "action": AIPromptAction.ASSIST,
+                    "action": AIPromptAction.QA_CHECK,
                     "limit": 20,
                     "offset": 2,
                 },
@@ -1539,14 +1654,14 @@ class TestEnterpriseAIResources:
             (
                 {
                     "name": "basic",
-                    "action": AIPromptAction.ASSIST,
+                    "action": AIPromptAction.PRE_TRANSLATE,
                     "aiProviderId": 1,
                     "aiModelId": "gpt-3.5-turbo-instruct",
                     "config": {"mode": "advanced", "prompt": "test prompt"},
                 },
                 {
                     "name": "basic",
-                    "action": AIPromptAction.ASSIST,
+                    "action": AIPromptAction.PRE_TRANSLATE,
                     "aiProviderId": 1,
                     "aiModelId": "gpt-3.5-turbo-instruct",
                     "config": {"mode": "advanced", "prompt": "test prompt"},
@@ -1555,7 +1670,7 @@ class TestEnterpriseAIResources:
             (
                 {
                     "name": "basic",
-                    "action": AIPromptAction.ASSIST,
+                    "action": AIPromptAction.PRE_TRANSLATE,
                     "aiProviderId": 1,
                     "aiModelId": "gpt-3.5-turbo-instruct",
                     "isEnabled": False,
@@ -1568,7 +1683,7 @@ class TestEnterpriseAIResources:
                 },
                 {
                     "name": "basic",
-                    "action": AIPromptAction.ASSIST,
+                    "action": AIPromptAction.PRE_TRANSLATE,
                     "aiProviderId": 1,
                     "aiModelId": "gpt-3.5-turbo-instruct",
                     "isEnabled": False,
@@ -1577,6 +1692,56 @@ class TestEnterpriseAIResources:
                         "mode": "advanced",
                         "prompt": "test prompt",
                         "screenshot": True,
+                    },
+                },
+            ),
+            (
+                {
+                    "name": "alignment",
+                    "action": AIPromptAction.ALIGNMENT,
+                    "aiProviderId": 1,
+                    "aiModelId": "gpt-3.5-turbo-instruct",
+                    "config": {
+                        "mode": "basic",
+                        "projectContext": True,
+                        "organizationContext": True,
+                    },
+                },
+                {
+                    "name": "alignment",
+                    "action": AIPromptAction.ALIGNMENT,
+                    "aiProviderId": 1,
+                    "aiModelId": "gpt-3.5-turbo-instruct",
+                    "config": {
+                        "mode": "basic",
+                        "projectContext": True,
+                        "organizationContext": True,
+                    },
+                },
+            ),
+            (
+                {
+                    "name": "qa check",
+                    "action": AIPromptAction.QA_CHECK,
+                    "aiProviderId": 1,
+                    "aiModelId": "gpt-3.5-turbo-instruct",
+                    "config": {
+                        "mode": "basic",
+                        "evaluationSteps": ["Check terminology consistency"],
+                        "projectContext": True,
+                        "organizationContext": True,
+                    },
+                },
+                {
+                    "name": "qa check",
+                    "action": AIPromptAction.QA_CHECK,
+                    "aiProviderId": 1,
+                    "aiModelId": "gpt-3.5-turbo-instruct",
+                    "config": {
+                        "mode": "basic",
+                        "evaluationSteps": ["Check terminology consistency"],
+                        "projectContext": True,
+                        "organizationContext": True,
                     },
                 },
             ),
@@ -2192,7 +2357,8 @@ class TestEnterpriseAIResources:
                         stringIds=[1, 2, 3],
                         overridePromptValues={
                             "property1": "string"
-                        }
+                        },
+                        projectDescription="Mobile app project"
                     ),
                     tools=[
                         AiToolObject(
@@ -2216,7 +2382,8 @@ class TestEnterpriseAIResources:
                         "stringIds": [1, 2, 3],
                         "overridePromptValues": {
                             "property1": "string"
-                        }
+                        },
+                        "projectDescription": "Mobile app project"
                     },
                     "tools": [
                         {
@@ -2231,6 +2398,68 @@ class TestEnterpriseAIResources:
                         }
                     ],
                     "tool_choice": "string"
+                },
+            ),
+            (
+                GenerateAiPromptCompletionRequest(
+                    resources=AlignmentActionAiPromptContextResources(
+                        projectId=1,
+                        sourceLanguageId="en",
+                        targetLanguageId="uk",
+                        stringIds=[1, 2, 3],
+                        projectDescription="Mobile app project"
+                    ),
+                ),
+                {
+                    "resources": {
+                        "projectId": 1,
+                        "sourceLanguageId": "en",
+                        "targetLanguageId": "uk",
+                        "stringIds": [1, 2, 3],
+                        "projectDescription": "Mobile app project"
+                    },
+                },
+            ),
+            (
+                GenerateAiPromptCompletionRequest(
+                    resources=QaCheckActionAiPromptContextResources(
+                        projectId=1,
+                        sourceLanguageId="en",
+                        targetLanguageId="uk",
+                        stringIds=[1, 2, 3],
+                        projectDescription="Mobile app project"
+                    ),
+                ),
+                {
+                    "resources": {
+                        "projectId": 1,
+                        "sourceLanguageId": "en",
+                        "targetLanguageId": "uk",
+                        "stringIds": [1, 2, 3],
+                        "projectDescription": "Mobile app project"
+                    },
+                },
+            ),
+            (
+                GenerateAiPromptCompletionRequest(
+                    resources=CustomActionAiPromptContextResources(
+                        projectId=1,
+                        sourceLanguageId="en",
+                        targetLanguageId="uk",
+                        stringIds=[1, 2, 3],
+                        customInstruction="Translate using a formal tone",
+                        projectDescription="Mobile app project"
+                    ),
+                ),
+                {
+                    "resources": {
+                        "projectId": 1,
+                        "sourceLanguageId": "en",
+                        "targetLanguageId": "uk",
+                        "stringIds": [1, 2, 3],
+                        "customInstruction": "Translate using a formal tone",
+                        "projectDescription": "Mobile app project"
+                    },
                 },
             ),
         ),
@@ -2384,21 +2613,11 @@ class TestEnterpriseAIResources:
                 [
                     {
                         "op": PatchOperation.REPLACE.value,
-                        "path": EditAiSettingsPatchPath.ASSIST_ACTION_AI_PROMPT_ID.value,
-                        "value": 1
-                    },
-                    {
-                        "op": PatchOperation.REPLACE.value,
                         "path": EditAiSettingsPatchPath.EDITOR_SUGGESTION_AI_PROMPT_ID.value,
                         "value": 2
                     }
                 ],
                 [
-                    {
-                        "op": "replace",
-                        "path": "/assistActionAiPromptId",
-                        "value": 1
-                    },
                     {
                         "op": "replace",
                         "path": "/editorSuggestionAiPromptId",
