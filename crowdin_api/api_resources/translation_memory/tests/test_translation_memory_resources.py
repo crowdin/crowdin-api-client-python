@@ -6,6 +6,8 @@ from crowdin_api.api_resources.translation_memory.enums import (
     ListTmSegmentsOrderBy,
     ListTmsOrderBy,
     TranslationMemoryPatchPath,
+    TranslationMemorySegmentBatchOperation,
+    TranslationMemorySegmentBatchOperationPath,
     TranslationMemorySegmentRecordOperation,
     TranslationMemorySegmentRecordOperationPath,
 )
@@ -273,6 +275,54 @@ class TestTranslationMemoryResource:
                     }
                 },
             ],
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_tm_segment_batch_operations(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        data = [
+            {
+                "op": TranslationMemorySegmentBatchOperation.ADD,
+                "path": TranslationMemorySegmentBatchOperationPath.ADD,
+                "value": {
+                    "records": [
+                        {
+                            "languageId": "uk",
+                            "text": "Перекладений текст",
+                        }
+                    ]
+                },
+            },
+            {
+                "op": TranslationMemorySegmentBatchOperation.ADD,
+                "path": TranslationMemorySegmentBatchOperationPath.ADD_RECORD,
+                "value": {
+                    "languageId": "it",
+                    "text": "Ciao, mondo!",
+                },
+            },
+            {
+                "op": TranslationMemorySegmentBatchOperation.REMOVE,
+                "path": TranslationMemorySegmentBatchOperationPath.REMOVE,
+            },
+            {
+                "op": TranslationMemorySegmentBatchOperation.REMOVE,
+                "path": TranslationMemorySegmentBatchOperationPath.REMOVE_RECORD,
+            },
+            {
+                "op": TranslationMemorySegmentBatchOperation.REPLACE,
+                "path": TranslationMemorySegmentBatchOperationPath.REPLACE,
+                "value": "Testo tradotto",
+            },
+        ]
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.tm_segment_batch_operations(tmId=1, data=data) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path=resource.get_tm_segments_path(tmId=1),
+            request_data=data,
         )
 
     # Export

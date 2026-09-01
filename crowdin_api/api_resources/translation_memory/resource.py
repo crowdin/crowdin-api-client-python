@@ -4,6 +4,9 @@ from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.enums import ExportFormat
 from crowdin_api.api_resources.translation_memory.types import (
     TranslationMemoryPatchRequest,
+    TranslationMemorySegmentBatchOperationAdd,
+    TranslationMemorySegmentBatchOperationRemove,
+    TranslationMemorySegmentBatchOperationReplace,
     TranslationMemorySegmentRecord,
     TranslationMemorySegmentRecordOperationAdd,
     TranslationMemorySegmentRecordOperationReplace,
@@ -204,6 +207,29 @@ class TranslationMemoryResource(BaseResource):
         return self.requester.request(
             method="patch",
             path=self.get_tm_segments_path(tmId=tmId, segmentId=segmentId),
+            request_data=data,
+        )
+
+    def tm_segment_batch_operations(
+        self,
+        tmId: int,
+        data: Iterable[
+            Union[
+                TranslationMemorySegmentBatchOperationAdd,
+                TranslationMemorySegmentBatchOperationReplace,
+                TranslationMemorySegmentBatchOperationRemove,
+            ]
+        ],
+    ):
+        """
+        TM Segment Batch Operations.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.tms.segments.patchBatch
+        """
+        return self.requester.request(
+            method="patch",
+            path=self.get_tm_segments_path(tmId=tmId),
             request_data=data,
         )
 
