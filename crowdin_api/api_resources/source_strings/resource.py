@@ -25,6 +25,38 @@ class SourceStringsResource(BaseResource):
     https://developer.crowdin.com/api/v2/#tag/Source-Strings
     """
 
+    def search_strings(
+        self,
+        filter: str,
+        projectIds: Optional[Iterable[int]] = None,
+        userId: Optional[int] = None,
+        scope: Optional[ScopeFilter] = None,
+        denormalizePlaceholders: Optional[DenormalizePlaceholders] = None,
+        page: Optional[int] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        Search Strings.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.strings.getMany
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.strings.getMany
+        """
+
+        params = {
+            "filter": filter,
+            "projectIds": None
+            if projectIds is None
+            else ",".join(str(projectId) for projectId in projectIds),
+            "userId": userId,
+            "scope": scope,
+            "denormalizePlaceholders": denormalizePlaceholders,
+        }
+        params.update(self.get_page_params(page=page, offset=offset, limit=limit))
+
+        return self._get_entire_data(method="get", path="strings", params=params)
+
     def get_source_strings_path(self, projectId: int, stringId: Optional[int] = None):
         if stringId is not None:
             return f"projects/{projectId}/strings/{stringId}"

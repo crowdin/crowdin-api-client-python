@@ -2,9 +2,11 @@ from enum import Enum
 
 
 class ScopeFilter(Enum):
+    ALL = "all"
     IDENTIFIER = "identifier"
     TEXT = "text"
     CONTEXT = "context"
+    KEY = "key"
 
 
 class SourceStringsPatchPath(Enum):

@@ -42,6 +42,91 @@ class SourceFilesResource(BaseResource):
     https://developer.crowdin.com/api/v2/#tag/Source-Files
     """
 
+    # Organization Search
+    def search_branches(
+        self,
+        filter: str,
+        projectIds: Optional[Iterable[int]] = None,
+        userId: Optional[int] = None,
+        page: Optional[int] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        Search Branches.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.branches.getMany
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.branches.getMany
+        """
+
+        params = {
+            "filter": filter,
+            "projectIds": None
+            if projectIds is None
+            else ",".join(str(projectId) for projectId in projectIds),
+            "userId": userId,
+        }
+        params.update(self.get_page_params(page=page, offset=offset, limit=limit))
+
+        return self._get_entire_data(method="get", path="branches", params=params)
+
+    def search_directories(
+        self,
+        filter: str,
+        projectIds: Optional[Iterable[int]] = None,
+        userId: Optional[int] = None,
+        page: Optional[int] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        Search Directories.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.directories.getMany
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.directories.getMany
+        """
+
+        params = {
+            "filter": filter,
+            "projectIds": None
+            if projectIds is None
+            else ",".join(str(projectId) for projectId in projectIds),
+            "userId": userId,
+        }
+        params.update(self.get_page_params(page=page, offset=offset, limit=limit))
+
+        return self._get_entire_data(method="get", path="directories", params=params)
+
+    def search_files(
+        self,
+        filter: str,
+        projectIds: Optional[Iterable[int]] = None,
+        userId: Optional[int] = None,
+        page: Optional[int] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        Search Files.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.files.getMany
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.files.getMany
+        """
+
+        params = {
+            "filter": filter,
+            "projectIds": None
+            if projectIds is None
+            else ",".join(str(projectId) for projectId in projectIds),
+            "userId": userId,
+        }
+        params.update(self.get_page_params(page=page, offset=offset, limit=limit))
+
+        return self._get_entire_data(method="get", path="files", params=params)
+
     # Branches
     def get_branch_path(self, projectId: int, branchId: Optional[int] = None):
         if branchId is not None:
