@@ -31,6 +31,58 @@ class TestSourceFilesResource:
         )
         assert resource.get_project_id() == project_id
 
+    @pytest.mark.parametrize(
+        "method, path",
+        (
+            ("search_branches", "branches"),
+            ("search_directories", "directories"),
+            ("search_files", "files"),
+        ),
+    )
+    @pytest.mark.parametrize(
+        "incoming_data, request_params",
+        (
+            (
+                {"offset": 0, "limit": 10},
+                {
+                    "filter": "filter",
+                    "projectIds": None,
+                    "userId": None,
+                    "offset": 0,
+                    "limit": 10,
+                },
+            ),
+            (
+                {
+                    "projectIds": [1, 2],
+                    "userId": 3,
+                    "offset": 5,
+                    "limit": 10,
+                },
+                {
+                    "filter": "filter",
+                    "projectIds": "1,2",
+                    "userId": 3,
+                    "offset": 5,
+                    "limit": 10,
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_search_organization_source_files(
+        self, m_request, incoming_data, request_params, method, path, base_absolut_url
+    ):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert getattr(resource, method)(filter="filter", **incoming_data) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            params=request_params,
+            path=path,
+        )
+
     # Branches
     @pytest.mark.parametrize(
         "in_params, path",

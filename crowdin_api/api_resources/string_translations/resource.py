@@ -20,6 +20,40 @@ class StringTranslationsResource(BaseResource):
     https://developer.crowdin.com/api/v2/#tag/String-Translations
     """
 
+    def search_translations(
+        self,
+        filter: str,
+        projectIds: Optional[Iterable[int]] = None,
+        userId: Optional[int] = None,
+        languageIds: Optional[Iterable[str]] = None,
+        denormalizePlaceholders: Optional[DenormalizePlaceholders] = None,
+        page: Optional[int] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        Search Translations.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.translations.getMany
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.translations.getMany
+        """
+
+        params = {
+            "filter": filter,
+            "projectIds": None
+            if projectIds is None
+            else ",".join(str(projectId) for projectId in projectIds),
+            "userId": userId,
+            "languageIds": None
+            if languageIds is None
+            else ",".join(str(languageId) for languageId in languageIds),
+            "denormalizePlaceholders": denormalizePlaceholders,
+        }
+        params.update(self.get_page_params(page=page, offset=offset, limit=limit))
+
+        return self._get_entire_data(method="get", path="translations", params=params)
+
     # Approval
     def get_approvals_path(self, projectId: int, approvalId: Optional[int] = None):
         if approvalId is not None:

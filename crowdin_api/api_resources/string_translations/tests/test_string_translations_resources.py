@@ -26,6 +26,56 @@ class TestStringTranslationsResource:
         )
         assert resource.get_project_id() == project_id
 
+    @pytest.mark.parametrize(
+        "incoming_data, request_params",
+        (
+            (
+                {},
+                {
+                    "filter": "filter",
+                    "projectIds": None,
+                    "userId": None,
+                    "languageIds": None,
+                    "denormalizePlaceholders": None,
+                    "offset": 0,
+                    "limit": 25,
+                },
+            ),
+            (
+                {
+                    "projectIds": [1, 2],
+                    "userId": 3,
+                    "languageIds": ["uk", "de"],
+                    "denormalizePlaceholders": DenormalizePlaceholders.ENABLE,
+                    "offset": 5,
+                    "limit": 10,
+                },
+                {
+                    "filter": "filter",
+                    "projectIds": "1,2",
+                    "userId": 3,
+                    "languageIds": "uk,de",
+                    "denormalizePlaceholders": DenormalizePlaceholders.ENABLE,
+                    "offset": 5,
+                    "limit": 10,
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_search_translations(
+        self, m_request, incoming_data, request_params, base_absolut_url
+    ):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.search_translations(filter="filter", **incoming_data) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            params=request_params,
+            path="translations",
+        )
+
     # Approval
     @pytest.mark.parametrize(
         "in_params, path",
