@@ -141,7 +141,40 @@ class TestSourceFilesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.delete_branch(projectId=1, branchId=2) == "response"
         m_request.assert_called_once_with(
-            method="delete", path=resource.get_branch_path(projectId=1, branchId=2)
+            method="delete",
+            headers=None,
+            path=resource.get_branch_path(projectId=1, branchId=2),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_branch_async(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.delete_branch(projectId=1, branchId=2, prefer="respond-async")
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="delete",
+            headers={"Prefer": "respond-async"},
+            path=resource.get_branch_path(projectId=1, branchId=2),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_check_branch_deletion_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.check_branch_deletion_status(
+                projectId=1, branchId=2, jobIdentifier="job"
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/1/branches/2/jobs/job",
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -298,7 +331,39 @@ class TestSourceFilesResource:
         assert resource.delete_directory(projectId=1, directoryId=2) == "response"
         m_request.assert_called_once_with(
             method="delete",
+            headers=None,
             path=resource.get_directory_path(projectId=1, directoryId=2),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_directory_async(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.delete_directory(projectId=1, directoryId=2, prefer="respond-async")
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="delete",
+            headers={"Prefer": "respond-async"},
+            path=resource.get_directory_path(projectId=1, directoryId=2),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_check_directory_deletion_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.check_directory_deletion_status(
+                projectId=1, directoryId=2, jobIdentifier="job"
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/1/directories/2/jobs/job",
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -551,7 +616,40 @@ class TestSourceFilesResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.delete_file(projectId=1, fileId=2) == "response"
         m_request.assert_called_once_with(
-            method="delete", path=resource.get_file_path(projectId=1, fileId=2)
+            method="delete",
+            headers=None,
+            path=resource.get_file_path(projectId=1, fileId=2),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_file_async(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.delete_file(projectId=1, fileId=2, prefer="respond-async")
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="delete",
+            headers={"Prefer": "respond-async"},
+            path=resource.get_file_path(projectId=1, fileId=2),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_check_file_deletion_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.check_file_deletion_status(
+                projectId=1, fileId=2, jobIdentifier="job"
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/1/files/2/jobs/job",
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
