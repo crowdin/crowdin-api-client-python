@@ -195,7 +195,7 @@ class TestAPIRequester:
         with pytest.raises(ParsingError):
             requester._request(method="get", path=path)
 
-    @pytest.mark.parametrize("status_code", (200, 299))
+    @pytest.mark.parametrize("status_code", (200, 202, 299))
     def test__request_with_success_status(self, status_code, requests_mock, base_absolut_url):
         path = "test"
         requester = APIRequester(base_url=base_absolut_url)

@@ -116,7 +116,12 @@ class SourceFilesResource(BaseResource):
             path=self.get_branch_path(projectId=projectId, branchId=branchId),
         )
 
-    def delete_branch(self, branchId: int, projectId: Optional[int] = None):
+    def delete_branch(
+        self,
+        branchId: int,
+        projectId: Optional[int] = None,
+        prefer: Optional[str] = None,
+    ):
         """
         Delete Branch.
 
@@ -125,10 +130,32 @@ class SourceFilesResource(BaseResource):
         """
 
         projectId = projectId or self.get_project_id()
+        headers = {"Prefer": prefer} if prefer is not None else None
 
         return self.requester.request(
             method="delete",
+            headers=headers,
             path=f"projects/{projectId}/branches/{branchId}",
+        )
+
+    def check_branch_deletion_status(
+        self,
+        branchId: int,
+        jobIdentifier: str,
+        projectId: Optional[int] = None,
+    ):
+        """
+        Check Branch Deletion Status.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.branches.jobs.get
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="get",
+            path=f"projects/{projectId}/branches/{branchId}/jobs/{jobIdentifier}",
         )
 
     def edit_branch(
@@ -241,7 +268,12 @@ class SourceFilesResource(BaseResource):
             path=self.get_directory_path(projectId=projectId, directoryId=directoryId),
         )
 
-    def delete_directory(self, directoryId: int, projectId: Optional[int] = None):
+    def delete_directory(
+        self,
+        directoryId: int,
+        projectId: Optional[int] = None,
+        prefer: Optional[str] = None,
+    ):
         """
         Delete Directory.
 
@@ -250,10 +282,32 @@ class SourceFilesResource(BaseResource):
         """
 
         projectId = projectId or self.get_project_id()
+        headers = {"Prefer": prefer} if prefer is not None else None
 
         return self.requester.request(
             method="delete",
+            headers=headers,
             path=self.get_directory_path(projectId=projectId, directoryId=directoryId),
+        )
+
+    def check_directory_deletion_status(
+        self,
+        directoryId: int,
+        jobIdentifier: str,
+        projectId: Optional[int] = None,
+    ):
+        """
+        Check Directory Deletion Status.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.directories.jobs.get
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="get",
+            path=f"projects/{projectId}/directories/{directoryId}/jobs/{jobIdentifier}",
         )
 
     def edit_directory(
@@ -451,7 +505,12 @@ class SourceFilesResource(BaseResource):
             },
         )
 
-    def delete_file(self, fileId: int, projectId: Optional[int] = None):
+    def delete_file(
+        self,
+        fileId: int,
+        projectId: Optional[int] = None,
+        prefer: Optional[str] = None,
+    ):
         """
         Delete File.
 
@@ -460,10 +519,32 @@ class SourceFilesResource(BaseResource):
         """
 
         projectId = projectId or self.get_project_id()
+        headers = {"Prefer": prefer} if prefer is not None else None
 
         return self.requester.request(
             method="delete",
+            headers=headers,
             path=self.get_file_path(projectId=projectId, fileId=fileId),
+        )
+
+    def check_file_deletion_status(
+        self,
+        fileId: int,
+        jobIdentifier: str,
+        projectId: Optional[int] = None,
+    ):
+        """
+        Check File Deletion Status.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.projects.files.jobs.get
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="get",
+            path=f"projects/{projectId}/files/{fileId}/jobs/{jobIdentifier}",
         )
 
     def edit_file(
