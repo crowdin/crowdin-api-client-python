@@ -2985,6 +2985,30 @@ Crowdin.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.post">https://developer.crowdin.com/api/v2/#operation/api.projects.files.post</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.SourceFilesResource.check_branch_deletion_status"><code class="name flex">
+<span>def <span class="ident">check_branch_deletion_status</span></span>(<span>self, branchId: int, jobIdentifier: str, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check Branch Deletion Status.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.branches.jobs.get">https://developer.crowdin.com/api/v2/#operation/api.projects.branches.jobs.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.SourceFilesResource.check_directory_deletion_status"><code class="name flex">
+<span>def <span class="ident">check_directory_deletion_status</span></span>(<span>self, directoryId: int, jobIdentifier: str, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check Directory Deletion Status.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.directories.jobs.get">https://developer.crowdin.com/api/v2/#operation/api.projects.directories.jobs.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.SourceFilesResource.check_file_deletion_status"><code class="name flex">
+<span>def <span class="ident">check_file_deletion_status</span></span>(<span>self, fileId: int, jobIdentifier: str, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check File Deletion Status.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.jobs.get">https://developer.crowdin.com/api/v2/#operation/api.projects.files.jobs.get</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.SourceFilesResource.delete_asset_reference"><code class="name flex">
 <span>def <span class="ident">delete_asset_reference</span></span>(<span>self, project_id: int, file_id: int, reference_id: int)</span>
 </code></dt>
@@ -2994,7 +3018,7 @@ Crowdin.</p>
 <a href="https://support.crowdin.com/developer/api/v2/#tag/Source-Files/operation/api.projects.files.references.delete">https://support.crowdin.com/developer/api/v2/#tag/Source-Files/operation/api.projects.files.references.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.SourceFilesResource.delete_branch"><code class="name flex">
-<span>def <span class="ident">delete_branch</span></span>(<span>self, branchId: int, projectId: Optional[int] = None)</span>
+<span>def <span class="ident">delete_branch</span></span>(<span>self, branchId: int, projectId: Optional[int] = None, prefer: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Branch.</p>
@@ -3002,7 +3026,7 @@ Crowdin.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.branches.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.branches.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.SourceFilesResource.delete_directory"><code class="name flex">
-<span>def <span class="ident">delete_directory</span></span>(<span>self, directoryId: int, projectId: Optional[int] = None)</span>
+<span>def <span class="ident">delete_directory</span></span>(<span>self, directoryId: int, projectId: Optional[int] = None, prefer: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Directory.</p>
@@ -3010,7 +3034,7 @@ Crowdin.</p>
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.directories.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.directories.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.SourceFilesResource.delete_file"><code class="name flex">
-<span>def <span class="ident">delete_file</span></span>(<span>self, fileId: int, projectId: Optional[int] = None)</span>
+<span>def <span class="ident">delete_file</span></span>(<span>self, fileId: int, projectId: Optional[int] = None, prefer: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete File.</p>
@@ -3175,6 +3199,33 @@ Crowdin.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.put">https://developer.crowdin.com/api/v2/#operation/api.projects.files.put</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.SourceFilesResource.search_branches"><code class="name flex">
+<span>def <span class="ident">search_branches</span></span>(<span>self, filter: str, projectIds: Optional[Iterable[int]] = None, userId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Search Branches.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.branches.getMany">https://developer.crowdin.com/api/v2/#operation/api.branches.getMany</a>
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.branches.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.branches.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.SourceFilesResource.search_directories"><code class="name flex">
+<span>def <span class="ident">search_directories</span></span>(<span>self, filter: str, projectIds: Optional[Iterable[int]] = None, userId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Search Directories.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.directories.getMany">https://developer.crowdin.com/api/v2/#operation/api.directories.getMany</a>
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.directories.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.directories.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.SourceFilesResource.search_files"><code class="name flex">
+<span>def <span class="ident">search_files</span></span>(<span>self, filter: str, projectIds: Optional[Iterable[int]] = None, userId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Search Files.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.files.getMany">https://developer.crowdin.com/api/v2/#operation/api.files.getMany</a>
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.files.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.files.getMany</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.SourceFilesResource.update_file"><code class="name flex">
 <span>def <span class="ident">update_file</span></span>(<span>self, fileId: int, storageId: int, projectId: Optional[int] = None, updateOption: Optional[<a title="crowdin_api.api_resources.source_files.enums.FileUpdateOption" href="source_files/enums.html#crowdin_api.api_resources.source_files.enums.FileUpdateOption">FileUpdateOption</a>] = None, importOptions: Union[<a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions" href="source_files/types.html#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions">SpreadsheetImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.XmlImportOptions" href="source_files/types.html#crowdin_api.api_resources.source_files.types.XmlImportOptions">XmlImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions" href="source_files/types.html#crowdin_api.api_resources.source_files.types.DocxFileImportOptions">DocxFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.OtherImportOptions" href="source_files/types.html#crowdin_api.api_resources.source_files.types.OtherImportOptions">OtherImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.HtmlFileImportOptions" href="source_files/types.html#crowdin_api.api_resources.source_files.types.HtmlFileImportOptions">HtmlFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions" href="source_files/types.html#crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions">HtmlWithFrontMatterFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdxV1FileImportOptions" href="source_files/types.html#crowdin_api.api_resources.source_files.types.MdxV1FileImportOptions">MdxV1FileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdxV2FileImportOptions" href="source_files/types.html#crowdin_api.api_resources.source_files.types.MdxV2FileImportOptions">MdxV2FileImportOptions</a>, None] = None, exportOptions: Union[<a title="crowdin_api.api_resources.source_files.types.PropertyExportOptions" href="source_files/types.html#crowdin_api.api_resources.source_files.types.PropertyExportOptions">PropertyExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.GeneralExportOptions" href="source_files/types.html#crowdin_api.api_resources.source_files.types.GeneralExportOptions">GeneralExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.JavascriptExportOptions" href="source_files/types.html#crowdin_api.api_resources.source_files.types.JavascriptExportOptions">JavascriptExportOptions</a>, None] = None, attachLabelIds: Optional[Iterable[int]] = None, detachLabelIds: Optional[Iterable[int]] = None)</span>
 </code></dt>
@@ -3249,6 +3300,15 @@ iOS strings, PROPERTIES, XLIFF).</p>
 <div class="desc"><p>List Strings.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.strings.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.SourceStringsResource.search_strings"><code class="name flex">
+<span>def <span class="ident">search_strings</span></span>(<span>self, filter: str, projectIds: Optional[Iterable[int]] = None, userId: Optional[int] = None, scope: Optional[<a title="crowdin_api.api_resources.source_strings.enums.ScopeFilter" href="source_strings/enums.html#crowdin_api.api_resources.source_strings.enums.ScopeFilter">ScopeFilter</a>] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Search Strings.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.strings.getMany">https://developer.crowdin.com/api/v2/#operation/api.strings.getMany</a>
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.strings.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.strings.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.SourceStringsResource.string_batch_operation"><code class="name flex">
 <span>def <span class="ident">string_batch_operation</span></span>(<span>self, data: Iterable[<a title="crowdin_api.api_resources.source_strings.types.StringBatchOperationPatchRequest" href="source_strings/types.html#crowdin_api.api_resources.source_strings.types.StringBatchOperationPatchRequest">StringBatchOperationPatchRequest</a>], projectId: Optional[int] = None)</span>
@@ -3571,6 +3631,15 @@ be removed from storage and will remain in your account.</p>
 <div class="desc"><p>Restore Translation.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.put">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.put</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.StringTranslationsResource.search_translations"><code class="name flex">
+<span>def <span class="ident">search_translations</span></span>(<span>self, filter: str, projectIds: Optional[Iterable[int]] = None, userId: Optional[int] = None, languageIds: Optional[Iterable[str]] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Search Translations.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.translations.getMany">https://developer.crowdin.com/api/v2/#operation/api.translations.getMany</a>
+<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.translations.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.translations.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.StringTranslationsResource.translation_alignment"><code class="name flex">
 <span>def <span class="ident">translation_alignment</span></span>(<span>self, sourceLanguageId: str, targetLanguageId: str, text: str, projectId: Optional[int] = None)</span>
@@ -4206,6 +4275,14 @@ are asynchronous operations and shall be completed with sequence of API methods.
 <div class="desc"><p>List TMs.</p>
 <p>Link to documentation:
 <a href="https://developer.crowdin.com/api/v2/#operation/api.tms.getMany">https://developer.crowdin.com/api/v2/#operation/api.tms.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.TranslationMemoryResource.tm_segment_batch_operations"><code class="name flex">
+<span>def <span class="ident">tm_segment_batch_operations</span></span>(<span>self, tmId: int, data: Iterable[Union[<a title="crowdin_api.api_resources.translation_memory.types.TranslationMemorySegmentBatchOperationAdd" href="translation_memory/types.html#crowdin_api.api_resources.translation_memory.types.TranslationMemorySegmentBatchOperationAdd">TranslationMemorySegmentBatchOperationAdd</a>, <a title="crowdin_api.api_resources.translation_memory.types.TranslationMemorySegmentBatchOperationReplace" href="translation_memory/types.html#crowdin_api.api_resources.translation_memory.types.TranslationMemorySegmentBatchOperationReplace">TranslationMemorySegmentBatchOperationReplace</a>, <a title="crowdin_api.api_resources.translation_memory.types.TranslationMemorySegmentBatchOperationRemove" href="translation_memory/types.html#crowdin_api.api_resources.translation_memory.types.TranslationMemorySegmentBatchOperationRemove">TranslationMemorySegmentBatchOperationRemove</a>]])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>TM Segment Batch Operations.</p>
+<p>Link to documentation:
+<a href="https://developer.crowdin.com/api/v2/#operation/api.tms.segments.patchBatch">https://developer.crowdin.com/api/v2/#operation/api.tms.segments.patchBatch</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -5170,6 +5247,9 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.SourceFilesResource.add_branch" href="#crowdin_api.api_resources.SourceFilesResource.add_branch">add_branch</a></code></li>
 <li><code><a title="crowdin_api.api_resources.SourceFilesResource.add_directory" href="#crowdin_api.api_resources.SourceFilesResource.add_directory">add_directory</a></code></li>
 <li><code><a title="crowdin_api.api_resources.SourceFilesResource.add_file" href="#crowdin_api.api_resources.SourceFilesResource.add_file">add_file</a></code></li>
+<li><code><a title="crowdin_api.api_resources.SourceFilesResource.check_branch_deletion_status" href="#crowdin_api.api_resources.SourceFilesResource.check_branch_deletion_status">check_branch_deletion_status</a></code></li>
+<li><code><a title="crowdin_api.api_resources.SourceFilesResource.check_directory_deletion_status" href="#crowdin_api.api_resources.SourceFilesResource.check_directory_deletion_status">check_directory_deletion_status</a></code></li>
+<li><code><a title="crowdin_api.api_resources.SourceFilesResource.check_file_deletion_status" href="#crowdin_api.api_resources.SourceFilesResource.check_file_deletion_status">check_file_deletion_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.SourceFilesResource.delete_asset_reference" href="#crowdin_api.api_resources.SourceFilesResource.delete_asset_reference">delete_asset_reference</a></code></li>
 <li><code><a title="crowdin_api.api_resources.SourceFilesResource.delete_branch" href="#crowdin_api.api_resources.SourceFilesResource.delete_branch">delete_branch</a></code></li>
 <li><code><a title="crowdin_api.api_resources.SourceFilesResource.delete_directory" href="#crowdin_api.api_resources.SourceFilesResource.delete_directory">delete_directory</a></code></li>
@@ -5195,6 +5275,9 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.SourceFilesResource.list_files" href="#crowdin_api.api_resources.SourceFilesResource.list_files">list_files</a></code></li>
 <li><code><a title="crowdin_api.api_resources.SourceFilesResource.list_project_branches" href="#crowdin_api.api_resources.SourceFilesResource.list_project_branches">list_project_branches</a></code></li>
 <li><code><a title="crowdin_api.api_resources.SourceFilesResource.restore_file" href="#crowdin_api.api_resources.SourceFilesResource.restore_file">restore_file</a></code></li>
+<li><code><a title="crowdin_api.api_resources.SourceFilesResource.search_branches" href="#crowdin_api.api_resources.SourceFilesResource.search_branches">search_branches</a></code></li>
+<li><code><a title="crowdin_api.api_resources.SourceFilesResource.search_directories" href="#crowdin_api.api_resources.SourceFilesResource.search_directories">search_directories</a></code></li>
+<li><code><a title="crowdin_api.api_resources.SourceFilesResource.search_files" href="#crowdin_api.api_resources.SourceFilesResource.search_files">search_files</a></code></li>
 <li><code><a title="crowdin_api.api_resources.SourceFilesResource.update_file" href="#crowdin_api.api_resources.SourceFilesResource.update_file">update_file</a></code></li>
 </ul>
 </li>
@@ -5207,6 +5290,7 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.SourceStringsResource.get_source_strings_path" href="#crowdin_api.api_resources.SourceStringsResource.get_source_strings_path">get_source_strings_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.SourceStringsResource.get_string" href="#crowdin_api.api_resources.SourceStringsResource.get_string">get_string</a></code></li>
 <li><code><a title="crowdin_api.api_resources.SourceStringsResource.list_strings" href="#crowdin_api.api_resources.SourceStringsResource.list_strings">list_strings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.SourceStringsResource.search_strings" href="#crowdin_api.api_resources.SourceStringsResource.search_strings">search_strings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.SourceStringsResource.string_batch_operation" href="#crowdin_api.api_resources.SourceStringsResource.string_batch_operation">string_batch_operation</a></code></li>
 </ul>
 </li>
@@ -5256,6 +5340,7 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.StringTranslationsResource.remove_approval" href="#crowdin_api.api_resources.StringTranslationsResource.remove_approval">remove_approval</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringTranslationsResource.remove_string_approvals" href="#crowdin_api.api_resources.StringTranslationsResource.remove_string_approvals">remove_string_approvals</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringTranslationsResource.restore_translation" href="#crowdin_api.api_resources.StringTranslationsResource.restore_translation">restore_translation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.StringTranslationsResource.search_translations" href="#crowdin_api.api_resources.StringTranslationsResource.search_translations">search_translations</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringTranslationsResource.translation_alignment" href="#crowdin_api.api_resources.StringTranslationsResource.translation_alignment">translation_alignment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.StringTranslationsResource.translation_batch_operations" href="#crowdin_api.api_resources.StringTranslationsResource.translation_batch_operations">translation_batch_operations</a></code></li>
 </ul>
@@ -5347,6 +5432,7 @@ the details of a specific template.</p>
 <li><code><a title="crowdin_api.api_resources.TranslationMemoryResource.import_tm" href="#crowdin_api.api_resources.TranslationMemoryResource.import_tm">import_tm</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationMemoryResource.list_tm_segments" href="#crowdin_api.api_resources.TranslationMemoryResource.list_tm_segments">list_tm_segments</a></code></li>
 <li><code><a title="crowdin_api.api_resources.TranslationMemoryResource.list_tms" href="#crowdin_api.api_resources.TranslationMemoryResource.list_tms">list_tms</a></code></li>
+<li><code><a title="crowdin_api.api_resources.TranslationMemoryResource.tm_segment_batch_operations" href="#crowdin_api.api_resources.TranslationMemoryResource.tm_segment_batch_operations">tm_segment_batch_operations</a></code></li>
 </ul>
 </li>
 <li>
