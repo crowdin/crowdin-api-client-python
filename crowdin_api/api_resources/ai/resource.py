@@ -1,9 +1,12 @@
+from datetime import datetime
 from typing import Dict, Iterable, Optional, Union
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.ai.enums import (
     AIPromptAction,
     AiPromptFineTuningJobStatus,
+    AiRequestLogSourceAction,
+    AiRequestLogStatus,
     AIProviderType,
 )
 from crowdin_api.api_resources.ai.types import (
@@ -624,6 +627,60 @@ class AIResource(BaseResource):
         return self.requester.request(
             method="get",
             path=self.get_ai_reports_path(user_id, ai_report_id) + "/download",
+        )
+
+    def get_ai_request_logs_path(self, user_id: int):
+        return f"users/{user_id}/ai/request-logs"
+
+    def list_ai_request_logs(
+        self,
+        user_id: int,
+        request_id: Optional[str] = None,
+        project_id: Optional[int] = None,
+        request_user_id: Optional[int] = None,
+        ai_provider_id: Optional[int] = None,
+        model: Optional[str] = None,
+        source_action: Optional[AiRequestLogSourceAction] = None,
+        prompt_action: Optional[str] = None,
+        statuses: Optional[Iterable[AiRequestLogStatus]] = None,
+        system_credentials: Optional[bool] = None,
+        is_auto_triggered: Optional[bool] = None,
+        token_name: Optional[str] = None,
+        oauth_client_id: Optional[str] = None,
+        created_after: Optional[datetime] = None,
+        created_before: Optional[datetime] = None,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+    ):
+        """
+        List AI Request Logs
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.ai.requestLogs.getMany
+        """
+
+        params = {
+            "requestId": request_id,
+            "projectId": project_id,
+            "userId": request_user_id,
+            "aiProviderId": ai_provider_id,
+            "model": model,
+            "sourceAction": source_action,
+            "promptAction": prompt_action,
+            "statuses": convert_enum_collection_to_string_if_exists(statuses),
+            "systemCredentials": system_credentials,
+            "isAutoTriggered": is_auto_triggered,
+            "tokenName": token_name,
+            "oauthClientId": oauth_client_id,
+            "createdAfter": created_after,
+            "createdBefore": created_before,
+        }
+        params.update(self.get_page_params(limit=limit, offset=offset))
+
+        return self._get_entire_data(
+            method="get",
+            path=self.get_ai_request_logs_path(user_id),
+            params=params,
         )
 
     def get_ai_settings_path(self, user_id: int):
@@ -1465,6 +1522,59 @@ class EnterpriseAIResource(BaseResource):
         return self.requester.request(
             method="get",
             path=self.get_ai_reports_path(ai_report_id) + "/download",
+        )
+
+    def get_ai_request_logs_path(self):
+        return "ai/request-logs"
+
+    def list_ai_request_logs(
+        self,
+        request_id: Optional[str] = None,
+        project_id: Optional[int] = None,
+        request_user_id: Optional[int] = None,
+        ai_provider_id: Optional[int] = None,
+        model: Optional[str] = None,
+        source_action: Optional[AiRequestLogSourceAction] = None,
+        prompt_action: Optional[str] = None,
+        statuses: Optional[Iterable[AiRequestLogStatus]] = None,
+        system_credentials: Optional[bool] = None,
+        is_auto_triggered: Optional[bool] = None,
+        token_name: Optional[str] = None,
+        oauth_client_id: Optional[str] = None,
+        created_after: Optional[datetime] = None,
+        created_before: Optional[datetime] = None,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+    ):
+        """
+        List AI Request Logs
+
+        Link to documentation:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.requestLogs.getMany
+        """
+
+        params = {
+            "requestId": request_id,
+            "projectId": project_id,
+            "userId": request_user_id,
+            "aiProviderId": ai_provider_id,
+            "model": model,
+            "sourceAction": source_action,
+            "promptAction": prompt_action,
+            "statuses": convert_enum_collection_to_string_if_exists(statuses),
+            "systemCredentials": system_credentials,
+            "isAutoTriggered": is_auto_triggered,
+            "tokenName": token_name,
+            "oauthClientId": oauth_client_id,
+            "createdAfter": created_after,
+            "createdBefore": created_before,
+        }
+        params.update(self.get_page_params(limit=limit, offset=offset))
+
+        return self._get_entire_data(
+            method="get",
+            path=self.get_ai_request_logs_path(),
+            params=params,
         )
 
     def get_ai_settings(self):

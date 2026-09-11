@@ -87,3 +87,24 @@ class AiReportFormat(Enum):
 class ListSupportedAiModelsOrderBy(Enum):
     KNOWLEDGE_CUTOFF = "knowledgeCutoff"
     RELEASE_DATE = "releaseDate"
+
+
+class AiRequestLogStatus(Enum):
+    PENDING = "pending"
+    SUCCESS = "success"
+    ERROR = "error"
+    TIMEOUT = "timeout"
+
+
+class AiRequestLogSourceAction(Enum):
+    AI_PROXY = "ai_proxy"
+    AI_GATEWAY = "ai_gateway"
+    AI_TRANSLATE_STRINGS = "ai_translate_strings"
+    AI_FILE_TRANSLATE = "ai_file_translate"
+    AI_PROMPT_COMPLETION = "ai_prompt_completion"
+    PRE_TRANSLATE_MANUAL = "pre_translate:manual"
+    PRE_TRANSLATE_WORKFLOW = "pre_translate:workflow"
+    AI_ALIGNMENT = "ai_alignment"
+    QA_CHECK = "qa_check"
+    AI_SUGGESTION = "ai_suggestion"
+    ADVISOR = "advisor"

@@ -5,6 +5,8 @@ import pytest
 from crowdin_api.api_resources.ai.enums import (
     AIPromptAction,
     AiPromptFineTuningJobStatus,
+    AiRequestLogSourceAction,
+    AiRequestLogStatus,
     AIProviderType,
     AiReportFormat,
     AiToolType,
@@ -1130,6 +1132,90 @@ class TestAIResources:
         m_request.assert_called_once_with(
             method="get",
             path=f"users/{user_id}/ai/reports/{ai_report_id}/download",
+        )
+
+    def test_get_ai_request_logs_path(self, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_request_logs_path(1) == "users/1/ai/request-logs"
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_params",
+        (
+            (
+                {},
+                {
+                    "requestId": None,
+                    "projectId": None,
+                    "userId": None,
+                    "aiProviderId": None,
+                    "model": None,
+                    "sourceAction": None,
+                    "promptAction": None,
+                    "statuses": None,
+                    "systemCredentials": None,
+                    "isAutoTriggered": None,
+                    "tokenName": None,
+                    "oauthClientId": None,
+                    "createdAfter": None,
+                    "createdBefore": None,
+                    "limit": 25,
+                    "offset": 0,
+                },
+            ),
+            (
+                {
+                    "request_id": "9d3b1c4e-2f3a-4b5c-8d6e-7f8a9b0c1d2e",
+                    "project_id": 8,
+                    "request_user_id": 42,
+                    "ai_provider_id": 3,
+                    "model": "gpt-5.6-sol",
+                    "source_action": AiRequestLogSourceAction.AI_GATEWAY,
+                    "prompt_action": "pre_translate",
+                    "statuses": [AiRequestLogStatus.PENDING, AiRequestLogStatus.SUCCESS],
+                    "system_credentials": True,
+                    "is_auto_triggered": False,
+                    "token_name": "CI token",
+                    "oauth_client_id": "gpbccUFxAKZDrLm5Nq8t",
+                    "created_after": datetime(2026, 1, 1, tzinfo=timezone.utc),
+                    "created_before": datetime(2026, 1, 2, tzinfo=timezone.utc),
+                    "limit": 10,
+                    "offset": 20,
+                },
+                {
+                    "requestId": "9d3b1c4e-2f3a-4b5c-8d6e-7f8a9b0c1d2e",
+                    "projectId": 8,
+                    "userId": 42,
+                    "aiProviderId": 3,
+                    "model": "gpt-5.6-sol",
+                    "sourceAction": AiRequestLogSourceAction.AI_GATEWAY,
+                    "promptAction": "pre_translate",
+                    "statuses": "pending,success",
+                    "systemCredentials": True,
+                    "isAutoTriggered": False,
+                    "tokenName": "CI token",
+                    "oauthClientId": "gpbccUFxAKZDrLm5Nq8t",
+                    "createdAfter": datetime(2026, 1, 1, tzinfo=timezone.utc),
+                    "createdBefore": datetime(2026, 1, 2, tzinfo=timezone.utc),
+                    "limit": 10,
+                    "offset": 20,
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_ai_request_logs(
+        self, m_request, incoming_data, request_params, base_absolut_url
+    ):
+        m_request.return_value = "response"
+
+        user_id = 1
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_ai_request_logs(user_id, **incoming_data) == "response"
+
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_ai_request_logs_path(user_id),
+            params=request_params,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -2592,6 +2678,89 @@ class TestEnterpriseAIResources:
         m_request.assert_called_once_with(
             method="get",
             path=f"ai/reports/{ai_report_id}/download",
+        )
+
+    def test_get_ai_request_logs_path(self, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_request_logs_path() == "ai/request-logs"
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_params",
+        (
+            (
+                {},
+                {
+                    "requestId": None,
+                    "projectId": None,
+                    "userId": None,
+                    "aiProviderId": None,
+                    "model": None,
+                    "sourceAction": None,
+                    "promptAction": None,
+                    "statuses": None,
+                    "systemCredentials": None,
+                    "isAutoTriggered": None,
+                    "tokenName": None,
+                    "oauthClientId": None,
+                    "createdAfter": None,
+                    "createdBefore": None,
+                    "limit": 25,
+                    "offset": 0,
+                },
+            ),
+            (
+                {
+                    "request_id": "9d3b1c4e-2f3a-4b5c-8d6e-7f8a9b0c1d2e",
+                    "project_id": 8,
+                    "request_user_id": 42,
+                    "ai_provider_id": 3,
+                    "model": "gpt-5.6-sol",
+                    "source_action": AiRequestLogSourceAction.AI_GATEWAY,
+                    "prompt_action": "pre_translate",
+                    "statuses": [AiRequestLogStatus.PENDING, AiRequestLogStatus.SUCCESS],
+                    "system_credentials": True,
+                    "is_auto_triggered": False,
+                    "token_name": "CI token",
+                    "oauth_client_id": "gpbccUFxAKZDrLm5Nq8t",
+                    "created_after": datetime(2026, 1, 1, tzinfo=timezone.utc),
+                    "created_before": datetime(2026, 1, 2, tzinfo=timezone.utc),
+                    "limit": 10,
+                    "offset": 20,
+                },
+                {
+                    "requestId": "9d3b1c4e-2f3a-4b5c-8d6e-7f8a9b0c1d2e",
+                    "projectId": 8,
+                    "userId": 42,
+                    "aiProviderId": 3,
+                    "model": "gpt-5.6-sol",
+                    "sourceAction": AiRequestLogSourceAction.AI_GATEWAY,
+                    "promptAction": "pre_translate",
+                    "statuses": "pending,success",
+                    "systemCredentials": True,
+                    "isAutoTriggered": False,
+                    "tokenName": "CI token",
+                    "oauthClientId": "gpbccUFxAKZDrLm5Nq8t",
+                    "createdAfter": datetime(2026, 1, 1, tzinfo=timezone.utc),
+                    "createdBefore": datetime(2026, 1, 2, tzinfo=timezone.utc),
+                    "limit": 10,
+                    "offset": 20,
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_ai_request_logs(
+        self, m_request, incoming_data, request_params, base_absolut_url
+    ):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_ai_request_logs(**incoming_data) == "response"
+
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_ai_request_logs_path(),
+            params=request_params,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
