@@ -1,10 +1,14 @@
-from typing import Optional, Iterable
+from typing import Iterable, Optional
+
 from crowdin_api.parser import dumps
 from crowdin_api.api_resources.application.types import (
+    AddApplicationConsentRequest,
+    ApplicationConsentPatchRequest,
     ApplicationPermissions,
     ApplicationInstallationPatchRequest,
 )
 from crowdin_api.api_resources.abstract.resources import BaseResource
+from crowdin_api.sorting import Sorting
 
 
 class ApplicationResource(BaseResource):
@@ -100,6 +104,86 @@ class ApplicationResource(BaseResource):
             method="patch",
             path=self.get_application_installations_path(identifier=identifier),
             request_data=data,
+        )
+
+    def get_application_consents_path(self, consent_id: Optional[int] = None):
+        if consent_id is not None:
+            return f"applications/consents/{consent_id}"
+        return "applications/consents"
+
+    def list_application_consents(
+        self,
+        identifier: Optional[str] = None,
+        order_by: Optional[Sorting] = None,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+    ):
+        """
+        List Application Consents
+
+        Available for Crowdin.com only (not supported in Crowdin Enterprise).
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.applications.consents.getMany
+        """
+        params = {
+            "identifier": identifier,
+            "orderBy": order_by,
+        }
+        params.update(self.get_page_params(limit=limit, offset=offset))
+
+        return self._get_entire_data(
+            method="get",
+            path=self.get_application_consents_path(),
+            params=params,
+        )
+
+    def add_application_consent(self, request_data: AddApplicationConsentRequest):
+        """
+        Add Application Consent
+
+        Available for Crowdin.com only (not supported in Crowdin Enterprise).
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.applications.consents.post
+        """
+        return self.requester.request(
+            method="post",
+            path=self.get_application_consents_path(),
+            request_data=request_data,
+        )
+
+    def edit_application_consent(
+        self,
+        consent_id: int,
+        request_data: Iterable[ApplicationConsentPatchRequest],
+    ):
+        """
+        Edit Application Consent
+
+        Available for Crowdin.com only (not supported in Crowdin Enterprise).
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.applications.consents.patch
+        """
+        return self.requester.request(
+            method="patch",
+            path=self.get_application_consents_path(consent_id=consent_id),
+            request_data=request_data,
+        )
+
+    def delete_application_consent(self, consent_id: int):
+        """
+        Delete Application Consent
+
+        Available for Crowdin.com only (not supported in Crowdin Enterprise).
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.applications.consents.delete
+        """
+        return self.requester.request(
+            method="delete",
+            path=self.get_application_consents_path(consent_id=consent_id),
         )
 
     def get_application_data(self, applicationIdentifier: str, path: str):
