@@ -2,16 +2,17 @@ from typing import Dict, Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.glossaries.enums import (
+    TermGender,
     TermPartOfSpeech,
     TermStatus,
     TermType,
-    TermGender,
 )
 from crowdin_api.api_resources.glossaries.types import (
     GlossaryPatchRequest,
-    TermPatchRequest,
-    LanguagesDetails,
     GlossarySchemaRequest,
+    LanguagesDetails,
+    OrganizationConcordanceSearchRequest,
+    TermPatchRequest,
 )
 from crowdin_api.sorting import Sorting
 
@@ -229,6 +230,23 @@ class GlossariesResource(BaseResource):
             method="post",
             path=f"projects/{projectId}/glossaries/concordance",
             request_data=data,
+        )
+
+    def organization_concordance_search(self, request_data: OrganizationConcordanceSearchRequest):
+        """
+        Concordance search in organization glossaries.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.glossaries.concordance.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.glossaries.concordance.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path="glossaries/concordance",
+            request_data=request_data,
         )
 
     # Terms

@@ -1,16 +1,16 @@
-from typing import Any, Optional, Iterable
+from typing import Any, Iterable, Optional
 
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.glossaries.enums import (
+    GlossaryExportFields,
+    GlossaryExportGender,
+    GlossaryExportPartOfSpeech,
+    GlossaryExportStatus,
+    GlossaryExportTermType,
+    GlossaryExportType,
+    GlossaryFormat,
     GlossaryPatchPath,
     TermPatchPath,
-    GlossaryFormat,
-    GlossaryExportFields,
-    GlossaryExportType,
-    GlossaryExportStatus,
-    GlossaryExportPartOfSpeech,
-    GlossaryExportTermType,
-    GlossaryExportGender,
 )
 from crowdin_api.typing import TypedDict
 
@@ -38,6 +38,13 @@ class GlossarySchemaRequest(TypedDict):
     type: Optional[GlossaryExportTermType]
     gender: Optional[GlossaryExportGender]
     authorId: Optional[int]
+
+
+class OrganizationConcordanceSearchRequest(TypedDict):
+    sourceLanguageId: str
+    targetLanguageId: str
+    expressions: Iterable[str]
+    userId: Optional[int]
 
 
 class TermPatchRequest(TypedDict):

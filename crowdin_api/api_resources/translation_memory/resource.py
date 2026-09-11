@@ -3,14 +3,15 @@ from typing import Dict, Iterable, Optional, Union
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.enums import ExportFormat
 from crowdin_api.api_resources.translation_memory.types import (
+    OrganizationConcordanceSearchRequest,
     TranslationMemoryPatchRequest,
     TranslationMemorySegmentBatchOperationAdd,
     TranslationMemorySegmentBatchOperationRemove,
     TranslationMemorySegmentBatchOperationReplace,
     TranslationMemorySegmentRecord,
     TranslationMemorySegmentRecordOperationAdd,
-    TranslationMemorySegmentRecordOperationReplace,
     TranslationMemorySegmentRecordOperationRemove,
+    TranslationMemorySegmentRecordOperationReplace,
 )
 from crowdin_api.sorting import Sorting
 
@@ -318,6 +319,23 @@ class TranslationMemoryResource(BaseResource):
             method="post",
             path=f"projects/{projectId}/tms/concordance",
             request_data=data,
+        )
+
+    def organization_concordance_search(self, request_data: OrganizationConcordanceSearchRequest):
+        """
+        Concordance search in organization TMs.
+
+        Link to documentation:
+        https://developer.crowdin.com/api/v2/#operation/api.tms.concordance.post
+
+        Link to documentation for enterprise:
+        https://developer.crowdin.com/enterprise/api/v2/#operation/api.tms.concordance.post
+        """
+
+        return self.requester.request(
+            method="post",
+            path="tms/concordance",
+            request_data=request_data,
         )
 
     # Import
