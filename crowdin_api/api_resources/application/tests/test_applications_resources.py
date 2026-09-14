@@ -1,11 +1,17 @@
 from unittest import mock
+
 import pytest
+from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.application.resource import ApplicationResource
 from crowdin_api.api_resources.application.enums import (
+    ApplicationConsentPatchPath,
+    ApplicationConsentStatus,
+    ListApplicationConsentsOrderBy,
     UserPermissions,
     ProjectPermissions,
 )
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
 
 class TestApplicationResource:
@@ -156,6 +162,137 @@ class TestApplicationResource:
             method="patch",
             path=resource.get_application_installations_path(identifier=identifier),
             request_data=data,
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, path",
+        (
+            ({}, "applications/consents"),
+            ({"consent_id": 12}, "applications/consents/12"),
+        ),
+    )
+    def test_get_application_consents_path(self, in_params, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_application_consents_path(**in_params) == path
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            (
+                {},
+                {
+                    "identifier": None,
+                    "orderBy": None,
+                    "limit": 25,
+                    "offset": 0,
+                },
+            ),
+            (
+                {
+                    "identifier": "example-application",
+                    "order_by": Sorting(
+                        [
+                            SortingRule(
+                                ListApplicationConsentsOrderBy.CREATED_AT,
+                                SortingOrder.DESC,
+                            )
+                        ]
+                    ),
+                    "limit": 10,
+                    "offset": 2,
+                },
+                {
+                    "identifier": "example-application",
+                    "orderBy": Sorting(
+                        [
+                            SortingRule(
+                                ListApplicationConsentsOrderBy.CREATED_AT,
+                                SortingOrder.DESC,
+                            )
+                        ]
+                    ),
+                    "limit": 10,
+                    "offset": 2,
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_application_consents(
+        self, m_request, in_params, request_params, base_absolut_url
+    ):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_application_consents(**in_params) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_application_consents_path(),
+            params=request_params,
+        )
+
+    @pytest.mark.parametrize(
+        "request_data",
+        (
+            {
+                "identifier": "example-application",
+                "installedBy": 12,
+                "status": ApplicationConsentStatus.GRANTED,
+                "scopes": ["project", "tm"],
+            },
+            {
+                "identifier": "example-application",
+                "installedBy": 12,
+                "status": ApplicationConsentStatus.DENIED,
+                "scopes": None,
+            },
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_application_consent(self, m_request, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_application_consent(request_data) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_application_consents_path(),
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_application_consent(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+        request_data = [
+            {
+                "op": PatchOperation.REPLACE,
+                "path": ApplicationConsentPatchPath.STATUS,
+                "value": ApplicationConsentStatus.DENIED,
+            },
+            {
+                "op": PatchOperation.REPLACE,
+                "path": ApplicationConsentPatchPath.SCOPES,
+                "value": ["project"],
+            },
+        ]
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_application_consent(12, request_data) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path=resource.get_application_consents_path(consent_id=12),
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_application_consent(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_application_consent(12) == "response"
+        m_request.assert_called_once_with(
+            method="delete",
+            path=resource.get_application_consents_path(consent_id=12),
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
