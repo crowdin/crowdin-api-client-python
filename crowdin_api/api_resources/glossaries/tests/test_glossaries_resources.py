@@ -3,23 +3,23 @@ from unittest import mock
 import pytest
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.glossaries.enums import (
+    GlossaryExportFields,
+    GlossaryExportGender,
+    GlossaryExportPartOfSpeech,
+    GlossaryExportStatus,
+    GlossaryExportTermType,
+    GlossaryExportType,
+    GlossaryFormat,
     GlossaryPatchPath,
     ListConceptsOrderBy,
+    ListGlossariesCrowdinOrderBy,
     ListGlossariesEnterpriseOrderBy,
     ListTermsOrderBy,
+    TermGender,
     TermPartOfSpeech,
     TermPatchPath,
     TermStatus,
     TermType,
-    TermGender,
-    GlossaryFormat,
-    GlossaryExportFields,
-    GlossaryExportType,
-    GlossaryExportStatus,
-    GlossaryExportPartOfSpeech,
-    GlossaryExportTermType,
-    GlossaryExportGender,
-    ListGlossariesCrowdinOrderBy,
 )
 from crowdin_api.api_resources.glossaries.resource import GlossariesResource
 from crowdin_api.requester import APIRequester
@@ -351,6 +351,34 @@ class TestGlossariesResource:
         m_request.assert_called_once_with(
             method="post",
             path="projects/1/glossaries/concordance",
+            request_data=data,
+        )
+
+    @pytest.mark.parametrize(
+        "data",
+        (
+            {
+                "sourceLanguageId": "en",
+                "targetLanguageId": "de",
+                "expressions": ["Welcome!"],
+            },
+            {
+                "sourceLanguageId": "en",
+                "targetLanguageId": "de",
+                "expressions": ["Welcome!"],
+                "userId": 12,
+            },
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_organization_concordance_search(self, m_request, data, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.organization_concordance_search(request_data=data) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path="glossaries/concordance",
             request_data=data,
         )
 

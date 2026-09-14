@@ -1,4 +1,4 @@
-from typing import Any, Iterable, Union
+from typing import Any, Iterable, Optional, Union
 
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.translation_memory.enums import (
@@ -15,6 +15,15 @@ class TranslationMemoryPatchRequest(TypedDict):
     value: Any
     op: PatchOperation
     path: TranslationMemoryPatchPath
+
+
+class OrganizationConcordanceSearchRequest(TypedDict):
+    sourceLanguageId: str
+    targetLanguageId: str
+    autoSubstitution: bool
+    minRelevant: int
+    expressions: Iterable[str]
+    userId: Optional[int]
 
 
 class TranslationMemorySegmentRecord(TypedDict):

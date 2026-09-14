@@ -11,9 +11,7 @@ from crowdin_api.api_resources.translation_memory.enums import (
     TranslationMemorySegmentRecordOperation,
     TranslationMemorySegmentRecordOperationPath,
 )
-from crowdin_api.api_resources.translation_memory.resource import (
-    TranslationMemoryResource,
-)
+from crowdin_api.api_resources.translation_memory.resource import TranslationMemoryResource
 from crowdin_api.requester import APIRequester
 from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
 
@@ -420,6 +418,38 @@ class TestTranslationMemoryResource:
             method="post",
             path="projects/1/tms/concordance",
             request_data=data
+        )
+
+    @pytest.mark.parametrize(
+        "data",
+        (
+            {
+                "sourceLanguageId": "en",
+                "targetLanguageId": "de",
+                "autoSubstitution": True,
+                "minRelevant": 60,
+                "expressions": ["Welcome!"],
+            },
+            {
+                "sourceLanguageId": "en",
+                "targetLanguageId": "de",
+                "autoSubstitution": True,
+                "minRelevant": 60,
+                "expressions": ["Welcome!"],
+                "userId": 12,
+            },
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_organization_concordance_search(self, m_request, data, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.organization_concordance_search(request_data=data) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path="tms/concordance",
+            request_data=data,
         )
 
     # Import
