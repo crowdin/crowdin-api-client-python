@@ -6,6 +6,12 @@ from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.projects.enums import (
     HasManagerAccess,
     ListProjectsOrderBy,
+    ProjectGlossaryAccessOption,
+    ProjectTagsDetection,
+    ProjectTmContextType,
+    StringsExporterSettingsPatchPath,
+    TmPreTranslateAutoApproveOption,
+    TmPreTranslateMinimumMatchRatio,
     ProjectLanguageAccessPolicy,
     ProjectPatchPath,
     ProjectTranslateDuplicates,
@@ -20,6 +26,134 @@ from crowdin_api.api_resources.projects.types import (
 )
 from crowdin_api.requester import APIRequester
 from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
+
+FILE_BASED_NEW_FIELDS = {
+    "tagsDetection": None,
+    "taskBasedAccessControl": None,
+    "showTmSuggestionsDialects": None,
+    "glossaryAccessOption": None,
+    "tmPreTranslate": None,
+    "mtPreTranslate": None,
+    "aiPreTranslate": None,
+    "preTranslationAiPromptId": None,
+    "editorSuggestionAiPromptId": None,
+    "qaCheckActionAiPromptId": None,
+    "contextReviewAiPromptId": None,
+    "savingsReportSettingsTemplateId": None,
+    "assignedStyleGuides": None,
+    "inContext": None,
+    "groupId": None,
+    "templateId": None,
+    "steps": None,
+    "vendorId": None,
+    "mtEngineId": None,
+    "taskReviewerIds": None,
+    "delayedWorkflowStart": None,
+    "exportWithMinApprovalsCount": None,
+    "exportStringsThatPassedWorkflow": None,
+    "qaApprovalsCount": None,
+    "customQaCheckIds": None,
+    "externalQaCheckIds": None,
+    "fields": None,
+    "alignmentActionAiPromptId": None,
+    "publicDownloads": None,
+    "hiddenStringsProofreadersAccess": None,
+    "useGlobalTm": None,
+    "qaCheckIsActive": None,
+    "qaCheckCategories": None,
+    "qaChecksIgnorableCategories": None,
+    "languageMapping": None,
+    "glossaryAccess": None,
+    "inContextProcessHiddenStrings": None,
+    "inContextPseudoLanguageId": None,
+    "tmContextType": None,
+}
+
+STRINGS_BASED_NEW_FIELDS = {
+    "tagsDetection": None,
+    "taskBasedAccessControl": None,
+    "showTmSuggestionsDialects": None,
+    "glossaryAccessOption": None,
+    "tmPreTranslate": None,
+    "mtPreTranslate": None,
+    "aiPreTranslate": None,
+    "preTranslationAiPromptId": None,
+    "editorSuggestionAiPromptId": None,
+    "qaCheckActionAiPromptId": None,
+    "contextReviewAiPromptId": None,
+    "savingsReportSettingsTemplateId": None,
+    "assignedStyleGuides": None,
+    "inContext": None,
+    "groupId": None,
+    "templateId": None,
+    "steps": None,
+    "vendorId": None,
+    "mtEngineId": None,
+    "taskReviewerIds": None,
+    "delayedWorkflowStart": None,
+    "exportWithMinApprovalsCount": None,
+    "exportStringsThatPassedWorkflow": None,
+    "qaApprovalsCount": None,
+    "customQaCheckIds": None,
+    "externalQaCheckIds": None,
+    "fields": None,
+    "alignmentActionAiPromptId": None,
+    "normalizePlaceholder": None,
+}
+
+ADD_FILE_BASED_PROJECT_BASE_FIELDS = (
+    "identifier",
+    "type",
+    "normalizePlaceholder",
+    "saveMetaInfoInSource",
+    "notificationSettings",
+    "targetLanguageIds",
+    "visibility",
+    "languageAccessPolicy",
+    "cname",
+    "description",
+    "skipUntranslatedStrings",
+    "skipUntranslatedFiles",
+    "exportApprovedOnly",
+    "translateDuplicates",
+    "isMtAllowed",
+    "autoSubstitution",
+    "autoTranslateDialects",
+    "defaultTmId",
+    "defaultGlossaryId",
+    "tmApprovedSuggestionsOnly",
+)
+
+ADD_STRINGS_BASED_PROJECT_BASE_FIELDS = (
+    "identifier",
+    "type",
+    "targetLanguageIds",
+    "visibility",
+    "languageAccessPolicy",
+    "cname",
+    "description",
+    "skipUntranslatedStrings",
+    "skipUntranslatedFiles",
+    "exportApprovedOnly",
+    "translateDuplicates",
+    "isMtAllowed",
+    "autoSubstitution",
+    "autoTranslateDialects",
+    "publicDownloads",
+    "hiddenStringsProofreadersAccess",
+    "useGlobalTm",
+    "inContextProcessHiddenStrings",
+    "inContextPseudoLanguageId",
+    "qaCheckIsActive",
+    "qaCheckCategories",
+    "qaChecksIgnorableCategories",
+    "languageMapping",
+    "glossaryAccess",
+    "notificationSettings",
+    "defaultTmId",
+    "defaultGlossaryId",
+    "tmApprovedSuggestionsOnly",
+)
 
 
 class TestProjectsResource:
@@ -60,7 +194,8 @@ class TestProjectsResource:
                     "userId": 1,
                     "groupId": 1,
                     "hasManagerAccess": HasManagerAccess.TRUE,
-                    "type": ProjectType.STRING_BASED
+                    "type": ProjectType.STRING_BASED,
+                    "filter": "name",
                 },
                 {
                     "orderBy": Sorting(
@@ -71,7 +206,8 @@ class TestProjectsResource:
                     "userId": 1,
                     "groupId": 1,
                     "hasManagerAccess": HasManagerAccess.TRUE,
-                    "type": 1
+                    "type": 1,
+                    "filter": "name",
                 },
             ),
             (
@@ -83,7 +219,8 @@ class TestProjectsResource:
                     "userId": None,
                     "groupId": None,
                     "hasManagerAccess": None,
-                    "type": None
+                    "type": None,
+                    "filter": None,
                 },
             ),
         ),
@@ -121,6 +258,7 @@ class TestProjectsResource:
                     "sourceLanguageId": "ua",
                 },
                 {
+                    **FILE_BASED_NEW_FIELDS,
                     "name": "name",
                     "sourceLanguageId": "ua",
                     "identifier": None,
@@ -175,6 +313,7 @@ class TestProjectsResource:
                     "tmApprovedSuggestionsOnly": True,
                 },
                 {
+                    **FILE_BASED_NEW_FIELDS,
                     "name": "name",
                     "sourceLanguageId": "ua",
                     "identifier": "identifier",
@@ -222,6 +361,7 @@ class TestProjectsResource:
                     "sourceLanguageId": "ua",
                 },
                 {
+                    **STRINGS_BASED_NEW_FIELDS,
                     "name": "name",
                     "sourceLanguageId": "ua",
                     "identifier": None,
@@ -279,36 +419,36 @@ class TestProjectsResource:
                     "inContextPseudoLanguageId": "ua",
                     "qaCheckIsActive": True,
                     "qaCheckCategories": QACheckCategories(
-                        EMPTY=True,
-                        SIZE=True,
-                        TAGS=True,
-                        SPACES=True,
-                        VARIABLES=True,
-                        PUNCTUATION=True,
-                        SYMBOLREGISTER=True,
-                        SPECIALSYMBOLS=True,
-                        WRONGTRANSLATION=True,
-                        SPELLCHECK=True,
-                        ICU=True,
-                        TERMS=True,
-                        DUPLICATE=True,
+                        empty=True,
+                        size=True,
+                        tags=True,
+                        spaces=True,
+                        variables=True,
+                        punctuation=True,
+                        symbolRegister=True,
+                        specialSymbols=True,
+                        wrongTranslation=True,
+                        spellcheck=True,
+                        icu=True,
+                        terms=True,
+                        duplicate=True,
                     ),
                     "qaChecksIgnorableCategories": QAChecksIgnorableCategories(
-                        EMPTY=True,
-                        SIZE=True,
-                        TAGS=True,
-                        SPACES=True,
-                        VARIABLES=True,
-                        PUNCTUATION=True,
-                        SYMBOLREGISTER=True,
-                        SPECIALSYMBOLS=True,
-                        WRONGTRANSLATION=True,
-                        SPELLCHECK=True,
-                        ICU=True,
-                        TERMS=True,
-                        DUPLICATE=True,
-                        FTL=True,
-                        ANDROID=True
+                        empty=True,
+                        size=True,
+                        tags=True,
+                        spaces=True,
+                        variables=True,
+                        punctuation=True,
+                        symbolRegister=True,
+                        specialSymbols=True,
+                        wrongTranslation=True,
+                        spellcheck=True,
+                        icu=True,
+                        terms=True,
+                        duplicate=True,
+                        ftl=True,
+                        android=True
                     ),
                     "languageMapping": {},
                     "glossaryAccess": True,
@@ -322,6 +462,7 @@ class TestProjectsResource:
                     "tmApprovedSuggestionsOnly": True,
                 },
                 {
+                    **STRINGS_BASED_NEW_FIELDS,
                     "name": "name",
                     "sourceLanguageId": "ua",
                     "identifier": "identifier",
@@ -345,36 +486,36 @@ class TestProjectsResource:
                     "inContextPseudoLanguageId": "ua",
                     "qaCheckIsActive": True,
                     "qaCheckCategories": QACheckCategories(
-                        EMPTY=True,
-                        SIZE=True,
-                        TAGS=True,
-                        SPACES=True,
-                        VARIABLES=True,
-                        PUNCTUATION=True,
-                        SYMBOLREGISTER=True,
-                        SPECIALSYMBOLS=True,
-                        WRONGTRANSLATION=True,
-                        SPELLCHECK=True,
-                        ICU=True,
-                        TERMS=True,
-                        DUPLICATE=True,
+                        empty=True,
+                        size=True,
+                        tags=True,
+                        spaces=True,
+                        variables=True,
+                        punctuation=True,
+                        symbolRegister=True,
+                        specialSymbols=True,
+                        wrongTranslation=True,
+                        spellcheck=True,
+                        icu=True,
+                        terms=True,
+                        duplicate=True,
                     ),
                     "qaChecksIgnorableCategories": QAChecksIgnorableCategories(
-                        EMPTY=True,
-                        SIZE=True,
-                        TAGS=True,
-                        SPACES=True,
-                        VARIABLES=True,
-                        PUNCTUATION=True,
-                        SYMBOLREGISTER=True,
-                        SPECIALSYMBOLS=True,
-                        WRONGTRANSLATION=True,
-                        SPELLCHECK=True,
-                        ICU=True,
-                        TERMS=True,
-                        DUPLICATE=True,
-                        FTL=True,
-                        ANDROID=True,
+                        empty=True,
+                        size=True,
+                        tags=True,
+                        spaces=True,
+                        variables=True,
+                        punctuation=True,
+                        symbolRegister=True,
+                        specialSymbols=True,
+                        wrongTranslation=True,
+                        spellcheck=True,
+                        icu=True,
+                        terms=True,
+                        duplicate=True,
+                        ftl=True,
+                        android=True,
                     ),
                     "languageMapping": {},
                     "glossaryAccess": True,
@@ -399,6 +540,136 @@ class TestProjectsResource:
         resource = self.get_resource(base_absolut_url)
         assert resource.add_strings_based_project(**in_params) == "response"
         m_add_project.assert_called_once_with(request_data=request_data)
+
+    @mock.patch("crowdin_api.api_resources.projects.resource.ProjectsResource.add_project")
+    def test_add_file_based_project_new_fields(self, m_add_project, base_absolut_url):
+        m_add_project.return_value = "response"
+
+        new_fields = {
+            "tagsDetection": ProjectTagsDetection.SKIP_TAGS,
+            "taskBasedAccessControl": True,
+            "publicDownloads": True,
+            "hiddenStringsProofreadersAccess": False,
+            "useGlobalTm": True,
+            "showTmSuggestionsDialects": True,
+            "qaCheckIsActive": True,
+            "qaCheckCategories": QACheckCategories(empty=True, unifiedPlaceholders=False),
+            "qaChecksIgnorableCategories": QAChecksIgnorableCategories(numbers=True),
+            "languageMapping": {"uk": {"locale": "uk-UA"}},
+            "glossaryAccessOption": ProjectGlossaryAccessOption.MANAGE_DRAFTS,
+            "tmPreTranslate": {
+                "enabled": True,
+                "autoApproveOption": TmPreTranslateAutoApproveOption.ALL,
+                "minimumMatchRatio": TmPreTranslateMinimumMatchRatio.PERFECT,
+            },
+            "mtPreTranslate": {"enabled": True, "mts": [{"mtId": 1, "languageIds": ["uk"]}]},
+            "aiPreTranslate": {"enabled": True, "aiPrompts": [{"aiPromptId": 2, "languageIds": ["uk"]}]},
+            "editorSuggestionAiPromptId": 3,
+            "qaCheckActionAiPromptId": 4,
+            "contextReviewAiPromptId": 5,
+            "savingsReportSettingsTemplateId": 6,
+            "assignedStyleGuides": [7, 8],
+            "inContext": True,
+            "inContextProcessHiddenStrings": True,
+            "inContextPseudoLanguageId": "ach",
+            "tmContextType": ProjectTmContextType.PREV_AND_NEXT_SEGMENT,
+            "groupId": 9,
+            "templateId": 10,
+            "steps": [{"id": 1, "languages": ["uk"], "config": {"assignees": {"uk": [1]}}}],
+            "vendorId": 11,
+            "mtEngineId": 12,
+            "taskReviewerIds": [13],
+            "delayedWorkflowStart": True,
+            "exportWithMinApprovalsCount": 1,
+            "exportStringsThatPassedWorkflow": False,
+            "qaApprovalsCount": 2,
+            "customQaCheckIds": [14],
+            "externalQaCheckIds": [15],
+            "fields": {"some-field": "value"},
+            "alignmentActionAiPromptId": 16,
+        }
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_file_based_project(
+            name="name", sourceLanguageId="en", **new_fields
+        ) == "response"
+
+        expected = {key: None for key in ADD_FILE_BASED_PROJECT_BASE_FIELDS}
+        expected.update(FILE_BASED_NEW_FIELDS)
+        expected.update({"name": "name", "sourceLanguageId": "en"})
+        expected.update(new_fields)
+        m_add_project.assert_called_once_with(request_data=expected)
+
+    @mock.patch("crowdin_api.api_resources.projects.resource.ProjectsResource.add_project")
+    def test_add_strings_based_project_new_fields(self, m_add_project, base_absolut_url):
+        m_add_project.return_value = "response"
+
+        new_fields = {
+            "tagsDetection": ProjectTagsDetection.AUTO,
+            "taskBasedAccessControl": True,
+            "showTmSuggestionsDialects": False,
+            "normalizePlaceholder": True,
+            "glossaryAccessOption": ProjectGlossaryAccessOption.READ_ONLY,
+            "tmPreTranslate": {"enabled": False},
+            "mtPreTranslate": {"enabled": False},
+            "aiPreTranslate": {"enabled": False},
+            "editorSuggestionAiPromptId": 1,
+            "qaCheckActionAiPromptId": 2,
+            "contextReviewAiPromptId": 3,
+            "savingsReportSettingsTemplateId": 4,
+            "assignedStyleGuides": [5],
+            "inContext": False,
+            "groupId": 6,
+            "templateId": 7,
+            "steps": [{"id": 1, "mtId": 2}],
+            "vendorId": 8,
+            "mtEngineId": 9,
+            "taskReviewerIds": [10],
+            "delayedWorkflowStart": False,
+            "exportWithMinApprovalsCount": 0,
+            "exportStringsThatPassedWorkflow": True,
+            "qaApprovalsCount": 1,
+            "customQaCheckIds": [11],
+            "externalQaCheckIds": [12],
+            "fields": {"some-field": 1},
+            "alignmentActionAiPromptId": 13,
+        }
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_strings_based_project(
+            name="name", sourceLanguageId="en", **new_fields
+        ) == "response"
+
+        expected = {key: None for key in ADD_STRINGS_BASED_PROJECT_BASE_FIELDS}
+        expected.update(STRINGS_BASED_NEW_FIELDS)
+        expected.update({"name": "name", "sourceLanguageId": "en"})
+        expected.update(new_fields)
+        m_add_project.assert_called_once_with(request_data=expected)
+
+    @pytest.mark.parametrize(
+        "method_name, deprecated_params",
+        (
+            ("add_file_based_project", {"glossaryAccess": True}),
+            ("add_file_based_project", {"preTranslationAiPromptId": 1}),
+            ("add_strings_based_project", {"glossaryAccess": False}),
+            ("add_strings_based_project", {"preTranslationAiPromptId": 1}),
+        ),
+    )
+    @mock.patch("crowdin_api.api_resources.projects.resource.ProjectsResource.add_project")
+    def test_add_project_deprecated_params(
+        self, m_add_project, method_name, deprecated_params, base_absolut_url
+    ):
+        m_add_project.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        with pytest.warns(DeprecationWarning):
+            assert getattr(resource, method_name)(
+                name="name", sourceLanguageId="en", **deprecated_params
+            ) == "response"
+
+        request_data = m_add_project.call_args.kwargs["request_data"]
+        for key, value in deprecated_params.items():
+            assert request_data[key] == value
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_get_project(self, m_request, base_absolut_url):
@@ -699,53 +970,59 @@ class TestProjectsResource:
                     "format": "android",
                     "settings": {
                         "convertPlaceholders": True,
+                        "useCdataForStringsWithTags": True,
                     },
                 },
-                {
-                    "format": "android",
-                    "settings": {
-                        "convertPlaceholders": True,
+                [
+                    {"op": "replace", "path": "/format", "value": "android"},
+                    {
+                        "op": "replace",
+                        "path": "/settings",
+                        "value": {
+                            "convertPlaceholders": True,
+                            "useCdataForStringsWithTags": True,
+                        },
                     },
-                },
+                ],
+            ),
+            (
+                {"format": "macosx"},
+                [{"op": "replace", "path": "/format", "value": "macosx"}],
+            ),
+            (
+                {"settings": {"copySourceToEmptyTarget": True}},
+                [
+                    {
+                        "op": "replace",
+                        "path": "/settings",
+                        "value": {"copySourceToEmptyTarget": True},
+                    }
+                ],
             ),
             (
                 {
-                    "format": "macosx",
-                    "settings": {
-                        "convertPlaceholders": True,
-                    },
+                    "data": [
+                        {
+                            "op": PatchOperation.REPLACE,
+                            "path": StringsExporterSettingsPatchPath.SETTINGS,
+                            "value": {"exportContext": True},
+                        }
+                    ]
                 },
-                {
-                    "format": "macosx",
-                    "settings": {
-                        "convertPlaceholders": True,
-                    },
-                },
-            ),
-            (
-                {
-                    "format": "xliff",
-                    "settings": {
-                        "languagePaitMapping": {
-                            "uk": "es",
-                            "de": "en",
-                        },
-                    },
-                },
-                {
-                    "format": "xliff",
-                    "settings": {
-                        "languagePaitMapping": {
-                            "uk": "es",
-                            "de": "en",
-                        },
-                    },
-                },
+                [
+                    {
+                        "op": PatchOperation.REPLACE,
+                        "path": StringsExporterSettingsPatchPath.SETTINGS,
+                        "value": {"exportContext": True},
+                    }
+                ],
             ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_edit_project_strings_exporter_settings(self, m_request, in_params, request_data, base_absolut_url):
+    def test_edit_project_strings_exporter_settings(
+        self, m_request, in_params, request_data, base_absolut_url
+    ):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
