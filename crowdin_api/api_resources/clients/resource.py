@@ -8,7 +8,7 @@ class ClientsResource(BaseResource):
     Resource for Clients.
 
     Link to documentation for enterprise:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Clients
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Clients
     """
 
     def list_clients(

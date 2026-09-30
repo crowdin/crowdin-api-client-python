@@ -38,7 +38,7 @@ class AIResource(BaseResource):
     Resource for AI.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/AI
+    https://support.crowdin.com/developer/api/v2/#tag/AI
     """
 
     def get_ai_path(self, userId: int, aiPromptId: Optional[int] = None):
@@ -63,7 +63,7 @@ class AIResource(BaseResource):
         List AI Prompts
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.ai.prompts.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.ai.prompts.getMany
         """
         params = {"projectId": projectId, "action": action}
         params.update(self.get_page_params(limit=limit, offset=offset))
@@ -77,7 +77,7 @@ class AIResource(BaseResource):
         Add AI Prompt
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.prompts.post
         """
 
         return self.requester.request(
@@ -91,7 +91,7 @@ class AIResource(BaseResource):
         Get AI Prompt
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.prompts.get
         """
 
         return self.requester.request(
@@ -104,7 +104,7 @@ class AIResource(BaseResource):
         Delete AI Prompt
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.prompts.delete
         """
 
         return self.requester.request(
@@ -119,7 +119,7 @@ class AIResource(BaseResource):
         Edit AI Prompt
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.prompts.patch
         """
 
         return self.requester.request(
@@ -138,7 +138,7 @@ class AIResource(BaseResource):
         List AI Providers
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.ai.providers.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.ai.providers.getMany
         """
         params = self.get_page_params(limit=limit, offset=offset)
         return self.requester.request(
@@ -150,7 +150,7 @@ class AIResource(BaseResource):
         Add AI Provider
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.post
         """
         return self.requester.request(
             method="post",
@@ -163,7 +163,7 @@ class AIResource(BaseResource):
         Get AI Provider
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.get
         """
         return self.requester.request(
             method="get",
@@ -175,7 +175,7 @@ class AIResource(BaseResource):
         Delete AI Provider
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.delete
         """
         return self.requester.request(
             method="delete",
@@ -189,7 +189,7 @@ class AIResource(BaseResource):
         Edit AI Provider
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.patch
         """
         return self.requester.request(
             method="patch",
@@ -202,7 +202,7 @@ class AIResource(BaseResource):
         List AI Provider Models
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.ai.providers.models.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.ai.providers.models.getMany
         """
         return self.requester.request(
             method="get",
@@ -223,7 +223,7 @@ class AIResource(BaseResource):
         Please refer to the documentation for the specific provider you use to determine the required payload format.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.chat.completions.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.chat.completions.post
         """
         return self.requester.request(
             method="post",
@@ -656,7 +656,7 @@ class AIResource(BaseResource):
         List AI Request Logs
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.ai.requestLogs.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.ai.requestLogs.getMany
         """
 
         params = {
@@ -957,7 +957,7 @@ class EnterpriseAIResource(BaseResource):
     Enterprise Resource for AI.
 
     Link to documentation:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/AI
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI
     """
 
     def get_ai_path(self, aiPromptId: Optional[int] = None):
@@ -981,7 +981,7 @@ class EnterpriseAIResource(BaseResource):
         List AI Prompts
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.getMany
         """
         params = {"projectId": projectId, "action": action}
         params.update(self.get_page_params(limit=limit, offset=offset))
@@ -995,7 +995,7 @@ class EnterpriseAIResource(BaseResource):
         Add AI Prompt
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.post
         """
 
         return self.requester.request(
@@ -1009,7 +1009,7 @@ class EnterpriseAIResource(BaseResource):
         Get AI Prompt
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.get
         """
 
         return self.requester.request(
@@ -1022,7 +1022,7 @@ class EnterpriseAIResource(BaseResource):
         Delete AI Prompt
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.delete
         """
 
         return self.requester.request(
@@ -1037,7 +1037,7 @@ class EnterpriseAIResource(BaseResource):
         Edit AI Prompt
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.patch
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.patch
         """
 
         return self.requester.request(
@@ -1055,7 +1055,7 @@ class EnterpriseAIResource(BaseResource):
         List AI Providers
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.getMany
         """
         params = self.get_page_params(limit=limit, offset=offset)
         return self.requester.request(
@@ -1067,7 +1067,7 @@ class EnterpriseAIResource(BaseResource):
         Add AI Provider
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.post
         """
         return self.requester.request(
             method="post",
@@ -1080,7 +1080,7 @@ class EnterpriseAIResource(BaseResource):
         Get AI Provider
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.get
         """
         return self.requester.request(
             method="get",
@@ -1092,7 +1092,7 @@ class EnterpriseAIResource(BaseResource):
         Delete AI Provider
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.delete
         """
         return self.requester.request(
             method="delete",
@@ -1106,7 +1106,7 @@ class EnterpriseAIResource(BaseResource):
         Edit AI Provider
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.patch
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.patch
         """
         return self.requester.request(
             method="patch",
@@ -1119,7 +1119,7 @@ class EnterpriseAIResource(BaseResource):
         List AI Provider Models
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.ai.providers.models.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.ai.providers.models.getMany
         """
         return self.requester.request(
             method="get",
@@ -1138,7 +1138,7 @@ class EnterpriseAIResource(BaseResource):
         Please refer to the documentation for the specific provider you use to determine the required payload format.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.chat.completions.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.chat.completions.post
         """
         return self.requester.request(
             method="post",
@@ -1550,7 +1550,7 @@ class EnterpriseAIResource(BaseResource):
         List AI Request Logs
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.requestLogs.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.requestLogs.getMany
         """
 
         params = {

@@ -13,7 +13,7 @@ class MachineTranslationEnginesResource(BaseResource):
     Use API to add, update, and delete specific MTE.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Machine-Translation-Engines
+    https://support.crowdin.com/developer/api/v2/#tag/Machine-Translation-Engines
     """
 
     def get_mts_path(self, mtId: Optional[int] = None):
@@ -27,7 +27,7 @@ class MachineTranslationEnginesResource(BaseResource):
         List MTs.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.mts.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.mts.getMany
         """
 
         return self._get_entire_data(
@@ -41,7 +41,7 @@ class MachineTranslationEnginesResource(BaseResource):
         Get MT.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.mts.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.mts.get
         """
 
         return self.requester.request(method="get", path=self.get_mts_path(mtId=mtId))
@@ -58,7 +58,7 @@ class MachineTranslationEnginesResource(BaseResource):
         Create Translate via MT.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.mts.translations.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.mts.translations.post
         """
         return self.requester.request(
             method="post",

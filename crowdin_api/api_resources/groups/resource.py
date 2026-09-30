@@ -16,7 +16,7 @@ class GroupsResource(BaseResource):
     organization if required.
 
     Link to documentation:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Projects-and-Groups
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Projects-and-Groups
     """
 
     # Glossaries
@@ -31,7 +31,7 @@ class GroupsResource(BaseResource):
         Get Group.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.get
         """
 
         return self.requester.request(
@@ -49,7 +49,7 @@ class GroupsResource(BaseResource):
         Add Group.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.post
         """
 
         return self.requester.request(
@@ -73,7 +73,7 @@ class GroupsResource(BaseResource):
         List Groups.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.getMany
         """
 
         params = {"orderBy": orderBy, "parentId": parentId}
@@ -90,7 +90,7 @@ class GroupsResource(BaseResource):
         Edit Group.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.patch
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.patch
         """
 
         return self.requester.request(
@@ -104,7 +104,7 @@ class GroupsResource(BaseResource):
         Delete Group.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.delete
         """
 
         return self.requester.request(

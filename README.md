@@ -15,8 +15,8 @@ Crowdin API is a full-featured RESTful API that helps you to integrate localizat
 <div align="center">
 
 [**`API Client Docs`**](https://crowdin.github.io/crowdin-api-client-python/) &nbsp;|&nbsp;
-[**`Crowdin API`**](https://developer.crowdin.com/api/v2/) &nbsp;|&nbsp;
-[**`Crowdin Enterprise API`**](https://developer.crowdin.com/enterprise/api/v2/)
+[**`Crowdin API`**](https://support.crowdin.com/developer/api/v2/) &nbsp;|&nbsp;
+[**`Crowdin Enterprise API`**](https://support.crowdin.com/developer/enterprise/api/v2/)
 
 [![PyPI](https://img.shields.io/pypi/v/crowdin-api-client?cacheSeconds=3600)](https://pypi.org/project/crowdin-api-client/)
 [![Downloads](https://pepy.tech/badge/crowdin-api-client)](https://pepy.tech/project/crowdin-api-client)
@@ -185,7 +185,7 @@ class FirstCrowdinClient(CrowdinClient):
 
 ### GraphQL API
 
-This library also provides the possibility to use [GraphQL API](https://developer.crowdin.com/graphql-api/):
+This library also provides the possibility to use [GraphQL API](https://support.crowdin.com/developer/graphql-api/):
 
 ```python
 from crowdin_api import CrowdinClient

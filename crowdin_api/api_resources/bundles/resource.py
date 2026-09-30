@@ -9,10 +9,10 @@ class BundlesResource(BaseResource):
     Resource for Bundles.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Bundles
+    https://support.crowdin.com/developer/api/v2/#tag/Bundles
 
     Link to documentation for enterprise:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Bundles
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Bundles
     """
     def get_bundles_path(self, projectId: int, bundleId: Optional[int] = None):
         if bundleId:
@@ -36,10 +36,10 @@ class BundlesResource(BaseResource):
         List Bundles.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.getMany
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.post
         """
 
         params = self.get_page_params(offset=offset, limit=limit)
@@ -68,10 +68,10 @@ class BundlesResource(BaseResource):
         Add Bundles.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -97,10 +97,10 @@ class BundlesResource(BaseResource):
         Get Bundle.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.get
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -115,10 +115,10 @@ class BundlesResource(BaseResource):
         Delete Bundle.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.delete
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -138,10 +138,10 @@ class BundlesResource(BaseResource):
         Edit Bundle.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.patch
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.patch
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -159,10 +159,10 @@ class BundlesResource(BaseResource):
         Download bundle.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.download.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.exports.download.get
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -187,10 +187,10 @@ class BundlesResource(BaseResource):
         Export bundle.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.exports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.exports.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -215,10 +215,10 @@ class BundlesResource(BaseResource):
         Check Bundle Export Status.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.exports.get
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.exports.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -239,10 +239,10 @@ class BundlesResource(BaseResource):
         Get Bundle List Files.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.files.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.files.getMany
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.files.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.files.getMany
         """
 
         params = self.get_page_params(offset=offset, limit=limit)

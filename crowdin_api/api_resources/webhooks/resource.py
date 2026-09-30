@@ -35,7 +35,7 @@ class WebhooksResource(BaseResource):
     Use API to create, modify, and delete specific webhooks.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Webhooks
+    https://support.crowdin.com/developer/api/v2/#tag/Webhooks
     """
 
     def get_webhooks_path(self, projectId: int, webhookId: Optional[int] = None):
@@ -55,7 +55,7 @@ class WebhooksResource(BaseResource):
         List Webhooks.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#tag/Webhooks
+        https://support.crowdin.com/developer/api/v2/#tag/Webhooks
         """
 
         projectId = projectId or self.get_project_id()
@@ -83,7 +83,7 @@ class WebhooksResource(BaseResource):
         Add Webhook.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -109,7 +109,7 @@ class WebhooksResource(BaseResource):
         Get Webhook.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -124,7 +124,7 @@ class WebhooksResource(BaseResource):
         Delete Webhook.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -144,7 +144,7 @@ class WebhooksResource(BaseResource):
         Edit Custom Language.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.patch
         """
 
         projectId = projectId or self.get_project_id()

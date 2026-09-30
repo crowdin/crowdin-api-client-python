@@ -14,7 +14,7 @@ class TranslationStatusResource(BaseResource):
     file, language, branch, directory.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Translation-Status
+    https://support.crowdin.com/developer/api/v2/#tag/Translation-Status
     """
 
     def get_branch_progress(
@@ -29,7 +29,7 @@ class TranslationStatusResource(BaseResource):
         Get Branch Progress.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.branches.languages.progress.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.languages.progress.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -52,7 +52,7 @@ class TranslationStatusResource(BaseResource):
         Get Directory Progress.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.directories.languages.progress.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.languages.progress.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -75,7 +75,7 @@ class TranslationStatusResource(BaseResource):
         Get File Progress.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.files.languages.progress.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.languages.progress.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -98,7 +98,7 @@ class TranslationStatusResource(BaseResource):
         Get Language Progress.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.languages.files.progress.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.languages.files.progress.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -121,7 +121,7 @@ class TranslationStatusResource(BaseResource):
         Get Project Progress.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.languages.progress.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.languages.progress.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -209,7 +209,7 @@ class TranslationStatusResource(BaseResource):
         List QA Check Issues.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.qa-checks.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.qa-checks.getMany
         """
 
         projectId = projectId or self.get_project_id()

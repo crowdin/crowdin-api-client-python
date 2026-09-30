@@ -18,10 +18,10 @@ class ApplicationResource(BaseResource):
     Use the API to manage the necessary app data.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Applications
+    https://support.crowdin.com/developer/api/v2/#tag/Applications
 
     Link to documentation for enterprise:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Applications
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Applications
     """
 
     def get_application_path(self, applicationIdentifier: str, path: str):
@@ -41,7 +41,7 @@ class ApplicationResource(BaseResource):
         List Application Installations
 
         Link to documentaion:
-        https://developer.crowdin.com/api/v2/#operation/api.applications.installations.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.getMany
         """
         return self.requester.request(
             method="get",
@@ -56,7 +56,7 @@ class ApplicationResource(BaseResource):
         Install Application
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.applications.installations.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.post
         """
         request_data = {"url": url, "permissions": permissions}
         return self.requester.request(
@@ -70,7 +70,7 @@ class ApplicationResource(BaseResource):
         Get Application Installation
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.applications.installations.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.get
         """
         return self.requester.request(
             method="get",
@@ -84,7 +84,7 @@ class ApplicationResource(BaseResource):
         Delete Applcation Installation
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.applications.installations.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.delete
         """
         params = {"force": force}
 
@@ -124,7 +124,7 @@ class ApplicationResource(BaseResource):
         Available for Crowdin.com only (not supported in Crowdin Enterprise).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.applications.consents.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.applications.consents.getMany
         """
         params = {
             "identifier": identifier,
@@ -145,7 +145,7 @@ class ApplicationResource(BaseResource):
         Available for Crowdin.com only (not supported in Crowdin Enterprise).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.applications.consents.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.applications.consents.post
         """
         return self.requester.request(
             method="post",
@@ -164,7 +164,7 @@ class ApplicationResource(BaseResource):
         Available for Crowdin.com only (not supported in Crowdin Enterprise).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.applications.consents.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.applications.consents.patch
         """
         return self.requester.request(
             method="patch",
@@ -179,7 +179,7 @@ class ApplicationResource(BaseResource):
         Available for Crowdin.com only (not supported in Crowdin Enterprise).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.applications.consents.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.applications.consents.delete
         """
         return self.requester.request(
             method="delete",
@@ -191,10 +191,10 @@ class ApplicationResource(BaseResource):
         Get Application Data.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.applications.api.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.get
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.get
         """
 
         return self.requester.request(
@@ -207,10 +207,10 @@ class ApplicationResource(BaseResource):
         Update or Restore Application Data.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.applications.api.put
+        https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.put
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.put
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.put
         """
 
         json_data = dumps(data)
@@ -225,10 +225,10 @@ class ApplicationResource(BaseResource):
         Add Application Data.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.applications.api.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.post
         """
 
         json_data = dumps(data)
@@ -243,10 +243,10 @@ class ApplicationResource(BaseResource):
         Delete Application Data.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.applications.api.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.delete
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.delete
         """
 
         return self.requester.request(
@@ -259,10 +259,10 @@ class ApplicationResource(BaseResource):
         Edit Application Data.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.applications.api.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.patch
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.patch
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.patch
         """
 
         json_data = dumps(data)

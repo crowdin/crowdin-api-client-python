@@ -11,7 +11,7 @@ class DistributionsResource(BaseResource):
     Resource for Distributions.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Distributions
+    https://support.crowdin.com/developer/api/v2/#tag/Distributions
     """
 
     def get_distributions_path(self, projectId: int, hash: Optional[str] = None):
@@ -30,7 +30,7 @@ class DistributionsResource(BaseResource):
         List Distributions.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -53,7 +53,7 @@ class DistributionsResource(BaseResource):
         Add Distribution.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -86,7 +86,7 @@ class DistributionsResource(BaseResource):
         Get Distribution.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -101,7 +101,7 @@ class DistributionsResource(BaseResource):
         Delete Distribution.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -121,7 +121,7 @@ class DistributionsResource(BaseResource):
         Edit Distribution.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -137,7 +137,7 @@ class DistributionsResource(BaseResource):
         Get Distribution Release.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.release.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.release.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -152,7 +152,7 @@ class DistributionsResource(BaseResource):
         Release Distribution.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.release.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.release.post
         """
 
         projectId = projectId or self.get_project_id()

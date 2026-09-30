@@ -17,7 +17,7 @@ class TeamsResource(BaseResource):
     Use API to create, modify, and delete specific teams and members.
 
     Link to documentation:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Teams
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams
     """
 
     def get_teams_path(self, teamId: Optional[int] = None):
@@ -108,7 +108,7 @@ class TeamsResource(BaseResource):
         Add Team To Project.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.teams.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.teams.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -140,7 +140,7 @@ class TeamsResource(BaseResource):
         List Teams.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.getMany
         """
 
         params = {
@@ -164,7 +164,7 @@ class TeamsResource(BaseResource):
         Add Team.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.post
         """
 
         return self.requester.request(
@@ -178,7 +178,7 @@ class TeamsResource(BaseResource):
         Get Team.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.get
         """
 
         return self.requester.request(method="get", path=self.get_teams_path(teamId=teamId))
@@ -188,7 +188,7 @@ class TeamsResource(BaseResource):
         Delete Team.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.delete
         """
 
         return self.requester.request(method="delete", path=self.get_teams_path(teamId=teamId))
@@ -198,7 +198,7 @@ class TeamsResource(BaseResource):
         Edit Team.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.patch
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.patch
         """
 
         return self.requester.request(
@@ -217,7 +217,7 @@ class TeamsResource(BaseResource):
         Team Members List.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.getMany
         """
 
         return self._get_entire_data(
@@ -231,7 +231,7 @@ class TeamsResource(BaseResource):
         Add Team Members.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.post
         """
 
         return self.requester.request(
@@ -245,7 +245,7 @@ class TeamsResource(BaseResource):
         Delete All Team Members.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.deleteMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.deleteMany
         """
 
         return self.requester.request(method="delete", path=self.get_members_path(teamId=teamId))
@@ -255,7 +255,7 @@ class TeamsResource(BaseResource):
         Delete Team Member.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.delete
         """
 
         return self.requester.request(

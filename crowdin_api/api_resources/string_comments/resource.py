@@ -17,7 +17,7 @@ class StringCommentsResource(BaseResource):
     Use API to add or remove strings translations, approvals, and votes.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/String-Comments
+    https://support.crowdin.com/developer/api/v2/#tag/String-Comments
     """
 
     def get_string_comments_path(self, projectId: int, stringCommentId: Optional[int] = None):
@@ -42,7 +42,7 @@ class StringCommentsResource(BaseResource):
         List String Comments.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.comments.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -75,7 +75,7 @@ class StringCommentsResource(BaseResource):
         Add String Comment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.comments.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -98,7 +98,7 @@ class StringCommentsResource(BaseResource):
         Get String Comment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.comments.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -117,7 +117,7 @@ class StringCommentsResource(BaseResource):
         Delete String Comment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.comments.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -136,7 +136,7 @@ class StringCommentsResource(BaseResource):
         Delete String Comment Attachment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.attachments.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.comments.attachments.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -159,7 +159,7 @@ class StringCommentsResource(BaseResource):
         Edit String Comment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.comments.patch
         """
 
         projectId = projectId or self.get_project_id()

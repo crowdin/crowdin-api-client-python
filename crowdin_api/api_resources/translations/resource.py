@@ -28,7 +28,7 @@ class TranslationsResource(BaseResource):
     are asynchronous operations and shall be completed with sequence of API methods.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Translations
+    https://support.crowdin.com/developer/api/v2/#tag/Translations
     """
 
     def get_builds_path(self, projectId: int, buildId: Optional[int] = None):
@@ -44,7 +44,7 @@ class TranslationsResource(BaseResource):
         Pre-Translation Status.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#tag/Translations/paths/~1projects~1{projectId}~1pre-translations~1{preTranslationId}/get
+        https://support.crowdin.com/developer/api/v2/#tag/Translations/paths/~1projects~1{projectId}~1pre-translations~1{preTranslationId}/get
         """
 
         projectId = projectId or self.get_project_id()
@@ -106,7 +106,7 @@ class TranslationsResource(BaseResource):
         combined with it in the same request.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.pre-translations.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.pre-translations.post
         """
         if translateUntranslatedOnly is not None and scope is not None:
             raise ValueError(
@@ -223,7 +223,7 @@ class TranslationsResource(BaseResource):
         Build Project Directory Translation.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.directories.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.directories.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -253,7 +253,7 @@ class TranslationsResource(BaseResource):
         Build Project File Translation.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.files.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.files.post
         """
 
         if eTag is not None:
@@ -287,7 +287,7 @@ class TranslationsResource(BaseResource):
         List Project Builds.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -307,7 +307,7 @@ class TranslationsResource(BaseResource):
         Build Project Translation.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -332,7 +332,7 @@ class TranslationsResource(BaseResource):
         Build Project Translation(Crowdin Translation Create Project Build Form).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -362,7 +362,7 @@ class TranslationsResource(BaseResource):
         Build Project Translation(Translation Create Project Pseudo Build Form).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -393,7 +393,7 @@ class TranslationsResource(BaseResource):
         Upload Translations.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.postOnLanguage
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.postOnLanguage
         """
         projectId = projectId or self.get_project_id()
 
@@ -419,7 +419,7 @@ class TranslationsResource(BaseResource):
         Download Project Translations.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.download.download
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.download.download
         """
 
         projectId = projectId or self.get_project_id()
@@ -434,7 +434,7 @@ class TranslationsResource(BaseResource):
         Check Project Build Status.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -449,7 +449,7 @@ class TranslationsResource(BaseResource):
         Cancel Build.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -476,7 +476,7 @@ class TranslationsResource(BaseResource):
         Export Project Translation.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.exports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.exports.post
         """
 
         projectId = projectId or self.get_project_id()

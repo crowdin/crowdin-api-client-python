@@ -34,7 +34,7 @@ class BaseUsersResource(BaseResource):
         List Project Members.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.members.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -59,7 +59,7 @@ class UsersResource(BaseUsersResource):
     authenticated user.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Users
+    https://support.crowdin.com/developer/api/v2/#tag/Users
     """
 
     def list_project_members(
@@ -77,7 +77,7 @@ class UsersResource(BaseUsersResource):
         List Project Members.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.members.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.getMany
         """
         return self._list_project_members(
             projectId=projectId,
@@ -95,7 +95,7 @@ class UsersResource(BaseUsersResource):
         Get Member Info.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.members.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -114,7 +114,7 @@ class EnterpriseUsersResource(BaseUsersResource):
     authenticated user.
 
     Link to documentation:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Users
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users
     """
     def get_users_path(self, userId: Optional[int] = None):
         if userId is not None:
@@ -202,7 +202,7 @@ class EnterpriseUsersResource(BaseUsersResource):
         List Project Members.
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.getMany
         """
 
         return self._list_project_members(
@@ -229,7 +229,7 @@ class EnterpriseUsersResource(BaseUsersResource):
         Add Project Member.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -259,7 +259,7 @@ class EnterpriseUsersResource(BaseUsersResource):
         Replace Project Member Permissions.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.put
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.put
         """
 
         projectId = projectId or self.get_project_id()
@@ -284,7 +284,7 @@ class EnterpriseUsersResource(BaseUsersResource):
         Delete Member From Project.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -304,7 +304,7 @@ class EnterpriseUsersResource(BaseUsersResource):
         Invite User.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.post
         """
         return self.requester.request(
             method="post",
@@ -322,7 +322,7 @@ class EnterpriseUsersResource(BaseUsersResource):
         Edit User.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.patch
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.patch
         """
 
         return self.requester.request(
@@ -336,7 +336,7 @@ class EnterpriseUsersResource(BaseUsersResource):
         Delete User.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.delete
         """
 
         return self.requester.request(

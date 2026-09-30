@@ -22,7 +22,7 @@ class SourceStringsResource(BaseResource):
     iOS strings, PROPERTIES, XLIFF).
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Source-Strings
+    https://support.crowdin.com/developer/api/v2/#tag/Source-Strings
     """
 
     def search_strings(
@@ -40,8 +40,8 @@ class SourceStringsResource(BaseResource):
         Search Strings.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.strings.getMany
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.strings.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.strings.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.strings.getMany
         """
 
         params = {
@@ -83,7 +83,7 @@ class SourceStringsResource(BaseResource):
         List Strings.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.strings.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -122,7 +122,7 @@ class SourceStringsResource(BaseResource):
         Add String.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.strings.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -147,7 +147,7 @@ class SourceStringsResource(BaseResource):
         Get String.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.strings.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -162,7 +162,7 @@ class SourceStringsResource(BaseResource):
         Delete String.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.strings.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -182,7 +182,7 @@ class SourceStringsResource(BaseResource):
         Edit String.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.strings.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -202,7 +202,7 @@ class SourceStringsResource(BaseResource):
         String Batch Operations.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.strings.batchPatch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.batchPatch
         """
 
         projectId = projectId or self.get_project_id()

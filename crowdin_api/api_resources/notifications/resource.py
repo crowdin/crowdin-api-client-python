@@ -12,7 +12,7 @@ class NotificationResource(BaseResource):
     Resource for Notifications
 
     Link to documetation:
-    https://developer.crowdin.com/api/v2/#tag/Notifications
+    https://support.crowdin.com/developer/api/v2/#tag/Notifications
     """
 
     def send_notification_to_authenticated_user(self, message: str):
@@ -20,7 +20,7 @@ class NotificationResource(BaseResource):
         Send Notification to Authenticated User
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.notify.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.notify.post
         """
         return self.requester.request(
             method="post", path="notify", request_data={"message": message}
@@ -35,11 +35,11 @@ class NotificationResource(BaseResource):
         Send Notification To Project Members
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.notify.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.notify.post
 
 
         Link to documentation (Enterprise):
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.notify.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.notify.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -58,7 +58,7 @@ class NotificationResource(BaseResource):
         Send Notification To Organization Members
 
         Link to documentation (Enterprise):
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.notify.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.notify.post
         """
         return self.requester.request(
             method="post", path="notify", request_data=request_data

@@ -46,10 +46,10 @@ class BaseReportsResource(BaseResource):
         Generate Report.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.download.download
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.reports.download.download
         """
 
         projectId = projectId or self.get_project_id()
@@ -101,10 +101,10 @@ class BaseReportsResource(BaseResource):
         Generate Report(Top Members).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -137,10 +137,10 @@ class BaseReportsResource(BaseResource):
         Generate Report(Contribution Raw Data).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -172,10 +172,10 @@ class BaseReportsResource(BaseResource):
         Generate Report(Contribution Raw Data).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
 
         project_id = project_id or self.get_project_id()
@@ -204,10 +204,10 @@ class BaseReportsResource(BaseResource):
         Generate Report(Project Members).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
 
         project_id = project_id or self.get_project_id()
@@ -236,10 +236,10 @@ class BaseReportsResource(BaseResource):
         Generate Report(Editor Issues).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
 
         project_id = project_id or self.get_project_id()
@@ -268,10 +268,10 @@ class BaseReportsResource(BaseResource):
         Generate Report(Qa Check Issues).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
 
         project_id = project_id or self.get_project_id()
@@ -301,10 +301,10 @@ class BaseReportsResource(BaseResource):
         Generate Report(Saving Activity).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
 
         project_id = project_id or self.get_project_id()
@@ -336,10 +336,10 @@ class BaseReportsResource(BaseResource):
         Generate Report(Translation Activity).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
 
         project_id = project_id or self.get_project_id()
@@ -372,10 +372,10 @@ class BaseReportsResource(BaseResource):
         Generate Report.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -407,10 +407,10 @@ class BaseReportsResource(BaseResource):
         Generate Report.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -452,10 +452,10 @@ class BaseReportsResource(BaseResource):
         Generate Report.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
 
         project_id = project_id or self.get_project_id()
@@ -502,10 +502,10 @@ class BaseReportsResource(BaseResource):
         Generate Report.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
 
         project_id = project_id or self.get_project_id()
@@ -550,10 +550,10 @@ class BaseReportsResource(BaseResource):
         Generate Report.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
 
         project_id = project_id or self.get_project_id()
@@ -596,10 +596,10 @@ class BaseReportsResource(BaseResource):
         Generate Report.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
 
         project_id = project_id or self.get_project_id()
@@ -627,10 +627,10 @@ class BaseReportsResource(BaseResource):
         Check Report Generation Status.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.get
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -645,10 +645,10 @@ class BaseReportsResource(BaseResource):
         Download Report.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.download.download
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.download.download
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.download.download
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.download.download
         """
 
         projectId = projectId or self.get_project_id()
@@ -680,10 +680,10 @@ class BaseReportSettingsTemplatesResource(BaseResource):
         List Report Settings Templates.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.settings-templates.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.settings-templates.getMany
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.settings-templates.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -707,10 +707,10 @@ class BaseReportSettingsTemplatesResource(BaseResource):
         Add Report Settings Templates.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.settings-templates.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.settings-templates.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.settings-templates.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -739,10 +739,10 @@ class BaseReportSettingsTemplatesResource(BaseResource):
         Get Report Settings Templates.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.settings-templates.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.settings-templates.get
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.settings-templates.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -765,10 +765,10 @@ class BaseReportSettingsTemplatesResource(BaseResource):
         Edit Report Settings Templates.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.settings-templates.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.settings-templates.patch
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.settings-templates.patch
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.settings-templates.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -791,10 +791,10 @@ class BaseReportSettingsTemplatesResource(BaseResource):
         Delete Report Settings Templates.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.settings-templates.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.settings-templates.delete
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.settings-templates.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.settings-templates.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -819,7 +819,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
     and shall be completed with a sequence of API methods.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Reports
+    https://support.crowdin.com/developer/api/v2/#tag/Reports
     """
 
     def get_report_archive_path(self, userId: int, archiveId: Optional[int] = None):
@@ -851,7 +851,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
         List Report Archives
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.reports.archives.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.reports.archives.getMany
         """
         params = {"scopeType": scopeType, "scopeId": scopeId}
         params.update(self.get_page_params(limit=limit, offset=offset))
@@ -867,7 +867,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
         Get Report Archive
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.reports.archives.get
         """
         return self.requester.request(
             method="get",
@@ -879,7 +879,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
         Delete Report Archive
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.reports.archives.delete
         """
         return self.requester.request(
             method="delete",
@@ -893,7 +893,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
         Export Report Archive
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.reports.archives.exports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.reports.archives.exports.post
         """
         format = format or ExportFormat.XLSX
         return self.requester.request(
@@ -911,7 +911,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
         Check Report Archive Status
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.exports.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.reports.archives.exports.get
         """
         return self.requester.request(
             method="get",
@@ -927,7 +927,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
         Download Report Archive
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.reports.archives.exports.download.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.reports.archives.exports.download.get
         """
         path = str(
             self.get_report_archive_export_path(
@@ -959,7 +959,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
         Generate Report(Cost Estimate Schema).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -1003,7 +1003,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
         Generate Report(Cost Estimate Fuzzy Mode).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -1045,7 +1045,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
         Generate Report(Translation Cost).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -1085,7 +1085,7 @@ class ReportsResource(BaseReportsResource, BaseReportSettingsTemplatesResource):
         Generate Report(Translation Fuzzy Cost).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -1120,7 +1120,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
     and shall be completed with a sequence of API methods.
 
     Link to documentation:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Reports
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Reports
     """
     @staticmethod
     def _prepare_stepTypes(step_types_const: dict, stepTypes: Optional[Iterable[StepTypes]] = None):
@@ -1150,7 +1150,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Generate Report(Cost Estimate schema).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.reports.post
         """
         projectId = projectId or self.get_project_id()
         step_types_const = {
@@ -1194,7 +1194,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Generate Report(Cost Estimate Fuzzy Mode).
 
         Links to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
         projectId = projectId or self.get_project_id()
         step_types_const = {
@@ -1237,7 +1237,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Generate Report(Translation Cost).
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
         projectId = projectId or self.get_project_id()
         step_types_const = {
@@ -1278,7 +1278,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Generate Report(Translation Cost Fuzzy Mode).
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.reports.post
         """
         projectId = projectId or self.get_project_id()
         step_types_const = {
@@ -1330,7 +1330,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         List Report Archives
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.reports.archives.getMany
         """
         params = {"scopeType": scopeType, "scopeId": scopeId}
         params.update(self.get_page_params(limit=limit, offset=offset))
@@ -1346,7 +1346,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Get Report Archive
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.reports.archives.get
         """
         return self.requester.request(
             method="get",
@@ -1358,7 +1358,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Delete Report Archive
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.reports.archives.delete
         """
         return self.requester.request(
             method="delete",
@@ -1372,7 +1372,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Export Report Archive
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.exports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.reports.archives.exports.post
         """
         format = format or ExportFormat.XLSX
         return self.requester.request(
@@ -1386,7 +1386,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Check Report Archive Status
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.exports.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.reports.archives.exports.get
         """
         return self.requester.request(
             method="get",
@@ -1400,7 +1400,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Download Report Archive
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.archives.exports.download.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.reports.archives.exports.download.get
         """
         path = str(
             self.get_report_archive_export_path(archiveId=archiveId, exportId=exportId)
@@ -1423,7 +1423,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Generate Group Report.
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.reports.post
         """
 
         return self.requester.request(
@@ -1451,7 +1451,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Generate Group Report (General).
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.reports.post
         """
 
         return self.generate_group_report(
@@ -1492,7 +1492,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Generate Group Report (Task Usage Report).
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.reports.post
         """
 
         return self.generate_group_report(
@@ -1526,7 +1526,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Generate Group Report (Group Qa Check Issues Report).
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.reports.post
         """
 
         return self.generate_group_report(
@@ -1555,7 +1555,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Generate Group Report (Group translation consumption).
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.reports.post
         """
 
         return self.generate_group_report(
@@ -1597,7 +1597,7 @@ class EnterpriseReportsResource(BaseReportsResource, BaseReportSettingsTemplates
         Generate Organization Report (General).
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.reports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.reports.post
         """
 
         return self.requester.request(
@@ -1628,7 +1628,7 @@ class UserReportSettingsTemplatesResource(BaseReportSettingsTemplatesResource):
 
     Supporting the endpoints for managing user report settings templates.
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/User-Report-Settings-Templates
+    https://support.crowdin.com/developer/api/v2/#tag/User-Report-Settings-Templates
     """
 
     def get_user_report_settings_templates_path(
@@ -1651,7 +1651,7 @@ class UserReportSettingsTemplatesResource(BaseReportSettingsTemplatesResource):
         List User Report Settings Templates.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.reports.settings-templates.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.reports.settings-templates.getMany
         """
         return self._get_entire_data(
             method="get",
@@ -1671,7 +1671,7 @@ class UserReportSettingsTemplatesResource(BaseReportSettingsTemplatesResource):
         Add User Report Settings Template.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.reports.settings-templates.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.reports.settings-templates.post
         """
         return self.requester.request(
             method="post",
@@ -1696,7 +1696,7 @@ class UserReportSettingsTemplatesResource(BaseReportSettingsTemplatesResource):
         Get User Report Settings Template.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.reports.settings-templates.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.reports.settings-templates.get
         """
         return self.requester.request(
             method="get",
@@ -1716,7 +1716,7 @@ class UserReportSettingsTemplatesResource(BaseReportSettingsTemplatesResource):
         Edit User Report Settings Template.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.reports.settings-templates.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.reports.settings-templates.patch
         """
         return self.requester.request(
             method="patch",
@@ -1736,7 +1736,7 @@ class UserReportSettingsTemplatesResource(BaseReportSettingsTemplatesResource):
         Delete User Report Settings Template.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.reports.settings-templates.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.reports.settings-templates.delete
         """
         return self.requester.request(
             method="delete",

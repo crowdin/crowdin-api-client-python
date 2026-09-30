@@ -36,7 +36,7 @@ class ProjectsResource(BaseResource):
     Use API to manage projects, change their settings, or remove them if required.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Projects
+    https://support.crowdin.com/developer/api/v2/#tag/Projects
 
     """
 
@@ -61,7 +61,7 @@ class ProjectsResource(BaseResource):
         List Projects.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.getMany
         """
 
         params = {
@@ -80,7 +80,7 @@ class ProjectsResource(BaseResource):
         Add Project.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.post
         """
 
         return self.requester.request(
@@ -116,7 +116,7 @@ class ProjectsResource(BaseResource):
         Add Project(Files Based Project Form).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.post
         """
 
         return self.add_project(
@@ -183,7 +183,7 @@ class ProjectsResource(BaseResource):
         Add Project(Strings Based Project Form).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.post
         """
 
         return self.add_project(
@@ -226,7 +226,7 @@ class ProjectsResource(BaseResource):
         Get Project.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -240,7 +240,7 @@ class ProjectsResource(BaseResource):
         Delete Project.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -256,7 +256,7 @@ class ProjectsResource(BaseResource):
         Edit Project.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -284,7 +284,7 @@ class ProjectsResource(BaseResource):
         Download Project File Format Settings Custom Segmentation.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.custom-segmentations.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.file-format-settings.custom-segmentations.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -306,7 +306,7 @@ class ProjectsResource(BaseResource):
         Reset Project File Format Settings Custom Segmentation.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.custom-segmentations.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.file-format-settings.custom-segmentations.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -331,7 +331,7 @@ class ProjectsResource(BaseResource):
         List Project File Format Settings.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.file-format-settings.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -357,7 +357,7 @@ class ProjectsResource(BaseResource):
         Add Project File Format Settings.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.file-format-settings.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -375,7 +375,7 @@ class ProjectsResource(BaseResource):
         Get Project File Format Settings.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.file-format-settings.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -395,7 +395,7 @@ class ProjectsResource(BaseResource):
         Delete Project File Format Settings.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.file-format-settings.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -418,7 +418,7 @@ class ProjectsResource(BaseResource):
         Edit Project File Format Settings.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.file-format-settings.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.file-format-settings.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -449,7 +449,7 @@ class ProjectsResource(BaseResource):
         List Project Strings Exporter Settings.
 
         Link to documetation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings-exporter-settings.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -473,7 +473,7 @@ class ProjectsResource(BaseResource):
         Add Project Strings Exporter Settings.
 
         Link to documetation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings-exporter-settings.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -491,7 +491,7 @@ class ProjectsResource(BaseResource):
         Get Project Strings Exporter Settings
 
         Link to documetation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings-exporter-settings.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -511,7 +511,7 @@ class ProjectsResource(BaseResource):
         Delete Project Strings Exporter Settings.
 
         Link to documetation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings-exporter-settings.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -539,7 +539,7 @@ class ProjectsResource(BaseResource):
         Edit Project Strings Exporter Settings.
 
         Link to documetation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.strings-exporter-settings.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings-exporter-settings.patch
         """
 
         projectId = projectId or self.get_project_id()

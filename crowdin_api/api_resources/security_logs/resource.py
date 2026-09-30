@@ -10,10 +10,10 @@ class SecurityLogsResource(BaseResource):
     Resource for Security Logs
 
     Link to documentaion:
-    https://developer.crowdin.com/api/v2/#tag/Security-Logs
+    https://support.crowdin.com/developer/api/v2/#tag/Security-Logs
 
     Link to documentation for enterprise:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Security-Logs
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Security-Logs
     """
 
     def get_user_security_logs_path(
@@ -38,7 +38,7 @@ class SecurityLogsResource(BaseResource):
         List User Security Logs
 
         Link to documentaion:
-        https://developer.crowdin.com/api/v2/#operation/api.users.security-logs.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.security-logs.getMany
         """
 
         params = {
@@ -60,7 +60,7 @@ class SecurityLogsResource(BaseResource):
         Get User Security Log
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.users.security-logs.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.users.security-logs.get
         """
 
         return self.requester.request(
@@ -90,7 +90,7 @@ class SecurityLogsResource(BaseResource):
         List Organization Security Logs
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.security-logs.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.security-logs.getMany
         """
 
         params = {
@@ -113,7 +113,7 @@ class SecurityLogsResource(BaseResource):
         Get Organization Security Log
 
         Link to documentaion:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.security-logs.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.security-logs.get
         """
 
         return self.requester.request(

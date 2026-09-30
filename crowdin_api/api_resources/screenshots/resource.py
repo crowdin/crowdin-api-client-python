@@ -20,7 +20,7 @@ class ScreenshotsResource(BaseResource):
     Use API to manage screenshots and their tags.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Screenshots
+    https://support.crowdin.com/developer/api/v2/#tag/Screenshots
     """
 
     # Screenshots
@@ -46,7 +46,7 @@ class ScreenshotsResource(BaseResource):
         List Screenshots.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -79,7 +79,7 @@ class ScreenshotsResource(BaseResource):
         Add Screenshot.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -103,7 +103,7 @@ class ScreenshotsResource(BaseResource):
         Get Screenshot.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -124,7 +124,7 @@ class ScreenshotsResource(BaseResource):
         Update Screenshot.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.put
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.put
         """
 
         projectId = projectId or self.get_project_id()
@@ -143,7 +143,7 @@ class ScreenshotsResource(BaseResource):
         Delete Screenshot.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -163,7 +163,7 @@ class ScreenshotsResource(BaseResource):
         Edit Screenshot.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -193,7 +193,7 @@ class ScreenshotsResource(BaseResource):
         List Tags.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -214,7 +214,7 @@ class ScreenshotsResource(BaseResource):
         Replace Tags.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.putMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.putMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -232,7 +232,7 @@ class ScreenshotsResource(BaseResource):
         Auto Tag.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.putMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.putMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -253,7 +253,7 @@ class ScreenshotsResource(BaseResource):
         Add Tag.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -269,7 +269,7 @@ class ScreenshotsResource(BaseResource):
         Clear Tags.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.deleteMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.deleteMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -284,7 +284,7 @@ class ScreenshotsResource(BaseResource):
         Get Tag.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -301,7 +301,7 @@ class ScreenshotsResource(BaseResource):
         Delete Tag.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -322,7 +322,7 @@ class ScreenshotsResource(BaseResource):
         Edit Tag.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.patch
         """
 
         projectId = projectId or self.get_project_id()

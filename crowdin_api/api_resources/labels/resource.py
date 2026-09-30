@@ -10,7 +10,7 @@ class LabelsResource(BaseResource):
     Resource for Labels.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Labels
+    https://support.crowdin.com/developer/api/v2/#tag/Labels
     """
 
     def get_labels_path(self, projectId: int, labelId: Optional[int] = None):
@@ -31,7 +31,7 @@ class LabelsResource(BaseResource):
         List Labels.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -49,7 +49,7 @@ class LabelsResource(BaseResource):
         Add Label.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -65,7 +65,7 @@ class LabelsResource(BaseResource):
         Get Label.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -80,7 +80,7 @@ class LabelsResource(BaseResource):
         Delete Label.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -100,7 +100,7 @@ class LabelsResource(BaseResource):
         Edit Label.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -124,8 +124,8 @@ class LabelsResource(BaseResource):
         Assign Label to Screenshots
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.screenshots.post
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.labels.screenshots.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.screenshots.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.labels.screenshots.post
         """
 
         project_id = project_id or self.get_project_id()
@@ -148,8 +148,8 @@ class LabelsResource(BaseResource):
         Unassign Label from Screenshots
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.screenshots.deleteMany
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.labels.screenshots.deleteMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.screenshots.deleteMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.labels.screenshots.deleteMany
         """
 
         project_id = project_id or self.get_project_id()
@@ -167,7 +167,7 @@ class LabelsResource(BaseResource):
         Assign Label to Strings.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.strings.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.strings.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -185,7 +185,7 @@ class LabelsResource(BaseResource):
         Unassign Label from Strings.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.strings.deleteMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.strings.deleteMany
         """
 
         projectId = projectId or self.get_project_id()

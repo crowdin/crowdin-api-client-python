@@ -28,7 +28,7 @@ class TranslationMemoryResource(BaseResource):
     are asynchronous operations and shall be completed with sequence of API methods.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Translation-Memory
+    https://support.crowdin.com/developer/api/v2/#tag/Translation-Memory
     """
 
     def get_tms_path(self, tmId: Optional[int] = None):
@@ -48,7 +48,7 @@ class TranslationMemoryResource(BaseResource):
         List TMs.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.getMany
         """
 
         params = {"orderBy": orderBy}
@@ -65,7 +65,7 @@ class TranslationMemoryResource(BaseResource):
         Add Glossary.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.post
         """
 
         return self.requester.request(
@@ -79,7 +79,7 @@ class TranslationMemoryResource(BaseResource):
         Get TM.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.get
         """
 
         return self.requester.request(method="get", path=self.get_tms_path(tmId=tmId))
@@ -89,7 +89,7 @@ class TranslationMemoryResource(BaseResource):
         Delete TM.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.delete
         """
 
         return self.requester.request(method="delete", path=self.get_tms_path(tmId=tmId))
@@ -99,7 +99,7 @@ class TranslationMemoryResource(BaseResource):
         Edit TM.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.patch
         """
 
         return self.requester.request(
@@ -111,7 +111,7 @@ class TranslationMemoryResource(BaseResource):
         Clear TM.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.segments.clear
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.segments.clear
         """
 
         return self.requester.request(
@@ -136,7 +136,7 @@ class TranslationMemoryResource(BaseResource):
         List TM Segments.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.segments.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.segments.getMany
         """
         params = {"orderBy": orderBy}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
@@ -154,7 +154,7 @@ class TranslationMemoryResource(BaseResource):
         Create TM Segment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.segments.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.segments.post
         """
         data = {"records": records}
 
@@ -169,7 +169,7 @@ class TranslationMemoryResource(BaseResource):
         Get TM Segment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.segments.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.segments.get
         """
         return self.requester.request(
             method="get", path=self.get_tm_segments_path(tmId=tmId, segmentId=segmentId)
@@ -180,7 +180,7 @@ class TranslationMemoryResource(BaseResource):
         Delete TM Segment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.segments.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.segments.delete
         """
         return self.requester.request(
             method="delete",
@@ -203,7 +203,7 @@ class TranslationMemoryResource(BaseResource):
         Edit TM Segment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.segments.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.segments.patch
         """
         return self.requester.request(
             method="patch",
@@ -226,7 +226,7 @@ class TranslationMemoryResource(BaseResource):
         TM Segment Batch Operations.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.segments.patchBatch
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.segments.patchBatch
         """
         return self.requester.request(
             method="patch",
@@ -252,7 +252,7 @@ class TranslationMemoryResource(BaseResource):
         Export TM.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.exports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.exports.post
         """
 
         return self.requester.request(
@@ -270,7 +270,7 @@ class TranslationMemoryResource(BaseResource):
         Check TM Export Status.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.exports.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.exports.get
         """
 
         return self.requester.request(
@@ -282,7 +282,7 @@ class TranslationMemoryResource(BaseResource):
         Download TM.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.exports.download.download
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.exports.download.download
         """
 
         return self.requester.request(
@@ -303,7 +303,7 @@ class TranslationMemoryResource(BaseResource):
         Concordance search in TMs
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tms.concordance.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tms.concordance.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -326,10 +326,10 @@ class TranslationMemoryResource(BaseResource):
         Concordance search in organization TMs.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.concordance.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.concordance.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.tms.concordance.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.tms.concordance.post
         """
 
         return self.requester.request(
@@ -350,7 +350,7 @@ class TranslationMemoryResource(BaseResource):
         Import TM.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.imports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.imports.post
         """
 
         return self.requester.request(
@@ -368,7 +368,7 @@ class TranslationMemoryResource(BaseResource):
         Check TM Import Status.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.tms.imports.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.tms.imports.get
         """
 
         return self.requester.request(

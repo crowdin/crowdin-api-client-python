@@ -14,7 +14,7 @@ class VendorsResource(BaseResource):
     Use API to get the list of the Vendors you already invited to your organization.
 
     Link to documentation:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Vendors
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Vendors
     """
 
     def list_vendors(self, offset: Optional[int] = None, limit: Optional[int] = None):
@@ -22,7 +22,7 @@ class VendorsResource(BaseResource):
         List Teams.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.getMany
         """
 
         return self._get_entire_data(

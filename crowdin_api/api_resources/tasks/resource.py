@@ -31,7 +31,7 @@ class TasksResource(BaseResource):
     Use API to create, modify, and delete specific tasks.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Tasks
+    https://support.crowdin.com/developer/api/v2/#tag/Tasks
     """
     def get_task_settings_templates_path(
         self, projectId: int, taskSettingsTemplateId: Optional[int] = None
@@ -52,10 +52,10 @@ class TasksResource(BaseResource):
         List Task Settings Templates.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.getMany
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -77,7 +77,7 @@ class TasksResource(BaseResource):
         Add Task Settings Template.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -95,10 +95,10 @@ class TasksResource(BaseResource):
         Get Task Settings Template.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.get
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -117,10 +117,10 @@ class TasksResource(BaseResource):
         Delete Task Settings Template.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.delete
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -143,10 +143,10 @@ class TasksResource(BaseResource):
         Edit Task Settings Template.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.patch
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.patch
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -181,10 +181,10 @@ class TasksResource(BaseResource):
         List Tasks.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.getMany
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -207,7 +207,7 @@ class TasksResource(BaseResource):
         Add Task.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -243,7 +243,7 @@ class TasksResource(BaseResource):
         Add Task(Crowdin Task Create Form).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -294,7 +294,7 @@ class TasksResource(BaseResource):
         Add Task(Crowdin Task Create Form).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -342,7 +342,7 @@ class TasksResource(BaseResource):
         Add Task(Crowdin Vendor Task Create Form).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -387,7 +387,7 @@ class TasksResource(BaseResource):
         Add Task(Crowdin Vendor Task Create Form).
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -471,7 +471,7 @@ class TasksResource(BaseResource):
         Export Task Strings.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.exports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.exports.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -486,7 +486,7 @@ class TasksResource(BaseResource):
         Get Task.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -500,7 +500,7 @@ class TasksResource(BaseResource):
         Delete Task.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -520,7 +520,7 @@ class TasksResource(BaseResource):
         Edit Task.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -544,7 +544,7 @@ class TasksResource(BaseResource):
         List Tasks.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.getMany
         """
 
         params = {"orderBy": orderBy, "status": status}
@@ -581,7 +581,7 @@ class TasksResource(BaseResource):
         List Task Comments.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -604,7 +604,7 @@ class TasksResource(BaseResource):
         Add Task Comment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -625,7 +625,7 @@ class TasksResource(BaseResource):
         Get Task Comment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -647,7 +647,7 @@ class TasksResource(BaseResource):
         Delete Task Comment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -670,7 +670,7 @@ class TasksResource(BaseResource):
         Edit Task Comment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -690,7 +690,7 @@ class TasksResource(BaseResource):
         Edit Task Archived Status.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.user.tasks.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.user.tasks.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -714,7 +714,7 @@ class EnterpriseTasksResource(TasksResource):
     Use API to create, modify, and delete specific tasks.
 
     Link to documentation:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Tasks
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Tasks
     """
 
     def add_task_settings_template(
@@ -727,7 +727,7 @@ class EnterpriseTasksResource(TasksResource):
         Add Task Settings Template.
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -765,7 +765,7 @@ class EnterpriseTasksResource(TasksResource):
         Add Task(Enterprise Task Create Form).
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -820,7 +820,7 @@ class EnterpriseTasksResource(TasksResource):
         Add Task(Enterprise Task Create Form).
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -868,7 +868,7 @@ class EnterpriseTasksResource(TasksResource):
         Add Task(Enterprise Vendor Task Create Form).
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -909,7 +909,7 @@ class EnterpriseTasksResource(TasksResource):
         Add Task(Enterprise Vendor Task Create Form).
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -944,7 +944,7 @@ class EnterpriseTasksResource(TasksResource):
         Add Task(Enterprise Pending Task Create Form).
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post
         """
 
         projectId = projectId or self.get_project_id()
