@@ -1,5 +1,7 @@
-from typing import TypedDict, Iterable
-from crowdin_api.api_resources.notifications.enums import MemberRole
+from typing import Iterable
+
+from crowdin_api.api_resources.notifications.enums import MemberRole, OrganizationMemberRole
+from crowdin_api.typing import TypedDict
 
 
 class ByRoleRequestScehme(TypedDict):
@@ -9,4 +11,9 @@ class ByRoleRequestScehme(TypedDict):
 
 class ByUserIdsRequestScheme(TypedDict):
     userIds: Iterable[int]
+    message: str
+
+
+class ByOrganizationRoleRequestScheme(TypedDict):
+    role: OrganizationMemberRole
     message: str

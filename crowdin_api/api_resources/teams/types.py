@@ -44,3 +44,15 @@ class GroupTeamPatchRequest(TypedDict):
     op: PatchOperation
     path: str
     value: Any
+
+
+class TeamProjectPermissionsPatchRequest(TypedDict):
+    """
+    JSON Patch operation for team project permissions.
+
+    `path` is `/{projectId}/roles` (replace), `/{projectId}/roles/-` (add) or `/{projectId}` (remove).
+    """
+
+    op: PatchOperation
+    path: str
+    value: Any

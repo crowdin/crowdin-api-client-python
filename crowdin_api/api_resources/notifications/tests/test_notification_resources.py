@@ -3,7 +3,7 @@ import pytest
 
 from crowdin_api.requester import APIRequester
 from crowdin_api.api_resources.notifications.resource import NotificationResource
-from crowdin_api.api_resources.notifications.enums import MemberRole
+from crowdin_api.api_resources.notifications.enums import MemberRole, OrganizationMemberRole
 
 
 class TestNotificationResource:
@@ -114,21 +114,21 @@ class TestNotificationResource:
             ),
             (
                 {
-                    "role": MemberRole.OWNER,
+                    "role": OrganizationMemberRole.OWNER,
                     "message": "TEST MESSAGE",
                 },
                 {
-                    "role": MemberRole.OWNER,
+                    "role": OrganizationMemberRole.OWNER,
                     "message": "TEST MESSAGE",
                 },
             ),
             (
                 {
-                    "role": MemberRole.MANAGER,
+                    "role": OrganizationMemberRole.ADMIN,
                     "message": "TEST MESSAGE",
                 },
                 {
-                    "role": MemberRole.MANAGER,
+                    "role": OrganizationMemberRole.ADMIN,
                     "message": "TEST MESSAGE",
                 },
             ),
