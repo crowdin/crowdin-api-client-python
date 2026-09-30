@@ -1,3 +1,4 @@
+from enum import Enum
 from unittest import mock
 
 import pytest
@@ -7,11 +8,18 @@ from crowdin_api.api_resources.translations.enums import (
     PreTranslationApplyMethod,
     PreTranslationAutoApproveOption,
     PreTranslationEditOperation,
+    PreTranslationPatchPath,
+    PreTranslationPriority,
     PreTranslationReplaceTranslationsOption,
     PreTranslationScope,
 )
 from crowdin_api.api_resources.translations.resource import TranslationsResource
 from crowdin_api.requester import APIRequester
+from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
+
+
+class ListPreTranslationsTestOrderBy(Enum):
+    ID = "id"
 
 
 class TestTranslationsResource:
@@ -43,13 +51,133 @@ class TestTranslationsResource:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        params = resource.get_page_params()
+        params = {"orderBy": None, **resource.get_page_params()}
         assert resource.list_pre_translations(projectId=1) == "response"
         m_request.assert_called_once_with(
             method="get",
             path="projects/1/pre-translations",
             params=params,
         )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_pre_translations_with_order_by(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        order_by = Sorting([SortingRule(ListPreTranslationsTestOrderBy.ID, SortingOrder.DESC)])
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_pre_translations(projectId=1, orderBy=order_by, limit=10) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/1/pre-translations",
+            params={"orderBy": order_by, "offset": 0, "limit": 10},
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_apply_pre_translation_by_directories_and_new_fields(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.apply_pre_translation(
+                projectId=1,
+                languageIds=["uk"],
+                directoryIds=[3, 4],
+                method=PreTranslationApplyMethod.AI,
+                aiPromptId=5,
+                autoApproveOption=PreTranslationAutoApproveOption.PERFECT_MATCH_APPROVED_ONLY,
+                scope=PreTranslationScope.ALL,
+                priority=PreTranslationPriority.HIGH,
+                translationModifiedAfter="2025-01-01T00:00:00+00:00",
+                notifyOnCompletion=True,
+                sourceLanguageId="en",
+                customInstruction="Be concise",
+                minimumMatchRatio=80,
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="post",
+            path="projects/1/pre-translations",
+            request_data={
+                "languageIds": ["uk"],
+                "fileIds": None,
+                "method": PreTranslationApplyMethod.AI,
+                "engineId": None,
+                "aiPromptId": 5,
+                "autoApproveOption": PreTranslationAutoApproveOption.PERFECT_MATCH_APPROVED_ONLY,
+                "duplicateTranslations": None,
+                "skipApprovedTranslations": None,
+                "translateUntranslatedOnly": None,
+                "scope": PreTranslationScope.ALL,
+                "translationModifiedBefore": None,
+                "replaceTranslationsOption": None,
+                "resetApprovalStatus": None,
+                "translateWithPerfectMatchOnly": None,
+                "fallbackLanguages": [],
+                "labelIds": [],
+                "excludeLabelIds": [],
+                "branchIds": [],
+                "directoryIds": [3, 4],
+                "taskId": None,
+                "priority": PreTranslationPriority.HIGH,
+                "translationModifiedAfter": "2025-01-01T00:00:00+00:00",
+                "notifyOnCompletion": True,
+                "sourceLanguageId": "en",
+                "customInstruction": "Be concise",
+                "minimumMatchRatio": 80,
+            },
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_apply_pre_translation_by_task(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.apply_pre_translation(projectId=1, taskId=7) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path="projects/1/pre-translations",
+            request_data={
+                "languageIds": None,
+                "fileIds": None,
+                "method": None,
+                "engineId": None,
+                "aiPromptId": None,
+                "autoApproveOption": None,
+                "duplicateTranslations": None,
+                "skipApprovedTranslations": None,
+                "translateUntranslatedOnly": None,
+                "scope": None,
+                "translationModifiedBefore": None,
+                "replaceTranslationsOption": None,
+                "resetApprovalStatus": None,
+                "translateWithPerfectMatchOnly": None,
+                "fallbackLanguages": [],
+                "labelIds": [],
+                "excludeLabelIds": [],
+                "branchIds": [],
+                "directoryIds": None,
+                "taskId": 7,
+                "priority": None,
+                "translationModifiedAfter": None,
+                "notifyOnCompletion": None,
+                "sourceLanguageId": None,
+                "customInstruction": None,
+                "minimumMatchRatio": None,
+            },
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_apply_pre_translation_translate_untranslated_only_warns(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        with pytest.warns(DeprecationWarning):
+            resource.apply_pre_translation(
+                projectId=1, languageIds=["uk"], fileIds=[1], translateUntranslatedOnly=True
+            )
+        m_request.assert_called_once()
 
     @pytest.mark.parametrize(
         "in_params, request_data",
@@ -78,6 +206,14 @@ class TestTranslationsResource:
                     "labelIds": [],
                     "excludeLabelIds": [],
                     "branchIds": [],
+                    "directoryIds": None,
+                    "taskId": None,
+                    "priority": None,
+                    "translationModifiedAfter": None,
+                    "notifyOnCompletion": None,
+                    "sourceLanguageId": None,
+                    "customInstruction": None,
+                    "minimumMatchRatio": None,
                 },
             ),
             (
@@ -118,6 +254,14 @@ class TestTranslationsResource:
                     "labelIds": [1],
                     "excludeLabelIds": [1],
                     "branchIds": [],
+                    "directoryIds": None,
+                    "taskId": None,
+                    "priority": None,
+                    "translationModifiedAfter": None,
+                    "notifyOnCompletion": None,
+                    "sourceLanguageId": None,
+                    "customInstruction": None,
+                    "minimumMatchRatio": None,
                 },
             ),
         ),
@@ -169,6 +313,14 @@ class TestTranslationsResource:
                 "labelIds": [],
                 "excludeLabelIds": [],
                 "branchIds": [10, 20, 30],
+                "directoryIds": None,
+                "taskId": None,
+                "priority": None,
+                "translationModifiedAfter": None,
+                "notifyOnCompletion": None,
+                "sourceLanguageId": None,
+                "customInstruction": None,
+                "minimumMatchRatio": None,
             },
             path="projects/1/pre-translations",
         )
@@ -212,6 +364,14 @@ class TestTranslationsResource:
                 "labelIds": [],
                 "excludeLabelIds": [],
                 "branchIds": [],
+                "directoryIds": None,
+                "taskId": None,
+                "priority": None,
+                "translationModifiedAfter": None,
+                "notifyOnCompletion": None,
+                "sourceLanguageId": None,
+                "customInstruction": None,
+                "minimumMatchRatio": None,
             },
             path="projects/1/pre-translations",
         )
@@ -267,6 +427,14 @@ class TestTranslationsResource:
                 "labelIds": [1, 2, 3],
                 "excludeLabelIds": [4, 5],
                 "branchIds": [10, 20],
+                "directoryIds": None,
+                "taskId": None,
+                "priority": None,
+                "translationModifiedAfter": None,
+                "notifyOnCompletion": None,
+                "sourceLanguageId": None,
+                "customInstruction": None,
+                "minimumMatchRatio": None,
             },
             path="projects/1/pre-translations",
         )
@@ -312,6 +480,14 @@ class TestTranslationsResource:
                 "labelIds": [],
                 "excludeLabelIds": [],
                 "branchIds": [],
+                "directoryIds": None,
+                "taskId": None,
+                "priority": None,
+                "translationModifiedAfter": None,
+                "notifyOnCompletion": None,
+                "sourceLanguageId": None,
+                "customInstruction": None,
+                "minimumMatchRatio": None,
             },
             path="projects/1/pre-translations",
         )
@@ -354,7 +530,7 @@ class TestTranslationsResource:
             {
                 "value": "value",
                 "op": PreTranslationEditOperation.REPLACE,
-                "path": "/status",
+                "path": PreTranslationPatchPath.STATUS,
             }
         ]
 
@@ -401,6 +577,8 @@ class TestTranslationsResource:
                     "skipUntranslatedStrings": None,
                     "skipUntranslatedFiles": None,
                     "exportApprovedOnly": None,
+                    "exportWithMinApprovalsCount": None,
+                    "exportStringsThatPassedWorkflow": None,
                 },
                 None,
             ),
@@ -417,6 +595,8 @@ class TestTranslationsResource:
                     "skipUntranslatedStrings": False,
                     "skipUntranslatedFiles": False,
                     "exportApprovedOnly": False,
+                    "exportWithMinApprovalsCount": None,
+                    "exportStringsThatPassedWorkflow": None,
                 },
                 {"If-None-Match": "eTag"},
             ),
@@ -481,6 +661,7 @@ class TestTranslationsResource:
                     "skipUntranslatedFiles": None,
                     "exportApprovedOnly": None,
                     "exportWithMinApprovalsCount": None,
+                    "exportStringsThatPassedWorkflow": None,
                 },
             ),
             (
@@ -499,6 +680,7 @@ class TestTranslationsResource:
                     "skipUntranslatedFiles": True,
                     "exportApprovedOnly": False,
                     "exportWithMinApprovalsCount": True,
+                    "exportStringsThatPassedWorkflow": None,
                 },
             ),
         ),
@@ -527,6 +709,7 @@ class TestTranslationsResource:
                     "suffix": None,
                     "lengthTransformation": None,
                     "charTransformation": None,
+                    "branchId": None,
                 },
             ),
             (
@@ -543,6 +726,7 @@ class TestTranslationsResource:
                     "suffix": "nohtyp",
                     "lengthTransformation": 2,
                     "charTransformation": CharTransformation.ARABIC,
+                    "branchId": None,
                 },
             ),
         ),
@@ -707,6 +891,8 @@ class TestTranslationsResource:
                     "skipUntranslatedStrings": None,
                     "skipUntranslatedFiles": None,
                     "exportApprovedOnly": None,
+                    "exportWithMinApprovalsCount": None,
+                    "exportStringsThatPassedWorkflow": None,
                 },
             ),
             (
@@ -731,6 +917,8 @@ class TestTranslationsResource:
                     "skipUntranslatedStrings": False,
                     "skipUntranslatedFiles": True,
                     "exportApprovedOnly": False,
+                    "exportWithMinApprovalsCount": None,
+                    "exportStringsThatPassedWorkflow": None,
                 },
             ),
         ),
@@ -767,7 +955,9 @@ class TestTranslationsResource:
                     "importEqSuggestions": True,
                     "autoApproveImported": True,
                     "translateHidden": True,
-                    "addToTm": True
+                    "addToTm": True,
+                    "branchId": None,
+                    "importOptions": None,
                 },
             ),
         )
@@ -816,3 +1006,207 @@ class TestTranslationsResource:
             method="get",
             path=f"projects/{project_id}/translations/imports/{import_translation_id}/report",
         )
+
+    @pytest.mark.parametrize(
+        "in_params, request_data",
+        (
+            (
+                {},
+                {
+                    "targetLanguageIds": None,
+                    "skipUntranslatedStrings": None,
+                    "skipUntranslatedFiles": None,
+                    "exportApprovedOnly": None,
+                    "exportWithMinApprovalsCount": None,
+                    "exportStringsThatPassedWorkflow": None,
+                    "preserveFolderHierarchy": None,
+                },
+            ),
+            (
+                {
+                    "targetLanguageIds": ["uk"],
+                    "skipUntranslatedStrings": True,
+                    "skipUntranslatedFiles": False,
+                    "exportApprovedOnly": True,
+                    "exportWithMinApprovalsCount": 2,
+                    "exportStringsThatPassedWorkflow": False,
+                    "preserveFolderHierarchy": True,
+                },
+                {
+                    "targetLanguageIds": ["uk"],
+                    "skipUntranslatedStrings": True,
+                    "skipUntranslatedFiles": False,
+                    "exportApprovedOnly": True,
+                    "exportWithMinApprovalsCount": 2,
+                    "exportStringsThatPassedWorkflow": False,
+                    "preserveFolderHierarchy": True,
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_build_project_directory_translation(
+        self, m_request, in_params, request_data, base_absolut_url
+    ):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.build_project_directory_translation(projectId=1, directoryId=3, **in_params)
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="post",
+            path="projects/1/translations/builds/directories/3",
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_build_project_file_translation_enterprise_fields(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.build_project_file_translation(
+                projectId=1,
+                fileId=2,
+                targetLanguageId="uk",
+                exportWithMinApprovalsCount=1,
+                exportStringsThatPassedWorkflow=True,
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="post",
+            headers=None,
+            path="projects/1/translations/builds/files/2",
+            request_data={
+                "targetLanguageId": "uk",
+                "skipUntranslatedStrings": None,
+                "skipUntranslatedFiles": None,
+                "exportApprovedOnly": None,
+                "exportWithMinApprovalsCount": 1,
+                "exportStringsThatPassedWorkflow": True,
+            },
+        )
+
+    @mock.patch(
+        "crowdin_api.api_resources.translations.resource."
+        "TranslationsResource.build_project_translation"
+    )
+    def test_build_crowdin_project_translation_passed_workflow(
+        self, m_build_project_translation, base_absolut_url
+    ):
+        m_build_project_translation.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.build_crowdin_project_translation(
+                projectId=1, exportStringsThatPassedWorkflow=True
+            )
+            == "response"
+        )
+        m_build_project_translation.assert_called_once_with(
+            projectId=1,
+            request_data={
+                "branchId": None,
+                "targetLanguageIds": None,
+                "skipUntranslatedStrings": None,
+                "skipUntranslatedFiles": None,
+                "exportApprovedOnly": None,
+                "exportWithMinApprovalsCount": None,
+                "exportStringsThatPassedWorkflow": True,
+            },
+        )
+
+    @mock.patch(
+        "crowdin_api.api_resources.translations.resource."
+        "TranslationsResource.build_project_translation"
+    )
+    def test_build_pseudo_project_translation_with_branch(
+        self, m_build_project_translation, base_absolut_url
+    ):
+        m_build_project_translation.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.build_pseudo_project_translation(projectId=1, pseudo=True, branchId=4) == "response"
+        m_build_project_translation.assert_called_once_with(
+            projectId=1,
+            request_data={
+                "pseudo": True,
+                "prefix": None,
+                "suffix": None,
+                "lengthTransformation": None,
+                "charTransformation": None,
+                "branchId": 4,
+            },
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_export_project_translation_enterprise_fields(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.export_project_translation(
+                projectId=1,
+                targetLanguageId="uk",
+                exportWithMinApprovalsCount=0,
+                exportStringsThatPassedWorkflow=True,
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="post",
+            path="projects/1/translations/exports",
+            request_data={
+                "targetLanguageId": "uk",
+                "format": None,
+                "labelIds": None,
+                "branchIds": None,
+                "directoryIds": None,
+                "fileIds": None,
+                "skipUntranslatedStrings": None,
+                "skipUntranslatedFiles": None,
+                "exportApprovedOnly": None,
+                "exportWithMinApprovalsCount": 0,
+                "exportStringsThatPassedWorkflow": True,
+            },
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_import_translations_string_based(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        import_options = {"scheme": {"identifier": 0, "en": 1, "uk": 2}}
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.import_translations(
+                1, 2, language_ids=["uk"], branch_id=3, import_options=import_options
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="post",
+            path="projects/1/translations/imports",
+            request_data={
+                "storageId": 2,
+                "languageIds": ["uk"],
+                "fileId": None,
+                "importEqSuggestions": None,
+                "autoApproveImported": None,
+                "translateHidden": None,
+                "addToTm": None,
+                "branchId": 3,
+                "importOptions": import_options,
+            },
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_upload_translation_is_deprecated(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        with pytest.warns(DeprecationWarning):
+            resource.upload_translation(projectId=1, languageId="uk", storageId=1, fileId=2)

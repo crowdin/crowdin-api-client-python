@@ -58,9 +58,14 @@ class TestDictionariesResource:
 
         data = [
             {
-                "op": PatchOperation.REPLACE,
+                "op": PatchOperation.ADD,
+                "path": "/words/-",
+                "value": "word",
+            },
+            {
+                "op": PatchOperation.REMOVE,
                 "path": "/words/0",
-            }
+            },
         ]
 
         resource = self.get_resource(base_absolut_url)

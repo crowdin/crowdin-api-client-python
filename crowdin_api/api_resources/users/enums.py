@@ -14,6 +14,15 @@ class UserPatchPath(Enum):
     LAST_NAME = "/lastName"
     TIMEZONE = "/timezone"
     STATUS = "/status"
+    ADMIN_ACCESS = "/adminAccess"
+    AVATAR_STORAGE_ID = "/avatarStorageId"
+
+
+class AuthenticatedUserPatchPath(Enum):
+    USERNAME = "/username"
+    FULL_NAME = "/fullName"
+    TIMEZONE = "/timezone"
+    AVATAR_STORAGE_ID = "/avatarStorageId"
 
 
 class ProjectRole(Enum):

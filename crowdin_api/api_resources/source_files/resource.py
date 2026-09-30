@@ -1,4 +1,4 @@
-from typing import Any, Iterable, Optional, Union
+from typing import Any, Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.source_files.enums import (
@@ -9,18 +9,10 @@ from crowdin_api.api_resources.source_files.enums import (
 from crowdin_api.api_resources.source_files.types import (
     BranchPatchRequest,
     DirectoryPatchRequest,
+    FileExportOptions,
+    FileFields,
+    FileImportOptions,
     FilePatchRequest,
-    GeneralExportOptions,
-    JavascriptExportOptions,
-    HtmlFileImportOptions,
-    HtmlWithFrontMatterFileImportOptions,
-    MdxV1FileImportOptions,
-    MdxV2FileImportOptions,
-    OtherImportOptions,
-    PropertyExportOptions,
-    SpreadsheetImportOptions,
-    XmlImportOptions,
-    DocxFileImportOptions,
 )
 from crowdin_api.sorting import Sorting
 
@@ -39,7 +31,7 @@ class SourceFilesResource(BaseResource):
     Crowdin.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Source-Files
+    https://support.crowdin.com/developer/api/v2/#tag/Source-Files
     """
 
     # Organization Search
@@ -56,8 +48,8 @@ class SourceFilesResource(BaseResource):
         Search Branches.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.branches.getMany
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.branches.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.branches.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.branches.getMany
         """
 
         params = {
@@ -84,8 +76,8 @@ class SourceFilesResource(BaseResource):
         Search Directories.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.directories.getMany
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.directories.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.directories.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.directories.getMany
         """
 
         params = {
@@ -112,8 +104,8 @@ class SourceFilesResource(BaseResource):
         Search Files.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.files.getMany
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.files.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.files.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.files.getMany
         """
 
         params = {
@@ -147,7 +139,7 @@ class SourceFilesResource(BaseResource):
         List Branches.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.branches.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -165,12 +157,16 @@ class SourceFilesResource(BaseResource):
         title: Optional[str] = None,
         exportPattern: Optional[str] = None,
         priority: Optional[Priority] = None,
+        isProtected: Optional[bool] = None,
     ):
         """
         Add Branch.
 
+        `exportPattern` and `priority` are for file-based projects only,
+        `isProtected` is for string-based projects only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.branches.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -183,6 +179,7 @@ class SourceFilesResource(BaseResource):
                 "title": title,
                 "exportPattern": exportPattern,
                 "priority": priority,
+                "isProtected": isProtected,
             },
         )
 
@@ -191,7 +188,7 @@ class SourceFilesResource(BaseResource):
         Get Branch.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.branches.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -210,8 +207,11 @@ class SourceFilesResource(BaseResource):
         """
         Delete Branch.
 
+        Pass `prefer="respond-async"` to delete the branch asynchronously (recommended); the API
+        then returns a job to poll via `check_branch_deletion_status`.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.branches.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -233,7 +233,7 @@ class SourceFilesResource(BaseResource):
         Check Branch Deletion Status.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.branches.jobs.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.jobs.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -252,8 +252,11 @@ class SourceFilesResource(BaseResource):
         """
         Edit Branch.
 
+        `/exportPattern` is for file-based projects only, `/isProtected` is for string-based
+        projects only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.branches.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -287,7 +290,7 @@ class SourceFilesResource(BaseResource):
         List Directories.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.directories.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -312,7 +315,7 @@ class SourceFilesResource(BaseResource):
         projectId: Optional[int] = None,
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
-        title: Optional[int] = None,
+        title: Optional[str] = None,
         exportPattern: Optional[str] = None,
         priority: Optional[Priority] = None,
     ):
@@ -320,7 +323,7 @@ class SourceFilesResource(BaseResource):
         Add Directory.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.directories.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -343,7 +346,7 @@ class SourceFilesResource(BaseResource):
         Get Directory.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.directories.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -362,8 +365,11 @@ class SourceFilesResource(BaseResource):
         """
         Delete Directory.
 
+        Pass `prefer="respond-async"` to delete the directory asynchronously (recommended); the API
+        then returns a job to poll via `check_directory_deletion_status`.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.directories.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -385,7 +391,7 @@ class SourceFilesResource(BaseResource):
         Check Directory Deletion Status.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.directories.jobs.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.jobs.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -405,7 +411,7 @@ class SourceFilesResource(BaseResource):
         Edit Directory.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.directories.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -439,7 +445,7 @@ class SourceFilesResource(BaseResource):
         List Files.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.files.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -463,32 +469,23 @@ class SourceFilesResource(BaseResource):
         projectId: Optional[int] = None,
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
-        title: Optional[int] = None,
+        title: Optional[str] = None,
         context: Optional[str] = None,
         type: Optional[FileType] = FileType.AUTO,
-        importOptions: Optional[
-            Union[
-                SpreadsheetImportOptions,
-                XmlImportOptions,
-                DocxFileImportOptions,
-                OtherImportOptions,
-                HtmlFileImportOptions,
-                HtmlWithFrontMatterFileImportOptions,
-                MdxV1FileImportOptions,
-                MdxV2FileImportOptions,
-            ]
-        ] = None,
-        exportOptions: Optional[
-            Union[PropertyExportOptions, GeneralExportOptions, JavascriptExportOptions]
-        ] = None,
+        importOptions: Optional[FileImportOptions] = None,
+        exportOptions: Optional[FileExportOptions] = None,
         excludedTargetLanguages: Optional[Iterable[str]] = None,
         attachLabelIds: Optional[Iterable[int]] = None,
+        parserVersion: Optional[int] = None,
+        fields: Optional[FileFields] = None,
     ):
         """
         Add File.
 
+        `parserVersion` must be used together with `type`. `fields` is Enterprise only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.files.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -508,6 +505,8 @@ class SourceFilesResource(BaseResource):
                 "exportOptions": exportOptions,
                 "excludedTargetLanguages": excludedTargetLanguages,
                 "attachLabelIds": attachLabelIds,
+                "parserVersion": parserVersion,
+                "fields": fields,
             },
         )
 
@@ -516,7 +515,7 @@ class SourceFilesResource(BaseResource):
         Get File.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.files.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -532,8 +531,10 @@ class SourceFilesResource(BaseResource):
         """
         Restore File.
 
+        Restore the file to one of the previous revisions.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.files.put
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.put
         """
 
         projectId = projectId or self.get_project_id()
@@ -550,29 +551,23 @@ class SourceFilesResource(BaseResource):
         storageId: int,
         projectId: Optional[int] = None,
         updateOption: Optional[FileUpdateOption] = None,
-        importOptions: Optional[
-            Union[
-                SpreadsheetImportOptions,
-                XmlImportOptions,
-                DocxFileImportOptions,
-                OtherImportOptions,
-                HtmlFileImportOptions,
-                HtmlWithFrontMatterFileImportOptions,
-                MdxV1FileImportOptions,
-                MdxV2FileImportOptions,
-            ]
-        ] = None,
-        exportOptions: Optional[
-            Union[GeneralExportOptions, PropertyExportOptions, JavascriptExportOptions]
-        ] = None,
+        importOptions: Optional[FileImportOptions] = None,
+        exportOptions: Optional[FileExportOptions] = None,
         attachLabelIds: Optional[Iterable[int]] = None,
         detachLabelIds: Optional[Iterable[int]] = None,
+        name: Optional[str] = None,
+        replaceModifiedContext: Optional[bool] = None,
     ):
         """
         Update File.
 
+        Replace the file with a new one from the Storage. `importOptions` is sent to the API
+        as-is (e.g. `{"importTranslations": True}` for spreadsheet files). Note that
+        `importOptions.importTranslations` in the API response for spreadsheet files is
+        marked as deprecated by the API and may not reflect the value sent in the request.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.files.put
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.put
         """
 
         projectId = projectId or self.get_project_id()
@@ -587,6 +582,8 @@ class SourceFilesResource(BaseResource):
                 "exportOptions": exportOptions,
                 "attachLabelIds": attachLabelIds,
                 "detachLabelIds": detachLabelIds,
+                "name": name,
+                "replaceModifiedContext": replaceModifiedContext,
             },
         )
 
@@ -599,8 +596,11 @@ class SourceFilesResource(BaseResource):
         """
         Delete File.
 
+        Pass `prefer="respond-async"` to delete the file asynchronously (recommended); the API
+        then returns a job to poll via `check_file_deletion_status`.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.files.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -622,7 +622,7 @@ class SourceFilesResource(BaseResource):
         Check File Deletion Status.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.files.jobs.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.jobs.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -641,8 +641,11 @@ class SourceFilesResource(BaseResource):
         """
         Edit File.
 
+        `/fields` and `/fields/{fieldSlug}` paths are Enterprise only. For `/fields/{fieldSlug}`
+        pass the path as a string, e.g. `"/fields/some-field"`.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.files.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -658,7 +661,7 @@ class SourceFilesResource(BaseResource):
         Download File Preview.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.files.preview.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.preview.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -672,7 +675,7 @@ class SourceFilesResource(BaseResource):
         Download File.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.files.download.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.download.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -705,7 +708,7 @@ class SourceFilesResource(BaseResource):
         List File Revisions.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.files.revisions.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.revisions.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -723,7 +726,7 @@ class SourceFilesResource(BaseResource):
         Get File Revision.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.files.revisions.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.revisions.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -765,10 +768,10 @@ class SourceFilesResource(BaseResource):
             "offset": offset,
         }
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_asset_references_path(project_id, file_id),
-            params=params
+            params=params,
         )
 
     def add_asset_reference(

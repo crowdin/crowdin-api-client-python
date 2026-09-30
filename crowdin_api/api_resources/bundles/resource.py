@@ -1,6 +1,7 @@
 from typing import Optional, Iterable
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
+from crowdin_api.api_resources.bundles.enums import BundleLabelMatchRule
 from crowdin_api.api_resources.bundles.types import BundlePatchRequest
 
 
@@ -9,10 +10,10 @@ class BundlesResource(BaseResource):
     Resource for Bundles.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Bundles
+    https://support.crowdin.com/developer/api/v2/#tag/Bundles
 
     Link to documentation for enterprise:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Bundles
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Bundles
     """
     def get_bundles_path(self, projectId: int, bundleId: Optional[int] = None):
         if bundleId:
@@ -36,10 +37,10 @@ class BundlesResource(BaseResource):
         List Bundles.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.getMany
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.getMany
         """
 
         params = self.get_page_params(offset=offset, limit=limit)
@@ -54,24 +55,33 @@ class BundlesResource(BaseResource):
     def add_bundle(
         self,
         name: str,
-        format: str,
+        format: Optional[str],
         sourcePatterns: Iterable[str],
-        exportPattern: str,
+        exportPattern: Optional[str],
         projectId: Optional[int] = None,
         ignorePatterns: Optional[Iterable[str]] = None,
         isMultilingual: Optional[bool] = None,
         includeProjectSourceLanguage: Optional[bool] = None,
         labelIds: Optional[Iterable[int]] = None,
         excludeLabelIds: Optional[Iterable[int]] = None,
+        sourceLanguageExportPattern: Optional[str] = None,
+        includeInContextPseudoLanguage: Optional[bool] = None,
+        labelMatchRule: Optional[BundleLabelMatchRule] = None,
+        excludeLabelMatchRule: Optional[BundleLabelMatchRule] = None,
+        languageIds: Optional[Iterable[str]] = None,
     ):
         """
         Add Bundles.
 
+        `format` and `exportPattern` may be `None`: if `format` is not provided, files are exported
+        in their original format (`format` is required for string-based projects), and
+        `exportPattern` is required only if `format` is specified.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -89,6 +99,11 @@ class BundlesResource(BaseResource):
                 "includeProjectSourceLanguage": includeProjectSourceLanguage,
                 "labelIds": labelIds,
                 "excludeLabelIds": excludeLabelIds,
+                "sourceLanguageExportPattern": sourceLanguageExportPattern,
+                "includeInContextPseudoLanguage": includeInContextPseudoLanguage,
+                "labelMatchRule": labelMatchRule,
+                "excludeLabelMatchRule": excludeLabelMatchRule,
+                "languageIds": languageIds,
             }
         )
 
@@ -97,10 +112,10 @@ class BundlesResource(BaseResource):
         Get Bundle.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.get
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -115,10 +130,10 @@ class BundlesResource(BaseResource):
         Delete Bundle.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.delete
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -138,10 +153,10 @@ class BundlesResource(BaseResource):
         Edit Bundle.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.patch
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.patch
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -159,10 +174,10 @@ class BundlesResource(BaseResource):
         Download bundle.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.download.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.exports.download.get
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -186,11 +201,15 @@ class BundlesResource(BaseResource):
         """
         Export bundle.
 
+        `skipUntranslatedFiles` is for file-based projects only, `exportApprovedOnly` is for
+        Crowdin only, `exportWithMinApprovalsCount` and `exportStringsThatPassedWorkflow` are for
+        Crowdin Enterprise only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.exports.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.exports.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -215,10 +234,10 @@ class BundlesResource(BaseResource):
         Check Bundle Export Status.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.exports.get
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.exports.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -239,10 +258,10 @@ class BundlesResource(BaseResource):
         Get Bundle List Files.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.files.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.files.getMany
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.files.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.files.getMany
         """
 
         params = self.get_page_params(offset=offset, limit=limit)
@@ -251,5 +270,33 @@ class BundlesResource(BaseResource):
         return self._get_entire_data(
             method="get",
             path=f"{self.get_bundles_path(projectId=projectId, bundleId=bundleId)}/files",
+            params=params,
+        )
+
+    def list_bundle_branches(
+        self,
+        bundleId: int,
+        projectId: Optional[int] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        Get Bundle List Branches.
+
+        String-based projects only.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/string-based/#operation/api.projects.bundles.branches.getMany
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/string-based/#operation/api.projects.bundles.branches.getMany
+        """
+
+        params = self.get_page_params(offset=offset, limit=limit)
+        projectId = projectId or self.get_project_id()
+
+        return self._get_entire_data(
+            method="get",
+            path=f"{self.get_bundles_path(projectId=projectId, bundleId=bundleId)}/branches",
             params=params,
         )

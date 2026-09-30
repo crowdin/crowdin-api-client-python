@@ -15,7 +15,7 @@ class FieldsResource(BaseResource):
     Resource for Fields.
 
     Link to documentation:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Fields
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Fields
     """
 
     def get_fields_path(self, fieldId: Optional[int] = None):
@@ -35,7 +35,7 @@ class FieldsResource(BaseResource):
         List Fields
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.fields.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.fields.getMany
         """
         params = {"search": search, "entity": entity, "type": type}
         params.update(self.get_page_params(limit=limit, offset=offset))
@@ -59,7 +59,7 @@ class FieldsResource(BaseResource):
         Add Field
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.fields.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.fields.post
         """
         data = {
             "name": name,
@@ -78,8 +78,8 @@ class FieldsResource(BaseResource):
         """
         Get Field
 
-        Link to documentaion:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.fields.get
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.fields.get
         """
 
         return self.requester.request(
@@ -90,8 +90,8 @@ class FieldsResource(BaseResource):
         """
         Delete Field
 
-        Link to documetation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.fields.delete
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.fields.delete
         """
 
         return self.requester.request(
@@ -103,7 +103,7 @@ class FieldsResource(BaseResource):
         Edit Field
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.fields.patch
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.fields.patch
         """
 
         return self.requester.request(

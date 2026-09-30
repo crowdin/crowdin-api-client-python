@@ -2,6 +2,7 @@ from unittest import mock
 
 import pytest
 from crowdin_api import CrowdinClient
+from crowdin_api.exceptions import CrowdinException
 
 
 class MockCrowdinClientEnterprise(CrowdinClient):
@@ -160,7 +161,9 @@ class TestCrowdinClient:
     @pytest.mark.parametrize(
         "property_name, class_name",
         (
+            ("advisors", "AdvisorsResource"),
             ("ai", "AIResource"),
+            ("branches", "BranchesResource"),
             ("bundles", "BundlesResource"),
             ("dictionaries", "DictionariesResource"),
             ("distributions", "DistributionsResource"),
@@ -168,6 +171,8 @@ class TestCrowdinClient:
             ("labels", "LabelsResource"),
             ("languages", "LanguagesResource"),
             ("machine_translations", "MachineTranslationEnginesResource"),
+            ("notifications", "NotificationResource"),
+            ("organization_webhooks", "OrganizationWebhooksResource"),
             ("projects", "ProjectsResource"),
             ("reports", "ReportsResource"),
             ("screenshots", "ScreenshotsResource"),
@@ -178,6 +183,7 @@ class TestCrowdinClient:
             ("string_comments", "StringCommentsResource"),
             ("string_translations", "StringTranslationsResource"),
             ("style_guides", "StyleGuidesResource"),
+            ("system_placeholders", "SystemPlaceholdersResource"),
             ("tasks", "TasksResource"),
             ("translation_memory", "TranslationMemoryResource"),
             ("translation_status", "TranslationStatusResource"),
@@ -211,6 +217,22 @@ class TestCrowdinClient:
                 requester="api_requestor", project_id=1, page_size=25
             )
 
+    @pytest.mark.parametrize(
+        "property_name",
+        (
+            "clients",
+            "custom_placeholders",
+            "custom_spellcheckers",
+            "external_qa_checks",
+            "organization",
+            "project_placeholders",
+            "string_corrections",
+        ),
+    )
+    def test_enterprise_only_resources(self, property_name):
+        with pytest.raises(CrowdinException):
+            getattr(CrowdinClient(), property_name)
+
     @mock.patch("crowdin_api.client.CrowdinClient.get_api_requestor")
     def test_graphql(self, mock_get_requestor):
         """Test GraphQL functionality with basic request validation."""
@@ -235,26 +257,38 @@ class TestCrowdinClientEnterprise:
     @pytest.mark.parametrize(
         "property_name, class_name",
         (
+            ("advisors", "AdvisorsResource"),
             ("ai", "EnterpriseAIResource"),
+            ("branches", "BranchesResource"),
             ("bundles", "BundlesResource"),
+            ("clients", "ClientsResource"),
+            ("custom_placeholders", "CustomPlaceholdersResource"),
+            ("custom_spellcheckers", "CustomSpellcheckersResource"),
             ("dictionaries", "DictionariesResource"),
             ("distributions", "DistributionsResource"),
+            ("external_qa_checks", "ExternalQaChecksResource"),
             ("fields", "FieldsResource"),
             ("glossaries", "GlossariesResource"),
             ("groups", "GroupsResource"),
             ("labels", "LabelsResource"),
             ("languages", "LanguagesResource"),
-            ("machine_translations", "MachineTranslationEnginesResource"),
+            ("machine_translations", "EnterpriseMachineTranslationEnginesResource"),
+            ("notifications", "NotificationResource"),
+            ("organization", "OrganizationResource"),
+            ("organization_webhooks", "OrganizationWebhooksResource"),
+            ("project_placeholders", "ProjectPlaceholdersResource"),
             ("projects", "ProjectsResource"),
             ("reports", "EnterpriseReportsResource"),
             ("screenshots", "ScreenshotsResource"),
             ("security_logs", "SecurityLogsResource"),
             ("source_files", "SourceFilesResource"),
-            ("source_strings", "SourceStringsResource"),
+            ("source_strings", "EnterpriseSourceStringsResource"),
             ("storages", "StoragesResource"),
             ("string_comments", "StringCommentsResource"),
+            ("string_corrections", "StringCorrectionsResource"),
             ("string_translations", "StringTranslationsResource"),
             ("style_guides", "StyleGuidesResource"),
+            ("system_placeholders", "SystemPlaceholdersResource"),
             ("tasks", "EnterpriseTasksResource"),
             ("teams", "TeamsResource"),
             ("translation_memory", "TranslationMemoryResource"),

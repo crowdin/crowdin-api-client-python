@@ -62,3 +62,50 @@ class Match(TypedDict):
 class BaseRates(TypedDict):
     fullTranslation: float
     proofread: float
+
+
+class HourlyBaseRates(TypedDict):
+    hourly: float
+
+
+class HourlyIndividualRate(TypedDict):
+    languageIds: Iterable[str]
+    userIds: Iterable[int]
+    hourly: float
+
+
+class PostEditingIndividualRate(TypedDict):
+    languageIds: Iterable[str]
+    userIds: Iterable[int]
+    fullTranslation: float
+    proofread: float
+
+
+class PostEditingNetRateSchemes(TypedDict, total=False):
+    tmMatch: Iterable[Match]
+    mtMatch: Iterable[Match]
+    aiMatch: Iterable[Match]
+    suggestionMatch: Iterable[Match]
+
+
+class PostEditingConfig(TypedDict, total=False):
+    """
+    Report settings template config for post-editing templates.
+    """
+
+    baseRates: BaseRates
+    individualRates: Iterable[PostEditingIndividualRate]
+    netRateSchemes: PostEditingNetRateSchemes
+    calculateInternalMatches: bool
+    includePreTranslatedStrings: bool
+    useCategoryBasedProofreadRates: bool
+    useTmEditDistance: bool
+
+
+class HourlyConfig(TypedDict):
+    """
+    Report settings template config for hourly templates (unit `hours`).
+    """
+
+    baseRates: HourlyBaseRates
+    individualRates: Iterable[HourlyIndividualRate]

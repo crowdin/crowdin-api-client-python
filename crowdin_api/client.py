@@ -105,6 +105,19 @@ class CrowdinClient:
         )
 
     @property
+    def advisors(self) -> api_resources.AdvisorsResource:
+        if self.PROJECT_ID:
+            return api_resources.AdvisorsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
+        return api_resources.AdvisorsResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
     def ai(self) -> Union[api_resources.AIResource, api_resources.EnterpriseAIResource]:
         if self._is_enterprise_platform:
             ai_class = api_resources.EnterpriseAIResource
@@ -126,6 +139,19 @@ class CrowdinClient:
         )
 
     @property
+    def branches(self) -> api_resources.BranchesResource:
+        if self.PROJECT_ID:
+            return api_resources.BranchesResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
+        return api_resources.BranchesResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
     def bundles(self) -> api_resources.BundlesResource:
         if self.PROJECT_ID:
             return api_resources.BundlesResource(
@@ -135,6 +161,54 @@ class CrowdinClient:
             )
 
         return api_resources.BundlesResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
+    def clients(self) -> api_resources.ClientsResource:
+        if not self._is_enterprise_platform:
+            raise CrowdinException(detail="Not implemented for the base API")
+
+        if self.PROJECT_ID:
+            return api_resources.ClientsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
+        return api_resources.ClientsResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
+    def custom_placeholders(self) -> api_resources.CustomPlaceholdersResource:
+        if not self._is_enterprise_platform:
+            raise CrowdinException(detail="Not implemented for the base API")
+
+        if self.PROJECT_ID:
+            return api_resources.CustomPlaceholdersResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
+        return api_resources.CustomPlaceholdersResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
+    def custom_spellcheckers(self) -> api_resources.CustomSpellcheckersResource:
+        if not self._is_enterprise_platform:
+            raise CrowdinException(detail="Not implemented for the base API")
+
+        if self.PROJECT_ID:
+            return api_resources.CustomSpellcheckersResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
+        return api_resources.CustomSpellcheckersResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
@@ -161,6 +235,22 @@ class CrowdinClient:
             )
 
         return api_resources.DistributionsResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
+    def external_qa_checks(self) -> api_resources.ExternalQaChecksResource:
+        if not self._is_enterprise_platform:
+            raise CrowdinException(detail="Not implemented for the base API")
+
+        if self.PROJECT_ID:
+            return api_resources.ExternalQaChecksResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
+        return api_resources.ExternalQaChecksResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
@@ -232,6 +322,64 @@ class CrowdinClient:
             )
 
         return api_resources.LanguagesResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
+    def notifications(self) -> api_resources.NotificationResource:
+        if self.PROJECT_ID:
+            return api_resources.NotificationResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
+        return api_resources.NotificationResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
+    def organization(self) -> api_resources.OrganizationResource:
+        if not self._is_enterprise_platform:
+            raise CrowdinException(detail="Not implemented for the base API")
+
+        if self.PROJECT_ID:
+            return api_resources.OrganizationResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
+        return api_resources.OrganizationResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
+    def organization_webhooks(self) -> api_resources.OrganizationWebhooksResource:
+        if self.PROJECT_ID:
+            return api_resources.OrganizationWebhooksResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
+        return api_resources.OrganizationWebhooksResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
+    def project_placeholders(self) -> api_resources.ProjectPlaceholdersResource:
+        if not self._is_enterprise_platform:
+            raise CrowdinException(detail="Not implemented for the base API")
+
+        if self.PROJECT_ID:
+            return api_resources.ProjectPlaceholdersResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
+        return api_resources.ProjectPlaceholdersResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
@@ -309,17 +457,22 @@ class CrowdinClient:
         )
 
     @property
-    def source_strings(self) -> api_resources.SourceStringsResource:
+    def source_strings(
+        self,
+    ) -> Union[api_resources.SourceStringsResource, api_resources.EnterpriseSourceStringsResource]:
+        if self._is_enterprise_platform:
+            source_strings_class = api_resources.EnterpriseSourceStringsResource
+        else:
+            source_strings_class = api_resources.SourceStringsResource
+
         if self.PROJECT_ID:
-            return api_resources.SourceStringsResource(
+            return source_strings_class(
                 requester=self.get_api_requestor(),
                 project_id=self.PROJECT_ID,
                 page_size=self.PAGE_SIZE,
             )
 
-        return api_resources.SourceStringsResource(
-            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
-        )
+        return source_strings_class(requester=self.get_api_requestor(), page_size=self.PAGE_SIZE)
 
     @property
     def storages(self) -> api_resources.StoragesResource:
@@ -348,6 +501,22 @@ class CrowdinClient:
         )
 
     @property
+    def string_corrections(self) -> api_resources.StringCorrectionsResource:
+        if not self._is_enterprise_platform:
+            raise CrowdinException(detail="Not implemented for the base API")
+
+        if self.PROJECT_ID:
+            return api_resources.StringCorrectionsResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
+        return api_resources.StringCorrectionsResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
     def string_translations(self) -> api_resources.StringTranslationsResource:
         if self.PROJECT_ID:
             return api_resources.StringTranslationsResource(
@@ -370,6 +539,19 @@ class CrowdinClient:
             )
 
         return api_resources.StyleGuidesResource(
+            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
+        )
+
+    @property
+    def system_placeholders(self) -> api_resources.SystemPlaceholdersResource:
+        if self.PROJECT_ID:
+            return api_resources.SystemPlaceholdersResource(
+                requester=self.get_api_requestor(),
+                project_id=self.PROJECT_ID,
+                page_size=self.PAGE_SIZE,
+            )
+
+        return api_resources.SystemPlaceholdersResource(
             requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
         )
 
@@ -448,17 +630,25 @@ class CrowdinClient:
         )
 
     @property
-    def machine_translations(self) -> api_resources.MachineTranslationEnginesResource:
+    def machine_translations(
+        self,
+    ) -> Union[
+        api_resources.MachineTranslationEnginesResource,
+        api_resources.EnterpriseMachineTranslationEnginesResource,
+    ]:
+        if self._is_enterprise_platform:
+            mt_class = api_resources.EnterpriseMachineTranslationEnginesResource
+        else:
+            mt_class = api_resources.MachineTranslationEnginesResource
+
         if self.PROJECT_ID:
-            return api_resources.MachineTranslationEnginesResource(
+            return mt_class(
                 requester=self.get_api_requestor(),
                 project_id=self.PROJECT_ID,
                 page_size=self.PAGE_SIZE,
             )
 
-        return api_resources.MachineTranslationEnginesResource(
-            requester=self.get_api_requestor(), page_size=self.PAGE_SIZE
-        )
+        return mt_class(requester=self.get_api_requestor(), page_size=self.PAGE_SIZE)
 
     @property
     def users(self) -> Union[api_resources.UsersResource, api_resources.EnterpriseUsersResource]:

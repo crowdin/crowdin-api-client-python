@@ -1,6 +1,9 @@
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional, Union
 from crowdin_api.typing import TypedDict
-from crowdin_api.api_resources.translations.enums import PreTranslationEditOperation
+from crowdin_api.api_resources.translations.enums import (
+    PreTranslationEditOperation,
+    PreTranslationPatchPath,
+)
 
 
 class FallbackLanguages(TypedDict):
@@ -9,7 +12,7 @@ class FallbackLanguages(TypedDict):
 
 class EditPreTranslationScheme(TypedDict):
     op: PreTranslationEditOperation
-    path: str
+    path: Union[PreTranslationPatchPath, str]
     value: str
 
 
@@ -20,3 +23,14 @@ class UploadTranslationRequest(TypedDict):
     autoApproveImported: Optional[bool]
     translateHidden: Optional[bool]
     addToTm: Optional[bool]
+
+
+class ImportTranslationsOptions(TypedDict, total=False):
+    """
+    Import options for spreadsheet files in string-based projects.
+
+    `scheme` maps column names (`none`, `identifier`, `sourceOrTranslation`, `translation`
+    or a language identifier such as `en`) to column numbers, starting at 0.
+    """
+
+    scheme: Dict[str, int]

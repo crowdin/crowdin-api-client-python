@@ -16,8 +16,8 @@ class TestSecurityLogsResource:
     @pytest.mark.parametrize(
         "incoming_data, path",
         (
-            ({"userId": 1}, "/users/1/security-logs"),
-            ({"userId": 1, "securityLogId": 2}, "/users/1/security-logs/2"),
+            ({"userId": 1}, "users/1/security-logs"),
+            ({"userId": 1, "securityLogId": 2}, "users/1/security-logs/2"),
         ),
     )
     def test_get_user_security_logs_path(self, incoming_data, path, base_absolut_url):
@@ -89,8 +89,8 @@ class TestSecurityLogsResource:
     @pytest.mark.parametrize(
         "incoming_data, path",
         (
-            ({}, "/security-logs"),
-            ({"securityLogId": 1}, "/security-logs/1"),
+            ({}, "security-logs"),
+            ({"securityLogId": 1}, "security-logs/1"),
         ),
     )
     def test_get_organization_security_logs_path(

@@ -3,7 +3,7 @@ from unittest import mock
 import pytest
 
 from crowdin_api.api_resources import BundlesResource
-from crowdin_api.api_resources.bundles.enums import BundlePatchPath
+from crowdin_api.api_resources.bundles.enums import BundleLabelMatchRule, BundlePatchPath
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.requester import APIRequester
 
@@ -155,7 +155,60 @@ class TestBundlesResource:
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_bundles_path(projectId=1),
-            request_data=request_data,
+            request_data={
+                "sourceLanguageExportPattern": None,
+                "includeInContextPseudoLanguage": None,
+                "labelMatchRule": None,
+                "excludeLabelMatchRule": None,
+                "languageIds": None,
+                **request_data,
+            },
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_bundle_with_all_params(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.add_bundle(
+                projectId=1,
+                name="test_name",
+                format=None,
+                sourcePatterns=["/master/"],
+                exportPattern=None,
+                ignorePatterns=["/master/environments/"],
+                isMultilingual=True,
+                includeProjectSourceLanguage=True,
+                labelIds=[2],
+                excludeLabelIds=[3],
+                sourceLanguageExportPattern="source.resx",
+                includeInContextPseudoLanguage=False,
+                labelMatchRule=BundleLabelMatchRule.ANY,
+                excludeLabelMatchRule=BundleLabelMatchRule.ALL,
+                languageIds=["uk", "de"],
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_bundles_path(projectId=1),
+            request_data={
+                "name": "test_name",
+                "format": None,
+                "sourcePatterns": ["/master/"],
+                "exportPattern": None,
+                "ignorePatterns": ["/master/environments/"],
+                "isMultilingual": True,
+                "includeProjectSourceLanguage": True,
+                "labelIds": [2],
+                "excludeLabelIds": [3],
+                "sourceLanguageExportPattern": "source.resx",
+                "includeInContextPseudoLanguage": False,
+                "labelMatchRule": BundleLabelMatchRule.ANY,
+                "excludeLabelMatchRule": BundleLabelMatchRule.ALL,
+                "languageIds": ["uk", "de"],
+            },
         )
 
     @pytest.mark.parametrize(
@@ -290,4 +343,48 @@ class TestBundlesResource:
             method="get",
             path="projects/1/bundles/1/files",
             params=request_params,
+        )
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_params",
+        (
+            ({}, {"limit": 25, "offset": 0}),
+            ({"limit": 10, "offset": 2}, {"limit": 10, "offset": 2}),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_bundle_branches(self, m_request, incoming_data, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_bundle_branches(projectId=1, bundleId=2, **incoming_data) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/1/bundles/2/branches",
+            params=request_params,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_bundle_label_match_rule(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        data = [
+            {
+                "op": PatchOperation.REPLACE,
+                "path": BundlePatchPath.LABEL_MATCH_RULE,
+                "value": BundleLabelMatchRule.ANY,
+            },
+            {
+                "op": PatchOperation.REPLACE,
+                "path": BundlePatchPath.INCLUDE_IN_CONTEXT_PSEUDO_LANGUAGE,
+                "value": False,
+            },
+        ]
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_bundle(projectId=1, bundleId=2, data=data) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path=resource.get_bundles_path(projectId=1, bundleId=2),
+            request_data=data,
         )

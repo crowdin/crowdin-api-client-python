@@ -8,6 +8,8 @@ class FieldEntity(Enum):
     FILE = "file"
     TRANSLATION = "translation"
     STRING = "string"
+    TERM = "term"
+    CONCEPT = "concept"
 
 
 class FieldType(Enum):
@@ -32,6 +34,7 @@ class FieldPlace(Enum):
     PROJECT_SETTINGS = "projectSettings"
     PROJECT_TASK_EDIT_CREATE = "projectTaskEditCreate"
     PROJECT_TASK_DETAILS = "projectTaskDetails"
+    PROJECT_TASK_BOARD_CARD = "projectTaskBoardCard"
     FILE_DETAILS = "fileDetails"
     FILE_SETTINGS = "fileSettings"
     USER_EDIT_MODAL = "userEditModal"
@@ -40,6 +43,10 @@ class FieldPlace(Enum):
     STRING_EDIT_MODAL = "stringEditModal"
     STRING_DETAILS = "stringDetails"
     TRANSLATION_UNDER_CONTENT = "translationUnderContent"
+    TERM_DETAILS = "termDetails"
+    TERM_EDIT_MODAL = "termEditModal"
+    CONCEPT_DETAILS = "conceptDetails"
+    CONCEPT_EDIT_MODAL = "conceptEditModal"
 
 
 class FieldOperations(Enum):
@@ -48,3 +55,6 @@ class FieldOperations(Enum):
 
 class FieldsPatchPath(Enum):
     NAME = "/name"
+    DESCRIPTION = "/description"
+    CONFIG = "/config"
+    ENTITIES = "/entities"

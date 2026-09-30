@@ -39,6 +39,25 @@ class TestLabelsResource:
                 {},
                 {
                     "orderBy": None,
+                    "isSystem": None,
+                    "limit": 25,
+                    "offset": 0,
+                },
+            ),
+            (
+                {"isSystem": True},
+                {
+                    "orderBy": None,
+                    "isSystem": 1,
+                    "limit": 25,
+                    "offset": 0,
+                },
+            ),
+            (
+                {"isSystem": 0},
+                {
+                    "orderBy": None,
+                    "isSystem": 0,
                     "limit": 25,
                     "offset": 0,
                 },
@@ -55,6 +74,7 @@ class TestLabelsResource:
                     "orderBy": Sorting(
                         [SortingRule(ListLabelsOrderBy.ID, SortingOrder.DESC)]
                     ),
+                    "isSystem": None,
                     "limit": 25,
                     "offset": 0,
                 },
@@ -62,7 +82,7 @@ class TestLabelsResource:
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_list_translation_approvals(
+    def test_list_labels(
         self, m_request, incoming_data, request_params, base_absolut_url
     ):
         m_request.return_value = "response"
@@ -135,7 +155,13 @@ class TestLabelsResource:
                 {
                     "screenshotIds": [1, 2, 3]
                 }
-            )
+            ),
+            (
+                5,
+                {
+                    "screenshotIds": [5]
+                }
+            ),
         ]
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -158,7 +184,15 @@ class TestLabelsResource:
             (
                 [1, 2, 3],
                 "1,2,3"
-            )
+            ),
+            (
+                (4, 5),
+                "4,5"
+            ),
+            (
+                7,
+                7
+            ),
         ]
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -171,7 +205,8 @@ class TestLabelsResource:
         )
         m_request.assert_called_once_with(
             method="delete",
-            path=f"{resource.get_screenshots_path(1, 2)}?screenshotIds={query_string}"
+            params={"screenshotIds": query_string},
+            path=resource.get_screenshots_path(1, 2),
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -201,4 +236,40 @@ class TestLabelsResource:
             params={"stringIds": "1,2"},
             method="delete",
             path=f"{resource.get_labels_path(projectId=1, labelId=2)}/strings",
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, query_string",
+        [
+            ([1, 2], "1,2"),
+            (3, 3),
+        ]
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_unassign_label_from_strings_single_and_many(
+        self, m_request, in_params, query_string, base_absolut_url
+    ):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.unassign_label_from_strings(projectId=1, labelId=2, stringIds=in_params)
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            params={"stringIds": query_string},
+            method="delete",
+            path="projects/1/labels/2/strings",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_assign_label_to_strings_single_id(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.assign_label_to_strings(projectId=1, labelId=2, stringIds=3) == "response"
+        m_request.assert_called_once_with(
+            request_data={"stringIds": [3]},
+            method="post",
+            path="projects/1/labels/2/strings",
         )

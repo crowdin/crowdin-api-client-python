@@ -7,9 +7,14 @@ class ClientsResource(BaseResource):
     """
     Resource for Clients.
 
-    Link to documentation for enterprise:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Clients
+    Crowdin Enterprise only.
+
+    Link to documentation:
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Clients
     """
+
+    def get_clients_path(self):
+        return "clients"
 
     def list_clients(
         self,
@@ -19,12 +24,12 @@ class ClientsResource(BaseResource):
         """
         List Clients
 
-        Link to documentation for enterprise:
-        https://support.crowdin.com/developer/enterprise/api/v2/#tag/Clients/operation/api.clients.getMany
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.clients.getMany
         """
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
-            path="/clients",
-            params=self.get_page_params(offset=offset, limit=limit)
+            path=self.get_clients_path(),
+            params=self.get_page_params(offset=offset, limit=limit),
         )

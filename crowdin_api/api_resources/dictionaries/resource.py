@@ -1,7 +1,7 @@
 from typing import Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
-from crowdin_api.api_resources.dictionaries.types import DictionaryPatchPath
+from crowdin_api.api_resources.dictionaries.types import DictionaryPatchRequest
 
 
 class DictionariesResource(BaseResource):
@@ -13,7 +13,7 @@ class DictionariesResource(BaseResource):
     Use API to get the list of organization dictionaries and to edit a specific dictionary.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Dictionaries
+    https://support.crowdin.com/developer/api/v2/#tag/Dictionaries
     """
 
     def list_dictionaries(
@@ -28,7 +28,7 @@ class DictionariesResource(BaseResource):
         List Dictionaries.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.dictionaries.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.dictionaries.getMany
         """
 
         params = self.get_page_params(page=page, offset=offset, limit=limit)
@@ -44,14 +44,19 @@ class DictionariesResource(BaseResource):
     def edit_dictionary(
         self,
         languageId: str,
-        data: Iterable[DictionaryPatchPath],
+        data: Iterable[DictionaryPatchRequest],
         projectId: Optional[int] = None,
     ):
         """
         Edit Dictionary.
 
+        :param data: JSON Patch operations ("add"/"remove") on "/words/{index}" paths,
+            e.g. {"op": "add", "path": "/words/-", "value": "word"} or
+            {"op": "remove", "path": "/words/0"}. To remove several words in one request,
+            specify the word indexes in reverse order.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.dictionaries.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.dictionaries.patch
         """
 
         projectId = projectId or self.get_project_id()

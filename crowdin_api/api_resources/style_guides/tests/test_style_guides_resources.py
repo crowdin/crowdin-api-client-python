@@ -95,6 +95,7 @@ class TestStyleGuidesResource:
                     languageIds=["uk", "fr", "de"],
                     projectIds=[1, 2, 3],
                     isShared=False,
+                    groupId=2,
                 ),
                 {
                     "name": "Be My Eyes iOS's Style Guide",
@@ -103,6 +104,7 @@ class TestStyleGuidesResource:
                     "languageIds": ["uk", "fr", "de"],
                     "projectIds": [1, 2, 3],
                     "isShared": False,
+                    "groupId": 2,
                 },
             ),
         ),
@@ -153,7 +155,12 @@ class TestStyleGuidesResource:
                 "op": PatchOperation.REPLACE,
                 "path": StyleGuidePatchPath.NAME,
                 "value": "Be My Eyes iOS's Style Guide",
-            }
+            },
+            {
+                "op": PatchOperation.REPLACE,
+                "path": StyleGuidePatchPath.GROUP_ID,
+                "value": 2,
+            },
         ]
 
         resource = self.get_resource(base_absolut_url)

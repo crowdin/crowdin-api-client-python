@@ -23,7 +23,7 @@ class OrganizationConcordanceSearchRequest(TypedDict):
     autoSubstitution: bool
     minRelevant: int
     expressions: Iterable[str]
-    userId: Optional[int]
+    userId: Optional[int]  # Crowdin only
 
 
 class TranslationMemorySegmentRecord(TypedDict):

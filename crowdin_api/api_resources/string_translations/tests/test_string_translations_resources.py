@@ -6,6 +6,7 @@ from crowdin_api.api_resources.string_translations.enums import (
     ListLanguageTranslationsOrderBy,
     ListStringTranslationsOrderBy,
     ListTranslationApprovalsOrderBy,
+    TranslationProvider,
     VoteMark,
 )
 from crowdin_api.api_resources.string_translations.resource import StringTranslationsResource
@@ -103,6 +104,7 @@ class TestStringTranslationsResource:
                     "stringId": None,
                     "languageId": None,
                     "translationId": None,
+                    "correctionId": None,
                 },
             ),
             (
@@ -139,6 +141,22 @@ class TestStringTranslationsResource:
                     "stringId": 2,
                     "languageId": "ua",
                     "translationId": 3,
+                    "correctionId": None,
+                },
+            ),
+            (
+                {"offset": 0, "limit": 10, "correctionId": 4},
+                {
+                    "orderBy": None,
+                    "offset": 0,
+                    "limit": 10,
+                    "fileId": None,
+                    "labelIds": None,
+                    "excludeLabelIds": None,
+                    "stringId": None,
+                    "languageId": None,
+                    "translationId": None,
+                    "correctionId": 4,
                 },
             ),
         ),
@@ -166,7 +184,19 @@ class TestStringTranslationsResource:
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_approvals_path(projectId=1),
-            request_data={"translationId": 2},
+            request_data={"translationId": 2, "correctionId": None},
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_approval_by_correction(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_approval(projectId=1, correctionId=3) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_approvals_path(projectId=1),
+            request_data={"translationId": None, "correctionId": 3},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -183,7 +213,19 @@ class TestStringTranslationsResource:
         m_request.assert_called_once_with(
             method="delete",
             path=resource.get_approvals_path(projectId=projectId),
-            params={"stringId": stringId},
+            params={"stringId": stringId, "fileId": None},
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_remove_string_approvals_by_file(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.remove_string_approvals(projectId=2, fileId=5) == "response"
+        m_request.assert_called_once_with(
+            method="delete",
+            path=resource.get_approvals_path(projectId=2),
+            params={"stringId": None, "fileId": 5},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -223,6 +265,9 @@ class TestStringTranslationsResource:
                     "directoryId": None,
                     "croql": None,
                     "denormalizePlaceholders": None,
+                    "approvedOnly": None,
+                    "passedWorkflow": None,
+                    "minApprovalCount": None,
                 },
             ),
             (
@@ -263,6 +308,45 @@ class TestStringTranslationsResource:
                     "directoryId": 7,
                     "croql": "croql",
                     "denormalizePlaceholders": DenormalizePlaceholders.ENABLE,
+                    "approvedOnly": None,
+                    "passedWorkflow": None,
+                    "minApprovalCount": None,
+                },
+            ),
+            (
+                {"offset": 0, "limit": 10, "approvedOnly": True},
+                {
+                    "orderBy": None,
+                    "offset": 0,
+                    "limit": 10,
+                    "stringIds": None,
+                    "labelIds": None,
+                    "fileId": None,
+                    "branchId": None,
+                    "directoryId": None,
+                    "croql": None,
+                    "denormalizePlaceholders": None,
+                    "approvedOnly": 1,
+                    "passedWorkflow": None,
+                    "minApprovalCount": None,
+                },
+            ),
+            (
+                {"offset": 0, "limit": 10, "passedWorkflow": False, "minApprovalCount": 2},
+                {
+                    "orderBy": None,
+                    "offset": 0,
+                    "limit": 10,
+                    "stringIds": None,
+                    "labelIds": None,
+                    "fileId": None,
+                    "branchId": None,
+                    "directoryId": None,
+                    "croql": None,
+                    "denormalizePlaceholders": None,
+                    "approvedOnly": None,
+                    "passedWorkflow": 0,
+                    "minApprovalCount": 2,
                 },
             ),
         ),
@@ -327,6 +411,7 @@ class TestStringTranslationsResource:
                     "stringId": None,
                     "languageId": None,
                     "denormalizePlaceholders": None,
+                    "fileId": None,
                 },
             ),
             (
@@ -359,6 +444,19 @@ class TestStringTranslationsResource:
                     "stringId": 1,
                     "languageId": 2,
                     "denormalizePlaceholders": DenormalizePlaceholders.ENABLE,
+                    "fileId": None,
+                },
+            ),
+            (
+                {"offset": 0, "limit": 10, "languageId": "uk", "fileId": 3},
+                {
+                    "orderBy": None,
+                    "offset": 0,
+                    "limit": 10,
+                    "stringId": None,
+                    "languageId": "uk",
+                    "denormalizePlaceholders": None,
+                    "fileId": 3,
                 },
             ),
         ),
@@ -390,6 +488,9 @@ class TestStringTranslationsResource:
                     "text": "text",
                     "pluralCategoryName": None,
                     "addToTm": None,
+                    "provider": None,
+                    "providerId": None,
+                    "isPreTranslated": None,
                 },
             ),
             (
@@ -405,6 +506,30 @@ class TestStringTranslationsResource:
                     "text": "text",
                     "pluralCategoryName": "some name",
                     "addToTm": None,
+                    "provider": None,
+                    "providerId": None,
+                    "isPreTranslated": None,
+                },
+            ),
+            (
+                {
+                    "stringId": 1,
+                    "languageId": "ua",
+                    "text": "text",
+                    "addToTm": False,
+                    "provider": TranslationProvider.AI,
+                    "providerId": 5,
+                    "isPreTranslated": True,
+                },
+                {
+                    "stringId": 1,
+                    "languageId": "ua",
+                    "text": "text",
+                    "pluralCategoryName": None,
+                    "addToTm": False,
+                    "provider": TranslationProvider.AI,
+                    "providerId": 5,
+                    "isPreTranslated": True,
                 },
             ),
         ),
@@ -432,8 +557,35 @@ class TestStringTranslationsResource:
         )
         m_request.assert_called_once_with(
             method="delete",
-            params={"stringId": 2, "languageId": "ua"},
+            params={"stringId": 2, "languageId": "ua", "fileId": None},
             path=resource.get_translations_path(projectId=1),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_string_translations_by_file(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_string_translations(projectId=1, fileId=3) == "response"
+        m_request.assert_called_once_with(
+            method="delete",
+            params={"stringId": None, "languageId": None, "fileId": 3},
+            path=resource.get_translations_path(projectId=1),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_file_translations(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.add_file_translations(projectId=1, fileId=2, languageId="uk", storageId=3)
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_translations_path(projectId=1),
+            request_data={"fileId": 2, "languageId": "uk", "storageId": 3},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -445,6 +597,26 @@ class TestStringTranslationsResource:
         m_request.assert_called_once_with(
             method="get",
             path=resource.get_translations_path(projectId=1, translationId=2),
+            params={"denormalizePlaceholders": None},
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_translation_denormalize_placeholders(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.get_translation(
+                projectId=1,
+                translationId=2,
+                denormalizePlaceholders=DenormalizePlaceholders.ENABLE,
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_translations_path(projectId=1, translationId=2),
+            params={"denormalizePlaceholders": DenormalizePlaceholders.ENABLE},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")

@@ -16,7 +16,7 @@ class GroupsResource(BaseResource):
     organization if required.
 
     Link to documentation:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Projects-and-Groups
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Projects-and-Groups
     """
 
     # Glossaries
@@ -31,7 +31,7 @@ class GroupsResource(BaseResource):
         Get Group.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.get
         """
 
         return self.requester.request(
@@ -43,13 +43,14 @@ class GroupsResource(BaseResource):
         self,
         name: str,
         parentId: Optional[int] = None,
-        description: Optional[str] = None
+        description: Optional[str] = None,
+        savingsReportSettingsTemplateId: Optional[int] = None,
     ):
         """
         Add Group.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.post
         """
 
         return self.requester.request(
@@ -58,7 +59,8 @@ class GroupsResource(BaseResource):
             request_data={
                 "name": name,
                 "parentId": parentId,
-                "description": description
+                "description": description,
+                "savingsReportSettingsTemplateId": savingsReportSettingsTemplateId,
             }
         )
 
@@ -67,16 +69,19 @@ class GroupsResource(BaseResource):
         orderBy: Optional[Sorting] = None,
         parentId: Optional[int] = None,
         limit: Optional[int] = None,
-        offset: Optional[int] = None
+        offset: Optional[int] = None,
+        filter: Optional[str] = None,
     ):
         """
         List Groups.
 
+        :param filter: Filter groups by `name`
+
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.getMany
         """
 
-        params = {"orderBy": orderBy, "parentId": parentId}
+        params = {"orderBy": orderBy, "parentId": parentId, "filter": filter}
         params.update(self.get_page_params(offset=offset, limit=limit))
 
         return self._get_entire_data(
@@ -90,7 +95,7 @@ class GroupsResource(BaseResource):
         Edit Group.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.patch
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.patch
         """
 
         return self.requester.request(
@@ -104,7 +109,7 @@ class GroupsResource(BaseResource):
         Delete Group.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.delete
         """
 
         return self.requester.request(

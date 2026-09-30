@@ -1,19 +1,25 @@
+import warnings
 from typing import Dict, Iterable, Optional
+
+from deprecated import deprecated
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.enums import ExportProjectTranslationFormat
 from crowdin_api.api_resources.translations.types import (
     FallbackLanguages,
     EditPreTranslationScheme,
+    ImportTranslationsOptions,
     UploadTranslationRequest,
 )
 from crowdin_api.api_resources.translations.enums import (
     CharTransformation,
     PreTranslationApplyMethod,
     PreTranslationAutoApproveOption,
+    PreTranslationPriority,
     PreTranslationReplaceTranslationsOption,
     PreTranslationScope,
 )
+from crowdin_api.sorting import Sorting
 
 
 class TranslationsResource(BaseResource):
@@ -28,7 +34,7 @@ class TranslationsResource(BaseResource):
     are asynchronous operations and shall be completed with sequence of API methods.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Translations
+    https://support.crowdin.com/developer/api/v2/#tag/Translations
     """
 
     def get_builds_path(self, projectId: int, buildId: Optional[int] = None):
@@ -43,8 +49,10 @@ class TranslationsResource(BaseResource):
         """
         Pre-Translation Status.
 
+        `preTranslationId` is the auto-translation job identifier (`jobIdentifier` in the API reference).
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#tag/Translations/paths/~1projects~1{projectId}~1pre-translations~1{preTranslationId}/get
+        https://support.crowdin.com/developer/api/v2/#tag/Translations/paths/~1projects~1{projectId}~1pre-translations~1{preTranslationId}/get
         """
 
         projectId = projectId or self.get_project_id()
@@ -60,6 +68,7 @@ class TranslationsResource(BaseResource):
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        orderBy: Optional[Sorting] = None,
     ):
         """
         List Pre-Translations
@@ -69,9 +78,10 @@ class TranslationsResource(BaseResource):
         """
         projectId = projectId or self.get_project_id()
 
-        params = self.get_page_params(page=page, offset=offset, limit=limit)
+        params = {"orderBy": orderBy}
+        params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=f"projects/{projectId}/pre-translations",
             params=params,
@@ -79,8 +89,8 @@ class TranslationsResource(BaseResource):
 
     def apply_pre_translation(
         self,
-        languageIds: Iterable[str],
-        fileIds: Iterable[int],
+        languageIds: Optional[Iterable[str]] = None,
+        fileIds: Optional[Iterable[int]] = None,
         projectId: Optional[int] = None,
         method: Optional[PreTranslationApplyMethod] = None,
         engineId: Optional[int] = None,
@@ -98,20 +108,47 @@ class TranslationsResource(BaseResource):
         labelIds: Optional[Iterable[int]] = None,
         excludeLabelIds: Optional[Iterable[int]] = None,
         branchIds: Optional[Iterable[int]] = None,
+        directoryIds: Optional[Iterable[int]] = None,
+        taskId: Optional[int] = None,
+        priority: Optional[PreTranslationPriority] = None,
+        translationModifiedAfter: Optional[str] = None,
+        notifyOnCompletion: Optional[bool] = None,
+        sourceLanguageId: Optional[str] = None,
+        customInstruction: Optional[str] = None,
+        minimumMatchRatio: Optional[int] = None,
     ):
         """
         Apply Pre-Translation.
 
+        Pre-translate by files: pass `languageIds` together with `fileIds`, `directoryIds`
+        (file-based projects only) or `branchIds`. `fileIds` is required only when neither
+        `directoryIds` nor `branchIds` is set.
+
+        Pre-translate by task: pass `taskId` (the target language is taken from the task),
+        `languageIds` and files are not required in this case.
+
         `translateUntranslatedOnly` is deprecated in favor of `scope` and cannot be
         combined with it in the same request.
 
+        `sourceLanguageId` is available in Crowdin only, `minimumMatchRatio` in
+        Crowdin Enterprise only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.pre-translations.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.pre-translations.post
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.pre-translations.post
         """
         if translateUntranslatedOnly is not None and scope is not None:
             raise ValueError(
                 "translateUntranslatedOnly is deprecated in favor of scope and "
                 "cannot be combined with it in the same request."
+            )
+
+        if translateUntranslatedOnly is not None:
+            warnings.warn(
+                "`translateUntranslatedOnly` is deprecated, use `scope` instead",
+                DeprecationWarning,
             )
 
         if fallbackLanguages is None:
@@ -150,6 +187,14 @@ class TranslationsResource(BaseResource):
                 "labelIds": labelIds,
                 "excludeLabelIds": excludeLabelIds,
                 "branchIds": branchIds,
+                "directoryIds": directoryIds,
+                "taskId": taskId,
+                "priority": priority,
+                "translationModifiedAfter": translationModifiedAfter,
+                "notifyOnCompletion": notifyOnCompletion,
+                "sourceLanguageId": sourceLanguageId,
+                "customInstruction": customInstruction,
+                "minimumMatchRatio": minimumMatchRatio,
             },
         )
 
@@ -179,6 +224,8 @@ class TranslationsResource(BaseResource):
     ):
         """
         Edit Pre-Translation
+
+        Supported patch paths: `PreTranslationPatchPath` (`/status`, `/priority`).
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.pre-translations.patch
@@ -218,12 +265,21 @@ class TranslationsResource(BaseResource):
         skipUntranslatedStrings: Optional[bool] = None,
         skipUntranslatedFiles: Optional[bool] = None,
         exportApprovedOnly: Optional[bool] = None,
+        exportWithMinApprovalsCount: Optional[int] = None,
+        exportStringsThatPassedWorkflow: Optional[bool] = None,
+        preserveFolderHierarchy: Optional[bool] = None,
     ):
         """
         Build Project Directory Translation.
 
+        `exportApprovedOnly` is available in Crowdin only; `exportWithMinApprovalsCount` and
+        `exportStringsThatPassedWorkflow` in Crowdin Enterprise only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.directories.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.directories.post
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.translations.builds.directories.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -236,6 +292,9 @@ class TranslationsResource(BaseResource):
                 "skipUntranslatedStrings": skipUntranslatedStrings,
                 "skipUntranslatedFiles": skipUntranslatedFiles,
                 "exportApprovedOnly": exportApprovedOnly,
+                "exportWithMinApprovalsCount": exportWithMinApprovalsCount,
+                "exportStringsThatPassedWorkflow": exportStringsThatPassedWorkflow,
+                "preserveFolderHierarchy": preserveFolderHierarchy,
             },
         )
 
@@ -248,12 +307,20 @@ class TranslationsResource(BaseResource):
         skipUntranslatedFiles: Optional[bool] = None,
         exportApprovedOnly: Optional[bool] = None,
         eTag: Optional[str] = None,
+        exportWithMinApprovalsCount: Optional[int] = None,
+        exportStringsThatPassedWorkflow: Optional[bool] = None,
     ):
         """
         Build Project File Translation.
 
+        `exportApprovedOnly` is available in Crowdin only; `exportWithMinApprovalsCount` and
+        `exportStringsThatPassedWorkflow` in Crowdin Enterprise only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.files.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.files.post
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.translations.builds.files.post
         """
 
         if eTag is not None:
@@ -272,6 +339,8 @@ class TranslationsResource(BaseResource):
                 "skipUntranslatedStrings": skipUntranslatedStrings,
                 "skipUntranslatedFiles": skipUntranslatedFiles,
                 "exportApprovedOnly": exportApprovedOnly,
+                "exportWithMinApprovalsCount": exportWithMinApprovalsCount,
+                "exportStringsThatPassedWorkflow": exportStringsThatPassedWorkflow,
             },
         )
 
@@ -287,7 +356,7 @@ class TranslationsResource(BaseResource):
         List Project Builds.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -307,7 +376,7 @@ class TranslationsResource(BaseResource):
         Build Project Translation.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -327,12 +396,19 @@ class TranslationsResource(BaseResource):
         skipUntranslatedFiles: Optional[bool] = None,
         exportApprovedOnly: Optional[bool] = None,
         exportWithMinApprovalsCount: Optional[int] = None,
+        exportStringsThatPassedWorkflow: Optional[bool] = None,
     ):
         """
         Build Project Translation(Crowdin Translation Create Project Build Form).
 
+        File-based projects only. `exportApprovedOnly` is available in Crowdin only;
+        `exportWithMinApprovalsCount` and `exportStringsThatPassedWorkflow` in Crowdin Enterprise only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.post
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.translations.builds.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -346,6 +422,7 @@ class TranslationsResource(BaseResource):
                 "skipUntranslatedFiles": skipUntranslatedFiles,
                 "exportApprovedOnly": exportApprovedOnly,
                 "exportWithMinApprovalsCount": exportWithMinApprovalsCount,
+                "exportStringsThatPassedWorkflow": exportStringsThatPassedWorkflow,
             },
         )
 
@@ -357,12 +434,15 @@ class TranslationsResource(BaseResource):
         suffix: Optional[str] = None,
         lengthTransformation: Optional[int] = None,
         charTransformation: Optional[CharTransformation] = None,
+        branchId: Optional[int] = None,
     ):
         """
         Build Project Translation(Translation Create Project Pseudo Build Form).
 
+        File-based projects only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -375,9 +455,11 @@ class TranslationsResource(BaseResource):
                 "suffix": suffix,
                 "lengthTransformation": lengthTransformation,
                 "charTransformation": charTransformation,
+                "branchId": branchId,
             },
         )
 
+    @deprecated("Use `import_translations` instead")
     def upload_translation(
         self,
         languageId: str,
@@ -392,8 +474,10 @@ class TranslationsResource(BaseResource):
         """
         Upload Translations.
 
+        Deprecated by the API: use `import_translations` instead.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.postOnLanguage
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.postOnLanguage
         """
         projectId = projectId or self.get_project_id()
 
@@ -419,7 +503,7 @@ class TranslationsResource(BaseResource):
         Download Project Translations.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.download.download
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.download.download
         """
 
         projectId = projectId or self.get_project_id()
@@ -434,7 +518,7 @@ class TranslationsResource(BaseResource):
         Check Project Build Status.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -449,7 +533,7 @@ class TranslationsResource(BaseResource):
         Cancel Build.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.builds.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.builds.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -471,12 +555,21 @@ class TranslationsResource(BaseResource):
         skipUntranslatedStrings: Optional[bool] = None,
         skipUntranslatedFiles: Optional[bool] = None,
         exportApprovedOnly: Optional[bool] = None,
+        exportWithMinApprovalsCount: Optional[int] = None,
+        exportStringsThatPassedWorkflow: Optional[bool] = None,
     ):
         """
         Export Project Translation.
 
+        `directoryIds`, `fileIds` and `skipUntranslatedFiles` are available in file-based projects only.
+        `exportApprovedOnly` is available in Crowdin only; `exportWithMinApprovalsCount` and
+        `exportStringsThatPassedWorkflow` in Crowdin Enterprise only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.exports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.exports.post
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.translations.exports.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -494,6 +587,8 @@ class TranslationsResource(BaseResource):
                 "skipUntranslatedStrings": skipUntranslatedStrings,
                 "skipUntranslatedFiles": skipUntranslatedFiles,
                 "exportApprovedOnly": exportApprovedOnly,
+                "exportWithMinApprovalsCount": exportWithMinApprovalsCount,
+                "exportStringsThatPassedWorkflow": exportStringsThatPassedWorkflow,
             },
         )
 
@@ -501,15 +596,20 @@ class TranslationsResource(BaseResource):
         self,
         project_id: int,
         storage_id: int,
-        language_ids: Optional[Iterable[int]] = None,
+        language_ids: Optional[Iterable[str]] = None,
         file_id: Optional[int] = None,
         import_eq_suggestions: Optional[bool] = None,
         auto_approve_imported: Optional[bool] = None,
         translate_hidden: Optional[bool] = None,
         add_to_tm: Optional[bool] = None,
+        branch_id: Optional[int] = None,
+        import_options: Optional[ImportTranslationsOptions] = None,
     ):
         """
         Import Translations
+
+        `file_id` is used in file-based projects; `branch_id` and `import_options`
+        (spreadsheet columns mapping) in string-based projects.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#tag/Translations/operation/api.projects.translations.imports
@@ -526,6 +626,8 @@ class TranslationsResource(BaseResource):
                 "autoApproveImported": auto_approve_imported,
                 "translateHidden": translate_hidden,
                 "addToTm": add_to_tm,
+                "branchId": branch_id,
+                "importOptions": import_options,
             }
         )
 

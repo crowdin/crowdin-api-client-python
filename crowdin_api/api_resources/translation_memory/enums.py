@@ -3,6 +3,15 @@ from enum import Enum
 
 class TranslationMemoryPatchPath(Enum):
     NAME = "/name"
+    LANGUAGE_ID = "/languageId"
+    IS_SHARED = "/isShared"
+    GROUP_ID = "/groupId"  # Enterprise only
+
+
+class TranslationMemoryExportFormat(Enum):
+    TMX = "tmx"
+    CSV = "csv"
+    XLSX = "xlsx"
 
 
 class TranslationMemorySegmentRecordOperation(Enum):

@@ -39,6 +39,7 @@ class TestSourceFilesResource:
             (
                 {},
                 {
+                    "search": None,
                     "orderBy": None,
                     "stringIds": None,
                     "labelIds": None,
@@ -55,16 +56,18 @@ class TestSourceFilesResource:
                     "stringIds": [1, 2, 3],
                     "labelIds": [4, 5, 6],
                     "excludeLabelIds": [7, 8, 9],
+                    "search": "home",
                     "limit": 10,
                     "offset": 0,
                 },
                 {
+                    "search": "home",
                     "orderBy": Sorting(
                         [SortingRule(ListScreenshotsOrderBy.ID, SortingOrder.DESC)]
                     ),
-                    "stringIds": [1, 2, 3],
-                    "labelIds": [4, 5, 6],
-                    "excludeLabelIds": [7, 8, 9],
+                    "stringIds": "1,2,3",
+                    "labelIds": "4,5,6",
+                    "excludeLabelIds": "7,8,9",
                     "limit": 10,
                     "offset": 0,
                 },
@@ -85,6 +88,26 @@ class TestSourceFilesResource:
             method="get",
             path=resource.get_screenshots_path(projectId=1),
             params=request_params,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_screenshots_string_id(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+        resource = self.get_resource(base_absolut_url)
+        with pytest.warns(DeprecationWarning):
+            assert resource.list_screenshots(projectId=1, stringId=5) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path=resource.get_screenshots_path(projectId=1),
+            params={
+                "search": None,
+                "orderBy": None,
+                "stringIds": "5",
+                "labelIds": None,
+                "excludeLabelIds": None,
+                "offset": 0,
+                "limit": 25,
+            },
         )
 
     @pytest.mark.parametrize(
@@ -150,7 +173,24 @@ class TestSourceFilesResource:
         m_request.assert_called_once_with(
             method="put",
             path=resource.get_screenshots_path(projectId=1, screenshotId=2),
-            request_data={"storageId": 3, "name": "test"},
+            request_data={"storageId": 3, "name": "test", "usePreviousTags": None},
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_update_screenshot_use_previous_tags(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.update_screenshot(
+                projectId=1, screenshotId=2, storageId=3, name="test", usePreviousTags=False
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="put",
+            path=resource.get_screenshots_path(projectId=1, screenshotId=2),
+            request_data={"storageId": 3, "name": "test", "usePreviousTags": False},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -174,7 +214,12 @@ class TestSourceFilesResource:
                 "value": "test",
                 "op": PatchOperation.REPLACE,
                 "path": ScreenshotPatchPath.NAME,
-            }
+            },
+            {
+                "value": [1, 2],
+                "op": PatchOperation.REPLACE,
+                "path": ScreenshotPatchPath.LABEL_IDS,
+            },
         ]
 
         resource = self.get_resource(base_absolut_url)
@@ -243,7 +288,29 @@ class TestSourceFilesResource:
                 projectId=1,
                 screenshotId=2,
             ),
-            request_data={"autoTag": False},
+            request_data={
+                "autoTag": False,
+                "fileId": None,
+                "branchId": None,
+                "directoryId": None,
+            },
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_auto_tag_with_scope(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.auto_tag(
+                projectId=1, screenshotId=2, autoTag=True, fileId=3, branchId=4, directoryId=5
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="put",
+            path=resource.get_tags_path(projectId=1, screenshotId=2),
+            request_data={"autoTag": True, "fileId": 3, "branchId": 4, "directoryId": 5},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")

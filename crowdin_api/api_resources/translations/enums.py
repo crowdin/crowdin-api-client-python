@@ -11,6 +11,7 @@ class PreTranslationAutoApproveOption(Enum):
     ALL = "all"
     EXCEPT_AUTO_SUBSTITUTED = "exceptAutoSubstituted"
     PERFECT_MATCH_ONLY = "perfectMatchOnly"
+    PERFECT_MATCH_APPROVED_ONLY = "perfectMatchApprovedOnly"
     NONE = "none"
 
 
@@ -36,3 +37,14 @@ class CharTransformation(Enum):
 class PreTranslationEditOperation(Enum):
     REPLACE = "replace"
     TEST = "test"
+
+
+class PreTranslationPriority(Enum):
+    LOW = "low"
+    NORMAL = "normal"
+    HIGH = "high"
+
+
+class PreTranslationPatchPath(Enum):
+    STATUS = "/status"
+    PRIORITY = "/priority"

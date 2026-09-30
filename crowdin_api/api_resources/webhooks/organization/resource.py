@@ -3,33 +3,44 @@ from typing import Optional, Iterable, Dict
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.webhooks.enums import WebhookRequestType, WebhookContentType
-from crowdin_api.api_resources.webhooks.organization.enums import OrganizationWebhookEvent, EnterpriseOrgWebhookEvent
+from crowdin_api.api_resources.webhooks.organization.enums import (
+    OrganizationWebhookEvent,
+    EnterpriseOrgWebhookEvent,
+)
 from crowdin_api.api_resources.webhooks.organization.types import OrganizationWebhookPatchRequest
 
 
 class OrganizationWebhooksResource(BaseResource):
-    BASE_URL = "/webhooks"
+    """
+    Resource for Organization Webhooks.
+
+    Webhooks allow you to collect information about events that happen in your Crowdin account.
+    You can select the request type, content type, and add a custom payload, which allows you to
+    create integrations with other systems on your own.
+
+    You can configure webhooks for the following events:
+
+    - project is created
+    - project is deleted
+    - group is created (Crowdin Enterprise only)
+    - group is deleted (Crowdin Enterprise only)
+
+    Use API to create, modify, and delete specific webhooks.
+
+    Link to documentation:
+    https://support.crowdin.com/developer/api/v2/#tag/Organization-Webhooks
+
+    Link to documentation for enterprise:
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Organization-Webhooks
+    """
+
+    BASE_URL = "webhooks"
 
     def get_webhooks_path(
         self,
         organization_webhook_id: int
     ):
         return f"{self.BASE_URL}/{organization_webhook_id}"
-
-    """Webhooks allow you to collect information about events that happen in your Crowdin account. You can select the
-    request type, content type, and add a custom payload, which allows you to create integrations with other systems
-    on your own.
-
-    You can configure webhooks for the following events:
-
-    - project is created
-    - project is deleted
-
-    Use API to create, modify, and delete specific webhooks.
-
-    Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Organization-Webhooks
-    """
 
     def list_webhooks(
         self,
@@ -41,7 +52,7 @@ class OrganizationWebhooksResource(BaseResource):
         List Webhooks
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.webhooks.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.getMany
         """
         return self._get_entire_data(
             method="get",
@@ -70,7 +81,7 @@ class OrganizationWebhooksResource(BaseResource):
         For Enterprise please use method "add_webhook_enterprise"
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.webhooks.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.post
         """
 
         return self.requester.request(
@@ -106,7 +117,7 @@ class OrganizationWebhooksResource(BaseResource):
         Events list is different
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.webhooks.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.webhooks.post
         """
 
         return self.requester.request(
@@ -133,7 +144,7 @@ class OrganizationWebhooksResource(BaseResource):
         Get webhook
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.webhooks.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.get
         """
         return self.requester.request(
             method="get",
@@ -148,7 +159,7 @@ class OrganizationWebhooksResource(BaseResource):
         Delete webhook
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.webhooks.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.delete
         """
 
         return self.requester.request(
@@ -165,7 +176,7 @@ class OrganizationWebhooksResource(BaseResource):
         Edit webhook
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.webhooks.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.patch
         """
 
         return self.requester.request(

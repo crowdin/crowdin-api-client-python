@@ -8,6 +8,7 @@ from crowdin_api.api_resources.screenshots.types import (
     TagPatchRequest,
 )
 from crowdin_api.sorting import Sorting
+from crowdin_api.utils import convert_to_query_list
 
 
 class ScreenshotsResource(BaseResource):
@@ -20,7 +21,7 @@ class ScreenshotsResource(BaseResource):
     Use API to manage screenshots and their tags.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Screenshots
+    https://support.crowdin.com/developer/api/v2/#tag/Screenshots
     """
 
     # Screenshots
@@ -41,12 +42,16 @@ class ScreenshotsResource(BaseResource):
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        search: Optional[str] = None,
     ):
         """
         List Screenshots.
 
+        :param search: Search screenshots by name, tagged strings or file names that include
+            screenshots.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -55,7 +60,13 @@ class ScreenshotsResource(BaseResource):
             warnings.warn("`stringId` is deprecated, use `stringIds` instead", category=DeprecationWarning)
             stringIds = [stringId]
 
-        params = {"orderBy": orderBy, "stringIds": stringIds, "labelIds": labelIds, "excludeLabelIds": excludeLabelIds}
+        params = {
+            "search": search,
+            "orderBy": orderBy,
+            "stringIds": convert_to_query_list(stringIds),
+            "labelIds": convert_to_query_list(labelIds),
+            "excludeLabelIds": convert_to_query_list(excludeLabelIds),
+        }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(
@@ -78,8 +89,11 @@ class ScreenshotsResource(BaseResource):
         """
         Add Screenshot.
 
+        :param fileId: File Identifier (file-based projects only).
+        :param directoryId: Directory Identifier (file-based projects only).
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -103,7 +117,7 @@ class ScreenshotsResource(BaseResource):
         Get Screenshot.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -119,12 +133,16 @@ class ScreenshotsResource(BaseResource):
         storageId: int,
         name: str,
         projectId: Optional[int] = None,
+        usePreviousTags: Optional[bool] = None,
     ):
         """
         Update Screenshot.
 
+        :param usePreviousTags: Defines whether to keep the tags of the previous screenshot
+            version (the API default is `True`).
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.put
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.put
         """
 
         projectId = projectId or self.get_project_id()
@@ -134,6 +152,7 @@ class ScreenshotsResource(BaseResource):
             request_data={
                 "storageId": storageId,
                 "name": name,
+                "usePreviousTags": usePreviousTags,
             },
             path=self.get_screenshots_path(projectId=projectId, screenshotId=screenshotId),
         )
@@ -143,7 +162,7 @@ class ScreenshotsResource(BaseResource):
         Delete Screenshot.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -163,7 +182,7 @@ class ScreenshotsResource(BaseResource):
         Edit Screenshot.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -193,7 +212,7 @@ class ScreenshotsResource(BaseResource):
         List Tags.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -214,7 +233,7 @@ class ScreenshotsResource(BaseResource):
         Replace Tags.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.putMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.putMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -226,13 +245,24 @@ class ScreenshotsResource(BaseResource):
         )
 
     def auto_tag(
-        self, screenshotId: int, autoTag: bool, projectId: Optional[int] = None
+        self,
+        screenshotId: int,
+        autoTag: bool,
+        projectId: Optional[int] = None,
+        fileId: Optional[int] = None,
+        branchId: Optional[int] = None,
+        directoryId: Optional[int] = None,
     ):
         """
         Auto Tag.
 
+        :param fileId: Limit auto tagging to strings of this file (file-based projects only).
+        :param branchId: Limit auto tagging to strings of this branch.
+        :param directoryId: Limit auto tagging to strings of this directory
+            (file-based projects only).
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.putMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.putMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -240,7 +270,12 @@ class ScreenshotsResource(BaseResource):
         return self.requester.request(
             method="put",
             path=self.get_tags_path(projectId=projectId, screenshotId=screenshotId),
-            request_data={"autoTag": autoTag},
+            request_data={
+                "autoTag": autoTag,
+                "fileId": fileId,
+                "branchId": branchId,
+                "directoryId": directoryId,
+            },
         )
 
     def add_tag(
@@ -253,7 +288,7 @@ class ScreenshotsResource(BaseResource):
         Add Tag.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -269,7 +304,7 @@ class ScreenshotsResource(BaseResource):
         Clear Tags.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.deleteMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.deleteMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -284,7 +319,7 @@ class ScreenshotsResource(BaseResource):
         Get Tag.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -301,7 +336,7 @@ class ScreenshotsResource(BaseResource):
         Delete Tag.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -322,7 +357,7 @@ class ScreenshotsResource(BaseResource):
         Edit Tag.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.screenshots.tags.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.screenshots.tags.patch
         """
 
         projectId = projectId or self.get_project_id()

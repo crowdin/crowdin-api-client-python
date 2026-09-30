@@ -50,6 +50,8 @@ class StyleGuidesResource(BaseResource):
         """
         Create Style Guide
 
+        Note: `groupId` in request data is supported by Crowdin Enterprise only.
+
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.style-guides.post
         """
@@ -90,6 +92,8 @@ class StyleGuidesResource(BaseResource):
     ):
         """
         Edit Style Guide
+
+        Note: the `/groupId` patch path is supported by Crowdin Enterprise only.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.style-guides.patch

@@ -1,4 +1,4 @@
-from typing import Dict, Iterable, Optional
+from typing import Any, Dict, Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.glossaries.enums import (
@@ -28,7 +28,7 @@ class GlossariesResource(BaseResource):
     operations and shall be completed with sequence of API methods.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Glossaries
+    https://support.crowdin.com/developer/api/v2/#tag/Glossaries
     """
 
     # Glossaries
@@ -45,15 +45,22 @@ class GlossariesResource(BaseResource):
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        userId: Optional[int] = None,
+        filter: Optional[str] = None,
     ):
         """
         List Glossaries.
 
+        :param groupId: Group Identifier. Set 0 to see glossaries of root group.
+            Crowdin Enterprise only.
+        :param userId: List user glossaries. Crowdin only.
+        :param filter: Filter glossaries by `name`.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.getMany
         """
 
-        params = {"orderBy": orderBy, "groupId": groupId}
+        params = {"orderBy": orderBy, "groupId": groupId, "userId": userId, "filter": filter}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(
@@ -62,18 +69,34 @@ class GlossariesResource(BaseResource):
             params=params,
         )
 
-    def add_glossary(self, name: str, languageId: str):
+    def add_glossary(
+        self,
+        name: str,
+        languageId: str,
+        isShared: Optional[bool] = None,
+        groupId: Optional[int] = None,
+    ):
         """
         Add Glossary.
 
+        :param isShared: Whether the glossary should be shared to all projects within the account
+            (Crowdin) or within the group (Crowdin Enterprise).
+        :param groupId: Group Identifier. If 0 – the glossary will be available for all projects
+            and groups in the workspace. Crowdin Enterprise only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.post
         """
 
         return self.requester.request(
             method="post",
             path=self.get_glossaries_path(),
-            request_data={"name": name, "languageId": languageId},
+            request_data={
+                "name": name,
+                "languageId": languageId,
+                "isShared": isShared,
+                "groupId": groupId,
+            },
         )
 
     def get_glossary(self, glossaryId: int):
@@ -81,7 +104,7 @@ class GlossariesResource(BaseResource):
         Get Glossary.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.get
         """
 
         return self.requester.request(
@@ -94,7 +117,7 @@ class GlossariesResource(BaseResource):
         Delete Glossary.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.delete
         """
 
         return self.requester.request(
@@ -106,8 +129,10 @@ class GlossariesResource(BaseResource):
         """
         Edit Glossary.
 
+        `GlossaryPatchPath.GROUP_ID` (`/groupId`) is Crowdin Enterprise only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.patch
         """
 
         return self.requester.request(
@@ -128,7 +153,7 @@ class GlossariesResource(BaseResource):
         Export Glossary.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.exports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.exports.post
         """
 
         return self.requester.request(
@@ -142,7 +167,7 @@ class GlossariesResource(BaseResource):
         Check Glossary Export Status.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.exports.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.exports.get
         """
 
         return self.requester.request(
@@ -155,7 +180,7 @@ class GlossariesResource(BaseResource):
         Download Glossary.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.exports.download.download
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.exports.download.download
         """
 
         glossary_export_path = self.get_glossary_export_path(
@@ -179,7 +204,7 @@ class GlossariesResource(BaseResource):
         Import Glossary.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.imports.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.imports.post
         """
 
         return self.requester.request(
@@ -197,7 +222,7 @@ class GlossariesResource(BaseResource):
         Check Glossary Import Status.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.imports.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.imports.get
         """
 
         return self.requester.request(
@@ -216,7 +241,7 @@ class GlossariesResource(BaseResource):
         Concordance search in Glossaries
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.glossaries.concordance.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.glossaries.concordance.post
         """
         data = {
             "sourceLanguageId": sourceLanguageId,
@@ -237,10 +262,10 @@ class GlossariesResource(BaseResource):
         Concordance search in organization glossaries.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.concordance.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.concordance.post
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.glossaries.concordance.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.glossaries.concordance.post
         """
 
         return self.requester.request(
@@ -266,12 +291,16 @@ class GlossariesResource(BaseResource):
         croql: Optional[str] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        translationOfTermId: Optional[int] = None,
     ):
         """
         List Terms.
 
+        :param translationOfTermId: Filter terms by `termId`. Use for terms that have translations.
+        :param croql: Filter terms by CroQL. Can be used only with `orderBy`, `offset` and `limit`.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.terms.getMany
         """
 
         params = {
@@ -279,6 +308,7 @@ class GlossariesResource(BaseResource):
             "userId": userId,
             "languageId": languageId,
             "conceptId": conceptId,
+            "translationOfTermId": translationOfTermId,
             "croql": croql,
         }
 
@@ -303,12 +333,17 @@ class GlossariesResource(BaseResource):
         note: Optional[str] = None,
         url: Optional[str] = None,
         conceptId: Optional[int] = None,
+        fields: Optional[Dict[str, Any]] = None,
     ):
         """
         Add Term.
 
+        :param conceptId: Defines whether to add translation to the existing term. If not
+            specified, a new concept will be automatically created for the term.
+        :param fields: Custom fields values. Keys get via List Fields. Crowdin Enterprise only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.terms.post
         """
 
         return self.requester.request(
@@ -325,6 +360,7 @@ class GlossariesResource(BaseResource):
                 "note": note,
                 "url": url,
                 "conceptId": conceptId,
+                "fields": fields,
             },
         )
 
@@ -333,12 +369,18 @@ class GlossariesResource(BaseResource):
         glossaryId: int,
         languageId: Optional[str] = None,
         conceptId: Optional[int] = None,
+        translationOfTermId: Optional[int] = None,
     ):
         """
         Clear Glossary.
 
+        Without a filter every term is deleted.
+
+        :param translationOfTermId: Defines whether to delete specific term along with its
+            translations.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.deleteMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.terms.deleteMany
         """
 
         return self.requester.request(
@@ -347,6 +389,7 @@ class GlossariesResource(BaseResource):
             params={
                 "languageId": languageId,
                 "conceptId": conceptId,
+                "translationOfTermId": translationOfTermId,
             },
         )
 
@@ -355,7 +398,7 @@ class GlossariesResource(BaseResource):
         Get Term.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.terms.get
         """
 
         return self.requester.request(
@@ -368,7 +411,7 @@ class GlossariesResource(BaseResource):
         Delete Term.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.terms.delete
         """
 
         return self.requester.request(
@@ -380,8 +423,11 @@ class GlossariesResource(BaseResource):
         """
         Edit Term.
 
+        `TermPatchPath.FIELDS` (`/fields`) is Crowdin Enterprise only. A `replace` on `/fields`
+        writes the whole set of custom field values.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.terms.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.terms.patch
         """
 
         return self.requester.request(
@@ -407,7 +453,7 @@ class GlossariesResource(BaseResource):
         List Concepts.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.concepts.getMany
         """
 
         params = {"orderBy": orderBy}
@@ -424,7 +470,7 @@ class GlossariesResource(BaseResource):
         Get Concept.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.concepts.get
         """
 
         return self.requester.request(
@@ -436,18 +482,23 @@ class GlossariesResource(BaseResource):
         self,
         glossaryId: int,
         conceptId: int,
-        languagesDetails: Iterable[LanguagesDetails],
+        languagesDetails: Optional[Iterable[LanguagesDetails]] = None,
         subject: Optional[str] = None,
         definition: Optional[str] = None,
         note: Optional[str] = None,
         url: Optional[str] = None,
         figure: Optional[str] = None,
+        translatable: Optional[bool] = None,
+        fields: Optional[Dict[str, Any]] = None,
     ):
         """
-        Get Concept.
+        Update Concept.
+
+        :param fields: Custom fields values. Keys get via List Fields. Writes the whole set of
+            custom field values. Crowdin Enterprise only.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.put
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.concepts.put
         """
 
         return self.requester.request(
@@ -460,6 +511,8 @@ class GlossariesResource(BaseResource):
                 "note": note,
                 "url": url,
                 "figure": figure,
+                "translatable": translatable,
+                "fields": fields,
             },
         )
 
@@ -468,7 +521,7 @@ class GlossariesResource(BaseResource):
         Delete Concept.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.glossaries.concepts.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.glossaries.concepts.delete
         """
 
         return self.requester.request(

@@ -16,7 +16,7 @@ class WorkflowsResource(BaseResource):
     the details of a specific template.
 
     Link to documentation:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Workflows
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Workflows
     """
 
     def get_workflow_steps_path(self, projectId: int, stepId: Optional[int] = None):
@@ -31,18 +31,24 @@ class WorkflowsResource(BaseResource):
 
         return "workflow-templates"
 
-    def list_workflow_steps(self, projectId: Optional[int] = None):
+    def list_workflow_steps(
+        self,
+        projectId: Optional[int] = None,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+    ):
         """
         List Workflow Steps.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.workflow-steps.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.workflow-steps.getMany
         """
         projectId = projectId or self.get_project_id()
 
         return self._get_entire_data(
             method="get",
             path=self.get_workflow_steps_path(projectId=projectId),
+            params=self.get_page_params(offset=offset, limit=limit),
         )
 
     def get_workflow_step(self, stepId: int, projectId: Optional[int] = None):
@@ -50,7 +56,7 @@ class WorkflowsResource(BaseResource):
         Get Workflow Step.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.workflow-steps.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.workflow-steps.get
         """
         projectId = projectId or self.get_project_id()
 
@@ -69,7 +75,7 @@ class WorkflowsResource(BaseResource):
         List Workflow Templates.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.workflow-templates.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.workflow-templates.getMany
         """
         params = {"groupId": groupId}
         params.update(self.get_page_params(offset=offset, limit=limit))
@@ -85,7 +91,7 @@ class WorkflowsResource(BaseResource):
         Get Workflow Template.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.workflow-templates.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.workflow-templates.get
         """
         return self.requester.request(
             method="get",
@@ -109,7 +115,7 @@ class WorkflowsResource(BaseResource):
         List Strings on the Workflow Step.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.workflow-steps.strings.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.workflow-steps.strings.getMany
         """
         projectId = projectId or self.get_project_id()
 

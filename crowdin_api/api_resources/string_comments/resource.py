@@ -1,4 +1,4 @@
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional, Union
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.string_comments.enums import (
@@ -17,7 +17,7 @@ class StringCommentsResource(BaseResource):
     Use API to add or remove strings translations, approvals, and votes.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/String-Comments
+    https://support.crowdin.com/developer/api/v2/#tag/String-Comments
     """
 
     def get_string_comments_path(self, projectId: int, stringCommentId: Optional[int] = None):
@@ -37,18 +37,24 @@ class StringCommentsResource(BaseResource):
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        fileId: Optional[int] = None,
     ):
         """
         List String Comments.
 
+        :param stringId: Filter comments by string. Can't be used together with `fileId`.
+        :param fileId: Filter comments by asset file (file-based projects only).
+            Can't be used together with `stringId`.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.comments.getMany
         """
 
         projectId = projectId or self.get_project_id()
         params = {
             "orderBy": orderBy,
             "stringId": stringId,
+            "fileId": fileId,
             "type": type,
             "issueType": None if issueType is None else ",".join(item.value for item in issueType),
             "issueStatus": issueStatus,
@@ -64,18 +70,27 @@ class StringCommentsResource(BaseResource):
     def add_string_comment(
         self,
         text: str,
-        stringId: int,
-        targetLanguageId: str,
-        type: StringCommentType,
+        stringId: Optional[int] = None,
+        targetLanguageId: Optional[str] = None,
+        type: Optional[StringCommentType] = None,
         projectId: Optional[int] = None,
         issueType: Optional[StringCommentIssueType] = None,
-        attachments: Optional[Iterable[int]] = None,
+        attachments: Optional[Iterable[Union[int, Dict[str, int]]]] = None,
+        fileId: Optional[int] = None,
+        isShared: Optional[bool] = None,
     ):
         """
         Add String Comment.
 
+        :param stringId: String Identifier. Required unless `fileId` is used.
+        :param type: Comment type (comment or issue). Required by the API.
+        :param attachments: Storage Identifiers (or {"id": storageId} objects) of attachments.
+        :param fileId: Asset File Identifier, used instead of `stringId` to comment
+            an asset (file-based projects only).
+        :param isShared: Defines shared comment or issue (Crowdin Enterprise only).
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.comments.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -86,10 +101,16 @@ class StringCommentsResource(BaseResource):
             request_data={
                 "text": text,
                 "stringId": stringId,
+                "fileId": fileId,
                 "targetLanguageId": targetLanguageId,
                 "type": type,
+                "isShared": isShared,
                 "issueType": issueType,
-                "attachments": attachments,
+                "attachments": None
+                if attachments is None
+                else [
+                    item if isinstance(item, dict) else {"id": item} for item in attachments
+                ],
             },
         )
 
@@ -98,7 +119,7 @@ class StringCommentsResource(BaseResource):
         Get String Comment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.comments.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -117,7 +138,7 @@ class StringCommentsResource(BaseResource):
         Delete String Comment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.comments.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -136,7 +157,7 @@ class StringCommentsResource(BaseResource):
         Delete String Comment Attachment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.attachments.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.comments.attachments.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -159,7 +180,7 @@ class StringCommentsResource(BaseResource):
         Edit String Comment.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.comments.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.comments.patch
         """
 
         projectId = projectId or self.get_project_id()

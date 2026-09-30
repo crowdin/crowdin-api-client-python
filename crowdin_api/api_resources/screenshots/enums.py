@@ -3,6 +3,7 @@ from enum import Enum
 
 class ScreenshotPatchPath(Enum):
     NAME = "/name"
+    LABEL_IDS = "/labelIds"
 
 
 class TagPatchPath(Enum):

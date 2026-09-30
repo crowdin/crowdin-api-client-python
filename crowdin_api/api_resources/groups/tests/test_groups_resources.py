@@ -54,6 +54,7 @@ class TestGroupsResource:
                 {
                     "orderBy": None,
                     "parentId": None,
+                    "filter": None,
                     "limit": 25,
                     "offset": 0,
                 },
@@ -64,6 +65,7 @@ class TestGroupsResource:
                         [SortingRule(ListGroupsOrderBy.NAME, SortingOrder.DESC)]
                     ),
                     "parentId": "test",
+                    "filter": "name",
                     "limit": 10,
                     "offset": 2,
                 },
@@ -72,6 +74,7 @@ class TestGroupsResource:
                         [SortingRule(ListGroupsOrderBy.NAME, SortingOrder.DESC)]
                     ),
                     "parentId": "test",
+                    "filter": "name",
                     "limit": 10,
                     "offset": 2,
                 },
@@ -99,6 +102,7 @@ class TestGroupsResource:
                     "name": "test_name",
                     "parentId": None,
                     "description": None,
+                    "savingsReportSettingsTemplateId": None,
                 },
             ),
             (
@@ -106,11 +110,13 @@ class TestGroupsResource:
                     "name": "test_name",
                     "parentId": 2,
                     "description": "some text",
+                    "savingsReportSettingsTemplateId": 3,
                 },
                 {
                     "name": "test_name",
                     "parentId": 2,
                     "description": "some text",
+                    "savingsReportSettingsTemplateId": 3,
                 },
             ),
         ),

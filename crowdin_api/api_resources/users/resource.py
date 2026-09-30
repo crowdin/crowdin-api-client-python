@@ -3,14 +3,32 @@ from typing import Dict, Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.users.enums import UserRole, OrganizationRole, UserStatus
-from crowdin_api.api_resources.users.types import UserPatchRequest, ProjectMemberRole, GroupManagerPatchRequest
+from crowdin_api.api_resources.users.types import (
+    UserPatchRequest,
+    ProjectMemberRole,
+    GroupManagerPatchRequest,
+    AuthenticatedUserPatchRequest,
+    UserProjectPermissionsPatchRequest,
+)
 from crowdin_api.sorting import Sorting
 from crowdin_api.utils import convert_to_query_string, convert_enum_to_string_if_exists
 
 
 class BaseUsersResource(BaseResource):
+    """
+    Base class with methods shared by `UsersResource` and `EnterpriseUsersResource`.
+    """
 
     def get_authenticated_user(self):
+        """
+        Get Authenticated User.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#operation/api.user.get
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.user.get
+        """
         return self.requester.request(method="get", path="user")
 
     def get_members_path(self, projectId: int, memberId: Optional[int] = None):
@@ -34,7 +52,7 @@ class BaseUsersResource(BaseResource):
         List Project Members.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.members.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -50,6 +68,45 @@ class BaseUsersResource(BaseResource):
             params=params,
         )
 
+    def get_member_info(self, memberId: int, projectId: Optional[int] = None):
+        """
+        Get Member Info.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.get
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.get
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="get",
+            path=self.get_members_path(projectId=projectId, memberId=memberId)
+        )
+
+    def delete_member_from_project(
+        self,
+        memberId: int,
+        projectId: Optional[int] = None,
+    ):
+        """
+        Delete Member From Project.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.delete
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.delete
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="delete", path=self.get_members_path(projectId=projectId, memberId=memberId)
+        )
+
 
 class UsersResource(BaseUsersResource):
     """
@@ -59,7 +116,7 @@ class UsersResource(BaseUsersResource):
     authenticated user.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Users
+    https://support.crowdin.com/developer/api/v2/#tag/Users
     """
 
     def list_project_members(
@@ -77,7 +134,7 @@ class UsersResource(BaseUsersResource):
         List Project Members.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.members.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.getMany
         """
         return self._list_project_members(
             projectId=projectId,
@@ -90,19 +147,80 @@ class UsersResource(BaseUsersResource):
             extraParams={"role": role}
         )
 
-    def get_member_info(self, memberId: int, projectId: Optional[int] = None):
+    def edit_authenticated_user(self, data: Iterable[AuthenticatedUserPatchRequest]):
         """
-        Get Member Info.
+        Edit Authenticated User.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.members.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.user.patch
+        """
+
+        return self.requester.request(method="patch", path="user", request_data=data)
+
+    def add_project_member(
+        self,
+        userIds: Optional[Iterable[int]] = None,
+        projectId: Optional[int] = None,
+        usernames: Optional[Iterable[str]] = None,
+        emails: Optional[Iterable[str]] = None,
+        managerAccess: Optional[bool] = None,
+        developerAccess: Optional[bool] = None,
+        roles: Optional[Iterable[ProjectMemberRole]] = None,
+        message: Optional[str] = None,
+    ):
+        """
+        Add Project Member.
+
+        One of `userIds`, `usernames` or `emails` is required.
+        `managerAccess`, `developerAccess` and `roles` are mutually exclusive.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.post
         """
 
         projectId = projectId or self.get_project_id()
 
         return self.requester.request(
-            method="get",
-            path=self.get_members_path(projectId=projectId, memberId=memberId)
+            method="post",
+            path=self.get_members_path(projectId=projectId),
+            request_data={
+                "userIds": userIds,
+                "usernames": usernames,
+                "emails": emails,
+                "managerAccess": managerAccess,
+                "developerAccess": developerAccess,
+                "roles": roles,
+                "message": message,
+            },
+        )
+
+    def replace_project_member_permissions(
+        self,
+        memberId: int,
+        projectId: Optional[int] = None,
+        managerAccess: Optional[bool] = None,
+        developerAccess: Optional[bool] = None,
+        roles: Optional[Iterable[ProjectMemberRole]] = None,
+    ):
+        """
+        Replace Project Member Permissions.
+
+        `managerAccess`, `developerAccess` and `roles` are mutually exclusive.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.put
+        """
+
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="put",
+            path=self.get_members_path(projectId=projectId, memberId=memberId),
+            request_data={
+                "managerAccess": managerAccess,
+                "developerAccess": developerAccess,
+                "roles": roles,
+            },
         )
 
 
@@ -114,7 +232,7 @@ class EnterpriseUsersResource(BaseUsersResource):
     authenticated user.
 
     Link to documentation:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Users
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users
     """
     def get_users_path(self, userId: Optional[int] = None):
         if userId is not None:
@@ -132,7 +250,9 @@ class EnterpriseUsersResource(BaseUsersResource):
         self,
         group_id: int,
         team_ids: Optional[Iterable[int]] = None,
-        order_by: Optional[Sorting] = None
+        order_by: Optional[Sorting] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
     ):
         """
         List Group Managers
@@ -142,11 +262,12 @@ class EnterpriseUsersResource(BaseUsersResource):
         """
 
         params = {
-            "team_ids": ",".join(str(teamId) for teamId in team_ids) if team_ids is not None else None,
-            "order_by": order_by
+            "teamIds": ",".join(str(teamId) for teamId in team_ids) if team_ids is not None else None,
+            "orderBy": order_by
         }
+        params.update(self.get_page_params(offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_group_managers_path(group_id),
             params=params
@@ -202,7 +323,7 @@ class EnterpriseUsersResource(BaseUsersResource):
         List Project Members.
 
         Link to documentation for enterprise:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.getMany
         """
 
         return self._list_project_members(
@@ -218,18 +339,25 @@ class EnterpriseUsersResource(BaseUsersResource):
 
     def add_project_member(
         self,
-        userIds: Iterable[int],
+        userIds: Optional[Iterable[int]] = None,
         projectId: Optional[int] = None,
         accessToAllWorkflowSteps: Optional[bool] = None,
         managerAccess: Optional[bool] = None,
         permissions: Optional[Dict] = None,
-        roles: Optional[Iterable[ProjectMemberRole]] = None
+        roles: Optional[Iterable[ProjectMemberRole]] = None,
+        usernames: Optional[Iterable[str]] = None,
+        emails: Optional[Iterable[str]] = None,
+        developerAccess: Optional[bool] = None,
     ):
         """
         Add Project Member.
 
+        One of `userIds`, `usernames` or `emails` is required.
+
+        `accessToAllWorkflowSteps` and `permissions` are deprecated by the API, use `roles` instead.
+
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -239,8 +367,11 @@ class EnterpriseUsersResource(BaseUsersResource):
             path=self.get_members_path(projectId=projectId),
             request_data={
                 "userIds": userIds,
+                "usernames": usernames,
+                "emails": emails,
                 "accessToAllWorkflowSteps": accessToAllWorkflowSteps,
                 "managerAccess": managerAccess,
+                "developerAccess": developerAccess,
                 "permissions": permissions,
                 "roles": roles
             },
@@ -253,13 +384,16 @@ class EnterpriseUsersResource(BaseUsersResource):
         accessToAllWorkflowSteps: Optional[bool] = None,
         managerAccess: Optional[bool] = None,
         permissions: Optional[Dict] = None,
-        roles: Optional[Iterable[ProjectMemberRole]] = None
+        roles: Optional[Iterable[ProjectMemberRole]] = None,
+        developerAccess: Optional[bool] = None,
     ):
         """
         Replace Project Member Permissions.
 
+        `accessToAllWorkflowSteps` and `permissions` are deprecated by the API, use `roles` instead.
+
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.put
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.put
         """
 
         projectId = projectId or self.get_project_id()
@@ -270,27 +404,10 @@ class EnterpriseUsersResource(BaseUsersResource):
             request_data={
                 "accessToAllWorkflowSteps": accessToAllWorkflowSteps,
                 "managerAccess": managerAccess,
+                "developerAccess": developerAccess,
                 "permissions": permissions,
                 "roles": roles
             },
-        )
-
-    def delete_member_from_project(
-        self,
-        memberId: int,
-        projectId: Optional[int] = None,
-    ):
-        """
-        Delete Member From Project.
-
-        Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.delete
-        """
-
-        projectId = projectId or self.get_project_id()
-
-        return self.requester.request(
-            method="delete", path=self.get_members_path(projectId=projectId, memberId=memberId)
         )
 
     def invite_user(
@@ -298,13 +415,14 @@ class EnterpriseUsersResource(BaseUsersResource):
         email: str,
         firstName: Optional[str] = None,
         lastName: Optional[str] = None,
-        timezone: Optional[str] = None
+        timezone: Optional[str] = None,
+        adminAccess: Optional[bool] = None,
     ):
         """
         Invite User.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.post
         """
         return self.requester.request(
             method="post",
@@ -313,8 +431,75 @@ class EnterpriseUsersResource(BaseUsersResource):
                 "email": email,
                 "firstName": firstName,
                 "lastName": lastName,
-                "timezone": timezone
+                "timezone": timezone,
+                "adminAccess": adminAccess,
             }
+        )
+
+    def get_user(self, userId: int):
+        """
+        Get User.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.getById
+        """
+
+        return self.requester.request(method="get", path=self.get_users_path(userId=userId))
+
+    def list_user_project_contributions(
+        self,
+        userId: int,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        List User Project Contributions.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.projects.contributions.getMany
+        """
+
+        return self._get_entire_data(
+            method="get",
+            path=f"{self.get_users_path(userId=userId)}/projects/contributions",
+            params=self.get_page_params(offset=offset, limit=limit),
+        )
+
+    def list_user_project_permissions(
+        self,
+        userId: int,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        List User Project Permissions.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.projects.permissions.getMany
+        """
+
+        return self._get_entire_data(
+            method="get",
+            path=f"{self.get_users_path(userId=userId)}/projects/permissions",
+            params=self.get_page_params(offset=offset, limit=limit),
+        )
+
+    def edit_user_project_permissions(
+        self,
+        userId: int,
+        data: Iterable[UserProjectPermissionsPatchRequest],
+    ):
+        """
+        Edit User Project Permissions.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.projects.permissions.patch
+        """
+
+        return self.requester.request(
+            method="patch",
+            path=f"{self.get_users_path(userId=userId)}/projects/permissions",
+            request_data=data,
         )
 
     def edit_user(self, userId: int, data: Iterable[UserPatchRequest]):
@@ -322,7 +507,7 @@ class EnterpriseUsersResource(BaseUsersResource):
         Edit User.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.patch
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.patch
         """
 
         return self.requester.request(
@@ -336,7 +521,7 @@ class EnterpriseUsersResource(BaseUsersResource):
         Delete User.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.delete
         """
 
         return self.requester.request(
@@ -392,7 +577,7 @@ class EnterpriseUsersResource(BaseUsersResource):
         }
         params.update(self.get_page_params(offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_users_path(),
             params=params

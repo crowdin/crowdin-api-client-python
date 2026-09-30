@@ -74,6 +74,26 @@ class TestStringCorrectionsResource:
             params=request_params
         )
 
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_corrections_fetch_all(self, m_request, base_absolut_url):
+        m_request.return_value = {"data": [{"data": {"id": 1}}]}
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.with_fetch_all().list_corrections(1, string_id=2) == {
+            "data": [{"data": {"id": 1}}]
+        }
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/1/corrections",
+            params={
+                "stringId": 2,
+                "limit": 500,
+                "offset": 0,
+                "orderBy": None,
+                "denormalizePlaceholders": None,
+            },
+        )
+
     @pytest.mark.parametrize(
         "in_params, request_params",
         (

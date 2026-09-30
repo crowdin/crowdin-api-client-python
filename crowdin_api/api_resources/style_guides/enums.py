@@ -15,3 +15,4 @@ class StyleGuidePatchPath(Enum):
     PROJECT_IDS = "/projectIds"
     IS_SHARED = "/isShared"
     STORAGE_ID = "/storageId"
+    GROUP_ID = "/groupId"

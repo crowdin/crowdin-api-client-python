@@ -14,7 +14,8 @@ from crowdin_api.api_resources.users.enums import (
     UserStatus,
     UserTwoFactorAuthStatus,
     OrganizationRole,
-    ProjectRole
+    ProjectRole,
+    AuthenticatedUserPatchPath,
 )
 from crowdin_api.api_resources.users.resource import (
     UsersResource,
@@ -198,8 +199,10 @@ class TestEnterpriseUsersResource:
             (
                 {},
                 {
-                    "team_ids": None,
-                    "order_by": None
+                    "teamIds": None,
+                    "orderBy": None,
+                    "offset": 0,
+                    "limit": 25,
                 },
             ),
             (
@@ -215,8 +218,8 @@ class TestEnterpriseUsersResource:
                     ),
                 },
                 {
-                    "team_ids": "1,2,3",
-                    "order_by": Sorting(
+                    "teamIds": "1,2,3",
+                    "orderBy": Sorting(
                         [
                             SortingRule(
                                 ListGroupManagersOrderBy.ID,
@@ -224,6 +227,8 @@ class TestEnterpriseUsersResource:
                             )
                         ]
                     ),
+                    "offset": 0,
+                    "limit": 25,
                 }
             )
         )
@@ -363,7 +368,8 @@ class TestEnterpriseUsersResource:
                     "email": "",
                     "firstName": None,
                     "lastName": None,
-                    "timezone": None
+                    "timezone": None,
+                    "adminAccess": None,
                 },
             ),
             (
@@ -377,7 +383,8 @@ class TestEnterpriseUsersResource:
                     "email": "john@example.com",
                     "firstName": "Jon",
                     "lastName": "Doe",
-                    "timezone": "America/New_York"
+                    "timezone": "America/New_York",
+                    "adminAccess": None,
                 },
             ),
         ),
@@ -404,7 +411,10 @@ class TestEnterpriseUsersResource:
                     "accessToAllWorkflowSteps": None,
                     "managerAccess": None,
                     "permissions": None,
-                    "roles": None
+                    "roles": None,
+                    "usernames": None,
+                    "emails": None,
+                    "developerAccess": None,
                 },
             ),
             (
@@ -474,7 +484,10 @@ class TestEnterpriseUsersResource:
                                 "languagesAccess": []
                             }
                         }
-                    ]
+                    ],
+                    "usernames": None,
+                    "emails": None,
+                    "developerAccess": None,
                 },
             ),
         ),
@@ -498,7 +511,8 @@ class TestEnterpriseUsersResource:
                     "accessToAllWorkflowSteps": None,
                     "managerAccess": None,
                     "permissions": None,
-                    "roles": None
+                    "roles": None,
+                    "developerAccess": None,
                 },
             ),
             (
@@ -564,7 +578,8 @@ class TestEnterpriseUsersResource:
                                 "languagesAccess": []
                             }
                         }
-                    ]
+                    ],
+                    "developerAccess": None,
                 },
             ),
         ),
@@ -687,3 +702,155 @@ class TestEnterpriseUsersResource:
             path="users",
             params=request_params
         )
+
+
+class TestUsersResourceNewMethods:
+    resource_class = UsersResource
+
+    def get_resource(self, base_absolut_url):
+        return self.resource_class(requester=APIRequester(base_url=base_absolut_url))
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_authenticated_user(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        data = [
+            {
+                "op": PatchOperation.REPLACE,
+                "path": AuthenticatedUserPatchPath.FULL_NAME,
+                "value": "John Doe",
+            }
+        ]
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_authenticated_user(data) == "response"
+        m_request.assert_called_once_with(method="patch", path="user", request_data=data)
+
+    @pytest.mark.parametrize(
+        "in_params, request_data",
+        (
+            (
+                {"userIds": [1]},
+                {
+                    "userIds": [1],
+                    "usernames": None,
+                    "emails": None,
+                    "managerAccess": None,
+                    "developerAccess": None,
+                    "roles": None,
+                    "message": None,
+                },
+            ),
+            (
+                {
+                    "usernames": ["john"],
+                    "emails": ["john@example.com"],
+                    "developerAccess": True,
+                    "message": "Welcome",
+                },
+                {
+                    "userIds": None,
+                    "usernames": ["john"],
+                    "emails": ["john@example.com"],
+                    "managerAccess": None,
+                    "developerAccess": True,
+                    "roles": None,
+                    "message": "Welcome",
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_project_member(self, m_request, in_params, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_project_member(projectId=1, **in_params) == "response"
+        m_request.assert_called_once_with(
+            method="post", path="projects/1/members", request_data=request_data
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_replace_project_member_permissions(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        roles = [{"name": ProjectRole.TRANSLATOR, "permissions": {"allLanguages": True}}]
+        resource = self.get_resource(base_absolut_url)
+        assert resource.replace_project_member_permissions(
+            memberId=2, projectId=1, roles=roles
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="put",
+            path="projects/1/members/2",
+            request_data={"managerAccess": None, "developerAccess": None, "roles": roles},
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_member_from_project(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_member_from_project(memberId=2, projectId=1) == "response"
+        m_request.assert_called_once_with(method="delete", path="projects/1/members/2")
+
+
+class TestEnterpriseUsersResourceNewMethods:
+    resource_class = EnterpriseUsersResource
+
+    def get_resource(self, base_absolut_url):
+        return self.resource_class(requester=APIRequester(base_url=base_absolut_url))
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_member_info(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_member_info(memberId=2, projectId=1) == "response"
+        m_request.assert_called_once_with(method="get", path="projects/1/members/2")
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_user(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_user(1) == "response"
+        m_request.assert_called_once_with(method="get", path="users/1")
+
+    @pytest.mark.parametrize(
+        "method_name, path",
+        (
+            ("list_user_project_contributions", "users/1/projects/contributions"),
+            ("list_user_project_permissions", "users/1/projects/permissions"),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_user_projects(self, m_request, method_name, path, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert getattr(resource, method_name)(userId=1, offset=10, limit=5) == "response"
+        m_request.assert_called_once_with(
+            method="get", path=path, params={"offset": 10, "limit": 5}
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_user_project_permissions(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        data = [{"op": PatchOperation.REMOVE, "path": "/2815"}]
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_user_project_permissions(userId=1, data=data) == "response"
+        m_request.assert_called_once_with(
+            method="patch", path="users/1/projects/permissions", request_data=data
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_user_admin_access(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        data = [
+            {"op": PatchOperation.REPLACE, "path": UserPatchPath.ADMIN_ACCESS, "value": True},
+            {"op": PatchOperation.REPLACE, "path": UserPatchPath.AVATAR_STORAGE_ID, "value": 5},
+        ]
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_user(userId=1, data=data) == "response"
+        m_request.assert_called_once_with(method="patch", path="users/1", request_data=data)

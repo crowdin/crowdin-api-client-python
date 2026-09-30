@@ -1,4 +1,4 @@
-from typing import Any, Iterable, Optional
+from typing import Any, Iterable, Optional, Union
 
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.api_resources.glossaries.enums import (
@@ -23,7 +23,8 @@ class GlossaryPatchRequest(TypedDict):
 
 class GlossarySchemaRequest(TypedDict):
     format: Optional[GlossaryFormat]
-    exportFields: Optional[Iterable[GlossaryExportFields]]
+    # Enterprise also accepts custom field slugs: `field_{fieldSlug}` / `conceptField_{fieldSlug}`
+    exportFields: Optional[Iterable[Union[GlossaryExportFields, str]]]
     exportType: Optional[GlossaryExportType]
     statuses: Optional[Iterable[GlossaryExportStatus]]
     partsOfSpeech: Optional[Iterable[GlossaryExportPartOfSpeech]]
@@ -31,6 +32,14 @@ class GlossarySchemaRequest(TypedDict):
     genders: Optional[Iterable[GlossaryExportGender]]
     authorIds: Optional[Iterable[int]]
     languageIds: Optional[Iterable[str]]
+    text: Optional[str]
+    # caseSensitive, searchStrict and searchFullMatch must be used together with `text`
+    caseSensitive: Optional[bool]
+    searchStrict: Optional[bool]
+    searchFullMatch: Optional[bool]
+    # UTC, ISO 8601, e.g. "2024-01-23T07:00:14+00:00"
+    dateFrom: Optional[str]
+    dateTo: Optional[str]
     # Deprecated in favor of the plural filters above; the API rejects requests combining a
     # singular filter with its plural counterpart.
     status: Optional[GlossaryExportStatus]
@@ -44,7 +53,7 @@ class OrganizationConcordanceSearchRequest(TypedDict):
     sourceLanguageId: str
     targetLanguageId: str
     expressions: Iterable[str]
-    userId: Optional[int]
+    userId: Optional[int]  # Crowdin only
 
 
 class TermPatchRequest(TypedDict):

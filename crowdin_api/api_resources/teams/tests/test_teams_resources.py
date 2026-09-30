@@ -64,7 +64,9 @@ class TestTeamsResources:
             (
                 {},
                 {
-                    "orderBy": None
+                    "orderBy": None,
+                    "offset": 0,
+                    "limit": 25,
                 }
             ),
             (
@@ -87,6 +89,8 @@ class TestTeamsResources:
                             )
                         ]
                     ),
+                    "offset": 0,
+                    "limit": 25,
                 }
             )
         )
@@ -166,10 +170,11 @@ class TestTeamsResources:
                 {"teamId": 1},
                 {
                     "teamId": 1,
-                    "accessToAllWorkflowSteps": True,
-                    "managerAccess": False,
+                    "accessToAllWorkflowSteps": None,
+                    "managerAccess": None,
                     "permissions": None,
                     "roles": None,
+                    "developerAccess": None,
                 }
             ),
             (
@@ -194,7 +199,8 @@ class TestTeamsResources:
                         },
                         "de": {"workflowStepIds": "all"}
                     },
-                    "roles": None
+                    "roles": None,
+                    "developerAccess": None,
                 },
             ),
             (
@@ -278,7 +284,8 @@ class TestTeamsResources:
                                 "languagesAccess": []
                             }
                         }
-                    ]
+                    ],
+                    "developerAccess": None,
                 },
             ),
         ),
@@ -476,4 +483,61 @@ class TestTeamsResources:
         m_request.assert_called_once_with(
             method="delete",
             path=resource.get_members_path(teamId=1, memberId=2)
+        )
+
+
+class TestTeamsProjectPermissions:
+    resource_class = TeamsResource
+
+    def get_resource(self, base_absolut_url):
+        return self.resource_class(requester=APIRequester(base_url=base_absolut_url))
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_team_to_project_developer_access(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_team_to_project(
+            teamId=1, projectId=2, developerAccess=True
+        ) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path="projects/2/teams",
+            request_data={
+                "teamId": 1,
+                "accessToAllWorkflowSteps": None,
+                "managerAccess": None,
+                "developerAccess": True,
+                "permissions": None,
+                "roles": None,
+            },
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_team_project_permissions(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_team_project_permissions(teamId=1, offset=5, limit=10) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="teams/1/projects/permissions",
+            params={"offset": 5, "limit": 10},
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_team_project_permissions(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        data = [
+            {
+                "op": PatchOperation.REPLACE,
+                "path": "/45/roles",
+                "value": [{"name": "proofreader", "permissions": {"allLanguages": True}}],
+            }
+        ]
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_team_project_permissions(teamId=1, data=data) == "response"
+        m_request.assert_called_once_with(
+            method="patch", path="teams/1/projects/permissions", request_data=data
         )

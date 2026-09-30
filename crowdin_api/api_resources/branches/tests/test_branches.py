@@ -7,6 +7,7 @@ from crowdin_api.api_resources.branches.resource import BranchesResource
 from crowdin_api.api_resources.branches.types import CloneBranchRequest, AddBranchRequest, EditBranchPatch, \
     MergeBranchRequest
 from crowdin_api.api_resources.enums import PatchOperation
+from crowdin_api.api_resources.source_files.enums import Priority
 from crowdin_api.requester import APIRequester
 from crowdin_api.sorting import SortingRule, Sorting, SortingOrder
 
@@ -43,6 +44,16 @@ class TestBranchesResource:
                 {
                     "name": "Branch name",
                     "title": "Branch title"
+                }
+            ),
+            (
+                CloneBranchRequest(
+                    name="Branch name",
+                    isProtected=True
+                ),
+                {
+                    "name": "Branch name",
+                    "isProtected": True
                 }
             ),
         ),
@@ -127,6 +138,22 @@ class TestBranchesResource:
                     "title": "Title of new branch"
                 }
             ),
+            (
+                AddBranchRequest(
+                    name="New branch",
+                    exportPattern="%three_letters_code%",
+                    priority=Priority.HIGH,
+                ),
+                {
+                    "name": "New branch",
+                    "exportPattern": "%three_letters_code%",
+                    "priority": Priority.HIGH,
+                }
+            ),
+            (
+                AddBranchRequest(name="New branch", isProtected=True),
+                {"name": "New branch", "isProtected": True}
+            ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -168,7 +195,53 @@ class TestBranchesResource:
         assert resource.delete_branch(project_id, branch_id) == "response"
         m_request.assert_called_once_with(
             method="delete",
+            headers=None,
             path=f"projects/{project_id}/branches/{branch_id}",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_branch_async(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_branch(1, 2, prefer="respond-async") == "response"
+        m_request.assert_called_once_with(
+            method="delete",
+            headers={"Prefer": "respond-async"},
+            path="projects/1/branches/2",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_check_branch_deletion_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.check_branch_deletion_status(1, 2, "job") == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/1/branches/2/jobs/job",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_check_branch_merge_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.check_branch_merge_status(1, 2, "merge") == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/1/branches/2/merges/merge",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_branch_merge_summary(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_branch_merge_summary(1, 2, "merge") == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/1/branches/2/merges/merge/summary",
         )
 
     @pytest.mark.parametrize(
@@ -187,6 +260,22 @@ class TestBranchesResource:
                         "op": "replace",
                         "path": "/name",
                         "value": "New name"
+                    }
+                ]
+            ),
+            (
+                [
+                    EditBranchPatch(
+                        op=PatchOperation.REPLACE,
+                        path=EditBranchPatchPath.IS_PROTECTED,
+                        value=True
+                    )
+                ],
+                [
+                    {
+                        "op": PatchOperation.REPLACE,
+                        "path": EditBranchPatchPath.IS_PROTECTED,
+                        "value": True
                     }
                 ]
             ),

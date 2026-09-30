@@ -2,7 +2,13 @@ from typing import Optional, Iterable
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.teams.types \
-    import Permissions, TeamPatchRequest, TeamByProjectRole, GroupTeamPatchRequest
+    import (
+        Permissions,
+        TeamPatchRequest,
+        TeamByProjectRole,
+        GroupTeamPatchRequest,
+        TeamProjectPermissionsPatchRequest,
+    )
 from crowdin_api.api_resources.users.enums import ProjectRole
 from crowdin_api.sorting import Sorting
 from crowdin_api.utils import convert_to_query_string, convert_enum_to_string_if_exists
@@ -17,7 +23,7 @@ class TeamsResource(BaseResource):
     Use API to create, modify, and delete specific teams and members.
 
     Link to documentation:
-    https://developer.crowdin.com/enterprise/api/v2/#tag/Teams
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams
     """
 
     def get_teams_path(self, teamId: Optional[int] = None):
@@ -41,7 +47,9 @@ class TeamsResource(BaseResource):
     def list_group_teams(
         self,
         group_id: int,
-        order_by: Optional[Sorting] = None
+        order_by: Optional[Sorting] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
     ):
         """
         List Group Teams
@@ -53,8 +61,9 @@ class TeamsResource(BaseResource):
         params = {
             "orderBy": order_by
         }
+        params.update(self.get_page_params(offset=offset, limit=limit))
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_group_teams_path(group_id),
             params=params
@@ -99,16 +108,22 @@ class TeamsResource(BaseResource):
         self,
         teamId: int,
         projectId: Optional[int] = None,
-        accessToAllWorkflowSteps: bool = True,
-        managerAccess: bool = False,
+        accessToAllWorkflowSteps: Optional[bool] = None,
+        managerAccess: Optional[bool] = None,
         permissions: Optional[Permissions] = None,
-        roles: Optional[Iterable[TeamByProjectRole]] = None
+        roles: Optional[Iterable[TeamByProjectRole]] = None,
+        developerAccess: Optional[bool] = None,
     ):
         """
         Add Team To Project.
 
+        `managerAccess`, `developerAccess`, `accessToAllWorkflowSteps`, `permissions` and `roles`
+        are mutually exclusive. `accessToAllWorkflowSteps` and `permissions` are deprecated by
+        the API, use `roles` instead. Omitted values fall back to the API defaults
+        (`accessToAllWorkflowSteps` - `true`, `managerAccess` - `false`).
+
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.teams.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.teams.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -120,6 +135,7 @@ class TeamsResource(BaseResource):
                 "teamId": teamId,
                 "accessToAllWorkflowSteps": accessToAllWorkflowSteps,
                 "managerAccess": managerAccess,
+                "developerAccess": developerAccess,
                 "permissions": permissions,
                 "roles": roles
             },
@@ -140,7 +156,7 @@ class TeamsResource(BaseResource):
         List Teams.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.getMany
         """
 
         params = {
@@ -164,7 +180,7 @@ class TeamsResource(BaseResource):
         Add Team.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.post
         """
 
         return self.requester.request(
@@ -178,7 +194,7 @@ class TeamsResource(BaseResource):
         Get Team.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.get
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.get
         """
 
         return self.requester.request(method="get", path=self.get_teams_path(teamId=teamId))
@@ -188,7 +204,7 @@ class TeamsResource(BaseResource):
         Delete Team.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.delete
         """
 
         return self.requester.request(method="delete", path=self.get_teams_path(teamId=teamId))
@@ -198,13 +214,50 @@ class TeamsResource(BaseResource):
         Edit Team.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.patch
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.patch
         """
 
         return self.requester.request(
             method="patch",
             path=self.get_teams_path(teamId=teamId),
             request_data=data
+        )
+
+    def list_team_project_permissions(
+        self,
+        teamId: int,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
+    ):
+        """
+        List Team Project Permissions.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.projects.permissions.getMany
+        """
+
+        return self._get_entire_data(
+            method="get",
+            path=f"{self.get_teams_path(teamId=teamId)}/projects/permissions",
+            params=self.get_page_params(offset=offset, limit=limit),
+        )
+
+    def edit_team_project_permissions(
+        self,
+        teamId: int,
+        data: Iterable[TeamProjectPermissionsPatchRequest],
+    ):
+        """
+        Edit Team Project Permissions.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.projects.permissions.patch
+        """
+
+        return self.requester.request(
+            method="patch",
+            path=f"{self.get_teams_path(teamId=teamId)}/projects/permissions",
+            request_data=data,
         )
 
     def teams_member_list(
@@ -217,7 +270,7 @@ class TeamsResource(BaseResource):
         Team Members List.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.getMany
         """
 
         return self._get_entire_data(
@@ -231,7 +284,7 @@ class TeamsResource(BaseResource):
         Add Team Members.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.post
         """
 
         return self.requester.request(
@@ -245,7 +298,7 @@ class TeamsResource(BaseResource):
         Delete All Team Members.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.deleteMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.deleteMany
         """
 
         return self.requester.request(method="delete", path=self.get_members_path(teamId=teamId))
@@ -255,7 +308,7 @@ class TeamsResource(BaseResource):
         Delete Team Member.
 
         Link to documentation:
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.delete
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.delete
         """
 
         return self.requester.request(

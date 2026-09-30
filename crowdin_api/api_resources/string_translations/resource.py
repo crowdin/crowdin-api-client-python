@@ -1,8 +1,8 @@
-from typing import Iterable, Optional
+from typing import Iterable, Optional, Union
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.enums import DenormalizePlaceholders, PluralCategoryName
-from crowdin_api.api_resources.string_translations.enums import VoteMark
+from crowdin_api.api_resources.string_translations.enums import TranslationProvider, VoteMark
 from crowdin_api.api_resources.string_translations.types import (
     ApprovalBatchOpPatchRequest,
     TranslationBatchOpPatchRequest
@@ -17,7 +17,7 @@ class StringTranslationsResource(BaseResource):
     Use API to add or remove strings translations, approvals, and votes.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/String-Translations
+    https://support.crowdin.com/developer/api/v2/#tag/String-Translations
     """
 
     def search_translations(
@@ -35,8 +35,8 @@ class StringTranslationsResource(BaseResource):
         Search Translations.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.translations.getMany
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.translations.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.translations.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.translations.getMany
         """
 
         params = {
@@ -74,12 +74,18 @@ class StringTranslationsResource(BaseResource):
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        correctionId: Optional[int] = None,
     ):
         """
         List Translation Approvals
 
+        `fileId` is available in file-based projects only, `correctionId` in Crowdin Enterprise only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.approvals.getMany
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.approvals.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -91,6 +97,7 @@ class StringTranslationsResource(BaseResource):
             "stringId": stringId,
             "languageId": languageId,
             "translationId": translationId,
+            "correctionId": correctionId,
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
@@ -102,14 +109,20 @@ class StringTranslationsResource(BaseResource):
 
     def add_approval(
         self,
-        translationId: int,
+        translationId: Optional[int] = None,
         projectId: Optional[int] = None,
+        correctionId: Optional[int] = None,
     ):
         """
         Add Approval.
 
+        Pass either `translationId` or `correctionId` (Crowdin Enterprise only).
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.approvals.post
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.approvals.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -117,20 +130,28 @@ class StringTranslationsResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_approvals_path(projectId=projectId),
-            request_data={"translationId": translationId},
+            request_data={"translationId": translationId, "correctionId": correctionId},
         )
 
-    def remove_string_approvals(self, stringId: int, projectId: Optional[int] = None):
+    def remove_string_approvals(
+        self,
+        stringId: Optional[int] = None,
+        projectId: Optional[int] = None,
+        fileId: Optional[int] = None,
+    ):
         """
         Remove String Approvals
 
-        Link to documentaion:
+        Remove approvals of a string (`stringId`) or of all strings in a file
+        (`fileId`, file-based projects only). `stringId` is required in string-based projects.
+
+        Link to documentation:
         https://support.crowdin.com/developer/api/v2/#tag/String-Translations/operation/api.projects.approvals.deleteMany
         """
 
         projectId = projectId or self.get_project_id()
 
-        params = {"stringId": stringId}
+        params = {"stringId": stringId, "fileId": fileId}
 
         return self.requester.request(
             method="delete", path=self.get_approvals_path(projectId=projectId), params=params
@@ -141,7 +162,7 @@ class StringTranslationsResource(BaseResource):
         Get Approval.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.approvals.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -153,10 +174,10 @@ class StringTranslationsResource(BaseResource):
 
     def remove_approval(self, approvalId: int, projectId: Optional[int] = None):
         """
-        Remove Approvall.
+        Remove Approval.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.approvals.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -182,12 +203,22 @@ class StringTranslationsResource(BaseResource):
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        approvedOnly: Optional[Union[bool, int]] = None,
+        passedWorkflow: Optional[Union[bool, int]] = None,
+        minApprovalCount: Optional[int] = None,
     ):
         """
         List Language Translations
 
+        `fileId` and `directoryId` are available in file-based projects only.
+        `orderBy` and `approvedOnly` are available in Crowdin only;
+        `passedWorkflow` and `minApprovalCount` in Crowdin Enterprise only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.languages.translations.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.languages.translations.getMany
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.languages.translations.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -204,6 +235,9 @@ class StringTranslationsResource(BaseResource):
             "directoryId": directoryId,
             "croql": croql,
             "denormalizePlaceholders": denormalizePlaceholders,
+            "approvedOnly": None if approvedOnly is None else int(approvedOnly),
+            "passedWorkflow": None if passedWorkflow is None else int(passedWorkflow),
+            "minApprovalCount": minApprovalCount,
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
@@ -224,7 +258,7 @@ class StringTranslationsResource(BaseResource):
         Translation Alignment
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.alignment.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.alignment.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -257,12 +291,15 @@ class StringTranslationsResource(BaseResource):
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        fileId: Optional[int] = None,
     ):
         """
         List String Translations
 
+        `languageId` is required by the API. `fileId` is available in file-based projects only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -271,6 +308,7 @@ class StringTranslationsResource(BaseResource):
             "stringId": stringId,
             "languageId": languageId,
             "denormalizePlaceholders": denormalizePlaceholders,
+            "fileId": fileId,
         }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
@@ -288,12 +326,17 @@ class StringTranslationsResource(BaseResource):
         projectId: Optional[int] = None,
         pluralCategoryName: Optional[PluralCategoryName] = None,
         addToTm: Optional[bool] = None,
+        provider: Optional[TranslationProvider] = None,
+        providerId: Optional[int] = None,
+        isPreTranslated: Optional[bool] = None,
     ):
         """
         Add Translation.
 
+        `provider` is required when `providerId` or `isPreTranslated` is specified.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.post
         """
         projectId = projectId or self.get_project_id()
 
@@ -306,36 +349,78 @@ class StringTranslationsResource(BaseResource):
                 "text": text,
                 "pluralCategoryName": pluralCategoryName,
                 "addToTm": addToTm,
+                "provider": provider,
+                "providerId": providerId,
+                "isPreTranslated": isPreTranslated,
+            },
+        )
+
+    def add_file_translations(
+        self,
+        fileId: int,
+        languageId: str,
+        storageId: int,
+        projectId: Optional[int] = None,
+    ):
+        """
+        Add Translation (upload translations of a file from storage).
+
+        File-based projects only.
+
+        Link to documentation:
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.post
+
+        Link to documentation for enterprise:
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.translations.post
+        """
+        projectId = projectId or self.get_project_id()
+
+        return self.requester.request(
+            method="post",
+            path=self.get_translations_path(projectId=projectId),
+            request_data={
+                "fileId": fileId,
+                "languageId": languageId,
+                "storageId": storageId,
             },
         )
 
     def delete_string_translations(
         self,
-        stringId: int,
+        stringId: Optional[int] = None,
         languageId: Optional[str] = None,
         projectId: Optional[int] = None,
+        fileId: Optional[int] = None,
     ):
         """
         Delete String Translations.
 
+        Delete translations of a string (`stringId`) or of all strings in a file
+        (`fileId`, file-based projects only). `stringId` is required in string-based projects.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.deleteMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.deleteMany
         """
 
         projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="delete",
-            params={"stringId": stringId, "languageId": languageId},
+            params={"stringId": stringId, "languageId": languageId, "fileId": fileId},
             path=self.get_translations_path(projectId=projectId),
         )
 
-    def get_translation(self, translationId: int, projectId: Optional[int] = None):
+    def get_translation(
+        self,
+        translationId: int,
+        projectId: Optional[int] = None,
+        denormalizePlaceholders: Optional[DenormalizePlaceholders] = None,
+    ):
         """
         Get Translation.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -343,6 +428,7 @@ class StringTranslationsResource(BaseResource):
         return self.requester.request(
             method="get",
             path=self.get_translations_path(projectId=projectId, translationId=translationId),
+            params={"denormalizePlaceholders": denormalizePlaceholders},
         )
 
     def restore_translation(self, translationId: int, projectId: Optional[int] = None):
@@ -350,7 +436,7 @@ class StringTranslationsResource(BaseResource):
         Restore Translation.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.put
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.put
         """
 
         projectId = projectId or self.get_project_id()
@@ -365,7 +451,7 @@ class StringTranslationsResource(BaseResource):
         Delete Translation.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.translations.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -398,8 +484,10 @@ class StringTranslationsResource(BaseResource):
         """
         List Translation Votes
 
+        `fileId` is available in file-based projects only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.votes.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.votes.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -427,7 +515,7 @@ class StringTranslationsResource(BaseResource):
         Add Vote.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.votes.pos
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.votes.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -443,7 +531,7 @@ class StringTranslationsResource(BaseResource):
         Get Vote.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.votes.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.votes.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -458,7 +546,7 @@ class StringTranslationsResource(BaseResource):
         Cancel Vote.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.votes.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.votes.delete
         """
 
         projectId = projectId or self.get_project_id()

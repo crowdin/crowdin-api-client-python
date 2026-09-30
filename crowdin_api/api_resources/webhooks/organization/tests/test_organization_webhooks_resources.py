@@ -31,7 +31,7 @@ class TestOrganizationWebhooksResource:
         m_request.assert_called_once_with(
             method="get",
             params=resource.get_page_params(),
-            path=resource.BASE_URL
+            path="webhooks"
         )
 
     @pytest.mark.parametrize(
@@ -102,7 +102,7 @@ class TestOrganizationWebhooksResource:
         assert resource.add_webhook(**in_params) == "response"
         m_request.assert_called_once_with(
             method="post",
-            path=resource.BASE_URL,
+            path="webhooks",
             request_data=request_data
         )
 
@@ -174,7 +174,7 @@ class TestOrganizationWebhooksResource:
         assert resource.add_webhook(**in_params) == "response"
         m_request.assert_called_once_with(
             method="post",
-            path=resource.BASE_URL,
+            path="webhooks",
             request_data=request_data
         )
 
@@ -186,7 +186,7 @@ class TestOrganizationWebhooksResource:
         assert resource.get_webhook(organization_webhook_id=1) == "response"
         m_request.assert_called_once_with(
             method="get",
-            path=resource.get_webhooks_path(organization_webhook_id=1)
+            path="webhooks/1"
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -197,7 +197,7 @@ class TestOrganizationWebhooksResource:
         assert resource.delete_webhook(organization_webhook_id=1) == "response"
         m_request.assert_called_once_with(
             method="delete",
-            path=resource.get_webhooks_path(organization_webhook_id=1)
+            path="webhooks/1"
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -229,5 +229,5 @@ class TestOrganizationWebhooksResource:
         m_request.assert_called_once_with(
             method="patch",
             request_data=data,
-            path=resource.get_webhooks_path(organization_webhook_id=1)
+            path="webhooks/1"
         )

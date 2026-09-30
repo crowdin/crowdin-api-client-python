@@ -1,8 +1,9 @@
-from typing import Iterable, Optional
+from typing import Iterable, Optional, Union
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.labels.types import LabelsPatchRequest
 from crowdin_api.sorting import Sorting
+from crowdin_api.utils import convert_to_query_list
 
 
 class LabelsResource(BaseResource):
@@ -10,7 +11,10 @@ class LabelsResource(BaseResource):
     Resource for Labels.
 
     Link to documentation:
-    https://developer.crowdin.com/api/v2/#tag/Labels
+    https://support.crowdin.com/developer/api/v2/#tag/Labels
+
+    Link to documentation for enterprise:
+    https://support.crowdin.com/developer/enterprise/api/v2/#tag/Labels
     """
 
     def get_labels_path(self, projectId: int, labelId: Optional[int] = None):
@@ -26,16 +30,23 @@ class LabelsResource(BaseResource):
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        isSystem: Optional[Union[bool, int]] = None,
     ):
         """
         List Labels.
 
+        `isSystem` (filter by system labels) is for string-based projects only.
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.getMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.getMany
+        https://support.crowdin.com/developer/api/v2/string-based/#operation/api.projects.labels.getMany
         """
 
         projectId = projectId or self.get_project_id()
-        params = {"orderBy": orderBy}
+        params = {
+            "orderBy": orderBy,
+            "isSystem": None if isSystem is None else int(isSystem),
+        }
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(
@@ -49,7 +60,7 @@ class LabelsResource(BaseResource):
         Add Label.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.post
         """
 
         projectId = projectId or self.get_project_id()
@@ -65,7 +76,7 @@ class LabelsResource(BaseResource):
         Get Label.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.get
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.get
         """
 
         projectId = projectId or self.get_project_id()
@@ -80,7 +91,7 @@ class LabelsResource(BaseResource):
         Delete Label.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.delete
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.delete
         """
 
         projectId = projectId or self.get_project_id()
@@ -100,7 +111,7 @@ class LabelsResource(BaseResource):
         Edit Label.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.patch
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.patch
         """
 
         projectId = projectId or self.get_project_id()
@@ -117,15 +128,15 @@ class LabelsResource(BaseResource):
     def assign_label_to_screenshots(
         self,
         label_id: int,
-        screenshot_ids: Iterable[int],
+        screenshot_ids: Union[int, Iterable[int]],
         project_id: Optional[int] = None,
     ):
         """
         Assign Label to Screenshots
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.screenshots.post
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.labels.screenshots.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.screenshots.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.labels.screenshots.post
         """
 
         project_id = project_id or self.get_project_id()
@@ -134,64 +145,78 @@ class LabelsResource(BaseResource):
             method="post",
             path=self.get_screenshots_path(project_id, label_id),
             request_data={
-                "screenshotIds": screenshot_ids
+                "screenshotIds": [screenshot_ids] if isinstance(screenshot_ids, int) else screenshot_ids
             }
         )
 
     def unassign_label_from_screenshots(
         self,
         label_id: int,
-        screenshot_ids: Iterable[int],
+        screenshot_ids: Union[int, Iterable[int]],
         project_id: Optional[int] = None,
     ):
         """
         Unassign Label from Screenshots
 
+        `screenshot_ids` can be a single screenshot identifier or an iterable of them
+        (up to 500 at a time).
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.screenshots.deleteMany
-        https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.labels.screenshots.deleteMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.screenshots.deleteMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.labels.screenshots.deleteMany
         """
 
         project_id = project_id or self.get_project_id()
-        query = ",".join(str(screenshot_id) for screenshot_id in screenshot_ids)
 
         return self.requester.request(
             method="delete",
-            path=f"{self.get_screenshots_path(project_id, label_id)}?screenshotIds={query}"
+            params={"screenshotIds": convert_to_query_list(screenshot_ids)},
+            path=self.get_screenshots_path(project_id, label_id),
         )
 
     def assign_label_to_strings(
-        self, labelId: int, stringIds: Iterable[int], projectId: Optional[int] = None
+        self,
+        labelId: int,
+        stringIds: Union[int, Iterable[int]],
+        projectId: Optional[int] = None,
     ):
         """
         Assign Label to Strings.
 
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.strings.post
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.strings.post
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.labels.strings.post
         """
 
         projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="post",
-            request_data={"stringIds": stringIds},
+            request_data={"stringIds": [stringIds] if isinstance(stringIds, int) else stringIds},
             path=f"{self.get_labels_path(projectId=projectId, labelId=labelId)}/strings",
         )
 
     def unassign_label_from_strings(
-        self, labelId: int, stringIds: Iterable[int], projectId: Optional[int] = None
+        self,
+        labelId: int,
+        stringIds: Union[int, Iterable[int]],
+        projectId: Optional[int] = None,
     ):
         """
         Unassign Label from Strings.
 
+        `stringIds` can be a single string identifier or an iterable of them
+        (up to 500 at a time).
+
         Link to documentation:
-        https://developer.crowdin.com/api/v2/#operation/api.projects.labels.strings.deleteMany
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.labels.strings.deleteMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.labels.strings.deleteMany
         """
 
         projectId = projectId or self.get_project_id()
 
         return self.requester.request(
             method="delete",
-            params={"stringIds": ",".join(str(stringId) for stringId in stringIds)},
+            params={"stringIds": convert_to_query_list(stringIds)},
             path=f"{self.get_labels_path(projectId=projectId, labelId=labelId)}/strings",
         )
