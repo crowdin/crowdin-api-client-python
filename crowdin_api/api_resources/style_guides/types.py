@@ -12,6 +12,7 @@ class AddStyleGuideRequest(TypedDict):
     languageIds: Optional[Iterable[str]]
     projectIds: Optional[Iterable[int]]
     isShared: Optional[bool]
+    groupId: Optional[int]  # Enterprise only
 
 
 class StyleGuidePatchRequest(TypedDict):

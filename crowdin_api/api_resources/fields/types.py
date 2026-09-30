@@ -18,7 +18,7 @@ class FieldLocation(TypedDict):
 
 class ListFieldConfig(TypedDict):
     options: Iterable[FieldOptions]
-    locations: Iterable[FieldPlace]
+    locations: Iterable[FieldLocation]
 
 
 class NumberFieldConfig(TypedDict):

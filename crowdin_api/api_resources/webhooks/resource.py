@@ -55,7 +55,7 @@ class WebhooksResource(BaseResource):
         List Webhooks.
 
         Link to documentation:
-        https://support.crowdin.com/developer/api/v2/#tag/Webhooks
+        https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.getMany
         """
 
         projectId = projectId or self.get_project_id()
@@ -81,6 +81,8 @@ class WebhooksResource(BaseResource):
     ):
         """
         Add Webhook.
+
+        Note: `file.*` events are available for file-based projects only.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.post
@@ -141,7 +143,7 @@ class WebhooksResource(BaseResource):
         projectId: Optional[int] = None,
     ):
         """
-        Edit Custom Language.
+        Edit Webhook.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.patch

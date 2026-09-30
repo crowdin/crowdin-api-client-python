@@ -52,7 +52,7 @@ class TestWorkflowsResource:
         m_request.assert_called_once_with(
             method="get",
             path=resource.get_workflow_steps_path(projectId=1),
-            params=None
+            params={"offset": 0, "limit": 25},
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")

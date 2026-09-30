@@ -9,7 +9,7 @@ class SecurityLogsResource(BaseResource):
     """
     Resource for Security Logs
 
-    Link to documentaion:
+    Link to documentation:
     https://support.crowdin.com/developer/api/v2/#tag/Security-Logs
 
     Link to documentation for enterprise:
@@ -20,8 +20,8 @@ class SecurityLogsResource(BaseResource):
         self, userId: int, securityLogId: Optional[int] = None
     ):
         if securityLogId is not None:
-            return f"/users/{userId}/security-logs/{securityLogId}"
-        return f"/users/{userId}/security-logs"
+            return f"users/{userId}/security-logs/{securityLogId}"
+        return f"users/{userId}/security-logs"
 
     def list_user_security_logs(
         self,
@@ -37,7 +37,7 @@ class SecurityLogsResource(BaseResource):
         """
         List User Security Logs
 
-        Link to documentaion:
+        Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.users.security-logs.getMany
         """
 
@@ -72,8 +72,8 @@ class SecurityLogsResource(BaseResource):
 
     def get_organization_security_logs_path(self, securityLogId: Optional[int] = None):
         if securityLogId is not None:
-            return f"/security-logs/{securityLogId}"
-        return "/security-logs"
+            return f"security-logs/{securityLogId}"
+        return "security-logs"
 
     def list_organization_security_logs(
         self,
@@ -112,7 +112,7 @@ class SecurityLogsResource(BaseResource):
         """
         Get Organization Security Log
 
-        Link to documentaion:
+        Link to documentation:
         https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.security-logs.get
         """
 

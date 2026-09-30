@@ -218,7 +218,17 @@ class TestFieldsResources:
                 "op": FieldOperations.REPLACE,
                 "path": FieldsPatchPath.NAME,
                 "value": "test",
-            }
+            },
+            {
+                "op": FieldOperations.REPLACE,
+                "path": FieldsPatchPath.ENTITIES,
+                "value": [FieldEntity.TERM, FieldEntity.CONCEPT],
+            },
+            {
+                "op": FieldOperations.REPLACE,
+                "path": FieldsPatchPath.CONFIG,
+                "value": {"locations": [{"place": FieldPlace.TERM_DETAILS}]},
+            },
         ]
         fieldId = 1
 

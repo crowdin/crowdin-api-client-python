@@ -78,7 +78,7 @@ class FieldsResource(BaseResource):
         """
         Get Field
 
-        Link to documentaion:
+        Link to documentation:
         https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.fields.get
         """
 
@@ -90,7 +90,7 @@ class FieldsResource(BaseResource):
         """
         Delete Field
 
-        Link to documetation:
+        Link to documentation:
         https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.fields.delete
         """
 

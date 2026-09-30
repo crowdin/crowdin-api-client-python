@@ -19,10 +19,10 @@ class VendorsResource(BaseResource):
 
     def list_vendors(self, offset: Optional[int] = None, limit: Optional[int] = None):
         """
-        List Teams.
+        List Vendors.
 
         Link to documentation:
-        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.getMany
+        https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.vendors.getMany
         """
 
         return self._get_entire_data(

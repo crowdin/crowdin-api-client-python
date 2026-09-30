@@ -43,7 +43,8 @@ class GroupsResource(BaseResource):
         self,
         name: str,
         parentId: Optional[int] = None,
-        description: Optional[str] = None
+        description: Optional[str] = None,
+        savingsReportSettingsTemplateId: Optional[int] = None,
     ):
         """
         Add Group.
@@ -58,7 +59,8 @@ class GroupsResource(BaseResource):
             request_data={
                 "name": name,
                 "parentId": parentId,
-                "description": description
+                "description": description,
+                "savingsReportSettingsTemplateId": savingsReportSettingsTemplateId,
             }
         )
 
@@ -67,16 +69,19 @@ class GroupsResource(BaseResource):
         orderBy: Optional[Sorting] = None,
         parentId: Optional[int] = None,
         limit: Optional[int] = None,
-        offset: Optional[int] = None
+        offset: Optional[int] = None,
+        filter: Optional[str] = None,
     ):
         """
         List Groups.
+
+        :param filter: Filter groups by `name`
 
         Link to documentation:
         https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.getMany
         """
 
-        params = {"orderBy": orderBy, "parentId": parentId}
+        params = {"orderBy": orderBy, "parentId": parentId, "filter": filter}
         params.update(self.get_page_params(offset=offset, limit=limit))
 
         return self._get_entire_data(

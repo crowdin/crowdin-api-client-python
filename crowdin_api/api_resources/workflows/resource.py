@@ -31,7 +31,12 @@ class WorkflowsResource(BaseResource):
 
         return "workflow-templates"
 
-    def list_workflow_steps(self, projectId: Optional[int] = None):
+    def list_workflow_steps(
+        self,
+        projectId: Optional[int] = None,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+    ):
         """
         List Workflow Steps.
 
@@ -43,6 +48,7 @@ class WorkflowsResource(BaseResource):
         return self._get_entire_data(
             method="get",
             path=self.get_workflow_steps_path(projectId=projectId),
+            params=self.get_page_params(offset=offset, limit=limit),
         )
 
     def get_workflow_step(self, stepId: int, projectId: Optional[int] = None):
