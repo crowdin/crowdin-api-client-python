@@ -5,6 +5,7 @@ from crowdin_api.api_resources.enums import ExportFormat, PatchOperation
 from crowdin_api.api_resources.translation_memory.enums import (
     ListTmSegmentsOrderBy,
     ListTmsOrderBy,
+    TranslationMemoryExportFormat,
     TranslationMemoryPatchPath,
     TranslationMemorySegmentBatchOperation,
     TranslationMemorySegmentBatchOperationPath,
@@ -48,6 +49,9 @@ class TestTranslationMemoryResource:
                 {},
                 {
                     "orderBy": None,
+                    "filter": None,
+                    "userId": None,
+                    "groupId": None,
                     "limit": 25,
                     "offset": 0,
                 },
@@ -59,11 +63,17 @@ class TestTranslationMemoryResource:
                     ),
                     "limit": 25,
                     "offset": 0,
+                    "filter": "name",
+                    "userId": 1,
+                    "groupId": 2,
                 },
                 {
                     "orderBy": Sorting(
                         [SortingRule(ListTmsOrderBy.ID, SortingOrder.DESC)]
                     ),
+                    "filter": "name",
+                    "userId": 1,
+                    "groupId": 2,
                     "limit": 25,
                     "offset": 0,
                 },
@@ -84,16 +94,29 @@ class TestTranslationMemoryResource:
             path=resource.get_tms_path(),
         )
 
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {"name": "test", "languageId": "fr"},
+                {"name": "test", "languageId": "fr", "isShared": None, "groupId": None},
+            ),
+            (
+                {"name": "test", "languageId": "fr", "isShared": True, "groupId": 2},
+                {"name": "test", "languageId": "fr", "isShared": True, "groupId": 2},
+            ),
+        ),
+    )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_tm(self, m_request, base_absolut_url):
+    def test_add_tm(self, m_request, incoming_data, request_data, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_tm(name="test", languageId="fr") == "response"
+        assert resource.add_tm(**incoming_data) == "response"
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_tms_path(),
-            request_data={"name": "test", "languageId": "fr"},
+            request_data=request_data,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -127,7 +150,22 @@ class TestTranslationMemoryResource:
                 "value": "value",
                 "op": PatchOperation.REPLACE,
                 "path": TranslationMemoryPatchPath.NAME,
-            }
+            },
+            {
+                "value": "uk",
+                "op": PatchOperation.REPLACE,
+                "path": TranslationMemoryPatchPath.LANGUAGE_ID,
+            },
+            {
+                "value": True,
+                "op": PatchOperation.REPLACE,
+                "path": TranslationMemoryPatchPath.IS_SHARED,
+            },
+            {
+                "value": 1,
+                "op": PatchOperation.REPLACE,
+                "path": TranslationMemoryPatchPath.GROUP_ID,
+            },
         ]
 
         resource = self.get_resource(base_absolut_url)
@@ -166,6 +204,7 @@ class TestTranslationMemoryResource:
                 {},
                 {
                     "orderBy": None,
+                    "croql": None,
                     "limit": 25,
                     "offset": 0,
                 },
@@ -175,6 +214,7 @@ class TestTranslationMemoryResource:
                     "orderBy": Sorting(
                         [SortingRule(ListTmSegmentsOrderBy.ID, SortingOrder.DESC)]
                     ),
+                    "croql": "count of records > 1",
                     "limit": 25,
                     "offset": 0,
                 },
@@ -182,6 +222,7 @@ class TestTranslationMemoryResource:
                     "orderBy": Sorting(
                         [SortingRule(ListTmSegmentsOrderBy.ID, SortingOrder.DESC)]
                     ),
+                    "croql": "count of records > 1",
                     "limit": 25,
                     "offset": 0,
                 },
@@ -356,6 +397,14 @@ class TestTranslationMemoryResource:
                     "sourceLanguageId": "ua",
                     "targetLanguageId": "en",
                     "format": ExportFormat.CSV,
+                },
+            ),
+            (
+                {"format": TranslationMemoryExportFormat.TMX},
+                {
+                    "sourceLanguageId": None,
+                    "targetLanguageId": None,
+                    "format": TranslationMemoryExportFormat.TMX,
                 },
             ),
         ),

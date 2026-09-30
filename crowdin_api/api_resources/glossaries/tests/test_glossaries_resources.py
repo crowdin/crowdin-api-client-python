@@ -59,6 +59,8 @@ class TestGlossariesResource:
                 {
                     "orderBy": None,
                     "groupId": None,
+                    "userId": None,
+                    "filter": None,
                     "offset": 0,
                     "limit": 25,
                 },
@@ -83,6 +85,8 @@ class TestGlossariesResource:
                         ]
                     ),
                     "groupId": 1,
+                    "userId": None,
+                    "filter": None,
                     "offset": 0,
                     "limit": 25,
                 },
@@ -107,10 +111,23 @@ class TestGlossariesResource:
                         ]
                     ),
                     "groupId": 1,
+                    "userId": None,
+                    "filter": None,
                     "offset": 0,
                     "limit": 25,
                 },
-            )
+            ),
+            (
+                {"userId": 2, "filter": "name"},
+                {
+                    "orderBy": None,
+                    "groupId": None,
+                    "userId": 2,
+                    "filter": "name",
+                    "offset": 0,
+                    "limit": 25,
+                },
+            ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -125,16 +142,29 @@ class TestGlossariesResource:
             params=request_params,
         )
 
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {"name": "test", "languageId": "fr"},
+                {"name": "test", "languageId": "fr", "isShared": None, "groupId": None},
+            ),
+            (
+                {"name": "test", "languageId": "fr", "isShared": True, "groupId": 2},
+                {"name": "test", "languageId": "fr", "isShared": True, "groupId": 2},
+            ),
+        ),
+    )
     @mock.patch("crowdin_api.requester.APIRequester.request")
-    def test_add_glossary(self, m_request, base_absolut_url):
+    def test_add_glossary(self, m_request, incoming_data, request_data, base_absolut_url):
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_glossary(name="test", languageId="fr") == "response"
+        assert resource.add_glossary(**incoming_data) == "response"
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_glossaries_path(),
-            request_data={"name": "test", "languageId": "fr"},
+            request_data=request_data,
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -166,7 +196,22 @@ class TestGlossariesResource:
                 "value": "test",
                 "op": PatchOperation.REPLACE,
                 "path": GlossaryPatchPath.NAME,
-            }
+            },
+            {
+                "value": "uk",
+                "op": PatchOperation.REPLACE,
+                "path": GlossaryPatchPath.LANGUAGE_ID,
+            },
+            {
+                "value": True,
+                "op": PatchOperation.REPLACE,
+                "path": GlossaryPatchPath.IS_SHARED,
+            },
+            {
+                "value": 1,
+                "op": PatchOperation.REPLACE,
+                "path": GlossaryPatchPath.GROUP_ID,
+            },
         ]
 
         resource = self.get_resource(base_absolut_url)
@@ -256,6 +301,32 @@ class TestGlossariesResource:
                     "type": GlossaryExportTermType.ACRONYM,
                     "gender": GlossaryExportGender.MASCULINE,
                     "authorId": 12,
+                },
+            ),
+            (
+                {
+                    "text": "value",
+                    "caseSensitive": True,
+                    "searchStrict": True,
+                    "searchFullMatch": False,
+                    "dateFrom": "2024-01-23T07:00:14+00:00",
+                    "dateTo": "2024-09-27T07:00:14+00:00",
+                    "exportFields": [
+                        GlossaryExportFields.CONCEPT_DEFINITION,
+                        "field_custom-field",
+                    ],
+                },
+                {
+                    "text": "value",
+                    "caseSensitive": True,
+                    "searchStrict": True,
+                    "searchFullMatch": False,
+                    "dateFrom": "2024-01-23T07:00:14+00:00",
+                    "dateTo": "2024-09-27T07:00:14+00:00",
+                    "exportFields": [
+                        GlossaryExportFields.CONCEPT_DEFINITION,
+                        "field_custom-field",
+                    ],
                 },
             ),
         ),
@@ -404,6 +475,7 @@ class TestGlossariesResource:
                     "userId": None,
                     "languageId": None,
                     "conceptId": None,
+                    "translationOfTermId": None,
                     "croql": None,
                     "offset": 0,
                     "limit": 25,
@@ -417,6 +489,7 @@ class TestGlossariesResource:
                     "userId": 1,
                     "languageId": "ua",
                     "conceptId": 2,
+                    "translationOfTermId": 3,
                     "croql": "status = 'preferred'",
                 },
                 {
@@ -426,6 +499,7 @@ class TestGlossariesResource:
                     "userId": 1,
                     "languageId": "ua",
                     "conceptId": 2,
+                    "translationOfTermId": 3,
                     "croql": "status = 'preferred'",
                     "offset": 0,
                     "limit": 25,
@@ -460,6 +534,7 @@ class TestGlossariesResource:
                     "note": None,
                     "url": None,
                     "conceptId": None,
+                    "fields": None,
                 },
             ),
             (
@@ -468,24 +543,26 @@ class TestGlossariesResource:
                     "text": "text",
                     "description": "description",
                     "partOfSpeech": TermPartOfSpeech.PARTICLE,
-                    "status": TermStatus.ADMITTED,
+                    "status": TermStatus.DRAFT,
                     "type": TermType.SHORT_FORM,
                     "gender": TermGender.MASCULINE,
                     "note": "text",
                     "url": "https://test.test.com",
                     "conceptId": 1,
+                    "fields": {"some-field": "value"},
                 },
                 {
                     "languageId": "ua",
                     "text": "text",
                     "description": "description",
                     "partOfSpeech": TermPartOfSpeech.PARTICLE,
-                    "status": TermStatus.ADMITTED,
+                    "status": TermStatus.DRAFT,
                     "type": TermType.SHORT_FORM,
                     "gender": TermGender.MASCULINE,
                     "note": "text",
                     "url": "https://test.test.com",
                     "conceptId": 1,
+                    "fields": {"some-field": "value"},
                 },
             ),
         ),
@@ -507,11 +584,11 @@ class TestGlossariesResource:
         (
             (
                 {},
-                {"languageId": None, "conceptId": None},
+                {"languageId": None, "conceptId": None, "translationOfTermId": None},
             ),
             (
-                {"languageId": "ua", "conceptId": 1},
-                {"languageId": "ua", "conceptId": 1},
+                {"languageId": "ua", "conceptId": 1, "translationOfTermId": 2},
+                {"languageId": "ua", "conceptId": 1, "translationOfTermId": 2},
             ),
         ),
     )
@@ -556,7 +633,12 @@ class TestGlossariesResource:
                 "value": "test",
                 "op": PatchOperation.REPLACE,
                 "path": TermPatchPath.TEXT,
-            }
+            },
+            {
+                "value": {"some-field": "value"},
+                "op": PatchOperation.REPLACE,
+                "path": TermPatchPath.FIELDS,
+            },
         ]
 
         resource = self.get_resource(base_absolut_url)
@@ -648,6 +730,21 @@ class TestGlossariesResource:
                     "note": None,
                     "url": None,
                     "figure": None,
+                    "translatable": None,
+                    "fields": None,
+                },
+            ),
+            (
+                {},
+                {
+                    "languagesDetails": None,
+                    "subject": None,
+                    "definition": None,
+                    "note": None,
+                    "url": None,
+                    "figure": None,
+                    "translatable": None,
+                    "fields": None,
                 },
             ),
             (
@@ -660,6 +757,8 @@ class TestGlossariesResource:
                     "note": "Any concept-level note information",
                     "url": "https://test.test.com",
                     "figure": "string",
+                    "translatable": False,
+                    "fields": {"some-field": 12},
                 },
                 {
                     "languagesDetails": [
@@ -670,6 +769,8 @@ class TestGlossariesResource:
                     "note": "Any concept-level note information",
                     "url": "https://test.test.com",
                     "figure": "string",
+                    "translatable": False,
+                    "fields": {"some-field": 12},
                 },
             ),
         ),

@@ -2,6 +2,7 @@ from typing import Dict, Iterable, Optional, Union
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.enums import ExportFormat
+from crowdin_api.api_resources.translation_memory.enums import TranslationMemoryExportFormat
 from crowdin_api.api_resources.translation_memory.types import (
     OrganizationConcordanceSearchRequest,
     TranslationMemoryPatchRequest,
@@ -43,15 +44,23 @@ class TranslationMemoryResource(BaseResource):
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        filter: Optional[str] = None,
+        userId: Optional[int] = None,
+        groupId: Optional[int] = None,
     ):
         """
         List TMs.
+
+        :param filter: Filter TMs by `name`.
+        :param userId: Project Member Identifier. Crowdin only.
+        :param groupId: Group Identifier. Set 0 to see TMs of root group.
+            Crowdin Enterprise only.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.tms.getMany
         """
 
-        params = {"orderBy": orderBy}
+        params = {"orderBy": orderBy, "filter": filter, "userId": userId, "groupId": groupId}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(
@@ -60,9 +69,20 @@ class TranslationMemoryResource(BaseResource):
             params=params,
         )
 
-    def add_tm(self, name: str, languageId: str):
+    def add_tm(
+        self,
+        name: str,
+        languageId: str,
+        isShared: Optional[bool] = None,
+        groupId: Optional[int] = None,
+    ):
         """
-        Add Glossary.
+        Add TM.
+
+        :param isShared: Whether the TM should be shared to all projects within the account
+            (Crowdin) or within the group (Crowdin Enterprise).
+        :param groupId: Group Identifier. If 0 – the TM will be available for all projects
+            and groups in the workspace. Crowdin Enterprise only.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.tms.post
@@ -71,7 +91,12 @@ class TranslationMemoryResource(BaseResource):
         return self.requester.request(
             method="post",
             path=self.get_tms_path(),
-            request_data={"name": name, "languageId": languageId},
+            request_data={
+                "name": name,
+                "languageId": languageId,
+                "isShared": isShared,
+                "groupId": groupId,
+            },
         )
 
     def get_tm(self, tmId: int):
@@ -97,6 +122,8 @@ class TranslationMemoryResource(BaseResource):
     def edit_tm(self, tmId: int, data: Iterable[TranslationMemoryPatchRequest]):
         """
         Edit TM.
+
+        `TranslationMemoryPatchPath.GROUP_ID` (`/groupId`) is Crowdin Enterprise only.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.tms.patch
@@ -131,14 +158,17 @@ class TranslationMemoryResource(BaseResource):
         page: Optional[int] = None,
         offset: Optional[int] = None,
         limit: Optional[int] = None,
+        croql: Optional[str] = None,
     ):
         """
         List TM Segments.
 
+        :param croql: Filter segments by CroQL.
+
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.tms.segments.getMany
         """
-        params = {"orderBy": orderBy}
+        params = {"orderBy": orderBy, "croql": croql}
         params.update(self.get_page_params(page=page, offset=offset, limit=limit))
 
         return self._get_entire_data(
@@ -246,10 +276,13 @@ class TranslationMemoryResource(BaseResource):
         tmId: int,
         sourceLanguageId: Optional[str] = None,
         targetLanguageId: Optional[str] = None,
-        format: Optional[ExportFormat] = None,
+        format: Optional[Union[TranslationMemoryExportFormat, ExportFormat]] = None,
     ):
         """
         Export TM.
+
+        :param format: TM file format: `tmx` (default), `csv` or `xlsx`.
+            Use `TranslationMemoryExportFormat`.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.tms.exports.post

@@ -3,6 +3,9 @@ from enum import Enum
 
 class GlossaryPatchPath(Enum):
     NAME = "/name"
+    LANGUAGE_ID = "/languageId"
+    IS_SHARED = "/isShared"
+    GROUP_ID = "/groupId"  # Enterprise only
 
 
 class GlossaryFormat(Enum):
@@ -21,6 +24,11 @@ class GlossaryExportFields(Enum):
     GENDER = "gender"
     NOTE = "note"
     URL = "url"
+    CONCEPT_DEFINITION = "conceptDefinition"
+    CONCEPT_SUBJECT = "conceptSubject"
+    CONCEPT_NOTE = "conceptNote"
+    CONCEPT_URL = "conceptUrl"
+    CONCEPT_FIGURE = "conceptFigure"
 
 
 class GlossaryExportType(Enum):
@@ -81,6 +89,7 @@ class TermPatchPath(Enum):
     GENDER = "/gender"
     URL = "/url"
     NOTE = "/note"
+    FIELDS = "/fields"  # Enterprise only
 
 
 class TermPartOfSpeech(Enum):
@@ -106,6 +115,7 @@ class TermStatus(Enum):
     ADMITTED = "admitted"
     NOT_RECOMMEND = "not recommended"
     OBSOLETE = "obsolete"
+    DRAFT = "draft"
 
 
 class TermType(Enum):

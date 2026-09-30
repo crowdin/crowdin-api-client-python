@@ -52,6 +52,11 @@ class DistributionsResource(BaseResource):
         """
         Add Distribution.
 
+        :param fileIds: Deprecated, use `bundleIds` instead. File-based projects only.
+        :param bundleIds: Bundles ids. Get via List Bundles. Required for string-based projects.
+        :param exportMode: Deprecated, omit it to use the API default behavior.
+            File-based projects only.
+
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.post
         """
