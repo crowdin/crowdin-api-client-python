@@ -53,3 +53,8 @@ class Validation(Enum):
     WRONG_TRANSLATION_ISSUE_CHECK = "wrong_translation_issue_check"
     SPELLCHECK = "spellcheck"
     ICU_CHECK = "icu_check"
+
+
+class QaChecksRevalidationCategory(Enum):
+    TERMS = "terms"
+    AI = "ai"

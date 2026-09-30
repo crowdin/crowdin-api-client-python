@@ -1,4 +1,6 @@
-from typing import TypedDict, Any
+from typing import Any
+
+from crowdin_api.typing import TypedDict
 
 from crowdin_api.api_resources.enums import PatchOperation
 

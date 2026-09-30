@@ -28,3 +28,17 @@ class ListStringTranslationsOrderBy(Enum):
     TEXT = "text"
     RATING = "rating"
     CREATED_AT = "createdAt"
+
+
+class TranslationProvider(Enum):
+    TM = "tm"
+    GLOBAL_TM = "global_tm"
+    GOOGLE = "google"
+    MICROSOFT = "microsoft"
+    CROWDIN = "crowdin"
+    DEEPL = "deepl"
+    AMAZON = "amazon"
+    GOOGLE_AUTOML = "google_automl"
+    MODERNMT = "modernmt"
+    CUSTOM_MT = "custom_mt"
+    AI = "ai"
