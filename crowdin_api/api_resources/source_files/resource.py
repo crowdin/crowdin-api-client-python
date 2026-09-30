@@ -1,4 +1,4 @@
-from typing import Any, Iterable, Optional, Union
+from typing import Any, Iterable, Optional
 
 from crowdin_api.api_resources.abstract.resources import BaseResource
 from crowdin_api.api_resources.source_files.enums import (
@@ -9,18 +9,10 @@ from crowdin_api.api_resources.source_files.enums import (
 from crowdin_api.api_resources.source_files.types import (
     BranchPatchRequest,
     DirectoryPatchRequest,
+    FileExportOptions,
+    FileFields,
+    FileImportOptions,
     FilePatchRequest,
-    GeneralExportOptions,
-    JavascriptExportOptions,
-    HtmlFileImportOptions,
-    HtmlWithFrontMatterFileImportOptions,
-    MdxV1FileImportOptions,
-    MdxV2FileImportOptions,
-    OtherImportOptions,
-    PropertyExportOptions,
-    SpreadsheetImportOptions,
-    XmlImportOptions,
-    DocxFileImportOptions,
 )
 from crowdin_api.sorting import Sorting
 
@@ -165,9 +157,13 @@ class SourceFilesResource(BaseResource):
         title: Optional[str] = None,
         exportPattern: Optional[str] = None,
         priority: Optional[Priority] = None,
+        isProtected: Optional[bool] = None,
     ):
         """
         Add Branch.
+
+        `exportPattern` and `priority` are for file-based projects only,
+        `isProtected` is for string-based projects only.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.post
@@ -183,6 +179,7 @@ class SourceFilesResource(BaseResource):
                 "title": title,
                 "exportPattern": exportPattern,
                 "priority": priority,
+                "isProtected": isProtected,
             },
         )
 
@@ -209,6 +206,9 @@ class SourceFilesResource(BaseResource):
     ):
         """
         Delete Branch.
+
+        Pass `prefer="respond-async"` to delete the branch asynchronously (recommended); the API
+        then returns a job to poll via `check_branch_deletion_status`.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.delete
@@ -251,6 +251,9 @@ class SourceFilesResource(BaseResource):
     ):
         """
         Edit Branch.
+
+        `/exportPattern` is for file-based projects only, `/isProtected` is for string-based
+        projects only.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.patch
@@ -312,7 +315,7 @@ class SourceFilesResource(BaseResource):
         projectId: Optional[int] = None,
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
-        title: Optional[int] = None,
+        title: Optional[str] = None,
         exportPattern: Optional[str] = None,
         priority: Optional[Priority] = None,
     ):
@@ -361,6 +364,9 @@ class SourceFilesResource(BaseResource):
     ):
         """
         Delete Directory.
+
+        Pass `prefer="respond-async"` to delete the directory asynchronously (recommended); the API
+        then returns a job to poll via `check_directory_deletion_status`.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.delete
@@ -463,29 +469,20 @@ class SourceFilesResource(BaseResource):
         projectId: Optional[int] = None,
         branchId: Optional[int] = None,
         directoryId: Optional[int] = None,
-        title: Optional[int] = None,
+        title: Optional[str] = None,
         context: Optional[str] = None,
         type: Optional[FileType] = FileType.AUTO,
-        importOptions: Optional[
-            Union[
-                SpreadsheetImportOptions,
-                XmlImportOptions,
-                DocxFileImportOptions,
-                OtherImportOptions,
-                HtmlFileImportOptions,
-                HtmlWithFrontMatterFileImportOptions,
-                MdxV1FileImportOptions,
-                MdxV2FileImportOptions,
-            ]
-        ] = None,
-        exportOptions: Optional[
-            Union[PropertyExportOptions, GeneralExportOptions, JavascriptExportOptions]
-        ] = None,
+        importOptions: Optional[FileImportOptions] = None,
+        exportOptions: Optional[FileExportOptions] = None,
         excludedTargetLanguages: Optional[Iterable[str]] = None,
         attachLabelIds: Optional[Iterable[int]] = None,
+        parserVersion: Optional[int] = None,
+        fields: Optional[FileFields] = None,
     ):
         """
         Add File.
+
+        `parserVersion` must be used together with `type`. `fields` is Enterprise only.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.post
@@ -508,6 +505,8 @@ class SourceFilesResource(BaseResource):
                 "exportOptions": exportOptions,
                 "excludedTargetLanguages": excludedTargetLanguages,
                 "attachLabelIds": attachLabelIds,
+                "parserVersion": parserVersion,
+                "fields": fields,
             },
         )
 
@@ -532,6 +531,8 @@ class SourceFilesResource(BaseResource):
         """
         Restore File.
 
+        Restore the file to one of the previous revisions.
+
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.put
         """
@@ -550,26 +551,20 @@ class SourceFilesResource(BaseResource):
         storageId: int,
         projectId: Optional[int] = None,
         updateOption: Optional[FileUpdateOption] = None,
-        importOptions: Optional[
-            Union[
-                SpreadsheetImportOptions,
-                XmlImportOptions,
-                DocxFileImportOptions,
-                OtherImportOptions,
-                HtmlFileImportOptions,
-                HtmlWithFrontMatterFileImportOptions,
-                MdxV1FileImportOptions,
-                MdxV2FileImportOptions,
-            ]
-        ] = None,
-        exportOptions: Optional[
-            Union[GeneralExportOptions, PropertyExportOptions, JavascriptExportOptions]
-        ] = None,
+        importOptions: Optional[FileImportOptions] = None,
+        exportOptions: Optional[FileExportOptions] = None,
         attachLabelIds: Optional[Iterable[int]] = None,
         detachLabelIds: Optional[Iterable[int]] = None,
+        name: Optional[str] = None,
+        replaceModifiedContext: Optional[bool] = None,
     ):
         """
         Update File.
+
+        Replace the file with a new one from the Storage. `importOptions` is sent to the API
+        as-is (e.g. `{"importTranslations": True}` for spreadsheet files). Note that
+        `importOptions.importTranslations` in the API response for spreadsheet files is
+        marked as deprecated by the API and may not reflect the value sent in the request.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.put
@@ -587,6 +582,8 @@ class SourceFilesResource(BaseResource):
                 "exportOptions": exportOptions,
                 "attachLabelIds": attachLabelIds,
                 "detachLabelIds": detachLabelIds,
+                "name": name,
+                "replaceModifiedContext": replaceModifiedContext,
             },
         )
 
@@ -598,6 +595,9 @@ class SourceFilesResource(BaseResource):
     ):
         """
         Delete File.
+
+        Pass `prefer="respond-async"` to delete the file asynchronously (recommended); the API
+        then returns a job to poll via `check_file_deletion_status`.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.delete
@@ -640,6 +640,9 @@ class SourceFilesResource(BaseResource):
     ):
         """
         Edit File.
+
+        `/fields` and `/fields/{fieldSlug}` paths are Enterprise only. For `/fields/{fieldSlug}`
+        pass the path as a string, e.g. `"/fields/some-field"`.
 
         Link to documentation:
         https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.patch
@@ -765,10 +768,10 @@ class SourceFilesResource(BaseResource):
             "offset": offset,
         }
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_asset_references_path(project_id, file_id),
-            params=params
+            params=params,
         )
 
     def add_asset_reference(

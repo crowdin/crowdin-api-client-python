@@ -1,3 +1,4 @@
+import json
 from unittest import mock
 
 import pytest
@@ -8,6 +9,7 @@ from crowdin_api.api_resources.source_files.enums import (
     DirectoryPatchPath,
     FilePatchPath,
     FileType,
+    FileUpdateOption,
     ListDirectoriesOrderBy,
     ListFilesOrderBy,
     ListProjectBranchesOrderBy,
@@ -174,7 +176,25 @@ class TestSourceFilesResource:
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_branch_path(projectId=1),
-            request_data=request_data,
+            request_data={"isProtected": None, **request_data},
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_branch_string_based(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_branch(projectId=1, name="name", isProtected=True) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_branch_path(projectId=1),
+            request_data={
+                "name": "name",
+                "title": None,
+                "exportPattern": None,
+                "priority": None,
+                "isProtected": True,
+            },
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -649,7 +669,45 @@ class TestSourceFilesResource:
         m_request.assert_called_once_with(
             method="post",
             path=resource.get_file_path(projectId=1),
-            request_data=request_data,
+            request_data={"parserVersion": None, "fields": None, **request_data},
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_file_with_parser_version_and_fields(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.add_file(
+                projectId=1,
+                storageId=1,
+                name="name",
+                type=FileType.DOCX,
+                importOptions={"translateDocProperties": True, "translateComments": False},
+                exportOptions={"allowWordStyleOptimization": False},
+                parserVersion=2,
+                fields={"some-field": "value"},
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="post",
+            path=resource.get_file_path(projectId=1),
+            request_data={
+                "name": "name",
+                "storageId": 1,
+                "branchId": None,
+                "directoryId": None,
+                "title": None,
+                "type": FileType.DOCX,
+                "context": None,
+                "importOptions": {"translateDocProperties": True, "translateComments": False},
+                "exportOptions": {"allowWordStyleOptimization": False},
+                "excludedTargetLanguages": None,
+                "attachLabelIds": None,
+                "parserVersion": 2,
+                "fields": {"some-field": "value"},
+            },
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -720,6 +778,28 @@ class TestSourceFilesResource:
         )
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_file_fields(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        data = [
+            {"value": {"a": 1}, "op": PatchOperation.REPLACE, "path": FilePatchPath.FIELDS},
+            {
+                "value": True,
+                "op": PatchOperation.REPLACE,
+                "path": FilePatchPath.IMPORT_OPTIONS_TRANSLATE_DOC_PROPERTIES,
+            },
+            {"value": "x", "op": PatchOperation.REPLACE, "path": "/fields/some-field"},
+        ]
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_file(projectId=1, fileId=2, data=data) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            request_data=data,
+            path=resource.get_file_path(projectId=1, fileId=2),
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_update_file(self, m_request, base_absolut_url):
         m_request.return_value = "response"
 
@@ -734,9 +814,75 @@ class TestSourceFilesResource:
                 "exportOptions": None,
                 "attachLabelIds": None,
                 "detachLabelIds": None,
+                "name": None,
+                "replaceModifiedContext": None,
             },
             path=resource.get_file_path(projectId=1, fileId=2),
         )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_update_file_with_all_params(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        import_options = {
+            "firstLineContainsHeader": True,
+            "importTranslations": True,
+            "scheme": {"identifier": 0, "sourcePhrase": 1, "translation": 2},
+        }
+
+        resource = self.get_resource(base_absolut_url)
+        assert (
+            resource.update_file(
+                projectId=1,
+                fileId=2,
+                storageId=1,
+                updateOption=FileUpdateOption.KEEP_TRANSLATIONS,
+                importOptions=import_options,
+                exportOptions={"exportPattern": "pattern"},
+                attachLabelIds=[1],
+                detachLabelIds=[2],
+                name="name.csv",
+                replaceModifiedContext=True,
+            )
+            == "response"
+        )
+        m_request.assert_called_once_with(
+            method="put",
+            request_data={
+                "storageId": 1,
+                "updateOption": FileUpdateOption.KEEP_TRANSLATIONS,
+                "importOptions": {
+                    "firstLineContainsHeader": True,
+                    "importTranslations": True,
+                    "scheme": {"identifier": 0, "sourcePhrase": 1, "translation": 2},
+                },
+                "exportOptions": {"exportPattern": "pattern"},
+                "attachLabelIds": [1],
+                "detachLabelIds": [2],
+                "name": "name.csv",
+                "replaceModifiedContext": True,
+            },
+            path=resource.get_file_path(projectId=1, fileId=2),
+        )
+
+    @mock.patch("requests.Session.request")
+    def test_update_file_sends_import_translations(self, m_session_request, base_absolut_url):
+        """Regression test for #246: importTranslations must reach the HTTP body unchanged."""
+        m_session_request.return_value = mock.Mock(status_code=200, content=b"{}")
+
+        resource = self.get_resource(base_absolut_url)
+        resource.update_file(
+            projectId=1,
+            fileId=2,
+            storageId=1,
+            updateOption=FileUpdateOption.KEEP_TRANSLATIONS,
+            importOptions={"importTranslations": True, "firstLineContainsHeader": False},
+        )
+        assert json.loads(m_session_request.call_args.kwargs["data"]) == {
+            "storageId": 1,
+            "updateOption": "keep_translations",
+            "importOptions": {"importTranslations": True, "firstLineContainsHeader": False},
+        }
 
     @mock.patch("crowdin_api.requester.APIRequester.request")
     def test_restore_file(self, m_request, base_absolut_url):
