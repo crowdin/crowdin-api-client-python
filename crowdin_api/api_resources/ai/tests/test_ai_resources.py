@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from enum import Enum
 from unittest import mock
 
 import pytest
@@ -10,9 +11,11 @@ from crowdin_api.api_resources.ai.enums import (
     AIProviderType,
     AiReportFormat,
     AiToolType,
+    AiRequestLogExportFormat,
     DatasetPurpose,
     EditAiCustomPlaceholderPatchPath,
     EditAiSettingsPatchPath,
+    EditAiSnippetPatchPath,
     ListAiPromptFineTuningJobsOrderBy,
     ListSupportedAiModelsOrderBy,
 )
@@ -40,6 +43,13 @@ from crowdin_api.api_resources.ai.types import (
 from crowdin_api.api_resources.enums import PatchOperation
 from crowdin_api.requester import APIRequester
 from crowdin_api.sorting import Sorting, SortingOrder, SortingRule
+
+
+class _UsageMembersOrderBy(Enum):
+    MONTHLY_COST_SPENT = "monthlyCostSpent"
+
+
+ORDER_BY = Sorting([SortingRule(_UsageMembersOrderBy.MONTHLY_COST_SPENT, SortingOrder.DESC)])
 
 
 class TestAIResources:
@@ -742,7 +752,8 @@ class TestAIResources:
         user_id = 1
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.list_ai_custom_placeholders(user_id) == "response"
+        with pytest.warns(DeprecationWarning):
+            assert resource.list_ai_custom_placeholders(user_id) == "response"
 
         m_request.assert_called_once_with(
             method="get",
@@ -773,7 +784,8 @@ class TestAIResources:
         user_id = 1
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_ai_custom_placeholder(user_id, incoming_data) == "response"
+        with pytest.warns(DeprecationWarning):
+            assert resource.add_ai_custom_placeholder(user_id, incoming_data) == "response"
 
         m_request.assert_called_once_with(
             method="post",
@@ -789,7 +801,8 @@ class TestAIResources:
         ai_custom_placeholder_id = 2
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.get_ai_custom_placeholder(user_id, ai_custom_placeholder_id) == "response"
+        with pytest.warns(DeprecationWarning):
+            assert resource.get_ai_custom_placeholder(user_id, ai_custom_placeholder_id) == "response"
 
         m_request.assert_called_once_with(
             method="get",
@@ -804,7 +817,8 @@ class TestAIResources:
         ai_custom_placeholder_id = 2
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.delete_ai_custom_placeholder(user_id, ai_custom_placeholder_id) == "response"
+        with pytest.warns(DeprecationWarning):
+            assert resource.delete_ai_custom_placeholder(user_id, ai_custom_placeholder_id) == "response"
 
         m_request.assert_called_once_with(
             method="delete",
@@ -850,7 +864,8 @@ class TestAIResources:
         ai_custom_placeholder_id = 2
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.edit_ai_custom_placeholder(user_id, ai_custom_placeholder_id, incoming_data) == "response"
+        with pytest.warns(DeprecationWarning):
+            assert resource.edit_ai_custom_placeholder(user_id, ai_custom_placeholder_id, incoming_data) == "response"
 
         m_request.assert_called_once_with(
             method="patch",
@@ -1249,6 +1264,40 @@ class TestAIResources:
                         "path": "/editorSuggestionAiPromptId",
                         "value": 2
                     }
+                ],
+            ),
+            (
+                [
+                    {
+                        "op": PatchOperation.REPLACE,
+                        "path": EditAiSettingsPatchPath.MONTHLY_COST_LIMIT,
+                        "value": 100,
+                    },
+                    {
+                        "op": PatchOperation.REPLACE,
+                        "path": EditAiSettingsPatchPath.PER_USER_OVERRIDE_DAILY_COST_LIMIT.value.format(userId=12),
+                        "value": 5,
+                    },
+                    {
+                        "op": PatchOperation.REMOVE,
+                        "path": EditAiSettingsPatchPath.PER_USER_OVERRIDE.value.format(userId=13),
+                    },
+                ],
+                [
+                    {
+                        "op": PatchOperation.REPLACE,
+                        "path": EditAiSettingsPatchPath.MONTHLY_COST_LIMIT,
+                        "value": 100,
+                    },
+                    {
+                        "op": PatchOperation.REPLACE,
+                        "path": "/perUserOverrides/12/dailyCostLimit",
+                        "value": 5,
+                    },
+                    {
+                        "op": PatchOperation.REMOVE,
+                        "path": "/perUserOverrides/13",
+                    },
                 ],
             ),
         ),
@@ -1654,6 +1703,268 @@ class TestAIResources:
             method="patch",
             path=resource.get_ai_provider_gateway_path(user_id, ai_provider_id, path),
             request_data=None,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_all_ai_provider_models(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_all_ai_provider_models(1) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="users/1/ai/providers/models",
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, path",
+        (
+            ({"user_id": 1}, "users/1/ai/settings/snippets"),
+            ({"user_id": 1, "ai_snippet_id": 2}, "users/1/ai/settings/snippets/2"),
+        ),
+    )
+    def test_get_ai_snippets_path(self, in_params, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_snippets_path(**in_params) == path
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            ({}, {"limit": 25, "offset": 0}),
+            ({"limit": 10, "offset": 5}, {"limit": 10, "offset": 5}),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_ai_snippets(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_ai_snippets(1, **in_params) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="users/1/ai/settings/snippets",
+            params=request_params,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_ai_snippet(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        request_data = {
+            "description": "Product description",
+            "placeholder": "%custom:productDescription%",
+            "value": "The product is the professional consulting service",
+        }
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_ai_snippet(1, request_data) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path="users/1/ai/settings/snippets",
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_ai_snippet(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_snippet(1, 2) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="users/1/ai/settings/snippets/2",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_ai_snippet(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_ai_snippet(1, 2) == "response"
+        m_request.assert_called_once_with(
+            method="delete",
+            path="users/1/ai/settings/snippets/2",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_ai_snippet(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        patches = [
+            {
+                "op": PatchOperation.REPLACE,
+                "path": EditAiSnippetPatchPath.VALUE,
+                "value": "New value",
+            }
+        ]
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_ai_snippet(1, 2, patches) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path="users/1/ai/settings/snippets/2",
+            request_data=patches,
+        )
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {},
+                {
+                    "format": None,
+                    "requestId": None,
+                    "projectId": None,
+                    "userId": None,
+                    "aiProviderId": None,
+                    "model": None,
+                    "sourceAction": None,
+                    "promptAction": None,
+                    "statuses": None,
+                    "systemCredentials": None,
+                    "isAutoTriggered": None,
+                    "tokenName": None,
+                    "oauthClientId": None,
+                    "createdAfter": None,
+                    "createdBefore": None,
+                },
+            ),
+            (
+                {
+                    "export_format": AiRequestLogExportFormat.CSV,
+                    "request_id": "9d3b1c4e-2f3a-4b5c-8d6e-7f8a9b0c1d2e",
+                    "project_id": 8,
+                    "request_user_id": 42,
+                    "ai_provider_id": 3,
+                    "model": "gpt-5.6-sol",
+                    "source_action": AiRequestLogSourceAction.AI_GATEWAY,
+                    "prompt_action": "qa_check",
+                    "statuses": [AiRequestLogStatus.SUCCESS, AiRequestLogStatus.ERROR],
+                    "system_credentials": True,
+                    "is_auto_triggered": False,
+                    "token_name": "Token name",
+                    "oauth_client_id": "gpbccUFxAKZDrLm5Nq8t",
+                    "created_after": datetime(2026, 7, 1, tzinfo=timezone.utc),
+                    "created_before": datetime(2026, 7, 31, tzinfo=timezone.utc),
+                },
+                {
+                    "format": AiRequestLogExportFormat.CSV,
+                    "requestId": "9d3b1c4e-2f3a-4b5c-8d6e-7f8a9b0c1d2e",
+                    "projectId": 8,
+                    "userId": 42,
+                    "aiProviderId": 3,
+                    "model": "gpt-5.6-sol",
+                    "sourceAction": AiRequestLogSourceAction.AI_GATEWAY,
+                    "promptAction": "qa_check",
+                    "statuses": [AiRequestLogStatus.SUCCESS, AiRequestLogStatus.ERROR],
+                    "systemCredentials": True,
+                    "isAutoTriggered": False,
+                    "tokenName": "Token name",
+                    "oauthClientId": "gpbccUFxAKZDrLm5Nq8t",
+                    "createdAfter": datetime(2026, 7, 1, tzinfo=timezone.utc),
+                    "createdBefore": datetime(2026, 7, 31, tzinfo=timezone.utc),
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_export_ai_request_logs(self, m_request, incoming_data, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.export_ai_request_logs(1, **incoming_data) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path="users/1/ai/request-logs/exports",
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_check_ai_request_logs_export_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.check_ai_request_logs_export_status(1, "abc") == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="users/1/ai/request-logs/exports/abc",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_download_ai_request_logs_export(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.download_ai_request_logs_export(1, "abc") == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="users/1/ai/request-logs/exports/abc/download",
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, path",
+        (
+            ({"user_id": 1}, "users/1/ai/usage/members"),
+            ({"user_id": 1, "member_id": 2}, "users/1/ai/usage/members/2"),
+        ),
+    )
+    def test_get_ai_usage_members_path(self, in_params, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_usage_members_path(**in_params) == path
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            ({}, {"userIds": None, "orderBy": None, "limit": 25, "offset": 0}),
+            (
+                {"user_ids": [1, 2], "order_by": ORDER_BY, "limit": 10, "offset": 5},
+                {"userIds": "1,2", "orderBy": ORDER_BY, "limit": 10, "offset": 5},
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_ai_usage_members(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_ai_usage_members(1, **in_params) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="users/1/ai/usage/members",
+            params=request_params,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_ai_usage_member(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_usage_member(1, 2) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="users/1/ai/usage/members/2",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_project_ai_settings(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_project_ai_settings(projectId=5) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/5/ai/settings",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_project_ai_settings_default_project(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.resource_class(
+            requester=APIRequester(base_url=base_absolut_url), project_id=7
+        )
+        assert resource.get_project_ai_settings() == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/7/ai/settings",
         )
 
 
@@ -2302,7 +2613,8 @@ class TestEnterpriseAIResources:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.list_ai_custom_placeholders() == "response"
+        with pytest.warns(DeprecationWarning):
+            assert resource.list_ai_custom_placeholders() == "response"
 
         m_request.assert_called_once_with(
             method="get",
@@ -2331,7 +2643,8 @@ class TestEnterpriseAIResources:
         m_request.return_value = "response"
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.add_ai_custom_placeholder(incoming_data) == "response"
+        with pytest.warns(DeprecationWarning):
+            assert resource.add_ai_custom_placeholder(incoming_data) == "response"
 
         m_request.assert_called_once_with(
             method="post",
@@ -2346,7 +2659,8 @@ class TestEnterpriseAIResources:
         ai_custom_placeholder_id = 1
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.get_ai_custom_placeholder(ai_custom_placeholder_id) == "response"
+        with pytest.warns(DeprecationWarning):
+            assert resource.get_ai_custom_placeholder(ai_custom_placeholder_id) == "response"
 
         m_request.assert_called_once_with(
             method="get",
@@ -2360,7 +2674,8 @@ class TestEnterpriseAIResources:
         ai_custom_placeholder_id = 1
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.delete_ai_custom_placeholder(ai_custom_placeholder_id) == "response"
+        with pytest.warns(DeprecationWarning):
+            assert resource.delete_ai_custom_placeholder(ai_custom_placeholder_id) == "response"
 
         m_request.assert_called_once_with(
             method="delete",
@@ -2405,7 +2720,8 @@ class TestEnterpriseAIResources:
         ai_custom_placeholder_id = 1
 
         resource = self.get_resource(base_absolut_url)
-        assert resource.edit_ai_custom_placeholder(ai_custom_placeholder_id, incoming_data) == "response"
+        with pytest.warns(DeprecationWarning):
+            assert resource.edit_ai_custom_placeholder(ai_custom_placeholder_id, incoming_data) == "response"
 
         m_request.assert_called_once_with(
             method="patch",
@@ -2794,6 +3110,40 @@ class TestEnterpriseAIResources:
                     }
                 ],
             ),
+            (
+                [
+                    {
+                        "op": PatchOperation.REPLACE,
+                        "path": EditAiSettingsPatchPath.MONTHLY_COST_LIMIT,
+                        "value": 100,
+                    },
+                    {
+                        "op": PatchOperation.REPLACE,
+                        "path": EditAiSettingsPatchPath.PER_USER_OVERRIDE_DAILY_COST_LIMIT.value.format(userId=12),
+                        "value": 5,
+                    },
+                    {
+                        "op": PatchOperation.REMOVE,
+                        "path": EditAiSettingsPatchPath.PER_USER_OVERRIDE.value.format(userId=13),
+                    },
+                ],
+                [
+                    {
+                        "op": PatchOperation.REPLACE,
+                        "path": EditAiSettingsPatchPath.MONTHLY_COST_LIMIT,
+                        "value": 100,
+                    },
+                    {
+                        "op": PatchOperation.REPLACE,
+                        "path": "/perUserOverrides/12/dailyCostLimit",
+                        "value": 5,
+                    },
+                    {
+                        "op": PatchOperation.REMOVE,
+                        "path": "/perUserOverrides/13",
+                    },
+                ],
+            ),
         ),
     )
     @mock.patch("crowdin_api.requester.APIRequester.request")
@@ -3174,4 +3524,266 @@ class TestEnterpriseAIResources:
             method="patch",
             path=resource.get_ai_provider_gateway_path(ai_provider_id, path),
             request_data=None,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_all_ai_provider_models(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_all_ai_provider_models() == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="ai/providers/models",
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, path",
+        (
+            ({}, "ai/settings/snippets"),
+            ({"ai_snippet_id": 2}, "ai/settings/snippets/2"),
+        ),
+    )
+    def test_get_ai_snippets_path(self, in_params, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_snippets_path(**in_params) == path
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            ({}, {"limit": 25, "offset": 0}),
+            ({"limit": 10, "offset": 5}, {"limit": 10, "offset": 5}),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_ai_snippets(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_ai_snippets(**in_params) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="ai/settings/snippets",
+            params=request_params,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_add_ai_snippet(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        request_data = {
+            "description": "Product description",
+            "placeholder": "%custom:productDescription%",
+            "value": "The product is the professional consulting service",
+        }
+        resource = self.get_resource(base_absolut_url)
+        assert resource.add_ai_snippet(request_data) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path="ai/settings/snippets",
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_ai_snippet(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_snippet(2) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="ai/settings/snippets/2",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_delete_ai_snippet(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.delete_ai_snippet(2) == "response"
+        m_request.assert_called_once_with(
+            method="delete",
+            path="ai/settings/snippets/2",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_edit_ai_snippet(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        patches = [
+            {
+                "op": PatchOperation.REPLACE,
+                "path": EditAiSnippetPatchPath.VALUE,
+                "value": "New value",
+            }
+        ]
+        resource = self.get_resource(base_absolut_url)
+        assert resource.edit_ai_snippet(2, patches) == "response"
+        m_request.assert_called_once_with(
+            method="patch",
+            path="ai/settings/snippets/2",
+            request_data=patches,
+        )
+
+    @pytest.mark.parametrize(
+        "incoming_data, request_data",
+        (
+            (
+                {},
+                {
+                    "format": None,
+                    "requestId": None,
+                    "projectId": None,
+                    "userId": None,
+                    "aiProviderId": None,
+                    "model": None,
+                    "sourceAction": None,
+                    "promptAction": None,
+                    "statuses": None,
+                    "systemCredentials": None,
+                    "isAutoTriggered": None,
+                    "tokenName": None,
+                    "oauthClientId": None,
+                    "createdAfter": None,
+                    "createdBefore": None,
+                },
+            ),
+            (
+                {
+                    "export_format": AiRequestLogExportFormat.CSV,
+                    "request_id": "9d3b1c4e-2f3a-4b5c-8d6e-7f8a9b0c1d2e",
+                    "project_id": 8,
+                    "request_user_id": 42,
+                    "ai_provider_id": 3,
+                    "model": "gpt-5.6-sol",
+                    "source_action": AiRequestLogSourceAction.AI_GATEWAY,
+                    "prompt_action": "qa_check",
+                    "statuses": [AiRequestLogStatus.SUCCESS, AiRequestLogStatus.ERROR],
+                    "system_credentials": True,
+                    "is_auto_triggered": False,
+                    "token_name": "Token name",
+                    "oauth_client_id": "gpbccUFxAKZDrLm5Nq8t",
+                    "created_after": datetime(2026, 7, 1, tzinfo=timezone.utc),
+                    "created_before": datetime(2026, 7, 31, tzinfo=timezone.utc),
+                },
+                {
+                    "format": AiRequestLogExportFormat.CSV,
+                    "requestId": "9d3b1c4e-2f3a-4b5c-8d6e-7f8a9b0c1d2e",
+                    "projectId": 8,
+                    "userId": 42,
+                    "aiProviderId": 3,
+                    "model": "gpt-5.6-sol",
+                    "sourceAction": AiRequestLogSourceAction.AI_GATEWAY,
+                    "promptAction": "qa_check",
+                    "statuses": [AiRequestLogStatus.SUCCESS, AiRequestLogStatus.ERROR],
+                    "systemCredentials": True,
+                    "isAutoTriggered": False,
+                    "tokenName": "Token name",
+                    "oauthClientId": "gpbccUFxAKZDrLm5Nq8t",
+                    "createdAfter": datetime(2026, 7, 1, tzinfo=timezone.utc),
+                    "createdBefore": datetime(2026, 7, 31, tzinfo=timezone.utc),
+                },
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_export_ai_request_logs(self, m_request, incoming_data, request_data, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.export_ai_request_logs(**incoming_data) == "response"
+        m_request.assert_called_once_with(
+            method="post",
+            path="ai/request-logs/exports",
+            request_data=request_data,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_check_ai_request_logs_export_status(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.check_ai_request_logs_export_status("abc") == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="ai/request-logs/exports/abc",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_download_ai_request_logs_export(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.download_ai_request_logs_export("abc") == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="ai/request-logs/exports/abc/download",
+        )
+
+    @pytest.mark.parametrize(
+        "in_params, path",
+        (
+            ({}, "ai/usage/members"),
+            ({"member_id": 2}, "ai/usage/members/2"),
+        ),
+    )
+    def test_get_ai_usage_members_path(self, in_params, path, base_absolut_url):
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_usage_members_path(**in_params) == path
+
+    @pytest.mark.parametrize(
+        "in_params, request_params",
+        (
+            ({}, {"userIds": None, "orderBy": None, "limit": 25, "offset": 0}),
+            (
+                {"user_ids": [1, 2], "order_by": ORDER_BY, "limit": 10, "offset": 5},
+                {"userIds": "1,2", "orderBy": ORDER_BY, "limit": 10, "offset": 5},
+            ),
+        ),
+    )
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_list_ai_usage_members(self, m_request, in_params, request_params, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.list_ai_usage_members(**in_params) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="ai/usage/members",
+            params=request_params,
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_ai_usage_member(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_ai_usage_member(2) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="ai/usage/members/2",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_project_ai_settings(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.get_resource(base_absolut_url)
+        assert resource.get_project_ai_settings(projectId=5) == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/5/ai/settings",
+        )
+
+    @mock.patch("crowdin_api.requester.APIRequester.request")
+    def test_get_project_ai_settings_default_project(self, m_request, base_absolut_url):
+        m_request.return_value = "response"
+
+        resource = self.resource_class(
+            requester=APIRequester(base_url=base_absolut_url), project_id=7
+        )
+        assert resource.get_project_ai_settings() == "response"
+        m_request.assert_called_once_with(
+            method="get",
+            path="projects/7/ai/settings",
         )
