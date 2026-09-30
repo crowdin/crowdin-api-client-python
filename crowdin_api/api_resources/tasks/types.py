@@ -5,6 +5,13 @@ from crowdin_api.api_resources.tasks.enums import (
     TaskOperationPatchPath,
     VendorTaskOperationPatchPath,
     ConfigTaskOperationPatchPath,
+    PendingTaskOperationPatchPath,
+    VendorPendingTaskOperationPatchPath,
+    EnterpriseTaskOperationPatchPath,
+    EnterpriseVendorTaskOperationPatchPath,
+    EnterpriseInterOrganizationalTaskOperationPatchPath,
+    EnterprisePendingTaskOperationPatchPath,
+    TaskCommentPatchPath,
 )
 from crowdin_api.typing import TypedDict
 
@@ -24,6 +31,42 @@ class VendorPatchRequest(TypedDict):
     value: Any
     op: PatchOperation
     path: VendorTaskOperationPatchPath
+
+
+class PendingTaskPatchRequest(TypedDict):
+    value: Any
+    op: PatchOperation
+    path: PendingTaskOperationPatchPath
+
+
+class VendorPendingTaskPatchRequest(TypedDict):
+    value: Any
+    op: PatchOperation
+    path: VendorPendingTaskOperationPatchPath
+
+
+class EnterpriseTaskPatchRequest(TypedDict):
+    value: Any
+    op: PatchOperation
+    path: Union[EnterpriseTaskOperationPatchPath, str]
+
+
+class EnterpriseVendorTaskPatchRequest(TypedDict):
+    value: Any
+    op: PatchOperation
+    path: EnterpriseVendorTaskOperationPatchPath
+
+
+class EnterpriseInterOrganizationalTaskPatchRequest(TypedDict):
+    value: Any
+    op: PatchOperation
+    path: EnterpriseInterOrganizationalTaskOperationPatchPath
+
+
+class EnterprisePendingTaskPatchRequest(TypedDict):
+    value: Any
+    op: PatchOperation
+    path: EnterprisePendingTaskOperationPatchPath
 
 
 class ConfigPatchRequest(TypedDict):
@@ -60,5 +103,4 @@ class EnterpriseTaskSettingsTemplateLanguages(TypedDict):
 class TaskCommentPatchRequest(TypedDict):
     value: Any
     op: PatchOperation
-    # For now only /text is supported in edit operations
-    path: str
+    path: Union[TaskCommentPatchPath, str]
