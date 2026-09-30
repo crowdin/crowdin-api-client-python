@@ -8,9 +8,10 @@ from crowdin_api.utils import convert_enum_to_string_if_exists
 
 class StringCorrectionsResource(BaseResource):
     """
-    Resource for String Corrections.
+    Resource for String Corrections (Crowdin Enterprise only).
 
-    Use API to add or remove strings translations, approvals, and votes.
+    Use API to list, add, get, restore, and delete source string corrections
+    proposed during proofreading.
 
     Link to documentation:
     https://support.crowdin.com/developer/enterprise/api/v2/#tag/String-Corrections
@@ -46,10 +47,10 @@ class StringCorrectionsResource(BaseResource):
             "denormalizePlaceholders": convert_enum_to_string_if_exists(denormalize_placeholders)
         }
 
-        return self.requester.request(
+        return self._get_entire_data(
             method="get",
             path=self.get_string_corrections_path(project_id),
-            params=params
+            params=params,
         )
 
     def add_correction(
