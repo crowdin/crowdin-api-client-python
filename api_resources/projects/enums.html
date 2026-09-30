@@ -179,6 +179,32 @@ You can add escape_special_characters per-file option. *</p>
 </dd>
 </dl>
 </dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectGlossaryAccessOption"><code class="flex name class">
+<span>class <span class="ident">ProjectGlossaryAccessOption</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectGlossaryAccessOption.FULL_ACCESS"><code class="name">var <span class="ident">FULL_ACCESS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectGlossaryAccessOption.MANAGE_DRAFTS"><code class="name">var <span class="ident">MANAGE_DRAFTS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectGlossaryAccessOption.READ_ONLY"><code class="name">var <span class="ident">READ_ONLY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy"><code class="flex name class">
 <span>class <span class="ident">ProjectLanguageAccessPolicy</span></span>
 <span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
@@ -206,13 +232,45 @@ You can add escape_special_characters per-file option. *</p>
 <span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>An enumeration.</p></div>
+<div class="desc"><p>JSON Patch paths for Edit Project.</p>
+<p>Crowdin only: <code>/visibility</code>, <code>/languageAccessPolicy</code>, <code>/exportApprovedOnly</code>, <code>/useGlobalTm</code>,
+<code>/tmPreTranslate</code>, <code>/mtPreTranslate</code>, <code>/aiPreTranslate</code>.</p>
+<p>Crowdin Enterprise only: <code>/groupId</code>, <code>/taskReviewerIds</code>, <code>/exportWithMinApprovalsCount</code>,
+<code>/exportStringsThatPassedWorkflow</code>, <code>/qaApprovalsCount</code>, <code>/fields</code>, <code>/fields/{fieldSlug}</code>, <code>/tm</code>,
+<code>/alignmentActionAiPromptId</code>, <code>/templateId</code>, <code>/steps</code>, <code>/vendorId</code>, <code>/mtEngineId</code>.</p>
+<p>File-based projects only: <code>/skipUntranslatedFiles</code>, <code>/saveMetaInfoInSource</code>, <code>/tmContextType</code>.</p>
+<p>Deprecated: <code>/glossaryAccess</code> (use <code>/glossaryAccessOption</code> instead) and
+<code>/preTranslationAiPromptId</code>.</p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li>enum.Enum</li>
 </ul>
 <h3>Class variables</h3>
 <dl>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.AI_PRE_TRANSLATE"><code class="name">var <span class="ident">AI_PRE_TRANSLATE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.ALIGNMENT_ACTION_AI_PROMPT_ID"><code class="name">var <span class="ident">ALIGNMENT_ACTION_AI_PROMPT_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.ASSIGNED_GLOSSARIES"><code class="name">var <span class="ident">ASSIGNED_GLOSSARIES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.ASSIGNED_STYLE_GUIDES"><code class="name">var <span class="ident">ASSIGNED_STYLE_GUIDES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.ASSIGNED_TM"><code class="name">var <span class="ident">ASSIGNED_TM</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.ASSIGNED_TMS"><code class="name">var <span class="ident">ASSIGNED_TMS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.AUTO_SUBSTITUTION"><code class="name">var <span class="ident">AUTO_SUBSTITUTION</span></code></dt>
 <dd>
 <div class="desc"></div>
@@ -222,6 +280,10 @@ You can add escape_special_characters per-file option. *</p>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.CNAME"><code class="name">var <span class="ident">CNAME</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.CONTEXT_REVIEW_AI_PROMPT_ID"><code class="name">var <span class="ident">CONTEXT_REVIEW_AI_PROMPT_ID</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -237,11 +299,51 @@ You can add escape_special_characters per-file option. *</p>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.EDITOR_SUGGESTION_AI_PROMPT_ID"><code class="name">var <span class="ident">EDITOR_SUGGESTION_AI_PROMPT_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.EXPORT_APPROVED_ONLY"><code class="name">var <span class="ident">EXPORT_APPROVED_ONLY</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.EXPORT_STRINGS_THAT_PASSED_WORKFLOW"><code class="name">var <span class="ident">EXPORT_STRINGS_THAT_PASSED_WORKFLOW</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.EXPORT_WITH_MIN_APPROVALS_COUNT"><code class="name">var <span class="ident">EXPORT_WITH_MIN_APPROVALS_COUNT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.FIELD"><code class="name">var <span class="ident">FIELD</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.FIELDS"><code class="name">var <span class="ident">FIELDS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.GLOSSARY_ACCESS"><code class="name">var <span class="ident">GLOSSARY_ACCESS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.GLOSSARY_ACCESS_OPTION"><code class="name">var <span class="ident">GLOSSARY_ACCESS_OPTION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.GROUP_ID"><code class="name">var <span class="ident">GROUP_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.HIDDEN_STRINGS_PROOFREADERS_ACCESS"><code class="name">var <span class="ident">HIDDEN_STRINGS_PROOFREADERS_ACCESS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.IN_CONTEXT"><code class="name">var <span class="ident">IN_CONTEXT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.IN_CONTEXT_PROCESS_HIDDEN_STRINGS"><code class="name">var <span class="ident">IN_CONTEXT_PROCESS_HIDDEN_STRINGS</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -269,6 +371,14 @@ You can add escape_special_characters per-file option. *</p>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.MT_ENGINE_ID"><code class="name">var <span class="ident">MT_ENGINE_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.MT_PRE_TRANSLATE"><code class="name">var <span class="ident">MT_PRE_TRANSLATE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.NAME"><code class="name">var <span class="ident">NAME</span></code></dt>
 <dd>
 <div class="desc"></div>
@@ -277,7 +387,31 @@ You can add escape_special_characters per-file option. *</p>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.NOTIFICATION_SETTINGS_MANAGER_LANGUAGE_COMPLETED"><code class="name">var <span class="ident">NOTIFICATION_SETTINGS_MANAGER_LANGUAGE_COMPLETED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.NOTIFICATION_SETTINGS_MANAGER_NEW_STRINGS"><code class="name">var <span class="ident">NOTIFICATION_SETTINGS_MANAGER_NEW_STRINGS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.NOTIFICATION_SETTINGS_TRANSLATOR_NEW_STRINGS"><code class="name">var <span class="ident">NOTIFICATION_SETTINGS_TRANSLATOR_NEW_STRINGS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.PRE_TRANSLATION_AI_PROMPT_ID"><code class="name">var <span class="ident">PRE_TRANSLATION_AI_PROMPT_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.PSEUDO_LANGUAGE_ID"><code class="name">var <span class="ident">PSEUDO_LANGUAGE_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.PUBLIC_DOWNLOADS"><code class="name">var <span class="ident">PUBLIC_DOWNLOADS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_APPROVALS_COUNT"><code class="name">var <span class="ident">QA_APPROVALS_COUNT</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -286,6 +420,10 @@ You can add escape_special_characters per-file option. *</p>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECKS_IGNORABLE_CATEGORY"><code class="name">var <span class="ident">QA_CHECKS_IGNORABLE_CATEGORY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_ACTION_AI_PROMPT_ID"><code class="name">var <span class="ident">QA_CHECK_ACTION_AI_PROMPT_ID</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -305,6 +443,14 @@ You can add escape_special_characters per-file option. *</p>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.SAVINGS_REPORT_SETTINGS_TEMPLATE_ID"><code class="name">var <span class="ident">SAVINGS_REPORT_SETTINGS_TEMPLATE_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.SHOW_TM_SUGGESTIONS_DIALECTS"><code class="name">var <span class="ident">SHOW_TM_SUGGESTIONS_DIALECTS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.SKIP_UNTRANSLATED_FILES"><code class="name">var <span class="ident">SKIP_UNTRANSLATED_FILES</span></code></dt>
 <dd>
 <div class="desc"></div>
@@ -313,7 +459,43 @@ You can add escape_special_characters per-file option. *</p>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.STEPS"><code class="name">var <span class="ident">STEPS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TARGET_LANGUAGE_IDS"><code class="name">var <span class="ident">TARGET_LANGUAGE_IDS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TASK_BASED_ACCESS_CONTROL"><code class="name">var <span class="ident">TASK_BASED_ACCESS_CONTROL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TASK_REVIEWER_IDS"><code class="name">var <span class="ident">TASK_REVIEWER_IDS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TEMPLATE_ID"><code class="name">var <span class="ident">TEMPLATE_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM"><code class="name">var <span class="ident">TM</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM_APPROVED_SUGGESTIONS_ONLY"><code class="name">var <span class="ident">TM_APPROVED_SUGGESTIONS_ONLY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM_CONTEXT_TYPE"><code class="name">var <span class="ident">TM_CONTEXT_TYPE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM_PENALTIES_KEY"><code class="name">var <span class="ident">TM_PENALTIES_KEY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM_PRE_TRANSLATE"><code class="name">var <span class="ident">TM_PRE_TRANSLATE</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -325,7 +507,63 @@ You can add escape_special_characters per-file option. *</p>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.VENDOR_ID"><code class="name">var <span class="ident">VENDOR_ID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.projects.enums.ProjectPatchPath.VISIBILITY"><code class="name">var <span class="ident">VISIBILITY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTagsDetection"><code class="flex name class">
+<span>class <span class="ident">ProjectTagsDetection</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTagsDetection.AUTO"><code class="name">var <span class="ident">AUTO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTagsDetection.COUNT_TAGS"><code class="name">var <span class="ident">COUNT_TAGS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTagsDetection.SKIP_TAGS"><code class="name">var <span class="ident">SKIP_TAGS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTmContextType"><code class="flex name class">
+<span>class <span class="ident">ProjectTmContextType</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>TM perfect match searching mode (file-based projects only).</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTmContextType.AUTO"><code class="name">var <span class="ident">AUTO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTmContextType.PREV_AND_NEXT_SEGMENT"><code class="name">var <span class="ident">PREV_AND_NEXT_SEGMENT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.ProjectTmContextType.SEGMENT_CONTEXT"><code class="name">var <span class="ident">SEGMENT_CONTEXT</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -413,6 +651,84 @@ You can add escape_special_characters per-file option. *</p>
 </dd>
 </dl>
 </dd>
+<dt id="crowdin_api.api_resources.projects.enums.StringsExporterSettingsPatchPath"><code class="flex name class">
+<span>class <span class="ident">StringsExporterSettingsPatchPath</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.StringsExporterSettingsPatchPath.FORMAT"><code class="name">var <span class="ident">FORMAT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.StringsExporterSettingsPatchPath.SETTINGS"><code class="name">var <span class="ident">SETTINGS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption"><code class="flex name class">
+<span>class <span class="ident">TmPreTranslateAutoApproveOption</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.ALL"><code class="name">var <span class="ident">ALL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.EXCEPT_AUTO_SUBSTITUTED"><code class="name">var <span class="ident">EXCEPT_AUTO_SUBSTITUTED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.NONE"><code class="name">var <span class="ident">NONE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.PERFECT_MATCH_APPROVED_ONLY"><code class="name">var <span class="ident">PERFECT_MATCH_APPROVED_ONLY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.PERFECT_MATCH_ONLY"><code class="name">var <span class="ident">PERFECT_MATCH_ONLY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.TmPreTranslateMinimumMatchRatio"><code class="flex name class">
+<span>class <span class="ident">TmPreTranslateMinimumMatchRatio</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.projects.enums.TmPreTranslateMinimumMatchRatio.HUNDRED"><code class="name">var <span class="ident">HUNDRED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.projects.enums.TmPreTranslateMinimumMatchRatio.PERFECT"><code class="name">var <span class="ident">PERFECT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 </dl>
 </section>
 </article>
@@ -472,6 +788,14 @@ You can add escape_special_characters per-file option. *</p>
 </ul>
 </li>
 <li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.ProjectGlossaryAccessOption" href="#crowdin_api.api_resources.projects.enums.ProjectGlossaryAccessOption">ProjectGlossaryAccessOption</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectGlossaryAccessOption.FULL_ACCESS" href="#crowdin_api.api_resources.projects.enums.ProjectGlossaryAccessOption.FULL_ACCESS">FULL_ACCESS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectGlossaryAccessOption.MANAGE_DRAFTS" href="#crowdin_api.api_resources.projects.enums.ProjectGlossaryAccessOption.MANAGE_DRAFTS">MANAGE_DRAFTS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectGlossaryAccessOption.READ_ONLY" href="#crowdin_api.api_resources.projects.enums.ProjectGlossaryAccessOption.READ_ONLY">READ_ONLY</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy" href="#crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy">ProjectLanguageAccessPolicy</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy.MODERATE" href="#crowdin_api.api_resources.projects.enums.ProjectLanguageAccessPolicy.MODERATE">MODERATE</a></code></li>
@@ -481,35 +805,89 @@ You can add escape_special_characters per-file option. *</p>
 <li>
 <h4><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath">ProjectPatchPath</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.AI_PRE_TRANSLATE" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.AI_PRE_TRANSLATE">AI_PRE_TRANSLATE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.ALIGNMENT_ACTION_AI_PROMPT_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.ALIGNMENT_ACTION_AI_PROMPT_ID">ALIGNMENT_ACTION_AI_PROMPT_ID</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.ASSIGNED_GLOSSARIES" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.ASSIGNED_GLOSSARIES">ASSIGNED_GLOSSARIES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.ASSIGNED_STYLE_GUIDES" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.ASSIGNED_STYLE_GUIDES">ASSIGNED_STYLE_GUIDES</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.ASSIGNED_TM" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.ASSIGNED_TM">ASSIGNED_TM</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.ASSIGNED_TMS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.ASSIGNED_TMS">ASSIGNED_TMS</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.AUTO_SUBSTITUTION" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.AUTO_SUBSTITUTION">AUTO_SUBSTITUTION</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.AUTO_TRANSLATE_DIALECTS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.AUTO_TRANSLATE_DIALECTS">AUTO_TRANSLATE_DIALECTS</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.CNAME" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.CNAME">CNAME</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.CONTEXT_REVIEW_AI_PROMPT_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.CONTEXT_REVIEW_AI_PROMPT_ID">CONTEXT_REVIEW_AI_PROMPT_ID</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.DEFAULT_GLOSSARY_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.DEFAULT_GLOSSARY_ID">DEFAULT_GLOSSARY_ID</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.DEFAULT_TM_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.DEFAULT_TM_ID">DEFAULT_TM_ID</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.DESCRIPTION" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.DESCRIPTION">DESCRIPTION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.EDITOR_SUGGESTION_AI_PROMPT_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.EDITOR_SUGGESTION_AI_PROMPT_ID">EDITOR_SUGGESTION_AI_PROMPT_ID</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.EXPORT_APPROVED_ONLY" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.EXPORT_APPROVED_ONLY">EXPORT_APPROVED_ONLY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.EXPORT_STRINGS_THAT_PASSED_WORKFLOW" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.EXPORT_STRINGS_THAT_PASSED_WORKFLOW">EXPORT_STRINGS_THAT_PASSED_WORKFLOW</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.EXPORT_WITH_MIN_APPROVALS_COUNT" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.EXPORT_WITH_MIN_APPROVALS_COUNT">EXPORT_WITH_MIN_APPROVALS_COUNT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.FIELD" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.FIELD">FIELD</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.FIELDS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.FIELDS">FIELDS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.GLOSSARY_ACCESS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.GLOSSARY_ACCESS">GLOSSARY_ACCESS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.GLOSSARY_ACCESS_OPTION" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.GLOSSARY_ACCESS_OPTION">GLOSSARY_ACCESS_OPTION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.GROUP_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.GROUP_ID">GROUP_ID</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.HIDDEN_STRINGS_PROOFREADERS_ACCESS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.HIDDEN_STRINGS_PROOFREADERS_ACCESS">HIDDEN_STRINGS_PROOFREADERS_ACCESS</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.IN_CONTEXT" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.IN_CONTEXT">IN_CONTEXT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.IN_CONTEXT_PROCESS_HIDDEN_STRINGS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.IN_CONTEXT_PROCESS_HIDDEN_STRINGS">IN_CONTEXT_PROCESS_HIDDEN_STRINGS</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.IN_CONTEXT_PSEUDO_LANGUAGE_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.IN_CONTEXT_PSEUDO_LANGUAGE_ID">IN_CONTEXT_PSEUDO_LANGUAGE_ID</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.IS_MT_ALLOWED" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.IS_MT_ALLOWED">IS_MT_ALLOWED</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_ACCESS_POLICY" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_ACCESS_POLICY">LANGUAGE_ACCESS_POLICY</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING">LANGUAGE_MAPPING</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING_ID">LANGUAGE_MAPPING_ID</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING_KEY" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.LANGUAGE_MAPPING_KEY">LANGUAGE_MAPPING_KEY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.MT_ENGINE_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.MT_ENGINE_ID">MT_ENGINE_ID</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.MT_PRE_TRANSLATE" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.MT_PRE_TRANSLATE">MT_PRE_TRANSLATE</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.NAME" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.NAME">NAME</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.NORMALIZE_PLACEHOLDER" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.NORMALIZE_PLACEHOLDER">NORMALIZE_PLACEHOLDER</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.NOTIFICATION_SETTINGS_MANAGER_LANGUAGE_COMPLETED" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.NOTIFICATION_SETTINGS_MANAGER_LANGUAGE_COMPLETED">NOTIFICATION_SETTINGS_MANAGER_LANGUAGE_COMPLETED</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.NOTIFICATION_SETTINGS_MANAGER_NEW_STRINGS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.NOTIFICATION_SETTINGS_MANAGER_NEW_STRINGS">NOTIFICATION_SETTINGS_MANAGER_NEW_STRINGS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.NOTIFICATION_SETTINGS_TRANSLATOR_NEW_STRINGS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.NOTIFICATION_SETTINGS_TRANSLATOR_NEW_STRINGS">NOTIFICATION_SETTINGS_TRANSLATOR_NEW_STRINGS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.PRE_TRANSLATION_AI_PROMPT_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.PRE_TRANSLATION_AI_PROMPT_ID">PRE_TRANSLATION_AI_PROMPT_ID</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.PSEUDO_LANGUAGE_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.PSEUDO_LANGUAGE_ID">PSEUDO_LANGUAGE_ID</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.PUBLIC_DOWNLOADS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.PUBLIC_DOWNLOADS">PUBLIC_DOWNLOADS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_APPROVALS_COUNT" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_APPROVALS_COUNT">QA_APPROVALS_COUNT</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECKS_IGNORABLE_CATEGORIES" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECKS_IGNORABLE_CATEGORIES">QA_CHECKS_IGNORABLE_CATEGORIES</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECKS_IGNORABLE_CATEGORY" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECKS_IGNORABLE_CATEGORY">QA_CHECKS_IGNORABLE_CATEGORY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_ACTION_AI_PROMPT_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_ACTION_AI_PROMPT_ID">QA_CHECK_ACTION_AI_PROMPT_ID</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_CATEGORIES" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_CATEGORIES">QA_CHECK_CATEGORIES</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_CATEGORY" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_CATEGORY">QA_CHECK_CATEGORY</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_IS_ACTIVE" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.QA_CHECK_IS_ACTIVE">QA_CHECK_IS_ACTIVE</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.SAVE_META_INFO_IN_SOURCE" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.SAVE_META_INFO_IN_SOURCE">SAVE_META_INFO_IN_SOURCE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.SAVINGS_REPORT_SETTINGS_TEMPLATE_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.SAVINGS_REPORT_SETTINGS_TEMPLATE_ID">SAVINGS_REPORT_SETTINGS_TEMPLATE_ID</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.SHOW_TM_SUGGESTIONS_DIALECTS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.SHOW_TM_SUGGESTIONS_DIALECTS">SHOW_TM_SUGGESTIONS_DIALECTS</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.SKIP_UNTRANSLATED_FILES" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.SKIP_UNTRANSLATED_FILES">SKIP_UNTRANSLATED_FILES</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.SKIP_UNTRANSLATED_STRINGS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.SKIP_UNTRANSLATED_STRINGS">SKIP_UNTRANSLATED_STRINGS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.STEPS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.STEPS">STEPS</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TARGET_LANGUAGE_IDS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.TARGET_LANGUAGE_IDS">TARGET_LANGUAGE_IDS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TASK_BASED_ACCESS_CONTROL" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.TASK_BASED_ACCESS_CONTROL">TASK_BASED_ACCESS_CONTROL</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TASK_REVIEWER_IDS" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.TASK_REVIEWER_IDS">TASK_REVIEWER_IDS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TEMPLATE_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.TEMPLATE_ID">TEMPLATE_ID</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM">TM</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM_APPROVED_SUGGESTIONS_ONLY" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM_APPROVED_SUGGESTIONS_ONLY">TM_APPROVED_SUGGESTIONS_ONLY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM_CONTEXT_TYPE" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM_CONTEXT_TYPE">TM_CONTEXT_TYPE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM_PENALTIES_KEY" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM_PENALTIES_KEY">TM_PENALTIES_KEY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM_PRE_TRANSLATE" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.TM_PRE_TRANSLATE">TM_PRE_TRANSLATE</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.TRANSLATE_DUPLICATES" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.TRANSLATE_DUPLICATES">TRANSLATE_DUPLICATES</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.USE_GLOBAL_TM" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.USE_GLOBAL_TM">USE_GLOBAL_TM</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.VENDOR_ID" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.VENDOR_ID">VENDOR_ID</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectPatchPath.VISIBILITY" href="#crowdin_api.api_resources.projects.enums.ProjectPatchPath.VISIBILITY">VISIBILITY</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.ProjectTagsDetection" href="#crowdin_api.api_resources.projects.enums.ProjectTagsDetection">ProjectTagsDetection</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectTagsDetection.AUTO" href="#crowdin_api.api_resources.projects.enums.ProjectTagsDetection.AUTO">AUTO</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectTagsDetection.COUNT_TAGS" href="#crowdin_api.api_resources.projects.enums.ProjectTagsDetection.COUNT_TAGS">COUNT_TAGS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectTagsDetection.SKIP_TAGS" href="#crowdin_api.api_resources.projects.enums.ProjectTagsDetection.SKIP_TAGS">SKIP_TAGS</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.ProjectTmContextType" href="#crowdin_api.api_resources.projects.enums.ProjectTmContextType">ProjectTmContextType</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectTmContextType.AUTO" href="#crowdin_api.api_resources.projects.enums.ProjectTmContextType.AUTO">AUTO</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectTmContextType.PREV_AND_NEXT_SEGMENT" href="#crowdin_api.api_resources.projects.enums.ProjectTmContextType.PREV_AND_NEXT_SEGMENT">PREV_AND_NEXT_SEGMENT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.ProjectTmContextType.SEGMENT_CONTEXT" href="#crowdin_api.api_resources.projects.enums.ProjectTmContextType.SEGMENT_CONTEXT">SEGMENT_CONTEXT</a></code></li>
 </ul>
 </li>
 <li>
@@ -535,6 +913,30 @@ You can add escape_special_characters per-file option. *</p>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectVisibility.OPEN" href="#crowdin_api.api_resources.projects.enums.ProjectVisibility.OPEN">OPEN</a></code></li>
 <li><code><a title="crowdin_api.api_resources.projects.enums.ProjectVisibility.PRIVATE" href="#crowdin_api.api_resources.projects.enums.ProjectVisibility.PRIVATE">PRIVATE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.StringsExporterSettingsPatchPath" href="#crowdin_api.api_resources.projects.enums.StringsExporterSettingsPatchPath">StringsExporterSettingsPatchPath</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.StringsExporterSettingsPatchPath.FORMAT" href="#crowdin_api.api_resources.projects.enums.StringsExporterSettingsPatchPath.FORMAT">FORMAT</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.StringsExporterSettingsPatchPath.SETTINGS" href="#crowdin_api.api_resources.projects.enums.StringsExporterSettingsPatchPath.SETTINGS">SETTINGS</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption" href="#crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption">TmPreTranslateAutoApproveOption</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.ALL" href="#crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.ALL">ALL</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.EXCEPT_AUTO_SUBSTITUTED" href="#crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.EXCEPT_AUTO_SUBSTITUTED">EXCEPT_AUTO_SUBSTITUTED</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.NONE" href="#crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.NONE">NONE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.PERFECT_MATCH_APPROVED_ONLY" href="#crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.PERFECT_MATCH_APPROVED_ONLY">PERFECT_MATCH_APPROVED_ONLY</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.PERFECT_MATCH_ONLY" href="#crowdin_api.api_resources.projects.enums.TmPreTranslateAutoApproveOption.PERFECT_MATCH_ONLY">PERFECT_MATCH_ONLY</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.projects.enums.TmPreTranslateMinimumMatchRatio" href="#crowdin_api.api_resources.projects.enums.TmPreTranslateMinimumMatchRatio">TmPreTranslateMinimumMatchRatio</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.projects.enums.TmPreTranslateMinimumMatchRatio.HUNDRED" href="#crowdin_api.api_resources.projects.enums.TmPreTranslateMinimumMatchRatio.HUNDRED">HUNDRED</a></code></li>
+<li><code><a title="crowdin_api.api_resources.projects.enums.TmPreTranslateMinimumMatchRatio.PERFECT" href="#crowdin_api.api_resources.projects.enums.TmPreTranslateMinimumMatchRatio.PERFECT">PERFECT</a></code></li>
 </ul>
 </li>
 </ul>

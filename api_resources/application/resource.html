@@ -40,68 +40,176 @@
 <div class="desc"><p>Crowdin Apps are web applications that can be integrated with Crowdin to extend its functionality.</p>
 <p>Use the API to manage the necessary app data.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#tag/Applications">https://developer.crowdin.com/api/v2/#tag/Applications</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Applications">https://support.crowdin.com/developer/api/v2/#tag/Applications</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#tag/Applications">https://developer.crowdin.com/enterprise/api/v2/#tag/Applications</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Applications">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Applications</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.add_application_consent"><code class="name flex">
+<span>def <span class="ident">add_application_consent</span></span>(<span>self, request_data: <a title="crowdin_api.api_resources.application.types.AddApplicationConsentRequest" href="types.html#crowdin_api.api_resources.application.types.AddApplicationConsentRequest">AddApplicationConsentRequest</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add Application Consent</p>
+<p>Available for Crowdin.com only (not supported in Crowdin Enterprise).</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.consents.post">https://support.crowdin.com/developer/api/v2/#operation/api.applications.consents.post</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.application.resource.ApplicationResource.add_application_data"><code class="name flex">
-<span>def <span class="ident">add_application_data</span></span>(<span>self, applicationIdentifier: str, path: str, data: dict)</span>
+<span>def <span class="ident">add_application_data</span></span>(<span>self, applicationIdentifier: str, path: str, data: dict, params: Optional[Dict[~KT, ~VT]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Application Data.</p>
+<p><code>params</code> are application-specific query parameters.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.applications.api.post">https://developer.crowdin.com/api/v2/#operation/api.applications.api.post</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.post">https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.post</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.add_application_kv_record"><code class="name flex">
+<span>def <span class="ident">add_application_kv_record</span></span>(<span>self, applicationIdentifier: str, key: str, value: Any, secret: Optional[bool] = None, ttl: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add Application KV Record</p>
+<p>Requires the application's own access token (personal access tokens are not supported).</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.storage.kv.records.post">https://support.crowdin.com/developer/api/v2/#operation/api.applications.storage.kv.records.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.storage.kv.records.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.storage.kv.records.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.apply_application_installation_update"><code class="name flex">
+<span>def <span class="ident">apply_application_installation_update</span></span>(<span>self, identifier: str, manifestHash: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Apply Application Installation Update</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.update.post">https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.update.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.update.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.update.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.cancel_integration_job"><code class="name flex">
+<span>def <span class="ident">cancel_integration_job</span></span>(<span>self, applicationIdentifier: str, jobId: str, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Cancel Job</p>
+<p>Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.job.cancel">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.job.cancel</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.job.cancel">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.job.cancel</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.delete_application_consent"><code class="name flex">
+<span>def <span class="ident">delete_application_consent</span></span>(<span>self, consent_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete Application Consent</p>
+<p>Available for Crowdin.com only (not supported in Crowdin Enterprise).</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.consents.delete">https://support.crowdin.com/developer/api/v2/#operation/api.applications.consents.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.application.resource.ApplicationResource.delete_application_data"><code class="name flex">
-<span>def <span class="ident">delete_application_data</span></span>(<span>self, applicationIdentifier: str, path: str)</span>
+<span>def <span class="ident">delete_application_data</span></span>(<span>self, applicationIdentifier: str, path: str, params: Optional[Dict[~KT, ~VT]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Application Data.</p>
+<p><code>params</code> are application-specific query parameters.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.applications.api.delete">https://developer.crowdin.com/api/v2/#operation/api.applications.api.delete</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.delete">https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.delete</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.delete">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.application.resource.ApplicationResource.delete_application_installation"><code class="name flex">
 <span>def <span class="ident">delete_application_installation</span></span>(<span>self, identifier: str, force: Optional[bool] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Delete Applcation Installation</p>
+<div class="desc"><p>Delete Application Installation</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.applications.installations.delete">https://developer.crowdin.com/api/v2/#operation/api.applications.installations.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.delete">https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.delete</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.delete">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.delete_application_kv_record"><code class="name flex">
+<span>def <span class="ident">delete_application_kv_record</span></span>(<span>self, applicationIdentifier: str, key: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete Application KV Record</p>
+<p>Requires the application's own access token (personal access tokens are not supported).</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.storage.kv.records.delete">https://support.crowdin.com/developer/api/v2/#operation/api.applications.storage.kv.records.delete</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.storage.kv.records.delete">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.storage.kv.records.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.edit_application_consent"><code class="name flex">
+<span>def <span class="ident">edit_application_consent</span></span>(<span>self, consent_id: int, request_data: Iterable[<a title="crowdin_api.api_resources.application.types.ApplicationConsentPatchRequest" href="types.html#crowdin_api.api_resources.application.types.ApplicationConsentPatchRequest">ApplicationConsentPatchRequest</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit Application Consent</p>
+<p>Available for Crowdin.com only (not supported in Crowdin Enterprise).</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.consents.patch">https://support.crowdin.com/developer/api/v2/#operation/api.applications.consents.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.application.resource.ApplicationResource.edit_application_data"><code class="name flex">
-<span>def <span class="ident">edit_application_data</span></span>(<span>self, applicationIdentifier: str, path: str, data: dict)</span>
+<span>def <span class="ident">edit_application_data</span></span>(<span>self, applicationIdentifier: str, path: str, data: dict, params: Optional[Dict[~KT, ~VT]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Application Data.</p>
+<p><code>params</code> are application-specific query parameters.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.applications.api.patch">https://developer.crowdin.com/api/v2/#operation/api.applications.api.patch</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.patch">https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.patch</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.edit_application_installation"><code class="name flex">
+<span>def <span class="ident">edit_application_installation</span></span>(<span>self, identifier: str, data: Iterable[<a title="crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest" href="types.html#crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest">ApplicationInstallationPatchRequest</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit Application Installation</p>
+<p>Supported paths: <code>/permissions</code>, <code>/modules/{moduleKey}/permissions</code> and <code>/manifest</code>
+(the latter only for applications installed from manifest content).</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.patch">https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.patch</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.edit_application_kv_record"><code class="name flex">
+<span>def <span class="ident">edit_application_kv_record</span></span>(<span>self, applicationIdentifier: str, key: str, data: Iterable[<a title="crowdin_api.api_resources.application.types.ApplicationKVRecordPatchRequest" href="types.html#crowdin_api.api_resources.application.types.ApplicationKVRecordPatchRequest">ApplicationKVRecordPatchRequest</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit Application KV Record</p>
+<p>Requires the application's own access token (personal access tokens are not supported).</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.storage.kv.records.patch">https://support.crowdin.com/developer/api/v2/#operation/api.applications.storage.kv.records.patch</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.storage.kv.records.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.storage.kv.records.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.application.resource.ApplicationResource.edit_applicatoin_installation"><code class="name flex">
 <span>def <span class="ident">edit_applicatoin_installation</span></span>(<span>self, identifier: str, data: Iterable[<a title="crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest" href="types.html#crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest">ApplicationInstallationPatchRequest</a>])</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Edit Application Installation</p></div>
+<div class="desc"><p>Edit Application Installation</p>
+<p>Deprecated: use <code>edit_application_installation</code> instead.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.patch">https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_consents_path"><code class="name flex">
+<span>def <span class="ident">get_application_consents_path</span></span>(<span>self, consent_id: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_data"><code class="name flex">
-<span>def <span class="ident">get_application_data</span></span>(<span>self, applicationIdentifier: str, path: str)</span>
+<span>def <span class="ident">get_application_data</span></span>(<span>self, applicationIdentifier: str, path: str, params: Optional[Dict[~KT, ~VT]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Application Data.</p>
+<p><code>params</code> are application-specific query parameters.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.applications.api.get">https://developer.crowdin.com/api/v2/#operation/api.applications.api.get</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.get">https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.get</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.get</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_installation"><code class="name flex">
 <span>def <span class="ident">get_application_installation</span></span>(<span>self, identifier: str)</span>
@@ -109,10 +217,41 @@
 <dd>
 <div class="desc"><p>Get Application Installation</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.applications.installations.get">https://developer.crowdin.com/api/v2/#operation/api.applications.installations.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.get">https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.get</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_installation_update"><code class="name flex">
+<span>def <span class="ident">get_application_installation_update</span></span>(<span>self, identifier: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Application Installation Update</p>
+<p>Returns the diff between the installed application and the latest cached manifest,
+tagged with <code>manifestHash</code>.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.update.get">https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.update.get</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.update.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.update.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_installations_path"><code class="name flex">
 <span>def <span class="ident">get_application_installations_path</span></span>(<span>self, identifier: Optional[str] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_kv_record"><code class="name flex">
+<span>def <span class="ident">get_application_kv_record</span></span>(<span>self, applicationIdentifier: str, key: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Application KV Record</p>
+<p>Requires the application's own access token (personal access tokens are not supported).</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.storage.kv.records.get">https://support.crowdin.com/developer/api/v2/#operation/api.applications.storage.kv.records.get</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.storage.kv.records.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.storage.kv.records.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_kv_records_path"><code class="name flex">
+<span>def <span class="ident">get_application_kv_records_path</span></span>(<span>self, applicationIdentifier: str, key: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -123,31 +262,231 @@
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_file_progress"><code class="name flex">
+<span>def <span class="ident">get_integration_file_progress</span></span>(<span>self, applicationIdentifier: str, fileId: int, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get File Progress</p>
+<p>Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.file.progress">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.file.progress</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.file.progress">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.file.progress</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_job"><code class="name flex">
+<span>def <span class="ident">get_integration_job</span></span>(<span>self, applicationIdentifier: str, jobId: Optional[str] = None, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Job</p>
+<p>Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.job.get">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.job.get</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.job.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.job.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_job_info"><code class="name flex">
+<span>def <span class="ident">get_integration_job_info</span></span>(<span>self, applicationIdentifier: str, jobId: str, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Job Info</p>
+<p>Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.job.info">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.job.info</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.job.info">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.job.info</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_login_fields"><code class="name flex">
+<span>def <span class="ident">get_integration_login_fields</span></span>(<span>self, applicationIdentifier: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Integration Login Form Fields</p>
+<p>Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.integration.fields">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.integration.fields</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.integration.fields">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.integration.fields</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_settings"><code class="name flex">
+<span>def <span class="ident">get_integration_settings</span></span>(<span>self, applicationIdentifier: str, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Application Settings</p>
+<p>Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.settings.get">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.settings.get</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.settings.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.settings.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_sync_settings"><code class="name flex">
+<span>def <span class="ident">get_integration_sync_settings</span></span>(<span>self, applicationIdentifier: str, provider: Union[<a title="crowdin_api.api_resources.application.enums.IntegrationSyncProvider" href="enums.html#crowdin_api.api_resources.application.enums.IntegrationSyncProvider">IntegrationSyncProvider</a>, str], projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Sync Settings</p>
+<p>Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.sync.settings.get">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.sync.settings.get</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.sync.settings.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.sync.settings.get</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.application.resource.ApplicationResource.install_application"><code class="name flex">
-<span>def <span class="ident">install_application</span></span>(<span>self, url: str, permissions: Optional[<a title="crowdin_api.api_resources.application.types.ApplicationPermissions" href="types.html#crowdin_api.api_resources.application.types.ApplicationPermissions">ApplicationPermissions</a>] = None)</span>
+<span>def <span class="ident">install_application</span></span>(<span>self, url: Optional[str] = None, permissions: Optional[<a title="crowdin_api.api_resources.application.types.ApplicationPermissions" href="types.html#crowdin_api.api_resources.application.types.ApplicationPermissions">ApplicationPermissions</a>] = None, manifest: Optional[<a title="crowdin_api.api_resources.application.types.ApplicationManifest" href="types.html#crowdin_api.api_resources.application.types.ApplicationManifest">ApplicationManifest</a>] = None, modules: Optional[Iterable[<a title="crowdin_api.api_resources.application.types.ApplicationModulePermissions" href="types.html#crowdin_api.api_resources.application.types.ApplicationModulePermissions">ApplicationModulePermissions</a>]] = None, assignAgent: Optional[bool] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Install Application</p>
+<p>Install an application either from a hosted manifest URL (<code>url</code>) or from its
+manifest content (<code>manifest</code>, serverless apps only). Exactly one of <code>url</code> or
+<code>manifest</code> must be provided.</p>
+<p><code>permissions.user</code> is deprecated by the API, use <code>modules</code> permissions instead.
+<code>assignAgent</code> is supported only when installing from a manifest URL.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.applications.installations.post">https://developer.crowdin.com/api/v2/#operation/api.applications.installations.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.post">https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.integration_login"><code class="name flex">
+<span>def <span class="ident">integration_login</span></span>(<span>self, applicationIdentifier: str, credentials: Dict[str, Any], projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Integration Login</p>
+<p><code>credentials</code> are the login form fields, see <code>get_integration_login_fields</code>.
+Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.integration.login">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.integration.login</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.integration.login">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.integration.login</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.list_application_consents"><code class="name flex">
+<span>def <span class="ident">list_application_consents</span></span>(<span>self, identifier: Optional[str] = None, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Application Consents</p>
+<p>Available for Crowdin.com only (not supported in Crowdin Enterprise).</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.consents.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.applications.consents.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.application.resource.ApplicationResource.list_application_installations"><code class="name flex">
-<span>def <span class="ident">list_application_installations</span></span>(<span>self, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_application_installations</span></span>(<span>self, offset: Optional[int] = None, limit: Optional[int] = None, installedBy: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Application Installations</p>
-<p>Link to documentaion:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.applications.installations.getMany">https://developer.crowdin.com/api/v2/#operation/api.applications.installations.getMany</a></p></div>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.getMany</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.list_application_kv_records"><code class="name flex">
+<span>def <span class="ident">list_application_kv_records</span></span>(<span>self, applicationIdentifier: str, prefix: Optional[str] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Application KV Records</p>
+<p>Requires the application's own access token (personal access tokens are not supported).</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.storage.kv.records.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.applications.storage.kv.records.getMany</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.storage.kv.records.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.storage.kv.records.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.list_integration_crowdin_files"><code class="name flex">
+<span>def <span class="ident">list_integration_crowdin_files</span></span>(<span>self, applicationIdentifier: str, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Crowdin Files</p>
+<p>Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.crowdin.files">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.crowdin.files</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.crowdin.files">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.crowdin.files</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.list_integration_files"><code class="name flex">
+<span>def <span class="ident">list_integration_files</span></span>(<span>self, applicationIdentifier: str, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Integration Files</p>
+<p>Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.integration.files">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.integration.files</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.integration.files">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.integration.files</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.list_integration_jobs"><code class="name flex">
+<span>def <span class="ident">list_integration_jobs</span></span>(<span>self, applicationIdentifier: str, projectId: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Jobs</p>
+<p>Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.job.list">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.job.list</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.job.list">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.job.list</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.application.resource.ApplicationResource.update_application_data"><code class="name flex">
-<span>def <span class="ident">update_application_data</span></span>(<span>self, applicationIdentifier: str, path: str, data: dict)</span>
+<span>def <span class="ident">update_application_data</span></span>(<span>self, applicationIdentifier: str, path: str, data: dict, params: Optional[Dict[~KT, ~VT]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Update or Restore Application Data.</p>
+<p><code>params</code> are application-specific query parameters.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.applications.api.put">https://developer.crowdin.com/api/v2/#operation/api.applications.api.put</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.put">https://support.crowdin.com/developer/api/v2/#operation/api.applications.api.put</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.put">https://developer.crowdin.com/enterprise/api/v2/#operation/api.applications.api.put</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.put">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.api.put</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.update_integration_crowdin_files"><code class="name flex">
+<span>def <span class="ident">update_integration_crowdin_files</span></span>(<span>self, applicationIdentifier: str, files: Iterable[<a title="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile" href="types.html#crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile">IntegrationCrowdinUpdateFile</a>], uploadTranslations: Optional[bool] = None, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update Crowdin Files</p>
+<p>Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.crowdin.update">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.crowdin.update</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.crowdin.update">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.crowdin.update</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.update_integration_files"><code class="name flex">
+<span>def <span class="ident">update_integration_files</span></span>(<span>self, applicationIdentifier: str, files: Dict[Union[int, str], Iterable[str]], projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update Integration Files</p>
+<p><code>files</code> maps Crowdin file ids to lists of language ids, e.g. <code>{102: ["de", "fr"]}</code>.
+Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.integration.update">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.integration.update</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.integration.update">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.integration.update</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.update_integration_settings"><code class="name flex">
+<span>def <span class="ident">update_integration_settings</span></span>(<span>self, applicationIdentifier: str, config: Dict[str, Any], projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update Application Settings</p>
+<p>Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.settings.update">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.settings.update</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.settings.update">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.settings.update</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.update_integration_sync_settings"><code class="name flex">
+<span>def <span class="ident">update_integration_sync_settings</span></span>(<span>self, applicationIdentifier: str, provider: <a title="crowdin_api.api_resources.application.enums.IntegrationSyncProvider" href="enums.html#crowdin_api.api_resources.application.enums.IntegrationSyncProvider">IntegrationSyncProvider</a>, files: Union[Dict[Union[int, str], Iterable[str]], Iterable[<a title="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile" href="types.html#crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile">IntegrationSyncSettingsFile</a>]], projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update Sync Settings</p>
+<p><code>files</code> is either a mapping of Crowdin file ids to language ids
+(e.g. <code>{102: ["uk", "de"]}</code>) or a list of integration file objects.
+Available for file-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.sync.settings.update">https://support.crowdin.com/developer/api/v2/#operation/api.applications.integrations.sync.settings.update</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.sync.settings.update">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.integrations.sync.settings.update</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.resource.ApplicationResource.upload_application_bundle"><code class="name flex">
+<span>def <span class="ident">upload_application_bundle</span></span>(<span>self, identifier: str, storageId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Upload Application Bundle</p>
+<p>Upload a bundle archive (ZIP with a non-empty <code>app.js</code> at its root) for a
+serverless app installed from manifest content.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.bundles.post">https://support.crowdin.com/developer/api/v2/#operation/api.applications.installations.bundles.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.bundles.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.applications.installations.bundles.post</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -170,18 +509,48 @@
 <li>
 <h4><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource" href="#crowdin_api.api_resources.application.resource.ApplicationResource">ApplicationResource</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.add_application_consent" href="#crowdin_api.api_resources.application.resource.ApplicationResource.add_application_consent">add_application_consent</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.add_application_data" href="#crowdin_api.api_resources.application.resource.ApplicationResource.add_application_data">add_application_data</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.add_application_kv_record" href="#crowdin_api.api_resources.application.resource.ApplicationResource.add_application_kv_record">add_application_kv_record</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.apply_application_installation_update" href="#crowdin_api.api_resources.application.resource.ApplicationResource.apply_application_installation_update">apply_application_installation_update</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.cancel_integration_job" href="#crowdin_api.api_resources.application.resource.ApplicationResource.cancel_integration_job">cancel_integration_job</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.delete_application_consent" href="#crowdin_api.api_resources.application.resource.ApplicationResource.delete_application_consent">delete_application_consent</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.delete_application_data" href="#crowdin_api.api_resources.application.resource.ApplicationResource.delete_application_data">delete_application_data</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.delete_application_installation" href="#crowdin_api.api_resources.application.resource.ApplicationResource.delete_application_installation">delete_application_installation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.delete_application_kv_record" href="#crowdin_api.api_resources.application.resource.ApplicationResource.delete_application_kv_record">delete_application_kv_record</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.edit_application_consent" href="#crowdin_api.api_resources.application.resource.ApplicationResource.edit_application_consent">edit_application_consent</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.edit_application_data" href="#crowdin_api.api_resources.application.resource.ApplicationResource.edit_application_data">edit_application_data</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.edit_application_installation" href="#crowdin_api.api_resources.application.resource.ApplicationResource.edit_application_installation">edit_application_installation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.edit_application_kv_record" href="#crowdin_api.api_resources.application.resource.ApplicationResource.edit_application_kv_record">edit_application_kv_record</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.edit_applicatoin_installation" href="#crowdin_api.api_resources.application.resource.ApplicationResource.edit_applicatoin_installation">edit_applicatoin_installation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_consents_path" href="#crowdin_api.api_resources.application.resource.ApplicationResource.get_application_consents_path">get_application_consents_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_data" href="#crowdin_api.api_resources.application.resource.ApplicationResource.get_application_data">get_application_data</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_installation" href="#crowdin_api.api_resources.application.resource.ApplicationResource.get_application_installation">get_application_installation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_installation_update" href="#crowdin_api.api_resources.application.resource.ApplicationResource.get_application_installation_update">get_application_installation_update</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_installations_path" href="#crowdin_api.api_resources.application.resource.ApplicationResource.get_application_installations_path">get_application_installations_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_kv_record" href="#crowdin_api.api_resources.application.resource.ApplicationResource.get_application_kv_record">get_application_kv_record</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_kv_records_path" href="#crowdin_api.api_resources.application.resource.ApplicationResource.get_application_kv_records_path">get_application_kv_records_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.get_application_path" href="#crowdin_api.api_resources.application.resource.ApplicationResource.get_application_path">get_application_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_file_progress" href="#crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_file_progress">get_integration_file_progress</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_job" href="#crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_job">get_integration_job</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_job_info" href="#crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_job_info">get_integration_job_info</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_login_fields" href="#crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_login_fields">get_integration_login_fields</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_settings" href="#crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_settings">get_integration_settings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_sync_settings" href="#crowdin_api.api_resources.application.resource.ApplicationResource.get_integration_sync_settings">get_integration_sync_settings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.install_application" href="#crowdin_api.api_resources.application.resource.ApplicationResource.install_application">install_application</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.integration_login" href="#crowdin_api.api_resources.application.resource.ApplicationResource.integration_login">integration_login</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.list_application_consents" href="#crowdin_api.api_resources.application.resource.ApplicationResource.list_application_consents">list_application_consents</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.list_application_installations" href="#crowdin_api.api_resources.application.resource.ApplicationResource.list_application_installations">list_application_installations</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.list_application_kv_records" href="#crowdin_api.api_resources.application.resource.ApplicationResource.list_application_kv_records">list_application_kv_records</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.list_integration_crowdin_files" href="#crowdin_api.api_resources.application.resource.ApplicationResource.list_integration_crowdin_files">list_integration_crowdin_files</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.list_integration_files" href="#crowdin_api.api_resources.application.resource.ApplicationResource.list_integration_files">list_integration_files</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.list_integration_jobs" href="#crowdin_api.api_resources.application.resource.ApplicationResource.list_integration_jobs">list_integration_jobs</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.update_application_data" href="#crowdin_api.api_resources.application.resource.ApplicationResource.update_application_data">update_application_data</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.update_integration_crowdin_files" href="#crowdin_api.api_resources.application.resource.ApplicationResource.update_integration_crowdin_files">update_integration_crowdin_files</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.update_integration_files" href="#crowdin_api.api_resources.application.resource.ApplicationResource.update_integration_files">update_integration_files</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.update_integration_settings" href="#crowdin_api.api_resources.application.resource.ApplicationResource.update_integration_settings">update_integration_settings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.update_integration_sync_settings" href="#crowdin_api.api_resources.application.resource.ApplicationResource.update_integration_sync_settings">update_integration_sync_settings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.resource.ApplicationResource.upload_application_bundle" href="#crowdin_api.api_resources.application.resource.ApplicationResource.upload_application_bundle">upload_application_bundle</a></code></li>
 </ul>
 </li>
 </ul>

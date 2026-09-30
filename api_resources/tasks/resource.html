@@ -43,7 +43,7 @@ the due dates, split words between people, and receive notifications about the c
 updates on tasks. Tasks are project-specific, so you’ll have to create them within a project.</p>
 <p>Use API to create, modify, and delete specific tasks.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#tag/Tasks">https://developer.crowdin.com/enterprise/api/v2/#tag/Tasks</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Tasks">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Tasks</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.tasks.resource.TasksResource" href="#crowdin_api.api_resources.tasks.resource.TasksResource">TasksResource</a></li>
@@ -52,28 +52,36 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_general_by_string_ids_task"><code class="name flex">
-<span>def <span class="ident">add_general_by_string_ids_task</span></span>(<span>self, title: str, languageId: str, stringIds: Iterable[int], type: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType">CrowdinGeneralTaskType</a>] = None, workflowStepId: Optional[int] = None, projectId: Optional[int] = None, status: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>] = None, description: Optional[str] = None, splitContent: Optional[bool] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, assignees: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee" href="types.html#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee">CrowdinTaskAssignee</a>]] = None, assignedTeams: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskAssignedTeams" href="types.html#crowdin_api.api_resources.tasks.types.EnterpriseTaskAssignedTeams">EnterpriseTaskAssignedTeams</a>]] = None, deadline: Optional[datetime.datetime] = None, startedAt: Optional[datetime.datetime] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None, batchId: Optional[int] = None)</span>
+<span>def <span class="ident">add_general_by_string_ids_task</span></span>(<span>self, title: str, languageId: str, stringIds: Iterable[int], type: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType">CrowdinGeneralTaskType</a>] = None, workflowStepId: Optional[int] = None, projectId: Optional[int] = None, status: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>] = None, description: Optional[str] = None, splitContent: Optional[bool] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, assignees: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee" href="types.html#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee">CrowdinTaskAssignee</a>]] = None, assignedTeams: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskAssignedTeams" href="types.html#crowdin_api.api_resources.tasks.types.EnterpriseTaskAssignedTeams">EnterpriseTaskAssignedTeams</a>]] = None, deadline: Optional[datetime.datetime] = None, startedAt: Optional[datetime.datetime] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None, batchId: Optional[int] = None, skipAssignedStringsScope: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskSkipAssignedStringsScope" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskSkipAssignedStringsScope">TaskSkipAssignedStringsScope</a>] = None, translationsUpdatedDateFrom: Optional[datetime.datetime] = None, translationsUpdatedDateTo: Optional[datetime.datetime] = None, generateCostEstimate: Optional[bool] = None, generateTranslationCost: Optional[bool] = None, reportSettingsTemplateId: Optional[int] = None, fields: Optional[Dict[str, Any]] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Add Task(Enterprise Task Create Form).</p>
+<div class="desc"><p>Add Task(Enterprise Task Create Form, Create By String Ids Form).</p>
+<p>One of <code>type</code> or <code>workflowStepId</code> is required. <code>status</code> accepts <code>todo</code> or <code>in_progress</code>.</p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_general_task"><code class="name flex">
-<span>def <span class="ident">add_general_task</span></span>(<span>self, title: str, languageId: str, fileIds: Iterable[int], type: <a title="crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType">CrowdinGeneralTaskType</a>, workflowStepId: Optional[int] = None, projectId: Optional[int] = None, status: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>] = None, description: Optional[str] = None, splitContent: Optional[bool] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, labelIds: Optional[Iterable[int]] = None, excludeLabelIds: Optional[Iterable[int]] = None, assignees: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee" href="types.html#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee">CrowdinTaskAssignee</a>]] = None, assignedTeams: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskAssignedTeams" href="types.html#crowdin_api.api_resources.tasks.types.EnterpriseTaskAssignedTeams">EnterpriseTaskAssignedTeams</a>]] = None, deadline: Optional[datetime.datetime] = None, startedAt: Optional[datetime.datetime] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None, batchId: Optional[int] = None)</span>
+<span>def <span class="ident">add_general_task</span></span>(<span>self, title: str, languageId: str, fileIds: Optional[Iterable[int]], type: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType">CrowdinGeneralTaskType</a>], workflowStepId: Optional[int] = None, projectId: Optional[int] = None, status: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>] = None, description: Optional[str] = None, splitContent: Optional[bool] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, labelIds: Optional[Iterable[int]] = None, excludeLabelIds: Optional[Iterable[int]] = None, assignees: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee" href="types.html#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee">CrowdinTaskAssignee</a>]] = None, assignedTeams: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskAssignedTeams" href="types.html#crowdin_api.api_resources.tasks.types.EnterpriseTaskAssignedTeams">EnterpriseTaskAssignedTeams</a>]] = None, deadline: Optional[datetime.datetime] = None, startedAt: Optional[datetime.datetime] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None, batchId: Optional[int] = None, directoryIds: Optional[Iterable[int]] = None, branchIds: Optional[Iterable[int]] = None, labelMatchRule: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule">TaskLabelMatchRule</a>] = None, excludeLabelMatchRule: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule">TaskLabelMatchRule</a>] = None, skipAssignedStringsScope: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskSkipAssignedStringsScope" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskSkipAssignedStringsScope">TaskSkipAssignedStringsScope</a>] = None, translationsUpdatedDateFrom: Optional[datetime.datetime] = None, translationsUpdatedDateTo: Optional[datetime.datetime] = None, generateCostEstimate: Optional[bool] = None, generateTranslationCost: Optional[bool] = None, reportSettingsTemplateId: Optional[int] = None, fields: Optional[Dict[str, Any]] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Add Task(Enterprise Task Create Form).</p>
+<div class="desc"><p>Add Task(Enterprise Task Create Form, Create By Source Ids Form).</p>
+<p>One of <code>fileIds</code>, <code>directoryIds</code> or <code>branchIds</code> is required (pass <code>fileIds=None</code> when
+using <code>directoryIds</code> or <code>branchIds</code>). <code>fileIds</code> and <code>directoryIds</code> are file-based
+projects only. One of <code>type</code> or <code>workflowStepId</code> is required (pass <code>type=None</code> when
+using <code>workflowStepId</code>). <code>status</code> accepts <code>todo</code> or <code>in_progress</code>.</p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_pending_task"><code class="name flex">
-<span>def <span class="ident">add_pending_task</span></span>(<span>self, title: str, precedingTaskId: int, projectId: Optional[int] = None, description: Optional[str] = None, assignees: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee" href="types.html#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee">CrowdinTaskAssignee</a>]] = None, assignedTeams: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskAssignedTeams" href="types.html#crowdin_api.api_resources.tasks.types.EnterpriseTaskAssignedTeams">EnterpriseTaskAssignedTeams</a>]] = None, deadline: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">add_pending_task</span></span>(<span>self, title: str, precedingTaskId: int, projectId: Optional[int] = None, description: Optional[str] = None, assignees: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee" href="types.html#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee">CrowdinTaskAssignee</a>]] = None, assignedTeams: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskAssignedTeams" href="types.html#crowdin_api.api_resources.tasks.types.EnterpriseTaskAssignedTeams">EnterpriseTaskAssignedTeams</a>]] = None, deadline: Optional[datetime.datetime] = None, type: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskType">CrowdinTaskType</a>] = None, workflowStepId: Optional[int] = None, vendor: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Task(Enterprise Pending Task Create Form).</p>
+<p>One of <code>type</code> or <code>workflowStepId</code> can be provided, not both. When neither is given,
+<code>type</code> defaults to <code>CrowdinTaskType.PROOFREAD</code>. <code>vendor</code> is required for
+<code>CrowdinTaskType.PROOFREAD_BY_VENDOR</code>.</p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_task_settings_template"><code class="name flex">
 <span>def <span class="ident">add_task_settings_template</span></span>(<span>self, name: str, config: <a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateLanguages" href="types.html#crowdin_api.api_resources.tasks.types.EnterpriseTaskSettingsTemplateLanguages">EnterpriseTaskSettingsTemplateLanguages</a>, projectId: Optional[int] = None)</span>
@@ -81,23 +89,45 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"><p>Add Task Settings Template.</p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_vendor_by_string_ids_task"><code class="name flex">
-<span>def <span class="ident">add_vendor_by_string_ids_task</span></span>(<span>self, title: str, languageId: str, workflowStepId: int, stringIds: Iterable[int], projectId: Optional[int] = None, description: Optional[str] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, deadline: Optional[datetime.datetime] = None, startedAt: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">add_vendor_by_string_ids_task</span></span>(<span>self, title: str, languageId: str, workflowStepId: int, stringIds: Iterable[int], projectId: Optional[int] = None, description: Optional[str] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, deadline: Optional[datetime.datetime] = None, startedAt: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None, labelIds: Optional[Iterable[int]] = None, labelMatchRule: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule">TaskLabelMatchRule</a>] = None, skipAssignedStringsScope: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskSkipAssignedStringsScope" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskSkipAssignedStringsScope">TaskSkipAssignedStringsScope</a>] = None, translationsUpdatedDateFrom: Optional[datetime.datetime] = None, translationsUpdatedDateTo: Optional[datetime.datetime] = None, generateCostEstimate: Optional[bool] = None, generateTranslationCost: Optional[bool] = None, reportSettingsTemplateId: Optional[int] = None, fields: Optional[Dict[str, Any]] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Add Task(Enterprise Vendor Task Create Form).</p>
+<div class="desc"><p>Add Task(Enterprise Vendor Task Create Form, Create By String Ids Form).</p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_vendor_task"><code class="name flex">
-<span>def <span class="ident">add_vendor_task</span></span>(<span>self, title: str, languageId: str, workflowStepId: int, fileIds: Iterable[int], projectId: Optional[int] = None, description: Optional[str] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, labelIds: Optional[Iterable[int]] = None, excludeLabelIds: Optional[Iterable[int]] = None, deadline: Optional[datetime.datetime] = None, startedAt: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">add_vendor_task</span></span>(<span>self, title: str, languageId: str, workflowStepId: int, fileIds: Optional[Iterable[int]], projectId: Optional[int] = None, description: Optional[str] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, labelIds: Optional[Iterable[int]] = None, excludeLabelIds: Optional[Iterable[int]] = None, deadline: Optional[datetime.datetime] = None, startedAt: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None, directoryIds: Optional[Iterable[int]] = None, branchIds: Optional[Iterable[int]] = None, labelMatchRule: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule">TaskLabelMatchRule</a>] = None, excludeLabelMatchRule: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule">TaskLabelMatchRule</a>] = None, skipAssignedStringsScope: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskSkipAssignedStringsScope" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskSkipAssignedStringsScope">TaskSkipAssignedStringsScope</a>] = None, translationsUpdatedDateFrom: Optional[datetime.datetime] = None, translationsUpdatedDateTo: Optional[datetime.datetime] = None, generateCostEstimate: Optional[bool] = None, generateTranslationCost: Optional[bool] = None, reportSettingsTemplateId: Optional[int] = None, fields: Optional[Dict[str, Any]] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Add Task(Enterprise Vendor Task Create Form).</p>
+<div class="desc"><p>Add Task(Enterprise Vendor Task Create Form, Create By Source Ids Form).</p>
+<p>One of <code>fileIds</code>, <code>directoryIds</code> or <code>branchIds</code> is required (pass <code>fileIds=None</code> when
+using <code>directoryIds</code> or <code>branchIds</code>). <code>fileIds</code> and <code>directoryIds</code> are file-based
+projects only.</p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.edit_task"><code class="name flex">
+<span>def <span class="ident">edit_task</span></span>(<span>self, taskId: int, data: Union[Iterable[<a title="crowdin_api.api_resources.tasks.types.EnterpriseTaskPatchRequest" href="types.html#crowdin_api.api_resources.tasks.types.EnterpriseTaskPatchRequest">EnterpriseTaskPatchRequest</a>], Iterable[<a title="crowdin_api.api_resources.tasks.types.EnterpriseVendorTaskPatchRequest" href="types.html#crowdin_api.api_resources.tasks.types.EnterpriseVendorTaskPatchRequest">EnterpriseVendorTaskPatchRequest</a>], Iterable[<a title="crowdin_api.api_resources.tasks.types.EnterpriseInterOrganizationalTaskPatchRequest" href="types.html#crowdin_api.api_resources.tasks.types.EnterpriseInterOrganizationalTaskPatchRequest">EnterpriseInterOrganizationalTaskPatchRequest</a>], Iterable[<a title="crowdin_api.api_resources.tasks.types.EnterprisePendingTaskPatchRequest" href="types.html#crowdin_api.api_resources.tasks.types.EnterprisePendingTaskPatchRequest">EnterprisePendingTaskPatchRequest</a>]], projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit Task.</p>
+<p>The <code>/splitFiles</code> patch path is deprecated, use <code>/splitContent</code> instead.</p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.list_organization_tasks"><code class="name flex">
+<span>def <span class="ident">list_organization_tasks</span></span>(<span>self, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, status: Union[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>, Iterable[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>], None] = None, type: Union[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskType">CrowdinTaskType</a>, Iterable[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskType">CrowdinTaskType</a>], None] = None, projectIds: Optional[Iterable[int]] = None, groupIds: Optional[Iterable[int]] = None, assigneeIds: Optional[Iterable[int]] = None, creatorIds: Optional[Iterable[int]] = None, targetLanguageIds: Optional[Iterable[str]] = None, sourceLanguageIds: Optional[Iterable[str]] = None, createdAtFrom: Optional[datetime.datetime] = None, createdAtTo: Optional[datetime.datetime] = None, deadlineFrom: Optional[datetime.datetime] = None, deadlineTo: Optional[datetime.datetime] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Tasks (organization level).</p>
+<p><code>status</code> and <code>type</code> can be a single value or a list of values.
+<code>projectIds</code> cannot be used together with <code>groupIds</code>.</p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.tasks.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.tasks.getMany</a></p></div>
 </dd>
 </dl>
 <h3>Inherited members</h3>
@@ -110,7 +140,6 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.delete_task" href="#crowdin_api.api_resources.tasks.resource.TasksResource.delete_task">delete_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.delete_task_comment" href="#crowdin_api.api_resources.tasks.resource.TasksResource.delete_task_comment">delete_task_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.delete_task_settings_template" href="#crowdin_api.api_resources.tasks.resource.TasksResource.delete_task_settings_template">delete_task_settings_template</a></code></li>
-<li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.edit_task" href="#crowdin_api.api_resources.tasks.resource.TasksResource.edit_task">edit_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_archived_status" href="#crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_archived_status">edit_task_archived_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_comment" href="#crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_comment">edit_task_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_settings_template" href="#crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_settings_template">edit_task_settings_template</a></code></li>
@@ -118,6 +147,7 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.get_task" href="#crowdin_api.api_resources.tasks.resource.TasksResource.get_task">get_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.get_task_comment" href="#crowdin_api.api_resources.tasks.resource.TasksResource.get_task_comment">get_task_comment</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.get_task_settings_template" href="#crowdin_api.api_resources.tasks.resource.TasksResource.get_task_settings_template">get_task_settings_template</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.list_specific_user_tasks" href="#crowdin_api.api_resources.tasks.resource.TasksResource.list_specific_user_tasks">list_specific_user_tasks</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.list_task_comments" href="#crowdin_api.api_resources.tasks.resource.TasksResource.list_task_comments">list_task_comments</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.list_task_settings_templates" href="#crowdin_api.api_resources.tasks.resource.TasksResource.list_task_settings_templates">list_task_settings_templates</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.list_tasks" href="#crowdin_api.api_resources.tasks.resource.TasksResource.list_tasks">list_tasks</a></code></li>
@@ -137,7 +167,7 @@ the due dates, split words between people, and receive notifications about the c
 updates on tasks. Tasks are project-specific, so you’ll have to create them within a project.</p>
 <p>Use API to create, modify, and delete specific tasks.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#tag/Tasks">https://developer.crowdin.com/api/v2/#tag/Tasks</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Tasks">https://support.crowdin.com/developer/api/v2/#tag/Tasks</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -149,26 +179,31 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.add_general_by_string_ids_task"><code class="name flex">
-<span>def <span class="ident">add_general_by_string_ids_task</span></span>(<span>self, title: str, languageId: str, stringIds: Iterable[int], type: <a title="crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType">CrowdinGeneralTaskType</a>, projectId: Optional[int] = None, status: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>] = None, description: Optional[str] = None, splitContent: Optional[bool] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, assignees: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee" href="types.html#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee">CrowdinTaskAssignee</a>]] = None, deadline: Optional[datetime.datetime] = None, startedAt: Optional[datetime.datetime] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None, batchId: Optional[int] = None)</span>
+<span>def <span class="ident">add_general_by_string_ids_task</span></span>(<span>self, title: str, languageId: str, stringIds: Iterable[int], type: <a title="crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType">CrowdinGeneralTaskType</a>, projectId: Optional[int] = None, status: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>] = None, description: Optional[str] = None, splitContent: Optional[bool] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, assignees: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee" href="types.html#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee">CrowdinTaskAssignee</a>]] = None, deadline: Optional[datetime.datetime] = None, startedAt: Optional[datetime.datetime] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None, batchId: Optional[int] = None, translationsUpdatedDateFrom: Optional[datetime.datetime] = None, translationsUpdatedDateTo: Optional[datetime.datetime] = None, generateCostEstimate: Optional[bool] = None, generateTranslationCost: Optional[bool] = None, reportSettingsTemplateId: Optional[int] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Add Task(Crowdin Task Create Form).</p>
+<div class="desc"><p>Add Task(Crowdin Task Create Form, Create By String Ids Form).</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.add_general_task"><code class="name flex">
-<span>def <span class="ident">add_general_task</span></span>(<span>self, title: str, languageId: str, fileIds: Iterable[int], type: <a title="crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType">CrowdinGeneralTaskType</a>, projectId: Optional[int] = None, status: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>] = None, description: Optional[str] = None, splitContent: Optional[bool] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, labelIds: Optional[Iterable[int]] = None, excludeLabelIds: Optional[Iterable[int]] = None, assignees: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee" href="types.html#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee">CrowdinTaskAssignee</a>]] = None, deadline: Optional[datetime.datetime] = None, startedAt: Optional[datetime.datetime] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None, batchId: Optional[int] = None)</span>
+<span>def <span class="ident">add_general_task</span></span>(<span>self, title: str, languageId: str, fileIds: Optional[Iterable[int]], type: <a title="crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinGeneralTaskType">CrowdinGeneralTaskType</a>, projectId: Optional[int] = None, status: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>] = None, description: Optional[str] = None, splitContent: Optional[bool] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, labelIds: Optional[Iterable[int]] = None, excludeLabelIds: Optional[Iterable[int]] = None, assignees: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee" href="types.html#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee">CrowdinTaskAssignee</a>]] = None, deadline: Optional[datetime.datetime] = None, startedAt: Optional[datetime.datetime] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None, batchId: Optional[int] = None, directoryIds: Optional[Iterable[int]] = None, branchIds: Optional[Iterable[int]] = None, labelMatchRule: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule">TaskLabelMatchRule</a>] = None, excludeLabelMatchRule: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule">TaskLabelMatchRule</a>] = None, translationsUpdatedDateFrom: Optional[datetime.datetime] = None, translationsUpdatedDateTo: Optional[datetime.datetime] = None, generateCostEstimate: Optional[bool] = None, generateTranslationCost: Optional[bool] = None, reportSettingsTemplateId: Optional[int] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Add Task(Crowdin Task Create Form).</p>
+<div class="desc"><p>Add Task(Crowdin Task Create Form, Create By Source Ids Form).</p>
+<p>One of <code>fileIds</code>, <code>directoryIds</code> or <code>branchIds</code> is required (pass <code>fileIds=None</code> when
+using <code>directoryIds</code> or <code>branchIds</code>). <code>fileIds</code> and <code>directoryIds</code> are file-based
+projects only.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.add_pending_task"><code class="name flex">
 <span>def <span class="ident">add_pending_task</span></span>(<span>self, title: str, precedingTaskId: int, projectId: Optional[int] = None, description: Optional[str] = None, assignees: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee" href="types.html#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee">CrowdinTaskAssignee</a>]] = None, deadline: Optional[datetime.datetime] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Add Task(Crowdin Pending Task Create Form).</p></div>
+<div class="desc"><p>Add Task(Crowdin Pending Task Create Form).</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.add_task"><code class="name flex">
 <span>def <span class="ident">add_task</span></span>(<span>self, request_data: Dict[~KT, ~VT], projectId: Optional[int] = None)</span>
@@ -176,15 +211,16 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"><p>Add Task.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.add_task_comment"><code class="name flex">
-<span>def <span class="ident">add_task_comment</span></span>(<span>self, text: str, taskId: int, projectId: Optional[int] = None)</span>
+<span>def <span class="ident">add_task_comment</span></span>(<span>self, text: str, taskId: int, projectId: Optional[int] = None, timeSpent: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Task Comment.</p>
+<p><code>timeSpent</code> is the time spent on the task, in seconds.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.post">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.add_task_settings_template"><code class="name flex">
 <span>def <span class="ident">add_task_settings_template</span></span>(<span>self, name: str, config: <a title="crowdin_api.api_resources.tasks.types.TaskSettingsTemplateLanguages" href="types.html#crowdin_api.api_resources.tasks.types.TaskSettingsTemplateLanguages">TaskSettingsTemplateLanguages</a>, projectId: Optional[int] = None)</span>
@@ -192,29 +228,34 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"><p>Add Task Settings Template.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.post">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.add_vendor_by_string_ids_task"><code class="name flex">
-<span>def <span class="ident">add_vendor_by_string_ids_task</span></span>(<span>self, title: str, languageId: str, stringIds: Iterable[int], type: <a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskType">CrowdinTaskType</a>, vendor: str, projectId: Optional[int] = None, status: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>] = None, description: Optional[str] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, deadline: Optional[datetime.datetime] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">add_vendor_by_string_ids_task</span></span>(<span>self, title: str, languageId: str, stringIds: Iterable[int], type: <a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskType">CrowdinTaskType</a>, vendor: str, projectId: Optional[int] = None, status: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>] = None, description: Optional[str] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, deadline: Optional[datetime.datetime] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None, labelIds: Optional[Iterable[int]] = None, labelMatchRule: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule">TaskLabelMatchRule</a>] = None, excludeLabelIds: Optional[Iterable[int]] = None, excludeLabelMatchRule: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule">TaskLabelMatchRule</a>] = None, translationsUpdatedDateFrom: Optional[datetime.datetime] = None, translationsUpdatedDateTo: Optional[datetime.datetime] = None, generateCostEstimate: Optional[bool] = None, generateTranslationCost: Optional[bool] = None, reportSettingsTemplateId: Optional[int] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Add Task(Crowdin Vendor Task Create Form).</p>
+<div class="desc"><p>Add Task(Crowdin Vendor Task Create Form, Create By String Ids Form).</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.add_vendor_pending_task"><code class="name flex">
 <span>def <span class="ident">add_vendor_pending_task</span></span>(<span>self, title: str, precedingTaskId: int, vendor: str, projectId: Optional[int] = None, description: Optional[str] = None, assignees: Optional[Iterable[<a title="crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee" href="types.html#crowdin_api.api_resources.tasks.types.CrowdinTaskAssignee">CrowdinTaskAssignee</a>]] = None, deadline: Optional[datetime.datetime] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Add Task(Crowdin Vendor Pending Task Create Form).</p></div>
+<div class="desc"><p>Add Task(Crowdin Vendor Pending Task Create Form).</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.add_vendor_task"><code class="name flex">
-<span>def <span class="ident">add_vendor_task</span></span>(<span>self, title: str, languageId: str, fileIds: Iterable[int], type: <a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskType">CrowdinTaskType</a>, vendor: str, projectId: Optional[int] = None, status: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>] = None, description: Optional[str] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, labelIds: Optional[Iterable[int]] = None, excludeLabelIds: Optional[Iterable[int]] = None, deadline: Optional[datetime.datetime] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None)</span>
+<span>def <span class="ident">add_vendor_task</span></span>(<span>self, title: str, languageId: str, fileIds: Optional[Iterable[int]], type: <a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskType">CrowdinTaskType</a>, vendor: str, projectId: Optional[int] = None, status: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>] = None, description: Optional[str] = None, skipAssignedStrings: Optional[bool] = None, includePreTranslatedStringsOnly: Optional[bool] = None, labelIds: Optional[Iterable[int]] = None, excludeLabelIds: Optional[Iterable[int]] = None, deadline: Optional[datetime.datetime] = None, dateFrom: Optional[datetime.datetime] = None, dateTo: Optional[datetime.datetime] = None, directoryIds: Optional[Iterable[int]] = None, branchIds: Optional[Iterable[int]] = None, labelMatchRule: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule">TaskLabelMatchRule</a>] = None, excludeLabelMatchRule: Optional[<a title="crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule" href="enums.html#crowdin_api.api_resources.tasks.enums.TaskLabelMatchRule">TaskLabelMatchRule</a>] = None, translationsUpdatedDateFrom: Optional[datetime.datetime] = None, translationsUpdatedDateTo: Optional[datetime.datetime] = None, generateCostEstimate: Optional[bool] = None, generateTranslationCost: Optional[bool] = None, reportSettingsTemplateId: Optional[int] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Add Task(Crowdin Vendor Task Create Form).</p>
+<div class="desc"><p>Add Task(Crowdin Vendor Task Create Form, Create By Source Ids Form).</p>
+<p>One of <code>fileIds</code>, <code>directoryIds</code> or <code>branchIds</code> is required (pass <code>fileIds=None</code> when
+using <code>directoryIds</code> or <code>branchIds</code>). <code>fileIds</code> and <code>directoryIds</code> are file-based
+projects only.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.delete_task"><code class="name flex">
 <span>def <span class="ident">delete_task</span></span>(<span>self, taskId: int, projectId: Optional[int] = None)</span>
@@ -222,7 +263,7 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"><p>Delete Task.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.delete">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.delete_task_comment"><code class="name flex">
 <span>def <span class="ident">delete_task_comment</span></span>(<span>self, taskCommentId: int, taskId: int, projectId: Optional[int] = None)</span>
@@ -230,7 +271,7 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"><p>Delete Task Comment.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.delete">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.delete_task_settings_template"><code class="name flex">
 <span>def <span class="ident">delete_task_settings_template</span></span>(<span>self, taskSettingsTemplateId: int, projectId: Optional[int] = None)</span>
@@ -238,17 +279,18 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"><p>Delete Task Settings Template.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.delete</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.delete">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.delete</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.delete">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.edit_task"><code class="name flex">
-<span>def <span class="ident">edit_task</span></span>(<span>self, taskId: int, data: Union[Iterable[<a title="crowdin_api.api_resources.tasks.types.VendorPatchRequest" href="types.html#crowdin_api.api_resources.tasks.types.VendorPatchRequest">VendorPatchRequest</a>], Iterable[<a title="crowdin_api.api_resources.tasks.types.TaskPatchRequest" href="types.html#crowdin_api.api_resources.tasks.types.TaskPatchRequest">TaskPatchRequest</a>]], projectId: Optional[int] = None)</span>
+<span>def <span class="ident">edit_task</span></span>(<span>self, taskId: int, data: Union[Iterable[<a title="crowdin_api.api_resources.tasks.types.VendorPatchRequest" href="types.html#crowdin_api.api_resources.tasks.types.VendorPatchRequest">VendorPatchRequest</a>], Iterable[<a title="crowdin_api.api_resources.tasks.types.TaskPatchRequest" href="types.html#crowdin_api.api_resources.tasks.types.TaskPatchRequest">TaskPatchRequest</a>], Iterable[<a title="crowdin_api.api_resources.tasks.types.PendingTaskPatchRequest" href="types.html#crowdin_api.api_resources.tasks.types.PendingTaskPatchRequest">PendingTaskPatchRequest</a>], Iterable[<a title="crowdin_api.api_resources.tasks.types.VendorPendingTaskPatchRequest" href="types.html#crowdin_api.api_resources.tasks.types.VendorPendingTaskPatchRequest">VendorPendingTaskPatchRequest</a>]], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Task.</p>
+<p>The <code>/splitFiles</code> patch path is deprecated, use <code>/splitContent</code> instead.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.patch">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_archived_status"><code class="name flex">
 <span>def <span class="ident">edit_task_archived_status</span></span>(<span>self, taskId: int, isArchived: bool = True, projectId: Optional[int] = None)</span>
@@ -256,15 +298,16 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"><p>Edit Task Archived Status.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.user.tasks.patch">https://developer.crowdin.com/api/v2/#operation/api.user.tasks.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.user.tasks.patch">https://support.crowdin.com/developer/api/v2/#operation/api.user.tasks.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_comment"><code class="name flex">
 <span>def <span class="ident">edit_task_comment</span></span>(<span>self, taskCommentId: int, data: Iterable[<a title="crowdin_api.api_resources.tasks.types.TaskCommentPatchRequest" href="types.html#crowdin_api.api_resources.tasks.types.TaskCommentPatchRequest">TaskCommentPatchRequest</a>], taskId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Task Comment.</p>
+<p>Supported patch paths: <code>/text</code> and <code>/timeSpent</code> (see <code>TaskCommentPatchPath</code>).</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.patch">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.edit_task_settings_template"><code class="name flex">
 <span>def <span class="ident">edit_task_settings_template</span></span>(<span>self, taskSettingsTemplateId: int, data: Iterable[<a title="crowdin_api.api_resources.tasks.types.ConfigPatchRequest" href="types.html#crowdin_api.api_resources.tasks.types.ConfigPatchRequest">ConfigPatchRequest</a>], projectId: Optional[int] = None)</span>
@@ -272,9 +315,9 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"><p>Edit Task Settings Template.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.patch</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.patch">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.patch</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.export_task_strings"><code class="name flex">
 <span>def <span class="ident">export_task_strings</span></span>(<span>self, taskId: int, projectId: Optional[int] = None)</span>
@@ -282,7 +325,7 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"><p>Export Task Strings.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.exports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.exports.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.exports.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.exports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.get_task"><code class="name flex">
 <span>def <span class="ident">get_task</span></span>(<span>self, taskId: int, projectId: Optional[int] = None)</span>
@@ -290,7 +333,7 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"><p>Get Task.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.get">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.get_task_comment"><code class="name flex">
 <span>def <span class="ident">get_task_comment</span></span>(<span>self, taskCommentId: int, taskId: int, projectId: Optional[int] = None)</span>
@@ -298,7 +341,7 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"><p>Get Task Comment.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.get">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.get_task_comments_path"><code class="name flex">
 <span>def <span class="ident">get_task_comments_path</span></span>(<span>self, projectId: int, taskId: int, taskCommentId: Optional[int] = None)</span>
@@ -312,9 +355,9 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"><p>Get Task Settings Template.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.get">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.get</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.get</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.get</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.get_task_settings_templates_path"><code class="name flex">
 <span>def <span class="ident">get_task_settings_templates_path</span></span>(<span>self, projectId: int, taskSettingsTemplateId: Optional[int] = None)</span>
@@ -328,13 +371,22 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.tasks.resource.TasksResource.list_specific_user_tasks"><code class="name flex">
+<span>def <span class="ident">list_specific_user_tasks</span></span>(<span>self, userId: int, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, status: Union[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>, Iterable[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>], None] = None, type: Union[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskType">CrowdinTaskType</a>, Iterable[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskType" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskType">CrowdinTaskType</a>], None] = None, projectIds: Optional[Iterable[int]] = None, assigneeIds: Optional[Iterable[int]] = None, creatorIds: Optional[Iterable[int]] = None, targetLanguageIds: Optional[Iterable[str]] = None, sourceLanguageIds: Optional[Iterable[str]] = None, createdAtFrom: Optional[datetime.datetime] = None, createdAtTo: Optional[datetime.datetime] = None, deadlineFrom: Optional[datetime.datetime] = None, deadlineTo: Optional[datetime.datetime] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List User Tasks (all of the specified user's project tasks).</p>
+<p>Crowdin only. <code>status</code> and <code>type</code> can be a single value or a list of values.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.users.tasks.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.users.tasks.getMany</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.list_task_comments"><code class="name flex">
 <span>def <span class="ident">list_task_comments</span></span>(<span>self, taskId: int, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Task Comments.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.comments.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.comments.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.list_task_settings_templates"><code class="name flex">
 <span>def <span class="ident">list_task_settings_templates</span></span>(<span>self, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -342,27 +394,32 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <dd>
 <div class="desc"><p>List Task Settings Templates.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.settings-templates.getMany</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.settings-templates.getMany</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.settings-templates.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.list_tasks"><code class="name flex">
-<span>def <span class="ident">list_tasks</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, assigneeId: Optional[int] = None, status: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>] = None, batchId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_tasks</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, assigneeId: Optional[int] = None, status: Union[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>, Iterable[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>], None] = None, batchId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Tasks.</p>
+<p><code>status</code> can be a single status or a list of statuses.
+<code>assigneeId</code> is Crowdin only.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.getMany</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.tasks.getMany</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.tasks.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.tasks.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.tasks.resource.TasksResource.list_user_tasks"><code class="name flex">
-<span>def <span class="ident">list_user_tasks</span></span>(<span>self, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, status: Optional[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>] = None, isArchived: Optional[bool] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_user_tasks</span></span>(<span>self, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, status: Union[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>, Iterable[<a title="crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus" href="enums.html#crowdin_api.api_resources.tasks.enums.CrowdinTaskStatus">CrowdinTaskStatus</a>], None] = None, isArchived: Optional[bool] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>List Tasks.</p>
+<div class="desc"><p>List User Tasks (tasks of the authorized user).</p>
+<p><code>status</code> can be a single status or a list of statuses.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.tasks.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.user.tasks.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.user.tasks.getMany</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.user.tasks.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.user.tasks.getMany</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -391,6 +448,8 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <li><code><a title="crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_task_settings_template" href="#crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_task_settings_template">add_task_settings_template</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_vendor_by_string_ids_task" href="#crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_vendor_by_string_ids_task">add_vendor_by_string_ids_task</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_vendor_task" href="#crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.add_vendor_task">add_vendor_task</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.edit_task" href="#crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.edit_task">edit_task</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.list_organization_tasks" href="#crowdin_api.api_resources.tasks.resource.EnterpriseTasksResource.list_organization_tasks">list_organization_tasks</a></code></li>
 </ul>
 </li>
 <li>
@@ -419,6 +478,7 @@ updates on tasks. Tasks are project-specific, so you’ll have to create them wi
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.get_task_settings_template" href="#crowdin_api.api_resources.tasks.resource.TasksResource.get_task_settings_template">get_task_settings_template</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.get_task_settings_templates_path" href="#crowdin_api.api_resources.tasks.resource.TasksResource.get_task_settings_templates_path">get_task_settings_templates_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.get_tasks_path" href="#crowdin_api.api_resources.tasks.resource.TasksResource.get_tasks_path">get_tasks_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.list_specific_user_tasks" href="#crowdin_api.api_resources.tasks.resource.TasksResource.list_specific_user_tasks">list_specific_user_tasks</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.list_task_comments" href="#crowdin_api.api_resources.tasks.resource.TasksResource.list_task_comments">list_task_comments</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.list_task_settings_templates" href="#crowdin_api.api_resources.tasks.resource.TasksResource.list_task_settings_templates">list_task_settings_templates</a></code></li>
 <li><code><a title="crowdin_api.api_resources.tasks.resource.TasksResource.list_tasks" href="#crowdin_api.api_resources.tasks.resource.TasksResource.list_tasks">list_tasks</a></code></li>

@@ -42,7 +42,7 @@
 <p>Use API to check translation and proofreading progress on different levels:
 file, language, branch, directory.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#tag/Translation-Status">https://developer.crowdin.com/api/v2/#tag/Translation-Status</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Translation-Status">https://support.crowdin.com/developer/api/v2/#tag/Translation-Status</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -50,11 +50,13 @@ file, language, branch, directory.</p>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.cancel_qa_checks_revalidation"><code class="name flex">
-<span>def <span class="ident">cancel_qa_checks_revalidation</span></span>(<span>self, projectId: Optional[int] = None)</span>
+<span>def <span class="ident">cancel_qa_checks_revalidation</span></span>(<span>self, projectId: Optional[int] = None, revalidationId: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Cancel QA Checks Revalidation.</p>
-<p>Cancels the currently running QA checks revalidation job.</p>
+<p>Cancels the QA checks revalidation job identified by <code>revalidationId</code>
+(the identifier returned by <code>start_qa_checks_revalidation</code>). Omitting <code>revalidationId</code>
+is deprecated.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.delete">https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.delete</a></p></div>
 </dd>
@@ -64,7 +66,7 @@ file, language, branch, directory.</p>
 <dd>
 <div class="desc"><p>Get Branch Progress.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.branches.languages.progress.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.branches.languages.progress.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.languages.progress.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.languages.progress.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_directory_progress"><code class="name flex">
 <span>def <span class="ident">get_directory_progress</span></span>(<span>self, directoryId: int, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -72,7 +74,7 @@ file, language, branch, directory.</p>
 <dd>
 <div class="desc"><p>Get Directory Progress.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.directories.languages.progress.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.directories.languages.progress.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.languages.progress.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.languages.progress.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_file_progress"><code class="name flex">
 <span>def <span class="ident">get_file_progress</span></span>(<span>self, fileId: int, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -80,7 +82,7 @@ file, language, branch, directory.</p>
 <dd>
 <div class="desc"><p>Get File Progress.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.languages.progress.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.files.languages.progress.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.languages.progress.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.languages.progress.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_language_progress"><code class="name flex">
 <span>def <span class="ident">get_language_progress</span></span>(<span>self, languageId: str, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -88,7 +90,7 @@ file, language, branch, directory.</p>
 <dd>
 <div class="desc"><p>Get Language Progress.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.languages.files.progress.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.languages.files.progress.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.languages.files.progress.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.languages.files.progress.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_project_progress"><code class="name flex">
 <span>def <span class="ident">get_project_progress</span></span>(<span>self, projectId: Optional[int] = None, languageIds: Optional[Iterable[str]] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -96,34 +98,56 @@ file, language, branch, directory.</p>
 <dd>
 <div class="desc"><p>Get Project Progress.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.languages.progress.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.languages.progress.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.languages.progress.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.languages.progress.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_qa_checks_revalidation_path"><code class="name flex">
+<span>def <span class="ident">get_qa_checks_revalidation_path</span></span>(<span>self, projectId: int, revalidationId: Optional[str] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_qa_checks_revalidation_status"><code class="name flex">
-<span>def <span class="ident">get_qa_checks_revalidation_status</span></span>(<span>self, projectId: Optional[int] = None)</span>
+<span>def <span class="ident">get_qa_checks_revalidation_status</span></span>(<span>self, projectId: Optional[int] = None, revalidationId: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get QA Checks Revalidation Status.</p>
-<p>Returns the status of the currently running or last completed QA checks
-revalidation job.</p>
+<p>Returns the status of the QA checks revalidation job identified by <code>revalidationId</code>
+(the identifier returned by <code>start_qa_checks_revalidation</code>). Omitting <code>revalidationId</code>
+is deprecated.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.get">https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.list_qa_check_issues"><code class="name flex">
-<span>def <span class="ident">list_qa_check_issues</span></span>(<span>self, projectId: Optional[int] = None, category: Optional[Iterable[<a title="crowdin_api.api_resources.translation_status.enums.Category" href="enums.html#crowdin_api.api_resources.translation_status.enums.Category">Category</a>]] = None, validation: Optional[Iterable[<a title="crowdin_api.api_resources.translation_status.enums.Validation" href="enums.html#crowdin_api.api_resources.translation_status.enums.Validation">Validation</a>]] = None, languageIds: Optional[Iterable[str]] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_qa_check_issues</span></span>(<span>self, projectId: Optional[int] = None, category: Optional[Iterable[<a title="crowdin_api.api_resources.translation_status.enums.Category" href="enums.html#crowdin_api.api_resources.translation_status.enums.Category">Category</a>]] = None, validation: Optional[Iterable[<a title="crowdin_api.api_resources.translation_status.enums.Validation" href="enums.html#crowdin_api.api_resources.translation_status.enums.Validation">Validation</a>]] = None, languageIds: Optional[Iterable[str]] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None, taskId: Optional[int] = None, fileId: Optional[int] = None, branchId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List QA Check Issues.</p>
+<p><code>fileId</code> is available in file-based projects only, <code>branchId</code> in string-based projects only.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.qa-checks.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.qa-checks.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.qa-checks.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.qa-checks.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.start_qa_checks_revalidation"><code class="name flex">
-<span>def <span class="ident">start_qa_checks_revalidation</span></span>(<span>self, projectId: Optional[int] = None)</span>
+<span>def <span class="ident">start_qa_checks_revalidation</span></span>(<span>self, projectId: Optional[int] = None, qaCheckCategories: Optional[Iterable[<a title="crowdin_api.api_resources.translation_status.enums.QaChecksRevalidationCategory" href="enums.html#crowdin_api.api_resources.translation_status.enums.QaChecksRevalidationCategory">QaChecksRevalidationCategory</a>]] = None, languageIds: Optional[Iterable[str]] = None, failedOnly: Optional[bool] = None, externalQaCheckIds: Optional[Iterable[int]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Start QA Checks Revalidation.</p>
 <p>Triggers a new QA checks revalidation job for the project.</p>
+<p><code>externalQaCheckIds</code> is available in Crowdin Enterprise only.</p>
 <p>Link to documentation:
-<a href="https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.post">https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.post">https://support.crowdin.com/developer/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.post">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Translation-Status/operation/api.projects.qa-checks.revalidate.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.validate_text_by_qa_checks"><code class="name flex">
+<span>def <span class="ident">validate_text_by_qa_checks</span></span>(<span>self, data: Iterable[<a title="crowdin_api.api_resources.translation_status.types.ValidateQaChecksRequest" href="types.html#crowdin_api.api_resources.translation_status.types.ValidateQaChecksRequest">ValidateQaChecksRequest</a>], projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Validate Text by QA Checks.</p>
+<p>Runs QA checks against the passed texts without saving them as translations.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.validate-qa-checks.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.validate-qa-checks.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.translations.validate-qa-checks.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.translations.validate-qa-checks.post</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -152,9 +176,11 @@ revalidation job.</p>
 <li><code><a title="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_file_progress" href="#crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_file_progress">get_file_progress</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_language_progress" href="#crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_language_progress">get_language_progress</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_project_progress" href="#crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_project_progress">get_project_progress</a></code></li>
+<li><code><a title="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_qa_checks_revalidation_path" href="#crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_qa_checks_revalidation_path">get_qa_checks_revalidation_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_qa_checks_revalidation_status" href="#crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.get_qa_checks_revalidation_status">get_qa_checks_revalidation_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.list_qa_check_issues" href="#crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.list_qa_check_issues">list_qa_check_issues</a></code></li>
 <li><code><a title="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.start_qa_checks_revalidation" href="#crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.start_qa_checks_revalidation">start_qa_checks_revalidation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.validate_text_by_qa_checks" href="#crowdin_api.api_resources.translation_status.resource.TranslationStatusResource.validate_text_by_qa_checks">validate_text_by_qa_checks</a></code></li>
 </ul>
 </li>
 </ul>

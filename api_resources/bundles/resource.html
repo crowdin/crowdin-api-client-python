@@ -39,9 +39,9 @@
 <dd>
 <div class="desc"><p>Resource for Bundles.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#tag/Bundles">https://developer.crowdin.com/api/v2/#tag/Bundles</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Bundles">https://support.crowdin.com/developer/api/v2/#tag/Bundles</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#tag/Bundles">https://developer.crowdin.com/enterprise/api/v2/#tag/Bundles</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Bundles">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Bundles</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -49,14 +49,17 @@
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.add_bundle"><code class="name flex">
-<span>def <span class="ident">add_bundle</span></span>(<span>self, name: str, format: str, sourcePatterns: Iterable[str], exportPattern: str, projectId: Optional[int] = None, ignorePatterns: Optional[Iterable[str]] = None, isMultilingual: Optional[bool] = None, includeProjectSourceLanguage: Optional[bool] = None, labelIds: Optional[Iterable[int]] = None, excludeLabelIds: Optional[Iterable[int]] = None)</span>
+<span>def <span class="ident">add_bundle</span></span>(<span>self, name: str, format: Optional[str], sourcePatterns: Iterable[str], exportPattern: Optional[str], projectId: Optional[int] = None, ignorePatterns: Optional[Iterable[str]] = None, isMultilingual: Optional[bool] = None, includeProjectSourceLanguage: Optional[bool] = None, labelIds: Optional[Iterable[int]] = None, excludeLabelIds: Optional[Iterable[int]] = None, sourceLanguageExportPattern: Optional[str] = None, includeInContextPseudoLanguage: Optional[bool] = None, labelMatchRule: Optional[<a title="crowdin_api.api_resources.bundles.enums.BundleLabelMatchRule" href="enums.html#crowdin_api.api_resources.bundles.enums.BundleLabelMatchRule">BundleLabelMatchRule</a>] = None, excludeLabelMatchRule: Optional[<a title="crowdin_api.api_resources.bundles.enums.BundleLabelMatchRule" href="enums.html#crowdin_api.api_resources.bundles.enums.BundleLabelMatchRule">BundleLabelMatchRule</a>] = None, languageIds: Optional[Iterable[str]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Bundles.</p>
+<p><code>format</code> and <code>exportPattern</code> may be <code>None</code>: if <code>format</code> is not provided, files are exported
+in their original format (<code>format</code> is required for string-based projects), and
+<code>exportPattern</code> is required only if <code>format</code> is specified.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.post">https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.post</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.post</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.check_bundle_export_status"><code class="name flex">
 <span>def <span class="ident">check_bundle_export_status</span></span>(<span>self, bundleId: int, exportId: str, projectId: Optional[int] = None)</span>
@@ -64,9 +67,9 @@
 <dd>
 <div class="desc"><p>Check Bundle Export Status.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.get">https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.get</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.exports.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.exports.get</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.get</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.exports.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.exports.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.delete_bundle"><code class="name flex">
 <span>def <span class="ident">delete_bundle</span></span>(<span>self, bundleId: int, projectId: Optional[int] = None)</span>
@@ -74,9 +77,9 @@
 <dd>
 <div class="desc"><p>Delete Bundle.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.delete</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.delete">https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.delete</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.delete">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.download_bundle"><code class="name flex">
 <span>def <span class="ident">download_bundle</span></span>(<span>self, bundleId: int, exportId: str, projectId: Optional[int] = None)</span>
@@ -84,9 +87,9 @@
 <dd>
 <div class="desc"><p>Download bundle.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.download.get">https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.download.get</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.exports.download.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.exports.download.get</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.exports.download.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.edit_bundle"><code class="name flex">
 <span>def <span class="ident">edit_bundle</span></span>(<span>self, bundleId: int, data: Iterable[<a title="crowdin_api.api_resources.bundles.types.BundlePatchRequest" href="types.html#crowdin_api.api_resources.bundles.types.BundlePatchRequest">BundlePatchRequest</a>], projectId: Optional[int] = None)</span>
@@ -94,19 +97,22 @@
 <dd>
 <div class="desc"><p>Edit Bundle.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.patch</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.patch">https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.patch</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.export_bundle"><code class="name flex">
 <span>def <span class="ident">export_bundle</span></span>(<span>self, bundleId: int, projectId: Optional[int] = None, targetLanguageIds: Optional[Iterable[str]] = None, skipUntranslatedStrings: Optional[bool] = None, skipUntranslatedFiles: Optional[bool] = None, exportApprovedOnly: Optional[bool] = None, exportWithMinApprovalsCount: Optional[int] = None, exportStringsThatPassedWorkflow: Optional[bool] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Export bundle.</p>
+<p><code>skipUntranslatedFiles</code> is for file-based projects only, <code>exportApprovedOnly</code> is for
+Crowdin only, <code>exportWithMinApprovalsCount</code> and <code>exportStringsThatPassedWorkflow</code> are for
+Crowdin Enterprise only.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.post">https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.exports.post</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.exports.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.exports.post</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.exports.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.exports.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.exports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.get_bundle"><code class="name flex">
 <span>def <span class="ident">get_bundle</span></span>(<span>self, bundleId: int, projectId: Optional[int] = None)</span>
@@ -114,9 +120,9 @@
 <dd>
 <div class="desc"><p>Get Bundle.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.get">https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.get</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.get</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.get</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.get_bundle_list_files"><code class="name flex">
 <span>def <span class="ident">get_bundle_list_files</span></span>(<span>self, bundleId: int, projectId: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -124,9 +130,9 @@
 <dd>
 <div class="desc"><p>Get Bundle List Files.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.files.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.files.getMany</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.files.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.files.getMany</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.files.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.files.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.files.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.files.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.get_bundles_exports_path"><code class="name flex">
 <span>def <span class="ident">get_bundles_exports_path</span></span>(<span>self, projectId: int, bundleId: int, exportId: Optional[str] = None)</span>
@@ -140,15 +146,26 @@
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.list_bundle_branches"><code class="name flex">
+<span>def <span class="ident">list_bundle_branches</span></span>(<span>self, bundleId: int, projectId: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Bundle List Branches.</p>
+<p>String-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/string-based/#operation/api.projects.bundles.branches.getMany">https://support.crowdin.com/developer/api/v2/string-based/#operation/api.projects.bundles.branches.getMany</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/string-based/#operation/api.projects.bundles.branches.getMany">https://support.crowdin.com/developer/enterprise/api/v2/string-based/#operation/api.projects.bundles.branches.getMany</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.bundles.resource.BundlesResource.list_bundles"><code class="name flex">
 <span>def <span class="ident">list_bundles</span></span>(<span>self, projectId: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Bundles.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.bundles.getMany</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.bundles.getMany</a></p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.bundles.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.bundles.getMany</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -181,6 +198,7 @@
 <li><code><a title="crowdin_api.api_resources.bundles.resource.BundlesResource.get_bundle_list_files" href="#crowdin_api.api_resources.bundles.resource.BundlesResource.get_bundle_list_files">get_bundle_list_files</a></code></li>
 <li><code><a title="crowdin_api.api_resources.bundles.resource.BundlesResource.get_bundles_exports_path" href="#crowdin_api.api_resources.bundles.resource.BundlesResource.get_bundles_exports_path">get_bundles_exports_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.bundles.resource.BundlesResource.get_bundles_path" href="#crowdin_api.api_resources.bundles.resource.BundlesResource.get_bundles_path">get_bundles_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.bundles.resource.BundlesResource.list_bundle_branches" href="#crowdin_api.api_resources.bundles.resource.BundlesResource.list_bundle_branches">list_bundle_branches</a></code></li>
 <li><code><a title="crowdin_api.api_resources.bundles.resource.BundlesResource.list_bundles" href="#crowdin_api.api_resources.bundles.resource.BundlesResource.list_bundles">list_bundles</a></code></li>
 </ul>
 </li>

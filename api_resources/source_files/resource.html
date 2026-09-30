@@ -45,7 +45,7 @@ branches. Before adding source files to the project, upload each file to the Sto
 <p>Note: If you use branches, make sure your master branch is the first one you integrate with
 Crowdin.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#tag/Source-Files">https://developer.crowdin.com/api/v2/#tag/Source-Files</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Source-Files">https://support.crowdin.com/developer/api/v2/#tag/Source-Files</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -61,28 +61,31 @@ Crowdin.</p>
 <a href="https://support.crowdin.com/developer/api/v2/#tag/Source-Files/operation/api.projects.files.references.post">https://support.crowdin.com/developer/api/v2/#tag/Source-Files/operation/api.projects.files.references.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.add_branch"><code class="name flex">
-<span>def <span class="ident">add_branch</span></span>(<span>self, name: str, projectId: Optional[int] = None, title: Optional[str] = None, exportPattern: Optional[str] = None, priority: Optional[<a title="crowdin_api.api_resources.source_files.enums.Priority" href="enums.html#crowdin_api.api_resources.source_files.enums.Priority">Priority</a>] = None)</span>
+<span>def <span class="ident">add_branch</span></span>(<span>self, name: str, projectId: Optional[int] = None, title: Optional[str] = None, exportPattern: Optional[str] = None, priority: Optional[<a title="crowdin_api.api_resources.source_files.enums.Priority" href="enums.html#crowdin_api.api_resources.source_files.enums.Priority">Priority</a>] = None, isProtected: Optional[bool] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Branch.</p>
+<p><code>exportPattern</code> and <code>priority</code> are for file-based projects only,
+<code>isProtected</code> is for string-based projects only.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.branches.post">https://developer.crowdin.com/api/v2/#operation/api.projects.branches.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.add_directory"><code class="name flex">
-<span>def <span class="ident">add_directory</span></span>(<span>self, name: str, projectId: Optional[int] = None, branchId: Optional[int] = None, directoryId: Optional[int] = None, title: Optional[int] = None, exportPattern: Optional[str] = None, priority: Optional[<a title="crowdin_api.api_resources.source_files.enums.Priority" href="enums.html#crowdin_api.api_resources.source_files.enums.Priority">Priority</a>] = None)</span>
+<span>def <span class="ident">add_directory</span></span>(<span>self, name: str, projectId: Optional[int] = None, branchId: Optional[int] = None, directoryId: Optional[int] = None, title: Optional[str] = None, exportPattern: Optional[str] = None, priority: Optional[<a title="crowdin_api.api_resources.source_files.enums.Priority" href="enums.html#crowdin_api.api_resources.source_files.enums.Priority">Priority</a>] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Directory.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.directories.post">https://developer.crowdin.com/api/v2/#operation/api.projects.directories.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.add_file"><code class="name flex">
-<span>def <span class="ident">add_file</span></span>(<span>self, storageId: int, name: str, projectId: Optional[int] = None, branchId: Optional[int] = None, directoryId: Optional[int] = None, title: Optional[int] = None, context: Optional[str] = None, type: Optional[<a title="crowdin_api.api_resources.source_files.enums.FileType" href="enums.html#crowdin_api.api_resources.source_files.enums.FileType">FileType</a>] = FileType.AUTO, importOptions: Union[<a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions">SpreadsheetImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.XmlImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.XmlImportOptions">XmlImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.DocxFileImportOptions">DocxFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.OtherImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.OtherImportOptions">OtherImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.HtmlFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.HtmlFileImportOptions">HtmlFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions">HtmlWithFrontMatterFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdxV1FileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.MdxV1FileImportOptions">MdxV1FileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdxV2FileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.MdxV2FileImportOptions">MdxV2FileImportOptions</a>, None] = None, exportOptions: Union[<a title="crowdin_api.api_resources.source_files.types.PropertyExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.PropertyExportOptions">PropertyExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.GeneralExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.GeneralExportOptions">GeneralExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.JavascriptExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.JavascriptExportOptions">JavascriptExportOptions</a>, None] = None, excludedTargetLanguages: Optional[Iterable[str]] = None, attachLabelIds: Optional[Iterable[int]] = None)</span>
+<span>def <span class="ident">add_file</span></span>(<span>self, storageId: int, name: str, projectId: Optional[int] = None, branchId: Optional[int] = None, directoryId: Optional[int] = None, title: Optional[str] = None, context: Optional[str] = None, type: Optional[<a title="crowdin_api.api_resources.source_files.enums.FileType" href="enums.html#crowdin_api.api_resources.source_files.enums.FileType">FileType</a>] = FileType.AUTO, importOptions: Union[<a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions">SpreadsheetImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.XmlImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.XmlImportOptions">XmlImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions">WebXmlFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.DocxFileImportOptions">DocxFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.VsdxFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.VsdxFileImportOptions">VsdxFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.IdmlFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.IdmlFileImportOptions">IdmlFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.HtmlFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.HtmlFileImportOptions">HtmlFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions">HtmlWithFrontMatterFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.MdFileImportOptions">MdFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdxV1FileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.MdxV1FileImportOptions">MdxV1FileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdxV2FileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.MdxV2FileImportOptions">MdxV2FileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.StringCatalogFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.StringCatalogFileImportOptions">StringCatalogFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.AdocFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.AdocFileImportOptions">AdocFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.VdfFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.VdfFileImportOptions">VdfFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.OtherImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.OtherImportOptions">OtherImportOptions</a>, None] = None, exportOptions: Union[<a title="crowdin_api.api_resources.source_files.types.GeneralExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.GeneralExportOptions">GeneralExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.PropertyExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.PropertyExportOptions">PropertyExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.JavascriptExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.JavascriptExportOptions">JavascriptExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdFileExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.MdFileExportOptions">MdFileExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdxFileExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.MdxFileExportOptions">MdxFileExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.DocxFileExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.DocxFileExportOptions">DocxFileExportOptions</a>, None] = None, excludedTargetLanguages: Optional[Iterable[str]] = None, attachLabelIds: Optional[Iterable[int]] = None, parserVersion: Optional[int] = None, fields: Optional[Dict[str, Union[str, int, bool, Iterable[str]]]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add File.</p>
+<p><code>parserVersion</code> must be used together with <code>type</code>. <code>fields</code> is Enterprise only.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.post">https://developer.crowdin.com/api/v2/#operation/api.projects.files.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.check_branch_deletion_status"><code class="name flex">
 <span>def <span class="ident">check_branch_deletion_status</span></span>(<span>self, branchId: int, jobIdentifier: str, projectId: Optional[int] = None)</span>
@@ -90,7 +93,7 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>Check Branch Deletion Status.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.branches.jobs.get">https://developer.crowdin.com/api/v2/#operation/api.projects.branches.jobs.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.jobs.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.jobs.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.check_directory_deletion_status"><code class="name flex">
 <span>def <span class="ident">check_directory_deletion_status</span></span>(<span>self, directoryId: int, jobIdentifier: str, projectId: Optional[int] = None)</span>
@@ -98,7 +101,7 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>Check Directory Deletion Status.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.directories.jobs.get">https://developer.crowdin.com/api/v2/#operation/api.projects.directories.jobs.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.jobs.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.jobs.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.check_file_deletion_status"><code class="name flex">
 <span>def <span class="ident">check_file_deletion_status</span></span>(<span>self, fileId: int, jobIdentifier: str, projectId: Optional[int] = None)</span>
@@ -106,7 +109,7 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>Check File Deletion Status.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.jobs.get">https://developer.crowdin.com/api/v2/#operation/api.projects.files.jobs.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.jobs.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.jobs.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.delete_asset_reference"><code class="name flex">
 <span>def <span class="ident">delete_asset_reference</span></span>(<span>self, project_id: int, file_id: int, reference_id: int)</span>
@@ -121,24 +124,30 @@ Crowdin.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Branch.</p>
+<p>Pass <code>prefer="respond-async"</code> to delete the branch asynchronously (recommended); the API
+then returns a job to poll via <code>check_branch_deletion_status</code>.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.branches.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.branches.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.delete">https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.delete_directory"><code class="name flex">
 <span>def <span class="ident">delete_directory</span></span>(<span>self, directoryId: int, projectId: Optional[int] = None, prefer: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Directory.</p>
+<p>Pass <code>prefer="respond-async"</code> to delete the directory asynchronously (recommended); the API
+then returns a job to poll via <code>check_directory_deletion_status</code>.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.directories.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.directories.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.delete">https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.delete_file"><code class="name flex">
 <span>def <span class="ident">delete_file</span></span>(<span>self, fileId: int, projectId: Optional[int] = None, prefer: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete File.</p>
+<p>Pass <code>prefer="respond-async"</code> to delete the file asynchronously (recommended); the API
+then returns a job to poll via <code>check_file_deletion_status</code>.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.files.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.delete">https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.download_file"><code class="name flex">
 <span>def <span class="ident">download_file</span></span>(<span>self, fileId: int, projectId: Optional[int] = None)</span>
@@ -146,7 +155,7 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>Download File.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.download.get">https://developer.crowdin.com/api/v2/#operation/api.projects.files.download.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.download.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.download.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.download_file_preview"><code class="name flex">
 <span>def <span class="ident">download_file_preview</span></span>(<span>self, fileId: int, projectId: Optional[int] = None)</span>
@@ -154,15 +163,17 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>Download File Preview.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.preview.get">https://developer.crowdin.com/api/v2/#operation/api.projects.files.preview.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.preview.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.preview.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.edit_branch"><code class="name flex">
 <span>def <span class="ident">edit_branch</span></span>(<span>self, branchId: int, data: Iterable[<a title="crowdin_api.api_resources.source_files.types.BranchPatchRequest" href="types.html#crowdin_api.api_resources.source_files.types.BranchPatchRequest">BranchPatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Branch.</p>
+<p><code>/exportPattern</code> is for file-based projects only, <code>/isProtected</code> is for string-based
+projects only.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.branches.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.branches.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.patch">https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.edit_directory"><code class="name flex">
 <span>def <span class="ident">edit_directory</span></span>(<span>self, directoryId: int, data: Iterable[<a title="crowdin_api.api_resources.source_files.types.DirectoryPatchRequest" href="types.html#crowdin_api.api_resources.source_files.types.DirectoryPatchRequest">DirectoryPatchRequest</a>], projectId: Optional[int] = None)</span>
@@ -170,15 +181,17 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>Edit Directory.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.directories.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.directories.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.patch">https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.edit_file"><code class="name flex">
 <span>def <span class="ident">edit_file</span></span>(<span>self, fileId: int, data: Iterable[<a title="crowdin_api.api_resources.source_files.types.FilePatchRequest" href="types.html#crowdin_api.api_resources.source_files.types.FilePatchRequest">FilePatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit File.</p>
+<p><code>/fields</code> and <code>/fields/{fieldSlug}</code> paths are Enterprise only. For <code>/fields/{fieldSlug}</code>
+pass the path as a string, e.g. <code>"/fields/some-field"</code>.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.files.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.patch">https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.get_asset_reference"><code class="name flex">
 <span>def <span class="ident">get_asset_reference</span></span>(<span>self, project_id: int, file_id: int, reference_id: int)</span>
@@ -200,7 +213,7 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>Get Branch.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.branches.get">https://developer.crowdin.com/api/v2/#operation/api.projects.branches.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.get_branch_path"><code class="name flex">
 <span>def <span class="ident">get_branch_path</span></span>(<span>self, projectId: int, branchId: Optional[int] = None)</span>
@@ -214,7 +227,7 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>Get Directory.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.directories.get">https://developer.crowdin.com/api/v2/#operation/api.projects.directories.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.get_directory_path"><code class="name flex">
 <span>def <span class="ident">get_directory_path</span></span>(<span>self, projectId: int, directoryId: Optional[int] = None)</span>
@@ -228,7 +241,7 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>Get File.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.get">https://developer.crowdin.com/api/v2/#operation/api.projects.files.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.get_file_path"><code class="name flex">
 <span>def <span class="ident">get_file_path</span></span>(<span>self, projectId: int, fileId: Optional[int] = None)</span>
@@ -242,7 +255,7 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>Get File Revision.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.revisions.get">https://developer.crowdin.com/api/v2/#operation/api.projects.files.revisions.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.revisions.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.revisions.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.get_file_revisions_path"><code class="name flex">
 <span>def <span class="ident">get_file_revisions_path</span></span>(<span>self, projectId: int, fileId: int, revisionId: Optional[int] = None)</span>
@@ -264,7 +277,7 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>List Directories.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.directories.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.directories.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.directories.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.list_file_revisions"><code class="name flex">
 <span>def <span class="ident">list_file_revisions</span></span>(<span>self, fileId: int, projectId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -272,7 +285,7 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>List File Revisions.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.revisions.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.files.revisions.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.revisions.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.revisions.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.list_files"><code class="name flex">
 <span>def <span class="ident">list_files</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, branchId: Optional[int] = None, directoryId: Optional[int] = None, filter: Optional[str] = None, recursion: Any = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -280,7 +293,7 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>List Files.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.files.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.list_project_branches"><code class="name flex">
 <span>def <span class="ident">list_project_branches</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, name: Optional[str] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -288,15 +301,16 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>List Branches.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.branches.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.branches.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.branches.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.restore_file"><code class="name flex">
 <span>def <span class="ident">restore_file</span></span>(<span>self, fileId: int, revisionId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Restore File.</p>
+<p>Restore the file to one of the previous revisions.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.put">https://developer.crowdin.com/api/v2/#operation/api.projects.files.put</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.put">https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.put</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.search_branches"><code class="name flex">
 <span>def <span class="ident">search_branches</span></span>(<span>self, filter: str, projectIds: Optional[Iterable[int]] = None, userId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -304,8 +318,8 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>Search Branches.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.branches.getMany">https://developer.crowdin.com/api/v2/#operation/api.branches.getMany</a>
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.branches.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.branches.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.branches.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.branches.getMany</a>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.branches.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.branches.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.search_directories"><code class="name flex">
 <span>def <span class="ident">search_directories</span></span>(<span>self, filter: str, projectIds: Optional[Iterable[int]] = None, userId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -313,8 +327,8 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>Search Directories.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.directories.getMany">https://developer.crowdin.com/api/v2/#operation/api.directories.getMany</a>
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.directories.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.directories.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.directories.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.directories.getMany</a>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.directories.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.directories.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.search_files"><code class="name flex">
 <span>def <span class="ident">search_files</span></span>(<span>self, filter: str, projectIds: Optional[Iterable[int]] = None, userId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -322,16 +336,20 @@ Crowdin.</p>
 <dd>
 <div class="desc"><p>Search Files.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.files.getMany">https://developer.crowdin.com/api/v2/#operation/api.files.getMany</a>
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.files.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.files.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.files.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.files.getMany</a>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.files.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.files.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.resource.SourceFilesResource.update_file"><code class="name flex">
-<span>def <span class="ident">update_file</span></span>(<span>self, fileId: int, storageId: int, projectId: Optional[int] = None, updateOption: Optional[<a title="crowdin_api.api_resources.source_files.enums.FileUpdateOption" href="enums.html#crowdin_api.api_resources.source_files.enums.FileUpdateOption">FileUpdateOption</a>] = None, importOptions: Union[<a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions">SpreadsheetImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.XmlImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.XmlImportOptions">XmlImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.DocxFileImportOptions">DocxFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.OtherImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.OtherImportOptions">OtherImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.HtmlFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.HtmlFileImportOptions">HtmlFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions">HtmlWithFrontMatterFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdxV1FileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.MdxV1FileImportOptions">MdxV1FileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdxV2FileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.MdxV2FileImportOptions">MdxV2FileImportOptions</a>, None] = None, exportOptions: Union[<a title="crowdin_api.api_resources.source_files.types.PropertyExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.PropertyExportOptions">PropertyExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.GeneralExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.GeneralExportOptions">GeneralExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.JavascriptExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.JavascriptExportOptions">JavascriptExportOptions</a>, None] = None, attachLabelIds: Optional[Iterable[int]] = None, detachLabelIds: Optional[Iterable[int]] = None)</span>
+<span>def <span class="ident">update_file</span></span>(<span>self, fileId: int, storageId: int, projectId: Optional[int] = None, updateOption: Optional[<a title="crowdin_api.api_resources.source_files.enums.FileUpdateOption" href="enums.html#crowdin_api.api_resources.source_files.enums.FileUpdateOption">FileUpdateOption</a>] = None, importOptions: Union[<a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions">SpreadsheetImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.XmlImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.XmlImportOptions">XmlImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions">WebXmlFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.DocxFileImportOptions">DocxFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.VsdxFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.VsdxFileImportOptions">VsdxFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.IdmlFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.IdmlFileImportOptions">IdmlFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.HtmlFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.HtmlFileImportOptions">HtmlFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions">HtmlWithFrontMatterFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.MdFileImportOptions">MdFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdxV1FileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.MdxV1FileImportOptions">MdxV1FileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdxV2FileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.MdxV2FileImportOptions">MdxV2FileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.StringCatalogFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.StringCatalogFileImportOptions">StringCatalogFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.AdocFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.AdocFileImportOptions">AdocFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.VdfFileImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.VdfFileImportOptions">VdfFileImportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.OtherImportOptions" href="types.html#crowdin_api.api_resources.source_files.types.OtherImportOptions">OtherImportOptions</a>, None] = None, exportOptions: Union[<a title="crowdin_api.api_resources.source_files.types.GeneralExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.GeneralExportOptions">GeneralExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.PropertyExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.PropertyExportOptions">PropertyExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.JavascriptExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.JavascriptExportOptions">JavascriptExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdFileExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.MdFileExportOptions">MdFileExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.MdxFileExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.MdxFileExportOptions">MdxFileExportOptions</a>, <a title="crowdin_api.api_resources.source_files.types.DocxFileExportOptions" href="types.html#crowdin_api.api_resources.source_files.types.DocxFileExportOptions">DocxFileExportOptions</a>, None] = None, attachLabelIds: Optional[Iterable[int]] = None, detachLabelIds: Optional[Iterable[int]] = None, name: Optional[str] = None, replaceModifiedContext: Optional[bool] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Update File.</p>
+<p>Replace the file with a new one from the Storage. <code>importOptions</code> is sent to the API
+as-is (e.g. <code>{"importTranslations": True}</code> for spreadsheet files). Note that
+<code>importOptions.importTranslations</code> in the API response for spreadsheet files is
+marked as deprecated by the API and may not reflect the value sent in the request.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.files.put">https://developer.crowdin.com/api/v2/#operation/api.projects.files.put</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.put">https://support.crowdin.com/developer/api/v2/#operation/api.projects.files.put</a></p></div>
 </dd>
 </dl>
 </dd>

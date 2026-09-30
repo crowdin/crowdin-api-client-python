@@ -39,7 +39,7 @@
 <dd>
 <div class="desc"><p>Resource for AI.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#tag/AI">https://developer.crowdin.com/api/v2/#tag/AI</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#tag/AI">https://support.crowdin.com/developer/api/v2/#tag/AI</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -51,6 +51,7 @@
 </code></dt>
 <dd>
 <div class="desc"><p>Add AI Custom Placeholder</p>
+<p>Deprecated: AI Custom Placeholders were replaced by AI Snippets, use <code>add_ai_snippet</code> instead.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.settings.custom-placeholders.post">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.settings.custom-placeholders.post</a></p></div>
 </dd>
@@ -60,7 +61,7 @@
 <dd>
 <div class="desc"><p>Add AI Prompt</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.post">https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.prompts.post">https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.prompts.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.add_ai_provider"><code class="name flex">
 <span>def <span class="ident">add_ai_provider</span></span>(<span>self, userId: int, request_data: <a title="crowdin_api.api_resources.ai.types.AddAIProviderReqeustScheme" href="types.html#crowdin_api.api_resources.ai.types.AddAIProviderReqeustScheme">AddAIProviderReqeustScheme</a>)</span>
@@ -68,7 +69,15 @@
 <dd>
 <div class="desc"><p>Add AI Provider</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.post">https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.post">https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.add_ai_snippet"><code class="name flex">
+<span>def <span class="ident">add_ai_snippet</span></span>(<span>self, user_id: int, request_data: <a title="crowdin_api.api_resources.ai.types.AddAiSnippetRequest" href="types.html#crowdin_api.api_resources.ai.types.AddAiSnippetRequest">AddAiSnippetRequest</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add AI Snippet</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.prompts.snippets.post">https://support.crowdin.com/developer/api/v2/#operation/api.ai.prompts.snippets.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.cancel_ai_file_translation"><code class="name flex">
 <span>def <span class="ident">cancel_ai_file_translation</span></span>(<span>self, user_id: int, job_identifier: str)</span>
@@ -93,6 +102,14 @@
 <div class="desc"><p>Check AI Report Generation Status</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.reports.get">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.reports.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.check_ai_request_logs_export_status"><code class="name flex">
+<span>def <span class="ident">check_ai_request_logs_export_status</span></span>(<span>self, user_id: int, export_id: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check AI Request Logs Export Status</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.requestLogs.exports.get">https://support.crowdin.com/developer/api/v2/#operation/api.ai.requestLogs.exports.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.clone_ai_prompt"><code class="name flex">
 <span>def <span class="ident">clone_ai_prompt</span></span>(<span>self, user_id: int, ai_prompt_id: int, name: Optional[str] = None)</span>
@@ -134,13 +151,14 @@
 <p>This API method serves as an intermediary, forwarding your requests directly to the selected provider.
 Please refer to the documentation for the specific provider you use to determine the required payload format.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.chat.completions.post">https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.chat.completions.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.chat.completions.post">https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.chat.completions.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.delete_ai_custom_placeholder"><code class="name flex">
 <span>def <span class="ident">delete_ai_custom_placeholder</span></span>(<span>self, user_id: int, ai_custom_placeholder_id: int)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete AI Custom Placeholder</p>
+<p>Deprecated: AI Custom Placeholders were replaced by AI Snippets, use <code>delete_ai_snippet</code> instead.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.settings.custom-placeholders.delete">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.settings.custom-placeholders.delete</a></p></div>
 </dd>
@@ -150,7 +168,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Delete AI Prompt</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.delete">https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.prompts.delete">https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.prompts.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.delete_ai_provider"><code class="name flex">
 <span>def <span class="ident">delete_ai_provider</span></span>(<span>self, userId: int, aiProviderId: int)</span>
@@ -158,7 +176,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Delete AI Provider</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.delete">https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.delete">https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.delete_ai_provider_gateway"><code class="name flex">
 <span>def <span class="ident">delete_ai_provider_gateway</span></span>(<span>self, user_id: int, ai_provider_id: int, path: str)</span>
@@ -167,6 +185,14 @@ Please refer to the documentation for the specific provider you use to determine
 <div class="desc"><p>AI Provider Gateway DELETE Request</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.delete">https://support.crowdin.com/developer/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.crowdin.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.delete_ai_snippet"><code class="name flex">
+<span>def <span class="ident">delete_ai_snippet</span></span>(<span>self, user_id: int, ai_snippet_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete AI Snippet</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.prompts.snippets.delete">https://support.crowdin.com/developer/api/v2/#operation/api.ai.prompts.snippets.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.download_ai_file_translation"><code class="name flex">
 <span>def <span class="ident">download_ai_file_translation</span></span>(<span>self, user_id: int, job_identifier: str)</span>
@@ -208,11 +234,20 @@ Please refer to the documentation for the specific provider you use to determine
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.reports.download.download">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.reports.download.download</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.download_ai_request_logs_export"><code class="name flex">
+<span>def <span class="ident">download_ai_request_logs_export</span></span>(<span>self, user_id: int, export_id: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Download AI Request Logs Export</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.requestLogs.exports.download">https://support.crowdin.com/developer/api/v2/#operation/api.ai.requestLogs.exports.download</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.edit_ai_custom_placeholder"><code class="name flex">
 <span>def <span class="ident">edit_ai_custom_placeholder</span></span>(<span>self, user_id: int, ai_custom_placeholder_id: int, patches: Iterable[<a title="crowdin_api.api_resources.ai.types.EditAiCustomPlaceholderPatch" href="types.html#crowdin_api.api_resources.ai.types.EditAiCustomPlaceholderPatch">EditAiCustomPlaceholderPatch</a>])</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit AI Custom Placeholder</p>
+<p>Deprecated: AI Custom Placeholders were replaced by AI Snippets, use <code>edit_ai_snippet</code> instead.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.settings.custom-placeholders.patch">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.settings.custom-placeholders.patch</a></p></div>
 </dd>
@@ -222,7 +257,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Edit AI Prompt</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.patch">https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.prompts.patch">https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.prompts.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.edit_ai_provider"><code class="name flex">
 <span>def <span class="ident">edit_ai_provider</span></span>(<span>self, userId: int, aiProviderId: int, request_data: <a title="crowdin_api.api_resources.ai.types.EditAIProviderRequestScheme" href="types.html#crowdin_api.api_resources.ai.types.EditAIProviderRequestScheme">EditAIProviderRequestScheme</a>)</span>
@@ -230,7 +265,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Edit AI Provider</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.patch">https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.patch">https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.edit_ai_provider_gateway"><code class="name flex">
 <span>def <span class="ident">edit_ai_provider_gateway</span></span>(<span>self, user_id: int, ai_provider_id: int, path: str, request_data: Optional[Dict[~KT, ~VT]] = None)</span>
@@ -247,6 +282,25 @@ Please refer to the documentation for the specific provider you use to determine
 <div class="desc"><p>Edit AI Settings</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.settings.patch">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.settings.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.edit_ai_snippet"><code class="name flex">
+<span>def <span class="ident">edit_ai_snippet</span></span>(<span>self, user_id: int, ai_snippet_id: int, patches: Iterable[<a title="crowdin_api.api_resources.ai.types.EditAiSnippetPatch" href="types.html#crowdin_api.api_resources.ai.types.EditAiSnippetPatch">EditAiSnippetPatch</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit AI Snippet</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.prompts.snippets.patch">https://support.crowdin.com/developer/api/v2/#operation/api.ai.prompts.snippets.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.export_ai_request_logs"><code class="name flex">
+<span>def <span class="ident">export_ai_request_logs</span></span>(<span>self, user_id: int, export_format: Optional[<a title="crowdin_api.api_resources.ai.enums.AiRequestLogExportFormat" href="enums.html#crowdin_api.api_resources.ai.enums.AiRequestLogExportFormat">AiRequestLogExportFormat</a>] = None, request_id: Optional[str] = None, project_id: Optional[int] = None, request_user_id: Optional[int] = None, ai_provider_id: Optional[int] = None, model: Optional[str] = None, source_action: Optional[<a title="crowdin_api.api_resources.ai.enums.AiRequestLogSourceAction" href="enums.html#crowdin_api.api_resources.ai.enums.AiRequestLogSourceAction">AiRequestLogSourceAction</a>] = None, prompt_action: Optional[str] = None, statuses: Optional[Iterable[<a title="crowdin_api.api_resources.ai.enums.AiRequestLogStatus" href="enums.html#crowdin_api.api_resources.ai.enums.AiRequestLogStatus">AiRequestLogStatus</a>]] = None, system_credentials: Optional[bool] = None, is_auto_triggered: Optional[bool] = None, token_name: Optional[str] = None, oauth_client_id: Optional[str] = None, created_after: Optional[datetime.datetime] = None, created_before: Optional[datetime.datetime] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Export AI Request Logs</p>
+<p>Starts an asynchronous export of the AI request logs matching the filters.
+Poll <code>check_ai_request_logs_export_status</code> until the status is <code>finished</code>,
+then call <code>download_ai_request_logs_export</code>.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.requestLogs.exports.post">https://support.crowdin.com/developer/api/v2/#operation/api.ai.requestLogs.exports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.generate_ai_prompt_completion"><code class="name flex">
 <span>def <span class="ident">generate_ai_prompt_completion</span></span>(<span>self, user_id: int, ai_prompt_id: int, request: <a title="crowdin_api.api_resources.ai.types.GenerateAiPromptCompletionRequest" href="types.html#crowdin_api.api_resources.ai.types.GenerateAiPromptCompletionRequest">GenerateAiPromptCompletionRequest</a>)</span>
@@ -277,6 +331,7 @@ Please refer to the documentation for the specific provider you use to determine
 </code></dt>
 <dd>
 <div class="desc"><p>Get AI Custom Placeholder</p>
+<p>Deprecated: AI Custom Placeholders were replaced by AI Snippets, use <code>get_ai_snippet</code> instead.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.settings.custom-placeholders.get">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.users.ai.settings.custom-placeholders.get</a></p></div>
 </dd>
@@ -312,7 +367,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Get AI Prompt</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.get">https://developer.crowdin.com/api/v2/#operation/api.users.ai.prompts.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.prompts.get">https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.prompts.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.get_ai_prompt_completion_status"><code class="name flex">
 <span>def <span class="ident">get_ai_prompt_completion_status</span></span>(<span>self, user_id: int, ai_prompt_id: int, completion_id: str)</span>
@@ -362,7 +417,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Get AI Provider</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.get">https://developer.crowdin.com/api/v2/#operation/api.users.ai.providers.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.get">https://support.crowdin.com/developer/api/v2/#operation/api.users.ai.providers.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.get_ai_provider_gateway"><code class="name flex">
 <span>def <span class="ident">get_ai_provider_gateway</span></span>(<span>self, user_id: int, ai_provider_id: int, path: str)</span>
@@ -390,6 +445,12 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.get_ai_request_logs_path"><code class="name flex">
+<span>def <span class="ident">get_ai_request_logs_path</span></span>(<span>self, user_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.get_ai_settings"><code class="name flex">
 <span>def <span class="ident">get_ai_settings</span></span>(<span>self, user_id: int)</span>
 </code></dt>
@@ -404,11 +465,49 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.get_ai_snippet"><code class="name flex">
+<span>def <span class="ident">get_ai_snippet</span></span>(<span>self, user_id: int, ai_snippet_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get AI Snippet</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.prompts.snippets.get">https://support.crowdin.com/developer/api/v2/#operation/api.ai.prompts.snippets.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.get_ai_snippets_path"><code class="name flex">
+<span>def <span class="ident">get_ai_snippets_path</span></span>(<span>self, user_id: int, ai_snippet_id: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.get_ai_usage_member"><code class="name flex">
+<span>def <span class="ident">get_ai_usage_member</span></span>(<span>self, user_id: int, member_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get AI Usage Member</p>
+<p><code>member_id</code> is the identifier of the project member (or your own user id for own usage).</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.usage.members.get">https://support.crowdin.com/developer/api/v2/#operation/api.ai.usage.members.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.get_ai_usage_members_path"><code class="name flex">
+<span>def <span class="ident">get_ai_usage_members_path</span></span>(<span>self, user_id: int, member_id: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.get_project_ai_settings"><code class="name flex">
+<span>def <span class="ident">get_project_ai_settings</span></span>(<span>self, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Project AI Settings</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.ai.settings.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.ai.settings.get</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.list_ai_custom_placeholders"><code class="name flex">
 <span>def <span class="ident">list_ai_custom_placeholders</span></span>(<span>self, user_id: int)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List AI Custom Placeholders</p>
+<p>Deprecated: AI Custom Placeholders were replaced by AI Snippets, use <code>list_ai_snippets</code> instead.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.ai.prompt.custom.placeholders.getMany">https://support.crowdin.com/developer/api/v2/#tag/AI/operation/api.ai.prompt.custom.placeholders.getMany</a></p></div>
 </dd>
@@ -434,7 +533,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>List AI Prompts</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.ai.prompts.getMany">https://developer.crowdin.com/api/v2/#operation/api.ai.prompts.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.prompts.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.ai.prompts.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.list_ai_provider_models"><code class="name flex">
 <span>def <span class="ident">list_ai_provider_models</span></span>(<span>self, userId: int, aiProviderId: int)</span>
@@ -442,7 +541,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>List AI Provider Models</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.ai.providers.models.getMany">https://developer.crowdin.com/api/v2/#operation/api.ai.providers.models.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.providers.models.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.ai.providers.models.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.list_ai_providers"><code class="name flex">
 <span>def <span class="ident">list_ai_providers</span></span>(<span>self, userId: int, limit: Optional[int] = None, offset: Optional[int] = None)</span>
@@ -450,7 +549,41 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>List AI Providers</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.ai.providers.getMany">https://developer.crowdin.com/api/v2/#operation/api.ai.providers.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.providers.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.ai.providers.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.list_ai_request_logs"><code class="name flex">
+<span>def <span class="ident">list_ai_request_logs</span></span>(<span>self, user_id: int, request_id: Optional[str] = None, project_id: Optional[int] = None, request_user_id: Optional[int] = None, ai_provider_id: Optional[int] = None, model: Optional[str] = None, source_action: Optional[<a title="crowdin_api.api_resources.ai.enums.AiRequestLogSourceAction" href="enums.html#crowdin_api.api_resources.ai.enums.AiRequestLogSourceAction">AiRequestLogSourceAction</a>] = None, prompt_action: Optional[str] = None, statuses: Optional[Iterable[<a title="crowdin_api.api_resources.ai.enums.AiRequestLogStatus" href="enums.html#crowdin_api.api_resources.ai.enums.AiRequestLogStatus">AiRequestLogStatus</a>]] = None, system_credentials: Optional[bool] = None, is_auto_triggered: Optional[bool] = None, token_name: Optional[str] = None, oauth_client_id: Optional[str] = None, created_after: Optional[datetime.datetime] = None, created_before: Optional[datetime.datetime] = None, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List AI Request Logs</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.requestLogs.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.ai.requestLogs.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.list_ai_snippets"><code class="name flex">
+<span>def <span class="ident">list_ai_snippets</span></span>(<span>self, user_id: int, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List AI Snippets</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.prompts.snippets.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.ai.prompts.snippets.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.list_ai_usage_members"><code class="name flex">
+<span>def <span class="ident">list_ai_usage_members</span></span>(<span>self, user_id: int, user_ids: Optional[Iterable[int]] = None, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List AI Usage Members</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.usage.members.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.ai.usage.members.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.AIResource.list_all_ai_provider_models"><code class="name flex">
+<span>def <span class="ident">list_all_ai_provider_models</span></span>(<span>self, user_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List AI Provider Models</p>
+<p>Lists the models of all AI providers available to the user.
+To list the models of a single AI provider, use <code>list_ai_provider_models</code>.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.ai.providers.models.crowdin.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.ai.providers.models.crowdin.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.AIResource.list_supported_ai_provider_models"><code class="name flex">
 <span>def <span class="ident">list_supported_ai_provider_models</span></span>(<span>self, user_id: int, limit: Optional[int] = None, offset: Optional[int] = None, provider_type: Optional[<a title="crowdin_api.api_resources.ai.enums.AIProviderType" href="enums.html#crowdin_api.api_resources.ai.enums.AIProviderType">AIProviderType</a>] = None, enabled: Optional[bool] = None, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None)</span>
@@ -485,7 +618,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Enterprise Resource for AI.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#tag/AI">https://developer.crowdin.com/enterprise/api/v2/#tag/AI</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -497,6 +630,7 @@ Please refer to the documentation for the specific provider you use to determine
 </code></dt>
 <dd>
 <div class="desc"><p>Add AI Custom Placeholder</p>
+<p>Deprecated: AI Custom Placeholders were replaced by AI Snippets, use <code>add_ai_snippet</code> instead.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.settings.custom-placeholders.post">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.settings.custom-placeholders.post</a></p></div>
 </dd>
@@ -506,7 +640,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Add AI Prompt</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.add_ai_provider"><code class="name flex">
 <span>def <span class="ident">add_ai_provider</span></span>(<span>self, request_data: <a title="crowdin_api.api_resources.ai.types.AddAIProviderReqeustScheme" href="types.html#crowdin_api.api_resources.ai.types.AddAIProviderReqeustScheme">AddAIProviderReqeustScheme</a>)</span>
@@ -514,7 +648,15 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Add AI Provider</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.add_ai_snippet"><code class="name flex">
+<span>def <span class="ident">add_ai_snippet</span></span>(<span>self, request_data: <a title="crowdin_api.api_resources.ai.types.AddAiSnippetRequest" href="types.html#crowdin_api.api_resources.ai.types.AddAiSnippetRequest">AddAiSnippetRequest</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add AI Snippet</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.snippets.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.snippets.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.cancel_ai_file_translation"><code class="name flex">
 <span>def <span class="ident">cancel_ai_file_translation</span></span>(<span>self, job_identifier: str)</span>
@@ -539,6 +681,14 @@ Please refer to the documentation for the specific provider you use to determine
 <div class="desc"><p>Check AI Report Generation Status</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.reports.get">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.reports.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.check_ai_request_logs_export_status"><code class="name flex">
+<span>def <span class="ident">check_ai_request_logs_export_status</span></span>(<span>self, export_id: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check AI Request Logs Export Status</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.requestLogs.exports.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.requestLogs.exports.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.clone_ai_prompt"><code class="name flex">
 <span>def <span class="ident">clone_ai_prompt</span></span>(<span>self, ai_prompt_id: int, name: Optional[str] = None)</span>
@@ -580,13 +730,14 @@ Please refer to the documentation for the specific provider you use to determine
 <p>This API method serves as an intermediary, forwarding your requests directly to the selected provider.
 Please refer to the documentation for the specific provider you use to determine the required payload format.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.chat.completions.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.chat.completions.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.chat.completions.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.chat.completions.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.delete_ai_custom_placeholder"><code class="name flex">
 <span>def <span class="ident">delete_ai_custom_placeholder</span></span>(<span>self, ai_custom_placeholder_id: int)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete AI Custom Placeholder</p>
+<p>Deprecated: AI Custom Placeholders were replaced by AI Snippets, use <code>delete_ai_snippet</code> instead.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.settings.custom-placeholders.delete">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.settings.custom-placeholders.delete</a></p></div>
 </dd>
@@ -596,7 +747,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Delete AI Prompt</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.delete">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.delete_ai_provider"><code class="name flex">
 <span>def <span class="ident">delete_ai_provider</span></span>(<span>self, aiProviderId: int)</span>
@@ -604,7 +755,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Delete AI Provider</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.delete">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.delete_ai_provider_gateway"><code class="name flex">
 <span>def <span class="ident">delete_ai_provider_gateway</span></span>(<span>self, ai_provider_id: int, path: str)</span>
@@ -613,6 +764,14 @@ Please refer to the documentation for the specific provider you use to determine
 <div class="desc"><p>AI Provider Gateway DELETE Request</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.delete">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI-Gateway/operation/api.ai.providers.gateway.enterprise.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.delete_ai_snippet"><code class="name flex">
+<span>def <span class="ident">delete_ai_snippet</span></span>(<span>self, ai_snippet_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete AI Snippet</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.snippets.delete">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.snippets.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.download_ai_file_translation"><code class="name flex">
 <span>def <span class="ident">download_ai_file_translation</span></span>(<span>self, job_identifier: str)</span>
@@ -654,11 +813,20 @@ Please refer to the documentation for the specific provider you use to determine
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.reports.download.download">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.reports.download.download</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.download_ai_request_logs_export"><code class="name flex">
+<span>def <span class="ident">download_ai_request_logs_export</span></span>(<span>self, export_id: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Download AI Request Logs Export</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.requestLogs.exports.download">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.requestLogs.exports.download</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_custom_placeholder"><code class="name flex">
 <span>def <span class="ident">edit_ai_custom_placeholder</span></span>(<span>self, ai_custom_placeholder_id: int, patches: Iterable[<a title="crowdin_api.api_resources.ai.types.EditAiCustomPlaceholderPatch" href="types.html#crowdin_api.api_resources.ai.types.EditAiCustomPlaceholderPatch">EditAiCustomPlaceholderPatch</a>])</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit AI Custom Placeholder</p>
+<p>Deprecated: AI Custom Placeholders were replaced by AI Snippets, use <code>edit_ai_snippet</code> instead.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.settings.custom-placeholders.patch">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.settings.custom-placeholders.patch</a></p></div>
 </dd>
@@ -668,7 +836,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Edit AI Prompt</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_provider"><code class="name flex">
 <span>def <span class="ident">edit_ai_provider</span></span>(<span>self, aiProviderId: int, request_data: <a title="crowdin_api.api_resources.ai.types.EditAIProviderRequestScheme" href="types.html#crowdin_api.api_resources.ai.types.EditAIProviderRequestScheme">EditAIProviderRequestScheme</a>)</span>
@@ -676,7 +844,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Edit AI Provider</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_provider_gateway"><code class="name flex">
 <span>def <span class="ident">edit_ai_provider_gateway</span></span>(<span>self, ai_provider_id: int, path: str, request_data: Optional[Dict[~KT, ~VT]] = None)</span>
@@ -693,6 +861,25 @@ Please refer to the documentation for the specific provider you use to determine
 <div class="desc"><p>Edit AI Settings</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.settings.patch">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.settings.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_snippet"><code class="name flex">
+<span>def <span class="ident">edit_ai_snippet</span></span>(<span>self, ai_snippet_id: int, patches: Iterable[<a title="crowdin_api.api_resources.ai.types.EditAiSnippetPatch" href="types.html#crowdin_api.api_resources.ai.types.EditAiSnippetPatch">EditAiSnippetPatch</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit AI Snippet</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.snippets.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.snippets.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.export_ai_request_logs"><code class="name flex">
+<span>def <span class="ident">export_ai_request_logs</span></span>(<span>self, export_format: Optional[<a title="crowdin_api.api_resources.ai.enums.AiRequestLogExportFormat" href="enums.html#crowdin_api.api_resources.ai.enums.AiRequestLogExportFormat">AiRequestLogExportFormat</a>] = None, request_id: Optional[str] = None, project_id: Optional[int] = None, request_user_id: Optional[int] = None, ai_provider_id: Optional[int] = None, model: Optional[str] = None, source_action: Optional[<a title="crowdin_api.api_resources.ai.enums.AiRequestLogSourceAction" href="enums.html#crowdin_api.api_resources.ai.enums.AiRequestLogSourceAction">AiRequestLogSourceAction</a>] = None, prompt_action: Optional[str] = None, statuses: Optional[Iterable[<a title="crowdin_api.api_resources.ai.enums.AiRequestLogStatus" href="enums.html#crowdin_api.api_resources.ai.enums.AiRequestLogStatus">AiRequestLogStatus</a>]] = None, system_credentials: Optional[bool] = None, is_auto_triggered: Optional[bool] = None, token_name: Optional[str] = None, oauth_client_id: Optional[str] = None, created_after: Optional[datetime.datetime] = None, created_before: Optional[datetime.datetime] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Export AI Request Logs</p>
+<p>Starts an asynchronous export of the AI request logs matching the filters.
+Poll <code>check_ai_request_logs_export_status</code> until the status is <code>finished</code>,
+then call <code>download_ai_request_logs_export</code>.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.requestLogs.exports.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.requestLogs.exports.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.generate_ai_prompt_completion"><code class="name flex">
 <span>def <span class="ident">generate_ai_prompt_completion</span></span>(<span>self, ai_prompt_id: int, request: <a title="crowdin_api.api_resources.ai.types.GenerateAiPromptCompletionRequest" href="types.html#crowdin_api.api_resources.ai.types.GenerateAiPromptCompletionRequest">GenerateAiPromptCompletionRequest</a>)</span>
@@ -723,6 +910,7 @@ Please refer to the documentation for the specific provider you use to determine
 </code></dt>
 <dd>
 <div class="desc"><p>Get AI Custom Placeholder</p>
+<p>Deprecated: AI Custom Placeholders were replaced by AI Snippets, use <code>get_ai_snippet</code> instead.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.settings.custom-placeholders.get">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.settings.custom-placeholders.get</a></p></div>
 </dd>
@@ -758,7 +946,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Get AI Prompt</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.get</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_prompt_completion_status"><code class="name flex">
 <span>def <span class="ident">get_ai_prompt_completion_status</span></span>(<span>self, ai_prompt_id: int, completion_id: str)</span>
@@ -808,7 +996,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>Get AI Provider</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.get</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_provider_gateway"><code class="name flex">
 <span>def <span class="ident">get_ai_provider_gateway</span></span>(<span>self, ai_provider_id: int, path: str)</span>
@@ -836,6 +1024,12 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_request_logs_path"><code class="name flex">
+<span>def <span class="ident">get_ai_request_logs_path</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_settings"><code class="name flex">
 <span>def <span class="ident">get_ai_settings</span></span>(<span>self)</span>
 </code></dt>
@@ -844,11 +1038,49 @@ Please refer to the documentation for the specific provider you use to determine
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.settings.get">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.settings.get</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_snippet"><code class="name flex">
+<span>def <span class="ident">get_ai_snippet</span></span>(<span>self, ai_snippet_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get AI Snippet</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.snippets.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.snippets.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_snippets_path"><code class="name flex">
+<span>def <span class="ident">get_ai_snippets_path</span></span>(<span>self, ai_snippet_id: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_usage_member"><code class="name flex">
+<span>def <span class="ident">get_ai_usage_member</span></span>(<span>self, member_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get AI Usage Member</p>
+<p><code>member_id</code> is the identifier of the organization user.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.usage.members.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.usage.members.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_usage_members_path"><code class="name flex">
+<span>def <span class="ident">get_ai_usage_members_path</span></span>(<span>self, member_id: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_project_ai_settings"><code class="name flex">
+<span>def <span class="ident">get_project_ai_settings</span></span>(<span>self, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Project AI Settings</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.ai.settings.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.ai.settings.get</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_custom_placeholders"><code class="name flex">
 <span>def <span class="ident">list_ai_custom_placeholders</span></span>(<span>self)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List AI Custom Placeholders</p>
+<p>Deprecated: AI Custom Placeholders were replaced by AI Snippets, use <code>list_ai_snippets</code> instead.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.prompts.custom.placeholders.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#tag/AI/operation/api.ai.prompts.custom.placeholders.getMany</a></p></div>
 </dd>
@@ -874,7 +1106,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>List AI Prompts</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.prompts.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_provider_models"><code class="name flex">
 <span>def <span class="ident">list_ai_provider_models</span></span>(<span>self, aiProviderId: int)</span>
@@ -882,7 +1114,7 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>List AI Provider Models</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.ai.providers.models.getMany">https://developer.crowdin.com/api/v2/#operation/api.ai.providers.models.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.models.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.models.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_providers"><code class="name flex">
 <span>def <span class="ident">list_ai_providers</span></span>(<span>self, limit: Optional[int] = None, offset: Optional[int] = None)</span>
@@ -890,7 +1122,41 @@ Please refer to the documentation for the specific provider you use to determine
 <dd>
 <div class="desc"><p>List AI Providers</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.ai.providers.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_request_logs"><code class="name flex">
+<span>def <span class="ident">list_ai_request_logs</span></span>(<span>self, request_id: Optional[str] = None, project_id: Optional[int] = None, request_user_id: Optional[int] = None, ai_provider_id: Optional[int] = None, model: Optional[str] = None, source_action: Optional[<a title="crowdin_api.api_resources.ai.enums.AiRequestLogSourceAction" href="enums.html#crowdin_api.api_resources.ai.enums.AiRequestLogSourceAction">AiRequestLogSourceAction</a>] = None, prompt_action: Optional[str] = None, statuses: Optional[Iterable[<a title="crowdin_api.api_resources.ai.enums.AiRequestLogStatus" href="enums.html#crowdin_api.api_resources.ai.enums.AiRequestLogStatus">AiRequestLogStatus</a>]] = None, system_credentials: Optional[bool] = None, is_auto_triggered: Optional[bool] = None, token_name: Optional[str] = None, oauth_client_id: Optional[str] = None, created_after: Optional[datetime.datetime] = None, created_before: Optional[datetime.datetime] = None, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List AI Request Logs</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.requestLogs.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.requestLogs.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_snippets"><code class="name flex">
+<span>def <span class="ident">list_ai_snippets</span></span>(<span>self, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List AI Snippets</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.snippets.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.prompts.snippets.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_usage_members"><code class="name flex">
+<span>def <span class="ident">list_ai_usage_members</span></span>(<span>self, user_ids: Optional[Iterable[int]] = None, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List AI Usage Members</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.usage.members.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.usage.members.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_all_ai_provider_models"><code class="name flex">
+<span>def <span class="ident">list_all_ai_provider_models</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List AI Provider Models</p>
+<p>Lists the models of all AI providers available in the organization.
+To list the models of a single AI provider, use <code>list_ai_provider_models</code>.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.models.enterprise.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.ai.providers.models.enterprise.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_supported_ai_provider_models"><code class="name flex">
 <span>def <span class="ident">list_supported_ai_provider_models</span></span>(<span>self, limit: Optional[int] = None, offset: Optional[int] = None, provider_type: Optional[<a title="crowdin_api.api_resources.ai.enums.AIProviderType" href="enums.html#crowdin_api.api_resources.ai.enums.AIProviderType">AIProviderType</a>] = None, enabled: Optional[bool] = None, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None)</span>
@@ -940,9 +1206,11 @@ Please refer to the documentation for the specific provider you use to determine
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.add_ai_custom_placeholder" href="#crowdin_api.api_resources.ai.resource.AIResource.add_ai_custom_placeholder">add_ai_custom_placeholder</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.add_ai_prompt" href="#crowdin_api.api_resources.ai.resource.AIResource.add_ai_prompt">add_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.add_ai_provider" href="#crowdin_api.api_resources.ai.resource.AIResource.add_ai_provider">add_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.add_ai_snippet" href="#crowdin_api.api_resources.ai.resource.AIResource.add_ai_snippet">add_ai_snippet</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.cancel_ai_file_translation" href="#crowdin_api.api_resources.ai.resource.AIResource.cancel_ai_file_translation">cancel_ai_file_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.cancel_ai_prompt_completion" href="#crowdin_api.api_resources.ai.resource.AIResource.cancel_ai_prompt_completion">cancel_ai_prompt_completion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.check_ai_report_generation_status" href="#crowdin_api.api_resources.ai.resource.AIResource.check_ai_report_generation_status">check_ai_report_generation_status</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.check_ai_request_logs_export_status" href="#crowdin_api.api_resources.ai.resource.AIResource.check_ai_request_logs_export_status">check_ai_request_logs_export_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.clone_ai_prompt" href="#crowdin_api.api_resources.ai.resource.AIResource.clone_ai_prompt">clone_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.create_ai_file_translation" href="#crowdin_api.api_resources.ai.resource.AIResource.create_ai_file_translation">create_ai_file_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.create_ai_prompt_fine_tuning_job" href="#crowdin_api.api_resources.ai.resource.AIResource.create_ai_prompt_fine_tuning_job">create_ai_prompt_fine_tuning_job</a></code></li>
@@ -952,16 +1220,20 @@ Please refer to the documentation for the specific provider you use to determine
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.delete_ai_prompt" href="#crowdin_api.api_resources.ai.resource.AIResource.delete_ai_prompt">delete_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.delete_ai_provider" href="#crowdin_api.api_resources.ai.resource.AIResource.delete_ai_provider">delete_ai_provider</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.delete_ai_provider_gateway" href="#crowdin_api.api_resources.ai.resource.AIResource.delete_ai_provider_gateway">delete_ai_provider_gateway</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.delete_ai_snippet" href="#crowdin_api.api_resources.ai.resource.AIResource.delete_ai_snippet">delete_ai_snippet</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.download_ai_file_translation" href="#crowdin_api.api_resources.ai.resource.AIResource.download_ai_file_translation">download_ai_file_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.download_ai_file_translation_strings" href="#crowdin_api.api_resources.ai.resource.AIResource.download_ai_file_translation_strings">download_ai_file_translation_strings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.download_ai_prompt_completion" href="#crowdin_api.api_resources.ai.resource.AIResource.download_ai_prompt_completion">download_ai_prompt_completion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.download_ai_prompt_fine_tuning_dataset" href="#crowdin_api.api_resources.ai.resource.AIResource.download_ai_prompt_fine_tuning_dataset">download_ai_prompt_fine_tuning_dataset</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.download_ai_report" href="#crowdin_api.api_resources.ai.resource.AIResource.download_ai_report">download_ai_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.download_ai_request_logs_export" href="#crowdin_api.api_resources.ai.resource.AIResource.download_ai_request_logs_export">download_ai_request_logs_export</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.edit_ai_custom_placeholder" href="#crowdin_api.api_resources.ai.resource.AIResource.edit_ai_custom_placeholder">edit_ai_custom_placeholder</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.edit_ai_prompt" href="#crowdin_api.api_resources.ai.resource.AIResource.edit_ai_prompt">edit_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.edit_ai_provider" href="#crowdin_api.api_resources.ai.resource.AIResource.edit_ai_provider">edit_ai_provider</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.edit_ai_provider_gateway" href="#crowdin_api.api_resources.ai.resource.AIResource.edit_ai_provider_gateway">edit_ai_provider_gateway</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.edit_ai_settings" href="#crowdin_api.api_resources.ai.resource.AIResource.edit_ai_settings">edit_ai_settings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.edit_ai_snippet" href="#crowdin_api.api_resources.ai.resource.AIResource.edit_ai_snippet">edit_ai_snippet</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.export_ai_request_logs" href="#crowdin_api.api_resources.ai.resource.AIResource.export_ai_request_logs">export_ai_request_logs</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.generate_ai_prompt_completion" href="#crowdin_api.api_resources.ai.resource.AIResource.generate_ai_prompt_completion">generate_ai_prompt_completion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.generate_ai_prompt_fine_tuning_dataset" href="#crowdin_api.api_resources.ai.resource.AIResource.generate_ai_prompt_fine_tuning_dataset">generate_ai_prompt_fine_tuning_dataset</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.generate_ai_report" href="#crowdin_api.api_resources.ai.resource.AIResource.generate_ai_report">generate_ai_report</a></code></li>
@@ -982,14 +1254,24 @@ Please refer to the documentation for the specific provider you use to determine
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.get_ai_provider_gateway_path" href="#crowdin_api.api_resources.ai.resource.AIResource.get_ai_provider_gateway_path">get_ai_provider_gateway_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.get_ai_provider_path" href="#crowdin_api.api_resources.ai.resource.AIResource.get_ai_provider_path">get_ai_provider_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.get_ai_reports_path" href="#crowdin_api.api_resources.ai.resource.AIResource.get_ai_reports_path">get_ai_reports_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.get_ai_request_logs_path" href="#crowdin_api.api_resources.ai.resource.AIResource.get_ai_request_logs_path">get_ai_request_logs_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.get_ai_settings" href="#crowdin_api.api_resources.ai.resource.AIResource.get_ai_settings">get_ai_settings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.get_ai_settings_path" href="#crowdin_api.api_resources.ai.resource.AIResource.get_ai_settings_path">get_ai_settings_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.get_ai_snippet" href="#crowdin_api.api_resources.ai.resource.AIResource.get_ai_snippet">get_ai_snippet</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.get_ai_snippets_path" href="#crowdin_api.api_resources.ai.resource.AIResource.get_ai_snippets_path">get_ai_snippets_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.get_ai_usage_member" href="#crowdin_api.api_resources.ai.resource.AIResource.get_ai_usage_member">get_ai_usage_member</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.get_ai_usage_members_path" href="#crowdin_api.api_resources.ai.resource.AIResource.get_ai_usage_members_path">get_ai_usage_members_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.get_project_ai_settings" href="#crowdin_api.api_resources.ai.resource.AIResource.get_project_ai_settings">get_project_ai_settings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.list_ai_custom_placeholders" href="#crowdin_api.api_resources.ai.resource.AIResource.list_ai_custom_placeholders">list_ai_custom_placeholders</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.list_ai_prompt_fine_tuning_events" href="#crowdin_api.api_resources.ai.resource.AIResource.list_ai_prompt_fine_tuning_events">list_ai_prompt_fine_tuning_events</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.list_ai_prompt_fine_tuning_jobs" href="#crowdin_api.api_resources.ai.resource.AIResource.list_ai_prompt_fine_tuning_jobs">list_ai_prompt_fine_tuning_jobs</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.list_ai_prompts" href="#crowdin_api.api_resources.ai.resource.AIResource.list_ai_prompts">list_ai_prompts</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.list_ai_provider_models" href="#crowdin_api.api_resources.ai.resource.AIResource.list_ai_provider_models">list_ai_provider_models</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.list_ai_providers" href="#crowdin_api.api_resources.ai.resource.AIResource.list_ai_providers">list_ai_providers</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.list_ai_request_logs" href="#crowdin_api.api_resources.ai.resource.AIResource.list_ai_request_logs">list_ai_request_logs</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.list_ai_snippets" href="#crowdin_api.api_resources.ai.resource.AIResource.list_ai_snippets">list_ai_snippets</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.list_ai_usage_members" href="#crowdin_api.api_resources.ai.resource.AIResource.list_ai_usage_members">list_ai_usage_members</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.list_all_ai_provider_models" href="#crowdin_api.api_resources.ai.resource.AIResource.list_all_ai_provider_models">list_all_ai_provider_models</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.list_supported_ai_provider_models" href="#crowdin_api.api_resources.ai.resource.AIResource.list_supported_ai_provider_models">list_supported_ai_provider_models</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.replace_ai_provider_gateway" href="#crowdin_api.api_resources.ai.resource.AIResource.replace_ai_provider_gateway">replace_ai_provider_gateway</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.AIResource.translate_ai_strings" href="#crowdin_api.api_resources.ai.resource.AIResource.translate_ai_strings">translate_ai_strings</a></code></li>
@@ -1001,9 +1283,11 @@ Please refer to the documentation for the specific provider you use to determine
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.add_ai_custom_placeholder" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.add_ai_custom_placeholder">add_ai_custom_placeholder</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.add_ai_prompt" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.add_ai_prompt">add_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.add_ai_provider" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.add_ai_provider">add_ai_provider</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.add_ai_snippet" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.add_ai_snippet">add_ai_snippet</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.cancel_ai_file_translation" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.cancel_ai_file_translation">cancel_ai_file_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.cancel_ai_prompt_completion" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.cancel_ai_prompt_completion">cancel_ai_prompt_completion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.check_ai_report_generation_status" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.check_ai_report_generation_status">check_ai_report_generation_status</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.check_ai_request_logs_export_status" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.check_ai_request_logs_export_status">check_ai_request_logs_export_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.clone_ai_prompt" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.clone_ai_prompt">clone_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.create_ai_file_translation" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.create_ai_file_translation">create_ai_file_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.create_ai_prompt_fine_tuning_job" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.create_ai_prompt_fine_tuning_job">create_ai_prompt_fine_tuning_job</a></code></li>
@@ -1013,16 +1297,20 @@ Please refer to the documentation for the specific provider you use to determine
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.delete_ai_prompt" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.delete_ai_prompt">delete_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.delete_ai_provider" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.delete_ai_provider">delete_ai_provider</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.delete_ai_provider_gateway" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.delete_ai_provider_gateway">delete_ai_provider_gateway</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.delete_ai_snippet" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.delete_ai_snippet">delete_ai_snippet</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.download_ai_file_translation" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.download_ai_file_translation">download_ai_file_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.download_ai_file_translation_strings" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.download_ai_file_translation_strings">download_ai_file_translation_strings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.download_ai_prompt_completion" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.download_ai_prompt_completion">download_ai_prompt_completion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.download_ai_prompt_fine_tuning_dataset" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.download_ai_prompt_fine_tuning_dataset">download_ai_prompt_fine_tuning_dataset</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.download_ai_report" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.download_ai_report">download_ai_report</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.download_ai_request_logs_export" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.download_ai_request_logs_export">download_ai_request_logs_export</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_custom_placeholder" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_custom_placeholder">edit_ai_custom_placeholder</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_prompt" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_prompt">edit_ai_prompt</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_provider" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_provider">edit_ai_provider</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_provider_gateway" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_provider_gateway">edit_ai_provider_gateway</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_settings" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_settings">edit_ai_settings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_snippet" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.edit_ai_snippet">edit_ai_snippet</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.export_ai_request_logs" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.export_ai_request_logs">export_ai_request_logs</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.generate_ai_prompt_completion" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.generate_ai_prompt_completion">generate_ai_prompt_completion</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.generate_ai_prompt_fine_tuning_dataset" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.generate_ai_prompt_fine_tuning_dataset">generate_ai_prompt_fine_tuning_dataset</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.generate_ai_report" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.generate_ai_report">generate_ai_report</a></code></li>
@@ -1043,13 +1331,23 @@ Please refer to the documentation for the specific provider you use to determine
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_provider_gateway_path" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_provider_gateway_path">get_ai_provider_gateway_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_provider_path" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_provider_path">get_ai_provider_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_reports_path" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_reports_path">get_ai_reports_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_request_logs_path" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_request_logs_path">get_ai_request_logs_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_settings" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_settings">get_ai_settings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_snippet" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_snippet">get_ai_snippet</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_snippets_path" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_snippets_path">get_ai_snippets_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_usage_member" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_usage_member">get_ai_usage_member</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_usage_members_path" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_ai_usage_members_path">get_ai_usage_members_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_project_ai_settings" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.get_project_ai_settings">get_project_ai_settings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_custom_placeholders" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_custom_placeholders">list_ai_custom_placeholders</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_prompt_fine_tuning_events" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_prompt_fine_tuning_events">list_ai_prompt_fine_tuning_events</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_prompt_fine_tuning_jobs" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_prompt_fine_tuning_jobs">list_ai_prompt_fine_tuning_jobs</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_prompts" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_prompts">list_ai_prompts</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_provider_models" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_provider_models">list_ai_provider_models</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_providers" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_providers">list_ai_providers</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_request_logs" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_request_logs">list_ai_request_logs</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_snippets" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_snippets">list_ai_snippets</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_usage_members" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_ai_usage_members">list_ai_usage_members</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_all_ai_provider_models" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_all_ai_provider_models">list_all_ai_provider_models</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_supported_ai_provider_models" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.list_supported_ai_provider_models">list_supported_ai_provider_models</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.replace_ai_provider_gateway" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.replace_ai_provider_gateway">replace_ai_provider_gateway</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.resource.EnterpriseAIResource.translate_ai_strings" href="#crowdin_api.api_resources.ai.resource.EnterpriseAIResource.translate_ai_strings">translate_ai_strings</a></code></li>

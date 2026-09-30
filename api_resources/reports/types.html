@@ -160,6 +160,92 @@ dict(one=1, two=2)</p></div>
 </dd>
 </dl>
 </dd>
+<dt id="crowdin_api.api_resources.reports.types.HourlyBaseRates"><code class="flex name class">
+<span>class <span class="ident">HourlyBaseRates</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.reports.types.HourlyBaseRates.hourly"><code class="name">var <span class="ident">hourly</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.HourlyConfig"><code class="flex name class">
+<span>class <span class="ident">HourlyConfig</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Report settings template config for hourly templates (unit <code>hours</code>).</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.reports.types.HourlyConfig.baseRates"><code class="name">var <span class="ident">baseRates</span> : <a title="crowdin_api.api_resources.reports.types.HourlyBaseRates" href="#crowdin_api.api_resources.reports.types.HourlyBaseRates">HourlyBaseRates</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.HourlyConfig.individualRates"><code class="name">var <span class="ident">individualRates</span> : Iterable[<a title="crowdin_api.api_resources.reports.types.HourlyIndividualRate" href="#crowdin_api.api_resources.reports.types.HourlyIndividualRate">HourlyIndividualRate</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.HourlyIndividualRate"><code class="flex name class">
+<span>class <span class="ident">HourlyIndividualRate</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.reports.types.HourlyIndividualRate.hourly"><code class="name">var <span class="ident">hourly</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.HourlyIndividualRate.languageIds"><code class="name">var <span class="ident">languageIds</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.HourlyIndividualRate.userIds"><code class="name">var <span class="ident">userIds</span> : Iterable[int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.reports.types.Match"><code class="flex name class">
 <span>class <span class="ident">Match</span></span>
 <span>(</span><span>*args, **kwargs)</span>
@@ -187,6 +273,128 @@ dict(one=1, two=2)</p></div>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.reports.types.Match.price"><code class="name">var <span class="ident">price</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingConfig"><code class="flex name class">
+<span>class <span class="ident">PostEditingConfig</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Report settings template config for post-editing templates.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingConfig.baseRates"><code class="name">var <span class="ident">baseRates</span> : <a title="crowdin_api.api_resources.reports.types.BaseRates" href="#crowdin_api.api_resources.reports.types.BaseRates">BaseRates</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingConfig.calculateInternalMatches"><code class="name">var <span class="ident">calculateInternalMatches</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingConfig.includePreTranslatedStrings"><code class="name">var <span class="ident">includePreTranslatedStrings</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingConfig.individualRates"><code class="name">var <span class="ident">individualRates</span> : Iterable[<a title="crowdin_api.api_resources.reports.types.PostEditingIndividualRate" href="#crowdin_api.api_resources.reports.types.PostEditingIndividualRate">PostEditingIndividualRate</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingConfig.netRateSchemes"><code class="name">var <span class="ident">netRateSchemes</span> : <a title="crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes" href="#crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes">PostEditingNetRateSchemes</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingConfig.useCategoryBasedProofreadRates"><code class="name">var <span class="ident">useCategoryBasedProofreadRates</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingConfig.useTmEditDistance"><code class="name">var <span class="ident">useTmEditDistance</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingIndividualRate"><code class="flex name class">
+<span>class <span class="ident">PostEditingIndividualRate</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingIndividualRate.fullTranslation"><code class="name">var <span class="ident">fullTranslation</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingIndividualRate.languageIds"><code class="name">var <span class="ident">languageIds</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingIndividualRate.proofread"><code class="name">var <span class="ident">proofread</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingIndividualRate.userIds"><code class="name">var <span class="ident">userIds</span> : Iterable[int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes"><code class="flex name class">
+<span>class <span class="ident">PostEditingNetRateSchemes</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes.aiMatch"><code class="name">var <span class="ident">aiMatch</span> : Iterable[<a title="crowdin_api.api_resources.reports.types.Match" href="#crowdin_api.api_resources.reports.types.Match">Match</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes.mtMatch"><code class="name">var <span class="ident">mtMatch</span> : Iterable[<a title="crowdin_api.api_resources.reports.types.Match" href="#crowdin_api.api_resources.reports.types.Match">Match</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes.suggestionMatch"><code class="name">var <span class="ident">suggestionMatch</span> : Iterable[<a title="crowdin_api.api_resources.reports.types.Match" href="#crowdin_api.api_resources.reports.types.Match">Match</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes.tmMatch"><code class="name">var <span class="ident">tmMatch</span> : Iterable[<a title="crowdin_api.api_resources.reports.types.Match" href="#crowdin_api.api_resources.reports.types.Match">Match</a>]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -433,10 +641,61 @@ dict(one=1, two=2)</p></div>
 </ul>
 </li>
 <li>
+<h4><code><a title="crowdin_api.api_resources.reports.types.HourlyBaseRates" href="#crowdin_api.api_resources.reports.types.HourlyBaseRates">HourlyBaseRates</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.reports.types.HourlyBaseRates.hourly" href="#crowdin_api.api_resources.reports.types.HourlyBaseRates.hourly">hourly</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.reports.types.HourlyConfig" href="#crowdin_api.api_resources.reports.types.HourlyConfig">HourlyConfig</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.reports.types.HourlyConfig.baseRates" href="#crowdin_api.api_resources.reports.types.HourlyConfig.baseRates">baseRates</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.HourlyConfig.individualRates" href="#crowdin_api.api_resources.reports.types.HourlyConfig.individualRates">individualRates</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.reports.types.HourlyIndividualRate" href="#crowdin_api.api_resources.reports.types.HourlyIndividualRate">HourlyIndividualRate</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.reports.types.HourlyIndividualRate.hourly" href="#crowdin_api.api_resources.reports.types.HourlyIndividualRate.hourly">hourly</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.HourlyIndividualRate.languageIds" href="#crowdin_api.api_resources.reports.types.HourlyIndividualRate.languageIds">languageIds</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.HourlyIndividualRate.userIds" href="#crowdin_api.api_resources.reports.types.HourlyIndividualRate.userIds">userIds</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="crowdin_api.api_resources.reports.types.Match" href="#crowdin_api.api_resources.reports.types.Match">Match</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.reports.types.Match.matchType" href="#crowdin_api.api_resources.reports.types.Match.matchType">matchType</a></code></li>
 <li><code><a title="crowdin_api.api_resources.reports.types.Match.price" href="#crowdin_api.api_resources.reports.types.Match.price">price</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.reports.types.PostEditingConfig" href="#crowdin_api.api_resources.reports.types.PostEditingConfig">PostEditingConfig</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingConfig.baseRates" href="#crowdin_api.api_resources.reports.types.PostEditingConfig.baseRates">baseRates</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingConfig.calculateInternalMatches" href="#crowdin_api.api_resources.reports.types.PostEditingConfig.calculateInternalMatches">calculateInternalMatches</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingConfig.includePreTranslatedStrings" href="#crowdin_api.api_resources.reports.types.PostEditingConfig.includePreTranslatedStrings">includePreTranslatedStrings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingConfig.individualRates" href="#crowdin_api.api_resources.reports.types.PostEditingConfig.individualRates">individualRates</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingConfig.netRateSchemes" href="#crowdin_api.api_resources.reports.types.PostEditingConfig.netRateSchemes">netRateSchemes</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingConfig.useCategoryBasedProofreadRates" href="#crowdin_api.api_resources.reports.types.PostEditingConfig.useCategoryBasedProofreadRates">useCategoryBasedProofreadRates</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingConfig.useTmEditDistance" href="#crowdin_api.api_resources.reports.types.PostEditingConfig.useTmEditDistance">useTmEditDistance</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.reports.types.PostEditingIndividualRate" href="#crowdin_api.api_resources.reports.types.PostEditingIndividualRate">PostEditingIndividualRate</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingIndividualRate.fullTranslation" href="#crowdin_api.api_resources.reports.types.PostEditingIndividualRate.fullTranslation">fullTranslation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingIndividualRate.languageIds" href="#crowdin_api.api_resources.reports.types.PostEditingIndividualRate.languageIds">languageIds</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingIndividualRate.proofread" href="#crowdin_api.api_resources.reports.types.PostEditingIndividualRate.proofread">proofread</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingIndividualRate.userIds" href="#crowdin_api.api_resources.reports.types.PostEditingIndividualRate.userIds">userIds</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes" href="#crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes">PostEditingNetRateSchemes</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes.aiMatch" href="#crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes.aiMatch">aiMatch</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes.mtMatch" href="#crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes.mtMatch">mtMatch</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes.suggestionMatch" href="#crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes.suggestionMatch">suggestionMatch</a></code></li>
+<li><code><a title="crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes.tmMatch" href="#crowdin_api.api_resources.reports.types.PostEditingNetRateSchemes.tmMatch">tmMatch</a></code></li>
 </ul>
 </li>
 <li>

@@ -37,10 +37,14 @@
 <span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Resource for Bundles</p>
+<div class="desc"><p>Resource for Branches.</p>
+<p>Branch CRUD and deletion status endpoints are available for both file-based and
+string-based projects. Clones and merges are available for string-based projects only.</p>
 <p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Branches">https://support.crowdin.com/developer/api/v2/#tag/Branches</a>
 <a href="https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches">https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches</a></p>
 <p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Branches">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Branches</a>
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches">https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -53,9 +57,13 @@
 </code></dt>
 <dd>
 <div class="desc"><p>Add Branch</p>
+<p><code>exportPattern</code> and <code>priority</code> are for file-based projects only,
+<code>isProtected</code> is for string-based projects only.</p>
 <p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Branches/operation/api.projects.branches.post">https://support.crowdin.com/developer/api/v2/#tag/Branches/operation/api.projects.branches.post</a>
 <a href="https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.post">https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.post</a></p>
 <p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Branches/operation/api.projects.branches.post">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Branches/operation/api.projects.branches.post</a>
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.post">https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.branches.resource.BranchesResource.check_branch_clone_status"><code class="name flex">
@@ -63,16 +71,30 @@
 </code></dt>
 <dd>
 <div class="desc"><p>Check Branch Clone Status</p>
+<p>String-based projects only.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.clones.get">https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.clones.get</a></p>
 <p>Link to documentation for enterprise:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.clones.get">https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.clones.get</a></p></div>
 </dd>
+<dt id="crowdin_api.api_resources.branches.resource.BranchesResource.check_branch_deletion_status"><code class="name flex">
+<span>def <span class="ident">check_branch_deletion_status</span></span>(<span>self, project_id: int, branch_id: int, job_identifier: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check Branch Deletion Status</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Branches/operation/api.projects.branches.jobs.get">https://support.crowdin.com/developer/api/v2/#tag/Branches/operation/api.projects.branches.jobs.get</a>
+<a href="https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.jobs.get">https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.jobs.get</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Branches/operation/api.projects.branches.jobs.get">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Branches/operation/api.projects.branches.jobs.get</a>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.jobs.get">https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.jobs.get</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.branches.resource.BranchesResource.check_branch_merge_status"><code class="name flex">
-<span>def <span class="ident">check_branch_merge_status</span></span>(<span>self, project_id: int, branch_id: int, merge_id: int)</span>
+<span>def <span class="ident">check_branch_merge_status</span></span>(<span>self, project_id: int, branch_id: int, merge_id: Union[int, str])</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Check Branch Merge Status</p>
+<p>String-based projects only.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.merges.get">https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.merges.get</a></p>
 <p>Link to documentation for enterprise:
@@ -83,19 +105,24 @@
 </code></dt>
 <dd>
 <div class="desc"><p>Clone Branch</p>
+<p>String-based projects only.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.clones.post">https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.clones.post</a></p>
 <p>Link to documentation for enterprise:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.clones.post">https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.clones.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.branches.resource.BranchesResource.delete_branch"><code class="name flex">
-<span>def <span class="ident">delete_branch</span></span>(<span>self, project_id: int, branch_id: int)</span>
+<span>def <span class="ident">delete_branch</span></span>(<span>self, project_id: int, branch_id: int, prefer: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete Branch</p>
+<p>Pass <code>prefer="respond-async"</code> to delete the branch asynchronously (recommended); the API
+then returns a job to poll via <code>check_branch_deletion_status</code>.</p>
 <p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Branches/operation/api.projects.branches.delete">https://support.crowdin.com/developer/api/v2/#tag/Branches/operation/api.projects.branches.delete</a>
 <a href="https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.delete">https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.delete</a></p>
 <p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Branches/operation/api.projects.branches.delete">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Branches/operation/api.projects.branches.delete</a>
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.delete">https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.branches.resource.BranchesResource.edit_branch"><code class="name flex">
@@ -103,9 +130,13 @@
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Branch</p>
+<p><code>/exportPattern</code> is for file-based projects only, <code>/isProtected</code> is for string-based
+projects only.</p>
 <p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Branches/operation/api.projects.branches.patch">https://support.crowdin.com/developer/api/v2/#tag/Branches/operation/api.projects.branches.patch</a>
 <a href="https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.patch">https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.patch</a></p>
 <p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Branches/operation/api.projects.branches.patch">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Branches/operation/api.projects.branches.patch</a>
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.patch">https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.branches.resource.BranchesResource.get_branch"><code class="name flex">
@@ -114,8 +145,10 @@
 <dd>
 <div class="desc"><p>Get Branch</p>
 <p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Branches/operation/api.projects.branches.get">https://support.crowdin.com/developer/api/v2/#tag/Branches/operation/api.projects.branches.get</a>
 <a href="https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.get">https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.get</a></p>
 <p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Branches/operation/api.projects.branches.get">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Branches/operation/api.projects.branches.get</a>
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.get">https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.branches.resource.BranchesResource.get_branch_clones_path"><code class="name flex">
@@ -125,17 +158,18 @@
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.branches.resource.BranchesResource.get_branch_merge_summary"><code class="name flex">
-<span>def <span class="ident">get_branch_merge_summary</span></span>(<span>self, project_id: int, branch_id: int, merge_id: int)</span>
+<span>def <span class="ident">get_branch_merge_summary</span></span>(<span>self, project_id: int, branch_id: int, merge_id: Union[int, str])</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Branch Merge Summary</p>
+<p>String-based projects only.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.merges.summary.get">https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.merges.summary.get</a></p>
 <p>Link to documentation for enterprise:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.merges.summary.get">https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.merges.summary.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.branches.resource.BranchesResource.get_branch_merges_path"><code class="name flex">
-<span>def <span class="ident">get_branch_merges_path</span></span>(<span>self, project_id: int, branch_id: int, merge_id: Optional[int] = None)</span>
+<span>def <span class="ident">get_branch_merges_path</span></span>(<span>self, project_id: int, branch_id: int, merge_id: Union[int, str, None] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -151,6 +185,7 @@
 </code></dt>
 <dd>
 <div class="desc"><p>Get Cloned Branch</p>
+<p>String-based projects only.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.clones.branch.get">https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.clones.branch.get</a></p>
 <p>Link to documentation for enterprise:
@@ -162,8 +197,10 @@
 <dd>
 <div class="desc"><p>List Branches</p>
 <p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Branches/operation/api.projects.branches.getMany">https://support.crowdin.com/developer/api/v2/#tag/Branches/operation/api.projects.branches.getMany</a>
 <a href="https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.getMany">https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.getMany</a></p>
 <p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Branches/operation/api.projects.branches.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Branches/operation/api.projects.branches.getMany</a>
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.getMany">https://support.crowdin.com/developer/enterprise/api/v2/string-based/#tag/Branches/operation/api.projects.branches.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.branches.resource.BranchesResource.merge_branch"><code class="name flex">
@@ -171,6 +208,7 @@
 </code></dt>
 <dd>
 <div class="desc"><p>Merge Branch</p>
+<p>String-based projects only.</p>
 <p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.merges.post">https://support.crowdin.com/developer/api/v2/string-based/#tag/Branches/operation/api.projects.branches.merges.post</a></p>
 <p>Link to documentation for enterprise:
@@ -199,6 +237,7 @@
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.branches.resource.BranchesResource.add_branch" href="#crowdin_api.api_resources.branches.resource.BranchesResource.add_branch">add_branch</a></code></li>
 <li><code><a title="crowdin_api.api_resources.branches.resource.BranchesResource.check_branch_clone_status" href="#crowdin_api.api_resources.branches.resource.BranchesResource.check_branch_clone_status">check_branch_clone_status</a></code></li>
+<li><code><a title="crowdin_api.api_resources.branches.resource.BranchesResource.check_branch_deletion_status" href="#crowdin_api.api_resources.branches.resource.BranchesResource.check_branch_deletion_status">check_branch_deletion_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.branches.resource.BranchesResource.check_branch_merge_status" href="#crowdin_api.api_resources.branches.resource.BranchesResource.check_branch_merge_status">check_branch_merge_status</a></code></li>
 <li><code><a title="crowdin_api.api_resources.branches.resource.BranchesResource.clone_branch" href="#crowdin_api.api_resources.branches.resource.BranchesResource.clone_branch">clone_branch</a></code></li>
 <li><code><a title="crowdin_api.api_resources.branches.resource.BranchesResource.delete_branch" href="#crowdin_api.api_resources.branches.resource.BranchesResource.delete_branch">delete_branch</a></code></li>

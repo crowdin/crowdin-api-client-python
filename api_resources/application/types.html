@@ -32,6 +32,82 @@
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
+<dt id="crowdin_api.api_resources.application.types.AddApplicationConsentRequest"><code class="flex name class">
+<span>class <span class="ident">AddApplicationConsentRequest</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.application.types.AddApplicationConsentRequest.identifier"><code class="name">var <span class="ident">identifier</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.AddApplicationConsentRequest.installedBy"><code class="name">var <span class="ident">installedBy</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.AddApplicationConsentRequest.scopes"><code class="name">var <span class="ident">scopes</span> : Optional[Iterable[str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.AddApplicationConsentRequest.status"><code class="name">var <span class="ident">status</span> : <a title="crowdin_api.api_resources.application.enums.ApplicationConsentStatus" href="enums.html#crowdin_api.api_resources.application.enums.ApplicationConsentStatus">ApplicationConsentStatus</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationConsentPatchRequest"><code class="flex name class">
+<span>class <span class="ident">ApplicationConsentPatchRequest</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.application.types.ApplicationConsentPatchRequest.op"><code class="name">var <span class="ident">op</span> : <a title="crowdin_api.api_resources.enums.PatchOperation" href="../enums.html#crowdin_api.api_resources.enums.PatchOperation">PatchOperation</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationConsentPatchRequest.path"><code class="name">var <span class="ident">path</span> : <a title="crowdin_api.api_resources.application.enums.ApplicationConsentPatchPath" href="enums.html#crowdin_api.api_resources.application.enums.ApplicationConsentPatchPath">ApplicationConsentPatchPath</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationConsentPatchRequest.value"><code class="name">var <span class="ident">value</span> : Any</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest"><code class="flex name class">
 <span>class <span class="ident">ApplicationInstallationPatchRequest</span></span>
 <span>(</span><span>*args, **kwargs)</span>
@@ -54,15 +130,279 @@ dict(one=1, two=2)</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
-<dt id="crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest.op"><code class="name">var <span class="ident">op</span> : str</code></dt>
+<dt id="crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest.op"><code class="name">var <span class="ident">op</span> : Union[<a title="crowdin_api.api_resources.enums.PatchOperation" href="../enums.html#crowdin_api.api_resources.enums.PatchOperation">PatchOperation</a>, str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest.path"><code class="name">var <span class="ident">path</span> : str</code></dt>
+<dt id="crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest.path"><code class="name">var <span class="ident">path</span> : Union[<a title="crowdin_api.api_resources.application.enums.ApplicationInstallationPatchPath" href="enums.html#crowdin_api.api_resources.application.enums.ApplicationInstallationPatchPath">ApplicationInstallationPatchPath</a>, str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest.value"><code class="name">var <span class="ident">value</span> : str</code></dt>
+<dt id="crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest.value"><code class="name">var <span class="ident">value</span> : Any</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationKVRecordPatchRequest"><code class="flex name class">
+<span>class <span class="ident">ApplicationKVRecordPatchRequest</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.application.types.ApplicationKVRecordPatchRequest.op"><code class="name">var <span class="ident">op</span> : <a title="crowdin_api.api_resources.enums.PatchOperation" href="../enums.html#crowdin_api.api_resources.enums.PatchOperation">PatchOperation</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationKVRecordPatchRequest.path"><code class="name">var <span class="ident">path</span> : <a title="crowdin_api.api_resources.application.enums.ApplicationKVRecordPatchPath" href="enums.html#crowdin_api.api_resources.application.enums.ApplicationKVRecordPatchPath">ApplicationKVRecordPatchPath</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationKVRecordPatchRequest.value"><code class="name">var <span class="ident">value</span> : Any</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifest"><code class="flex name class">
+<span>class <span class="ident">ApplicationManifest</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifest.bundle"><code class="name">var <span class="ident">bundle</span> : <a title="crowdin_api.api_resources.application.types.ApplicationManifestBundle" href="#crowdin_api.api_resources.application.types.ApplicationManifestBundle">ApplicationManifestBundle</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifest.default_permissions"><code class="name">var <span class="ident">default_permissions</span> : <a title="crowdin_api.api_resources.application.types.ApplicationManifestDefaultPermissions" href="#crowdin_api.api_resources.application.types.ApplicationManifestDefaultPermissions">ApplicationManifestDefaultPermissions</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifest.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifest.logo"><code class="name">var <span class="ident">logo</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifest.modules"><code class="name">var <span class="ident">modules</span> : Dict[str, Iterable[<a title="crowdin_api.api_resources.application.types.ApplicationManifestModule" href="#crowdin_api.api_resources.application.types.ApplicationManifestModule">ApplicationManifestModule</a>]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifest.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifest.scopes"><code class="name">var <span class="ident">scopes</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifest.stringBasedAvailable"><code class="name">var <span class="ident">stringBasedAvailable</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifestBundle"><code class="flex name class">
+<span>class <span class="ident">ApplicationManifestBundle</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifestBundle.mode"><code class="name">var <span class="ident">mode</span> : <a title="crowdin_api.api_resources.application.enums.ApplicationBundleMode" href="enums.html#crowdin_api.api_resources.application.enums.ApplicationBundleMode">ApplicationBundleMode</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifestBundle.url"><code class="name">var <span class="ident">url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifestDefaultPermissions"><code class="flex name class">
+<span>class <span class="ident">ApplicationManifestDefaultPermissions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifestDefaultPermissions.project"><code class="name">var <span class="ident">project</span> : <a title="crowdin_api.api_resources.application.enums.ProjectPermissions" href="enums.html#crowdin_api.api_resources.application.enums.ProjectPermissions">ProjectPermissions</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifestDefaultPermissions.user"><code class="name">var <span class="ident">user</span> : <a title="crowdin_api.api_resources.application.enums.UserPermissions" href="enums.html#crowdin_api.api_resources.application.enums.UserPermissions">UserPermissions</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifestModule"><code class="flex name class">
+<span>class <span class="ident">ApplicationManifestModule</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifestModule.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifestModule.environments"><code class="name">var <span class="ident">environments</span> : Iterable[<a title="crowdin_api.api_resources.application.enums.ApplicationManifestEnvironment" href="enums.html#crowdin_api.api_resources.application.enums.ApplicationManifestEnvironment">ApplicationManifestEnvironment</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifestModule.key"><code class="name">var <span class="ident">key</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifestModule.logo"><code class="name">var <span class="ident">logo</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifestModule.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationManifestModule.permissions"><code class="name">var <span class="ident">permissions</span> : <a title="crowdin_api.api_resources.application.types.ApplicationModuleUserPermissions" href="#crowdin_api.api_resources.application.types.ApplicationModuleUserPermissions">ApplicationModuleUserPermissions</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationModulePermissions"><code class="flex name class">
+<span>class <span class="ident">ApplicationModulePermissions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.application.types.ApplicationModulePermissions.key"><code class="name">var <span class="ident">key</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationModulePermissions.permissions"><code class="name">var <span class="ident">permissions</span> : <a title="crowdin_api.api_resources.application.types.ApplicationModuleUserPermissions" href="#crowdin_api.api_resources.application.types.ApplicationModuleUserPermissions">ApplicationModuleUserPermissions</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.ApplicationModuleUserPermissions"><code class="flex name class">
+<span>class <span class="ident">ApplicationModuleUserPermissions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.application.types.ApplicationModuleUserPermissions.user"><code class="name">var <span class="ident">user</span> : <a title="crowdin_api.api_resources.application.types.ApplicationUser" href="#crowdin_api.api_resources.application.types.ApplicationUser">ApplicationUser</a></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -164,6 +504,102 @@ dict(one=1, two=2)</p></div>
 </dd>
 </dl>
 </dd>
+<dt id="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile"><code class="flex name class">
+<span>class <span class="ident">IntegrationCrowdinUpdateFile</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.id"><code class="name">var <span class="ident">id</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.node_type"><code class="name">var <span class="ident">node_type</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.parentId"><code class="name">var <span class="ident">parentId</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.parent_id"><code class="name">var <span class="ident">parent_id</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.type"><code class="name">var <span class="ident">type</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile"><code class="flex name class">
+<span>class <span class="ident">IntegrationSyncSettingsFile</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.id"><code class="name">var <span class="ident">id</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.node_type"><code class="name">var <span class="ident">node_type</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.parentId"><code class="name">var <span class="ident">parentId</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.schedule"><code class="name">var <span class="ident">schedule</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.type"><code class="name">var <span class="ident">type</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 </dl>
 </section>
 </article>
@@ -181,11 +617,87 @@ dict(one=1, two=2)</p></div>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
+<h4><code><a title="crowdin_api.api_resources.application.types.AddApplicationConsentRequest" href="#crowdin_api.api_resources.application.types.AddApplicationConsentRequest">AddApplicationConsentRequest</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.application.types.AddApplicationConsentRequest.identifier" href="#crowdin_api.api_resources.application.types.AddApplicationConsentRequest.identifier">identifier</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.AddApplicationConsentRequest.installedBy" href="#crowdin_api.api_resources.application.types.AddApplicationConsentRequest.installedBy">installedBy</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.AddApplicationConsentRequest.scopes" href="#crowdin_api.api_resources.application.types.AddApplicationConsentRequest.scopes">scopes</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.AddApplicationConsentRequest.status" href="#crowdin_api.api_resources.application.types.AddApplicationConsentRequest.status">status</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.application.types.ApplicationConsentPatchRequest" href="#crowdin_api.api_resources.application.types.ApplicationConsentPatchRequest">ApplicationConsentPatchRequest</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationConsentPatchRequest.op" href="#crowdin_api.api_resources.application.types.ApplicationConsentPatchRequest.op">op</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationConsentPatchRequest.path" href="#crowdin_api.api_resources.application.types.ApplicationConsentPatchRequest.path">path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationConsentPatchRequest.value" href="#crowdin_api.api_resources.application.types.ApplicationConsentPatchRequest.value">value</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest" href="#crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest">ApplicationInstallationPatchRequest</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest.op" href="#crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest.op">op</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest.path" href="#crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest.path">path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest.value" href="#crowdin_api.api_resources.application.types.ApplicationInstallationPatchRequest.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.application.types.ApplicationKVRecordPatchRequest" href="#crowdin_api.api_resources.application.types.ApplicationKVRecordPatchRequest">ApplicationKVRecordPatchRequest</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationKVRecordPatchRequest.op" href="#crowdin_api.api_resources.application.types.ApplicationKVRecordPatchRequest.op">op</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationKVRecordPatchRequest.path" href="#crowdin_api.api_resources.application.types.ApplicationKVRecordPatchRequest.path">path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationKVRecordPatchRequest.value" href="#crowdin_api.api_resources.application.types.ApplicationKVRecordPatchRequest.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.application.types.ApplicationManifest" href="#crowdin_api.api_resources.application.types.ApplicationManifest">ApplicationManifest</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifest.bundle" href="#crowdin_api.api_resources.application.types.ApplicationManifest.bundle">bundle</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifest.default_permissions" href="#crowdin_api.api_resources.application.types.ApplicationManifest.default_permissions">default_permissions</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifest.description" href="#crowdin_api.api_resources.application.types.ApplicationManifest.description">description</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifest.logo" href="#crowdin_api.api_resources.application.types.ApplicationManifest.logo">logo</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifest.modules" href="#crowdin_api.api_resources.application.types.ApplicationManifest.modules">modules</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifest.name" href="#crowdin_api.api_resources.application.types.ApplicationManifest.name">name</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifest.scopes" href="#crowdin_api.api_resources.application.types.ApplicationManifest.scopes">scopes</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifest.stringBasedAvailable" href="#crowdin_api.api_resources.application.types.ApplicationManifest.stringBasedAvailable">stringBasedAvailable</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.application.types.ApplicationManifestBundle" href="#crowdin_api.api_resources.application.types.ApplicationManifestBundle">ApplicationManifestBundle</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifestBundle.mode" href="#crowdin_api.api_resources.application.types.ApplicationManifestBundle.mode">mode</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifestBundle.url" href="#crowdin_api.api_resources.application.types.ApplicationManifestBundle.url">url</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.application.types.ApplicationManifestDefaultPermissions" href="#crowdin_api.api_resources.application.types.ApplicationManifestDefaultPermissions">ApplicationManifestDefaultPermissions</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifestDefaultPermissions.project" href="#crowdin_api.api_resources.application.types.ApplicationManifestDefaultPermissions.project">project</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifestDefaultPermissions.user" href="#crowdin_api.api_resources.application.types.ApplicationManifestDefaultPermissions.user">user</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.application.types.ApplicationManifestModule" href="#crowdin_api.api_resources.application.types.ApplicationManifestModule">ApplicationManifestModule</a></code></h4>
+<ul class="two-column">
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifestModule.description" href="#crowdin_api.api_resources.application.types.ApplicationManifestModule.description">description</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifestModule.environments" href="#crowdin_api.api_resources.application.types.ApplicationManifestModule.environments">environments</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifestModule.key" href="#crowdin_api.api_resources.application.types.ApplicationManifestModule.key">key</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifestModule.logo" href="#crowdin_api.api_resources.application.types.ApplicationManifestModule.logo">logo</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifestModule.name" href="#crowdin_api.api_resources.application.types.ApplicationManifestModule.name">name</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationManifestModule.permissions" href="#crowdin_api.api_resources.application.types.ApplicationManifestModule.permissions">permissions</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.application.types.ApplicationModulePermissions" href="#crowdin_api.api_resources.application.types.ApplicationModulePermissions">ApplicationModulePermissions</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationModulePermissions.key" href="#crowdin_api.api_resources.application.types.ApplicationModulePermissions.key">key</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationModulePermissions.permissions" href="#crowdin_api.api_resources.application.types.ApplicationModulePermissions.permissions">permissions</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.application.types.ApplicationModuleUserPermissions" href="#crowdin_api.api_resources.application.types.ApplicationModuleUserPermissions">ApplicationModuleUserPermissions</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.application.types.ApplicationModuleUserPermissions.user" href="#crowdin_api.api_resources.application.types.ApplicationModuleUserPermissions.user">user</a></code></li>
 </ul>
 </li>
 <li>
@@ -207,6 +719,28 @@ dict(one=1, two=2)</p></div>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.application.types.ApplicationUser.ids" href="#crowdin_api.api_resources.application.types.ApplicationUser.ids">ids</a></code></li>
 <li><code><a title="crowdin_api.api_resources.application.types.ApplicationUser.value" href="#crowdin_api.api_resources.application.types.ApplicationUser.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile" href="#crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile">IntegrationCrowdinUpdateFile</a></code></h4>
+<ul class="two-column">
+<li><code><a title="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.id" href="#crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.id">id</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.name" href="#crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.name">name</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.node_type" href="#crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.node_type">node_type</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.parentId" href="#crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.parentId">parentId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.parent_id" href="#crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.parent_id">parent_id</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.type" href="#crowdin_api.api_resources.application.types.IntegrationCrowdinUpdateFile.type">type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile" href="#crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile">IntegrationSyncSettingsFile</a></code></h4>
+<ul class="two-column">
+<li><code><a title="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.id" href="#crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.id">id</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.name" href="#crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.name">name</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.node_type" href="#crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.node_type">node_type</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.parentId" href="#crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.parentId">parentId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.schedule" href="#crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.schedule">schedule</a></code></li>
+<li><code><a title="crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.type" href="#crowdin_api.api_resources.application.types.IntegrationSyncSettingsFile.type">type</a></code></li>
 </ul>
 </li>
 </ul>

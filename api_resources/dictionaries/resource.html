@@ -41,7 +41,7 @@
 <p>Dictionaries allow you to create a storage of words that should be skipped by the spell checker.</p>
 <p>Use API to get the list of organization dictionaries and to edit a specific dictionary.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#tag/Dictionaries">https://developer.crowdin.com/api/v2/#tag/Dictionaries</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Dictionaries">https://support.crowdin.com/developer/api/v2/#tag/Dictionaries</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -49,12 +49,16 @@
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.dictionaries.resource.DictionariesResource.edit_dictionary"><code class="name flex">
-<span>def <span class="ident">edit_dictionary</span></span>(<span>self, languageId: str, data: Iterable[<a title="crowdin_api.api_resources.dictionaries.types.DictionaryPatchPath" href="types.html#crowdin_api.api_resources.dictionaries.types.DictionaryPatchPath">DictionaryPatchPath</a>], projectId: Optional[int] = None)</span>
+<span>def <span class="ident">edit_dictionary</span></span>(<span>self, languageId: str, data: Iterable[<a title="crowdin_api.api_resources.dictionaries.types.DictionaryPatchRequest" href="types.html#crowdin_api.api_resources.dictionaries.types.DictionaryPatchRequest">DictionaryPatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit Dictionary.</p>
+<p>:param data: JSON Patch operations ("add"/"remove") on "/words/{index}" paths,
+e.g. {"op": "add", "path": "/words/-", "value": "word"} or
+{"op": "remove", "path": "/words/0"}. To remove several words in one request,
+specify the word indexes in reverse order.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.dictionaries.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.dictionaries.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.dictionaries.patch">https://support.crowdin.com/developer/api/v2/#operation/api.projects.dictionaries.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.dictionaries.resource.DictionariesResource.list_dictionaries"><code class="name flex">
 <span>def <span class="ident">list_dictionaries</span></span>(<span>self, projectId: Optional[int] = None, languageIds: Optional[Iterable[str]] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -62,7 +66,7 @@
 <dd>
 <div class="desc"><p>List Dictionaries.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.dictionaries.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.dictionaries.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.dictionaries.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.dictionaries.getMany</a></p></div>
 </dd>
 </dl>
 </dd>

@@ -32,6 +32,34 @@
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
+<dt id="crowdin_api.api_resources.source_files.types.AdocFileImportOptions"><code class="flex name class">
+<span>class <span class="ident">AdocFileImportOptions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.types.AdocFileImportOptions.excludeIncludeDirectives"><code class="name">var <span class="ident">excludeIncludeDirectives</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.source_files.types.BranchPatchRequest"><code class="flex name class">
 <span>class <span class="ident">BranchPatchRequest</span></span>
 <span>(</span><span>*args, **kwargs)</span>
@@ -104,6 +132,42 @@ dict(one=1, two=2)</p></div>
 </dd>
 </dl>
 </dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileExportOptions"><code class="flex name class">
+<span>class <span class="ident">DocxFileExportOptions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileExportOptions.allowWordStyleOptimization"><code class="name">var <span class="ident">allowWordStyleOptimization</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileExportOptions.exportPattern"><code class="name">var <span class="ident">exportPattern</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileExportOptions.translateExcelExcludeColors"><code class="name">var <span class="ident">translateExcelExcludeColors</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions"><code class="flex name class">
 <span>class <span class="ident">DocxFileImportOptions</span></span>
 <span>(</span><span>*args, **kwargs)</span>
@@ -126,11 +190,43 @@ dict(one=1, two=2)</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.addLineSeparatorAsCharacter"><code class="name">var <span class="ident">addLineSeparatorAsCharacter</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.addTabAsCharacter"><code class="name">var <span class="ident">addTabAsCharacter</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.cleanTagsAggressively"><code class="name">var <span class="ident">cleanTagsAggressively</span> : bool</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.complexFieldDefinitionsToExtract"><code class="name">var <span class="ident">complexFieldDefinitionsToExtract</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.contentSegmentation"><code class="name">var <span class="ident">contentSegmentation</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.excelExcludedColors"><code class="name">var <span class="ident">excelExcludedColors</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.excludeWordStyles"><code class="name">var <span class="ident">excludeWordStyles</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.ignoreSoftHyphenTag"><code class="name">var <span class="ident">ignoreSoftHyphenTag</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.ignoreWhitespaceStyles"><code class="name">var <span class="ident">ignoreWhitespaceStyles</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.ignoreWordFontColors"><code class="name">var <span class="ident">ignoreWordFontColors</span> : bool</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -142,7 +238,39 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.lineSeparatorReplacement"><code class="name">var <span class="ident">lineSeparatorReplacement</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.replaceNoBreakHyphenTag"><code class="name">var <span class="ident">replaceNoBreakHyphenTag</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.srxStorageId"><code class="name">var <span class="ident">srxStorageId</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateComments"><code class="name">var <span class="ident">translateComments</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateDocProperties"><code class="name">var <span class="ident">translateDocProperties</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateExcelCellsCopied"><code class="name">var <span class="ident">translateExcelCellsCopied</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateExcelDiagramData"><code class="name">var <span class="ident">translateExcelDiagramData</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateExcelDrawings"><code class="name">var <span class="ident">translateExcelDrawings</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateExcelSheetNames"><code class="name">var <span class="ident">translateExcelSheetNames</span> : bool</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -155,6 +283,46 @@ dict(one=1, two=2)</p></div>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateHyperlinkUrls"><code class="name">var <span class="ident">translateHyperlinkUrls</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordExcludeColors"><code class="name">var <span class="ident">translateWordExcludeColors</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordGraphicDescription"><code class="name">var <span class="ident">translateWordGraphicDescription</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordGraphicName"><code class="name">var <span class="ident">translateWordGraphicName</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordHeadersFooters"><code class="name">var <span class="ident">translateWordHeadersFooters</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordInExcludeHighlightMode"><code class="name">var <span class="ident">translateWordInExcludeHighlightMode</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordInExcludeStyleMode"><code class="name">var <span class="ident">translateWordInExcludeStyleMode</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.wordExcludedColors"><code class="name">var <span class="ident">wordExcludedColors</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.wordFontColorsMaxIgnoranceThreshold"><code class="name">var <span class="ident">wordFontColorsMaxIgnoranceThreshold</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.wordFontColorsMinIgnoranceThreshold"><code class="name">var <span class="ident">wordFontColorsMinIgnoranceThreshold</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.wordHighlightColors"><code class="name">var <span class="ident">wordHighlightColors</span> : Iterable[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -186,7 +354,7 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.source_files.types.FilePatchRequest.path"><code class="name">var <span class="ident">path</span> : <a title="crowdin_api.api_resources.source_files.enums.FilePatchPath" href="enums.html#crowdin_api.api_resources.source_files.enums.FilePatchPath">FilePatchPath</a></code></dt>
+<dt id="crowdin_api.api_resources.source_files.types.FilePatchRequest.path"><code class="name">var <span class="ident">path</span> : Union[<a title="crowdin_api.api_resources.source_files.enums.FilePatchPath" href="enums.html#crowdin_api.api_resources.source_files.enums.FilePatchPath">FilePatchPath</a>, str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -254,6 +422,10 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.source_files.types.HtmlFileImportOptions.inlineTags"><code class="name">var <span class="ident">inlineTags</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.source_files.types.HtmlFileImportOptions.srxStorageId"><code class="name">var <span class="ident">srxStorageId</span> : int</code></dt>
 <dd>
 <div class="desc"></div>
@@ -294,7 +466,47 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions.inlineTags"><code class="name">var <span class="ident">inlineTags</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions.srxStorageId"><code class="name">var <span class="ident">srxStorageId</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.IdmlFileImportOptions"><code class="flex name class">
+<span>class <span class="ident">IdmlFileImportOptions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.types.IdmlFileImportOptions.contentSegmentation"><code class="name">var <span class="ident">contentSegmentation</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.IdmlFileImportOptions.inlineHyperlinkText"><code class="name">var <span class="ident">inlineHyperlinkText</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.IdmlFileImportOptions.srxStorageId"><code class="name">var <span class="ident">srxStorageId</span> : int</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -302,9 +514,24 @@ dict(one=1, two=2)</p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.types.JavascriptExportOptions"><code class="flex name class">
 <span>class <span class="ident">JavascriptExportOptions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
 <h3>Class variables</h3>
 <dl>
 <dt id="crowdin_api.api_resources.source_files.types.JavascriptExportOptions.exportPattern"><code class="name">var <span class="ident">exportPattern</span> : str</code></dt>
@@ -312,6 +539,142 @@ dict(one=1, two=2)</p></div>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.types.JavascriptExportOptions.exportQuotes"><code class="name">var <span class="ident">exportQuotes</span> : <a title="crowdin_api.api_resources.source_files.enums.ExportQuotes" href="enums.html#crowdin_api.api_resources.source_files.enums.ExportQuotes">ExportQuotes</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdFileExportOptions"><code class="flex name class">
+<span>class <span class="ident">MdFileExportOptions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.types.MdFileExportOptions.emphasisMarker"><code class="name">var <span class="ident">emphasisMarker</span> : <a title="crowdin_api.api_resources.source_files.enums.MarkdownMarker" href="enums.html#crowdin_api.api_resources.source_files.enums.MarkdownMarker">MarkdownMarker</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdFileExportOptions.exportPattern"><code class="name">var <span class="ident">exportPattern</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdFileExportOptions.frontMatterQuotes"><code class="name">var <span class="ident">frontMatterQuotes</span> : <a title="crowdin_api.api_resources.source_files.enums.FrontMatterQuotes" href="enums.html#crowdin_api.api_resources.source_files.enums.FrontMatterQuotes">FrontMatterQuotes</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdFileExportOptions.strongMarker"><code class="name">var <span class="ident">strongMarker</span> : <a title="crowdin_api.api_resources.source_files.enums.MarkdownMarker" href="enums.html#crowdin_api.api_resources.source_files.enums.MarkdownMarker">MarkdownMarker</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdFileExportOptions.tableColumnWidth"><code class="name">var <span class="ident">tableColumnWidth</span> : <a title="crowdin_api.api_resources.source_files.enums.TableColumnWidth" href="enums.html#crowdin_api.api_resources.source_files.enums.TableColumnWidth">TableColumnWidth</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdFileExportOptions.unorderedListBullet"><code class="name">var <span class="ident">unorderedListBullet</span> : <a title="crowdin_api.api_resources.source_files.enums.UnorderedListBullet" href="enums.html#crowdin_api.api_resources.source_files.enums.UnorderedListBullet">UnorderedListBullet</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdFileImportOptions"><code class="flex name class">
+<span>class <span class="ident">MdFileImportOptions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.types.MdFileImportOptions.contentSegmentation"><code class="name">var <span class="ident">contentSegmentation</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdFileImportOptions.excludeCodeBlocks"><code class="name">var <span class="ident">excludeCodeBlocks</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdFileImportOptions.excludedFrontMatterElements"><code class="name">var <span class="ident">excludedFrontMatterElements</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdFileImportOptions.inlineTags"><code class="name">var <span class="ident">inlineTags</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdFileImportOptions.srxStorageId"><code class="name">var <span class="ident">srxStorageId</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdxFileExportOptions"><code class="flex name class">
+<span>class <span class="ident">MdxFileExportOptions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.types.MdxFileExportOptions.emphasisMarker"><code class="name">var <span class="ident">emphasisMarker</span> : <a title="crowdin_api.api_resources.source_files.enums.MarkdownMarker" href="enums.html#crowdin_api.api_resources.source_files.enums.MarkdownMarker">MarkdownMarker</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdxFileExportOptions.exportPattern"><code class="name">var <span class="ident">exportPattern</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdxFileExportOptions.strongMarker"><code class="name">var <span class="ident">strongMarker</span> : <a title="crowdin_api.api_resources.source_files.enums.MarkdownMarker" href="enums.html#crowdin_api.api_resources.source_files.enums.MarkdownMarker">MarkdownMarker</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdxFileExportOptions.tableColumnWidth"><code class="name">var <span class="ident">tableColumnWidth</span> : <a title="crowdin_api.api_resources.source_files.enums.TableColumnWidth" href="enums.html#crowdin_api.api_resources.source_files.enums.TableColumnWidth">TableColumnWidth</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.MdxFileExportOptions.unorderedListBullet"><code class="name">var <span class="ident">unorderedListBullet</span> : <a title="crowdin_api.api_resources.source_files.enums.UnorderedListBullet" href="enums.html#crowdin_api.api_resources.source_files.enums.UnorderedListBullet">UnorderedListBullet</a></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -431,12 +794,31 @@ dict(one=1, two=2)</p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.types.PropertyExportOptions"><code class="flex name class">
 <span>class <span class="ident">PropertyExportOptions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
 <h3>Class variables</h3>
 <dl>
 <dt id="crowdin_api.api_resources.source_files.types.PropertyExportOptions.escapeQuotes"><code class="name">var <span class="ident">escapeQuotes</span> : <a title="crowdin_api.api_resources.source_files.enums.EscapeQuotes" href="enums.html#crowdin_api.api_resources.source_files.enums.EscapeQuotes">EscapeQuotes</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.PropertyExportOptions.escapeSpecialCharacters"><code class="name">var <span class="ident">escapeSpecialCharacters</span> : <a title="crowdin_api.api_resources.source_files.enums.EscapeSpecialCharacters" href="enums.html#crowdin_api.api_resources.source_files.enums.EscapeSpecialCharacters">EscapeSpecialCharacters</a></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -468,11 +850,39 @@ dict(one=1, two=2)</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
+<dt id="crowdin_api.api_resources.source_files.types.Scheme.context"><code class="name">var <span class="ident">context</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.source_files.types.Scheme.identifier"><code class="name">var <span class="ident">identifier</span> : int</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.source_files.types.Scheme.labels"><code class="name">var <span class="ident">labels</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.Scheme.maxLength"><code class="name">var <span class="ident">maxLength</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.Scheme.none"><code class="name">var <span class="ident">none</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.Scheme.sourceOrTranslation"><code class="name">var <span class="ident">sourceOrTranslation</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.source_files.types.Scheme.sourcePhrase"><code class="name">var <span class="ident">sourcePhrase</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.Scheme.translatable"><code class="name">var <span class="ident">translatable</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.Scheme.translation"><code class="name">var <span class="ident">translation</span> : int</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -500,7 +910,31 @@ dict(one=1, two=2)</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
+<dt id="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.addToTm"><code class="name">var <span class="ident">addToTm</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.autoApproveImported"><code class="name">var <span class="ident">autoApproveImported</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.contentSegmentation"><code class="name">var <span class="ident">contentSegmentation</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.firstLineContainsHeader"><code class="name">var <span class="ident">firstLineContainsHeader</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.importEqSuggestions"><code class="name">var <span class="ident">importEqSuggestions</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.importHiddenRows"><code class="name">var <span class="ident">importHiddenRows</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.importHiddenSheets"><code class="name">var <span class="ident">importHiddenSheets</span> : bool</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -513,6 +947,154 @@ dict(one=1, two=2)</p></div>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.srxStorageId"><code class="name">var <span class="ident">srxStorageId</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.translateHidden"><code class="name">var <span class="ident">translateHidden</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.StringCatalogFileImportOptions"><code class="flex name class">
+<span>class <span class="ident">StringCatalogFileImportOptions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.types.StringCatalogFileImportOptions.importKeyAsSource"><code class="name">var <span class="ident">importKeyAsSource</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.StringCatalogFileImportOptions.importTranslations"><code class="name">var <span class="ident">importTranslations</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.VdfFileImportOptions"><code class="flex name class">
+<span>class <span class="ident">VdfFileImportOptions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.types.VdfFileImportOptions.addGenderArgument"><code class="name">var <span class="ident">addGenderArgument</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.VdfFileImportOptions.convertIcu"><code class="name">var <span class="ident">convertIcu</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.VsdxFileImportOptions"><code class="flex name class">
+<span>class <span class="ident">VsdxFileImportOptions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.types.VsdxFileImportOptions.cleanTagsAggressively"><code class="name">var <span class="ident">cleanTagsAggressively</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.VsdxFileImportOptions.contentSegmentation"><code class="name">var <span class="ident">contentSegmentation</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.VsdxFileImportOptions.srxStorageId"><code class="name">var <span class="ident">srxStorageId</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.VsdxFileImportOptions.translateHyperlinkUrls"><code class="name">var <span class="ident">translateHyperlinkUrls</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions"><code class="flex name class">
+<span>class <span class="ident">WebXmlFileImportOptions</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions.contentSegmentation"><code class="name">var <span class="ident">contentSegmentation</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions.hideAttributeValues"><code class="name">var <span class="ident">hideAttributeValues</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions.inlineTags"><code class="name">var <span class="ident">inlineTags</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions.srxStorageId"><code class="name">var <span class="ident">srxStorageId</span> : int</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -541,6 +1123,14 @@ dict(one=1, two=2)</p></div>
 <h3>Class variables</h3>
 <dl>
 <dt id="crowdin_api.api_resources.source_files.types.XmlImportOptions.contentSegmentation"><code class="name">var <span class="ident">contentSegmentation</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.XmlImportOptions.inlineTags"><code class="name">var <span class="ident">inlineTags</span> : Iterable[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_files.types.XmlImportOptions.srxStorageId"><code class="name">var <span class="ident">srxStorageId</span> : int</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -575,6 +1165,12 @@ dict(one=1, two=2)</p></div>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
+<h4><code><a title="crowdin_api.api_resources.source_files.types.AdocFileImportOptions" href="#crowdin_api.api_resources.source_files.types.AdocFileImportOptions">AdocFileImportOptions</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.types.AdocFileImportOptions.excludeIncludeDirectives" href="#crowdin_api.api_resources.source_files.types.AdocFileImportOptions.excludeIncludeDirectives">excludeIncludeDirectives</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="crowdin_api.api_resources.source_files.types.BranchPatchRequest" href="#crowdin_api.api_resources.source_files.types.BranchPatchRequest">BranchPatchRequest</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.source_files.types.BranchPatchRequest.op" href="#crowdin_api.api_resources.source_files.types.BranchPatchRequest.op">op</a></code></li>
@@ -591,16 +1187,50 @@ dict(one=1, two=2)</p></div>
 </ul>
 </li>
 <li>
+<h4><code><a title="crowdin_api.api_resources.source_files.types.DocxFileExportOptions" href="#crowdin_api.api_resources.source_files.types.DocxFileExportOptions">DocxFileExportOptions</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileExportOptions.allowWordStyleOptimization" href="#crowdin_api.api_resources.source_files.types.DocxFileExportOptions.allowWordStyleOptimization">allowWordStyleOptimization</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileExportOptions.exportPattern" href="#crowdin_api.api_resources.source_files.types.DocxFileExportOptions.exportPattern">exportPattern</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileExportOptions.translateExcelExcludeColors" href="#crowdin_api.api_resources.source_files.types.DocxFileExportOptions.translateExcelExcludeColors">translateExcelExcludeColors</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions">DocxFileImportOptions</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.addLineSeparatorAsCharacter" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.addLineSeparatorAsCharacter">addLineSeparatorAsCharacter</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.addTabAsCharacter" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.addTabAsCharacter">addTabAsCharacter</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.cleanTagsAggressively" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.cleanTagsAggressively">cleanTagsAggressively</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.complexFieldDefinitionsToExtract" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.complexFieldDefinitionsToExtract">complexFieldDefinitionsToExtract</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.contentSegmentation" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.contentSegmentation">contentSegmentation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.excelExcludedColors" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.excelExcludedColors">excelExcludedColors</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.excludeWordStyles" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.excludeWordStyles">excludeWordStyles</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.ignoreSoftHyphenTag" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.ignoreSoftHyphenTag">ignoreSoftHyphenTag</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.ignoreWhitespaceStyles" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.ignoreWhitespaceStyles">ignoreWhitespaceStyles</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.ignoreWordFontColors" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.ignoreWordFontColors">ignoreWordFontColors</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.importHiddenSlides" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.importHiddenSlides">importHiddenSlides</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.importNotes" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.importNotes">importNotes</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.lineSeparatorReplacement" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.lineSeparatorReplacement">lineSeparatorReplacement</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.replaceNoBreakHyphenTag" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.replaceNoBreakHyphenTag">replaceNoBreakHyphenTag</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.srxStorageId" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.srxStorageId">srxStorageId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateComments" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateComments">translateComments</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateDocProperties" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateDocProperties">translateDocProperties</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateExcelCellsCopied" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateExcelCellsCopied">translateExcelCellsCopied</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateExcelDiagramData" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateExcelDiagramData">translateExcelDiagramData</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateExcelDrawings" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateExcelDrawings">translateExcelDrawings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateExcelSheetNames" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateExcelSheetNames">translateExcelSheetNames</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateHiddenRowsAndColumns" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateHiddenRowsAndColumns">translateHiddenRowsAndColumns</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateHiddenText" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateHiddenText">translateHiddenText</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateHyperlinkUrls" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateHyperlinkUrls">translateHyperlinkUrls</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordExcludeColors" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordExcludeColors">translateWordExcludeColors</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordGraphicDescription" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordGraphicDescription">translateWordGraphicDescription</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordGraphicName" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordGraphicName">translateWordGraphicName</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordHeadersFooters" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordHeadersFooters">translateWordHeadersFooters</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordInExcludeHighlightMode" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordInExcludeHighlightMode">translateWordInExcludeHighlightMode</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordInExcludeStyleMode" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.translateWordInExcludeStyleMode">translateWordInExcludeStyleMode</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.wordExcludedColors" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.wordExcludedColors">wordExcludedColors</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.wordFontColorsMaxIgnoranceThreshold" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.wordFontColorsMaxIgnoranceThreshold">wordFontColorsMaxIgnoranceThreshold</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.wordFontColorsMinIgnoranceThreshold" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.wordFontColorsMinIgnoranceThreshold">wordFontColorsMinIgnoranceThreshold</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.DocxFileImportOptions.wordHighlightColors" href="#crowdin_api.api_resources.source_files.types.DocxFileImportOptions.wordHighlightColors">wordHighlightColors</a></code></li>
 </ul>
 </li>
 <li>
@@ -622,6 +1252,7 @@ dict(one=1, two=2)</p></div>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.source_files.types.HtmlFileImportOptions.contentSegmentation" href="#crowdin_api.api_resources.source_files.types.HtmlFileImportOptions.contentSegmentation">contentSegmentation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.HtmlFileImportOptions.excludedElements" href="#crowdin_api.api_resources.source_files.types.HtmlFileImportOptions.excludedElements">excludedElements</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.HtmlFileImportOptions.inlineTags" href="#crowdin_api.api_resources.source_files.types.HtmlFileImportOptions.inlineTags">inlineTags</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.HtmlFileImportOptions.srxStorageId" href="#crowdin_api.api_resources.source_files.types.HtmlFileImportOptions.srxStorageId">srxStorageId</a></code></li>
 </ul>
 </li>
@@ -631,7 +1262,16 @@ dict(one=1, two=2)</p></div>
 <li><code><a title="crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions.contentSegmentation" href="#crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions.contentSegmentation">contentSegmentation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions.excludedElements" href="#crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions.excludedElements">excludedElements</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions.excludedFrontMatterElements" href="#crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions.excludedFrontMatterElements">excludedFrontMatterElements</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions.inlineTags" href="#crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions.inlineTags">inlineTags</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions.srxStorageId" href="#crowdin_api.api_resources.source_files.types.HtmlWithFrontMatterFileImportOptions.srxStorageId">srxStorageId</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.types.IdmlFileImportOptions" href="#crowdin_api.api_resources.source_files.types.IdmlFileImportOptions">IdmlFileImportOptions</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.types.IdmlFileImportOptions.contentSegmentation" href="#crowdin_api.api_resources.source_files.types.IdmlFileImportOptions.contentSegmentation">contentSegmentation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.IdmlFileImportOptions.inlineHyperlinkText" href="#crowdin_api.api_resources.source_files.types.IdmlFileImportOptions.inlineHyperlinkText">inlineHyperlinkText</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.IdmlFileImportOptions.srxStorageId" href="#crowdin_api.api_resources.source_files.types.IdmlFileImportOptions.srxStorageId">srxStorageId</a></code></li>
 </ul>
 </li>
 <li>
@@ -639,6 +1279,37 @@ dict(one=1, two=2)</p></div>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.source_files.types.JavascriptExportOptions.exportPattern" href="#crowdin_api.api_resources.source_files.types.JavascriptExportOptions.exportPattern">exportPattern</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.JavascriptExportOptions.exportQuotes" href="#crowdin_api.api_resources.source_files.types.JavascriptExportOptions.exportQuotes">exportQuotes</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.types.MdFileExportOptions" href="#crowdin_api.api_resources.source_files.types.MdFileExportOptions">MdFileExportOptions</a></code></h4>
+<ul class="two-column">
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdFileExportOptions.emphasisMarker" href="#crowdin_api.api_resources.source_files.types.MdFileExportOptions.emphasisMarker">emphasisMarker</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdFileExportOptions.exportPattern" href="#crowdin_api.api_resources.source_files.types.MdFileExportOptions.exportPattern">exportPattern</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdFileExportOptions.frontMatterQuotes" href="#crowdin_api.api_resources.source_files.types.MdFileExportOptions.frontMatterQuotes">frontMatterQuotes</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdFileExportOptions.strongMarker" href="#crowdin_api.api_resources.source_files.types.MdFileExportOptions.strongMarker">strongMarker</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdFileExportOptions.tableColumnWidth" href="#crowdin_api.api_resources.source_files.types.MdFileExportOptions.tableColumnWidth">tableColumnWidth</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdFileExportOptions.unorderedListBullet" href="#crowdin_api.api_resources.source_files.types.MdFileExportOptions.unorderedListBullet">unorderedListBullet</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.types.MdFileImportOptions" href="#crowdin_api.api_resources.source_files.types.MdFileImportOptions">MdFileImportOptions</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdFileImportOptions.contentSegmentation" href="#crowdin_api.api_resources.source_files.types.MdFileImportOptions.contentSegmentation">contentSegmentation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdFileImportOptions.excludeCodeBlocks" href="#crowdin_api.api_resources.source_files.types.MdFileImportOptions.excludeCodeBlocks">excludeCodeBlocks</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdFileImportOptions.excludedFrontMatterElements" href="#crowdin_api.api_resources.source_files.types.MdFileImportOptions.excludedFrontMatterElements">excludedFrontMatterElements</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdFileImportOptions.inlineTags" href="#crowdin_api.api_resources.source_files.types.MdFileImportOptions.inlineTags">inlineTags</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdFileImportOptions.srxStorageId" href="#crowdin_api.api_resources.source_files.types.MdFileImportOptions.srxStorageId">srxStorageId</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.types.MdxFileExportOptions" href="#crowdin_api.api_resources.source_files.types.MdxFileExportOptions">MdxFileExportOptions</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdxFileExportOptions.emphasisMarker" href="#crowdin_api.api_resources.source_files.types.MdxFileExportOptions.emphasisMarker">emphasisMarker</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdxFileExportOptions.exportPattern" href="#crowdin_api.api_resources.source_files.types.MdxFileExportOptions.exportPattern">exportPattern</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdxFileExportOptions.strongMarker" href="#crowdin_api.api_resources.source_files.types.MdxFileExportOptions.strongMarker">strongMarker</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdxFileExportOptions.tableColumnWidth" href="#crowdin_api.api_resources.source_files.types.MdxFileExportOptions.tableColumnWidth">tableColumnWidth</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.MdxFileExportOptions.unorderedListBullet" href="#crowdin_api.api_resources.source_files.types.MdxFileExportOptions.unorderedListBullet">unorderedListBullet</a></code></li>
 </ul>
 </li>
 <li>
@@ -670,29 +1341,78 @@ dict(one=1, two=2)</p></div>
 <h4><code><a title="crowdin_api.api_resources.source_files.types.PropertyExportOptions" href="#crowdin_api.api_resources.source_files.types.PropertyExportOptions">PropertyExportOptions</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.source_files.types.PropertyExportOptions.escapeQuotes" href="#crowdin_api.api_resources.source_files.types.PropertyExportOptions.escapeQuotes">escapeQuotes</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.PropertyExportOptions.escapeSpecialCharacters" href="#crowdin_api.api_resources.source_files.types.PropertyExportOptions.escapeSpecialCharacters">escapeSpecialCharacters</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.PropertyExportOptions.exportPattern" href="#crowdin_api.api_resources.source_files.types.PropertyExportOptions.exportPattern">exportPattern</a></code></li>
 </ul>
 </li>
 <li>
 <h4><code><a title="crowdin_api.api_resources.source_files.types.Scheme" href="#crowdin_api.api_resources.source_files.types.Scheme">Scheme</a></code></h4>
-<ul class="">
+<ul class="two-column">
+<li><code><a title="crowdin_api.api_resources.source_files.types.Scheme.context" href="#crowdin_api.api_resources.source_files.types.Scheme.context">context</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.Scheme.identifier" href="#crowdin_api.api_resources.source_files.types.Scheme.identifier">identifier</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.Scheme.labels" href="#crowdin_api.api_resources.source_files.types.Scheme.labels">labels</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.Scheme.maxLength" href="#crowdin_api.api_resources.source_files.types.Scheme.maxLength">maxLength</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.Scheme.none" href="#crowdin_api.api_resources.source_files.types.Scheme.none">none</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.Scheme.sourceOrTranslation" href="#crowdin_api.api_resources.source_files.types.Scheme.sourceOrTranslation">sourceOrTranslation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.Scheme.sourcePhrase" href="#crowdin_api.api_resources.source_files.types.Scheme.sourcePhrase">sourcePhrase</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.Scheme.translatable" href="#crowdin_api.api_resources.source_files.types.Scheme.translatable">translatable</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.Scheme.translation" href="#crowdin_api.api_resources.source_files.types.Scheme.translation">translation</a></code></li>
 </ul>
 </li>
 <li>
 <h4><code><a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions" href="#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions">SpreadsheetImportOptions</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.addToTm" href="#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.addToTm">addToTm</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.autoApproveImported" href="#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.autoApproveImported">autoApproveImported</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.contentSegmentation" href="#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.contentSegmentation">contentSegmentation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.firstLineContainsHeader" href="#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.firstLineContainsHeader">firstLineContainsHeader</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.importEqSuggestions" href="#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.importEqSuggestions">importEqSuggestions</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.importHiddenRows" href="#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.importHiddenRows">importHiddenRows</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.importHiddenSheets" href="#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.importHiddenSheets">importHiddenSheets</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.importTranslations" href="#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.importTranslations">importTranslations</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.scheme" href="#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.scheme">scheme</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.srxStorageId" href="#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.srxStorageId">srxStorageId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.translateHidden" href="#crowdin_api.api_resources.source_files.types.SpreadsheetImportOptions.translateHidden">translateHidden</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.types.StringCatalogFileImportOptions" href="#crowdin_api.api_resources.source_files.types.StringCatalogFileImportOptions">StringCatalogFileImportOptions</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.types.StringCatalogFileImportOptions.importKeyAsSource" href="#crowdin_api.api_resources.source_files.types.StringCatalogFileImportOptions.importKeyAsSource">importKeyAsSource</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.StringCatalogFileImportOptions.importTranslations" href="#crowdin_api.api_resources.source_files.types.StringCatalogFileImportOptions.importTranslations">importTranslations</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.types.VdfFileImportOptions" href="#crowdin_api.api_resources.source_files.types.VdfFileImportOptions">VdfFileImportOptions</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.types.VdfFileImportOptions.addGenderArgument" href="#crowdin_api.api_resources.source_files.types.VdfFileImportOptions.addGenderArgument">addGenderArgument</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.VdfFileImportOptions.convertIcu" href="#crowdin_api.api_resources.source_files.types.VdfFileImportOptions.convertIcu">convertIcu</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.types.VsdxFileImportOptions" href="#crowdin_api.api_resources.source_files.types.VsdxFileImportOptions">VsdxFileImportOptions</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.types.VsdxFileImportOptions.cleanTagsAggressively" href="#crowdin_api.api_resources.source_files.types.VsdxFileImportOptions.cleanTagsAggressively">cleanTagsAggressively</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.VsdxFileImportOptions.contentSegmentation" href="#crowdin_api.api_resources.source_files.types.VsdxFileImportOptions.contentSegmentation">contentSegmentation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.VsdxFileImportOptions.srxStorageId" href="#crowdin_api.api_resources.source_files.types.VsdxFileImportOptions.srxStorageId">srxStorageId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.VsdxFileImportOptions.translateHyperlinkUrls" href="#crowdin_api.api_resources.source_files.types.VsdxFileImportOptions.translateHyperlinkUrls">translateHyperlinkUrls</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions" href="#crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions">WebXmlFileImportOptions</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions.contentSegmentation" href="#crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions.contentSegmentation">contentSegmentation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions.hideAttributeValues" href="#crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions.hideAttributeValues">hideAttributeValues</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions.inlineTags" href="#crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions.inlineTags">inlineTags</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions.srxStorageId" href="#crowdin_api.api_resources.source_files.types.WebXmlFileImportOptions.srxStorageId">srxStorageId</a></code></li>
 </ul>
 </li>
 <li>
 <h4><code><a title="crowdin_api.api_resources.source_files.types.XmlImportOptions" href="#crowdin_api.api_resources.source_files.types.XmlImportOptions">XmlImportOptions</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.source_files.types.XmlImportOptions.contentSegmentation" href="#crowdin_api.api_resources.source_files.types.XmlImportOptions.contentSegmentation">contentSegmentation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.XmlImportOptions.inlineTags" href="#crowdin_api.api_resources.source_files.types.XmlImportOptions.inlineTags">inlineTags</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_files.types.XmlImportOptions.srxStorageId" href="#crowdin_api.api_resources.source_files.types.XmlImportOptions.srxStorageId">srxStorageId</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.XmlImportOptions.translatableElements" href="#crowdin_api.api_resources.source_files.types.XmlImportOptions.translatableElements">translatableElements</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.XmlImportOptions.translateAttributes" href="#crowdin_api.api_resources.source_files.types.XmlImportOptions.translateAttributes">translateAttributes</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_files.types.XmlImportOptions.translateContent" href="#crowdin_api.api_resources.source_files.types.XmlImportOptions.translateContent">translateContent</a></code></li>

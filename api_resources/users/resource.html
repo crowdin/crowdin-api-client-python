@@ -37,7 +37,7 @@
 <span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Base class with methods shared by <code><a title="crowdin_api.api_resources.users.resource.UsersResource" href="#crowdin_api.api_resources.users.resource.UsersResource">UsersResource</a></code> and <code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource">EnterpriseUsersResource</a></code>.</p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -49,11 +49,35 @@
 </ul>
 <h3>Methods</h3>
 <dl>
+<dt id="crowdin_api.api_resources.users.resource.BaseUsersResource.delete_member_from_project"><code class="name flex">
+<span>def <span class="ident">delete_member_from_project</span></span>(<span>self, memberId: int, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete Member From Project.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.delete">https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.delete</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.delete">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.delete</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.users.resource.BaseUsersResource.get_authenticated_user"><code class="name flex">
 <span>def <span class="ident">get_authenticated_user</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Get Authenticated User.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.user.get">https://support.crowdin.com/developer/api/v2/#operation/api.user.get</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.user.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.user.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.users.resource.BaseUsersResource.get_member_info"><code class="name flex">
+<span>def <span class="ident">get_member_info</span></span>(<span>self, memberId: int, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get Member Info.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.get</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.BaseUsersResource.get_members_path"><code class="name flex">
 <span>def <span class="ident">get_members_path</span></span>(<span>self, projectId: int, memberId: Optional[int] = None)</span>
@@ -72,7 +96,7 @@
 <p>Users API gives you the possibility to get profile information about the currently
 authenticated user.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#tag/Users">https://developer.crowdin.com/enterprise/api/v2/#tag/Users</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.users.resource.BaseUsersResource" href="#crowdin_api.api_resources.users.resource.BaseUsersResource">BaseUsersResource</a></li>
@@ -81,20 +105,14 @@ authenticated user.</p>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.add_project_member"><code class="name flex">
-<span>def <span class="ident">add_project_member</span></span>(<span>self, userIds: Iterable[int], projectId: Optional[int] = None, accessToAllWorkflowSteps: Optional[bool] = None, managerAccess: Optional[bool] = None, permissions: Optional[Dict[~KT, ~VT]] = None, roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.types.ProjectMemberRole" href="types.html#crowdin_api.api_resources.users.types.ProjectMemberRole">ProjectMemberRole</a>]] = None)</span>
+<span>def <span class="ident">add_project_member</span></span>(<span>self, userIds: Optional[Iterable[int]] = None, projectId: Optional[int] = None, accessToAllWorkflowSteps: Optional[bool] = None, managerAccess: Optional[bool] = None, permissions: Optional[Dict[~KT, ~VT]] = None, roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.types.ProjectMemberRole" href="types.html#crowdin_api.api_resources.users.types.ProjectMemberRole">ProjectMemberRole</a>]] = None, usernames: Optional[Iterable[str]] = None, emails: Optional[Iterable[str]] = None, developerAccess: Optional[bool] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Project Member.</p>
+<p>One of <code>userIds</code>, <code>usernames</code> or <code>emails</code> is required.</p>
+<p><code>accessToAllWorkflowSteps</code> and <code>permissions</code> are deprecated by the API, use <code>roles</code> instead.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.post</a></p></div>
-</dd>
-<dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.delete_member_from_project"><code class="name flex">
-<span>def <span class="ident">delete_member_from_project</span></span>(<span>self, memberId: int, projectId: Optional[int] = None)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Delete Member From Project.</p>
-<p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.delete_user"><code class="name flex">
 <span>def <span class="ident">delete_user</span></span>(<span>self, userId: int)</span>
@@ -102,7 +120,7 @@ authenticated user.</p>
 <dd>
 <div class="desc"><p>Delete User.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.delete">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.edit_user"><code class="name flex">
 <span>def <span class="ident">edit_user</span></span>(<span>self, userId: int, data: Iterable[<a title="crowdin_api.api_resources.users.types.UserPatchRequest" href="types.html#crowdin_api.api_resources.users.types.UserPatchRequest">UserPatchRequest</a>])</span>
@@ -110,7 +128,15 @@ authenticated user.</p>
 <dd>
 <div class="desc"><p>Edit User.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.edit_user_project_permissions"><code class="name flex">
+<span>def <span class="ident">edit_user_project_permissions</span></span>(<span>self, userId: int, data: Iterable[<a title="crowdin_api.api_resources.users.types.UserProjectPermissionsPatchRequest" href="types.html#crowdin_api.api_resources.users.types.UserProjectPermissionsPatchRequest">UserProjectPermissionsPatchRequest</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit User Project Permissions.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.projects.permissions.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.projects.permissions.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.get_group_manager"><code class="name flex">
 <span>def <span class="ident">get_group_manager</span></span>(<span>self, group_id: int, user_id: int)</span>
@@ -126,6 +152,14 @@ authenticated user.</p>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.get_user"><code class="name flex">
+<span>def <span class="ident">get_user</span></span>(<span>self, userId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get User.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.getById">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.getById</a></p></div>
+</dd>
 <dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.get_users_path"><code class="name flex">
 <span>def <span class="ident">get_users_path</span></span>(<span>self, userId: Optional[int] = None)</span>
 </code></dt>
@@ -133,15 +167,15 @@ authenticated user.</p>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.invite_user"><code class="name flex">
-<span>def <span class="ident">invite_user</span></span>(<span>self, email: str, firstName: Optional[str] = None, lastName: Optional[str] = None, timezone: Optional[str] = None)</span>
+<span>def <span class="ident">invite_user</span></span>(<span>self, email: str, firstName: Optional[str] = None, lastName: Optional[str] = None, timezone: Optional[str] = None, adminAccess: Optional[bool] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Invite User.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.users.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.list_group_managers"><code class="name flex">
-<span>def <span class="ident">list_group_managers</span></span>(<span>self, group_id: int, team_ids: Optional[Iterable[int]] = None, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None)</span>
+<span>def <span class="ident">list_group_managers</span></span>(<span>self, group_id: int, team_ids: Optional[Iterable[int]] = None, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Group Managers</p>
@@ -154,7 +188,23 @@ authenticated user.</p>
 <dd>
 <div class="desc"><p>List Project Members.</p>
 <p>Link to documentation for enterprise:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.list_user_project_contributions"><code class="name flex">
+<span>def <span class="ident">list_user_project_contributions</span></span>(<span>self, userId: int, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List User Project Contributions.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.projects.contributions.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.projects.contributions.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.list_user_project_permissions"><code class="name flex">
+<span>def <span class="ident">list_user_project_permissions</span></span>(<span>self, userId: int, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List User Project Permissions.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.projects.permissions.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.users.projects.permissions.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.list_users"><code class="name flex">
 <span>def <span class="ident">list_users</span></span>(<span>self, limit: Optional[int] = None, offset: Optional[int] = None, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, status: Optional[<a title="crowdin_api.api_resources.users.enums.UserStatus" href="enums.html#crowdin_api.api_resources.users.enums.UserStatus">UserStatus</a>] = None, search: Optional[str] = None, two_factor: Optional[str] = None, organization_roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.enums.OrganizationRole" href="enums.html#crowdin_api.api_resources.users.enums.OrganizationRole">OrganizationRole</a>]] = None, team_id: Optional[int] = None, project_ids: Optional[Iterable[int]] = None, project_roles: Optional[Iterable[str]] = None, language_ids: Optional[Iterable[str]] = None, group_ids: Optional[Iterable[int]] = None, last_seen_from: Optional[datetime.datetime] = None, last_seen_to: Optional[datetime.datetime] = None)</span>
@@ -165,12 +215,13 @@ authenticated user.</p>
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.users.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.users.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.replace_project_member_permissions"><code class="name flex">
-<span>def <span class="ident">replace_project_member_permissions</span></span>(<span>self, memberId: int, projectId: Optional[int] = None, accessToAllWorkflowSteps: Optional[bool] = None, managerAccess: Optional[bool] = None, permissions: Optional[Dict[~KT, ~VT]] = None, roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.types.ProjectMemberRole" href="types.html#crowdin_api.api_resources.users.types.ProjectMemberRole">ProjectMemberRole</a>]] = None)</span>
+<span>def <span class="ident">replace_project_member_permissions</span></span>(<span>self, memberId: int, projectId: Optional[int] = None, accessToAllWorkflowSteps: Optional[bool] = None, managerAccess: Optional[bool] = None, permissions: Optional[Dict[~KT, ~VT]] = None, roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.types.ProjectMemberRole" href="types.html#crowdin_api.api_resources.users.types.ProjectMemberRole">ProjectMemberRole</a>]] = None, developerAccess: Optional[bool] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Replace Project Member Permissions.</p>
+<p><code>accessToAllWorkflowSteps</code> and <code>permissions</code> are deprecated by the API, use <code>roles</code> instead.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.put">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.members.put</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.put">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.members.put</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.update_group_managers"><code class="name flex">
 <span>def <span class="ident">update_group_managers</span></span>(<span>self, group_id: int, request_data: Iterable[<a title="crowdin_api.api_resources.users.types.GroupManagerPatchRequest" href="types.html#crowdin_api.api_resources.users.types.GroupManagerPatchRequest">GroupManagerPatchRequest</a>])</span>
@@ -181,6 +232,16 @@ authenticated user.</p>
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.groups.managers.patch">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Users/operation/api.groups.managers.patch</a></p></div>
 </dd>
 </dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="crowdin_api.api_resources.users.resource.BaseUsersResource" href="#crowdin_api.api_resources.users.resource.BaseUsersResource">BaseUsersResource</a></b></code>:
+<ul class="hlist">
+<li><code><a title="crowdin_api.api_resources.users.resource.BaseUsersResource.delete_member_from_project" href="#crowdin_api.api_resources.users.resource.BaseUsersResource.delete_member_from_project">delete_member_from_project</a></code></li>
+<li><code><a title="crowdin_api.api_resources.users.resource.BaseUsersResource.get_authenticated_user" href="#crowdin_api.api_resources.users.resource.BaseUsersResource.get_authenticated_user">get_authenticated_user</a></code></li>
+<li><code><a title="crowdin_api.api_resources.users.resource.BaseUsersResource.get_member_info" href="#crowdin_api.api_resources.users.resource.BaseUsersResource.get_member_info">get_member_info</a></code></li>
+</ul>
+</li>
+</ul>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.UsersResource"><code class="flex name class">
 <span>class <span class="ident">UsersResource</span></span>
@@ -191,7 +252,7 @@ authenticated user.</p>
 <p>Users API gives you the possibility to get profile information about the currently
 authenticated user.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#tag/Users">https://developer.crowdin.com/api/v2/#tag/Users</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Users">https://support.crowdin.com/developer/api/v2/#tag/Users</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.users.resource.BaseUsersResource" href="#crowdin_api.api_resources.users.resource.BaseUsersResource">BaseUsersResource</a></li>
@@ -199,13 +260,23 @@ authenticated user.</p>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="crowdin_api.api_resources.users.resource.UsersResource.get_member_info"><code class="name flex">
-<span>def <span class="ident">get_member_info</span></span>(<span>self, memberId: int, projectId: Optional[int] = None)</span>
+<dt id="crowdin_api.api_resources.users.resource.UsersResource.add_project_member"><code class="name flex">
+<span>def <span class="ident">add_project_member</span></span>(<span>self, userIds: Optional[Iterable[int]] = None, projectId: Optional[int] = None, usernames: Optional[Iterable[str]] = None, emails: Optional[Iterable[str]] = None, managerAccess: Optional[bool] = None, developerAccess: Optional[bool] = None, roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.types.ProjectMemberRole" href="types.html#crowdin_api.api_resources.users.types.ProjectMemberRole">ProjectMemberRole</a>]] = None, message: Optional[str] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Get Member Info.</p>
+<div class="desc"><p>Add Project Member.</p>
+<p>One of <code>userIds</code>, <code>usernames</code> or <code>emails</code> is required.
+<code>managerAccess</code>, <code>developerAccess</code> and <code>roles</code> are mutually exclusive.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.members.get">https://developer.crowdin.com/api/v2/#operation/api.projects.members.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.users.resource.UsersResource.edit_authenticated_user"><code class="name flex">
+<span>def <span class="ident">edit_authenticated_user</span></span>(<span>self, data: Iterable[<a title="crowdin_api.api_resources.users.types.AuthenticatedUserPatchRequest" href="types.html#crowdin_api.api_resources.users.types.AuthenticatedUserPatchRequest">AuthenticatedUserPatchRequest</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit Authenticated User.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.user.patch">https://support.crowdin.com/developer/api/v2/#operation/api.user.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.users.resource.UsersResource.list_project_members"><code class="name flex">
 <span>def <span class="ident">list_project_members</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, search: Optional[str] = None, role: Optional[<a title="crowdin_api.api_resources.users.enums.UserRole" href="enums.html#crowdin_api.api_resources.users.enums.UserRole">UserRole</a>] = None, languageId: Optional[str] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -213,9 +284,28 @@ authenticated user.</p>
 <dd>
 <div class="desc"><p>List Project Members.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.members.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.members.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.users.resource.UsersResource.replace_project_member_permissions"><code class="name flex">
+<span>def <span class="ident">replace_project_member_permissions</span></span>(<span>self, memberId: int, projectId: Optional[int] = None, managerAccess: Optional[bool] = None, developerAccess: Optional[bool] = None, roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.types.ProjectMemberRole" href="types.html#crowdin_api.api_resources.users.types.ProjectMemberRole">ProjectMemberRole</a>]] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Replace Project Member Permissions.</p>
+<p><code>managerAccess</code>, <code>developerAccess</code> and <code>roles</code> are mutually exclusive.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.put">https://support.crowdin.com/developer/api/v2/#operation/api.projects.members.put</a></p></div>
 </dd>
 </dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="crowdin_api.api_resources.users.resource.BaseUsersResource" href="#crowdin_api.api_resources.users.resource.BaseUsersResource">BaseUsersResource</a></b></code>:
+<ul class="hlist">
+<li><code><a title="crowdin_api.api_resources.users.resource.BaseUsersResource.delete_member_from_project" href="#crowdin_api.api_resources.users.resource.BaseUsersResource.delete_member_from_project">delete_member_from_project</a></code></li>
+<li><code><a title="crowdin_api.api_resources.users.resource.BaseUsersResource.get_authenticated_user" href="#crowdin_api.api_resources.users.resource.BaseUsersResource.get_authenticated_user">get_authenticated_user</a></code></li>
+<li><code><a title="crowdin_api.api_resources.users.resource.BaseUsersResource.get_member_info" href="#crowdin_api.api_resources.users.resource.BaseUsersResource.get_member_info">get_member_info</a></code></li>
+</ul>
+</li>
+</ul>
 </dd>
 </dl>
 </section>
@@ -236,7 +326,9 @@ authenticated user.</p>
 <li>
 <h4><code><a title="crowdin_api.api_resources.users.resource.BaseUsersResource" href="#crowdin_api.api_resources.users.resource.BaseUsersResource">BaseUsersResource</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.users.resource.BaseUsersResource.delete_member_from_project" href="#crowdin_api.api_resources.users.resource.BaseUsersResource.delete_member_from_project">delete_member_from_project</a></code></li>
 <li><code><a title="crowdin_api.api_resources.users.resource.BaseUsersResource.get_authenticated_user" href="#crowdin_api.api_resources.users.resource.BaseUsersResource.get_authenticated_user">get_authenticated_user</a></code></li>
+<li><code><a title="crowdin_api.api_resources.users.resource.BaseUsersResource.get_member_info" href="#crowdin_api.api_resources.users.resource.BaseUsersResource.get_member_info">get_member_info</a></code></li>
 <li><code><a title="crowdin_api.api_resources.users.resource.BaseUsersResource.get_members_path" href="#crowdin_api.api_resources.users.resource.BaseUsersResource.get_members_path">get_members_path</a></code></li>
 </ul>
 </li>
@@ -244,15 +336,18 @@ authenticated user.</p>
 <h4><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource">EnterpriseUsersResource</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.add_project_member" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.add_project_member">add_project_member</a></code></li>
-<li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.delete_member_from_project" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.delete_member_from_project">delete_member_from_project</a></code></li>
 <li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.delete_user" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.delete_user">delete_user</a></code></li>
 <li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.edit_user" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.edit_user">edit_user</a></code></li>
+<li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.edit_user_project_permissions" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.edit_user_project_permissions">edit_user_project_permissions</a></code></li>
 <li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.get_group_manager" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.get_group_manager">get_group_manager</a></code></li>
 <li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.get_group_managers_path" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.get_group_managers_path">get_group_managers_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.get_user" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.get_user">get_user</a></code></li>
 <li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.get_users_path" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.get_users_path">get_users_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.invite_user" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.invite_user">invite_user</a></code></li>
 <li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.list_group_managers" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.list_group_managers">list_group_managers</a></code></li>
 <li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.list_project_members" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.list_project_members">list_project_members</a></code></li>
+<li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.list_user_project_contributions" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.list_user_project_contributions">list_user_project_contributions</a></code></li>
+<li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.list_user_project_permissions" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.list_user_project_permissions">list_user_project_permissions</a></code></li>
 <li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.list_users" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.list_users">list_users</a></code></li>
 <li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.replace_project_member_permissions" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.replace_project_member_permissions">replace_project_member_permissions</a></code></li>
 <li><code><a title="crowdin_api.api_resources.users.resource.EnterpriseUsersResource.update_group_managers" href="#crowdin_api.api_resources.users.resource.EnterpriseUsersResource.update_group_managers">update_group_managers</a></code></li>
@@ -261,8 +356,10 @@ authenticated user.</p>
 <li>
 <h4><code><a title="crowdin_api.api_resources.users.resource.UsersResource" href="#crowdin_api.api_resources.users.resource.UsersResource">UsersResource</a></code></h4>
 <ul class="">
-<li><code><a title="crowdin_api.api_resources.users.resource.UsersResource.get_member_info" href="#crowdin_api.api_resources.users.resource.UsersResource.get_member_info">get_member_info</a></code></li>
+<li><code><a title="crowdin_api.api_resources.users.resource.UsersResource.add_project_member" href="#crowdin_api.api_resources.users.resource.UsersResource.add_project_member">add_project_member</a></code></li>
+<li><code><a title="crowdin_api.api_resources.users.resource.UsersResource.edit_authenticated_user" href="#crowdin_api.api_resources.users.resource.UsersResource.edit_authenticated_user">edit_authenticated_user</a></code></li>
 <li><code><a title="crowdin_api.api_resources.users.resource.UsersResource.list_project_members" href="#crowdin_api.api_resources.users.resource.UsersResource.list_project_members">list_project_members</a></code></li>
+<li><code><a title="crowdin_api.api_resources.users.resource.UsersResource.replace_project_member_permissions" href="#crowdin_api.api_resources.users.resource.UsersResource.replace_project_member_permissions">replace_project_member_permissions</a></code></li>
 </ul>
 </li>
 </ul>

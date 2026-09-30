@@ -41,7 +41,7 @@
 <p>Organization teams.</p>
 <p>Use API to create, modify, and delete specific teams and members.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#tag/Teams">https://developer.crowdin.com/enterprise/api/v2/#tag/Teams</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -54,7 +54,7 @@
 <dd>
 <div class="desc"><p>Add Team.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.teams.resource.TeamsResource.add_team_members"><code class="name flex">
 <span>def <span class="ident">add_team_members</span></span>(<span>self, teamId: int, userIds: Iterable[int])</span>
@@ -62,15 +62,19 @@
 <dd>
 <div class="desc"><p>Add Team Members.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.teams.resource.TeamsResource.add_team_to_project"><code class="name flex">
-<span>def <span class="ident">add_team_to_project</span></span>(<span>self, teamId: int, projectId: Optional[int] = None, accessToAllWorkflowSteps: bool = True, managerAccess: bool = False, permissions: Optional[<a title="crowdin_api.api_resources.teams.types.Permissions" href="types.html#crowdin_api.api_resources.teams.types.Permissions">Permissions</a>] = None, roles: Optional[Iterable[<a title="crowdin_api.api_resources.teams.types.TeamByProjectRole" href="types.html#crowdin_api.api_resources.teams.types.TeamByProjectRole">TeamByProjectRole</a>]] = None)</span>
+<span>def <span class="ident">add_team_to_project</span></span>(<span>self, teamId: int, projectId: Optional[int] = None, accessToAllWorkflowSteps: Optional[bool] = None, managerAccess: Optional[bool] = None, permissions: Optional[<a title="crowdin_api.api_resources.teams.types.Permissions" href="types.html#crowdin_api.api_resources.teams.types.Permissions">Permissions</a>] = None, roles: Optional[Iterable[<a title="crowdin_api.api_resources.teams.types.TeamByProjectRole" href="types.html#crowdin_api.api_resources.teams.types.TeamByProjectRole">TeamByProjectRole</a>]] = None, developerAccess: Optional[bool] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Team To Project.</p>
+<p><code>managerAccess</code>, <code>developerAccess</code>, <code>accessToAllWorkflowSteps</code>, <code>permissions</code> and <code>roles</code>
+are mutually exclusive. <code>accessToAllWorkflowSteps</code> and <code>permissions</code> are deprecated by
+the API, use <code>roles</code> instead. Omitted values fall back to the API defaults
+(<code>accessToAllWorkflowSteps</code> - <code>true</code>, <code>managerAccess</code> - <code>false</code>).</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.teams.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.teams.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.teams.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.teams.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.teams.resource.TeamsResource.delete_all_team_members"><code class="name flex">
 <span>def <span class="ident">delete_all_team_members</span></span>(<span>self, teamId: int)</span>
@@ -78,7 +82,7 @@
 <dd>
 <div class="desc"><p>Delete All Team Members.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.deleteMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.deleteMany</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.deleteMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.deleteMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.teams.resource.TeamsResource.delete_team"><code class="name flex">
 <span>def <span class="ident">delete_team</span></span>(<span>self, teamId: int)</span>
@@ -86,7 +90,7 @@
 <dd>
 <div class="desc"><p>Delete Team.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.delete">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.teams.resource.TeamsResource.delete_team_member"><code class="name flex">
 <span>def <span class="ident">delete_team_member</span></span>(<span>self, teamId: int, memberId: int)</span>
@@ -94,7 +98,7 @@
 <dd>
 <div class="desc"><p>Delete Team Member.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.delete">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.teams.resource.TeamsResource.edit_team"><code class="name flex">
 <span>def <span class="ident">edit_team</span></span>(<span>self, teamId: int, data: Iterable[<a title="crowdin_api.api_resources.teams.types.TeamPatchRequest" href="types.html#crowdin_api.api_resources.teams.types.TeamPatchRequest">TeamPatchRequest</a>])</span>
@@ -102,7 +106,15 @@
 <dd>
 <div class="desc"><p>Edit Team.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.teams.resource.TeamsResource.edit_team_project_permissions"><code class="name flex">
+<span>def <span class="ident">edit_team_project_permissions</span></span>(<span>self, teamId: int, data: Iterable[<a title="crowdin_api.api_resources.teams.types.TeamProjectPermissionsPatchRequest" href="types.html#crowdin_api.api_resources.teams.types.TeamProjectPermissionsPatchRequest">TeamProjectPermissionsPatchRequest</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit Team Project Permissions.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.projects.permissions.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.projects.permissions.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.teams.resource.TeamsResource.get_group_team"><code class="name flex">
 <span>def <span class="ident">get_group_team</span></span>(<span>self, group_id: int, team_id: int)</span>
@@ -130,7 +142,7 @@
 <dd>
 <div class="desc"><p>Get Team.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.get</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.teams.resource.TeamsResource.get_teams_path"><code class="name flex">
 <span>def <span class="ident">get_teams_path</span></span>(<span>self, teamId: Optional[int] = None)</span>
@@ -139,12 +151,20 @@
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.teams.resource.TeamsResource.list_group_teams"><code class="name flex">
-<span>def <span class="ident">list_group_teams</span></span>(<span>self, group_id: int, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None)</span>
+<span>def <span class="ident">list_group_teams</span></span>(<span>self, group_id: int, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Group Teams</p>
 <p>Link to documentation for enterprise:
 <a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams/operation/api.groups.teams.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Teams/operation/api.groups.teams.getMany</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.teams.resource.TeamsResource.list_team_project_permissions"><code class="name flex">
+<span>def <span class="ident">list_team_project_permissions</span></span>(<span>self, teamId: int, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Team Project Permissions.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.projects.permissions.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.projects.permissions.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.teams.resource.TeamsResource.list_teams"><code class="name flex">
 <span>def <span class="ident">list_teams</span></span>(<span>self, order_by: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, offset: Optional[int] = None, limit: Optional[int] = None, search: Optional[str] = None, project_ids: Optional[Iterable[int]] = None, project_roles: Optional[Iterable[<a title="crowdin_api.api_resources.users.enums.ProjectRole" href="../users/enums.html#crowdin_api.api_resources.users.enums.ProjectRole">ProjectRole</a>]] = None, language_ids: Optional[Iterable[str]] = None, group_ids: Optional[Iterable[int]] = None)</span>
@@ -152,7 +172,7 @@
 <dd>
 <div class="desc"><p>List Teams.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.teams.resource.TeamsResource.teams_member_list"><code class="name flex">
 <span>def <span class="ident">teams_member_list</span></span>(<span>self, teamId: int, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -160,7 +180,7 @@
 <dd>
 <div class="desc"><p>Team Members List.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.teams.members.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.teams.members.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.teams.resource.TeamsResource.update_group_teams"><code class="name flex">
 <span>def <span class="ident">update_group_teams</span></span>(<span>self, group_id: int, request_data: Iterable[<a title="crowdin_api.api_resources.teams.types.GroupTeamPatchRequest" href="types.html#crowdin_api.api_resources.teams.types.GroupTeamPatchRequest">GroupTeamPatchRequest</a>])</span>
@@ -198,12 +218,14 @@
 <li><code><a title="crowdin_api.api_resources.teams.resource.TeamsResource.delete_team" href="#crowdin_api.api_resources.teams.resource.TeamsResource.delete_team">delete_team</a></code></li>
 <li><code><a title="crowdin_api.api_resources.teams.resource.TeamsResource.delete_team_member" href="#crowdin_api.api_resources.teams.resource.TeamsResource.delete_team_member">delete_team_member</a></code></li>
 <li><code><a title="crowdin_api.api_resources.teams.resource.TeamsResource.edit_team" href="#crowdin_api.api_resources.teams.resource.TeamsResource.edit_team">edit_team</a></code></li>
+<li><code><a title="crowdin_api.api_resources.teams.resource.TeamsResource.edit_team_project_permissions" href="#crowdin_api.api_resources.teams.resource.TeamsResource.edit_team_project_permissions">edit_team_project_permissions</a></code></li>
 <li><code><a title="crowdin_api.api_resources.teams.resource.TeamsResource.get_group_team" href="#crowdin_api.api_resources.teams.resource.TeamsResource.get_group_team">get_group_team</a></code></li>
 <li><code><a title="crowdin_api.api_resources.teams.resource.TeamsResource.get_group_teams_path" href="#crowdin_api.api_resources.teams.resource.TeamsResource.get_group_teams_path">get_group_teams_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.teams.resource.TeamsResource.get_members_path" href="#crowdin_api.api_resources.teams.resource.TeamsResource.get_members_path">get_members_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.teams.resource.TeamsResource.get_team" href="#crowdin_api.api_resources.teams.resource.TeamsResource.get_team">get_team</a></code></li>
 <li><code><a title="crowdin_api.api_resources.teams.resource.TeamsResource.get_teams_path" href="#crowdin_api.api_resources.teams.resource.TeamsResource.get_teams_path">get_teams_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.teams.resource.TeamsResource.list_group_teams" href="#crowdin_api.api_resources.teams.resource.TeamsResource.list_group_teams">list_group_teams</a></code></li>
+<li><code><a title="crowdin_api.api_resources.teams.resource.TeamsResource.list_team_project_permissions" href="#crowdin_api.api_resources.teams.resource.TeamsResource.list_team_project_permissions">list_team_project_permissions</a></code></li>
 <li><code><a title="crowdin_api.api_resources.teams.resource.TeamsResource.list_teams" href="#crowdin_api.api_resources.teams.resource.TeamsResource.list_teams">list_teams</a></code></li>
 <li><code><a title="crowdin_api.api_resources.teams.resource.TeamsResource.teams_member_list" href="#crowdin_api.api_resources.teams.resource.TeamsResource.teams_member_list">teams_member_list</a></code></li>
 <li><code><a title="crowdin_api.api_resources.teams.resource.TeamsResource.update_group_teams" href="#crowdin_api.api_resources.teams.resource.TeamsResource.update_group_teams">update_group_teams</a></code></li>

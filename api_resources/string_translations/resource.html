@@ -40,7 +40,7 @@
 <div class="desc"><p>Resource for String Translations.</p>
 <p>Use API to add or remove strings translations, approvals, and votes.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#tag/String-Translations">https://developer.crowdin.com/api/v2/#tag/String-Translations</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#tag/String-Translations">https://support.crowdin.com/developer/api/v2/#tag/String-Translations</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -48,20 +48,35 @@
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_approval"><code class="name flex">
-<span>def <span class="ident">add_approval</span></span>(<span>self, translationId: int, projectId: Optional[int] = None)</span>
+<span>def <span class="ident">add_approval</span></span>(<span>self, translationId: Optional[int] = None, projectId: Optional[int] = None, correctionId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Approval.</p>
+<p>Pass either <code>translationId</code> or <code>correctionId</code> (Crowdin Enterprise only).</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.post">https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.approvals.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.approvals.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.approvals.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.approvals.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_file_translations"><code class="name flex">
+<span>def <span class="ident">add_file_translations</span></span>(<span>self, fileId: int, languageId: str, storageId: int, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add Translation (upload translations of a file from storage).</p>
+<p>File-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.translations.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.translations.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_translation"><code class="name flex">
-<span>def <span class="ident">add_translation</span></span>(<span>self, stringId: int, languageId: str, text: str, projectId: Optional[int] = None, pluralCategoryName: Optional[<a title="crowdin_api.api_resources.enums.PluralCategoryName" href="../enums.html#crowdin_api.api_resources.enums.PluralCategoryName">PluralCategoryName</a>] = None, addToTm: Optional[bool] = None)</span>
+<span>def <span class="ident">add_translation</span></span>(<span>self, stringId: int, languageId: str, text: str, projectId: Optional[int] = None, pluralCategoryName: Optional[<a title="crowdin_api.api_resources.enums.PluralCategoryName" href="../enums.html#crowdin_api.api_resources.enums.PluralCategoryName">PluralCategoryName</a>] = None, addToTm: Optional[bool] = None, provider: Optional[<a title="crowdin_api.api_resources.string_translations.enums.TranslationProvider" href="enums.html#crowdin_api.api_resources.string_translations.enums.TranslationProvider">TranslationProvider</a>] = None, providerId: Optional[int] = None, isPreTranslated: Optional[bool] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Translation.</p>
+<p><code>provider</code> is required when <code>providerId</code> or <code>isPreTranslated</code> is specified.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.post">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_vote"><code class="name flex">
 <span>def <span class="ident">add_vote</span></span>(<span>self, mark: <a title="crowdin_api.api_resources.string_translations.enums.VoteMark" href="enums.html#crowdin_api.api_resources.string_translations.enums.VoteMark">VoteMark</a>, translationId: int, projectId: Optional[int] = None)</span>
@@ -69,7 +84,7 @@
 <dd>
 <div class="desc"><p>Add Vote.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.votes.pos">https://developer.crowdin.com/api/v2/#operation/api.projects.votes.pos</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.votes.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.votes.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.approval_batch_operations"><code class="name flex">
 <span>def <span class="ident">approval_batch_operations</span></span>(<span>self, project_id: int, data: Iterable[<a title="crowdin_api.api_resources.string_translations.types.ApprovalBatchOpPatchRequest" href="types.html#crowdin_api.api_resources.string_translations.types.ApprovalBatchOpPatchRequest">ApprovalBatchOpPatchRequest</a>])</span>
@@ -87,15 +102,17 @@
 <dd>
 <div class="desc"><p>Cancel Vote.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.votes.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.votes.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.votes.delete">https://support.crowdin.com/developer/api/v2/#operation/api.projects.votes.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.delete_string_translations"><code class="name flex">
-<span>def <span class="ident">delete_string_translations</span></span>(<span>self, stringId: int, languageId: Optional[str] = None, projectId: Optional[int] = None)</span>
+<span>def <span class="ident">delete_string_translations</span></span>(<span>self, stringId: Optional[int] = None, languageId: Optional[str] = None, projectId: Optional[int] = None, fileId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete String Translations.</p>
+<p>Delete translations of a string (<code>stringId</code>) or of all strings in a file
+(<code>fileId</code>, file-based projects only). <code>stringId</code> is required in string-based projects.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.deleteMany">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.deleteMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.deleteMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.deleteMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.delete_translation"><code class="name flex">
 <span>def <span class="ident">delete_translation</span></span>(<span>self, translationId: int, projectId: Optional[int] = None)</span>
@@ -103,7 +120,7 @@
 <dd>
 <div class="desc"><p>Delete Translation.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.delete">https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.get_approval"><code class="name flex">
 <span>def <span class="ident">get_approval</span></span>(<span>self, approvalId: int, projectId: Optional[int] = None)</span>
@@ -111,7 +128,7 @@
 <dd>
 <div class="desc"><p>Get Approval.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.get">https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.approvals.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.approvals.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.get_approvals_path"><code class="name flex">
 <span>def <span class="ident">get_approvals_path</span></span>(<span>self, projectId: int, approvalId: Optional[int] = None)</span>
@@ -120,12 +137,12 @@
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.get_translation"><code class="name flex">
-<span>def <span class="ident">get_translation</span></span>(<span>self, translationId: int, projectId: Optional[int] = None)</span>
+<span>def <span class="ident">get_translation</span></span>(<span>self, translationId: int, projectId: Optional[int] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get Translation.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.get">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.get_translation_votes_path"><code class="name flex">
 <span>def <span class="ident">get_translation_votes_path</span></span>(<span>self, projectId: int, voteId: Optional[int] = None)</span>
@@ -145,54 +162,66 @@
 <dd>
 <div class="desc"><p>Get Vote.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.votes.get">https://developer.crowdin.com/api/v2/#operation/api.projects.votes.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.votes.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.votes.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.list_language_translations"><code class="name flex">
-<span>def <span class="ident">list_language_translations</span></span>(<span>self, languageId: str, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, stringIds: Optional[Iterable[int]] = None, labelIds: Optional[Iterable[int]] = None, fileId: Optional[int] = None, branchId: Optional[int] = None, directoryId: Optional[int] = None, croql: Optional[str] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_language_translations</span></span>(<span>self, languageId: str, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, stringIds: Optional[Iterable[int]] = None, labelIds: Optional[Iterable[int]] = None, fileId: Optional[int] = None, branchId: Optional[int] = None, directoryId: Optional[int] = None, croql: Optional[str] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None, approvedOnly: Union[bool, int, None] = None, passedWorkflow: Union[bool, int, None] = None, minApprovalCount: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Language Translations</p>
+<p><code>fileId</code> and <code>directoryId</code> are available in file-based projects only.
+<code>orderBy</code> and <code>approvedOnly</code> are available in Crowdin only;
+<code>passedWorkflow</code> and <code>minApprovalCount</code> in Crowdin Enterprise only.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.languages.translations.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.languages.translations.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.languages.translations.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.languages.translations.getMany</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.languages.translations.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.languages.translations.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.list_string_translations"><code class="name flex">
-<span>def <span class="ident">list_string_translations</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, stringId: Optional[int] = None, languageId: Optional[str] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_string_translations</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, stringId: Optional[int] = None, languageId: Optional[str] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None, fileId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List String Translations</p>
+<p><code>languageId</code> is required by the API. <code>fileId</code> is available in file-based projects only.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.list_translation_approvals"><code class="name flex">
-<span>def <span class="ident">list_translation_approvals</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, fileId: Optional[int] = None, labelIds: Optional[str] = None, excludeLabelIds: Optional[str] = None, stringId: Optional[int] = None, languageId: Optional[str] = None, translationId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_translation_approvals</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, fileId: Optional[int] = None, labelIds: Optional[str] = None, excludeLabelIds: Optional[str] = None, stringId: Optional[int] = None, languageId: Optional[str] = None, translationId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None, correctionId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Translation Approvals</p>
+<p><code>fileId</code> is available in file-based projects only, <code>correctionId</code> in Crowdin Enterprise only.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.approvals.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.approvals.getMany</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.approvals.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.approvals.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.list_translation_votes"><code class="name flex">
 <span>def <span class="ident">list_translation_votes</span></span>(<span>self, projectId: Optional[int] = None, stringId: Optional[int] = None, languageId: Optional[str] = None, translationId: Optional[int] = None, fileId: Optional[int] = None, labelIds: Optional[str] = None, excludeLabelIds: Optional[str] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Translation Votes</p>
+<p><code>fileId</code> is available in file-based projects only.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.votes.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.votes.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.votes.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.votes.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.remove_approval"><code class="name flex">
 <span>def <span class="ident">remove_approval</span></span>(<span>self, approvalId: int, projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Remove Approvall.</p>
+<div class="desc"><p>Remove Approval.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.approvals.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.approvals.delete">https://support.crowdin.com/developer/api/v2/#operation/api.projects.approvals.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.remove_string_approvals"><code class="name flex">
-<span>def <span class="ident">remove_string_approvals</span></span>(<span>self, stringId: int, projectId: Optional[int] = None)</span>
+<span>def <span class="ident">remove_string_approvals</span></span>(<span>self, stringId: Optional[int] = None, projectId: Optional[int] = None, fileId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Remove String Approvals</p>
-<p>Link to documentaion:
+<p>Remove approvals of a string (<code>stringId</code>) or of all strings in a file
+(<code>fileId</code>, file-based projects only). <code>stringId</code> is required in string-based projects.</p>
+<p>Link to documentation:
 <a href="https://support.crowdin.com/developer/api/v2/#tag/String-Translations/operation/api.projects.approvals.deleteMany">https://support.crowdin.com/developer/api/v2/#tag/String-Translations/operation/api.projects.approvals.deleteMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.restore_translation"><code class="name flex">
@@ -201,7 +230,7 @@
 <dd>
 <div class="desc"><p>Restore Translation.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.put">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.put</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.put">https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.put</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.search_translations"><code class="name flex">
 <span>def <span class="ident">search_translations</span></span>(<span>self, filter: str, projectIds: Optional[Iterable[int]] = None, userId: Optional[int] = None, languageIds: Optional[Iterable[str]] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -209,8 +238,8 @@
 <dd>
 <div class="desc"><p>Search Translations.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.translations.getMany">https://developer.crowdin.com/api/v2/#operation/api.translations.getMany</a>
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.translations.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.translations.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.translations.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.translations.getMany</a>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.translations.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.translations.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.translation_alignment"><code class="name flex">
 <span>def <span class="ident">translation_alignment</span></span>(<span>self, sourceLanguageId: str, targetLanguageId: str, text: str, projectId: Optional[int] = None)</span>
@@ -218,7 +247,7 @@
 <dd>
 <div class="desc"><p>Translation Alignment</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.translations.alignment.post">https://developer.crowdin.com/api/v2/#operation/api.projects.translations.alignment.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.alignment.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.translations.alignment.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.translation_batch_operations"><code class="name flex">
 <span>def <span class="ident">translation_batch_operations</span></span>(<span>self, project_id: int, data: Iterable[<a title="crowdin_api.api_resources.string_translations.types.TranslationBatchOpPatchRequest" href="types.html#crowdin_api.api_resources.string_translations.types.TranslationBatchOpPatchRequest">TranslationBatchOpPatchRequest</a>])</span>
@@ -252,6 +281,7 @@
 <h4><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource">StringTranslationsResource</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_approval" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_approval">add_approval</a></code></li>
+<li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_file_translations" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_file_translations">add_file_translations</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_translation" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_translation">add_translation</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_vote" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.add_vote">add_vote</a></code></li>
 <li><code><a title="crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.approval_batch_operations" href="#crowdin_api.api_resources.string_translations.resource.StringTranslationsResource.approval_batch_operations">approval_batch_operations</a></code></li>

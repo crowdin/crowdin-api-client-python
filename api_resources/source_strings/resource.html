@@ -32,6 +32,81 @@
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
+<dt id="crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource"><code class="flex name class">
+<span>class <span class="ident">EnterpriseSourceStringsResource</span></span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Resource for Source Strings (Crowdin Enterprise).</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Source-Strings">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Source-Strings</a></p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource">SourceStringsResource</a></li>
+<li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.build_reviewed_source_files"><code class="name flex">
+<span>def <span class="ident">build_reviewed_source_files</span></span>(<span>self, projectId: Optional[int] = None, branchId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build Reviewed Source Files.</p>
+<p>File-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.strings.reviewed-builds.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.strings.reviewed-builds.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.check_reviewed_source_files_build_status"><code class="name flex">
+<span>def <span class="ident">check_reviewed_source_files_build_status</span></span>(<span>self, buildId: int, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check Reviewed Source Files Build Status.</p>
+<p>File-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.strings.reviewed-builds.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.strings.reviewed-builds.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.download_reviewed_source_files"><code class="name flex">
+<span>def <span class="ident">download_reviewed_source_files</span></span>(<span>self, buildId: int, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Download Reviewed Source Files.</p>
+<p>File-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.strings.reviewed-builds.download.download">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.strings.reviewed-builds.download.download</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.get_reviewed_builds_path"><code class="name flex">
+<span>def <span class="ident">get_reviewed_builds_path</span></span>(<span>self, projectId: int, buildId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.list_reviewed_source_files_builds"><code class="name flex">
+<span>def <span class="ident">list_reviewed_source_files_builds</span></span>(<span>self, projectId: Optional[int] = None, branchId: Optional[int] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List Reviewed Source Files Builds.</p>
+<p>File-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.strings.reviewed-builds.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.strings.reviewed-builds.getMany</a></p></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource">SourceStringsResource</a></b></code>:
+<ul class="hlist">
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.add_string" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.add_string">add_string</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.delete_string" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.delete_string">delete_string</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.edit_string" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.edit_string">edit_string</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_string" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_string">get_string</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.list_strings" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.list_strings">list_strings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.search_strings" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.search_strings">search_strings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.string_batch_operation" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.string_batch_operation">string_batch_operation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.upload_strings" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.upload_strings">upload_strings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.upload_strings_status" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.upload_strings_status">upload_strings_status</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource"><code class="flex name class">
 <span>class <span class="ident">SourceStringsResource</span></span>
 <span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
@@ -44,20 +119,29 @@ you can manage source strings one by one.</p>
 projects (available only for the following file formats: CSV, RESX, JSON, Android XML,
 iOS strings, PROPERTIES, XLIFF).</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#tag/Source-Strings">https://developer.crowdin.com/api/v2/#tag/Source-Strings</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Source-Strings">https://support.crowdin.com/developer/api/v2/#tag/Source-Strings</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
 </ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource" href="#crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource">EnterpriseSourceStringsResource</a></li>
+</ul>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.add_string"><code class="name flex">
-<span>def <span class="ident">add_string</span></span>(<span>self, text: str, projectId: Optional[int] = None, identifier: Optional[str] = None, fileId: Optional[int] = None, context: Optional[str] = None, isHidden: Optional[bool] = None, maxLength: Optional[int] = None, labelIds: Optional[Iterable[int]] = None, branchId: Optional[int] = None)</span>
+<span>def <span class="ident">add_string</span></span>(<span>self, text: Union[str, Dict[str, str]], projectId: Optional[int] = None, identifier: Optional[str] = None, fileId: Optional[int] = None, context: Optional[str] = None, isHidden: Optional[bool] = None, maxLength: Optional[int] = None, labelIds: Optional[Iterable[int]] = None, branchId: Optional[int] = None, fields: Optional[Dict[str, Any]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add String.</p>
+<p>:param text: Text for translation. Use a dict (e.g. {"one": "&hellip;", "other": "&hellip;"})
+for plural strings.
+:param fileId: File Identifier (file-based projects only).
+:param branchId: Branch Identifier (string-based projects only).
+:param fields: Fields values, keys get via List Fields (Crowdin Enterprise only).</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings.post">https://developer.crowdin.com/api/v2/#operation/api.projects.strings.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.delete_string"><code class="name flex">
 <span>def <span class="ident">delete_string</span></span>(<span>self, stringId: int, projectId: Optional[int] = None)</span>
@@ -65,15 +149,17 @@ iOS strings, PROPERTIES, XLIFF).</p>
 <dd>
 <div class="desc"><p>Delete String.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.strings.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.delete">https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.edit_string"><code class="name flex">
-<span>def <span class="ident">edit_string</span></span>(<span>self, stringId: int, data: Iterable[<a title="crowdin_api.api_resources.source_strings.types.SourceStringsPatchRequest" href="types.html#crowdin_api.api_resources.source_strings.types.SourceStringsPatchRequest">SourceStringsPatchRequest</a>], projectId: Optional[int] = None)</span>
+<span>def <span class="ident">edit_string</span></span>(<span>self, stringId: int, data: Iterable[<a title="crowdin_api.api_resources.source_strings.types.SourceStringsPatchRequest" href="types.html#crowdin_api.api_resources.source_strings.types.SourceStringsPatchRequest">SourceStringsPatchRequest</a>], projectId: Optional[int] = None, updateOption: Optional[<a title="crowdin_api.api_resources.source_strings.enums.StringUpdateOption" href="enums.html#crowdin_api.api_resources.source_strings.enums.StringUpdateOption">StringUpdateOption</a>] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Edit String.</p>
+<p>:param updateOption: Defines whether to keep existing translations and approvals for
+the updated string. Applied only when <code>text</code> or <code>identifier</code> is changed.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.strings.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.patch">https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_source_strings_path"><code class="name flex">
 <span>def <span class="ident">get_source_strings_path</span></span>(<span>self, projectId: int, stringId: Optional[int] = None)</span>
@@ -82,20 +168,28 @@ iOS strings, PROPERTIES, XLIFF).</p>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_string"><code class="name flex">
-<span>def <span class="ident">get_string</span></span>(<span>self, stringId: int, projectId: Optional[int] = None)</span>
+<span>def <span class="ident">get_string</span></span>(<span>self, stringId: int, projectId: Optional[int] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get String.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings.get">https://developer.crowdin.com/api/v2/#operation/api.projects.strings.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.get</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_strings_uploads_path"><code class="name flex">
+<span>def <span class="ident">get_strings_uploads_path</span></span>(<span>self, projectId: int, uploadId: Optional[str] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.list_strings"><code class="name flex">
-<span>def <span class="ident">list_strings</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, fileId: Optional[int] = None, branchId: Optional[int] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, labelIds: Optional[Iterable[int]] = None, taskId: Optional[int] = None, croql: Optional[str] = None, filter: Optional[str] = None, scope: Optional[<a title="crowdin_api.api_resources.source_strings.enums.ScopeFilter" href="enums.html#crowdin_api.api_resources.source_strings.enums.ScopeFilter">ScopeFilter</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
+<span>def <span class="ident">list_strings</span></span>(<span>self, projectId: Optional[int] = None, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, fileId: Optional[int] = None, branchId: Optional[int] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, labelIds: Optional[Iterable[int]] = None, taskId: Optional[int] = None, croql: Optional[str] = None, filter: Optional[str] = None, scope: Optional[<a title="crowdin_api.api_resources.source_strings.enums.ScopeFilter" href="enums.html#crowdin_api.api_resources.source_strings.enums.ScopeFilter">ScopeFilter</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None, directoryId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Strings.</p>
+<p>:param directoryId: Directory Identifier (file-based projects only).
+Can't be used with <code>taskId</code>, <code>fileId</code> or <code>branchId</code> in the same request.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.strings.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.search_strings"><code class="name flex">
 <span>def <span class="ident">search_strings</span></span>(<span>self, filter: str, projectIds: Optional[Iterable[int]] = None, userId: Optional[int] = None, scope: Optional[<a title="crowdin_api.api_resources.source_strings.enums.ScopeFilter" href="enums.html#crowdin_api.api_resources.source_strings.enums.ScopeFilter">ScopeFilter</a>] = None, denormalizePlaceholders: Optional[<a title="crowdin_api.api_resources.enums.DenormalizePlaceholders" href="../enums.html#crowdin_api.api_resources.enums.DenormalizePlaceholders">DenormalizePlaceholders</a>] = None, page: Optional[int] = None, offset: Optional[int] = None, limit: Optional[int] = None)</span>
@@ -103,16 +197,39 @@ iOS strings, PROPERTIES, XLIFF).</p>
 <dd>
 <div class="desc"><p>Search Strings.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.strings.getMany">https://developer.crowdin.com/api/v2/#operation/api.strings.getMany</a>
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.strings.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.strings.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.strings.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.strings.getMany</a>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.strings.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.strings.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.string_batch_operation"><code class="name flex">
-<span>def <span class="ident">string_batch_operation</span></span>(<span>self, data: Iterable[<a title="crowdin_api.api_resources.source_strings.types.StringBatchOperationPatchRequest" href="types.html#crowdin_api.api_resources.source_strings.types.StringBatchOperationPatchRequest">StringBatchOperationPatchRequest</a>], projectId: Optional[int] = None)</span>
+<span>def <span class="ident">string_batch_operation</span></span>(<span>self, data: Iterable[<a title="crowdin_api.api_resources.source_strings.types.StringBatchOperationPatchRequest" href="types.html#crowdin_api.api_resources.source_strings.types.StringBatchOperationPatchRequest">StringBatchOperationPatchRequest</a>], projectId: Optional[int] = None, updateOption: Optional[<a title="crowdin_api.api_resources.source_strings.enums.StringUpdateOption" href="enums.html#crowdin_api.api_resources.source_strings.enums.StringUpdateOption">StringUpdateOption</a>] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>String Batch Operations.</p>
+<p>:param updateOption: Defines whether to keep existing translations and approvals for
+updated strings. Applied only when <code>text</code> or <code>identifier</code> is changed.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.strings.batchPatch">https://developer.crowdin.com/api/v2/#operation/api.projects.strings.batchPatch</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.batchPatch">https://support.crowdin.com/developer/api/v2/#operation/api.projects.strings.batchPatch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.upload_strings"><code class="name flex">
+<span>def <span class="ident">upload_strings</span></span>(<span>self, storageId: int, branchId: int, projectId: Optional[int] = None, type: Optional[<a title="crowdin_api.api_resources.source_strings.enums.UploadStringsType" href="enums.html#crowdin_api.api_resources.source_strings.enums.UploadStringsType">UploadStringsType</a>] = None, parserVersion: Optional[int] = None, labelIds: Optional[Iterable[int]] = None, updateStrings: Optional[bool] = None, cleanupMode: Optional[bool] = None, importOptions: Union[<a title="crowdin_api.api_resources.source_strings.types.UploadStringsSpreadsheetImportOptions" href="types.html#crowdin_api.api_resources.source_strings.types.UploadStringsSpreadsheetImportOptions">UploadStringsSpreadsheetImportOptions</a>, <a title="crowdin_api.api_resources.source_strings.types.UploadStringsStringCatalogImportOptions" href="types.html#crowdin_api.api_resources.source_strings.types.UploadStringsStringCatalogImportOptions">UploadStringsStringCatalogImportOptions</a>, <a title="crowdin_api.api_resources.source_strings.types.UploadStringsOtherImportOptions" href="types.html#crowdin_api.api_resources.source_strings.types.UploadStringsOtherImportOptions">UploadStringsOtherImportOptions</a>, None] = None, updateOption: Optional[<a title="crowdin_api.api_resources.source_strings.enums.StringUpdateOption" href="enums.html#crowdin_api.api_resources.source_strings.enums.StringUpdateOption">StringUpdateOption</a>] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Upload Strings.</p>
+<p>String-based projects only.</p>
+<p>:param updateOption: Must be used together with <code>updateStrings = True</code>.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/string-based/#operation/api.projects.strings.uploads.post">https://support.crowdin.com/developer/api/v2/string-based/#operation/api.projects.strings.uploads.post</a>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/string-based/#operation/api.projects.strings.uploads.post">https://support.crowdin.com/developer/enterprise/api/v2/string-based/#operation/api.projects.strings.uploads.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.upload_strings_status"><code class="name flex">
+<span>def <span class="ident">upload_strings_status</span></span>(<span>self, uploadId: str, projectId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Upload Strings Status.</p>
+<p>String-based projects only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/string-based/#operation/api.projects.strings.uploads.get">https://support.crowdin.com/developer/api/v2/string-based/#operation/api.projects.strings.uploads.get</a>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/string-based/#operation/api.projects.strings.uploads.get">https://support.crowdin.com/developer/enterprise/api/v2/string-based/#operation/api.projects.strings.uploads.get</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -133,6 +250,16 @@ iOS strings, PROPERTIES, XLIFF).</p>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
+<h4><code><a title="crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource" href="#crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource">EnterpriseSourceStringsResource</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.build_reviewed_source_files" href="#crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.build_reviewed_source_files">build_reviewed_source_files</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.check_reviewed_source_files_build_status" href="#crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.check_reviewed_source_files_build_status">check_reviewed_source_files_build_status</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.download_reviewed_source_files" href="#crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.download_reviewed_source_files">download_reviewed_source_files</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.get_reviewed_builds_path" href="#crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.get_reviewed_builds_path">get_reviewed_builds_path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.list_reviewed_source_files_builds" href="#crowdin_api.api_resources.source_strings.resource.EnterpriseSourceStringsResource.list_reviewed_source_files_builds">list_reviewed_source_files_builds</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource">SourceStringsResource</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.add_string" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.add_string">add_string</a></code></li>
@@ -140,9 +267,12 @@ iOS strings, PROPERTIES, XLIFF).</p>
 <li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.edit_string" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.edit_string">edit_string</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_source_strings_path" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_source_strings_path">get_source_strings_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_string" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_string">get_string</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_strings_uploads_path" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.get_strings_uploads_path">get_strings_uploads_path</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.list_strings" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.list_strings">list_strings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.search_strings" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.search_strings">search_strings</a></code></li>
 <li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.string_batch_operation" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.string_batch_operation">string_batch_operation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.upload_strings" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.upload_strings">upload_strings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.source_strings.resource.SourceStringsResource.upload_strings_status" href="#crowdin_api.api_resources.source_strings.resource.SourceStringsResource.upload_strings_status">upload_strings_status</a></code></li>
 </ul>
 </li>
 </ul>

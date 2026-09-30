@@ -37,9 +37,13 @@
 <span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Resource for Notifications</p>
-<p>Link to documetation:
-<a href="https://developer.crowdin.com/api/v2/#tag/Notifications">https://developer.crowdin.com/api/v2/#tag/Notifications</a></p></div>
+<div class="desc"><p>Resource for Notifications.</p>
+<p>Available on both Crowdin and Crowdin Enterprise.
+<code>send_notification_to_organization_members</code> is Crowdin Enterprise only.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Notifications">https://support.crowdin.com/developer/api/v2/#tag/Notifications</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Notifications">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Notifications</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -52,15 +56,19 @@
 <dd>
 <div class="desc"><p>Send Notification to Authenticated User</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.notify.post">https://developer.crowdin.com/api/v2/#operation/api.notify.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.notify.post">https://support.crowdin.com/developer/api/v2/#operation/api.notify.post</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.notify.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.notify.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.notifications.resource.NotificationResource.send_notification_to_organization_members"><code class="name flex">
-<span>def <span class="ident">send_notification_to_organization_members</span></span>(<span>self, request_data: Union[<a title="crowdin_api.api_resources.notifications.types.ByUserIdsRequestScheme" href="types.html#crowdin_api.api_resources.notifications.types.ByUserIdsRequestScheme">ByUserIdsRequestScheme</a>, <a title="crowdin_api.api_resources.notifications.types.ByRoleRequestScehme" href="types.html#crowdin_api.api_resources.notifications.types.ByRoleRequestScehme">ByRoleRequestScehme</a>])</span>
+<span>def <span class="ident">send_notification_to_organization_members</span></span>(<span>self, request_data: Union[<a title="crowdin_api.api_resources.notifications.types.ByUserIdsRequestScheme" href="types.html#crowdin_api.api_resources.notifications.types.ByUserIdsRequestScheme">ByUserIdsRequestScheme</a>, <a title="crowdin_api.api_resources.notifications.types.ByOrganizationRoleRequestScheme" href="types.html#crowdin_api.api_resources.notifications.types.ByOrganizationRoleRequestScheme">ByOrganizationRoleRequestScheme</a>])</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Send Notification To Organization Members</p>
+<p>Crowdin Enterprise only. Notify organization members by <code>userIds</code> or by <code>role</code>
+(<code>owner</code> or <code>admin</code>).</p>
 <p>Link to documentation (Enterprise):
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.notify.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.notify.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.notify.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.notify.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.notifications.resource.NotificationResource.send_notification_to_project_members"><code class="name flex">
 <span>def <span class="ident">send_notification_to_project_members</span></span>(<span>self, request_data: Union[<a title="crowdin_api.api_resources.notifications.types.ByUserIdsRequestScheme" href="types.html#crowdin_api.api_resources.notifications.types.ByUserIdsRequestScheme">ByUserIdsRequestScheme</a>, <a title="crowdin_api.api_resources.notifications.types.ByRoleRequestScehme" href="types.html#crowdin_api.api_resources.notifications.types.ByRoleRequestScehme">ByRoleRequestScehme</a>], projectId: Optional[int] = None)</span>
@@ -68,9 +76,9 @@
 <dd>
 <div class="desc"><p>Send Notification To Project Members</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.notify.post">https://developer.crowdin.com/api/v2/#operation/api.projects.notify.post</a></p>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.notify.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.notify.post</a></p>
 <p>Link to documentation (Enterprise):
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.notify.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.projects.notify.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.notify.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.projects.notify.post</a></p></div>
 </dd>
 </dl>
 </dd>

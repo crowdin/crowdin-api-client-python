@@ -57,7 +57,7 @@ create integrations with other systems on your own.</p>
 -approval for previously added translation is removed</p>
 <p>Use API to create, modify, and delete specific webhooks.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#tag/Webhooks">https://developer.crowdin.com/api/v2/#tag/Webhooks</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Webhooks">https://support.crowdin.com/developer/api/v2/#tag/Webhooks</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -69,8 +69,9 @@ create integrations with other systems on your own.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Webhook.</p>
+<p>Note: <code>file.*</code> events are available for file-based projects only.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.post">https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.webhooks.resource.WebhooksResource.delete_webhook"><code class="name flex">
 <span>def <span class="ident">delete_webhook</span></span>(<span>self, webhookId: int, projectId: Optional[int] = None)</span>
@@ -78,15 +79,15 @@ create integrations with other systems on your own.</p>
 <dd>
 <div class="desc"><p>Delete Webhook.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.delete">https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.webhooks.resource.WebhooksResource.edit_webhook"><code class="name flex">
 <span>def <span class="ident">edit_webhook</span></span>(<span>self, webhookId: int, data: Iterable[<a title="crowdin_api.api_resources.webhooks.types.WebhookPatchRequest" href="types.html#crowdin_api.api_resources.webhooks.types.WebhookPatchRequest">WebhookPatchRequest</a>], projectId: Optional[int] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Edit Custom Language.</p>
+<div class="desc"><p>Edit Webhook.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.patch">https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.webhooks.resource.WebhooksResource.get_webhook"><code class="name flex">
 <span>def <span class="ident">get_webhook</span></span>(<span>self, webhookId: int, projectId: Optional[int] = None)</span>
@@ -94,7 +95,7 @@ create integrations with other systems on your own.</p>
 <dd>
 <div class="desc"><p>Get Webhook.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.get">https://developer.crowdin.com/api/v2/#operation/api.projects.webhooks.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.webhooks.resource.WebhooksResource.get_webhooks_path"><code class="name flex">
 <span>def <span class="ident">get_webhooks_path</span></span>(<span>self, projectId: int, webhookId: Optional[int] = None)</span>
@@ -108,7 +109,7 @@ create integrations with other systems on your own.</p>
 <dd>
 <div class="desc"><p>List Webhooks.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#tag/Webhooks">https://developer.crowdin.com/api/v2/#tag/Webhooks</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.webhooks.getMany</a></p></div>
 </dd>
 </dl>
 </dd>

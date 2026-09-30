@@ -43,7 +43,7 @@ Using projects, you can keep your source files sorted.</p>
 <p>Use API to manage projects and groups, change their settings, or remove them from
 organization if required.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#tag/Projects-and-Groups">https://developer.crowdin.com/enterprise/api/v2/#tag/Projects-and-Groups</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Projects-and-Groups">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Projects-and-Groups</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -51,12 +51,12 @@ organization if required.</p>
 <h3>Methods</h3>
 <dl>
 <dt id="crowdin_api.api_resources.groups.resource.GroupsResource.add_group"><code class="name flex">
-<span>def <span class="ident">add_group</span></span>(<span>self, name: str, parentId: Optional[int] = None, description: Optional[str] = None)</span>
+<span>def <span class="ident">add_group</span></span>(<span>self, name: str, parentId: Optional[int] = None, description: Optional[str] = None, savingsReportSettingsTemplateId: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add Group.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.groups.resource.GroupsResource.delete_group"><code class="name flex">
 <span>def <span class="ident">delete_group</span></span>(<span>self, groupId: int)</span>
@@ -64,7 +64,7 @@ organization if required.</p>
 <dd>
 <div class="desc"><p>Delete Group.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.delete">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.delete">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.groups.resource.GroupsResource.edit_group"><code class="name flex">
 <span>def <span class="ident">edit_group</span></span>(<span>self, groupId: int, data: Iterable[<a title="crowdin_api.api_resources.groups.types.GroupPatchRequest" href="types.html#crowdin_api.api_resources.groups.types.GroupPatchRequest">GroupPatchRequest</a>])</span>
@@ -72,7 +72,7 @@ organization if required.</p>
 <dd>
 <div class="desc"><p>Edit Group.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.patch">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.groups.resource.GroupsResource.get_group"><code class="name flex">
 <span>def <span class="ident">get_group</span></span>(<span>self, groupId: int)</span>
@@ -80,7 +80,7 @@ organization if required.</p>
 <dd>
 <div class="desc"><p>Get Group.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.get">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.get</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.get">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.groups.resource.GroupsResource.get_groups_path"><code class="name flex">
 <span>def <span class="ident">get_groups_path</span></span>(<span>self, groupId: Optional[int] = None)</span>
@@ -89,12 +89,13 @@ organization if required.</p>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.groups.resource.GroupsResource.list_groups"><code class="name flex">
-<span>def <span class="ident">list_groups</span></span>(<span>self, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, parentId: Optional[int] = None, limit: Optional[int] = None, offset: Optional[int] = None)</span>
+<span>def <span class="ident">list_groups</span></span>(<span>self, orderBy: Optional[<a title="crowdin_api.sorting.Sorting" href="../../sorting.html#crowdin_api.sorting.Sorting">Sorting</a>] = None, parentId: Optional[int] = None, limit: Optional[int] = None, offset: Optional[int] = None, filter: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>List Groups.</p>
+<p>:param filter: Filter groups by <code>name</code></p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.getMany">https://developer.crowdin.com/enterprise/api/v2/#operation/api.groups.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.groups.getMany</a></p></div>
 </dd>
 </dl>
 </dd>

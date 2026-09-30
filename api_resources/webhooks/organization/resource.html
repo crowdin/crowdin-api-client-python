@@ -37,7 +37,22 @@
 <span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Resource for Organization Webhooks.</p>
+<p>Webhooks allow you to collect information about events that happen in your Crowdin account.
+You can select the request type, content type, and add a custom payload, which allows you to
+create integrations with other systems on your own.</p>
+<p>You can configure webhooks for the following events:</p>
+<ul>
+<li>project is created</li>
+<li>project is deleted</li>
+<li>group is created (Crowdin Enterprise only)</li>
+<li>group is deleted (Crowdin Enterprise only)</li>
+</ul>
+<p>Use API to create, modify, and delete specific webhooks.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Organization-Webhooks">https://support.crowdin.com/developer/api/v2/#tag/Organization-Webhooks</a></p>
+<p>Link to documentation for enterprise:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Organization-Webhooks">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Organization-Webhooks</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -58,7 +73,7 @@
 <div class="desc"><p>Add webhook
 For Enterprise please use method "add_webhook_enterprise"</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.webhooks.post">https://developer.crowdin.com/api/v2/#operation/api.webhooks.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.post">https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.webhooks.organization.resource.OrganizationWebhooksResource.add_webhook_enterprise"><code class="name flex">
 <span>def <span class="ident">add_webhook_enterprise</span></span>(<span>self, name: str, url: str, events: Iterable[<a title="crowdin_api.api_resources.webhooks.organization.enums.EnterpriseOrgWebhookEvent" href="enums.html#crowdin_api.api_resources.webhooks.organization.enums.EnterpriseOrgWebhookEvent">EnterpriseOrgWebhookEvent</a>], request_type: <a title="crowdin_api.api_resources.webhooks.enums.WebhookRequestType" href="../enums.html#crowdin_api.api_resources.webhooks.enums.WebhookRequestType">WebhookRequestType</a>, is_active: Optional[bool] = None, batching_enabled: Optional[bool] = None, content_type: Optional[<a title="crowdin_api.api_resources.webhooks.enums.WebhookContentType" href="../enums.html#crowdin_api.api_resources.webhooks.enums.WebhookContentType">WebhookContentType</a>] = None, headers: Optional[Dict[~KT, ~VT]] = None, payload: Optional[Dict[~KT, ~VT]] = None)</span>
@@ -67,7 +82,7 @@ For Enterprise please use method "add_webhook_enterprise"</p>
 <div class="desc"><p>Add webhook (enterprise)
 Events list is different</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/enterprise/api/v2/#operation/api.webhooks.post">https://developer.crowdin.com/enterprise/api/v2/#operation/api.webhooks.post</a></p></div>
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.webhooks.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.webhooks.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.webhooks.organization.resource.OrganizationWebhooksResource.delete_webhook"><code class="name flex">
 <span>def <span class="ident">delete_webhook</span></span>(<span>self, organization_webhook_id: int)</span>
@@ -75,7 +90,7 @@ Events list is different</p>
 <dd>
 <div class="desc"><p>Delete webhook</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.webhooks.delete">https://developer.crowdin.com/api/v2/#operation/api.webhooks.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.delete">https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.webhooks.organization.resource.OrganizationWebhooksResource.edit_webhook"><code class="name flex">
 <span>def <span class="ident">edit_webhook</span></span>(<span>self, organization_webhook_id: int, data: Iterable[<a title="crowdin_api.api_resources.webhooks.organization.types.OrganizationWebhookPatchRequest" href="types.html#crowdin_api.api_resources.webhooks.organization.types.OrganizationWebhookPatchRequest">OrganizationWebhookPatchRequest</a>])</span>
@@ -83,7 +98,7 @@ Events list is different</p>
 <dd>
 <div class="desc"><p>Edit webhook</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.webhooks.patch">https://developer.crowdin.com/api/v2/#operation/api.webhooks.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.patch">https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.webhooks.organization.resource.OrganizationWebhooksResource.get_webhook"><code class="name flex">
 <span>def <span class="ident">get_webhook</span></span>(<span>self, organization_webhook_id: int)</span>
@@ -91,7 +106,7 @@ Events list is different</p>
 <dd>
 <div class="desc"><p>Get webhook</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.webhooks.get">https://developer.crowdin.com/api/v2/#operation/api.webhooks.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.get">https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.webhooks.organization.resource.OrganizationWebhooksResource.get_webhooks_path"><code class="name flex">
 <span>def <span class="ident">get_webhooks_path</span></span>(<span>self, organization_webhook_id: int)</span>
@@ -105,7 +120,7 @@ Events list is different</p>
 <dd>
 <div class="desc"><p>List Webhooks</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.webhooks.getMany">https://developer.crowdin.com/api/v2/#operation/api.webhooks.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.webhooks.getMany</a></p></div>
 </dd>
 </dl>
 </dd>

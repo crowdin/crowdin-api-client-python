@@ -42,6 +42,14 @@
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.utils.convert_to_query_list"><code class="name flex">
+<span>def <span class="ident">convert_to_query_list</span></span>(<span>value: Any) ‑> Any</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Serialize a query value that the API expects as a comma-separated list.</p>
+<p>Iterables (except strings) are joined with commas, using <code>.value</code> for enum members; an empty
+iterable becomes <code>None</code> so the filter is omitted. Single values are returned as they are.</p></div>
+</dd>
 <dt id="crowdin_api.utils.convert_to_query_string"><code class="name flex">
 <span>def <span class="ident">convert_to_query_string</span></span>(<span>collection: Optional[Iterable[+T_co]], converter: Optional[Callable[[object], str]] = None) ‑> Optional[str]</span>
 </code></dt>
@@ -68,6 +76,7 @@
 <ul class="">
 <li><code><a title="crowdin_api.utils.convert_enum_collection_to_string_if_exists" href="#crowdin_api.utils.convert_enum_collection_to_string_if_exists">convert_enum_collection_to_string_if_exists</a></code></li>
 <li><code><a title="crowdin_api.utils.convert_enum_to_string_if_exists" href="#crowdin_api.utils.convert_enum_to_string_if_exists">convert_enum_to_string_if_exists</a></code></li>
+<li><code><a title="crowdin_api.utils.convert_to_query_list" href="#crowdin_api.utils.convert_to_query_list">convert_to_query_list</a></code></li>
 <li><code><a title="crowdin_api.utils.convert_to_query_string" href="#crowdin_api.utils.convert_to_query_string">convert_to_query_string</a></code></li>
 </ul>
 </li>

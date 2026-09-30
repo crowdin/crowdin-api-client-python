@@ -32,6 +32,28 @@
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
+<dt id="crowdin_api.api_resources.bundles.enums.BundleLabelMatchRule"><code class="flex name class">
+<span>class <span class="ident">BundleLabelMatchRule</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.bundles.enums.BundleLabelMatchRule.ALL"><code class="name">var <span class="ident">ALL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.bundles.enums.BundleLabelMatchRule.ANY"><code class="name">var <span class="ident">ANY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.bundles.enums.BundlePatchPath"><code class="flex name class">
 <span>class <span class="ident">BundlePatchPath</span></span>
 <span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
@@ -48,6 +70,14 @@
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.bundles.enums.BundlePatchPath.EXCLUDE_LABEL_IDS"><code class="name">var <span class="ident">EXCLUDE_LABEL_IDS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.bundles.enums.BundlePatchPath.EXCLUDE_LABEL_MATCH_RULE"><code class="name">var <span class="ident">EXCLUDE_LABEL_MATCH_RULE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.bundles.enums.BundlePatchPath.EXPORT_PATTERNS"><code class="name">var <span class="ident">EXPORT_PATTERNS</span></code></dt>
 <dd>
 <div class="desc"></div>
@@ -60,7 +90,23 @@
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.bundles.enums.BundlePatchPath.INCLUDE_IN_CONTEXT_PSEUDO_LANGUAGE"><code class="name">var <span class="ident">INCLUDE_IN_CONTEXT_PSEUDO_LANGUAGE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.bundles.enums.BundlePatchPath.INCLUDE_PROJECT_SOURCE_LANGUAGE"><code class="name">var <span class="ident">INCLUDE_PROJECT_SOURCE_LANGUAGE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.bundles.enums.BundlePatchPath.IS_MULTILINGUAL"><code class="name">var <span class="ident">IS_MULTILINGUAL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.bundles.enums.BundlePatchPath.LABEL_IDS"><code class="name">var <span class="ident">LABEL_IDS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.bundles.enums.BundlePatchPath.LABEL_MATCH_RULE"><code class="name">var <span class="ident">LABEL_MATCH_RULE</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -91,13 +137,26 @@
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
+<h4><code><a title="crowdin_api.api_resources.bundles.enums.BundleLabelMatchRule" href="#crowdin_api.api_resources.bundles.enums.BundleLabelMatchRule">BundleLabelMatchRule</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.bundles.enums.BundleLabelMatchRule.ALL" href="#crowdin_api.api_resources.bundles.enums.BundleLabelMatchRule.ALL">ALL</a></code></li>
+<li><code><a title="crowdin_api.api_resources.bundles.enums.BundleLabelMatchRule.ANY" href="#crowdin_api.api_resources.bundles.enums.BundleLabelMatchRule.ANY">ANY</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="crowdin_api.api_resources.bundles.enums.BundlePatchPath" href="#crowdin_api.api_resources.bundles.enums.BundlePatchPath">BundlePatchPath</a></code></h4>
-<ul class="two-column">
+<ul class="">
 <li><code><a title="crowdin_api.api_resources.bundles.enums.BundlePatchPath.DESCRIPTION" href="#crowdin_api.api_resources.bundles.enums.BundlePatchPath.DESCRIPTION">DESCRIPTION</a></code></li>
+<li><code><a title="crowdin_api.api_resources.bundles.enums.BundlePatchPath.EXCLUDE_LABEL_IDS" href="#crowdin_api.api_resources.bundles.enums.BundlePatchPath.EXCLUDE_LABEL_IDS">EXCLUDE_LABEL_IDS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.bundles.enums.BundlePatchPath.EXCLUDE_LABEL_MATCH_RULE" href="#crowdin_api.api_resources.bundles.enums.BundlePatchPath.EXCLUDE_LABEL_MATCH_RULE">EXCLUDE_LABEL_MATCH_RULE</a></code></li>
 <li><code><a title="crowdin_api.api_resources.bundles.enums.BundlePatchPath.EXPORT_PATTERNS" href="#crowdin_api.api_resources.bundles.enums.BundlePatchPath.EXPORT_PATTERNS">EXPORT_PATTERNS</a></code></li>
 <li><code><a title="crowdin_api.api_resources.bundles.enums.BundlePatchPath.FORMAT" href="#crowdin_api.api_resources.bundles.enums.BundlePatchPath.FORMAT">FORMAT</a></code></li>
 <li><code><a title="crowdin_api.api_resources.bundles.enums.BundlePatchPath.IGNORE_PATTERNS" href="#crowdin_api.api_resources.bundles.enums.BundlePatchPath.IGNORE_PATTERNS">IGNORE_PATTERNS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.bundles.enums.BundlePatchPath.INCLUDE_IN_CONTEXT_PSEUDO_LANGUAGE" href="#crowdin_api.api_resources.bundles.enums.BundlePatchPath.INCLUDE_IN_CONTEXT_PSEUDO_LANGUAGE">INCLUDE_IN_CONTEXT_PSEUDO_LANGUAGE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.bundles.enums.BundlePatchPath.INCLUDE_PROJECT_SOURCE_LANGUAGE" href="#crowdin_api.api_resources.bundles.enums.BundlePatchPath.INCLUDE_PROJECT_SOURCE_LANGUAGE">INCLUDE_PROJECT_SOURCE_LANGUAGE</a></code></li>
+<li><code><a title="crowdin_api.api_resources.bundles.enums.BundlePatchPath.IS_MULTILINGUAL" href="#crowdin_api.api_resources.bundles.enums.BundlePatchPath.IS_MULTILINGUAL">IS_MULTILINGUAL</a></code></li>
 <li><code><a title="crowdin_api.api_resources.bundles.enums.BundlePatchPath.LABEL_IDS" href="#crowdin_api.api_resources.bundles.enums.BundlePatchPath.LABEL_IDS">LABEL_IDS</a></code></li>
+<li><code><a title="crowdin_api.api_resources.bundles.enums.BundlePatchPath.LABEL_MATCH_RULE" href="#crowdin_api.api_resources.bundles.enums.BundlePatchPath.LABEL_MATCH_RULE">LABEL_MATCH_RULE</a></code></li>
 <li><code><a title="crowdin_api.api_resources.bundles.enums.BundlePatchPath.NAME" href="#crowdin_api.api_resources.bundles.enums.BundlePatchPath.NAME">NAME</a></code></li>
 <li><code><a title="crowdin_api.api_resources.bundles.enums.BundlePatchPath.SOURCE_PATTERNS" href="#crowdin_api.api_resources.bundles.enums.BundlePatchPath.SOURCE_PATTERNS">SOURCE_PATTERNS</a></code></li>
 </ul>

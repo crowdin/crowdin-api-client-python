@@ -32,6 +32,67 @@
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
+<dt id="crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource"><code class="flex name class">
+<span>class <span class="ident">EnterpriseMachineTranslationEnginesResource</span></span>
+<span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Resource for Machine Translation Engines (Crowdin Enterprise).</p>
+<p>Machine Translation Engines (MTE) are the sources for pre-translations.</p>
+<p>Use API to add, update, and delete specific MTE.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#tag/Machine-Translation-Engines">https://support.crowdin.com/developer/enterprise/api/v2/#tag/Machine-Translation-Engines</a></p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="crowdin_api.api_resources.machine_translation_engines.resource.MachineTranslationEnginesResource" href="#crowdin_api.api_resources.machine_translation_engines.resource.MachineTranslationEnginesResource">MachineTranslationEnginesResource</a></li>
+<li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource.add_mt"><code class="name flex">
+<span>def <span class="ident">add_mt</span></span>(<span>self, name: str, type: <a title="crowdin_api.api_resources.machine_translation_engines.enums.MachineTranslationEngineType" href="enums.html#crowdin_api.api_resources.machine_translation_engines.enums.MachineTranslationEngineType">MachineTranslationEngineType</a>, credentials: Union[<a title="crowdin_api.api_resources.machine_translation_engines.types.MachineTranslationEngineApiKeyCredentials" href="types.html#crowdin_api.api_resources.machine_translation_engines.types.MachineTranslationEngineApiKeyCredentials">MachineTranslationEngineApiKeyCredentials</a>, <a title="crowdin_api.api_resources.machine_translation_engines.types.MachineTranslationEngineGoogleAutoMLCredentials" href="types.html#crowdin_api.api_resources.machine_translation_engines.types.MachineTranslationEngineGoogleAutoMLCredentials">MachineTranslationEngineGoogleAutoMLCredentials</a>, <a title="crowdin_api.api_resources.machine_translation_engines.types.MachineTranslationEngineMicrosoftCredentials" href="types.html#crowdin_api.api_resources.machine_translation_engines.types.MachineTranslationEngineMicrosoftCredentials">MachineTranslationEngineMicrosoftCredentials</a>, <a title="crowdin_api.api_resources.machine_translation_engines.types.MachineTranslationEngineAmazonCredentials" href="types.html#crowdin_api.api_resources.machine_translation_engines.types.MachineTranslationEngineAmazonCredentials">MachineTranslationEngineAmazonCredentials</a>, <a title="crowdin_api.api_resources.machine_translation_engines.types.MachineTranslationEngineCustomMTCredentials" href="types.html#crowdin_api.api_resources.machine_translation_engines.types.MachineTranslationEngineCustomMTCredentials">MachineTranslationEngineCustomMTCredentials</a>], groupId: Optional[int] = None, enabledLanguageIds: Optional[Iterable[str]] = None, enabledProjectIds: Optional[Iterable[int]] = None, isEnabled: Optional[bool] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add MT.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.mts.post">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.mts.post</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource.delete_mt"><code class="name flex">
+<span>def <span class="ident">delete_mt</span></span>(<span>self, mtId: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete MT.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.mts.delete">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.mts.delete</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource.edit_mt"><code class="name flex">
+<span>def <span class="ident">edit_mt</span></span>(<span>self, mtId: int, data: Iterable[<a title="crowdin_api.api_resources.machine_translation_engines.types.MachineTranslationEnginePatchRequest" href="types.html#crowdin_api.api_resources.machine_translation_engines.types.MachineTranslationEnginePatchRequest">MachineTranslationEnginePatchRequest</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Edit MT.</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.mts.patch">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.mts.patch</a></p></div>
+</dd>
+<dt id="crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource.list_mts"><code class="name flex">
+<span>def <span class="ident">list_mts</span></span>(<span>self, limit: Optional[int] = None, offset: Optional[int] = None, groupId: Optional[int] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List MTs.</p>
+<p>:param groupId: Group Identifier. Set 0 to see MTs of root group</p>
+<p>Link to documentation:
+<a href="https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.mts.getMany">https://support.crowdin.com/developer/enterprise/api/v2/#operation/api.mts.getMany</a></p></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="crowdin_api.api_resources.machine_translation_engines.resource.MachineTranslationEnginesResource" href="#crowdin_api.api_resources.machine_translation_engines.resource.MachineTranslationEnginesResource">MachineTranslationEnginesResource</a></b></code>:
+<ul class="hlist">
+<li><code><a title="crowdin_api.api_resources.machine_translation_engines.resource.MachineTranslationEnginesResource.get_mt" href="#crowdin_api.api_resources.machine_translation_engines.resource.MachineTranslationEnginesResource.get_mt">get_mt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.machine_translation_engines.resource.MachineTranslationEnginesResource.translate_via_mt" href="#crowdin_api.api_resources.machine_translation_engines.resource.MachineTranslationEnginesResource.translate_via_mt">translate_via_mt</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
 <dt id="crowdin_api.api_resources.machine_translation_engines.resource.MachineTranslationEnginesResource"><code class="flex name class">
 <span>class <span class="ident">MachineTranslationEnginesResource</span></span>
 <span>(</span><span>requester: <a title="crowdin_api.requester.APIRequester" href="../../requester.html#crowdin_api.requester.APIRequester">APIRequester</a>, project_id: Optional[int] = None, page_size=25)</span>
@@ -41,10 +102,14 @@
 <p>Machine Translation Engines (MTE) are the sources for pre-translations.</p>
 <p>Use API to add, update, and delete specific MTE.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#tag/Machine-Translation-Engines">https://developer.crowdin.com/api/v2/#tag/Machine-Translation-Engines</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Machine-Translation-Engines">https://support.crowdin.com/developer/api/v2/#tag/Machine-Translation-Engines</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource" href="#crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource">EnterpriseMachineTranslationEnginesResource</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
@@ -54,7 +119,7 @@
 <dd>
 <div class="desc"><p>Get MT.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.mts.get">https://developer.crowdin.com/api/v2/#operation/api.mts.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.mts.get">https://support.crowdin.com/developer/api/v2/#operation/api.mts.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.machine_translation_engines.resource.MachineTranslationEnginesResource.get_mts_path"><code class="name flex">
 <span>def <span class="ident">get_mts_path</span></span>(<span>self, mtId: Optional[int] = None)</span>
@@ -68,7 +133,7 @@
 <dd>
 <div class="desc"><p>List MTs.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.mts.getMany">https://developer.crowdin.com/api/v2/#operation/api.mts.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.mts.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.mts.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.machine_translation_engines.resource.MachineTranslationEnginesResource.translate_via_mt"><code class="name flex">
 <span>def <span class="ident">translate_via_mt</span></span>(<span>self, mtId: int, targetLanguageId: str = None, languageRecognitionProvider: Optional[<a title="crowdin_api.api_resources.machine_translation_engines.enums.LanguageRecognitionProvider" href="enums.html#crowdin_api.api_resources.machine_translation_engines.enums.LanguageRecognitionProvider">LanguageRecognitionProvider</a>] = None, sourceLanguageId: Optional[str] = None, strings: Optional[Iterable[str]] = None)</span>
@@ -76,7 +141,7 @@
 <dd>
 <div class="desc"><p>Create Translate via MT.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.mts.translations.post">https://developer.crowdin.com/api/v2/#operation/api.mts.translations.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.mts.translations.post">https://support.crowdin.com/developer/api/v2/#operation/api.mts.translations.post</a></p></div>
 </dd>
 </dl>
 </dd>
@@ -96,6 +161,15 @@
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
+<li>
+<h4><code><a title="crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource" href="#crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource">EnterpriseMachineTranslationEnginesResource</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource.add_mt" href="#crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource.add_mt">add_mt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource.delete_mt" href="#crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource.delete_mt">delete_mt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource.edit_mt" href="#crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource.edit_mt">edit_mt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource.list_mts" href="#crowdin_api.api_resources.machine_translation_engines.resource.EnterpriseMachineTranslationEnginesResource.list_mts">list_mts</a></code></li>
+</ul>
+</li>
 <li>
 <h4><code><a title="crowdin_api.api_resources.machine_translation_engines.resource.MachineTranslationEnginesResource" href="#crowdin_api.api_resources.machine_translation_engines.resource.MachineTranslationEnginesResource">MachineTranslationEnginesResource</a></code></h4>
 <ul class="">

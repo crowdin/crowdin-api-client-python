@@ -39,7 +39,7 @@
 <dd>
 <div class="desc"><p>Resource for Distributions.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#tag/Distributions">https://developer.crowdin.com/api/v2/#tag/Distributions</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#tag/Distributions">https://support.crowdin.com/developer/api/v2/#tag/Distributions</a></p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="crowdin_api.api_resources.abstract.resources.BaseResource" href="../abstract/resources.html#crowdin_api.api_resources.abstract.resources.BaseResource">BaseResource</a></li>
@@ -51,8 +51,12 @@
 </code></dt>
 <dd>
 <div class="desc"><p>Add Distribution.</p>
+<p>:param fileIds: Deprecated, use <code>bundleIds</code> instead. File-based projects only.
+:param bundleIds: Bundles ids. Get via List Bundles. Required for string-based projects.
+:param exportMode: Deprecated, omit it to use the API default behavior.
+File-based projects only.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.post">https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.post</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.distributions.resource.DistributionsResource.delete_distribution"><code class="name flex">
 <span>def <span class="ident">delete_distribution</span></span>(<span>self, hash: str, projectId: Optional[int] = None)</span>
@@ -60,7 +64,7 @@
 <dd>
 <div class="desc"><p>Delete Distribution.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.delete">https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.delete</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.delete">https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.delete</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.distributions.resource.DistributionsResource.edit_distribution"><code class="name flex">
 <span>def <span class="ident">edit_distribution</span></span>(<span>self, hash: str, data: Iterable[<a title="crowdin_api.api_resources.distributions.types.DistributionPatchRequest" href="types.html#crowdin_api.api_resources.distributions.types.DistributionPatchRequest">DistributionPatchRequest</a>], projectId: Optional[int] = None)</span>
@@ -68,7 +72,7 @@
 <dd>
 <div class="desc"><p>Edit Distribution.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.patch">https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.patch</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.patch">https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.patch</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.distributions.resource.DistributionsResource.get_distribution"><code class="name flex">
 <span>def <span class="ident">get_distribution</span></span>(<span>self, hash: str, projectId: Optional[int] = None)</span>
@@ -76,7 +80,7 @@
 <dd>
 <div class="desc"><p>Get Distribution.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.get">https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.distributions.resource.DistributionsResource.get_distribution_release"><code class="name flex">
 <span>def <span class="ident">get_distribution_release</span></span>(<span>self, hash: str, projectId: Optional[int] = None)</span>
@@ -84,7 +88,7 @@
 <dd>
 <div class="desc"><p>Get Distribution Release.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.release.get">https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.release.get</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.release.get">https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.release.get</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.distributions.resource.DistributionsResource.get_distributions_path"><code class="name flex">
 <span>def <span class="ident">get_distributions_path</span></span>(<span>self, projectId: int, hash: Optional[str] = None)</span>
@@ -98,7 +102,7 @@
 <dd>
 <div class="desc"><p>List Distributions.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.getMany">https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.getMany</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.getMany">https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.getMany</a></p></div>
 </dd>
 <dt id="crowdin_api.api_resources.distributions.resource.DistributionsResource.release_distribution"><code class="name flex">
 <span>def <span class="ident">release_distribution</span></span>(<span>self, hash: str, projectId: Optional[int] = None)</span>
@@ -106,7 +110,7 @@
 <dd>
 <div class="desc"><p>Release Distribution.</p>
 <p>Link to documentation:
-<a href="https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.release.post">https://developer.crowdin.com/api/v2/#operation/api.projects.distributions.release.post</a></p></div>
+<a href="https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.release.post">https://support.crowdin.com/developer/api/v2/#operation/api.projects.distributions.release.post</a></p></div>
 </dd>
 </dl>
 </dd>

@@ -37,24 +37,27 @@
 <span>(</span><span>*args, **kwargs)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>dict() -&gt; new empty dictionary
-dict(mapping) -&gt; new dictionary initialized from a mapping object's
-(key, value) pairs
-dict(iterable) -&gt; new dictionary initialized as if via:
-d = {}
-for k, v in iterable:
-d[k] = v
-dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
-in the keyword argument list.
-For example:
-dict(one=1, two=2)</p></div>
+<div class="desc"><p><code>exportPattern</code> and <code>priority</code> are for file-based projects only,
+<code>isProtected</code> is for string-based projects only.</p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li>builtins.dict</li>
 </ul>
 <h3>Class variables</h3>
 <dl>
+<dt id="crowdin_api.api_resources.branches.types.AddBranchRequest.exportPattern"><code class="name">var <span class="ident">exportPattern</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.branches.types.AddBranchRequest.isProtected"><code class="name">var <span class="ident">isProtected</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.branches.types.AddBranchRequest.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.branches.types.AddBranchRequest.priority"><code class="name">var <span class="ident">priority</span> : Optional[<a title="crowdin_api.api_resources.source_files.enums.Priority" href="../source_files/enums.html#crowdin_api.api_resources.source_files.enums.Priority">Priority</a>]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -69,23 +72,17 @@ dict(one=1, two=2)</p></div>
 <span>(</span><span>*args, **kwargs)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>dict() -&gt; new empty dictionary
-dict(mapping) -&gt; new dictionary initialized from a mapping object's
-(key, value) pairs
-dict(iterable) -&gt; new dictionary initialized as if via:
-d = {}
-for k, v in iterable:
-d[k] = v
-dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
-in the keyword argument list.
-For example:
-dict(one=1, two=2)</p></div>
+<div class="desc"><p>String-based projects only.</p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li>builtins.dict</li>
 </ul>
 <h3>Class variables</h3>
 <dl>
+<dt id="crowdin_api.api_resources.branches.types.CloneBranchRequest.isProtected"><code class="name">var <span class="ident">isProtected</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.branches.types.CloneBranchRequest.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
 <dd>
 <div class="desc"></div>
@@ -137,17 +134,7 @@ dict(one=1, two=2)</p></div>
 <span>(</span><span>*args, **kwargs)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>dict() -&gt; new empty dictionary
-dict(mapping) -&gt; new dictionary initialized from a mapping object's
-(key, value) pairs
-dict(iterable) -&gt; new dictionary initialized as if via:
-d = {}
-for k, v in iterable:
-d[k] = v
-dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
-in the keyword argument list.
-For example:
-dict(one=1, two=2)</p></div>
+<div class="desc"><p>String-based projects only.</p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li>builtins.dict</li>
@@ -191,13 +178,17 @@ dict(one=1, two=2)</p></div>
 <li>
 <h4><code><a title="crowdin_api.api_resources.branches.types.AddBranchRequest" href="#crowdin_api.api_resources.branches.types.AddBranchRequest">AddBranchRequest</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.branches.types.AddBranchRequest.exportPattern" href="#crowdin_api.api_resources.branches.types.AddBranchRequest.exportPattern">exportPattern</a></code></li>
+<li><code><a title="crowdin_api.api_resources.branches.types.AddBranchRequest.isProtected" href="#crowdin_api.api_resources.branches.types.AddBranchRequest.isProtected">isProtected</a></code></li>
 <li><code><a title="crowdin_api.api_resources.branches.types.AddBranchRequest.name" href="#crowdin_api.api_resources.branches.types.AddBranchRequest.name">name</a></code></li>
+<li><code><a title="crowdin_api.api_resources.branches.types.AddBranchRequest.priority" href="#crowdin_api.api_resources.branches.types.AddBranchRequest.priority">priority</a></code></li>
 <li><code><a title="crowdin_api.api_resources.branches.types.AddBranchRequest.title" href="#crowdin_api.api_resources.branches.types.AddBranchRequest.title">title</a></code></li>
 </ul>
 </li>
 <li>
 <h4><code><a title="crowdin_api.api_resources.branches.types.CloneBranchRequest" href="#crowdin_api.api_resources.branches.types.CloneBranchRequest">CloneBranchRequest</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.branches.types.CloneBranchRequest.isProtected" href="#crowdin_api.api_resources.branches.types.CloneBranchRequest.isProtected">isProtected</a></code></li>
 <li><code><a title="crowdin_api.api_resources.branches.types.CloneBranchRequest.name" href="#crowdin_api.api_resources.branches.types.CloneBranchRequest.name">name</a></code></li>
 <li><code><a title="crowdin_api.api_resources.branches.types.CloneBranchRequest.title" href="#crowdin_api.api_resources.branches.types.CloneBranchRequest.title">title</a></code></li>
 </ul>

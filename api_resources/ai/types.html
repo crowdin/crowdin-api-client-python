@@ -58,7 +58,7 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.ActionRule.availableAiModelIds"><code class="name">var <span class="ident">availableAiModelIds</span> : Iterable[int]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.ActionRule.availableAiModelIds"><code class="name">var <span class="ident">availableAiModelIds</span> : Iterable[Union[str, int]]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -170,7 +170,7 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.AddAIProviderReqeustScheme.credentials"><code class="name">var <span class="ident">credentials</span> : Union[<a title="crowdin_api.api_resources.ai.types.OpenAICredential" href="#crowdin_api.api_resources.ai.types.OpenAICredential">OpenAICredential</a>, <a title="crowdin_api.api_resources.ai.types.AzureOpenAICredential" href="#crowdin_api.api_resources.ai.types.AzureOpenAICredential">AzureOpenAICredential</a>, <a title="crowdin_api.api_resources.ai.types.GoogleGeminiCredential" href="#crowdin_api.api_resources.ai.types.GoogleGeminiCredential">GoogleGeminiCredential</a>, <a title="crowdin_api.api_resources.ai.types.MistralAICredential" href="#crowdin_api.api_resources.ai.types.MistralAICredential">MistralAICredential</a>, <a title="crowdin_api.api_resources.ai.types.AnthropicCredential" href="#crowdin_api.api_resources.ai.types.AnthropicCredential">AnthropicCredential</a>, <a title="crowdin_api.api_resources.ai.types.CustomAICredential" href="#crowdin_api.api_resources.ai.types.CustomAICredential">CustomAICredential</a>, None]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.AddAIProviderReqeustScheme.credentials"><code class="name">var <span class="ident">credentials</span> : Union[<a title="crowdin_api.api_resources.ai.types.OpenAICredential" href="#crowdin_api.api_resources.ai.types.OpenAICredential">OpenAICredential</a>, <a title="crowdin_api.api_resources.ai.types.AzureOpenAICredential" href="#crowdin_api.api_resources.ai.types.AzureOpenAICredential">AzureOpenAICredential</a>, <a title="crowdin_api.api_resources.ai.types.GoogleGeminiCredential" href="#crowdin_api.api_resources.ai.types.GoogleGeminiCredential">GoogleGeminiCredential</a>, <a title="crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential" href="#crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential">GoogleGeminiAIStudioCredential</a>, <a title="crowdin_api.api_resources.ai.types.MistralAICredential" href="#crowdin_api.api_resources.ai.types.MistralAICredential">MistralAICredential</a>, <a title="crowdin_api.api_resources.ai.types.AnthropicCredential" href="#crowdin_api.api_resources.ai.types.AnthropicCredential">AnthropicCredential</a>, <a title="crowdin_api.api_resources.ai.types.XAICredential" href="#crowdin_api.api_resources.ai.types.XAICredential">XAICredential</a>, <a title="crowdin_api.api_resources.ai.types.WatsonxCredential" href="#crowdin_api.api_resources.ai.types.WatsonxCredential">WatsonxCredential</a>, <a title="crowdin_api.api_resources.ai.types.DeepSeekCredential" href="#crowdin_api.api_resources.ai.types.DeepSeekCredential">DeepSeekCredential</a>, <a title="crowdin_api.api_resources.ai.types.MicrosoftFoundryCredential" href="#crowdin_api.api_resources.ai.types.MicrosoftFoundryCredential">MicrosoftFoundryCredential</a>, <a title="crowdin_api.api_resources.ai.types.CustomAICredential" href="#crowdin_api.api_resources.ai.types.CustomAICredential">CustomAICredential</a>, None]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -228,6 +228,42 @@ dict(one=1, two=2)</p></div>
 </dd>
 </dl>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.AddAiSnippetRequest"><code class="flex name class">
+<span>class <span class="ident">AddAiSnippetRequest</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.ai.types.AddAiSnippetRequest.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.AddAiSnippetRequest.placeholder"><code class="name">var <span class="ident">placeholder</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.AddAiSnippetRequest.value"><code class="name">var <span class="ident">value</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.AdvancedModeConfig"><code class="flex name class">
 <span>class <span class="ident">AdvancedModeConfig</span></span>
 <span>(</span><span>*args, **kwargs)</span>
@@ -250,7 +286,19 @@ dict(one=1, two=2)</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
+<dt id="crowdin_api.api_resources.ai.types.AdvancedModeConfig.generateFileSummary"><code class="name">var <span class="ident">generateFileSummary</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.AdvancedModeConfig.glossaryTerms"><code class="name">var <span class="ident">glossaryTerms</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.AdvancedModeConfig.mode"><code class="name">var <span class="ident">mode</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.AdvancedModeConfig.otherLanguageTranslations"><code class="name">var <span class="ident">otherLanguageTranslations</span> : Optional[<a title="crowdin_api.api_resources.ai.types.OtherLanguageTranslation" href="#crowdin_api.api_resources.ai.types.OtherLanguageTranslation">OtherLanguageTranslation</a>]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -258,7 +306,15 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.AdvancedModeConfig.retryOnQaIssues"><code class="name">var <span class="ident">retryOnQaIssues</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.AdvancedModeConfig.screenshots"><code class="name">var <span class="ident">screenshots</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.AdvancedModeConfig.tmSuggestions"><code class="name">var <span class="ident">tmSuggestions</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -599,6 +655,18 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.AnthropicCredential.baseUrl"><code class="name">var <span class="ident">baseUrl</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.AnthropicCredential.headers"><code class="name">var <span class="ident">headers</span> : Optional[Dict[str, str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.AnthropicCredential.sendCustomHeadersOnly"><code class="name">var <span class="ident">sendCustomHeadersOnly</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 </dl>
 </dd>
 <dt id="crowdin_api.api_resources.ai.types.AzureOpenAICredential"><code class="flex name class">
@@ -631,11 +699,23 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.AzureOpenAICredential.baseUrl"><code class="name">var <span class="ident">baseUrl</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.AzureOpenAICredential.deploymentName"><code class="name">var <span class="ident">deploymentName</span> : str</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.AzureOpenAICredential.headers"><code class="name">var <span class="ident">headers</span> : Optional[Dict[str, str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.AzureOpenAICredential.resourceName"><code class="name">var <span class="ident">resourceName</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.AzureOpenAICredential.sendCustomHeadersOnly"><code class="name">var <span class="ident">sendCustomHeadersOnly</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -663,6 +743,14 @@ dict(one=1, two=2)</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.audienceDescription"><code class="name">var <span class="ident">audienceDescription</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.companyDescription"><code class="name">var <span class="ident">companyDescription</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.customPlaceholders"><code class="name">var <span class="ident">customPlaceholders</span> : Optional[Iterable[str]]</code></dt>
 <dd>
 <div class="desc"></div>
@@ -679,7 +767,15 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.projectDescription"><code class="name">var <span class="ident">projectDescription</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.publicProjectDescription"><code class="name">var <span class="ident">publicProjectDescription</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.snippets"><code class="name">var <span class="ident">snippets</span> : Optional[Iterable[str]]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -707,11 +803,15 @@ dict(one=1, two=2)</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.audienceDescription"><code class="name">var <span class="ident">audienceDescription</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.audienceDescription"><code class="name">var <span class="ident">audienceDescription</span> : Union[str, bool, None]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.companyDescription"><code class="name">var <span class="ident">companyDescription</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.companyDescription"><code class="name">var <span class="ident">companyDescription</span> : Union[str, bool, None]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.customPlaceholders"><code class="name">var <span class="ident">customPlaceholders</span> : Optional[Iterable[str]]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -720,6 +820,10 @@ dict(one=1, two=2)</p></div>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.fileContext"><code class="name">var <span class="ident">fileContext</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.generateFileSummary"><code class="name">var <span class="ident">generateFileSummary</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -739,11 +843,15 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.otherLanguageTranslations"><code class="name">var <span class="ident">otherLanguageTranslations</span> : Optional[<a title="crowdin_api.api_resources.ai.types.OtherLanguageTranslation" href="#crowdin_api.api_resources.ai.types.OtherLanguageTranslation">OtherLanguageTranslation</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.projectContext"><code class="name">var <span class="ident">projectContext</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.projectDescription"><code class="name">var <span class="ident">projectDescription</span> : Optional[bool]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.projectDescription"><code class="name">var <span class="ident">projectDescription</span> : Union[str, bool, None]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -751,7 +859,19 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.retryOnQaIssues"><code class="name">var <span class="ident">retryOnQaIssues</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.screenshots"><code class="name">var <span class="ident">screenshots</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.siblingsStrings"><code class="name">var <span class="ident">siblingsStrings</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.snippets"><code class="name">var <span class="ident">snippets</span> : Optional[Iterable[str]]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -783,6 +903,10 @@ dict(one=1, two=2)</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.customPlaceholders"><code class="name">var <span class="ident">customPlaceholders</span> : Optional[Iterable[str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.evaluationSteps"><code class="name">var <span class="ident">evaluationSteps</span> : Iterable[str]</code></dt>
 <dd>
 <div class="desc"></div>
@@ -812,6 +936,10 @@ dict(one=1, two=2)</p></div>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.screenshots"><code class="name">var <span class="ident">screenshots</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.snippets"><code class="name">var <span class="ident">snippets</span> : Optional[Iterable[str]]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -940,6 +1068,46 @@ dict(one=1, two=2)</p></div>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.targetLanguageId"><code class="name">var <span class="ident">targetLanguageId</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.DeepSeekCredential"><code class="flex name class">
+<span>class <span class="ident">DeepSeekCredential</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.ai.types.DeepSeekCredential.apiKey"><code class="name">var <span class="ident">apiKey</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.DeepSeekCredential.baseUrl"><code class="name">var <span class="ident">baseUrl</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.DeepSeekCredential.headers"><code class="name">var <span class="ident">headers</span> : Optional[Dict[str, str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.DeepSeekCredential.sendCustomHeadersOnly"><code class="name">var <span class="ident">sendCustomHeadersOnly</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -1089,6 +1257,42 @@ dict(one=1, two=2)</p></div>
 </dd>
 </dl>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.EditAiSnippetPatch"><code class="flex name class">
+<span>class <span class="ident">EditAiSnippetPatch</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.ai.types.EditAiSnippetPatch.op"><code class="name">var <span class="ident">op</span> : <a title="crowdin_api.api_resources.enums.PatchOperation" href="../enums.html#crowdin_api.api_resources.enums.PatchOperation">PatchOperation</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.EditAiSnippetPatch.path"><code class="name">var <span class="ident">path</span> : <a title="crowdin_api.api_resources.ai.enums.EditAiSnippetPatchPath" href="enums.html#crowdin_api.api_resources.ai.enums.EditAiSnippetPatchPath">EditAiSnippetPatchPath</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.EditAiSnippetPatch.value"><code class="name">var <span class="ident">value</span> : Any</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.ExternalMode"><code class="flex name class">
 <span>class <span class="ident">ExternalMode</span></span>
 <span>(</span><span>*args, **kwargs)</span>
@@ -1119,11 +1323,19 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.ExternalMode.mode"><code class="name">var <span class="ident">mode</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.ExternalMode.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
 <dt id="crowdin_api.api_resources.ai.types.ExternalMode.options"><code class="name">var <span class="ident">options</span> : Dict[~KT, ~VT]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.ExternalMode.retryOnQaIssues"><code class="name">var <span class="ident">retryOnQaIssues</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -1301,6 +1513,46 @@ dict(one=1, two=2)</p></div>
 </dd>
 </dl>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential"><code class="flex name class">
+<span>class <span class="ident">GoogleGeminiAIStudioCredential</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential.apiKey"><code class="name">var <span class="ident">apiKey</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential.baseUrl"><code class="name">var <span class="ident">baseUrl</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential.headers"><code class="name">var <span class="ident">headers</span> : Optional[Dict[str, str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential.sendCustomHeadersOnly"><code class="name">var <span class="ident">sendCustomHeadersOnly</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.GoogleGeminiChatProxy"><code class="flex name class">
 <span>class <span class="ident">GoogleGeminiChatProxy</span></span>
 <span>(</span><span>*args, **kwargs)</span>
@@ -1338,23 +1590,21 @@ dict(one=1, two=2)</p></div>
 <span>(</span><span>*args, **kwargs)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>dict() -&gt; new empty dictionary
-dict(mapping) -&gt; new dictionary initialized from a mapping object's
-(key, value) pairs
-dict(iterable) -&gt; new dictionary initialized as if via:
-d = {}
-for k, v in iterable:
-d[k] = v
-dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
-in the keyword argument list.
-For example:
-dict(one=1, two=2)</p></div>
+<div class="desc"><p>Google Gemini (Vertex AI) credentials.</p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li>builtins.dict</li>
 </ul>
 <h3>Class variables</h3>
 <dl>
+<dt id="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.baseUrl"><code class="name">var <span class="ident">baseUrl</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.headers"><code class="name">var <span class="ident">headers</span> : Optional[Dict[str, str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.project"><code class="name">var <span class="ident">project</span> : str</code></dt>
 <dd>
 <div class="desc"></div>
@@ -1363,7 +1613,19 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.serviceAccountKey"><code class="name">var <span class="ident">serviceAccountKey</span> : Dict[~KT, ~VT]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.sendCustomHeadersOnly"><code class="name">var <span class="ident">sendCustomHeadersOnly</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.serviceAccountEmail"><code class="name">var <span class="ident">serviceAccountEmail</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.serviceAccountKey"><code class="name">var <span class="ident">serviceAccountKey</span> : Optional[Dict[~KT, ~VT]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.workloadIdentityFederationAudience"><code class="name">var <span class="ident">workloadIdentityFederationAudience</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -1405,6 +1667,78 @@ dict(one=1, two=2)</p></div>
 </dd>
 </dl>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.MicrosoftFoundryCredential"><code class="flex name class">
+<span>class <span class="ident">MicrosoftFoundryCredential</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.ai.types.MicrosoftFoundryCredential.deployments"><code class="name">var <span class="ident">deployments</span> : Iterable[<a title="crowdin_api.api_resources.ai.types.MicrosoftFoundryDeployment" href="#crowdin_api.api_resources.ai.types.MicrosoftFoundryDeployment">MicrosoftFoundryDeployment</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.MicrosoftFoundryCredential.headers"><code class="name">var <span class="ident">headers</span> : Optional[Dict[str, str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.MicrosoftFoundryCredential.sendCustomHeadersOnly"><code class="name">var <span class="ident">sendCustomHeadersOnly</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.MicrosoftFoundryDeployment"><code class="flex name class">
+<span>class <span class="ident">MicrosoftFoundryDeployment</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.ai.types.MicrosoftFoundryDeployment.apiKey"><code class="name">var <span class="ident">apiKey</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.MicrosoftFoundryDeployment.deploymentName"><code class="name">var <span class="ident">deploymentName</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.MicrosoftFoundryDeployment.targetUri"><code class="name">var <span class="ident">targetUri</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="crowdin_api.api_resources.ai.types.MistralAICredential"><code class="flex name class">
 <span>class <span class="ident">MistralAICredential</span></span>
 <span>(</span><span>*args, **kwargs)</span>
@@ -1428,6 +1762,18 @@ dict(one=1, two=2)</p></div>
 <h3>Class variables</h3>
 <dl>
 <dt id="crowdin_api.api_resources.ai.types.MistralAICredential.apiKey"><code class="name">var <span class="ident">apiKey</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.MistralAICredential.baseUrl"><code class="name">var <span class="ident">baseUrl</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.MistralAICredential.headers"><code class="name">var <span class="ident">headers</span> : Optional[Dict[str, str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.MistralAICredential.sendCustomHeadersOnly"><code class="name">var <span class="ident">sendCustomHeadersOnly</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -1456,6 +1802,18 @@ dict(one=1, two=2)</p></div>
 <h3>Class variables</h3>
 <dl>
 <dt id="crowdin_api.api_resources.ai.types.OpenAICredential.apiKey"><code class="name">var <span class="ident">apiKey</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.OpenAICredential.baseUrl"><code class="name">var <span class="ident">baseUrl</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.OpenAICredential.headers"><code class="name">var <span class="ident">headers</span> : Optional[Dict[str, str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.OpenAICredential.sendCustomHeadersOnly"><code class="name">var <span class="ident">sendCustomHeadersOnly</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -1515,7 +1873,7 @@ dict(one=1, two=2)</p></div>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="crowdin_api.api_resources.ai.types.OtherLanguageTranslation.languageIds"><code class="name">var <span class="ident">languageIds</span> : Optional[Iterable[int]]</code></dt>
+<dt id="crowdin_api.api_resources.ai.types.OtherLanguageTranslation.languageIds"><code class="name">var <span class="ident">languageIds</span> : Optional[Iterable[Union[str, int]]]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -1721,6 +2079,94 @@ dict(one=1, two=2)</p></div>
 </dd>
 </dl>
 </dd>
+<dt id="crowdin_api.api_resources.ai.types.WatsonxCredential"><code class="flex name class">
+<span>class <span class="ident">WatsonxCredential</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.ai.types.WatsonxCredential.apiKey"><code class="name">var <span class="ident">apiKey</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.WatsonxCredential.baseUrl"><code class="name">var <span class="ident">baseUrl</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.WatsonxCredential.headers"><code class="name">var <span class="ident">headers</span> : Optional[Dict[str, str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.WatsonxCredential.projectId"><code class="name">var <span class="ident">projectId</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.WatsonxCredential.region"><code class="name">var <span class="ident">region</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.WatsonxCredential.sendCustomHeadersOnly"><code class="name">var <span class="ident">sendCustomHeadersOnly</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.XAICredential"><code class="flex name class">
+<span>class <span class="ident">XAICredential</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="crowdin_api.api_resources.ai.types.XAICredential.apiKey"><code class="name">var <span class="ident">apiKey</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.XAICredential.baseUrl"><code class="name">var <span class="ident">baseUrl</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.XAICredential.headers"><code class="name">var <span class="ident">headers</span> : Optional[Dict[str, str]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="crowdin_api.api_resources.ai.types.XAICredential.sendCustomHeadersOnly"><code class="name">var <span class="ident">sendCustomHeadersOnly</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 </dl>
 </section>
 </article>
@@ -1782,11 +2228,24 @@ dict(one=1, two=2)</p></div>
 </ul>
 </li>
 <li>
+<h4><code><a title="crowdin_api.api_resources.ai.types.AddAiSnippetRequest" href="#crowdin_api.api_resources.ai.types.AddAiSnippetRequest">AddAiSnippetRequest</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.ai.types.AddAiSnippetRequest.description" href="#crowdin_api.api_resources.ai.types.AddAiSnippetRequest.description">description</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AddAiSnippetRequest.placeholder" href="#crowdin_api.api_resources.ai.types.AddAiSnippetRequest.placeholder">placeholder</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AddAiSnippetRequest.value" href="#crowdin_api.api_resources.ai.types.AddAiSnippetRequest.value">value</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="crowdin_api.api_resources.ai.types.AdvancedModeConfig" href="#crowdin_api.api_resources.ai.types.AdvancedModeConfig">AdvancedModeConfig</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.ai.types.AdvancedModeConfig.generateFileSummary" href="#crowdin_api.api_resources.ai.types.AdvancedModeConfig.generateFileSummary">generateFileSummary</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AdvancedModeConfig.glossaryTerms" href="#crowdin_api.api_resources.ai.types.AdvancedModeConfig.glossaryTerms">glossaryTerms</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.AdvancedModeConfig.mode" href="#crowdin_api.api_resources.ai.types.AdvancedModeConfig.mode">mode</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AdvancedModeConfig.otherLanguageTranslations" href="#crowdin_api.api_resources.ai.types.AdvancedModeConfig.otherLanguageTranslations">otherLanguageTranslations</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.AdvancedModeConfig.prompt" href="#crowdin_api.api_resources.ai.types.AdvancedModeConfig.prompt">prompt</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AdvancedModeConfig.retryOnQaIssues" href="#crowdin_api.api_resources.ai.types.AdvancedModeConfig.retryOnQaIssues">retryOnQaIssues</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.AdvancedModeConfig.screenshots" href="#crowdin_api.api_resources.ai.types.AdvancedModeConfig.screenshots">screenshots</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AdvancedModeConfig.tmSuggestions" href="#crowdin_api.api_resources.ai.types.AdvancedModeConfig.tmSuggestions">tmSuggestions</a></code></li>
 </ul>
 </li>
 <li>
@@ -1862,6 +2321,9 @@ dict(one=1, two=2)</p></div>
 <h4><code><a title="crowdin_api.api_resources.ai.types.AnthropicCredential" href="#crowdin_api.api_resources.ai.types.AnthropicCredential">AnthropicCredential</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.ai.types.AnthropicCredential.apiKey" href="#crowdin_api.api_resources.ai.types.AnthropicCredential.apiKey">apiKey</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AnthropicCredential.baseUrl" href="#crowdin_api.api_resources.ai.types.AnthropicCredential.baseUrl">baseUrl</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AnthropicCredential.headers" href="#crowdin_api.api_resources.ai.types.AnthropicCredential.headers">headers</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AnthropicCredential.sendCustomHeadersOnly" href="#crowdin_api.api_resources.ai.types.AnthropicCredential.sendCustomHeadersOnly">sendCustomHeadersOnly</a></code></li>
 </ul>
 </li>
 <li>
@@ -1869,18 +2331,25 @@ dict(one=1, two=2)</p></div>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.ai.types.AzureOpenAICredential.apiKey" href="#crowdin_api.api_resources.ai.types.AzureOpenAICredential.apiKey">apiKey</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.AzureOpenAICredential.apiVersion" href="#crowdin_api.api_resources.ai.types.AzureOpenAICredential.apiVersion">apiVersion</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AzureOpenAICredential.baseUrl" href="#crowdin_api.api_resources.ai.types.AzureOpenAICredential.baseUrl">baseUrl</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.AzureOpenAICredential.deploymentName" href="#crowdin_api.api_resources.ai.types.AzureOpenAICredential.deploymentName">deploymentName</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AzureOpenAICredential.headers" href="#crowdin_api.api_resources.ai.types.AzureOpenAICredential.headers">headers</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.AzureOpenAICredential.resourceName" href="#crowdin_api.api_resources.ai.types.AzureOpenAICredential.resourceName">resourceName</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.AzureOpenAICredential.sendCustomHeadersOnly" href="#crowdin_api.api_resources.ai.types.AzureOpenAICredential.sendCustomHeadersOnly">sendCustomHeadersOnly</a></code></li>
 </ul>
 </li>
 <li>
 <h4><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig">BasicModeAlignmentActionConfig</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.audienceDescription" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.audienceDescription">audienceDescription</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.companyDescription" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.companyDescription">companyDescription</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.customPlaceholders" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.customPlaceholders">customPlaceholders</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.mode" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.mode">mode</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.organizationContext" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.organizationContext">organizationContext</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.projectContext" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.projectContext">projectContext</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.projectDescription" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.projectDescription">projectDescription</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.publicProjectDescription" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.publicProjectDescription">publicProjectDescription</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.snippets" href="#crowdin_api.api_resources.ai.types.BasicModeAlignmentActionConfig.snippets">snippets</a></code></li>
 </ul>
 </li>
 <li>
@@ -1888,22 +2357,29 @@ dict(one=1, two=2)</p></div>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.audienceDescription" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.audienceDescription">audienceDescription</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.companyDescription" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.companyDescription">companyDescription</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.customPlaceholders" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.customPlaceholders">customPlaceholders</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.fileContent" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.fileContent">fileContent</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.fileContext" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.fileContext">fileContext</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.generateFileSummary" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.generateFileSummary">generateFileSummary</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.glossaryTerms" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.glossaryTerms">glossaryTerms</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.mode" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.mode">mode</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.organizationContext" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.organizationContext">organizationContext</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.otherLanguageTranslation" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.otherLanguageTranslation">otherLanguageTranslation</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.otherLanguageTranslations" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.otherLanguageTranslations">otherLanguageTranslations</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.projectContext" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.projectContext">projectContext</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.projectDescription" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.projectDescription">projectDescription</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.publicProjectDescription" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.publicProjectDescription">publicProjectDescription</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.retryOnQaIssues" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.retryOnQaIssues">retryOnQaIssues</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.screenshots" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.screenshots">screenshots</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.siblingsStrings" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.siblingsStrings">siblingsStrings</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.snippets" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.snippets">snippets</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.tmSuggestions" href="#crowdin_api.api_resources.ai.types.BasicModePreTranslateActionConfig.tmSuggestions">tmSuggestions</a></code></li>
 </ul>
 </li>
 <li>
 <h4><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig">BasicModeQaCheckActionConfig</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.customPlaceholders" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.customPlaceholders">customPlaceholders</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.evaluationSteps" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.evaluationSteps">evaluationSteps</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.fileContext" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.fileContext">fileContext</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.glossaryTerms" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.glossaryTerms">glossaryTerms</a></code></li>
@@ -1912,6 +2388,7 @@ dict(one=1, two=2)</p></div>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.projectContext" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.projectContext">projectContext</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.publicProjectDescription" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.publicProjectDescription">publicProjectDescription</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.screenshots" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.screenshots">screenshots</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.snippets" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.snippets">snippets</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.tmSuggestions" href="#crowdin_api.api_resources.ai.types.BasicModeQaCheckActionConfig.tmSuggestions">tmSuggestions</a></code></li>
 </ul>
 </li>
@@ -1941,6 +2418,15 @@ dict(one=1, two=2)</p></div>
 <li><code><a title="crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.sourceLanguageId" href="#crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.sourceLanguageId">sourceLanguageId</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.stringIds" href="#crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.stringIds">stringIds</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.targetLanguageId" href="#crowdin_api.api_resources.ai.types.CustomActionAiPromptContextResources.targetLanguageId">targetLanguageId</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.ai.types.DeepSeekCredential" href="#crowdin_api.api_resources.ai.types.DeepSeekCredential">DeepSeekCredential</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.ai.types.DeepSeekCredential.apiKey" href="#crowdin_api.api_resources.ai.types.DeepSeekCredential.apiKey">apiKey</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.DeepSeekCredential.baseUrl" href="#crowdin_api.api_resources.ai.types.DeepSeekCredential.baseUrl">baseUrl</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.DeepSeekCredential.headers" href="#crowdin_api.api_resources.ai.types.DeepSeekCredential.headers">headers</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.DeepSeekCredential.sendCustomHeadersOnly" href="#crowdin_api.api_resources.ai.types.DeepSeekCredential.sendCustomHeadersOnly">sendCustomHeadersOnly</a></code></li>
 </ul>
 </li>
 <li>
@@ -1976,12 +2462,22 @@ dict(one=1, two=2)</p></div>
 </ul>
 </li>
 <li>
-<h4><code><a title="crowdin_api.api_resources.ai.types.ExternalMode" href="#crowdin_api.api_resources.ai.types.ExternalMode">ExternalMode</a></code></h4>
+<h4><code><a title="crowdin_api.api_resources.ai.types.EditAiSnippetPatch" href="#crowdin_api.api_resources.ai.types.EditAiSnippetPatch">EditAiSnippetPatch</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.ai.types.EditAiSnippetPatch.op" href="#crowdin_api.api_resources.ai.types.EditAiSnippetPatch.op">op</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.EditAiSnippetPatch.path" href="#crowdin_api.api_resources.ai.types.EditAiSnippetPatch.path">path</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.EditAiSnippetPatch.value" href="#crowdin_api.api_resources.ai.types.EditAiSnippetPatch.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.ai.types.ExternalMode" href="#crowdin_api.api_resources.ai.types.ExternalMode">ExternalMode</a></code></h4>
+<ul class="two-column">
 <li><code><a title="crowdin_api.api_resources.ai.types.ExternalMode.identifier" href="#crowdin_api.api_resources.ai.types.ExternalMode.identifier">identifier</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.ExternalMode.key" href="#crowdin_api.api_resources.ai.types.ExternalMode.key">key</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.ExternalMode.mode" href="#crowdin_api.api_resources.ai.types.ExternalMode.mode">mode</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.ExternalMode.name" href="#crowdin_api.api_resources.ai.types.ExternalMode.name">name</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.ExternalMode.options" href="#crowdin_api.api_resources.ai.types.ExternalMode.options">options</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.ExternalMode.retryOnQaIssues" href="#crowdin_api.api_resources.ai.types.ExternalMode.retryOnQaIssues">retryOnQaIssues</a></code></li>
 </ul>
 </li>
 <li>
@@ -2024,6 +2520,15 @@ dict(one=1, two=2)</p></div>
 </ul>
 </li>
 <li>
+<h4><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential" href="#crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential">GoogleGeminiAIStudioCredential</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential.apiKey" href="#crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential.apiKey">apiKey</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential.baseUrl" href="#crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential.baseUrl">baseUrl</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential.headers" href="#crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential.headers">headers</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential.sendCustomHeadersOnly" href="#crowdin_api.api_resources.ai.types.GoogleGeminiAIStudioCredential.sendCustomHeadersOnly">sendCustomHeadersOnly</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiChatProxy" href="#crowdin_api.api_resources.ai.types.GoogleGeminiChatProxy">GoogleGeminiChatProxy</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiChatProxy.model" href="#crowdin_api.api_resources.ai.types.GoogleGeminiChatProxy.model">model</a></code></li>
@@ -2033,9 +2538,14 @@ dict(one=1, two=2)</p></div>
 <li>
 <h4><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiCredential" href="#crowdin_api.api_resources.ai.types.GoogleGeminiCredential">GoogleGeminiCredential</a></code></h4>
 <ul class="">
+<li><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.baseUrl" href="#crowdin_api.api_resources.ai.types.GoogleGeminiCredential.baseUrl">baseUrl</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.headers" href="#crowdin_api.api_resources.ai.types.GoogleGeminiCredential.headers">headers</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.project" href="#crowdin_api.api_resources.ai.types.GoogleGeminiCredential.project">project</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.region" href="#crowdin_api.api_resources.ai.types.GoogleGeminiCredential.region">region</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.sendCustomHeadersOnly" href="#crowdin_api.api_resources.ai.types.GoogleGeminiCredential.sendCustomHeadersOnly">sendCustomHeadersOnly</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.serviceAccountEmail" href="#crowdin_api.api_resources.ai.types.GoogleGeminiCredential.serviceAccountEmail">serviceAccountEmail</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.serviceAccountKey" href="#crowdin_api.api_resources.ai.types.GoogleGeminiCredential.serviceAccountKey">serviceAccountKey</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.GoogleGeminiCredential.workloadIdentityFederationAudience" href="#crowdin_api.api_resources.ai.types.GoogleGeminiCredential.workloadIdentityFederationAudience">workloadIdentityFederationAudience</a></code></li>
 </ul>
 </li>
 <li>
@@ -2047,15 +2557,37 @@ dict(one=1, two=2)</p></div>
 </ul>
 </li>
 <li>
+<h4><code><a title="crowdin_api.api_resources.ai.types.MicrosoftFoundryCredential" href="#crowdin_api.api_resources.ai.types.MicrosoftFoundryCredential">MicrosoftFoundryCredential</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.ai.types.MicrosoftFoundryCredential.deployments" href="#crowdin_api.api_resources.ai.types.MicrosoftFoundryCredential.deployments">deployments</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.MicrosoftFoundryCredential.headers" href="#crowdin_api.api_resources.ai.types.MicrosoftFoundryCredential.headers">headers</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.MicrosoftFoundryCredential.sendCustomHeadersOnly" href="#crowdin_api.api_resources.ai.types.MicrosoftFoundryCredential.sendCustomHeadersOnly">sendCustomHeadersOnly</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.ai.types.MicrosoftFoundryDeployment" href="#crowdin_api.api_resources.ai.types.MicrosoftFoundryDeployment">MicrosoftFoundryDeployment</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.ai.types.MicrosoftFoundryDeployment.apiKey" href="#crowdin_api.api_resources.ai.types.MicrosoftFoundryDeployment.apiKey">apiKey</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.MicrosoftFoundryDeployment.deploymentName" href="#crowdin_api.api_resources.ai.types.MicrosoftFoundryDeployment.deploymentName">deploymentName</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.MicrosoftFoundryDeployment.targetUri" href="#crowdin_api.api_resources.ai.types.MicrosoftFoundryDeployment.targetUri">targetUri</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="crowdin_api.api_resources.ai.types.MistralAICredential" href="#crowdin_api.api_resources.ai.types.MistralAICredential">MistralAICredential</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.ai.types.MistralAICredential.apiKey" href="#crowdin_api.api_resources.ai.types.MistralAICredential.apiKey">apiKey</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.MistralAICredential.baseUrl" href="#crowdin_api.api_resources.ai.types.MistralAICredential.baseUrl">baseUrl</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.MistralAICredential.headers" href="#crowdin_api.api_resources.ai.types.MistralAICredential.headers">headers</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.MistralAICredential.sendCustomHeadersOnly" href="#crowdin_api.api_resources.ai.types.MistralAICredential.sendCustomHeadersOnly">sendCustomHeadersOnly</a></code></li>
 </ul>
 </li>
 <li>
 <h4><code><a title="crowdin_api.api_resources.ai.types.OpenAICredential" href="#crowdin_api.api_resources.ai.types.OpenAICredential">OpenAICredential</a></code></h4>
 <ul class="">
 <li><code><a title="crowdin_api.api_resources.ai.types.OpenAICredential.apiKey" href="#crowdin_api.api_resources.ai.types.OpenAICredential.apiKey">apiKey</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.OpenAICredential.baseUrl" href="#crowdin_api.api_resources.ai.types.OpenAICredential.baseUrl">baseUrl</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.OpenAICredential.headers" href="#crowdin_api.api_resources.ai.types.OpenAICredential.headers">headers</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.OpenAICredential.sendCustomHeadersOnly" href="#crowdin_api.api_resources.ai.types.OpenAICredential.sendCustomHeadersOnly">sendCustomHeadersOnly</a></code></li>
 </ul>
 </li>
 <li>
@@ -2115,6 +2647,26 @@ dict(one=1, two=2)</p></div>
 <li><code><a title="crowdin_api.api_resources.ai.types.ValidationOptions.minExamplesCount" href="#crowdin_api.api_resources.ai.types.ValidationOptions.minExamplesCount">minExamplesCount</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.ValidationOptions.projectIds" href="#crowdin_api.api_resources.ai.types.ValidationOptions.projectIds">projectIds</a></code></li>
 <li><code><a title="crowdin_api.api_resources.ai.types.ValidationOptions.tmIds" href="#crowdin_api.api_resources.ai.types.ValidationOptions.tmIds">tmIds</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.ai.types.WatsonxCredential" href="#crowdin_api.api_resources.ai.types.WatsonxCredential">WatsonxCredential</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.ai.types.WatsonxCredential.apiKey" href="#crowdin_api.api_resources.ai.types.WatsonxCredential.apiKey">apiKey</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.WatsonxCredential.baseUrl" href="#crowdin_api.api_resources.ai.types.WatsonxCredential.baseUrl">baseUrl</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.WatsonxCredential.headers" href="#crowdin_api.api_resources.ai.types.WatsonxCredential.headers">headers</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.WatsonxCredential.projectId" href="#crowdin_api.api_resources.ai.types.WatsonxCredential.projectId">projectId</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.WatsonxCredential.region" href="#crowdin_api.api_resources.ai.types.WatsonxCredential.region">region</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.WatsonxCredential.sendCustomHeadersOnly" href="#crowdin_api.api_resources.ai.types.WatsonxCredential.sendCustomHeadersOnly">sendCustomHeadersOnly</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="crowdin_api.api_resources.ai.types.XAICredential" href="#crowdin_api.api_resources.ai.types.XAICredential">XAICredential</a></code></h4>
+<ul class="">
+<li><code><a title="crowdin_api.api_resources.ai.types.XAICredential.apiKey" href="#crowdin_api.api_resources.ai.types.XAICredential.apiKey">apiKey</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.XAICredential.baseUrl" href="#crowdin_api.api_resources.ai.types.XAICredential.baseUrl">baseUrl</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.XAICredential.headers" href="#crowdin_api.api_resources.ai.types.XAICredential.headers">headers</a></code></li>
+<li><code><a title="crowdin_api.api_resources.ai.types.XAICredential.sendCustomHeadersOnly" href="#crowdin_api.api_resources.ai.types.XAICredential.sendCustomHeadersOnly">sendCustomHeadersOnly</a></code></li>
 </ul>
 </li>
 </ul>
